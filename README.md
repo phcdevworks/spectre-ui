@@ -58,9 +58,7 @@ All components ship with TypeScript definitions (`SpectreButtonProps`, etc.) so 
 import spectreUI from "spectre-ui";
 
 export default defineConfig({
-  integrations: [
-    spectreUI({ alias: "@spectre" }),
-  ],
+  integrations: [spectreUI({ alias: "@spectre" })],
 });
 ```
 
