@@ -1,6 +1,6 @@
 # Spectre UI
 
-Spectre UI is an Astro-first component library with an integration that wires up aliases, Tailwind CSS v4, and starter styles for you. Ship a consistent design system with drop-in primitives and minimal configuration.
+Spectre UI is an Astro-first component library with an integration that wires up aliases and Tailwind CSS v4 for you. Ship a consistent design system with drop-in primitives and minimal configuration.
 
 ## Installation
 
@@ -30,7 +30,12 @@ export default defineConfig({
 
 ## Usage
 
-With the integration enabled you can import components right from the package. A Tailwind base file (`spectre-ui/styles/base.css`) is auto-imported on the server so utilities are ready anywhere in your project.
+With the integration enabled you can import components right from the package. You now import the base Tailwind file manually to keep control over CSS ordering and side effects:
+
+```css
+/* e.g. in src/styles/global.css */
+@import "spectre-ui/styles/base.css";
+```
 
 ```astro
 ---
@@ -42,20 +47,19 @@ import { SpectreButton } from "spectre-ui/components";
 
 All components ship with TypeScript definitions (`SpectreButtonProps`, etc.) so your editor can surface IntelliSense automatically.
 
+> Note: Earlier versions auto-injected the base stylesheet. This was removed to avoid hidden side effects. If you previously relied on automatic injection, just add the import shown above.
+
 ## Integration options
 
 - `alias` _(default: `spectre-ui`)_: customise the import prefix. Useful if you prefer scoped aliases like `@spectre`.
-- `tailwind` _(default: `true`)_: set to `false` to opt out of Tailwind setup entirely, or pass `{ entry: false }` if you want to manage the CSS import yourself.
+- `tailwind` _(default: `true`)_: set to `false` to opt out of Tailwind setup entirely. The former `tailwind.entry` option is deprecated; simply import the stylesheet manually.
 
 ```ts
 import spectreUI from "spectre-ui";
 
 export default defineConfig({
   integrations: [
-    spectreUI({
-      alias: "@spectre",
-      tailwind: { entry: false },
-    }),
+    spectreUI({ alias: "@spectre" }),
   ],
 });
 ```

@@ -3,12 +3,10 @@ import { join } from "node:path";
 import tailwindcss from "@tailwindcss/vite";
 import type { AstroIntegration } from "astro";
 
-/**
- * Tailwind CSS related options for the Spectre UI integration.
- * Set `entry` to `false` to disable the automatic base stylesheet import.
- */
+// Deprecated: automatic stylesheet injection has been removed.
+// The interface is retained so existing user configs do not type-break.
 export interface TailwindOptions {
-  /** CSS module to import automatically (default: `${alias}/styles/base.css`). */
+  /** @deprecated No longer used. Manually import `spectre-ui/styles/base.css` instead. */
   entry?: string | false;
 }
 
@@ -32,7 +30,8 @@ const stylesDir = join(packageDir, "styles");
  * Responsibilities:
  *  - Provide stable import aliases (package root, components, styles).
  *  - Optionally configure Tailwind v4 via the official Vite plugin.
- *  - Auto-inject a base stylesheet (can be disabled via `tailwind: { entry: false }`).
+ *  - (Removed) Automatic base stylesheet injection. Users must import
+ *    `spectre-ui/styles/base.css` themselves (e.g. in a global CSS entry).
  */
 export default function spectreUI(options: SpectreUIOptions = {}): AstroIntegration {
   const alias = options.alias ?? "spectre-ui";
@@ -41,7 +40,7 @@ export default function spectreUI(options: SpectreUIOptions = {}): AstroIntegrat
   return {
     name: "spectre-ui",
     hooks: {
-      "astro:config:setup"({ config, updateConfig, injectScript }) {
+      "astro:config:setup"({ config, updateConfig }) {
         // Compose alias map (object form is simplest for consumers).
         const aliasEntries: Record<string, string> = {
           [alias]: packageDir,
@@ -50,12 +49,27 @@ export default function spectreUI(options: SpectreUIOptions = {}): AstroIntegrat
         };
 
         const existingAlias = config.vite?.resolve?.alias;
+        if (existingAlias) {
+          const existingMap: Record<string, unknown> = Array.isArray(existingAlias)
+            ? Object.fromEntries(existingAlias.map((e) => [e.find, e.replacement]))
+            : (existingAlias as Record<string, unknown>);
+          for (const key of Object.keys(aliasEntries)) {
+            if (key in existingMap) {
+              console.warn(
+                `[spectre-ui] Alias '${key}' already exists in user config and will be overridden by Spectre UI.`
+              );
+            }
+          }
+        }
         const mergedAlias = Array.isArray(existingAlias)
           ? [
               ...existingAlias,
               ...Object.entries(aliasEntries).map(([find, replacement]) => ({ find, replacement })),
             ]
-          : { ...(typeof existingAlias === "object" && existingAlias !== null ? existingAlias : {}), ...aliasEntries };
+          : {
+              ...(typeof existingAlias === "object" && existingAlias !== null ? existingAlias : {}),
+              ...aliasEntries,
+            };
 
         // Normalise plugin list to an array while preserving original objects/functions.
         const rawPlugins = config.vite?.plugins;
@@ -69,14 +83,23 @@ export default function spectreUI(options: SpectreUIOptions = {}): AstroIntegrat
 
         if (tailwindOption !== false) {
           // Avoid adding duplicate Tailwind plugin instances.
-          if (!plugins.some((p) => typeof p === "object" && p && "name" in p && (p as { name?: string }).name === "tailwindcss")) {
+          if (
+            !plugins.some(
+              (p) =>
+                typeof p === "object" &&
+                p &&
+                "name" in p &&
+                (p as { name?: string }).name === "tailwindcss"
+            )
+          ) {
             plugins.push(tailwindcss());
           }
 
-          const defaultEntry = `${alias}/styles/base.css` as const;
-          const entry = typeof tailwindOption === "object" ? tailwindOption.entry ?? defaultEntry : defaultEntry;
-
-          if (entry) injectScript("page-ssr", `import '${entry}';`);
+          if (typeof tailwindOption === "object" && "entry" in tailwindOption) {
+            console.warn(
+              "[spectre-ui] 'tailwind.entry' is deprecated. Import 'spectre-ui/styles/base.css' manually."
+            );
+          }
         }
 
         updateConfig({
@@ -89,5 +112,3 @@ export default function spectreUI(options: SpectreUIOptions = {}): AstroIntegrat
     },
   };
 }
-
-export type { SpectreButtonProps } from "./components/button.types";
