@@ -3,6 +3,8 @@ import { build } from "tsup";
 
 const componentsDir = "src/components";
 const distComponentsDir = "dist/components";
+const stylesDir = "src/styles";
+const distStylesDir = "dist/styles";
 
 await build({
   entry: ["src/index.ts"],
@@ -11,7 +13,7 @@ await build({
   sourcemap: true,
   clean: true,
   target: "node18",
-  external: ["astro"],
+  external: ["astro", "@tailwindcss/vite"],
   splitting: false,
   treeshake: true,
 });
@@ -20,3 +22,10 @@ if (existsSync(distComponentsDir)) {
   rmSync(distComponentsDir, { recursive: true, force: true });
 }
 cpSync(componentsDir, distComponentsDir, { recursive: true });
+
+if (existsSync(stylesDir)) {
+  if (existsSync(distStylesDir)) {
+    rmSync(distStylesDir, { recursive: true, force: true });
+  }
+  cpSync(stylesDir, distStylesDir, { recursive: true });
+}

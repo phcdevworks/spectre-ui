@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #6366f1;
+  --color-brand-secondary: #0ea5e9;
+  --color-brand-accent: #f472b6;
+  --radius-pill: 9999px;
+  --radius-lg: 1rem;
+  --shadow-soft: 0 20px 45px -18px rgba(99, 102, 241, 0.45);
+}
+
+:root {
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    font-feature-settings:
+      "liga" 1,
+      "calt" 1;
+  }
+}
+
+@layer components {
+  .spectre-chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-slate-200/60 bg-white/80 px-4 py-1 text-sm font-medium shadow-sm backdrop-blur;
+  }
+}

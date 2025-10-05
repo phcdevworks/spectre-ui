@@ -37,9 +37,12 @@
     "design-system"
   ],
   "peerDependencies": {
-    "astro": "^4.0.0 || ^5.0.0"
+    "@tailwindcss/vite": "^4.1.0",
+    "astro": "^4.0.0 || ^5.0.0",
+    "tailwindcss": "^4.1.0"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
     "@types/node": "^20.16.5",
     "astro": "^5.14.1",
     "eslint": "^9.37.0",
@@ -48,6 +51,7 @@
     "globals": "^16.4.0",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
+    "tailwindcss": "^4.1.14",
     "tsup": "^8.5.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.45.0"
