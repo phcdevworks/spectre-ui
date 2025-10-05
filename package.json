@@ -63,5 +63,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/phcdev/spectre-ui"
-  }
+  },
+  "sideEffects": [
+    "**/*.css",
+    "**/*.astro"
+  ]
 }

@@ -1,10 +1,12 @@
+/* eslint-env node */
 import { cpSync, existsSync, rmSync } from "node:fs";
 import { build } from "tsup";
 
-const componentsDir = "src/components";
-const distComponentsDir = "dist/components";
-const stylesDir = "src/styles";
-const distStylesDir = "dist/styles";
+const copyDir = (src, dest) => {
+  if (!existsSync(src)) return;
+  if (existsSync(dest)) rmSync(dest, { recursive: true, force: true });
+  cpSync(src, dest, { recursive: true });
+};
 
 await build({
   entry: ["src/index.ts"],
@@ -18,14 +20,5 @@ await build({
   treeshake: true,
 });
 
-if (existsSync(distComponentsDir)) {
-  rmSync(distComponentsDir, { recursive: true, force: true });
-}
-cpSync(componentsDir, distComponentsDir, { recursive: true });
-
-if (existsSync(stylesDir)) {
-  if (existsSync(distStylesDir)) {
-    rmSync(distStylesDir, { recursive: true, force: true });
-  }
-  cpSync(stylesDir, distStylesDir, { recursive: true });
-}
+copyDir("src/components", "dist/components");
+copyDir("src/styles", "dist/styles");
