@@ -1,5 +1,6 @@
 ---
 import type { CardProps } from "./Card.types";
+import { paddingMap, roundedMap, shadowMap, containerVariantMap } from "../utils/class-maps";
 
 export type { CardProps as Props };
 
@@ -16,46 +17,7 @@ const {
   id,
   "data-track": dataTrack,
   ...rest
-} = Astro.props;
-
-// Build padding classes
-const paddingMap = {
-  xs: "p-2",
-  sm: "p-3",
-  md: "p-4",
-  lg: "p-6",
-  xl: "p-8",
-  "2xl": "p-12",
-};
-
-// Build rounded classes
-const roundedMap = {
-  none: "rounded-none",
-  sm: "rounded-sm",
-  md: "rounded-md",
-  lg: "rounded-lg",
-  full: "rounded-full",
-};
-
-// Build shadow classes
-const shadowMap = {
-  none: "shadow-none",
-  sm: "shadow-sm",
-  md: "shadow-md",
-  lg: "shadow-lg",
-  xl: "shadow-xl",
-};
-
-// Build variant classes (background colors)
-const variantMap = {
-  primary: "bg-primary-50 border-primary-200",
-  secondary: "bg-secondary-50 border-secondary-200",
-  accent: "bg-accent-50 border-accent-200",
-  success: "bg-success-50 border-success-200",
-  warning: "bg-warning-50 border-warning-200",
-  danger: "bg-danger-50 border-danger-200",
-  neutral: "bg-white border-neutral-200",
-};
+} = Astro.props as CardProps;
 ---
 
 <div
@@ -64,7 +26,7 @@ const variantMap = {
     paddingMap[padding],
     roundedMap[rounded],
     shadowMap[shadow],
-    variantMap[variant],
+    containerVariantMap[variant],
     { border: border },
     { "spectre-card--hoverable": hoverable },
     className,
