@@ -1,0 +1,150 @@
+---
+import type { IconBoxProps } from "./IconBox.types";
+
+export type { IconBoxProps as Props };
+
+const {
+  padding = "md",
+  rounded = "md",
+  shadow = "sm",
+  variant = "neutral",
+  border = true,
+  icon,
+  iconPosition = "top",
+  iconSize = "md",
+  title,
+  description,
+  align = "left",
+  class: className,
+  id,
+  "data-track": dataTrack,
+  ...rest
+} = Astro.props;
+
+// Build padding classes
+const paddingMap = {
+  xs: "p-2",
+  sm: "p-3",
+  md: "p-4",
+  lg: "p-6",
+  xl: "p-8",
+  "2xl": "p-12",
+};
+
+// Build rounded classes
+const roundedMap = {
+  none: "rounded-none",
+  sm: "rounded-sm",
+  md: "rounded-md",
+  lg: "rounded-lg",
+  full: "rounded-full",
+};
+
+// Build shadow classes
+const shadowMap = {
+  none: "shadow-none",
+  sm: "shadow-sm",
+  md: "shadow-md",
+  lg: "shadow-lg",
+  xl: "shadow-xl",
+};
+
+// Build variant classes
+const variantMap = {
+  primary: "bg-primary-50 border-primary-200 text-primary-900",
+  secondary: "bg-secondary-50 border-secondary-200 text-secondary-900",
+  accent: "bg-accent-50 border-accent-200 text-accent-900",
+  success: "bg-success-50 border-success-200 text-success-900",
+  warning: "bg-warning-50 border-warning-200 text-warning-900",
+  danger: "bg-danger-50 border-danger-200 text-danger-900",
+  neutral: "bg-white border-neutral-200 text-neutral-900",
+};
+
+// Icon size classes
+const iconSizeMap = {
+  sm: "w-4 h-4",
+  md: "w-6 h-6",
+  lg: "w-8 h-8",
+  xl: "w-12 h-12",
+};
+
+// Icon color classes based on variant
+const iconColorMap = {
+  primary: "text-primary-600",
+  secondary: "text-secondary-600",
+  accent: "text-accent-600",
+  success: "text-success-600",
+  warning: "text-warning-600",
+  danger: "text-danger-600",
+  neutral: "text-neutral-600",
+};
+
+// Layout classes based on icon position
+const layoutClass =
+  iconPosition === "top" || iconPosition === "bottom" ? "flex flex-col" : "flex flex-row";
+
+const alignClass =
+  align === "center"
+    ? "items-center text-center"
+    : align === "right"
+      ? "items-end text-right"
+      : "items-start text-left";
+
+const gapClass = iconPosition === "top" || iconPosition === "bottom" ? "gap-3" : "gap-4";
+---
+
+<div
+  class:list={[
+    "spectre-icon-box",
+    layoutClass,
+    alignClass,
+    gapClass,
+    paddingMap[padding],
+    roundedMap[rounded],
+    shadowMap[shadow],
+    variantMap[variant],
+    { border: border },
+    className,
+  ]}
+  id={id}
+  data-track={dataTrack}
+  {...rest}
+>
+  {
+    icon && iconPosition !== "bottom" && iconPosition !== "right" && (
+      <div
+        class:list={[
+          "spectre-icon-box__icon shrink-0",
+          iconSizeMap[iconSize],
+          iconColorMap[variant],
+        ]}
+        set:html={icon}
+      />
+    )
+  }
+
+  <div class="spectre-icon-box__content flex-1">
+    {title && <h4 class="font-semibold leading-tight">{title}</h4>}
+    {description && <p class="mt-1 text-sm opacity-90">{description}</p>}
+    {
+      Astro.slots.has("default") && (
+        <div class:list={[{ "mt-2": title || description }]}>
+          <slot />
+        </div>
+      )
+    }
+  </div>
+
+  {
+    icon && (iconPosition === "bottom" || iconPosition === "right") && (
+      <div
+        class:list={[
+          "spectre-icon-box__icon shrink-0",
+          iconSizeMap[iconSize],
+          iconColorMap[variant],
+        ]}
+        set:html={icon}
+      />
+    )
+  }
+</div>

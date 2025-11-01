@@ -1,0 +1,25 @@
+/**
+ * IconBox Component Styles
+ */
+
+.spectre-icon-box {
+  /* Base styles already in base.css */
+}
+
+/* Icon container */
+.spectre-icon-box__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure SVG icons inherit size */
+.spectre-icon-box__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Content area */
+.spectre-icon-box__content {
+  min-width: 0; /* Prevent flex item overflow */
+}

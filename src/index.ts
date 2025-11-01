@@ -3,6 +3,24 @@ import { join } from "node:path";
 import tailwindcss from "@tailwindcss/vite";
 import type { AstroIntegration } from "astro";
 
+// Re-export types for consumers
+export type {
+  BaseComponentProps,
+  ContainerProps,
+  InteractiveProps,
+  IconProps,
+  TextProps,
+  FormFieldProps,
+  SpacingSize,
+  RoundedSize,
+  ShadowSize,
+  ColorVariant,
+  ComponentSize,
+} from "./types/component-props";
+
+export { theme } from "./config/theme";
+export type { Theme } from "./config/theme";
+
 // Deprecated: automatic stylesheet injection has been removed.
 // The interface is retained so existing user configs do not type-break.
 export interface TailwindOptions {

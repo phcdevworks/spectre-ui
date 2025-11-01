@@ -1,0 +1,31 @@
+/**
+ * Card Component Styles
+ * Additional card-specific styles beyond base Tailwind classes
+ */
+
+.spectre-card {
+  /* Base styles already in base.css */
+}
+
+.spectre-card--hoverable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.spectre-card--hoverable:hover {
+  transform: translateY(-2px);
+}
+
+.spectre-card--hoverable:active {
+  transform: translateY(0);
+}
+
+/* Card header spacing */
+.spectre-card__header:empty {
+  display: none;
+}
+
+/* Card footer styling */
+.spectre-card__footer:empty {
+  display: none;
+}

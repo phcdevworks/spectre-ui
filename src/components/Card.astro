@@ -1,0 +1,102 @@
+---
+import type { CardProps } from "./Card.types";
+
+export type { CardProps as Props };
+
+const {
+  padding = "lg",
+  rounded = "lg",
+  shadow = "md",
+  variant = "neutral",
+  border = false,
+  title,
+  subtitle,
+  hoverable = false,
+  class: className,
+  id,
+  "data-track": dataTrack,
+  ...rest
+} = Astro.props;
+
+// Build padding classes
+const paddingMap = {
+  xs: "p-2",
+  sm: "p-3",
+  md: "p-4",
+  lg: "p-6",
+  xl: "p-8",
+  "2xl": "p-12",
+};
+
+// Build rounded classes
+const roundedMap = {
+  none: "rounded-none",
+  sm: "rounded-sm",
+  md: "rounded-md",
+  lg: "rounded-lg",
+  full: "rounded-full",
+};
+
+// Build shadow classes
+const shadowMap = {
+  none: "shadow-none",
+  sm: "shadow-sm",
+  md: "shadow-md",
+  lg: "shadow-lg",
+  xl: "shadow-xl",
+};
+
+// Build variant classes (background colors)
+const variantMap = {
+  primary: "bg-primary-50 border-primary-200",
+  secondary: "bg-secondary-50 border-secondary-200",
+  accent: "bg-accent-50 border-accent-200",
+  success: "bg-success-50 border-success-200",
+  warning: "bg-warning-50 border-warning-200",
+  danger: "bg-danger-50 border-danger-200",
+  neutral: "bg-white border-neutral-200",
+};
+---
+
+<div
+  class:list={[
+    "spectre-card",
+    paddingMap[padding],
+    roundedMap[rounded],
+    shadowMap[shadow],
+    variantMap[variant],
+    { border: border },
+    { "spectre-card--hoverable": hoverable },
+    className,
+  ]}
+  id={id}
+  data-track={dataTrack}
+  {...rest}
+>
+  {
+    (title || subtitle || Astro.slots.has("header")) && (
+      <div class="spectre-card__header mb-4">
+        {Astro.slots.has("header") ? (
+          <slot name="header" />
+        ) : (
+          <>
+            {title && <h3 class="text-lg font-semibold text-neutral-900">{title}</h3>}
+            {subtitle && <p class="mt-1 text-sm text-neutral-600">{subtitle}</p>}
+          </>
+        )}
+      </div>
+    )
+  }
+
+  <div class="spectre-card__content">
+    <slot />
+  </div>
+
+  {
+    Astro.slots.has("footer") && (
+      <div class="spectre-card__footer mt-4 border-t border-neutral-200 pt-4">
+        <slot name="footer" />
+      </div>
+    )
+  }
+</div>
