@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./components/menu.css";
 
 /**
  * Spectre UI Theme Configuration
@@ -74,12 +75,73 @@
   --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/**
+ * CSS Custom Properties for User Overrides
+ * Users can override these in their own CSS to customize fonts and colors
+ */
 :root {
+  /* Typography - Can be overridden by user */
+  --font-family-base:
+    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  --font-family-heading: var(--font-family-base);
+  --font-family-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
+
+  /* Light Mode Colors (Default) */
+  --spectre-bg-base: #ffffff;
+  --spectre-bg-elevated: #f9fafb;
+  --spectre-text-primary: #111827;
+  --spectre-text-secondary: #6b7280;
+  --spectre-border: #e5e7eb;
+  --spectre-border-hover: #d1d5db;
+
   color-scheme: light;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Mode Colors */
+    --spectre-bg-base: #111827;
+    --spectre-bg-elevated: #1f2937;
+    --spectre-text-primary: #f9fafb;
+    --spectre-text-secondary: #9ca3af;
+    --spectre-border: #374151;
+    --spectre-border-hover: #4b5563;
+
+    color-scheme: dark;
+  }
+}
+
+/* Force Light Mode Class Override */
+[data-theme="light"] {
+  --spectre-bg-base: #ffffff;
+  --spectre-bg-elevated: #f9fafb;
+  --spectre-text-primary: #111827;
+  --spectre-text-secondary: #6b7280;
+  --spectre-border: #e5e7eb;
+  --spectre-border-hover: #d1d5db;
+
+  color-scheme: light;
+}
+
+/* Force Dark Mode Class Override */
+[data-theme="dark"] {
+  --spectre-bg-base: #111827;
+  --spectre-bg-elevated: #1f2937;
+  --spectre-text-primary: #f9fafb;
+  --spectre-text-secondary: #9ca3af;
+  --spectre-border: #374151;
+  --spectre-border-hover: #4b5563;
+
+  color-scheme: dark;
 }
 
 @layer base {
   html {
+    font-family: var(--font-family-base);
     font-feature-settings:
       "liga" 1,
       "calt" 1;
@@ -87,6 +149,22 @@
 
   body {
     @apply antialiased;
+    background-color: var(--spectre-bg-base);
+    color: var(--spectre-text-primary);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-family-heading);
+  }
+
+  code,
+  pre {
+    font-family: var(--font-family-mono);
   }
 }
 
@@ -97,7 +175,9 @@
 @layer components {
   /* Card Component */
   .spectre-card {
-    @apply rounded-lg bg-white shadow-md;
+    @apply rounded-lg shadow-md;
+    background-color: var(--spectre-bg-elevated);
+    border: 1px solid var(--spectre-border);
   }
 
   .spectre-card--hoverable {
@@ -124,7 +204,9 @@
 
   /* IconBox Component */
   .spectre-icon-box {
-    @apply flex gap-4 rounded-md bg-white p-4 shadow-sm;
+    @apply flex gap-4 rounded-md p-4 shadow-sm;
+    background-color: var(--spectre-bg-elevated);
+    border: 1px solid var(--spectre-border);
   }
 
   .spectre-icon-box__icon {

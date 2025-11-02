@@ -23,7 +23,8 @@
     "dist",
     "README.md",
     "LICENSE.md",
-    "ARCHITECTURE.md"
+    "ARCHITECTURE.md",
+    "QUICKSTART.md"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
@@ -73,8 +74,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/phcdev/spectre-ui"
+    "url": "https://github.com/phcdevworks/spectre-ui"
   },
+  "bugs": {
+    "url": "https://github.com/phcdevworks/spectre-ui/issues"
+  },
+  "homepage": "https://github.com/phcdevworks/spectre-ui#readme",
   "sideEffects": [
     "**/*.css",
     "**/*.astro"

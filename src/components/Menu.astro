@@ -1,0 +1,162 @@
+---
+import type { MenuProps } from "./Menu.types";
+
+export type { MenuProps as Props };
+
+const {
+  links = [],
+  logo,
+  logoAlt = "Logo",
+  logoHref = "/",
+  variant = "default",
+  sticky = false,
+  responsive = true,
+  logoPosition = "left",
+  navAlign = "right",
+  class: className,
+  id,
+  "data-track": dataTrack,
+  ...rest
+} = Astro.props as MenuProps;
+
+const menuId = id || `menu-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<nav
+  class:list={[
+    "spectre-menu",
+    `spectre-menu--${variant}`,
+    { "spectre-menu--sticky": sticky },
+    { "spectre-menu--logo-center": logoPosition === "center" },
+    className,
+  ]}
+  id={id}
+  data-track={dataTrack}
+  {...rest}
+>
+  <div class="spectre-menu__container">
+    <!-- Logo -->
+    {
+      logo && (
+        <a href={logoHref} class="spectre-menu__logo" data-track="logo">
+          {logo.startsWith("<") ? (
+            <Fragment set:html={logo} />
+          ) : (
+            <img src={logo} alt={logoAlt} class="spectre-menu__logo-img" />
+          )}
+        </a>
+      )
+    }
+
+    <!-- Mobile Toggle -->
+    {
+      responsive && (
+        <button
+          type="button"
+          class="spectre-menu__toggle"
+          aria-controls={`${menuId}-nav`}
+          aria-expanded="false"
+          data-menu-toggle
+        >
+          <span class="spectre-menu__toggle-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </span>
+          <span class="sr-only">Toggle menu</span>
+        </button>
+      )
+    }
+
+    <!-- Navigation Links -->
+    <div
+      class:list={[
+        "spectre-menu__nav",
+        `spectre-menu__nav--${navAlign}`,
+        { "spectre-menu__nav--responsive": responsive },
+      ]}
+      id={`${menuId}-nav`}
+    >
+      {
+        Astro.slots.has("default") ? (
+          <slot />
+        ) : (
+          <ul class="spectre-menu__list">
+            {links.map((link) => (
+              <li class="spectre-menu__item">
+                <a
+                  href={link.href}
+                  class:list={["spectre-menu__link", { "spectre-menu__link--active": link.active }]}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  data-track={`nav-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
+                >
+                  {link.icon && <span class="spectre-menu__link-icon" set:html={link.icon} />}
+                  <span>{link.label}</span>
+                  {link.badge && <span class="spectre-menu__badge">{link.badge}</span>}
+                  {link.external && (
+                    <svg
+                      class="spectre-menu__external-icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                      />
+                    </svg>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+
+      <!-- CTA Slot -->
+      {
+        Astro.slots.has("cta") && (
+          <div class="spectre-menu__cta">
+            <slot name="cta" />
+          </div>
+        )
+      }
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle functionality
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggles = document.querySelectorAll("[data-menu-toggle]");
+
+    toggles.forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        const navId = toggle.getAttribute("aria-controls");
+        if (!navId) return;
+
+        const nav = document.getElementById(navId);
+        if (!nav) return;
+
+        const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!isExpanded));
+        nav.classList.toggle("spectre-menu__nav--open");
+      });
+    });
+  });
+</script>
