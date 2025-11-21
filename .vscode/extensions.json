@@ -1,6 +1,5 @@
 {
 	"recommendations": [
-		"bmewburn.vscode-intelephense-client",
 		"github.copilot",
 		"github.copilot-chat",
 		"editorconfig.editorconfig",
