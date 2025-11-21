@@ -1,0 +1,78 @@
+{
+	// Theme & Appearance
+	"workbench.colorTheme": "GitHub Dark Default",
+	"workbench.iconTheme": "material-icon-theme",
+	"editor.fontFamily": "'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace",
+	"editor.fontLigatures": true,
+	"editor.fontSize": 14,
+	"editor.lineHeight": 1.6,
+	"editor.cursorBlinking": "smooth",
+	"editor.cursorSmoothCaretAnimation": "on",
+	"editor.smoothScrolling": true,
+	"editor.minimap.enabled": false,
+	"editor.renderWhitespace": "boundary",
+	"editor.bracketPairColorization.enabled": true,
+	"editor.guides.bracketPairs": "active",
+	"workbench.startupEditor": "none",
+	"workbench.editor.enablePreview": false,
+	"breadcrumbs.enabled": true,
+	// Editor Behavior
+	"editor.formatOnSave": true,
+	"editor.formatOnPaste": false,
+	"editor.tabSize": 4,
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": true,
+	"editor.trimAutoWhitespace": true,
+	"files.trimTrailingWhitespace": true,
+	"files.insertFinalNewline": true,
+	"files.eol": "\n",
+	// PHP Intelephense
+	// TypeScript & CSS language settings
+	"[typescript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features",
+		"editor.formatOnSave": true,
+		"editor.tabSize": 2,
+		"editor.insertSpaces": true,
+		"editor.wordWrap": "off"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features",
+		"editor.formatOnSave": true,
+		"editor.tabSize": 2,
+		"editor.insertSpaces": true,
+		"editor.wordWrap": "off"
+	},
+	"[css]": {
+		"editor.defaultFormatter": "vscode.css-language-features",
+		"editor.formatOnSave": true,
+		"editor.tabSize": 2,
+		"editor.insertSpaces": true,
+		"editor.wordWrap": "off"
+	},
+	// File Associations (kept minimal)
+	"files.associations": {
+		"*.css": "css",
+		"*.ts": "typescript",
+		"*.tsx": "typescriptreact"
+	},
+	// File Explorer
+	"files.exclude": {
+		"**/.git": true,
+		"**/.DS_Store": true,
+		"**/node_modules": true,
+		"**/vendor": true
+	},
+	"explorer.confirmDelete": false,
+	"explorer.confirmDragAndDrop": false,
+	"explorer.compactFolders": false,
+	// Terminal
+	"terminal.integrated.fontSize": 13,
+	"terminal.integrated.fontFamily": "'Fira Code', 'Cascadia Code', monospace",
+	"terminal.integrated.cursorBlinking": true,
+	"terminal.integrated.cursorStyle": "line",
+	// Git
+	"git.autofetch": true,
+	"git.confirmSync": false,
+	"git.enableSmartCommit": true,
+	"scm.defaultViewMode": "tree"
+}
