@@ -1,0 +1,36 @@
+@layer utilities {
+  .sp-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-space-md, 1rem);
+  }
+
+  .sp-hstack {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--sp-space-md, 1rem);
+  }
+
+  .sp-container {
+    width: 100%;
+    max-width: var(--sp-breakpoint-xl, 1280px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--sp-space-md, 1rem);
+    padding-right: var(--sp-space-md, 1rem);
+  }
+
+  .sp-section {
+    padding-top: var(--sp-space-2xl, 3rem);
+    padding-bottom: var(--sp-space-2xl, 3rem);
+  }
+
+  .sp-shadow-soft {
+    box-shadow: var(--sp-shadow-md, 0 3px 8px rgba(15, 23, 42, 0.1));
+  }
+
+  .sp-shadow-strong {
+    box-shadow: var(--sp-shadow-lg, 0 8px 20px rgba(15, 23, 42, 0.18));
+  }
+}

@@ -1,0 +1,42 @@
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--sp-font-family-sans, system-ui);
+    font-size: var(--sp-font-md-size, 1rem);
+    line-height: var(--sp-font-md-line-height, 1.5);
+    color: var(--sp-color-neutral-900, #0f172a);
+    background-color: var(--sp-color-neutral-50, #f8fafc);
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: var(--sp-color-brand-600, #6c32e6);
+    text-decoration: none;
+    font-weight: var(--sp-font-md-weight, 500);
+    transition: color var(--sp-duration-fast, 150ms) var(--sp-easing-out, ease);
+  }
+
+  a:hover,
+  a:focus-visible {
+    color: var(--sp-color-brand-700, #5626b4);
+    text-decoration: underline;
+  }
+
+  :focus-visible {
+    outline: var(--sp-focus-ring-width, 2px) var(--sp-focus-ring-style, solid)
+      var(--sp-color-focus-primary, #8652ff);
+    outline-offset: var(--sp-focus-ring-offset, 2px);
+  }
+
+  ::selection {
+    background-color: var(--sp-color-brand-200, #d7c6ff);
+    color: var(--sp-color-neutral-900, #0f172a);
+  }
+}

@@ -1,0 +1,1 @@
+export { spectrePreset } from './preset';

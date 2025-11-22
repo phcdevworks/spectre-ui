@@ -8,6 +8,7 @@
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "esnext",
+    "moduleResolution": "bundler",
     "target": "es2020",
     "types": [],
     // For nodejs:
