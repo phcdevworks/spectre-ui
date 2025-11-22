@@ -14,8 +14,8 @@
   ],
 
   "scripts": {
-    "build": "tsup src/index.ts --dts --format esm,cjs --out-dir dist",
-    "dev": "tsup src/index.ts --watch",
+    "build": "tsup --config tsup.config.ts",
+    "dev": "tsup --config tsup.config.ts --watch",
     "clean": "rm -rf dist"
   },
 
@@ -45,7 +45,7 @@
   "homepage": "https://github.com/phcdevworks/spectre-ui#readme",
 
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^0.1.0"
+    "@phcdevworks/spectre-tokens": "^0.0.1"
   },
 
   "devDependencies": {
