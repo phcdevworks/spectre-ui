@@ -1,24 +1,16 @@
-# Spectre UI
+# @phcdevworks/spectre-ui
 
-**Spectre UI** is the core styling layer of the **Spectre Suite** — a cross-platform design system built on TailwindCSS and powered by Spectre Tokens.
-
-It provides precompiled CSS, utilities, and styling primitives used by **Spectre Blocks** (WordPress), **Spectre Astro**, **Spectre 11ty**, and future Spectre tools.
-
-> One design system. Many frameworks. Full consistency.
-
----
+Core styling layer for the Spectre design system. `@phcdevworks/spectre-ui` ships the precompiled CSS, tailwind preset, and recipe helpers that power every Spectre integration (WordPress blocks, Astro, 11ty, and more).
 
 ## Overview
 
-Spectre UI delivers a unified design language across multiple platforms and frameworks. Whether you're building WordPress blocks, static sites with Astro or 11ty, or future Spectre integrations, Spectre UI ensures your styles remain consistent and maintainable.
+This package is the single source of truth for Spectre's design language. It exposes CSS entry points, typed recipes, and token-driven utilities that downstream frameworks can consume without duplicating logic.
 
-## Features
-
-- **TailwindCSS Foundation**: Built on top of Tailwind's utility-first approach
-- **Token-Driven Design**: Powered by Spectre Tokens for consistent theming
-- **Cross-Platform**: Works seamlessly across WordPress, Astro, 11ty, and more
-- **Precompiled CSS**: Ready-to-use stylesheets for fast integration
-- **Design Primitives**: Reusable styling components and utilities
+- ✅ Token-powered styles built on `@phcdevworks/spectre-tokens`
+- ✅ Precompiled `base`, `components`, and `utilities` CSS bundles
+- ✅ Type-safe recipes (`getButtonClasses`, `getCardClasses`, `getInputClasses`)
+- ✅ Tailwind preset + helpers to generate a Spectre theme
+- ✅ Framework-agnostic: works anywhere CSS and JavaScript run
 
 ## Installation
 
@@ -28,30 +20,115 @@ npm install @phcdevworks/spectre-ui
 
 ## Usage
 
-Import Spectre UI styles into your project:
+### 1. Import Spectre CSS
+
+You can import the full bundle or use the namespaced entry points anywhere in your app, layout, or build pipeline.
 
 ```css
-@import '@phcdevworks/spectre-ui';
+/* Full bundle */
+@import "@phcdevworks/spectre-ui/dist/base.css";
+@import "@phcdevworks/spectre-ui/dist/components.css";
+@import "@phcdevworks/spectre-ui/dist/utilities.css";
 ```
 
-Or use the precompiled CSS directly in your HTML:
+### 2. Configure Tailwind
 
-```html
-<link rel="stylesheet" href="node_modules/@phcdevworks/spectre-ui/dist/spectre-ui.css">
+Spectre ships an opinionated Tailwind preset that mirrors the tokens exactly.
+
+```ts
+// tailwind.config.mjs
+import { spectrePreset } from "@phcdevworks/spectre-ui";
+
+export default {
+  content: ["./src/**/*.{js,ts,jsx,tsx,astro}"],
+  presets: [spectrePreset],
+};
 ```
 
-## Part of the Spectre Suite
+Need custom tokens? Generate a tailored theme:
 
-- **Spectre Tokens**: Design token foundation
-- **Spectre UI**: Core styling layer (this package)
-- **Spectre Blocks**: WordPress block library
-- **Spectre Astro**: Astro integration
-- **Spectre 11ty**: Eleventy integration
+```ts
+import {
+  spectreTokens,
+  createSpectreTailwindTheme,
+} from "@phcdevworks/spectre-ui";
 
-## License
+const theme = createSpectreTailwindTheme({
+  tokens: spectreTokens,
+  overrides: {
+    colors: {
+      brand: "#7928CA",
+    },
+  },
+});
+```
 
-MIT
+### 3. Use Spectre recipes
+
+Recipes wrap Spectre's class combinations so every framework composes styles consistently.
+
+```ts
+import { getButtonClasses } from "@phcdevworks/spectre-ui";
+
+const classes = getButtonClasses({
+  variant: "primary",
+  size: "lg",
+  fullWidth: true,
+});
+
+// classes ➜ "sp-btn sp-btn--primary sp-btn--lg sp-btn--full"
+```
+
+## CSS Path Constants
+
+Utilities for referencing the published CSS files programmatically:
+
+```ts
+import {
+  spectreBaseStylesPath,
+  spectreComponentsStylesPath,
+  spectreUtilitiesStylesPath,
+  spectreStyles,
+} from "@phcdevworks/spectre-ui";
+
+// spectreStyles.base        → "@phcdevworks/spectre-ui/dist/base.css"
+// spectreStyles.components  → "@phcdevworks/spectre-ui/dist/components.css"
+// spectreStyles.utilities   → "@phcdevworks/spectre-ui/dist/utilities.css"
+```
+
+## Tokens & TypeScript Support
+
+All exports ship full TypeScript definitions, including:
+
+```ts
+import type {
+  SpectreTokens,
+  SpectreTailwindTheme,
+  ButtonVariant,
+  InputState,
+  CardVariant,
+} from "@phcdevworks/spectre-ui";
+```
+
+Use helpers such as `generateSpectreCssVariables`, `createSpectreCssVariableMap`, or `getInputClasses` to keep your implementation type-safe and in sync with the design system.
+
+## Design Principles
+
+1. **Single source of truth** – all Spectre products consume these tokens and CSS files.
+2. **No style duplication** – downstream frameworks never re-encode Spectre logic.
+3. **Token-first** – the Tailwind preset, CSS, and recipes are generated from tokens.
+4. **Framework agnostic** – works with any bundler, CMS, or runtime.
+5. **Type-safe ergonomics** – every helper exports strict types for confident usage.
+
+## Requirements
+
+- **Tailwind CSS**: ^3.4.0 or ^4.0.0 (if you consume the preset)
+- **Build tooling**: ESM-compatible bundler capable of importing CSS from npm
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request.
+Contributions are welcome—open an issue or submit a pull request on GitHub with context about the change you’re proposing.
+
+## License
+
+MIT © PHCDevworks
