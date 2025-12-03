@@ -1,4 +1,4 @@
-export type CardVariant = 'base' | 'elevated' | 'flat';
+export type CardVariant = 'elevated' | 'outline' | 'ghost';
 
 export interface CardClassConfig {
   baseClass: string;
@@ -8,8 +8,8 @@ export interface CardClassConfig {
 export const cardConfig: CardClassConfig = {
   baseClass: 'sp-card',
   variants: {
-    base: '',
-    elevated: 'sp-card-elevated',
-    flat: 'sp-card-flat',
+    elevated: 'sp-card--elevated',
+    outline: 'sp-card--outline',
+    ghost: 'sp-card--ghost',
   },
 };

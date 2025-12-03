@@ -1,69 +1,114 @@
-import { Tokens, TailwindTheme, AccessibilityTokens, AnimationEntry, ButtonStateTokens, FormStateTokens, TokenScale, TransitionTokens, TypographyTokens } from '@phcdevworks/spectre-tokens';
 import { Config } from 'tailwindcss';
 
-declare const spectreTokens: Tokens;
-declare const spectreTailwindTheme: TailwindTheme;
-declare const spectreTailwindPreset: {
-    theme: TailwindTheme;
-};
-type SpectreTokens = Tokens;
-type SpectreTailwindTheme = TailwindTheme;
-type SpectreTokenScale = TokenScale;
-type SpectreTransitionTokens = TransitionTokens;
-type SpectreTypographyTokens = TypographyTokens;
-type SpectreAccessibilityTokens = AccessibilityTokens;
-type SpectreAnimationEntry = AnimationEntry;
-type SpectreButtonStateTokens = ButtonStateTokens;
-type SpectreFormStateTokens = FormStateTokens;
+type SpectreTokenScale = Record<string, string | number>;
+type SpectreTransitionTokens = Record<string, string>;
+type SpectreTypographyTokens = Record<string, string>;
+type SpectreAccessibilityTokens = Record<string, string>;
+type SpectreAnimationEntry = Record<string, unknown>;
+type SpectreButtonStateTokens = Record<string, string>;
+type SpectreFormStateTokens = Record<string, string>;
+interface SpectreTokens {
+    /**
+     * Placeholder token groups. Actual structure will be defined in a future release.
+     */
+    [group: string]: unknown;
+}
 interface SpectreCssVariableOptions {
     selector?: string;
     prefix?: string;
 }
 type SpectreCssVariableMap = Record<string, string>;
-declare const createSpectreTailwindTheme: (source?: SpectreTokens) => SpectreTailwindTheme;
-declare const createSpectreCssVariableMap: (source?: SpectreTokens, options?: SpectreCssVariableOptions) => SpectreCssVariableMap;
-declare const generateSpectreCssVariables: (source?: SpectreTokens, options?: SpectreCssVariableOptions) => string;
+declare const spectreTokens: SpectreTokens;
+declare const createSpectreCssVariableMap: (_source?: SpectreTokens, _options?: SpectreCssVariableOptions) => SpectreCssVariableMap;
+declare const generateSpectreCssVariables: (_source?: SpectreTokens, _options?: SpectreCssVariableOptions) => string;
+
+interface SpectreTailwindTheme {
+    theme: Config['theme'];
+}
+interface CreateSpectreTailwindThemeOptions {
+    tokens: SpectreTokens;
+    overrides?: Partial<SpectreTokens>;
+}
+declare function createSpectreTailwindTheme(_options: CreateSpectreTailwindThemeOptions): SpectreTailwindTheme;
 
 declare const spectrePreset: Config;
+declare const spectreTailwindPreset: Config;
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'success' | 'danger';
-type ButtonSize = 'sm' | 'md' | 'lg';
-type ButtonState = 'default' | 'hover' | 'active' | 'disabled';
-
+type SpectreButtonSize = 'sm' | 'md' | 'lg';
+type SpectreButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+type SpectreButtonState = 'default' | 'hover' | 'disabled';
 interface GetButtonClassesOptions {
-    variant?: ButtonVariant;
-    size?: ButtonSize;
-    state?: ButtonState;
+    variant?: SpectreButtonVariant;
+    size?: SpectreButtonSize;
+    state?: SpectreButtonState;
+    /**
+     * Space-separated extra classes appended at the end.
+     */
     extraClasses?: string;
 }
-declare const getButtonClasses: ({ variant, size, state, extraClasses, }?: GetButtonClassesOptions) => string;
+/**
+ * Recipe helper for button class generation.
+ *
+ * Examples:
+ * - getButtonClasses()
+ *   => "sp-btn sp-btn--primary sp-btn--md"
+ *
+ * - getButtonClasses({ variant: "secondary", size: "lg", state: "disabled" })
+ *   => "sp-btn sp-btn--secondary sp-btn--lg sp-btn--disabled"
+ */
+declare const getButtonClasses: (options?: GetButtonClassesOptions) => string;
 
-type InputState = 'default' | 'focus' | 'invalid' | 'valid' | 'disabled';
-
-interface GetInputClassesOptions {
-    state?: InputState;
-    extraClasses?: string;
-}
-declare const getInputClasses: ({ state, extraClasses, }?: GetInputClassesOptions) => string;
-
-type CardVariant = 'base' | 'elevated' | 'flat';
-
+type SpectreCardVariant = 'elevated' | 'outline' | 'ghost';
 interface GetCardClassesOptions {
-    variant?: CardVariant;
+    variant?: SpectreCardVariant;
+    padded?: boolean;
+    interactive?: boolean;
+    fullHeight?: boolean;
+    /**
+     * Space-separated extra classes appended at the end.
+     */
     extraClasses?: string;
 }
-declare const getCardClasses: ({ variant, extraClasses, }?: GetCardClassesOptions) => string;
+/**
+ * Recipe helper for card class generation.
+ *
+ * Examples:
+ * - getCardClasses()
+ *   => "sp-card sp-card--elevated"
+ *
+ * - getCardClasses({ variant: "outline", padded: true })
+ *   => "sp-card sp-card--outline sp-card--padded"
+ */
+declare const getCardClasses: (options?: GetCardClassesOptions) => string;
+
+type SpectreInputState = 'default' | 'error' | 'success' | 'disabled';
+interface GetInputClassesOptions {
+    state?: SpectreInputState;
+    fullWidth?: boolean;
+    /**
+     * Space-separated extra classes appended at the end.
+     */
+    extraClasses?: string;
+}
+/**
+ * Recipe helper for input class generation.
+ *
+ * Examples:
+ * - getInputClasses()
+ *   => "sp-input"
+ *
+ * - getInputClasses({ state: "error" })
+ *   => "sp-input sp-input--error"
+ */
+declare const getInputClasses: (options?: GetInputClassesOptions) => string;
 
 declare const spectreBaseStylesPath = "@phcdevworks/spectre-ui/dist/base.css";
 declare const spectreComponentsStylesPath = "@phcdevworks/spectre-ui/dist/components.css";
 declare const spectreUtilitiesStylesPath = "@phcdevworks/spectre-ui/dist/utilities.css";
-/**
- * Structured helper for consumers that prefer namespaced CSS entry points.
- */
 declare const spectreStyles: {
-    readonly base: "@phcdevworks/spectre-ui/dist/base.css";
-    readonly components: "@phcdevworks/spectre-ui/dist/components.css";
-    readonly utilities: "@phcdevworks/spectre-ui/dist/utilities.css";
+    base: string;
+    components: string;
+    utilities: string;
 };
 
-export { type ButtonSize, type ButtonState, type ButtonVariant, type CardVariant, type GetButtonClassesOptions, type GetCardClassesOptions, type GetInputClassesOptions, type InputState, type SpectreAccessibilityTokens, type SpectreAnimationEntry, type SpectreButtonStateTokens, type SpectreFormStateTokens, type SpectreTailwindTheme, type SpectreTokenScale, type SpectreTokens, type SpectreTransitionTokens, type SpectreTypographyTokens, createSpectreCssVariableMap, createSpectreTailwindTheme, generateSpectreCssVariables, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreTailwindPreset, spectreTailwindTheme, spectreTokens, spectreUtilitiesStylesPath };
+export { type CreateSpectreTailwindThemeOptions, type GetButtonClassesOptions, type GetCardClassesOptions, type GetInputClassesOptions, type SpectreAccessibilityTokens, type SpectreAnimationEntry, type SpectreButtonSize, type SpectreButtonState, type SpectreButtonStateTokens, type SpectreButtonVariant, type SpectreCardVariant, type SpectreCssVariableMap, type SpectreCssVariableOptions, type SpectreFormStateTokens, type SpectreInputState, type SpectreTailwindTheme, type SpectreTokenScale, type SpectreTokens, type SpectreTransitionTokens, type SpectreTypographyTokens, createSpectreCssVariableMap, createSpectreTailwindTheme, generateSpectreCssVariables, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreTailwindPreset, spectreTokens, spectreUtilitiesStylesPath };

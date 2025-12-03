@@ -1,42 +1,65 @@
 @layer base {
+
   *,
   *::before,
   *::after {
     box-sizing: border-box;
   }
 
+  html,
   body {
     margin: 0;
+    padding: 0;
+  }
+
+  body {
     min-height: 100vh;
-    font-family: var(--sp-font-family-sans, system-ui);
+    font-family: var(--sp-font-family-sans, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
     font-size: var(--sp-font-md-size, 1rem);
     line-height: var(--sp-font-md-line-height, 1.5);
     color: var(--sp-color-neutral-900, #0f172a);
     background-color: var(--sp-color-neutral-50, #f8fafc);
-    text-rendering: optimizeLegibility;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
   }
 
   a {
-    color: var(--sp-color-brand-600, #6c32e6);
+    color: var(--sp-link-color, var(--sp-color-primary-600, #4f46e5));
     text-decoration: none;
-    font-weight: var(--sp-font-md-weight, 500);
-    transition: color var(--sp-duration-fast, 150ms) var(--sp-easing-out, ease);
   }
 
-  a:hover,
-  a:focus-visible {
-    color: var(--sp-color-brand-700, #5626b4);
+  a:hover {
     text-decoration: underline;
   }
 
   :focus-visible {
-    outline: var(--sp-focus-ring-width, 2px) var(--sp-focus-ring-style, solid)
-      var(--sp-color-focus-primary, #8652ff);
-    outline-offset: var(--sp-focus-ring-offset, 2px);
+    outline: 2px solid var(--sp-focus-ring-color, #4f46e5);
+    outline-offset: 2px;
   }
 
   ::selection {
-    background-color: var(--sp-color-brand-200, #d7c6ff);
-    color: var(--sp-color-neutral-900, #0f172a);
+    background-color: var(--sp-selection-bg, rgba(79, 70, 229, 0.15));
+    color: inherit;
   }
 }

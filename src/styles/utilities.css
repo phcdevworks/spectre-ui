@@ -14,11 +14,11 @@
 
   .sp-container {
     width: 100%;
-    max-width: var(--sp-breakpoint-xl, 1280px);
     margin-left: auto;
     margin-right: auto;
     padding-left: var(--sp-space-md, 1rem);
     padding-right: var(--sp-space-md, 1rem);
+    max-width: var(--sp-container-max-width, 72rem);
   }
 
   .sp-section {
@@ -27,10 +27,10 @@
   }
 
   .sp-shadow-soft {
-    box-shadow: var(--sp-shadow-md, 0 3px 8px rgba(15, 23, 42, 0.1));
+    box-shadow: var(--sp-shadow-md, 0 4px 10px rgba(15, 23, 42, 0.1));
   }
 
   .sp-shadow-strong {
-    box-shadow: var(--sp-shadow-lg, 0 8px 20px rgba(15, 23, 42, 0.18));
+    box-shadow: var(--sp-shadow-lg, 0 10px 25px rgba(15, 23, 42, 0.18));
   }
 }

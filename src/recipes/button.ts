@@ -1,25 +1,68 @@
-import { buttonConfig, type ButtonSize, type ButtonState, type ButtonVariant } from '../components/button.config';
+export type SpectreButtonSize = 'sm' | 'md' | 'lg';
+export type SpectreButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+export type SpectreButtonState = 'default' | 'hover' | 'disabled';
 
 export interface GetButtonClassesOptions {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-  state?: ButtonState;
+  variant?: SpectreButtonVariant;
+  size?: SpectreButtonSize;
+  state?: SpectreButtonState;
+  /**
+   * Space-separated extra classes appended at the end.
+   */
   extraClasses?: string;
 }
 
-export const getButtonClasses = ({
-  variant = 'primary',
-  size = 'md',
-  state = 'default',
-  extraClasses = '',
-}: GetButtonClassesOptions = {}): string => {
-  const classes = [
-    buttonConfig.baseClass,
-    buttonConfig.variants[variant],
-    buttonConfig.sizes[size],
-    buttonConfig.states[state],
+/**
+ * Recipe helper for button class generation.
+ *
+ * Examples:
+ * - getButtonClasses()
+ *   => "sp-btn sp-btn--primary sp-btn--md"
+ *
+ * - getButtonClasses({ variant: "secondary", size: "lg", state: "disabled" })
+ *   => "sp-btn sp-btn--secondary sp-btn--lg sp-btn--disabled"
+ */
+export const getButtonClasses = (
+  options: GetButtonClassesOptions = {},
+): string => {
+  const {
+    variant = 'primary',
+    size = 'md',
+    state = 'default',
     extraClasses,
-  ].filter(Boolean);
+  } = options;
 
-  return classes.join(' ').trim();
+  const baseClass = 'sp-btn';
+
+  const variantClasses: Record<SpectreButtonVariant, string> = {
+    primary: 'sp-btn--primary',
+    secondary: 'sp-btn--secondary',
+    ghost: 'sp-btn--ghost',
+    danger: 'sp-btn--danger',
+  };
+
+  const sizeClasses: Record<SpectreButtonSize, string> = {
+    sm: 'sp-btn--sm',
+    md: 'sp-btn--md',
+    lg: 'sp-btn--lg',
+  };
+
+  const stateClasses: Record<SpectreButtonState, string> = {
+    default: '',
+    hover: 'sp-btn--hover',
+    disabled: 'sp-btn--disabled',
+  };
+
+  const classes: string[] = [
+    baseClass,
+    variantClasses[variant],
+    sizeClasses[size],
+    stateClasses[state],
+  ];
+
+  if (extraClasses && extraClasses.trim().length > 0) {
+    classes.push(extraClasses.trim());
+  }
+
+  return classes.filter(Boolean).join(' ');
 };
