@@ -7,7 +7,8 @@ const { theme } = createSpectreTailwindTheme({
 });
 
 export const spectrePreset: TailwindConfig = {
-  content: [], // <-- required for DTS to satisfy Tailwind's Config type
+  // Required for Tailwind's Config type with exactOptionalPropertyTypes
+  content: [],
   theme: theme ?? {},
   plugins: [],
 };

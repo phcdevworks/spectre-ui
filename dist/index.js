@@ -1,22 +1,34 @@
+import { tokens } from '@phcdevworks/spectre-tokens';
+export { tokens as spectreTokens } from '@phcdevworks/spectre-tokens';
+
 // src/tokens/index.ts
-var spectreTokens = {};
-var createSpectreCssVariableMap = (_source = spectreTokens, _options) => {
-  throw new Error("createSpectreCssVariableMap is not implemented yet.");
-};
-var generateSpectreCssVariables = (_source = spectreTokens, _options) => {
-  throw new Error("generateSpectreCssVariables is not implemented yet.");
-};
 
 // src/tailwind/theme.ts
-function createSpectreTailwindTheme(_options) {
-  return { theme: {} };
+function createSpectreTailwindTheme(options) {
+  const { tokens, overrides } = options;
+  const mergedTokens = {
+    ...tokens,
+    ...overrides ?? {}
+  };
+  const theme2 = {
+    // Safely map core token groups into Tailwind theme fields.
+    // Use `as any` where necessary to avoid overfitting types right now.
+    colors: mergedTokens.colors ?? {},
+    spacing: mergedTokens.spacing ?? {},
+    borderRadius: mergedTokens.radii ?? {},
+    boxShadow: mergedTokens.shadows ?? {},
+    fontFamily: mergedTokens.typography?.families ?? {}
+  };
+  return { theme: theme2 };
 }
 
 // src/tailwind/preset.ts
-var { theme } = createSpectreTailwindTheme();
+var { theme } = createSpectreTailwindTheme({
+  tokens: tokens
+});
 var spectrePreset = {
+  // Required for Tailwind's Config type with exactOptionalPropertyTypes
   content: [],
-  // <-- required for DTS to satisfy Tailwind's Config type
   theme: theme ?? {},
   plugins: []
 };
@@ -124,6 +136,6 @@ var spectreStyles = {
   utilities: spectreUtilitiesStylesPath
 };
 
-export { createSpectreCssVariableMap, createSpectreTailwindTheme, generateSpectreCssVariables, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreTailwindPreset, spectreTokens, spectreUtilitiesStylesPath };
+export { createSpectreTailwindTheme, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreTailwindPreset, spectreUtilitiesStylesPath };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

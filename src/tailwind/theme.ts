@@ -11,7 +11,25 @@ export interface CreateSpectreTailwindThemeOptions {
 }
 
 export function createSpectreTailwindTheme(
-  _options: CreateSpectreTailwindThemeOptions,
+  options: CreateSpectreTailwindThemeOptions,
 ): SpectreTailwindTheme {
-  return { theme: {} };
+  const { tokens, overrides } = options;
+
+  // Shallow merge overrides into tokens
+  const mergedTokens: SpectreTokens = {
+    ...tokens,
+    ...(overrides ?? {}),
+  };
+
+  const theme: TailwindConfig['theme'] = {
+    // Safely map core token groups into Tailwind theme fields.
+    // Use `as any` where necessary to avoid overfitting types right now.
+    colors: (mergedTokens as any).colors ?? {},
+    spacing: (mergedTokens as any).spacing ?? {},
+    borderRadius: (mergedTokens as any).radii ?? {},
+    boxShadow: (mergedTokens as any).shadows ?? {},
+    fontFamily: (mergedTokens as any).typography?.families ?? {},
+  };
+
+  return { theme };
 }

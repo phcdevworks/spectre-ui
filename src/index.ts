@@ -6,4 +6,5 @@ export { spectrePreset } from './tailwind/preset';
 export {
   createSpectreTailwindTheme,
   type SpectreTailwindTheme,
+  type CreateSpectreTailwindThemeOptions,
 } from './tailwind/theme';
