@@ -1,26 +1,6 @@
+import { SpectreTokens } from '@phcdevworks/spectre-tokens';
+export { SpectreTokens, tokens as spectreTokens } from '@phcdevworks/spectre-tokens';
 import { Config } from 'tailwindcss';
-
-type SpectreTokenScale = Record<string, string | number>;
-type SpectreTransitionTokens = Record<string, string>;
-type SpectreTypographyTokens = Record<string, string>;
-type SpectreAccessibilityTokens = Record<string, string>;
-type SpectreAnimationEntry = Record<string, unknown>;
-type SpectreButtonStateTokens = Record<string, string>;
-type SpectreFormStateTokens = Record<string, string>;
-interface SpectreTokens {
-    /**
-     * Placeholder token groups. Actual structure will be defined in a future release.
-     */
-    [group: string]: unknown;
-}
-interface SpectreCssVariableOptions {
-    selector?: string;
-    prefix?: string;
-}
-type SpectreCssVariableMap = Record<string, string>;
-declare const spectreTokens: SpectreTokens;
-declare const createSpectreCssVariableMap: (_source?: SpectreTokens, _options?: SpectreCssVariableOptions) => SpectreCssVariableMap;
-declare const generateSpectreCssVariables: (_source?: SpectreTokens, _options?: SpectreCssVariableOptions) => string;
 
 interface SpectreTailwindTheme {
     theme: Config['theme'];
@@ -29,7 +9,7 @@ interface CreateSpectreTailwindThemeOptions {
     tokens: SpectreTokens;
     overrides?: Partial<SpectreTokens>;
 }
-declare function createSpectreTailwindTheme(_options: CreateSpectreTailwindThemeOptions): SpectreTailwindTheme;
+declare function createSpectreTailwindTheme(options: CreateSpectreTailwindThemeOptions): SpectreTailwindTheme;
 
 declare const spectrePreset: Config;
 declare const spectreTailwindPreset: Config;
@@ -111,4 +91,4 @@ declare const spectreStyles: {
     utilities: string;
 };
 
-export { type CreateSpectreTailwindThemeOptions, type GetButtonClassesOptions, type GetCardClassesOptions, type GetInputClassesOptions, type SpectreAccessibilityTokens, type SpectreAnimationEntry, type SpectreButtonSize, type SpectreButtonState, type SpectreButtonStateTokens, type SpectreButtonVariant, type SpectreCardVariant, type SpectreCssVariableMap, type SpectreCssVariableOptions, type SpectreFormStateTokens, type SpectreInputState, type SpectreTailwindTheme, type SpectreTokenScale, type SpectreTokens, type SpectreTransitionTokens, type SpectreTypographyTokens, createSpectreCssVariableMap, createSpectreTailwindTheme, generateSpectreCssVariables, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreTailwindPreset, spectreTokens, spectreUtilitiesStylesPath };
+export { type CreateSpectreTailwindThemeOptions, type GetButtonClassesOptions, type GetCardClassesOptions, type GetInputClassesOptions, type SpectreButtonSize, type SpectreButtonState, type SpectreButtonVariant, type SpectreCardVariant, type SpectreInputState, type SpectreTailwindTheme, createSpectreTailwindTheme, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreTailwindPreset, spectreUtilitiesStylesPath };

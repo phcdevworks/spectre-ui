@@ -1,24 +1,35 @@
 'use strict';
 
+var spectreTokens = require('@phcdevworks/spectre-tokens');
+
 // src/tokens/index.ts
-var spectreTokens = {};
-var createSpectreCssVariableMap = (_source = spectreTokens, _options) => {
-  throw new Error("createSpectreCssVariableMap is not implemented yet.");
-};
-var generateSpectreCssVariables = (_source = spectreTokens, _options) => {
-  throw new Error("generateSpectreCssVariables is not implemented yet.");
-};
 
 // src/tailwind/theme.ts
-function createSpectreTailwindTheme(_options) {
-  return { theme: {} };
+function createSpectreTailwindTheme(options) {
+  const { tokens, overrides } = options;
+  const mergedTokens = {
+    ...tokens,
+    ...overrides ?? {}
+  };
+  const theme2 = {
+    // Safely map core token groups into Tailwind theme fields.
+    // Use `as any` where necessary to avoid overfitting types right now.
+    colors: mergedTokens.colors ?? {},
+    spacing: mergedTokens.spacing ?? {},
+    borderRadius: mergedTokens.radii ?? {},
+    boxShadow: mergedTokens.shadows ?? {},
+    fontFamily: mergedTokens.typography?.families ?? {}
+  };
+  return { theme: theme2 };
 }
 
 // src/tailwind/preset.ts
-var { theme } = createSpectreTailwindTheme();
+var { theme } = createSpectreTailwindTheme({
+  tokens: spectreTokens.tokens
+});
 var spectrePreset = {
+  // Required for Tailwind's Config type with exactOptionalPropertyTypes
   content: [],
-  // <-- required for DTS to satisfy Tailwind's Config type
   theme: theme ?? {},
   plugins: []
 };
@@ -126,9 +137,11 @@ var spectreStyles = {
   utilities: spectreUtilitiesStylesPath
 };
 
-exports.createSpectreCssVariableMap = createSpectreCssVariableMap;
+Object.defineProperty(exports, "spectreTokens", {
+  enumerable: true,
+  get: function () { return spectreTokens.tokens; }
+});
 exports.createSpectreTailwindTheme = createSpectreTailwindTheme;
-exports.generateSpectreCssVariables = generateSpectreCssVariables;
 exports.getButtonClasses = getButtonClasses;
 exports.getCardClasses = getCardClasses;
 exports.getInputClasses = getInputClasses;
@@ -137,7 +150,6 @@ exports.spectreComponentsStylesPath = spectreComponentsStylesPath;
 exports.spectrePreset = spectrePreset;
 exports.spectreStyles = spectreStyles;
 exports.spectreTailwindPreset = spectreTailwindPreset;
-exports.spectreTokens = spectreTokens;
 exports.spectreUtilitiesStylesPath = spectreUtilitiesStylesPath;
 //# sourceMappingURL=index.cjs.map
 //# sourceMappingURL=index.cjs.map
