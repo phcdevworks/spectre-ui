@@ -1,9 +1,9 @@
 export {
   getButtonClasses,
-  type GetButtonClassesOptions,
-  type SpectreButtonSize,
-  type SpectreButtonState,
-  type SpectreButtonVariant,
+  type ButtonRecipeOptions,
+  type ButtonVariant,
+  type ButtonSize,
+  type ButtonTone,
 } from './button';
 
 export {

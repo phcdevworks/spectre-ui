@@ -1,68 +1,84 @@
-export type SpectreButtonSize = 'sm' | 'md' | 'lg';
-export type SpectreButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
-export type SpectreButtonState = 'default' | 'hover' | 'disabled';
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonTone = 'default' | 'success' | 'warning' | 'danger';
 
-export interface GetButtonClassesOptions {
-  variant?: SpectreButtonVariant;
-  size?: SpectreButtonSize;
-  state?: SpectreButtonState;
-  /**
-   * Space-separated extra classes appended at the end.
-   */
-  extraClasses?: string;
+export interface ButtonRecipeOptions {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  tone?: ButtonTone;
+  fullWidth?: boolean;
+  loading?: boolean;
+  disabled?: boolean;
+  iconOnly?: boolean;
 }
 
 /**
- * Recipe helper for button class generation.
+ * Generate Spectre button classes.
  *
- * Examples:
- * - getButtonClasses()
- *   => "sp-btn sp-btn--primary sp-btn--md"
+ * Rules:
+ * - Base: "sp-btn"
+ * - Variant: "sp-btn--primary" / "sp-btn--secondary" / "sp-btn--ghost" / "sp-btn--danger"
+ *   - default variant is "primary"
+ * - Size: "sp-btn--sm" / "sp-btn--md" / "sp-btn--lg"
+ *   - default size is "md"
+ * - Tone: "sp-btn--tone-success" / "sp-btn--tone-warning" / "sp-btn--tone-danger"
+ *   - default tone is "default" (no tone class)
+ * - fullWidth: add "sp-btn--full"
+ * - loading: add "sp-btn--loading"
+ * - disabled: add "sp-btn--disabled"
+ * - iconOnly: add "sp-btn--icon"
  *
- * - getButtonClasses({ variant: "secondary", size: "lg", state: "disabled" })
- *   => "sp-btn sp-btn--secondary sp-btn--lg sp-btn--disabled"
+ * Must return a single space-joined, trimmed class string.
  */
-export const getButtonClasses = (
-  options: GetButtonClassesOptions = {},
-): string => {
+export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
   const {
     variant = 'primary',
     size = 'md',
-    state = 'default',
-    extraClasses,
-  } = options;
+    tone = 'default',
+    fullWidth = false,
+    loading = false,
+    disabled = false,
+    iconOnly = false,
+  } = opts;
 
-  const baseClass = 'sp-btn';
+  const classes: string[] = [];
 
-  const variantClasses: Record<SpectreButtonVariant, string> = {
+  // Base
+  classes.push('sp-btn');
+
+  // Variant
+  const variantMap: Record<ButtonVariant, string> = {
     primary: 'sp-btn--primary',
     secondary: 'sp-btn--secondary',
     ghost: 'sp-btn--ghost',
     danger: 'sp-btn--danger',
   };
+  classes.push(variantMap[variant]);
 
-  const sizeClasses: Record<SpectreButtonSize, string> = {
+  // Size
+  const sizeMap: Record<ButtonSize, string> = {
     sm: 'sp-btn--sm',
     md: 'sp-btn--md',
     lg: 'sp-btn--lg',
   };
+  classes.push(sizeMap[size]);
 
-  const stateClasses: Record<SpectreButtonState, string> = {
-    default: '',
-    hover: 'sp-btn--hover',
-    disabled: 'sp-btn--disabled',
-  };
-
-  const classes: string[] = [
-    baseClass,
-    variantClasses[variant],
-    sizeClasses[size],
-    stateClasses[state],
-  ];
-
-  if (extraClasses && extraClasses.trim().length > 0) {
-    classes.push(extraClasses.trim());
+  // Tone (optional)
+  if (tone !== 'default') {
+    const toneMap: Record<Exclude<ButtonTone, 'default'>, string> = {
+      success: 'sp-btn--tone-success',
+      warning: 'sp-btn--tone-warning',
+      danger: 'sp-btn--tone-danger',
+    };
+    classes.push(toneMap[tone as Exclude<ButtonTone, 'default'>]);
   }
 
-  return classes.filter(Boolean).join(' ');
-};
+  // Flags
+  if (fullWidth) classes.push('sp-btn--full');
+  if (loading) classes.push('sp-btn--loading');
+  if (disabled) classes.push('sp-btn--disabled');
+  if (iconOnly) classes.push('sp-btn--icon');
+
+  // Final class string
+  return classes.filter(Boolean).join(' ').trim();
+}
