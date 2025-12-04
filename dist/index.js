@@ -1,7 +1,15 @@
 import { tokens } from '@phcdevworks/spectre-tokens';
 export { tokens as spectreTokens } from '@phcdevworks/spectre-tokens';
 
-// src/tokens/index.ts
+// src/css-constants.ts
+var spectreBaseStylesPath = "@phcdevworks/spectre-ui/dist/base.css";
+var spectreComponentsStylesPath = "@phcdevworks/spectre-ui/dist/components.css";
+var spectreUtilitiesStylesPath = "@phcdevworks/spectre-ui/dist/utilities.css";
+var spectreStyles = {
+  base: spectreBaseStylesPath,
+  components: spectreComponentsStylesPath,
+  utilities: spectreUtilitiesStylesPath
+};
 
 // src/tailwind/theme.ts
 function createSpectreTailwindTheme(options) {
@@ -32,44 +40,47 @@ var spectrePreset = {
   theme: theme ?? {},
   plugins: []
 };
-var spectreTailwindPreset = spectrePreset;
 
 // src/recipes/button.ts
-var getButtonClasses = (options = {}) => {
+function getButtonClasses(opts = {}) {
   const {
     variant = "primary",
     size = "md",
-    state = "default",
-    extraClasses
-  } = options;
-  const baseClass = "sp-btn";
-  const variantClasses = {
+    tone = "default",
+    fullWidth = false,
+    loading = false,
+    disabled = false,
+    iconOnly = false
+  } = opts;
+  const classes = [];
+  classes.push("sp-btn");
+  const variantMap = {
     primary: "sp-btn--primary",
     secondary: "sp-btn--secondary",
     ghost: "sp-btn--ghost",
     danger: "sp-btn--danger"
   };
-  const sizeClasses = {
+  classes.push(variantMap[variant]);
+  const sizeMap = {
     sm: "sp-btn--sm",
     md: "sp-btn--md",
     lg: "sp-btn--lg"
   };
-  const stateClasses = {
-    default: "",
-    hover: "sp-btn--hover",
-    disabled: "sp-btn--disabled"
-  };
-  const classes = [
-    baseClass,
-    variantClasses[variant],
-    sizeClasses[size],
-    stateClasses[state]
-  ];
-  if (extraClasses && extraClasses.trim().length > 0) {
-    classes.push(extraClasses.trim());
+  classes.push(sizeMap[size]);
+  if (tone !== "default") {
+    const toneMap = {
+      success: "sp-btn--tone-success",
+      warning: "sp-btn--tone-warning",
+      danger: "sp-btn--tone-danger"
+    };
+    classes.push(toneMap[tone]);
   }
-  return classes.filter(Boolean).join(" ");
-};
+  if (fullWidth) classes.push("sp-btn--full");
+  if (loading) classes.push("sp-btn--loading");
+  if (disabled) classes.push("sp-btn--disabled");
+  if (iconOnly) classes.push("sp-btn--icon");
+  return classes.filter(Boolean).join(" ").trim();
+}
 
 // src/recipes/card.ts
 var getCardClasses = (options = {}) => {
@@ -126,16 +137,6 @@ var getInputClasses = (options = {}) => {
   return classes.filter(Boolean).join(" ");
 };
 
-// src/css-constants.ts
-var spectreBaseStylesPath = "@phcdevworks/spectre-ui/dist/base.css";
-var spectreComponentsStylesPath = "@phcdevworks/spectre-ui/dist/components.css";
-var spectreUtilitiesStylesPath = "@phcdevworks/spectre-ui/dist/utilities.css";
-var spectreStyles = {
-  base: spectreBaseStylesPath,
-  components: spectreComponentsStylesPath,
-  utilities: spectreUtilitiesStylesPath
-};
-
-export { createSpectreTailwindTheme, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreTailwindPreset, spectreUtilitiesStylesPath };
+export { createSpectreTailwindTheme, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreUtilitiesStylesPath };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map
