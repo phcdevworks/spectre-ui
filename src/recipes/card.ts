@@ -1,62 +1,50 @@
-export type SpectreCardVariant = 'elevated' | 'outline' | 'ghost';
+export type CardVariant = 'elevated' | 'outline' | 'ghost';
 
-export interface GetCardClassesOptions {
-  variant?: SpectreCardVariant;
-  padded?: boolean;
-  interactive?: boolean;
+export interface CardRecipeOptions {
+  variant?: CardVariant;
+  interactive?: boolean; // hover/focus styles
+  padded?: boolean; // apply default padding
   fullHeight?: boolean;
-  /**
-   * Space-separated extra classes appended at the end.
-   */
-  extraClasses?: string;
 }
 
 /**
- * Recipe helper for card class generation.
+ * Generate Spectre card classes.
  *
- * Examples:
- * - getCardClasses()
- *   => "sp-card sp-card--elevated"
- *
- * - getCardClasses({ variant: "outline", padded: true })
- *   => "sp-card sp-card--outline sp-card--padded"
+ * Rules:
+ * - Base class: "sp-card"
+ * - Variant (default: elevated):
+ *   - "sp-card--elevated"
+ *   - "sp-card--outline"
+ *   - "sp-card--ghost"
+ * - interactive: add "sp-card--interactive"
+ * - padded: add "sp-card--padded"
+ * - fullHeight: add "sp-card--full"
  */
-export const getCardClasses = (
-  options: GetCardClassesOptions = {},
-): string => {
+export function getCardClasses(opts: CardRecipeOptions = {}): string {
   const {
     variant = 'elevated',
-    padded = false,
     interactive = false,
+    padded = false,
     fullHeight = false,
-    extraClasses,
-  } = options;
+  } = opts;
 
-  const baseClass = 'sp-card';
+  const classes: string[] = [];
 
-  const variantClasses: Record<SpectreCardVariant, string> = {
+  // Base
+  classes.push('sp-card');
+
+  // Variant
+  const variantMap: Record<CardVariant, string> = {
     elevated: 'sp-card--elevated',
     outline: 'sp-card--outline',
     ghost: 'sp-card--ghost',
   };
+  classes.push(variantMap[variant]);
 
-  const classes: string[] = [baseClass, variantClasses[variant]];
+  // Flags
+  if (interactive) classes.push('sp-card--interactive');
+  if (padded) classes.push('sp-card--padded');
+  if (fullHeight) classes.push('sp-card--full');
 
-  if (padded) {
-    classes.push('sp-card--padded');
-  }
-
-  if (interactive) {
-    classes.push('sp-card--interactive');
-  }
-
-  if (fullHeight) {
-    classes.push('sp-card--full');
-  }
-
-  if (extraClasses && extraClasses.trim().length > 0) {
-    classes.push(extraClasses.trim());
-  }
-
-  return classes.filter(Boolean).join(' ');
-};
+  return classes.filter(Boolean).join(' ').trim();
+}

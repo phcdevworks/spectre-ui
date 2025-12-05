@@ -14,5 +14,5 @@ export {
 
 export { spectreTokens, type SpectreTokens } from './tokens';
 
-// recipes
+// Re-export all recipes
 export * from './recipes';
