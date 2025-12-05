@@ -8,12 +8,13 @@ export {
 
 export {
   getCardClasses,
-  type GetCardClassesOptions,
-  type SpectreCardVariant,
+  type CardRecipeOptions,
+  type CardVariant,
 } from './card';
 
 export {
   getInputClasses,
-  type GetInputClassesOptions,
-  type SpectreInputState,
+  type InputRecipeOptions,
+  type InputState,
+  type InputSize,
 } from './input';

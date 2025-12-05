@@ -54,48 +54,50 @@ interface ButtonRecipeOptions {
  */
 declare function getButtonClasses(opts?: ButtonRecipeOptions): string;
 
-type SpectreCardVariant = 'elevated' | 'outline' | 'ghost';
-interface GetCardClassesOptions {
-    variant?: SpectreCardVariant;
-    padded?: boolean;
+type CardVariant = 'elevated' | 'outline' | 'ghost';
+interface CardRecipeOptions {
+    variant?: CardVariant;
     interactive?: boolean;
+    padded?: boolean;
     fullHeight?: boolean;
-    /**
-     * Space-separated extra classes appended at the end.
-     */
-    extraClasses?: string;
 }
 /**
- * Recipe helper for card class generation.
+ * Generate Spectre card classes.
  *
- * Examples:
- * - getCardClasses()
- *   => "sp-card sp-card--elevated"
- *
- * - getCardClasses({ variant: "outline", padded: true })
- *   => "sp-card sp-card--outline sp-card--padded"
+ * Rules:
+ * - Base class: "sp-card"
+ * - Variant (default: elevated):
+ *   - "sp-card--elevated"
+ *   - "sp-card--outline"
+ *   - "sp-card--ghost"
+ * - interactive: add "sp-card--interactive"
+ * - padded: add "sp-card--padded"
+ * - fullHeight: add "sp-card--full"
  */
-declare const getCardClasses: (options?: GetCardClassesOptions) => string;
+declare function getCardClasses(opts?: CardRecipeOptions): string;
 
-type SpectreInputState = 'default' | 'error' | 'success' | 'disabled';
-interface GetInputClassesOptions {
-    state?: SpectreInputState;
+type InputState = 'default' | 'error' | 'success';
+type InputSize = 'sm' | 'md' | 'lg';
+interface InputRecipeOptions {
+    state?: InputState;
+    size?: InputSize;
     fullWidth?: boolean;
-    /**
-     * Space-separated extra classes appended at the end.
-     */
-    extraClasses?: string;
 }
 /**
- * Recipe helper for input class generation.
+ * Generate Spectre input classes.
  *
- * Examples:
- * - getInputClasses()
- *   => "sp-input"
- *
- * - getInputClasses({ state: "error" })
- *   => "sp-input sp-input--error"
+ * Rules:
+ * - Base class: "sp-input"
+ * - State:
+ *   - "default" => no state modifier
+ *   - "error"   => "sp-input--error"
+ *   - "success" => "sp-input--success"
+ * - Size (default: md):
+ *   - "sp-input--sm"
+ *   - "sp-input--md"
+ *   - "sp-input--lg"
+ * - fullWidth: add "sp-input--full"
  */
-declare const getInputClasses: (options?: GetInputClassesOptions) => string;
+declare function getInputClasses(opts?: InputRecipeOptions): string;
 
-export { type ButtonRecipeOptions, type ButtonSize, type ButtonTone, type ButtonVariant, type CreateSpectreTailwindThemeOptions, type GetCardClassesOptions, type GetInputClassesOptions, type SpectreCardVariant, type SpectreInputState, type SpectreTailwindTheme, createSpectreTailwindTheme, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreUtilitiesStylesPath };
+export { type ButtonRecipeOptions, type ButtonSize, type ButtonTone, type ButtonVariant, type CardRecipeOptions, type CardVariant, type CreateSpectreTailwindThemeOptions, type InputRecipeOptions, type InputSize, type InputState, type SpectreTailwindTheme, createSpectreTailwindTheme, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreUtilitiesStylesPath };

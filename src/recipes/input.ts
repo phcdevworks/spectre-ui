@@ -1,51 +1,58 @@
-export type SpectreInputState = 'default' | 'error' | 'success' | 'disabled';
+export type InputState = 'default' | 'error' | 'success';
+export type InputSize = 'sm' | 'md' | 'lg';
 
-export interface GetInputClassesOptions {
-  state?: SpectreInputState;
+export interface InputRecipeOptions {
+  state?: InputState;
+  size?: InputSize;
   fullWidth?: boolean;
-  /**
-   * Space-separated extra classes appended at the end.
-   */
-  extraClasses?: string;
 }
 
 /**
- * Recipe helper for input class generation.
+ * Generate Spectre input classes.
  *
- * Examples:
- * - getInputClasses()
- *   => "sp-input"
- *
- * - getInputClasses({ state: "error" })
- *   => "sp-input sp-input--error"
+ * Rules:
+ * - Base class: "sp-input"
+ * - State:
+ *   - "default" => no state modifier
+ *   - "error"   => "sp-input--error"
+ *   - "success" => "sp-input--success"
+ * - Size (default: md):
+ *   - "sp-input--sm"
+ *   - "sp-input--md"
+ *   - "sp-input--lg"
+ * - fullWidth: add "sp-input--full"
  */
-export const getInputClasses = (
-  options: GetInputClassesOptions = {},
-): string => {
+export function getInputClasses(opts: InputRecipeOptions = {}): string {
   const {
     state = 'default',
+    size = 'md',
     fullWidth = false,
-    extraClasses,
-  } = options;
+  } = opts;
 
-  const baseClass = 'sp-input';
+  const classes: string[] = [];
 
-  const stateClasses: Record<SpectreInputState, string> = {
-    default: '',
-    error: 'sp-input--error',
-    success: 'sp-input--success',
-    disabled: 'sp-input--disabled',
+  // Base
+  classes.push('sp-input');
+
+  // State
+  if (state === 'error') {
+    classes.push('sp-input--error');
+  } else if (state === 'success') {
+    classes.push('sp-input--success');
+  }
+
+  // Size
+  const sizeMap: Record<InputSize, string> = {
+    sm: 'sp-input--sm',
+    md: 'sp-input--md',
+    lg: 'sp-input--lg',
   };
+  classes.push(sizeMap[size]);
 
-  const classes: string[] = [baseClass, stateClasses[state]];
-
+  // Flags
   if (fullWidth) {
     classes.push('sp-input--full');
   }
 
-  if (extraClasses && extraClasses.trim().length > 0) {
-    classes.push(extraClasses.trim());
-  }
-
-  return classes.filter(Boolean).join(' ');
-};
+  return classes.filter(Boolean).join(' ').trim();
+}

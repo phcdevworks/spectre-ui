@@ -12,6 +12,9 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./dist/base.css": "./dist/base.css",
+    "./dist/components.css": "./dist/components.css",
+    "./dist/utilities.css": "./dist/utilities.css",
     "./base.css": "./dist/base.css",
     "./components.css": "./dist/components.css",
     "./utilities.css": "./dist/utilities.css"
@@ -41,7 +44,7 @@
     "ui-library",
     "phcdevworks"
   ],
-  "author": "",
+  "author": "PHCDevworks",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/phcdevworks/spectre-ui/issues"

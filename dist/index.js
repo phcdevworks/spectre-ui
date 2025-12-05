@@ -83,59 +83,52 @@ function getButtonClasses(opts = {}) {
 }
 
 // src/recipes/card.ts
-var getCardClasses = (options = {}) => {
+function getCardClasses(opts = {}) {
   const {
     variant = "elevated",
-    padded = false,
     interactive = false,
-    fullHeight = false,
-    extraClasses
-  } = options;
-  const baseClass = "sp-card";
-  const variantClasses = {
+    padded = false,
+    fullHeight = false
+  } = opts;
+  const classes = [];
+  classes.push("sp-card");
+  const variantMap = {
     elevated: "sp-card--elevated",
     outline: "sp-card--outline",
     ghost: "sp-card--ghost"
   };
-  const classes = [baseClass, variantClasses[variant]];
-  if (padded) {
-    classes.push("sp-card--padded");
-  }
-  if (interactive) {
-    classes.push("sp-card--interactive");
-  }
-  if (fullHeight) {
-    classes.push("sp-card--full");
-  }
-  if (extraClasses && extraClasses.trim().length > 0) {
-    classes.push(extraClasses.trim());
-  }
-  return classes.filter(Boolean).join(" ");
-};
+  classes.push(variantMap[variant]);
+  if (interactive) classes.push("sp-card--interactive");
+  if (padded) classes.push("sp-card--padded");
+  if (fullHeight) classes.push("sp-card--full");
+  return classes.filter(Boolean).join(" ").trim();
+}
 
 // src/recipes/input.ts
-var getInputClasses = (options = {}) => {
+function getInputClasses(opts = {}) {
   const {
     state = "default",
-    fullWidth = false,
-    extraClasses
-  } = options;
-  const baseClass = "sp-input";
-  const stateClasses = {
-    default: "",
-    error: "sp-input--error",
-    success: "sp-input--success",
-    disabled: "sp-input--disabled"
+    size = "md",
+    fullWidth = false
+  } = opts;
+  const classes = [];
+  classes.push("sp-input");
+  if (state === "error") {
+    classes.push("sp-input--error");
+  } else if (state === "success") {
+    classes.push("sp-input--success");
+  }
+  const sizeMap = {
+    sm: "sp-input--sm",
+    md: "sp-input--md",
+    lg: "sp-input--lg"
   };
-  const classes = [baseClass, stateClasses[state]];
+  classes.push(sizeMap[size]);
   if (fullWidth) {
     classes.push("sp-input--full");
   }
-  if (extraClasses && extraClasses.trim().length > 0) {
-    classes.push(extraClasses.trim());
-  }
-  return classes.filter(Boolean).join(" ");
-};
+  return classes.filter(Boolean).join(" ").trim();
+}
 
 export { createSpectreTailwindTheme, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreUtilitiesStylesPath };
 //# sourceMappingURL=index.js.map

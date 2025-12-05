@@ -68,15 +68,28 @@ const theme = createSpectreTailwindTheme({
 Recipes wrap Spectre's class combinations so every framework composes styles consistently.
 
 ```ts
-import { getButtonClasses } from "@phcdevworks/spectre-ui";
+import {
+  getButtonClasses,
+  getCardClasses,
+  getInputClasses,
+} from "@phcdevworks/spectre-ui";
 
-const classes = getButtonClasses({
+const buttonClasses = getButtonClasses({
   variant: "primary",
   size: "lg",
   fullWidth: true,
 });
+// "sp-btn sp-btn--primary sp-btn--lg sp-btn--full"
 
-// classes ➜ "sp-btn sp-btn--primary sp-btn--lg sp-btn--full"
+const cardClasses = getCardClasses({ variant: "outline", padded: true });
+// "sp-card sp-card--outline sp-card--padded"
+
+const inputClasses = getInputClasses({
+  state: "error",
+  size: "sm",
+  fullWidth: true,
+});
+// "sp-input sp-input--error sp-input--sm sp-input--full"
 ```
 
 ## CSS Path Constants
