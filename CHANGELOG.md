@@ -4,6 +4,22 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [0.0.3] - 2025-12-06
+
+### Added
+
+- Add semantic color utilities to Tailwind preset ([b49e4ef]).
+- Add CSS variables for surface colors ([029bda2]).
+- Add documentation for semantic token roles ([614f199]).
+- Add funding info and expand package metadata ([9e313e6]).
+
+### Changed
+
+- Refactor component styles to use CSS custom properties ([cc30ca2]).
+- Update input styles to use surface and text variables ([c9e43c1]).
+- Update card styles for improved theming ([7d14bc5]).
+- Update baseline-browser-mapping to v2.9.3 ([d8bd08a]).
+
 ### Fixed
 
 - Move `include` and `exclude` outside `compilerOptions` in `tsconfig.json` ([27ee4b5]).
@@ -49,9 +65,19 @@ All notable changes to this project will be documented here. The format follows 
 - Revise `FUNDING.yml` for Spectre sponsorship options ([ec69610]).
 - Add VS Code workspace settings and extension recommendations ([4c7bb7f]).
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.2...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.3...HEAD
+[0.0.3]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/phcdevworks/spectre-ui/tree/v0.0.1
+[6810c71]: https://github.com/phcdevworks/spectre-ui/commit/6810c71
+[d8bd08a]: https://github.com/phcdevworks/spectre-ui/commit/d8bd08a
+[614f199]: https://github.com/phcdevworks/spectre-ui/commit/614f199
+[cc30ca2]: https://github.com/phcdevworks/spectre-ui/commit/cc30ca2
+[b49e4ef]: https://github.com/phcdevworks/spectre-ui/commit/b49e4ef
+[c9e43c1]: https://github.com/phcdevworks/spectre-ui/commit/c9e43c1
+[7d14bc5]: https://github.com/phcdevworks/spectre-ui/commit/7d14bc5
+[029bda2]: https://github.com/phcdevworks/spectre-ui/commit/029bda2
+[9e313e6]: https://github.com/phcdevworks/spectre-ui/commit/9e313e6
 [27ee4b5]: https://github.com/phcdevworks/spectre-ui/commit/27ee4b5
 [9f629d4]: https://github.com/phcdevworks/spectre-ui/commit/9f629d4
 [bdfcbf3]: https://github.com/phcdevworks/spectre-ui/commit/bdfcbf3
