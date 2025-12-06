@@ -1,3 +1,4 @@
+import plugin from 'tailwindcss/plugin';
 import { tokens } from '@phcdevworks/spectre-tokens';
 export { tokens as spectreTokens } from '@phcdevworks/spectre-tokens';
 
@@ -18,10 +19,44 @@ function createSpectreTailwindTheme(options) {
     ...tokens,
     ...overrides ?? {}
   };
+  const mergedColors = mergedTokens.colors ?? {};
+  const attachSemanticColors = (existing, semantic) => {
+    if (!semantic || Object.keys(semantic).length === 0) {
+      return Object.keys(existing).length > 0 ? existing : void 0;
+    }
+    return {
+      ...existing,
+      ...semantic
+    };
+  };
+  const themeColors = {
+    ...mergedColors
+  };
+  const surfaceColors = attachSemanticColors(
+    mergedColors.surface ?? {},
+    mergedTokens.surface
+  );
+  if (surfaceColors) {
+    themeColors.surface = surfaceColors;
+  }
+  const textColors = attachSemanticColors(
+    mergedColors.text ?? {},
+    mergedTokens.text
+  );
+  if (textColors) {
+    themeColors.text = textColors;
+  }
+  const componentColors = attachSemanticColors(
+    mergedColors.component ?? {},
+    mergedTokens.component
+  );
+  if (componentColors) {
+    themeColors.component = componentColors;
+  }
   const theme2 = {
     // Safely map core token groups into Tailwind theme fields.
     // Use `as any` where necessary to avoid overfitting types right now.
-    colors: mergedTokens.colors ?? {},
+    colors: themeColors,
     spacing: mergedTokens.spacing ?? {},
     borderRadius: mergedTokens.radii ?? {},
     boxShadow: mergedTokens.shadows ?? {},
@@ -34,11 +69,73 @@ function createSpectreTailwindTheme(options) {
 var { theme } = createSpectreTailwindTheme({
   tokens: tokens
 });
+var resolveTokenValue = (value, fallback) => {
+  if (typeof value === "string") {
+    return value;
+  }
+  if (value && typeof value === "object") {
+    const maybeDefault = value.default;
+    if (typeof maybeDefault === "string") {
+      return maybeDefault;
+    }
+    const firstEntry = Object.values(value).find(
+      (entry) => typeof entry === "string"
+    );
+    if (typeof firstEntry === "string") {
+      return firstEntry;
+    }
+  }
+  return fallback;
+};
+var semanticUtilities = plugin(({ addUtilities }) => {
+  const tokens$1 = tokens;
+  const neutralScale = tokens$1?.colors?.neutral ?? {};
+  const formDefault = tokens$1?.forms?.default ?? {};
+  const surfaceTokens = tokens$1?.surface ?? {};
+  const textTokens = tokens$1?.text ?? {};
+  const surfacePage = resolveTokenValue(
+    surfaceTokens.page,
+    neutralScale["50"]
+  );
+  const surfaceCard = resolveTokenValue(
+    surfaceTokens.card,
+    formDefault.bg ?? surfacePage ?? neutralScale["50"]
+  );
+  const surfaceInput = resolveTokenValue(
+    surfaceTokens.input,
+    formDefault.bg ?? surfaceCard ?? surfacePage
+  );
+  const textOnPage = resolveTokenValue(
+    textTokens?.on?.page ?? textTokens?.onPage,
+    neutralScale["900"] ?? formDefault.text
+  );
+  const textOnSurface = resolveTokenValue(
+    textTokens?.on?.surface ?? textTokens?.onSurface,
+    formDefault.text ?? textOnPage ?? neutralScale["900"]
+  );
+  const utilities = {};
+  if (surfacePage) {
+    utilities[".bg-surface-page"] = { backgroundColor: surfacePage };
+  }
+  if (surfaceCard) {
+    utilities[".bg-surface-card"] = { backgroundColor: surfaceCard };
+  }
+  if (surfaceInput) {
+    utilities[".bg-surface-input"] = { backgroundColor: surfaceInput };
+  }
+  if (textOnPage) {
+    utilities[".text-on-page"] = { color: textOnPage };
+  }
+  if (textOnSurface) {
+    utilities[".text-on-surface"] = { color: textOnSurface };
+  }
+  addUtilities(utilities);
+});
 var spectrePreset = {
   // Required for Tailwind's Config type with exactOptionalPropertyTypes
   content: [],
   theme: theme ?? {},
-  plugins: []
+  plugins: [semanticUtilities]
 };
 
 // src/recipes/button.ts
