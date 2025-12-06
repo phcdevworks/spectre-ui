@@ -168,8 +168,8 @@
     padding: var(--sp-space-2xs, 0.25rem) var(--sp-space-md, 1rem);
     border-radius: var(--sp-radius-md, 4px);
     border: 1px solid var(--sp-form-default-border, #cbd5f5);
-    background-color: var(--sp-form-default-bg, #ffffff);
-    color: var(--sp-form-default-text, #0f172a);
+    background: var(--sp-surface-input, var(--sp-form-default-bg, #ffffff));
+    color: var(--sp-text-on-surface-default, var(--sp-form-default-text, #0f172a));
     font-family: var(--sp-font-family-sans, system-ui);
     font-size: var(--sp-font-md-size, 1rem);
     line-height: var(--sp-font-md-line-height, 1.5rem);
@@ -180,7 +180,7 @@
   }
 
   .sp-input::placeholder {
-    color: var(--sp-form-default-placeholder, #9ca3af);
+    color: var(--sp-text-on-surface-muted, var(--sp-form-default-placeholder, #9ca3af));
   }
 
   .sp-input:focus,
