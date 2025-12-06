@@ -92,6 +92,83 @@ const inputClasses = getInputClasses({
 // "sp-input sp-input--error sp-input--sm sp-input--full"
 ```
 
+## Semantic token roles
+
+Spectre now exposes semantic layers that decouple structural styles from raw palette values. Override these roles at any scope (root, layout, or component wrapper) to restyle whole experiences without editing CSS.
+
+### Surface roles
+
+- `--sp-surface-page` – the page/background canvas
+- `--sp-surface-card` – raised containers (cards, panels)
+- `--sp-surface-input` – interactive fields
+- `--sp-surface-overlay` – scrims and modal overlays
+
+### Text roles
+
+- `--sp-text-on-page-default` – base typography color
+- `--sp-text-on-surface-default` – primary copy on non-page surfaces
+- `--sp-text-on-surface-muted` – secondary/subtle text on surfaces
+
+### Component aliases
+
+Button, card, and input classes now consume `component.*` aliases (for example `--sp-component-button-primary-bg`). By default these simply forward to existing token values, but you can override them locally for contextual skins (dark cards, accent modes, etc.) without changing markup or recipes.
+
+### Tailwind utilities
+
+The Tailwind preset exposes semantic helpers that read directly from the same tokens:
+
+- `bg-surface-page`
+- `bg-surface-card`
+- `bg-surface-input`
+- `text-on-page`
+- `text-on-surface`
+
+Use them to mix utility-first UIs with Spectre's semantic palette.
+
+### Mode infrastructure placeholder
+
+Spectre reserves the `data-sp-mode` attribute (or any wrapper selector you choose) for future automatic light/dark modes. Override the semantic variables inside those selectors today and you're ready for upcoming multi-mode token drops.
+
+## Usage examples
+
+### Surface-aware components
+
+```css
+.hero-panel {
+  --sp-surface-card: var(--sp-color-neutral-900);
+  --sp-text-on-surface-default: var(--sp-color-neutral-50);
+  --sp-text-on-surface-muted: var(--sp-color-neutral-200);
+  --sp-component-button-primary-bg: var(--sp-color-accent-400);
+  --sp-component-button-primary-text: var(--sp-color-neutral-900);
+  --sp-component-card-border: transparent;
+  --sp-component-input-border: var(--sp-color-accent-400);
+}
+```
+
+```html
+<section class="hero-panel">
+  <button class="sp-btn sp-btn--primary">Surface Button</button>
+  <div class="sp-card sp-card--elevated">
+    <p>Cards inherit the contextual surface + text roles automatically.</p>
+  </div>
+  <input class="sp-input" placeholder="Email address" />
+</section>
+```
+
+### Tailwind semantic utilities
+
+```jsx
+export function SignupCard() {
+  return (
+    <div className="bg-surface-card text-on-surface sp-card sp-card--padded">
+      <h2 className="text-on-page font-semibold">Join the beta</h2>
+      <input className="sp-input mt-4" placeholder="you@spectre.dev" />
+      <button className="sp-btn sp-btn--primary mt-4">Request access</button>
+    </div>
+  );
+}
+```
+
 ## CSS Path Constants
 
 Utilities for referencing the published CSS files programmatically:
