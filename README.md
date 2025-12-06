@@ -1,10 +1,12 @@
 # @phcdevworks/spectre-ui
 
-Core styling layer for the Spectre design system. `@phcdevworks/spectre-ui` ships the precompiled CSS, tailwind preset, and recipe helpers that power every Spectre integration (WordPress blocks, Astro, 11ty, and more).
+Framework-agnostic styling layer that powers Spectre Blocks, Spectre Astro, Spectre 11ty, and every Spectre integration.
+
+> 📋 **[View Roadmap](https://github.com/phcdevworks/spectre-ui/blob/main/ROADMAP.md)** | 🤝 **[Contributing Guide](CONTRIBUTING.md)** | 📝 **[Changelog](CHANGELOG.md)**
 
 ## Overview
 
-This package is the single source of truth for Spectre's design language. It exposes CSS entry points, typed recipes, and token-driven utilities that downstream frameworks can consume without duplicating logic.
+`@phcdevworks/spectre-ui` is the core styling layer of the Spectre design system. It consumes `@phcdevworks/spectre-tokens` and ships precompiled CSS, type-safe recipe helpers, and a Tailwind preset so downstream frameworks can stay in sync without duplicating logic. One design system runs the entire Spectre Suite; this package handles the implementation.
 
 - ✅ Token-powered styles built on `@phcdevworks/spectre-tokens`
 - ✅ Precompiled `base`, `components`, and `utilities` CSS bundles
@@ -22,21 +24,20 @@ npm install @phcdevworks/spectre-ui
 
 ### 1. Import Spectre CSS
 
-You can import the full bundle or use the namespaced entry points anywhere in your app, layout, or build pipeline.
+Import the CSS bundles anywhere in your app, layout, or build pipeline.
 
 ```css
-/* Full bundle */
-@import "@phcdevworks/spectre-ui/dist/base.css";
-@import "@phcdevworks/spectre-ui/dist/components.css";
-@import "@phcdevworks/spectre-ui/dist/utilities.css";
+@import "@phcdevworks/spectre-ui/base.css";
+@import "@phcdevworks/spectre-ui/components.css";
+@import "@phcdevworks/spectre-ui/utilities.css";
 ```
 
-### 2. Configure Tailwind
+### 2. Tailwind integration
 
-Spectre ships an opinionated Tailwind preset that mirrors the tokens exactly.
+Spectre ships an opinionated Tailwind preset that mirrors the design tokens exactly.
 
 ```ts
-// tailwind.config.mjs
+// tailwind.config.ts
 import { spectrePreset } from "@phcdevworks/spectre-ui";
 
 export default {
@@ -45,23 +46,7 @@ export default {
 };
 ```
 
-Need custom tokens? Generate a tailored theme:
-
-```ts
-import {
-  spectreTokens,
-  createSpectreTailwindTheme,
-} from "@phcdevworks/spectre-ui";
-
-const theme = createSpectreTailwindTheme({
-  tokens: spectreTokens,
-  overrides: {
-    colors: {
-      brand: "#7928CA",
-    },
-  },
-});
-```
+Works with Tailwind 3.x and 4.x through the classic config API.
 
 ### 3. Use Spectre recipes
 
@@ -92,44 +77,79 @@ const inputClasses = getInputClasses({
 // "sp-input sp-input--error sp-input--sm sp-input--full"
 ```
 
-## Semantic token roles
+## Component Surfaces
 
-Spectre now exposes semantic layers that decouple structural styles from raw palette values. Override these roles at any scope (root, layout, or component wrapper) to restyle whole experiences without editing CSS.
+### Button variants
 
-### Surface roles
+```ts
+getButtonClasses({ variant: "primary" }); // CTA baseline
+getButtonClasses({ variant: "secondary" }); // Outlined
+getButtonClasses({ variant: "ghost" }); // Low-emphasis
+getButtonClasses({ variant: "danger" }); // Destructive
+```
 
-- `--sp-surface-page` – the page/background canvas
-- `--sp-surface-card` – raised containers (cards, panels)
-- `--sp-surface-input` – interactive fields
-- `--sp-surface-overlay` – scrims and modal overlays
+Each variant ships with full state coverage: `default`, `hover`, `active`, `disabled`, and tone modifiers (`success`, `warning`, `danger`).
 
-### Text roles
+```css
+.cta-button {
+  background: var(--sp-component-button-primary-bg);
+  color: var(--sp-component-button-primary-text);
+}
+.cta-button:hover {
+  background: var(--sp-component-button-primary-bg-hover);
+}
+```
 
-- `--sp-text-on-page-default` – base typography color
-- `--sp-text-on-surface-default` – primary copy on non-page surfaces
-- `--sp-text-on-surface-muted` – secondary/subtle text on surfaces
+### Input states
 
-### Component aliases
+```ts
+getInputClasses({ state: "default" });
+getInputClasses({ state: "error" });
+getInputClasses({ state: "success" });
+```
 
-Button, card, and input classes now consume `component.*` aliases (for example `--sp-component-button-primary-bg`). By default these simply forward to existing token values, but you can override them locally for contextual skins (dark cards, accent modes, etc.) without changing markup or recipes.
+```css
+.input:focus {
+  border-color: var(--sp-component-input-border-focus);
+  outline: var(--sp-focus-ring-width) var(--sp-focus-ring-style)
+    var(--sp-component-input-ring-focus);
+}
+.input.error {
+  border-color: var(--sp-component-input-border-error);
+  background: var(--sp-component-input-bg-error);
+}
+```
+
+### Card variants
+
+```ts
+getCardClasses({ variant: "elevated" }); // Default shadow
+getCardClasses({ variant: "outline" }); // Bordered
+getCardClasses({ variant: "ghost" }); // Transparent
+```
+
+## Surface & Typography Roles
+
+Spectre exposes semantic layers that decouple structural styles from raw palette values. Override these roles at any scope (root, layout, or component wrapper) to restyle whole experiences without editing CSS.
+
+- `surface.page`, `surface.card`, `surface.input`, `surface.overlay`: semantic backgrounds for the app canvas, containers/tiles, form fields, and modal/dropdown layers.
+- `text.onPage.*` vs `text.onSurface.*`: use `onPage` for copy sitting directly on the page canvas; use `onSurface` for text inside cards, tiles, inputs, overlays, and other elevated surfaces.
+- `component.card.text`/`textMuted`, `component.input.text`/`placeholder`, and `component.button.textDefault`/`textOnPrimary` alias the underlying `text.onSurface` roles to keep component defaults aligned.
 
 ### Tailwind utilities
 
-The Tailwind preset exposes semantic helpers that read directly from the same tokens:
+The Tailwind preset exposes semantic helpers:
 
-- `bg-surface-page`
-- `bg-surface-card`
-- `bg-surface-input`
-- `text-on-page`
-- `text-on-surface`
+- `bg-surface-page`, `bg-surface-card`, `bg-surface-input`
+- `text-on-page`, `text-on-surface`
 
 Use them to mix utility-first UIs with Spectre's semantic palette.
 
-### Mode infrastructure placeholder
+### Mode infrastructure
 
-Spectre reserves the `data-sp-mode` attribute (or any wrapper selector you choose) for future automatic light/dark modes. Override the semantic variables inside those selectors today and you're ready for upcoming multi-mode token drops.
+Spectre reserves the `data-sp-mode` attribute (or any wrapper selector) for future automatic light/dark modes. Override the semantic variables inside those selectors today and you're ready for upcoming multi-mode token drops.
 
-## Usage examples
+## Usage Examples
 
 ### Surface-aware components
 
@@ -181,14 +201,42 @@ import {
   spectreStyles,
 } from "@phcdevworks/spectre-ui";
 
-// spectreStyles.base        → "@phcdevworks/spectre-ui/dist/base.css"
-// spectreStyles.components  → "@phcdevworks/spectre-ui/dist/components.css"
-// spectreStyles.utilities   → "@phcdevworks/spectre-ui/dist/utilities.css"
+// spectreStyles.base        → "@phcdevworks/spectre-ui/base.css"
+// spectreStyles.components  → "@phcdevworks/spectre-ui/components.css"
+// spectreStyles.utilities   → "@phcdevworks/spectre-ui/utilities.css"
 ```
 
-## Tokens & TypeScript Support
+## Repository Layout
 
-All exports ship full TypeScript definitions, including:
+| Folder        | Responsibility                                                                                                |
+| ------------- | ------------------------------------------------------------------------------------------------------------- |
+| `src/`        | TypeScript source: recipes, Tailwind preset, token re-exports, CSS constants.                                |
+| `src/styles/` | Raw CSS files (`base.css`, `components.css`, `utilities.css`) copied to `dist/` during build.                |
+| `dist/`       | Generated artifacts: `index.js`, `index.cjs`, `index.d.ts`, and CSS files. Regenerated via `npm run build`. |
+
+Designers update tokens in `@phcdevworks/spectre-tokens`. Engineering evolves recipes, presets, and CSS in this package.
+
+## Build & Release
+
+```bash
+npm run build
+```
+
+`tsup` compiles the TypeScript library (ESM, CJS, `.d.ts`) and copies CSS files to `dist/`. Because `dist/` is generated, releases are reproducible from `src/`.
+
+For release history and version notes, see the **[Changelog](CHANGELOG.md)**.
+
+## Design Principles
+
+1. **Single source of truth** – All Spectre products consume these styles and recipes.
+2. **No style duplication** – Downstream frameworks never re-encode Spectre logic.
+3. **Token-first** – The Tailwind preset, CSS, and recipes are generated from tokens.
+4. **Framework agnostic** – Works with any bundler, CMS, or runtime.
+5. **Type-safe ergonomics** – Every helper exports strict types for confident usage.
+
+## TypeScript Support
+
+Type definitions are bundled automatically:
 
 ```ts
 import type {
@@ -197,28 +245,37 @@ import type {
   ButtonVariant,
   InputState,
   CardVariant,
+  ButtonRecipeOptions,
+  CardRecipeOptions,
+  InputRecipeOptions,
 } from "@phcdevworks/spectre-ui";
 ```
 
-Use helpers such as `generateSpectreCssVariables`, `createSpectreCssVariableMap`, or `getInputClasses` to keep your implementation type-safe and in sync with the design system.
+## Part of the Spectre Suite
 
-## Design Principles
+- **Spectre Tokens** – Design-token foundation
+- **Spectre UI** – Core styling layer (this package)
+- **Spectre Blocks** – WordPress block library
+- **Spectre Astro** – Astro integration
+- **Spectre 11ty** – Eleventy integration
 
-1. **Single source of truth** – all Spectre products consume these tokens and CSS files.
-2. **No style duplication** – downstream frameworks never re-encode Spectre logic.
-3. **Token-first** – the Tailwind preset, CSS, and recipes are generated from tokens.
-4. **Framework agnostic** – works with any bundler, CMS, or runtime.
-5. **Type-safe ergonomics** – every helper exports strict types for confident usage.
-
-## Requirements
-
-- **Tailwind CSS**: ^3.4.0 or ^4.0.0 (if you consume the preset)
-- **Build tooling**: ESM-compatible bundler capable of importing CSS from npm
+For the project's future direction, see the **[Roadmap](https://github.com/phcdevworks/spectre-ui/blob/main/ROADMAP.md)**.
 
 ## Contributing
 
-Contributions are welcome—open an issue or submit a pull request on GitHub with context about the change you’re proposing.
+Issues and pull requests are welcome. If you are proposing style or recipe changes, update `src/` and include regenerated builds.
+
+For detailed contribution guidelines, see **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
 ## License
 
-MIT © PHCDevworks
+MIT © PHCDevworks — See **[LICENSE](LICENSE)** for details.
+
+---
+
+## ❤️ Support Spectre
+
+If Spectre UI helps your workflow, consider sponsoring:
+
+- [GitHub Sponsors](https://github.com/sponsors/phcdevworks)
+- [Buy Me a Coffee](https://buymeacoffee.com/phcdevworks)
