@@ -1,6 +1,6 @@
 {
   "name": "@phcdevworks/spectre-ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Framework-agnostic UI layer for the Spectre design system. Provides base CSS, component classes, utilities, and a Tailwind preset powered by @phcdevworks/spectre-tokens.",
   "keywords": [
     "phcdevworks",
@@ -17,10 +17,8 @@
     "tokens",
     "utilities"
   ],
-
   "author": "PHCDevworks",
   "license": "MIT",
-
   "funding": [
     {
       "type": "github",
@@ -31,7 +29,6 @@
       "url": "https://buymeacoffee.com/phcdevworks"
     }
   ],
-
   "repository": {
     "type": "git",
     "url": "https://github.com/phcdevworks/spectre-ui.git"
@@ -40,12 +37,10 @@
     "url": "https://github.com/phcdevworks/spectre-ui/issues"
   },
   "homepage": "https://github.com/phcdevworks/spectre-ui#readme",
-
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -56,32 +51,26 @@
     "./components.css": "./dist/components.css",
     "./utilities.css": "./dist/utilities.css"
   },
-
   "files": [
     "dist",
     "README.md",
     "LICENSE"
   ],
   "sideEffects": false,
-
   "scripts": {
     "build": "tsup --config tsup.config.ts",
     "dev": "tsup --config tsup.config.ts --watch",
     "clean": "rm -rf dist"
   },
-
   "publishConfig": {
     "access": "public"
   },
-
   "peerDependencies": {
     "tailwindcss": "^3.4.0 || ^4.0.0"
   },
-
   "dependencies": {
     "@phcdevworks/spectre-tokens": "^0.0.2"
   },
-
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.35",
