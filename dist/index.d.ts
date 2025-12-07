@@ -14,7 +14,7 @@ declare const spectreStyles: {
 declare const spectrePreset: Config;
 
 interface SpectreTailwindTheme {
-    theme: Config['theme'];
+    theme: Config["theme"];
 }
 interface CreateSpectreTailwindThemeOptions {
     tokens: SpectreTokens;
