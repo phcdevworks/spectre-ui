@@ -15,64 +15,130 @@ export function createSpectreTailwindTheme(
 ): SpectreTailwindTheme {
   const { tokens, overrides } = options;
 
-  // Shallow merge overrides into tokens
   const mergedTokens: SpectreTokens = {
     ...tokens,
     ...(overrides ?? {}),
   };
 
-  const mergedColors = (mergedTokens as any).colors ?? {};
+  const tokensAny = mergedTokens as Record<string, any>;
 
-  const attachSemanticColors = (
-    existing: Record<string, any>,
-    semantic: Record<string, any> | undefined,
-  ) => {
-    if (!semantic || Object.keys(semantic).length === 0) {
-      return Object.keys(existing).length > 0 ? existing : undefined;
+  const ensurePaletteObject = (value: unknown): Record<string, string> | undefined => {
+    if (!value) {
+      return undefined;
     }
 
-    return {
-      ...existing,
-      ...semantic,
-    };
+    if (typeof value === 'string') {
+      return { DEFAULT: value };
+    }
+
+    if (typeof value === 'object') {
+      return value as Record<string, string>;
+    }
+
+    return undefined;
   };
 
-  const themeColors: Record<string, any> = {
-    ...mergedColors,
+  const resolveSimpleColor = (...candidates: Array<unknown>): string | undefined => {
+    for (const candidate of candidates) {
+      if (!candidate) {
+        continue;
+      }
+
+      if (typeof candidate === 'string') {
+        return candidate;
+      }
+
+      if (typeof candidate === 'object') {
+        if ('DEFAULT' in (candidate as Record<string, unknown>)) {
+          const defaultValue = (candidate as Record<string, unknown>).DEFAULT;
+          if (typeof defaultValue === 'string') {
+            return defaultValue;
+          }
+        }
+
+        const firstMatch = Object.values(candidate as Record<string, unknown>).find(
+          (value) => typeof value === 'string',
+        );
+
+        if (typeof firstMatch === 'string') {
+          return firstMatch;
+        }
+      }
+    }
+
+    return undefined;
   };
 
-  const surfaceColors = attachSemanticColors(
-    mergedColors.surface ?? {},
-    (mergedTokens as any).surface,
-  );
-  if (surfaceColors) {
-    themeColors.surface = surfaceColors;
+  const colors: Record<string, unknown> = {};
+
+  const surfaceTokens = tokensAny.surface ?? {};
+  if (surfaceTokens.page) {
+    colors.page = surfaceTokens.page;
+  }
+  if (surfaceTokens.card) {
+    colors.card = surfaceTokens.card;
+  }
+  if (surfaceTokens.input) {
+    colors.input = surfaceTokens.input;
   }
 
-  const textColors = attachSemanticColors(
-    mergedColors.text ?? {},
-    (mergedTokens as any).text,
-  );
-  if (textColors) {
-    themeColors.text = textColors;
+  const textTokens = tokensAny.text ?? {};
+  const textPalette: Record<string, string> = {};
+  if (textTokens.onPage?.default) {
+    textPalette.page = textTokens.onPage.default;
+  }
+  if (textTokens.onPage?.muted) {
+    textPalette['page-muted'] = textTokens.onPage.muted;
+  }
+  if (textTokens.onSurface?.default) {
+    textPalette.surface = textTokens.onSurface.default;
+  }
+  if (textTokens.onSurface?.muted) {
+    textPalette['surface-muted'] = textTokens.onSurface.muted;
+  }
+  if (Object.keys(textPalette).length > 0) {
+    colors.text = textPalette;
   }
 
-  const componentColors = attachSemanticColors(
-    mergedColors.component ?? {},
-    (mergedTokens as any).component,
-  );
-  if (componentColors) {
-    themeColors.component = componentColors;
+  const baseColors = tokensAny.colors ?? {};
+  const buttonTokens = tokensAny.buttons ?? {};
+  const formTokens = tokensAny.forms ?? {};
+
+  const primaryPalette =
+    ensurePaletteObject(baseColors.primary) ?? ensurePaletteObject(buttonTokens.primary?.bg);
+  if (primaryPalette) {
+    colors.primary = primaryPalette;
   }
+
+  const addStatusColor = (name: 'danger' | 'success' | 'warning') => {
+    const resolved = resolveSimpleColor(
+      baseColors[name],
+      buttonTokens[name]?.bg,
+      formTokens[name],
+      formTokens[name]?.bg,
+      formTokens[name]?.border,
+    );
+
+    if (resolved) {
+      colors[name] = resolved;
+    }
+  };
+
+  addStatusColor('danger');
+  addStatusColor('success');
+  addStatusColor('warning');
+
+  const spacing = tokensAny.spacing ?? {};
+  const borderRadius = tokensAny.radii ?? {};
+  const boxShadow = tokensAny.shadows ?? {};
+  const fontFamily = tokensAny.typography?.families ?? {};
 
   const theme: TailwindConfig['theme'] = {
-    // Safely map core token groups into Tailwind theme fields.
-    // Use `as any` where necessary to avoid overfitting types right now.
-    colors: themeColors,
-    spacing: (mergedTokens as any).spacing ?? {},
-    borderRadius: (mergedTokens as any).radii ?? {},
-    boxShadow: (mergedTokens as any).shadows ?? {},
-    fontFamily: (mergedTokens as any).typography?.families ?? {},
+    colors,
+    spacing,
+    borderRadius,
+    boxShadow,
+    fontFamily,
   };
 
   return { theme };
