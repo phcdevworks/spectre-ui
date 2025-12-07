@@ -1,8 +1,8 @@
-import type { Config as TailwindConfig } from 'tailwindcss';
-import type { SpectreTokens } from '../tokens';
+import type { Config as TailwindConfig } from "tailwindcss";
+import type { SpectreTokens } from "../tokens";
 
 export interface SpectreTailwindTheme {
-  theme: TailwindConfig['theme'];
+  theme: TailwindConfig["theme"];
 }
 
 export interface CreateSpectreTailwindThemeOptions {
@@ -15,130 +15,46 @@ export function createSpectreTailwindTheme(
 ): SpectreTailwindTheme {
   const { tokens, overrides } = options;
 
+  // Shallow merge overrides into tokens
   const mergedTokens: SpectreTokens = {
-    ...tokens,
-    ...(overrides ?? {}),
+    ...(tokens as SpectreTokens),
+    ...(overrides as Partial<SpectreTokens> | undefined),
   };
 
-  const tokensAny = mergedTokens as Record<string, any>;
-
-  const ensurePaletteObject = (value: unknown): Record<string, string> | undefined => {
-    if (!value) {
-      return undefined;
-    }
-
-    if (typeof value === 'string') {
-      return { DEFAULT: value };
-    }
-
-    if (typeof value === 'object') {
-      return value as Record<string, string>;
-    }
-
-    return undefined;
+  // Minimal, semantic color mapping
+  const colors: Record<string, unknown> = {
+    page: mergedTokens.surface?.page,
+    card: mergedTokens.surface?.card,
+    input: mergedTokens.surface?.input,
+    text: {
+      page: mergedTokens.text?.onPage?.default,
+      "page-muted": mergedTokens.text?.onPage?.muted,
+      surface: mergedTokens.text?.onSurface?.default,
+      "surface-muted": mergedTokens.text?.onSurface?.muted,
+    },
+    primary:
+      (mergedTokens as any).buttons?.primary?.bg ??
+      (mergedTokens as any).colors?.primary,
   };
 
-  const resolveSimpleColor = (...candidates: Array<unknown>): string | undefined => {
-    for (const candidate of candidates) {
-      if (!candidate) {
-        continue;
-      }
+  const spacing: Record<string, unknown> =
+    (mergedTokens as any).spacing ?? {};
 
-      if (typeof candidate === 'string') {
-        return candidate;
-      }
+  const borderRadius: Record<string, unknown> =
+    (mergedTokens as any).radii ?? {};
 
-      if (typeof candidate === 'object') {
-        if ('DEFAULT' in (candidate as Record<string, unknown>)) {
-          const defaultValue = (candidate as Record<string, unknown>).DEFAULT;
-          if (typeof defaultValue === 'string') {
-            return defaultValue;
-          }
-        }
+  const boxShadow: Record<string, unknown> =
+    (mergedTokens as any).shadows ?? {};
 
-        const firstMatch = Object.values(candidate as Record<string, unknown>).find(
-          (value) => typeof value === 'string',
-        );
+  const fontFamily: Record<string, unknown> =
+    (mergedTokens as any).typography?.families ?? {};
 
-        if (typeof firstMatch === 'string') {
-          return firstMatch;
-        }
-      }
-    }
-
-    return undefined;
-  };
-
-  const colors: Record<string, unknown> = {};
-
-  const surfaceTokens = tokensAny.surface ?? {};
-  if (surfaceTokens.page) {
-    colors.page = surfaceTokens.page;
-  }
-  if (surfaceTokens.card) {
-    colors.card = surfaceTokens.card;
-  }
-  if (surfaceTokens.input) {
-    colors.input = surfaceTokens.input;
-  }
-
-  const textTokens = tokensAny.text ?? {};
-  const textPalette: Record<string, string> = {};
-  if (textTokens.onPage?.default) {
-    textPalette.page = textTokens.onPage.default;
-  }
-  if (textTokens.onPage?.muted) {
-    textPalette['page-muted'] = textTokens.onPage.muted;
-  }
-  if (textTokens.onSurface?.default) {
-    textPalette.surface = textTokens.onSurface.default;
-  }
-  if (textTokens.onSurface?.muted) {
-    textPalette['surface-muted'] = textTokens.onSurface.muted;
-  }
-  if (Object.keys(textPalette).length > 0) {
-    colors.text = textPalette;
-  }
-
-  const baseColors = tokensAny.colors ?? {};
-  const buttonTokens = tokensAny.buttons ?? {};
-  const formTokens = tokensAny.forms ?? {};
-
-  const primaryPalette =
-    ensurePaletteObject(baseColors.primary) ?? ensurePaletteObject(buttonTokens.primary?.bg);
-  if (primaryPalette) {
-    colors.primary = primaryPalette;
-  }
-
-  const addStatusColor = (name: 'danger' | 'success' | 'warning') => {
-    const resolved = resolveSimpleColor(
-      baseColors[name],
-      buttonTokens[name]?.bg,
-      formTokens[name],
-      formTokens[name]?.bg,
-      formTokens[name]?.border,
-    );
-
-    if (resolved) {
-      colors[name] = resolved;
-    }
-  };
-
-  addStatusColor('danger');
-  addStatusColor('success');
-  addStatusColor('warning');
-
-  const spacing = tokensAny.spacing ?? {};
-  const borderRadius = tokensAny.radii ?? {};
-  const boxShadow = tokensAny.shadows ?? {};
-  const fontFamily = tokensAny.typography?.families ?? {};
-
-  const theme: TailwindConfig['theme'] = {
-    colors,
-    spacing,
-    borderRadius,
-    boxShadow,
-    fontFamily,
+  const theme: TailwindConfig["theme"] = {
+    colors: colors as any,
+    spacing: spacing as any,
+    borderRadius: borderRadius as any,
+    boxShadow: boxShadow as any,
+    fontFamily: fontFamily as any,
   };
 
   return { theme };
