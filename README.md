@@ -24,7 +24,16 @@ npm install @phcdevworks/spectre-ui
 
 ### 1. Import Spectre CSS
 
-Import the CSS bundles anywhere in your app, layout, or build pipeline.
+Import the canonical bundle anywhere in your app, layout, or build pipeline.
+
+```ts
+// Recommended: one-line Spectre UI bundle (tokens + base + components + utilities)
+import "@phcdevworks/spectre-ui/index.css";
+```
+
+`index.css` automatically loads the Spectre Tokens CSS, so you don't need to import `@phcdevworks/spectre-tokens` separately in most apps.
+
+**Advanced layer control:** If you prefer to manage the layers individually, you can still import each file directly.
 
 ```css
 @import "@phcdevworks/spectre-ui/base.css";
