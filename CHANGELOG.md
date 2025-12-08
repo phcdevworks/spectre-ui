@@ -4,6 +4,17 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [0.0.5] - 2025-12-08
+
+### Added
+
+- Add canonical `index.css` bundle and update exports ([b2d00c4]).
+
+### Documentation
+
+- Update README with import instructions for `index.css` ([b867afe]).
+- Update changelog for v0.0.4 release ([41603dd]).
+
 ## [0.0.4] - 2025-12-07
 
 ### Added
@@ -88,11 +99,16 @@ All notable changes to this project will be documented here. The format follows 
 - Revise `FUNDING.yml` for Spectre sponsorship options ([ec69610]).
 - Add VS Code workspace settings and extension recommendations ([4c7bb7f]).
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.4...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.5...HEAD
+[0.0.5]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/phcdevworks/spectre-ui/tree/v0.0.1
+[65354a2]: https://github.com/phcdevworks/spectre-ui/commit/65354a2
+[b867afe]: https://github.com/phcdevworks/spectre-ui/commit/b867afe
+[b2d00c4]: https://github.com/phcdevworks/spectre-ui/commit/b2d00c4
+[41603dd]: https://github.com/phcdevworks/spectre-ui/commit/41603dd
 [d99455f]: https://github.com/phcdevworks/spectre-ui/commit/d99455f
 [e0a0a31]: https://github.com/phcdevworks/spectre-ui/commit/e0a0a31
 [a9d30d8]: https://github.com/phcdevworks/spectre-ui/commit/a9d30d8
