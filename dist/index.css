@@ -1,0 +1,8 @@
+/* Spectre UI canonical bundle:
+   - Tokens first (defines --sp-* vars)
+   - Then UI base, components, utilities
+*/
+@import "@phcdevworks/spectre-tokens/index.css";
+@import "./base.css";
+@import "./components.css";
+@import "./utilities.css";
