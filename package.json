@@ -47,6 +47,7 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./index.css": "./dist/index.css",
     "./base.css": "./dist/base.css",
     "./components.css": "./dist/components.css",
     "./utilities.css": "./dist/utilities.css"

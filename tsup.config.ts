@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 const stylesDir = path.resolve(rootDir, 'src', 'styles');
-const styleFiles = ['base.css', 'components.css', 'utilities.css'];
+const styleFiles = ['base.css', 'components.css', 'utilities.css', 'index.css'];
 
 const copyStylesPlugin = (): Plugin => ({
   name: 'copy-spectre-styles',
