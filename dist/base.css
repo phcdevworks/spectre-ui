@@ -1,5 +1,12 @@
 @layer base {
 
+  :root {
+    --sp-surface-page: var(--sp-color-neutral-50, #f8fafc);
+    --sp-surface-card: #ffffff;
+    --sp-surface-input: var(--sp-form-default-bg, #ffffff);
+    --sp-surface-overlay: rgba(15, 23, 42, var(--sp-opacity-overlay, 0.5));
+  }
+
   *,
   *::before,
   *::after {
@@ -45,7 +52,7 @@
   }
 
   a {
-    color: var(--sp-color-brand-600, #6c32e6);
+    color: var(--sp-color-primary, inherit);
     text-decoration: none;
   }
 
@@ -54,12 +61,12 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--sp-color-brand-600, currentColor);
+    outline: 2px solid var(--sp-color-primary, currentColor);
     outline-offset: 2px;
   }
 
   ::selection {
-    background-color: var(--sp-color-brand-100, #ebe2ff);
+    background-color: var(--sp-color-primary-soft, rgba(79, 70, 229, 0.15));
     color: inherit;
   }
 }
