@@ -79,10 +79,8 @@
     gap: var(--sp-space-2xs, 0.25rem);
     padding: var(--sp-space-2xs, 0.25rem) var(--sp-space-md, 1rem);
     border-radius: var(--sp-radius-md, 4px);
-    border: 1px solid var(
-      --sp-component-button-border-base,
-      var(--sp-component-button-ghost-bg, var(--sp-button-ghost-bg))
-    );
+    border: 1px solid var(--sp-component-button-border-base,
+        var(--sp-component-button-ghost-bg, var(--sp-button-ghost-bg)));
     font-family: var(--sp-font-family-sans, system-ui);
     font-size: var(--sp-font-md-size, 1rem);
     line-height: 1;
@@ -143,10 +141,8 @@
   .sp-btn--primary {
     background-color: var(--sp-component-button-primary-bg);
     color: var(--sp-component-button-primary-text);
-    box-shadow: var(
-      --sp-component-button-shadow,
-      var(--sp-shadow-sm)
-    );
+    box-shadow: var(--sp-component-button-shadow,
+        var(--sp-shadow-sm));
   }
 
   .sp-btn--primary.sp-btn--hover,
@@ -329,14 +325,10 @@
 
   .sp-input:focus,
   .sp-input--focus {
-    border-color: var(
-      --sp-component-input-border-focus,
-      var(--sp-component-input-border, var(--sp-form-focus-border))
-    );
-    box-shadow: 0 0 0 var(--sp-focus-ring-width, 2px) var(
-      --sp-component-input-ring,
-      var(--sp-form-focus-ring, var(--sp-color-focus-primary))
-    );
+    border-color: var(--sp-component-input-border-focus,
+        var(--sp-component-input-border, var(--sp-form-focus-border)));
+    box-shadow: 0 0 0 var(--sp-focus-ring-width, 2px) var(--sp-component-input-ring,
+        var(--sp-form-focus-ring, var(--sp-color-focus-primary)));
     outline: none;
   }
 
@@ -372,10 +364,8 @@
     border-radius: var(--sp-radius-lg, 8px);
     padding: var(--sp-space-lg, 1.5rem);
     box-shadow: var(--sp-component-card-shadow, var(--sp-shadow-sm));
-    border: 1px solid var(
-      --sp-component-card-border-base,
-      var(--sp-component-card-ghost-border, var(--sp-component-card-bg))
-    );
+    border: 1px solid var(--sp-component-card-border-base,
+        var(--sp-component-card-ghost-border, var(--sp-component-card-bg)));
   }
 
   .sp-card p,
