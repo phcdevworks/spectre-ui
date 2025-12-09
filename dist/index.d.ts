@@ -1,3 +1,4 @@
+import * as tailwindcss_types_config from 'tailwindcss/types/config';
 import { Config } from 'tailwindcss';
 import { SpectreTokens } from '@phcdevworks/spectre-tokens';
 export { SpectreTokens, default as spectreTokens } from '@phcdevworks/spectre-tokens';
@@ -11,10 +12,16 @@ declare const spectreStyles: {
     utilities: string;
 };
 
-declare const spectrePreset: Config;
+declare const spectrePreset: {
+    content: never[];
+    theme: Partial<tailwindcss_types_config.CustomThemeConfig & {
+        extend: Partial<tailwindcss_types_config.CustomThemeConfig>;
+    }>;
+};
 
+type TailwindThemeValue = NonNullable<Config["theme"]>;
 interface SpectreTailwindTheme {
-    theme: Config["theme"];
+    theme: TailwindThemeValue;
 }
 interface CreateSpectreTailwindThemeOptions {
     tokens: SpectreTokens;

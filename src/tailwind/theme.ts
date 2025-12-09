@@ -1,16 +1,16 @@
 import type { Config as TailwindConfig } from "tailwindcss";
 import type { SpectreTokens } from "../tokens";
 
+type TailwindThemeValue = NonNullable<TailwindConfig["theme"]>;
+
 export interface SpectreTailwindTheme {
-  theme: TailwindConfig["theme"];
+  theme: TailwindThemeValue;
 }
 
 export interface CreateSpectreTailwindThemeOptions {
   tokens: SpectreTokens;
   overrides?: Partial<SpectreTokens>;
 }
-
-type TailwindThemeValue = Exclude<TailwindConfig["theme"], undefined>;
 type TailwindColors = TailwindThemeValue extends { colors?: infer C }
   ? C
   : Record<string, unknown>;
@@ -218,14 +218,14 @@ export function createSpectreTailwindTheme(
   const fontFamily = buildFontFamilies(mergedTokens.typography?.families) as TailwindFontFamily;
   const fontSize = buildFontSizes(mergedTokens.typography?.scale ?? {}) as TailwindFontSize;
 
-  const theme = {
+  const theme: TailwindThemeValue = {
     colors,
     spacing,
     borderRadius,
     boxShadow,
     fontFamily,
     fontSize,
-  } satisfies TailwindConfig["theme"];
+  };
 
   return { theme };
 }

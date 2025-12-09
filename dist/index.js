@@ -185,8 +185,7 @@ function createSpectreTailwindTheme(options) {
 var { theme } = createSpectreTailwindTheme({ tokens: spectreTokens });
 var spectrePreset = {
   content: [],
-  theme: theme ?? {}
-  // ensure theme is never undefined
+  theme
 };
 
 // src/recipes/button.ts
