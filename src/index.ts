@@ -22,7 +22,6 @@ export {
   type ButtonRecipeOptions,
   type ButtonVariant,
   type ButtonSize,
-  type ButtonTone,
 } from './recipes/button';
 export {
   getCardClasses,

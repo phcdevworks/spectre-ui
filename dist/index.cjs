@@ -198,7 +198,6 @@ function getButtonClasses(opts = {}) {
   const {
     variant = "primary",
     size = "md",
-    tone = "default",
     fullWidth = false,
     loading = false,
     disabled = false,
@@ -210,7 +209,8 @@ function getButtonClasses(opts = {}) {
     primary: "sp-btn--primary",
     secondary: "sp-btn--secondary",
     ghost: "sp-btn--ghost",
-    danger: "sp-btn--danger"
+    danger: "sp-btn--danger",
+    success: "sp-btn--success"
   };
   classes.push(variantMap[variant]);
   const sizeMap = {
@@ -219,14 +219,6 @@ function getButtonClasses(opts = {}) {
     lg: "sp-btn--lg"
   };
   classes.push(sizeMap[size]);
-  if (tone !== "default") {
-    const toneMap = {
-      success: "sp-btn--tone-success",
-      warning: "sp-btn--tone-warning",
-      danger: "sp-btn--tone-danger"
-    };
-    classes.push(toneMap[tone]);
-  }
   if (fullWidth) classes.push("sp-btn--full");
   if (loading) classes.push("sp-btn--loading");
   if (disabled) classes.push("sp-btn--disabled");
@@ -246,6 +238,7 @@ function getCardClasses(opts = {}) {
   classes.push("sp-card");
   const variantMap = {
     elevated: "sp-card--elevated",
+    flat: "sp-card--flat",
     outline: "sp-card--outline",
     ghost: "sp-card--ghost"
   };
@@ -265,7 +258,9 @@ function getInputClasses(opts = {}) {
   } = opts;
   const classes = [];
   classes.push("sp-input");
-  if (state === "error") {
+  if (state === "disabled") {
+    classes.push("sp-input--disabled");
+  } else if (state === "error") {
     classes.push("sp-input--error");
   } else if (state === "success") {
     classes.push("sp-input--success");

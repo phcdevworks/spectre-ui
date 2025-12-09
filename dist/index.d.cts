@@ -29,13 +29,11 @@ declare const spectrePreset: {
     }>;
 };
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'success';
 type ButtonSize = 'sm' | 'md' | 'lg';
-type ButtonTone = 'default' | 'success' | 'warning' | 'danger';
 interface ButtonRecipeOptions {
     variant?: ButtonVariant;
     size?: ButtonSize;
-    tone?: ButtonTone;
     fullWidth?: boolean;
     loading?: boolean;
     disabled?: boolean;
@@ -46,12 +44,10 @@ interface ButtonRecipeOptions {
  *
  * Rules:
  * - Base: "sp-btn"
- * - Variant: "sp-btn--primary" / "sp-btn--secondary" / "sp-btn--ghost" / "sp-btn--danger"
+ * - Variant: "sp-btn--primary" / "sp-btn--secondary" / "sp-btn--ghost" / "sp-btn--danger" / "sp-btn--success"
  *   - default variant is "primary"
  * - Size: "sp-btn--sm" / "sp-btn--md" / "sp-btn--lg"
  *   - default size is "md"
- * - Tone: "sp-btn--tone-success" / "sp-btn--tone-warning" / "sp-btn--tone-danger"
- *   - default tone is "default" (no tone class)
  * - fullWidth: add "sp-btn--full"
  * - loading: add "sp-btn--loading"
  * - disabled: add "sp-btn--disabled"
@@ -61,7 +57,7 @@ interface ButtonRecipeOptions {
  */
 declare function getButtonClasses(opts?: ButtonRecipeOptions): string;
 
-type CardVariant = 'elevated' | 'outline' | 'ghost';
+type CardVariant = 'elevated' | 'flat' | 'outline' | 'ghost';
 interface CardRecipeOptions {
     variant?: CardVariant;
     interactive?: boolean;
@@ -75,6 +71,7 @@ interface CardRecipeOptions {
  * - Base class: "sp-card"
  * - Variant (default: elevated):
  *   - "sp-card--elevated"
+ *   - "sp-card--flat"
  *   - "sp-card--outline"
  *   - "sp-card--ghost"
  * - interactive: add "sp-card--interactive"
@@ -83,7 +80,7 @@ interface CardRecipeOptions {
  */
 declare function getCardClasses(opts?: CardRecipeOptions): string;
 
-type InputState = 'default' | 'error' | 'success';
+type InputState = 'default' | 'error' | 'success' | 'disabled';
 type InputSize = 'sm' | 'md' | 'lg';
 interface InputRecipeOptions {
     state?: InputState;
@@ -99,6 +96,7 @@ interface InputRecipeOptions {
  *   - "default" => no state modifier
  *   - "error"   => "sp-input--error"
  *   - "success" => "sp-input--success"
+ *   - "disabled" => "sp-input--disabled"
  * - Size (default: md):
  *   - "sp-input--sm"
  *   - "sp-input--md"
@@ -107,4 +105,4 @@ interface InputRecipeOptions {
  */
 declare function getInputClasses(opts?: InputRecipeOptions): string;
 
-export { type ButtonRecipeOptions, type ButtonSize, type ButtonTone, type ButtonVariant, type CardRecipeOptions, type CardVariant, type CreateSpectreTailwindThemeOptions, type InputRecipeOptions, type InputSize, type InputState, type SpectreTailwindTheme, createSpectreTailwindTheme, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreUtilitiesStylesPath };
+export { type ButtonRecipeOptions, type ButtonSize, type ButtonVariant, type CardRecipeOptions, type CardVariant, type CreateSpectreTailwindThemeOptions, type InputRecipeOptions, type InputSize, type InputState, type SpectreTailwindTheme, createSpectreTailwindTheme, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreUtilitiesStylesPath };
