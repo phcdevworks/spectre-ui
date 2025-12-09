@@ -1,4 +1,4 @@
-export type CardVariant = 'elevated' | 'outline' | 'ghost';
+export type CardVariant = 'elevated' | 'flat' | 'outline' | 'ghost';
 
 export interface CardRecipeOptions {
   variant?: CardVariant;
@@ -14,6 +14,7 @@ export interface CardRecipeOptions {
  * - Base class: "sp-card"
  * - Variant (default: elevated):
  *   - "sp-card--elevated"
+ *   - "sp-card--flat"
  *   - "sp-card--outline"
  *   - "sp-card--ghost"
  * - interactive: add "sp-card--interactive"
@@ -36,6 +37,7 @@ export function getCardClasses(opts: CardRecipeOptions = {}): string {
   // Variant
   const variantMap: Record<CardVariant, string> = {
     elevated: 'sp-card--elevated',
+    flat: 'sp-card--flat',
     outline: 'sp-card--outline',
     ghost: 'sp-card--ghost',
   };
