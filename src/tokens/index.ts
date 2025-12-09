@@ -1,5 +1,8 @@
-import type { SpectreTokens } from '@phcdevworks/spectre-tokens';
-import { tokens as spectreTokens } from '@phcdevworks/spectre-tokens';
+import spectreTokens, {
+  type SpectreModeName,
+  type SpectreModeTokens,
+  type SpectreTokens,
+} from '@phcdevworks/spectre-tokens';
 
-export type { SpectreTokens };
 export { spectreTokens };
+export type { SpectreModeName, SpectreModeTokens, SpectreTokens };
