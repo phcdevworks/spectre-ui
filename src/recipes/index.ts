@@ -3,7 +3,6 @@ export {
   type ButtonRecipeOptions,
   type ButtonVariant,
   type ButtonSize,
-  type ButtonTone,
 } from './button';
 
 export {
