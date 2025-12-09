@@ -1,11 +1,14 @@
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+export type ButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'ghost'
+  | 'danger'
+  | 'success';
 export type ButtonSize = 'sm' | 'md' | 'lg';
-export type ButtonTone = 'default' | 'success' | 'warning' | 'danger';
 
 export interface ButtonRecipeOptions {
   variant?: ButtonVariant;
   size?: ButtonSize;
-  tone?: ButtonTone;
   fullWidth?: boolean;
   loading?: boolean;
   disabled?: boolean;
@@ -17,12 +20,10 @@ export interface ButtonRecipeOptions {
  *
  * Rules:
  * - Base: "sp-btn"
- * - Variant: "sp-btn--primary" / "sp-btn--secondary" / "sp-btn--ghost" / "sp-btn--danger"
+ * - Variant: "sp-btn--primary" / "sp-btn--secondary" / "sp-btn--ghost" / "sp-btn--danger" / "sp-btn--success"
  *   - default variant is "primary"
  * - Size: "sp-btn--sm" / "sp-btn--md" / "sp-btn--lg"
  *   - default size is "md"
- * - Tone: "sp-btn--tone-success" / "sp-btn--tone-warning" / "sp-btn--tone-danger"
- *   - default tone is "default" (no tone class)
  * - fullWidth: add "sp-btn--full"
  * - loading: add "sp-btn--loading"
  * - disabled: add "sp-btn--disabled"
@@ -34,7 +35,6 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
   const {
     variant = 'primary',
     size = 'md',
-    tone = 'default',
     fullWidth = false,
     loading = false,
     disabled = false,
@@ -52,6 +52,7 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     secondary: 'sp-btn--secondary',
     ghost: 'sp-btn--ghost',
     danger: 'sp-btn--danger',
+    success: 'sp-btn--success',
   };
   classes.push(variantMap[variant]);
 
@@ -62,16 +63,6 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     lg: 'sp-btn--lg',
   };
   classes.push(sizeMap[size]);
-
-  // Tone (optional)
-  if (tone !== 'default') {
-    const toneMap: Record<Exclude<ButtonTone, 'default'>, string> = {
-      success: 'sp-btn--tone-success',
-      warning: 'sp-btn--tone-warning',
-      danger: 'sp-btn--tone-danger',
-    };
-    classes.push(toneMap[tone as Exclude<ButtonTone, 'default'>]);
-  }
 
   // Flags
   if (fullWidth) classes.push('sp-btn--full');

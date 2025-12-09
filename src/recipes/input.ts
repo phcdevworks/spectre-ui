@@ -1,4 +1,4 @@
-export type InputState = 'default' | 'error' | 'success';
+export type InputState = 'default' | 'error' | 'success' | 'disabled';
 export type InputSize = 'sm' | 'md' | 'lg';
 
 export interface InputRecipeOptions {
@@ -16,6 +16,7 @@ export interface InputRecipeOptions {
  *   - "default" => no state modifier
  *   - "error"   => "sp-input--error"
  *   - "success" => "sp-input--success"
+ *   - "disabled" => "sp-input--disabled"
  * - Size (default: md):
  *   - "sp-input--sm"
  *   - "sp-input--md"
@@ -23,7 +24,7 @@ export interface InputRecipeOptions {
  * - fullWidth: add "sp-input--full"
  */
 export function getInputClasses(opts: InputRecipeOptions = {}): string {
-  const {
+ const {
     state = 'default',
     size = 'md',
     fullWidth = false,
@@ -35,7 +36,9 @@ export function getInputClasses(opts: InputRecipeOptions = {}): string {
   classes.push('sp-input');
 
   // State
-  if (state === 'error') {
+  if (state === 'disabled') {
+    classes.push('sp-input--disabled');
+  } else if (state === 'error') {
     classes.push('sp-input--error');
   } else if (state === 'success') {
     classes.push('sp-input--success');
