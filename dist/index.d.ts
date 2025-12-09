@@ -1,6 +1,6 @@
 import { Config } from 'tailwindcss';
 import { SpectreTokens } from '@phcdevworks/spectre-tokens';
-export { SpectreTokens, tokens as spectreTokens } from '@phcdevworks/spectre-tokens';
+export { SpectreTokens, default as spectreTokens } from '@phcdevworks/spectre-tokens';
 
 declare const spectreBaseStylesPath = "@phcdevworks/spectre-ui/dist/base.css";
 declare const spectreComponentsStylesPath = "@phcdevworks/spectre-ui/dist/components.css";
