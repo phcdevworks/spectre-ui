@@ -2,47 +2,48 @@
 
   :root {
     /* button roles */
-    --sp-component-button-border-base: var(--sp-component-button-ghost-bg, var(--sp-button-ghost-bg));
+    --sp-component-button-border-base: var(--sp-component-button-ghost-bg, transparent);
     --sp-component-button-shadow: var(--sp-shadow-sm);
-    --sp-component-button-primary-bg: var(--sp-button-primary-bg);
-    --sp-component-button-primary-bg-hover: var(--sp-button-primary-bghover);
-    --sp-component-button-primary-bg-active: var(--sp-button-primary-bgactive);
-    --sp-component-button-primary-bg-disabled: var(--sp-button-primary-bgdisabled);
-    --sp-component-button-primary-text: var(--sp-button-primary-text);
-    --sp-component-button-primary-text-disabled: var(--sp-button-primary-textdisabled);
-    --sp-component-button-secondary-bg: var(--sp-button-secondary-bg);
-    --sp-component-button-secondary-bg-hover: var(--sp-button-secondary-bghover);
-    --sp-component-button-secondary-bg-active: var(--sp-button-secondary-bgactive);
-    --sp-component-button-secondary-bg-disabled: var(--sp-button-secondary-bgdisabled);
-    --sp-component-button-secondary-text: var(--sp-button-secondary-text);
-    --sp-component-button-secondary-text-disabled: var(--sp-button-secondary-textdisabled);
-    --sp-component-button-secondary-border: var(--sp-button-secondary-border);
-    --sp-component-button-secondary-border-disabled: var(--sp-button-secondary-borderdisabled);
-    --sp-component-button-ghost-bg: var(--sp-button-ghost-bg);
-    --sp-component-button-ghost-bg-hover: var(--sp-button-ghost-bghover);
-    --sp-component-button-ghost-bg-active: var(--sp-button-ghost-bgactive);
-    --sp-component-button-ghost-bg-disabled: var(--sp-button-ghost-bgdisabled);
-    --sp-component-button-ghost-text: var(--sp-button-ghost-text);
-    --sp-component-button-ghost-text-disabled: var(--sp-button-ghost-textdisabled);
-    --sp-component-button-danger-bg: var(--sp-button-danger-bg);
-    --sp-component-button-danger-bg-hover: var(--sp-button-danger-bghover);
-    --sp-component-button-danger-bg-active: var(--sp-button-danger-bgactive);
-    --sp-component-button-danger-bg-disabled: var(--sp-button-danger-bgdisabled);
-    --sp-component-button-danger-text: var(--sp-button-danger-text);
-    --sp-component-button-danger-text-disabled: var(--sp-button-danger-textdisabled);
-    --sp-component-button-success-bg: var(--sp-button-success-bg);
-    --sp-component-button-success-bg-hover: var(--sp-button-success-bghover);
-    --sp-component-button-success-bg-active: var(--sp-button-success-bgactive);
-    --sp-component-button-success-bg-disabled: var(--sp-button-success-bgdisabled);
-    --sp-component-button-success-text: var(--sp-button-success-text);
-    --sp-component-button-success-text-disabled: var(--sp-button-success-textdisabled);
+    --sp-component-button-loading-opacity: calc(var(--sp-opacity-active, 0.84) - 0.14);
+    --sp-component-button-primary-bg: var(--sp-button-primary-bg, #8652ff);
+    --sp-component-button-primary-bg-hover: var(--sp-button-primary-bghover, #6c32e6);
+    --sp-component-button-primary-bg-active: var(--sp-button-primary-bgactive, #5626b4);
+    --sp-component-button-primary-bg-disabled: var(--sp-button-primary-bgdisabled, #cbd5f5);
+    --sp-component-button-primary-text: var(--sp-button-primary-text, #ffffff);
+    --sp-component-button-primary-text-disabled: var(--sp-button-primary-textdisabled, #94a3b8);
+    --sp-component-button-secondary-bg: var(--sp-button-secondary-bg, #ffffff);
+    --sp-component-button-secondary-bg-hover: var(--sp-button-secondary-bghover, #f1f5f9);
+    --sp-component-button-secondary-bg-active: var(--sp-button-secondary-bgactive, #e2e8f0);
+    --sp-component-button-secondary-bg-disabled: var(--sp-button-secondary-bgdisabled, #f8fafc);
+    --sp-component-button-secondary-text: var(--sp-button-secondary-text, #8652ff);
+    --sp-component-button-secondary-text-disabled: var(--sp-button-secondary-textdisabled, #94a3b8);
+    --sp-component-button-secondary-border: var(--sp-button-secondary-border, #8652ff);
+    --sp-component-button-secondary-border-disabled: var(--sp-button-secondary-borderdisabled, #cbd5f5);
+    --sp-component-button-ghost-bg: var(--sp-button-ghost-bg, transparent);
+    --sp-component-button-ghost-bg-hover: var(--sp-button-ghost-bghover, #f5f0ff);
+    --sp-component-button-ghost-bg-active: var(--sp-button-ghost-bgactive, #ebe2ff);
+    --sp-component-button-ghost-bg-disabled: var(--sp-button-ghost-bgdisabled, transparent);
+    --sp-component-button-ghost-text: var(--sp-button-ghost-text, #8652ff);
+    --sp-component-button-ghost-text-disabled: var(--sp-button-ghost-textdisabled, #94a3b8);
+    --sp-component-button-danger-bg: var(--sp-button-danger-bg, #ef4444);
+    --sp-component-button-danger-bg-hover: var(--sp-button-danger-bghover, #dc2626);
+    --sp-component-button-danger-bg-active: var(--sp-button-danger-bgactive, #b91c1c);
+    --sp-component-button-danger-bg-disabled: var(--sp-button-danger-bgdisabled, #fecaca);
+    --sp-component-button-danger-text: var(--sp-button-danger-text, #ffffff);
+    --sp-component-button-danger-text-disabled: var(--sp-button-danger-textdisabled, #94a3b8);
+    --sp-component-button-success-bg: var(--sp-button-success-bg, #22c55e);
+    --sp-component-button-success-bg-hover: var(--sp-button-success-bghover, #16a34a);
+    --sp-component-button-success-bg-active: var(--sp-button-success-bgactive, #15803d);
+    --sp-component-button-success-bg-disabled: var(--sp-button-success-bgdisabled, #bbf7d0);
+    --sp-component-button-success-text: var(--sp-button-success-text, #ffffff);
+    --sp-component-button-success-text-disabled: var(--sp-button-success-textdisabled, #94a3b8);
 
     /* card roles */
-    --sp-component-card-bg: var(--sp-surface-card, var(--sp-color-neutral-50));
-    --sp-component-card-text: var(--sp-text-on-surface-default, var(--sp-color-neutral-900));
-    --sp-component-card-text-muted: var(--sp-text-on-surface-muted, var(--sp-color-neutral-600));
-    --sp-component-card-border: var(--sp-color-neutral-200);
-    --sp-component-card-border-base: var(--sp-component-card-ghost-border, var(--sp-component-card-bg));
+    --sp-component-card-bg: var(--sp-surface-card, #ffffff);
+    --sp-component-card-text: var(--sp-text-on-surface-default, #0f172a);
+    --sp-component-card-text-muted: var(--sp-text-on-surface-muted, #6b7280);
+    --sp-component-card-border: var(--sp-color-neutral-200, #e2e8f0);
+    --sp-component-card-border-base: var(--sp-component-card-ghost-border, var(--sp-component-card-bg, #ffffff));
     --sp-component-card-shadow: var(--sp-shadow-sm);
     --sp-component-card-shadow-elevated: var(--sp-shadow-lg);
     --sp-component-card-shadow-flat: var(--sp-shadow-none);
@@ -50,25 +51,25 @@
     --sp-component-card-shadow-ghost: var(--sp-shadow-none);
     --sp-component-card-outline-bg: var(--sp-component-card-bg);
     --sp-component-card-outline-border: var(--sp-component-card-border);
-    --sp-component-card-ghost-bg: var(--sp-component-button-ghost-bg, var(--sp-button-ghost-bg));
-    --sp-component-card-ghost-border: var(--sp-component-card-ghost-bg);
+    --sp-component-card-ghost-bg: var(--sp-component-button-ghost-bg, transparent);
+    --sp-component-card-ghost-border: var(--sp-component-card-ghost-bg, transparent);
 
     /* input roles */
-    --sp-component-input-border: var(--sp-form-default-border);
-    --sp-component-input-bg: var(--sp-surface-input, var(--sp-form-default-bg));
-    --sp-component-input-text: var(--sp-text-on-surface-default, var(--sp-form-default-text));
-    --sp-component-input-placeholder: var(--sp-text-on-surface-muted, var(--sp-form-default-placeholder));
-    --sp-component-input-border-focus: var(--sp-form-focus-border);
-    --sp-component-input-ring: var(--sp-form-focus-ring, var(--sp-color-focus-primary));
-    --sp-component-input-border-invalid: var(--sp-form-invalid-border);
-    --sp-component-input-bg-invalid: var(--sp-form-invalid-bg);
-    --sp-component-input-text-invalid: var(--sp-form-invalid-text);
-    --sp-component-input-border-valid: var(--sp-form-valid-border);
-    --sp-component-input-bg-valid: var(--sp-form-valid-bg);
-    --sp-component-input-text-valid: var(--sp-form-valid-text);
-    --sp-component-input-bg-disabled: var(--sp-form-disabled-bg);
-    --sp-component-input-text-disabled: var(--sp-form-disabled-text);
-    --sp-component-input-border-disabled: var(--sp-form-disabled-border);
+    --sp-component-input-border: var(--sp-form-default-border, #cbd5f5);
+    --sp-component-input-bg: var(--sp-surface-input, #ffffff);
+    --sp-component-input-text: var(--sp-text-on-surface-default, #0f172a);
+    --sp-component-input-placeholder: var(--sp-text-on-surface-muted, #6b7280);
+    --sp-component-input-border-focus: var(--sp-form-focus-border, #8652ff);
+    --sp-component-input-ring: var(--sp-form-focus-ring, var(--sp-color-focus-primary, #8652ff));
+    --sp-component-input-border-invalid: var(--sp-form-invalid-border, #ef4444);
+    --sp-component-input-bg-invalid: var(--sp-form-invalid-bg, #fef2f2);
+    --sp-component-input-text-invalid: var(--sp-form-invalid-text, #b91c1c);
+    --sp-component-input-border-valid: var(--sp-form-valid-border, #22c55e);
+    --sp-component-input-bg-valid: var(--sp-form-valid-bg, #f0fdf4);
+    --sp-component-input-text-valid: var(--sp-form-valid-text, #15803d);
+    --sp-component-input-bg-disabled: var(--sp-form-disabled-bg, #f8fafc);
+    --sp-component-input-text-disabled: var(--sp-form-disabled-text, #94a3b8);
+    --sp-component-input-border-disabled: var(--sp-form-disabled-border, #e2e8f0);
   }
 
   /* BUTTONS -------------------------------------------------------------- */
@@ -81,7 +82,7 @@
     border-radius: var(--sp-radius-md, 4px);
     border: 1px solid var(
       --sp-component-button-border-base,
-      var(--sp-component-button-ghost-bg, var(--sp-button-ghost-bg))
+      var(--sp-component-button-ghost-bg, transparent)
     );
     font-family: var(--sp-font-family-sans, system-ui);
     font-size: var(--sp-font-md-size, 1rem);
@@ -108,7 +109,7 @@
 
   .sp-btn--loading {
     pointer-events: none;
-    opacity: var(--sp-opacity-loading, 0.7);
+    opacity: var(--sp-component-button-loading-opacity, 0.7);
   }
 
   .sp-btn--full {
@@ -260,12 +261,12 @@
 
   .sp-input-wrapper {
     display: grid;
-    gap: var(--sp-space-4xs, 0.125rem);
+    gap: var(--sp-space-3xs, 0.125rem);
     width: 100%;
   }
 
   .sp-label {
-    color: var(--sp-component-input-text, var(--sp-text-on-surface-default, var(--sp-form-default-text)));
+    color: var(--sp-component-input-text, var(--sp-text-on-surface-default, #0f172a));
     font-size: var(--sp-font-sm-size, 0.875rem);
     font-weight: var(--sp-font-sm-weight, 500);
     line-height: var(--sp-font-sm-line-height, 1.25rem);
@@ -278,7 +279,7 @@
   }
 
   .sp-error-message {
-    color: var(--sp-color-danger, #dc2626);
+    color: var(--sp-color-error-600, #dc2626);
     font-size: var(--sp-font-xs-size, 0.75rem);
     line-height: var(--sp-font-xs-line-height, 1rem);
   }
@@ -289,9 +290,9 @@
     appearance: none;
     padding: var(--sp-space-2xs, 0.25rem) var(--sp-space-md, 1rem);
     border-radius: var(--sp-radius-md, 4px);
-    border: 1px solid var(--sp-component-input-border, var(--sp-form-default-border));
-    background-color: var(--sp-component-input-bg, var(--sp-surface-input, var(--sp-form-default-bg)));
-    color: var(--sp-component-input-text, var(--sp-text-on-surface-default, var(--sp-form-default-text)));
+    border: 1px solid var(--sp-component-input-border, #cbd5f5);
+    background-color: var(--sp-component-input-bg, var(--sp-surface-input, #ffffff));
+    color: var(--sp-component-input-text, var(--sp-text-on-surface-default, #0f172a));
     font-family: var(--sp-font-family-sans, system-ui);
     font-size: var(--sp-font-md-size, 1rem);
     line-height: var(--sp-font-md-line-height, 1.5rem);
@@ -302,7 +303,7 @@
   }
 
   .sp-input::placeholder {
-    color: var(--sp-component-input-placeholder, var(--sp-text-on-surface-muted, var(--sp-form-default-placeholder)));
+    color: var(--sp-component-input-placeholder, var(--sp-text-on-surface-muted, #6b7280));
   }
 
   .sp-input--sm {
@@ -331,31 +332,31 @@
   .sp-input--focus {
     border-color: var(
       --sp-component-input-border-focus,
-      var(--sp-component-input-border, var(--sp-form-focus-border))
+      var(--sp-component-input-border, #cbd5f5)
     );
     box-shadow: 0 0 0 var(--sp-focus-ring-width, 2px) var(
       --sp-component-input-ring,
-      var(--sp-form-focus-ring, var(--sp-color-focus-primary))
+      var(--sp-color-focus-primary, #8652ff)
     );
     outline: none;
   }
 
   .sp-input--error {
-    border-color: var(--sp-component-input-border-invalid, var(--sp-form-invalid-border));
-    background-color: var(--sp-component-input-bg-invalid, var(--sp-form-invalid-bg));
-    color: var(--sp-component-input-text-invalid, var(--sp-form-invalid-text));
+    border-color: var(--sp-component-input-border-invalid, #ef4444);
+    background-color: var(--sp-component-input-bg-invalid, #fef2f2);
+    color: var(--sp-component-input-text-invalid, #b91c1c);
   }
 
   .sp-input--success {
-    border-color: var(--sp-component-input-border-valid, var(--sp-form-valid-border));
-    background-color: var(--sp-component-input-bg-valid, var(--sp-form-valid-bg));
-    color: var(--sp-component-input-text-valid, var(--sp-form-valid-text));
+    border-color: var(--sp-component-input-border-valid, #22c55e);
+    background-color: var(--sp-component-input-bg-valid, #f0fdf4);
+    color: var(--sp-component-input-text-valid, #15803d);
   }
 
   .sp-input--disabled {
-    background-color: var(--sp-component-input-bg-disabled, var(--sp-form-disabled-bg));
-    color: var(--sp-component-input-text-disabled, var(--sp-form-disabled-text));
-    border-color: var(--sp-component-input-border-disabled, var(--sp-form-disabled-border));
+    background-color: var(--sp-component-input-bg-disabled, #f8fafc);
+    color: var(--sp-component-input-text-disabled, #94a3b8);
+    border-color: var(--sp-component-input-border-disabled, #e2e8f0);
     cursor: not-allowed;
   }
 
