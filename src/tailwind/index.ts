@@ -2,9 +2,6 @@ export {
   createSpectreTailwindTheme,
   type SpectreTailwindTheme,
   type CreateSpectreTailwindThemeOptions,
-} from './theme';
+} from "./theme";
 
-export {
-  spectrePreset,
-  spectreTailwindPreset,
-} from './preset';
+export { spectrePreset, spectreTailwindPreset } from "./preset";

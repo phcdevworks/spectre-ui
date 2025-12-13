@@ -4,11 +4,9 @@ import { createSpectreTailwindTheme } from "./theme";
 
 const { theme } = createSpectreTailwindTheme({ tokens: spectreTokens });
 
-export const spectrePreset = {
-  content: [] as const,
-  theme,
-} satisfies TailwindConfig;
+export const spectrePreset: TailwindConfig = {
+  content: [],
+  theme, // theme is guaranteed non-undefined now
+};
 
-export { spectrePreset as spectreTailwindPreset };
-
-export default spectrePreset;
+export const spectreTailwindPreset: TailwindConfig = spectrePreset;
