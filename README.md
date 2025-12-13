@@ -2,7 +2,7 @@
 
 Framework-agnostic styling layer that powers Spectre Blocks, Spectre Astro, Spectre 11ty, and every Spectre integration.
 
-> 📋 **[View Roadmap](https://github.com/phcdevworks/spectre-ui/blob/main/ROADMAP.md)** | 🤝 **[Contributing Guide](CONTRIBUTING.md)** | 📝 **[Changelog](CHANGELOG.md)**
+> 🤝 **[Contributing Guide](CONTRIBUTING.md)** | 📝 **[Changelog](CHANGELOG.md)**
 
 ## Overview
 
@@ -120,9 +120,10 @@ getButtonClasses({ variant: "primary" }); // CTA baseline
 getButtonClasses({ variant: "secondary" }); // Outlined
 getButtonClasses({ variant: "ghost" }); // Low-emphasis
 getButtonClasses({ variant: "danger" }); // Destructive
+getButtonClasses({ variant: "success" }); // Positive actions
 ```
 
-Each variant ships with full state coverage: `default`, `hover`, `active`, `disabled`, and tone modifiers (`success`, `warning`, `danger`).
+Each variant ships with full state coverage: `default`, `hover`, `active`, `disabled`.
 
 ```css
 .cta-button {
@@ -145,8 +146,7 @@ getInputClasses({ state: "success" });
 ```css
 .input:focus {
   border-color: var(--sp-component-input-border-focus);
-  outline: var(--sp-focus-ring-width) var(--sp-focus-ring-style)
-    var(--sp-component-input-ring-focus);
+  outline: var(--sp-focus-ring-width) var(--sp-focus-ring-style) var(--sp-component-input-ring-focus);
 }
 .input.error {
   border-color: var(--sp-component-input-border-error);
@@ -242,10 +242,10 @@ import {
 
 ## Repository Layout
 
-| Folder        | Responsibility                                                                                                |
-| ------------- | ------------------------------------------------------------------------------------------------------------- |
-| `src/`        | TypeScript source: recipes, Tailwind preset, token re-exports, CSS constants.                                |
-| `src/styles/` | Raw CSS files (`base.css`, `components.css`, `utilities.css`) copied to `dist/` during build.                |
+| Folder        | Responsibility                                                                                              |
+| ------------- | ----------------------------------------------------------------------------------------------------------- |
+| `src/`        | TypeScript source: recipes, Tailwind preset, token re-exports, CSS constants.                               |
+| `src/styles/` | Raw CSS files (`base.css`, `components.css`, `utilities.css`) copied to `dist/` during build.               |
 | `dist/`       | Generated artifacts: `index.js`, `index.cjs`, `index.d.ts`, and CSS files. Regenerated via `npm run build`. |
 
 Designers update tokens in `@phcdevworks/spectre-tokens`. Engineering evolves recipes, presets, and CSS in this package.
@@ -277,7 +277,9 @@ import type {
   SpectreTokens,
   SpectreTailwindTheme,
   ButtonVariant,
+  ButtonSize,
   InputState,
+  InputSize,
   CardVariant,
   ButtonRecipeOptions,
   CardRecipeOptions,
@@ -292,8 +294,6 @@ import type {
 - **Spectre Blocks** – WordPress block library
 - **Spectre Astro** – Astro integration
 - **Spectre 11ty** – Eleventy integration
-
-For the project's future direction, see the **[Roadmap](https://github.com/phcdevworks/spectre-ui/blob/main/ROADMAP.md)**.
 
 ## Contributing
 
