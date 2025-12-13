@@ -1,7 +1,6 @@
 import { Config } from 'tailwindcss';
 import { SpectreTokens } from '@phcdevworks/spectre-tokens';
 export { SpectreTokens, default as spectreTokens } from '@phcdevworks/spectre-tokens';
-import * as tailwindcss_types_config from 'tailwindcss/types/config';
 
 declare const spectreBaseStylesPath = "@phcdevworks/spectre-ui/base.css";
 declare const spectreComponentsStylesPath = "@phcdevworks/spectre-ui/components.css";
@@ -13,22 +12,21 @@ declare const spectreStyles: {
     utilities: string;
 };
 
-type TailwindThemeValue = NonNullable<Config["theme"]>;
+type TailwindTheme = NonNullable<Config["theme"]>;
 interface SpectreTailwindTheme {
-    theme: TailwindThemeValue;
+    theme: TailwindTheme;
 }
 interface CreateSpectreTailwindThemeOptions {
     tokens: SpectreTokens;
     overrides?: Partial<SpectreTokens>;
 }
+/**
+ * Minimal, type-safe theme mapper.
+ * Important: theme is NEVER undefined (fixes exactOptionalPropertyTypes + DTS).
+ */
 declare function createSpectreTailwindTheme(options: CreateSpectreTailwindThemeOptions): SpectreTailwindTheme;
 
-declare const spectrePreset: {
-    content: [];
-    theme: Partial<tailwindcss_types_config.CustomThemeConfig & {
-        extend: Partial<tailwindcss_types_config.CustomThemeConfig>;
-    }>;
-};
+declare const spectrePreset: Config;
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "danger" | "success";
 type ButtonSize = "sm" | "md" | "lg";
