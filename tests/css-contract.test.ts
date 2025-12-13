@@ -47,4 +47,8 @@ describe('dist/components.css contract', () => {
       expect(css).toContain(selector);
     });
   });
+
+  it('does not contain legacy form tokens', () => {
+    expect(css).not.toContain('--sp-form-');
+  });
 });
