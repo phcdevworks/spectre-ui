@@ -2,10 +2,12 @@ import spectreTokens from '@phcdevworks/spectre-tokens';
 export { default as spectreTokens } from '@phcdevworks/spectre-tokens';
 
 // src/css-constants.ts
-var spectreBaseStylesPath = "@phcdevworks/spectre-ui/dist/base.css";
-var spectreComponentsStylesPath = "@phcdevworks/spectre-ui/dist/components.css";
-var spectreUtilitiesStylesPath = "@phcdevworks/spectre-ui/dist/utilities.css";
+var spectreBaseStylesPath = "@phcdevworks/spectre-ui/base.css";
+var spectreComponentsStylesPath = "@phcdevworks/spectre-ui/components.css";
+var spectreUtilitiesStylesPath = "@phcdevworks/spectre-ui/utilities.css";
+var spectreIndexStylesPath = "@phcdevworks/spectre-ui/index.css";
 var spectreStyles = {
+  index: spectreIndexStylesPath,
   base: spectreBaseStylesPath,
   components: spectreComponentsStylesPath,
   utilities: spectreUtilitiesStylesPath
@@ -202,8 +204,7 @@ function getButtonClasses(opts = {}) {
     disabled = false,
     iconOnly = false
   } = opts;
-  const classes = [];
-  classes.push("sp-btn");
+  const classes = ["sp-btn"];
   const variantMap = {
     primary: "sp-btn--primary",
     secondary: "sp-btn--secondary",
@@ -222,7 +223,7 @@ function getButtonClasses(opts = {}) {
   if (loading) classes.push("sp-btn--loading");
   if (disabled) classes.push("sp-btn--disabled");
   if (iconOnly) classes.push("sp-btn--icon");
-  return classes.filter(Boolean).join(" ").trim();
+  return classes.join(" ").trim();
 }
 
 // src/recipes/card.ts
@@ -233,8 +234,7 @@ function getCardClasses(opts = {}) {
     padded = false,
     fullHeight = false
   } = opts;
-  const classes = [];
-  classes.push("sp-card");
+  const classes = ["sp-card"];
   const variantMap = {
     elevated: "sp-card--elevated",
     flat: "sp-card--flat",
@@ -245,35 +245,24 @@ function getCardClasses(opts = {}) {
   if (interactive) classes.push("sp-card--interactive");
   if (padded) classes.push("sp-card--padded");
   if (fullHeight) classes.push("sp-card--full");
-  return classes.filter(Boolean).join(" ").trim();
+  return classes.join(" ").trim();
 }
 
 // src/recipes/input.ts
 function getInputClasses(opts = {}) {
-  const {
-    state = "default",
-    size = "md",
-    fullWidth = false
-  } = opts;
-  const classes = [];
-  classes.push("sp-input");
-  if (state === "disabled") {
-    classes.push("sp-input--disabled");
-  } else if (state === "error") {
-    classes.push("sp-input--error");
-  } else if (state === "success") {
-    classes.push("sp-input--success");
-  }
+  const { state = "default", size = "md", fullWidth = false } = opts;
+  const classes = ["sp-input"];
   const sizeMap = {
     sm: "sp-input--sm",
     md: "sp-input--md",
     lg: "sp-input--lg"
   };
   classes.push(sizeMap[size]);
-  if (fullWidth) {
-    classes.push("sp-input--full");
-  }
-  return classes.filter(Boolean).join(" ").trim();
+  if (state === "error") classes.push("sp-input--error");
+  if (state === "success") classes.push("sp-input--success");
+  if (state === "disabled") classes.push("sp-input--disabled");
+  if (fullWidth) classes.push("sp-input--full");
+  return classes.join(" ").trim();
 }
 
 export { createSpectreTailwindTheme, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreUtilitiesStylesPath };
