@@ -57,6 +57,31 @@ export default {
 
 Works with Tailwind 3.x and 4.x through the classic config API.
 
+Need a plain theme object without presets? Generate it from the first-party tokens.
+
+```ts
+// tailwind.config.ts
+import {
+  createSpectreTailwindTheme,
+  spectreTokens,
+} from "@phcdevworks/spectre-ui";
+
+const { theme } = createSpectreTailwindTheme({
+  tokens: spectreTokens,
+  overrides: {
+    spacing: {
+      ...spectreTokens.spacing,
+      gutter: "1.125rem",
+    },
+  },
+});
+
+export default {
+  content: ["./src/**/*.{js,ts,jsx,tsx,astro}"],
+  theme,
+};
+```
+
 ### 3. Use Spectre recipes
 
 Recipes wrap Spectre's class combinations so every framework composes styles consistently.
