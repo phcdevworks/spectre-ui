@@ -6,28 +6,45 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const cssPath = path.join(__dirname, '..', 'src', 'styles', 'components.css');
+const cssPath = path.join(__dirname, '..', 'dist', 'components.css');
 const css = fs.readFileSync(cssPath, 'utf8');
 
-describe('components.css contract', () => {
+describe('dist/components.css contract', () => {
   it('contains button selectors', () => {
-    expect(css).toContain('.sp-btn');
-    expect(css).toContain('.sp-btn--primary');
-    expect(css).toContain('.sp-btn--secondary');
-    expect(css).toContain('.sp-btn--ghost');
+    const selectors = [
+      '.sp-btn',
+      '.sp-btn--primary',
+      '.sp-btn--secondary',
+      '.sp-btn--ghost',
+      '.sp-btn--danger',
+      '.sp-btn--success',
+    ];
+
+    selectors.forEach((selector) => {
+      expect(css).toContain(selector);
+    });
   });
 
   it('contains card selectors', () => {
-    expect(css).toContain('.sp-card');
-    expect(css).toContain('.sp-card--elevated');
-    expect(css).toContain('.sp-card--outline');
-    expect(css).toContain('.sp-card--ghost');
+    const selectors = ['.sp-card', '.sp-card--elevated', '.sp-card--outline', '.sp-card--ghost'];
+
+    selectors.forEach((selector) => {
+      expect(css).toContain(selector);
+    });
   });
 
   it('contains input selectors', () => {
-    expect(css).toContain('.sp-input');
-    expect(css).toContain('.sp-input--sm');
-    expect(css).toContain('.sp-input--md');
-    expect(css).toContain('.sp-input--lg');
+    const selectors = [
+      '.sp-input',
+      '.sp-input--sm',
+      '.sp-input--md',
+      '.sp-input--lg',
+      '.sp-input--error',
+      '.sp-input--success',
+    ];
+
+    selectors.forEach((selector) => {
+      expect(css).toContain(selector);
+    });
   });
 });

@@ -23,7 +23,7 @@ interface CreateSpectreTailwindThemeOptions {
 declare function createSpectreTailwindTheme(options: CreateSpectreTailwindThemeOptions): SpectreTailwindTheme;
 
 declare const spectrePreset: {
-    content: never[];
+    content: [];
     theme: Partial<tailwindcss_types_config.CustomThemeConfig & {
         extend: Partial<tailwindcss_types_config.CustomThemeConfig>;
     }>;
