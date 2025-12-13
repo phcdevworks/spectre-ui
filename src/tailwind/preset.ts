@@ -5,8 +5,10 @@ import { createSpectreTailwindTheme } from "./theme";
 const { theme } = createSpectreTailwindTheme({ tokens: spectreTokens });
 
 export const spectrePreset = {
-  content: [],
+  content: [] as const,
   theme,
 } satisfies TailwindConfig;
+
+export { spectrePreset as spectreTailwindPreset };
 
 export default spectrePreset;

@@ -54,21 +54,36 @@
     --sp-component-card-ghost-border: var(--sp-component-card-ghost-bg);
 
     /* input roles */
-    --sp-component-input-border: var(--sp-form-default-border);
-    --sp-component-input-bg: var(--sp-surface-input, var(--sp-form-default-bg));
-    --sp-component-input-text: var(--sp-text-on-surface-default, var(--sp-form-default-text));
-    --sp-component-input-placeholder: var(--sp-text-on-surface-muted, var(--sp-form-default-placeholder));
-    --sp-component-input-border-focus: var(--sp-form-focus-border);
-    --sp-component-input-ring: var(--sp-form-focus-ring, var(--sp-color-focus-primary));
-    --sp-component-input-border-invalid: var(--sp-form-invalid-border);
-    --sp-component-input-bg-invalid: var(--sp-form-invalid-bg);
-    --sp-component-input-text-invalid: var(--sp-form-invalid-text);
-    --sp-component-input-border-valid: var(--sp-form-valid-border);
-    --sp-component-input-bg-valid: var(--sp-form-valid-bg);
-    --sp-component-input-text-valid: var(--sp-form-valid-text);
-    --sp-component-input-bg-disabled: var(--sp-form-disabled-bg);
-    --sp-component-input-text-disabled: var(--sp-form-disabled-text);
-    --sp-component-input-border-disabled: var(--sp-form-disabled-border);
+    --sp-component-input-role-border: var(--sp-component-input-border,
+        var(--sp-color-neutral-200, #e2e8f0));
+    --sp-component-input-role-bg: var(--sp-component-input-bg,
+        var(--sp-surface-input, var(--sp-color-neutral-50, #f8fafc)));
+    --sp-component-input-role-text: var(--sp-component-input-text,
+        var(--sp-text-on-surface-default, var(--sp-color-neutral-900, #0f172a)));
+    --sp-component-input-role-placeholder: var(--sp-component-input-placeholder,
+        var(--sp-text-on-surface-muted, var(--sp-color-neutral-500, #64748b)));
+    --sp-component-input-role-border-focus: var(--sp-component-input-border-focus,
+        var(--sp-color-brand-500, #8652ff));
+    --sp-component-input-role-ring: var(--sp-component-input-ring,
+        var(--sp-color-brand-500, #8652ff));
+    --sp-component-input-role-border-error: var(--sp-component-input-border-error,
+        var(--sp-color-error-500, #ef4444));
+    --sp-component-input-role-bg-error: var(--sp-component-input-bg-error,
+        var(--sp-color-error-50, #fef2f2));
+    --sp-component-input-role-text-error: var(--sp-component-input-text-error,
+        var(--sp-color-error-700, #b91c1c));
+    --sp-component-input-role-border-success: var(--sp-component-input-border-success,
+        var(--sp-color-success-500, #22c55e));
+    --sp-component-input-role-bg-success: var(--sp-component-input-bg-success,
+        var(--sp-color-success-50, #f0fdf4));
+    --sp-component-input-role-text-success: var(--sp-component-input-text-success,
+        var(--sp-color-success-700, #15803d));
+    --sp-component-input-role-bg-disabled: var(--sp-component-input-bg-disabled,
+        var(--sp-color-neutral-50, #f8fafc));
+    --sp-component-input-role-text-disabled: var(--sp-component-input-text-disabled,
+        var(--sp-color-neutral-400, #94a3b8));
+    --sp-component-input-role-border-disabled: var(--sp-component-input-border-disabled,
+        var(--sp-color-neutral-200, #e2e8f0));
   }
 
   /* BUTTONS -------------------------------------------------------------- */
@@ -261,7 +276,7 @@
   }
 
   .sp-label {
-    color: var(--sp-component-input-text, var(--sp-text-on-surface-default, var(--sp-form-default-text)));
+    color: var(--sp-component-input-role-text);
     font-size: var(--sp-font-sm-size, 0.875rem);
     font-weight: var(--sp-font-sm-weight, 500);
     line-height: var(--sp-font-sm-line-height, 1.25rem);
@@ -274,7 +289,7 @@
   }
 
   .sp-error-message {
-    color: var(--sp-color-danger, #dc2626);
+    color: var(--sp-color-error-600, #dc2626);
     font-size: var(--sp-font-xs-size, 0.75rem);
     line-height: var(--sp-font-xs-line-height, 1rem);
   }
@@ -285,9 +300,9 @@
     appearance: none;
     padding: var(--sp-space-2xs, 0.25rem) var(--sp-space-md, 1rem);
     border-radius: var(--sp-radius-md, 4px);
-    border: 1px solid var(--sp-component-input-border, var(--sp-form-default-border));
-    background-color: var(--sp-component-input-bg, var(--sp-surface-input, var(--sp-form-default-bg)));
-    color: var(--sp-component-input-text, var(--sp-text-on-surface-default, var(--sp-form-default-text)));
+    border: 1px solid var(--sp-component-input-role-border);
+    background-color: var(--sp-component-input-role-bg);
+    color: var(--sp-component-input-role-text);
     font-family: var(--sp-font-family-sans, system-ui);
     font-size: var(--sp-font-md-size, 1rem);
     line-height: var(--sp-font-md-line-height, 1.5rem);
@@ -298,7 +313,7 @@
   }
 
   .sp-input::placeholder {
-    color: var(--sp-component-input-placeholder, var(--sp-text-on-surface-muted, var(--sp-form-default-placeholder)));
+    color: var(--sp-component-input-role-placeholder);
   }
 
   .sp-input--sm {
@@ -325,29 +340,27 @@
 
   .sp-input:focus,
   .sp-input--focus {
-    border-color: var(--sp-component-input-border-focus,
-        var(--sp-component-input-border, var(--sp-form-focus-border)));
-    box-shadow: 0 0 0 var(--sp-focus-ring-width, 2px) var(--sp-component-input-ring,
-        var(--sp-form-focus-ring, var(--sp-color-focus-primary)));
+    border-color: var(--sp-component-input-role-border-focus);
+    box-shadow: 0 0 0 var(--sp-focus-ring-width, 2px) var(--sp-component-input-role-ring);
     outline: none;
   }
 
   .sp-input--error {
-    border-color: var(--sp-component-input-border-invalid, var(--sp-form-invalid-border));
-    background-color: var(--sp-component-input-bg-invalid, var(--sp-form-invalid-bg));
-    color: var(--sp-component-input-text-invalid, var(--sp-form-invalid-text));
+    border-color: var(--sp-component-input-role-border-error);
+    background-color: var(--sp-component-input-role-bg-error);
+    color: var(--sp-component-input-role-text-error);
   }
 
   .sp-input--success {
-    border-color: var(--sp-component-input-border-valid, var(--sp-form-valid-border));
-    background-color: var(--sp-component-input-bg-valid, var(--sp-form-valid-bg));
-    color: var(--sp-component-input-text-valid, var(--sp-form-valid-text));
+    border-color: var(--sp-component-input-role-border-success);
+    background-color: var(--sp-component-input-role-bg-success);
+    color: var(--sp-component-input-role-text-success);
   }
 
   .sp-input--disabled {
-    background-color: var(--sp-component-input-bg-disabled, var(--sp-form-disabled-bg));
-    color: var(--sp-component-input-text-disabled, var(--sp-form-disabled-text));
-    border-color: var(--sp-component-input-border-disabled, var(--sp-form-disabled-border));
+    background-color: var(--sp-component-input-role-bg-disabled);
+    color: var(--sp-component-input-role-text-disabled);
+    border-color: var(--sp-component-input-role-border-disabled);
     cursor: not-allowed;
   }
 

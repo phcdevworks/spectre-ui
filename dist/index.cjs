@@ -164,15 +164,19 @@ function createSpectreTailwindTheme(options) {
       })
     }
   };
+  const tokenColors = mergedTokens.colors;
   const colors = {
-    ...mergedTokens.colors ?? {},
+    ...tokenColors ?? {},
     surface: surfaceColors,
     text: textColors,
     component: componentColors
   };
-  const spacing = mergedTokens.spacing ?? {};
-  const borderRadius = mergedTokens.radii ?? {};
-  const boxShadow = mergedTokens.shadows ?? {};
+  const spacingTokens = mergedTokens.spacing;
+  const spacing = spacingTokens ?? {};
+  const radiiTokens = mergedTokens.radii;
+  const borderRadius = radiiTokens ?? {};
+  const shadowTokens = mergedTokens.shadows;
+  const boxShadow = shadowTokens ?? {};
   const fontFamily = buildFontFamilies(mergedTokens.typography?.families);
   const fontSize = buildFontSizes(mergedTokens.typography?.scale ?? {});
   const theme2 = {

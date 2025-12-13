@@ -2,6 +2,9 @@ import type { Config as TailwindConfig } from "tailwindcss";
 import type { SpectreTokens } from "../tokens";
 
 type TailwindThemeValue = NonNullable<TailwindConfig["theme"]>;
+type TailwindThemeValueFor<Key extends keyof TailwindThemeValue> = NonNullable<
+  TailwindThemeValue[Key]
+>;
 
 export interface SpectreTailwindTheme {
   theme: TailwindThemeValue;
@@ -11,26 +14,13 @@ export interface CreateSpectreTailwindThemeOptions {
   tokens: SpectreTokens;
   overrides?: Partial<SpectreTokens>;
 }
-type TailwindColors = TailwindThemeValue extends { colors?: infer C }
-  ? C
-  : Record<string, unknown>;
-type TailwindSpacing = TailwindThemeValue extends { spacing?: infer S }
-  ? S
-  : Record<string, string>;
-type TailwindBorderRadius = TailwindThemeValue extends {
-  borderRadius?: infer R;
-}
-  ? R
-  : Record<string, string>;
-type TailwindBoxShadow = TailwindThemeValue extends { boxShadow?: infer B }
-  ? B
-  : Record<string, string>;
-type TailwindFontFamily = TailwindThemeValue extends { fontFamily?: infer F }
-  ? F
-  : Record<string, unknown>;
-type TailwindFontSize = TailwindThemeValue extends { fontSize?: infer F }
-  ? F
-  : Record<string, unknown>;
+type TailwindColors = TailwindThemeValueFor<"colors">;
+type TailwindColorObject = Extract<TailwindColors, Record<string, unknown>>;
+type TailwindSpacing = TailwindThemeValueFor<"spacing">;
+type TailwindBorderRadius = TailwindThemeValueFor<"borderRadius">;
+type TailwindBoxShadow = TailwindThemeValueFor<"boxShadow">;
+type TailwindFontFamily = TailwindThemeValueFor<"fontFamily">;
+type TailwindFontSize = TailwindThemeValueFor<"fontSize">;
 
 type SemanticValue = string | { value: string };
 
@@ -57,7 +47,7 @@ const removeUndefinedEntries = (
 
 const buildFontFamilies = (
   families: Record<string, string> | undefined,
-): Record<string, string[]> =>
+): TailwindFontFamily =>
   Object.entries(families ?? {}).reduce<Record<string, string[]>>(
     (acc, [key, value]) => {
       const stack = value
@@ -205,18 +195,22 @@ export function createSpectreTailwindTheme(
     },
   };
 
-  const colors = {
-    ...(mergedTokens.colors ?? {}),
+  const tokenColors = mergedTokens.colors as TailwindColorObject | undefined;
+  const colors: TailwindColors = {
+    ...(tokenColors ?? {}),
     surface: surfaceColors,
     text: textColors,
     component: componentColors,
-  } satisfies TailwindColors;
+  };
 
-  const spacing = (mergedTokens.spacing ?? {}) as TailwindSpacing;
-  const borderRadius = (mergedTokens.radii ?? {}) as TailwindBorderRadius;
-  const boxShadow = (mergedTokens.shadows ?? {}) as TailwindBoxShadow;
-  const fontFamily = buildFontFamilies(mergedTokens.typography?.families) as TailwindFontFamily;
-  const fontSize = buildFontSizes(mergedTokens.typography?.scale ?? {}) as TailwindFontSize;
+  const spacingTokens = mergedTokens.spacing as Record<string, string> | undefined;
+  const spacing: TailwindSpacing = spacingTokens ?? {};
+  const radiiTokens = mergedTokens.radii as Record<string, string> | undefined;
+  const borderRadius: TailwindBorderRadius = radiiTokens ?? {};
+  const shadowTokens = mergedTokens.shadows as Record<string, string> | undefined;
+  const boxShadow: TailwindBoxShadow = shadowTokens ?? {};
+  const fontFamily = buildFontFamilies(mergedTokens.typography?.families);
+  const fontSize = buildFontSizes(mergedTokens.typography?.scale ?? {});
 
   const theme: TailwindThemeValue = {
     colors,

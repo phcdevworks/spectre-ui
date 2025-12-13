@@ -6,8 +6,7 @@ describe('getCardClasses', () => {
   it('returns defaults for elevated card without extra flags', () => {
     const result = getCardClasses();
 
-    expect(result).toContain('sp-card');
-    expect(result).toContain('sp-card--elevated');
+    expect(result).toBe('sp-card sp-card--elevated');
     expect(result).not.toContain('sp-card--interactive');
     expect(result).not.toContain('sp-card--padded');
     expect(result).not.toContain('sp-card--full');
@@ -46,8 +45,7 @@ describe('getInputClasses', () => {
   it('returns defaults for md input without modifiers', () => {
     const result = getInputClasses();
 
-    expect(result).toContain('sp-input');
-    expect(result).toContain('sp-input--md');
+    expect(result).toBe('sp-input sp-input--md');
     expect(result).not.toContain('sp-input--error');
     expect(result).not.toContain('sp-input--success');
     expect(result).not.toContain('sp-input--full');
