@@ -1,52 +1,33 @@
-export type CardVariant = 'elevated' | 'flat' | 'outline' | 'ghost';
+export type CardVariant = "elevated" | "flat" | "outline" | "ghost";
 
 export interface CardRecipeOptions {
   variant?: CardVariant;
   interactive?: boolean; // hover/focus styles
-  padded?: boolean; // apply default padding
+  padded?: boolean;      // apply default padding
   fullHeight?: boolean;
 }
 
-/**
- * Generate Spectre card classes.
- *
- * Rules:
- * - Base class: "sp-card"
- * - Variant (default: elevated):
- *   - "sp-card--elevated"
- *   - "sp-card--flat"
- *   - "sp-card--outline"
- *   - "sp-card--ghost"
- * - interactive: add "sp-card--interactive"
- * - padded: add "sp-card--padded"
- * - fullHeight: add "sp-card--full"
- */
 export function getCardClasses(opts: CardRecipeOptions = {}): string {
   const {
-    variant = 'elevated',
+    variant = "elevated",
     interactive = false,
     padded = false,
     fullHeight = false,
   } = opts;
 
-  const classes: string[] = [];
+  const classes: string[] = ["sp-card"];
 
-  // Base
-  classes.push('sp-card');
-
-  // Variant
   const variantMap: Record<CardVariant, string> = {
-    elevated: 'sp-card--elevated',
-    flat: 'sp-card--flat',
-    outline: 'sp-card--outline',
-    ghost: 'sp-card--ghost',
+    elevated: "sp-card--elevated",
+    flat: "sp-card--flat",
+    outline: "sp-card--outline",
+    ghost: "sp-card--ghost",
   };
   classes.push(variantMap[variant]);
 
-  // Flags
-  if (interactive) classes.push('sp-card--interactive');
-  if (padded) classes.push('sp-card--padded');
-  if (fullHeight) classes.push('sp-card--full');
+  if (interactive) classes.push("sp-card--interactive");
+  if (padded) classes.push("sp-card--padded");
+  if (fullHeight) classes.push("sp-card--full");
 
-  return classes.filter(Boolean).join(' ').trim();
+  return classes.join(" ").trim();
 }

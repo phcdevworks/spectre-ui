@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Spectre UI Vanilla Smoke Test</title>
+    <base href=".." />
+    <link rel="stylesheet" href="./dist/index.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 2rem;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #f8fafc;
+        color: #0f172a;
+      }
+
+      main {
+        display: grid;
+        gap: 2rem;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      section {
+        padding: 1.5rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        background: #ffffff;
+      }
+
+      h2 {
+        margin-top: 0;
+      }
+
+      .demo-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .demo-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .card-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .input-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .sp-card {
+        min-height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Spectre UI Vanilla Smoke Test</h1>
+        <p>Manual QA page referencing the built CSS from <code>dist/index.css</code>.</p>
+      </header>
+
+      <section>
+        <h2>Buttons</h2>
+        <div class="demo-row">
+          <button class="sp-btn sp-btn--primary">Primary</button>
+          <button class="sp-btn sp-btn--secondary">Secondary</button>
+          <button class="sp-btn sp-btn--ghost">Ghost</button>
+          <button class="sp-btn sp-btn--danger">Danger</button>
+          <button class="sp-btn sp-btn--success">Success</button>
+          <button class="sp-btn sp-btn--primary" disabled>Disabled</button>
+        </div>
+        <div class="demo-row" style="margin-top: 1rem;">
+          <button class="sp-btn sp-btn--primary sp-btn--loading">Loading</button>
+          <button class="sp-btn sp-btn--secondary sp-btn--active">Active</button>
+          <button class="sp-btn sp-btn--ghost sp-btn--hover">Hover</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>Cards</h2>
+        <div class="card-grid">
+          <article class="sp-card">
+            <h3>Default Card</h3>
+            <p>Standard surface with text roles.</p>
+          </article>
+          <article class="sp-card sp-card--elevated">
+            <h3>Elevated</h3>
+            <p>Drop shadow for emphasis.</p>
+          </article>
+          <article class="sp-card sp-card--outline">
+            <h3>Outline</h3>
+            <p>Border-focused presentation.</p>
+          </article>
+          <article class="sp-card sp-card--ghost">
+            <h3>Ghost</h3>
+            <p>Transparent background for subtle grouping.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Inputs</h2>
+        <div class="input-grid">
+          <label class="sp-input-wrapper">
+            <span class="sp-label">Default</span>
+            <input class="sp-input" placeholder="Type here" />
+          </label>
+          <label class="sp-input-wrapper">
+            <span class="sp-label">Focused (forced)</span>
+            <input class="sp-input sp-input--focus" value="Focus ring preview" />
+          </label>
+          <label class="sp-input-wrapper">
+            <span class="sp-label">Error</span>
+            <input class="sp-input sp-input--error" value="Bad value" />
+            <span class="sp-error-message">Something went wrong.</span>
+          </label>
+          <label class="sp-input-wrapper">
+            <span class="sp-label">Success</span>
+            <input class="sp-input sp-input--success" value="Looks good" />
+            <span class="sp-helper-text">Validation passed.</span>
+          </label>
+          <label class="sp-input-wrapper">
+            <span class="sp-label">Disabled</span>
+            <input class="sp-input sp-input--disabled" value="Can’t edit" disabled />
+          </label>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

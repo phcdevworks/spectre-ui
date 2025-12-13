@@ -55,7 +55,7 @@
 
     /* input roles */
     --sp-component-input-role-border: var(--sp-component-input-border,
-        var(--sp-color-neutral-200, #e2e8f0));
+        var(--sp-surface-input, var(--sp-color-neutral-200, #e2e8f0)));
     --sp-component-input-role-bg: var(--sp-component-input-bg,
         var(--sp-surface-input, var(--sp-color-neutral-50, #f8fafc)));
     --sp-component-input-role-text: var(--sp-component-input-text,
@@ -79,11 +79,11 @@
     --sp-component-input-role-text-success: var(--sp-component-input-text-success,
         var(--sp-color-success-700, #15803d));
     --sp-component-input-role-bg-disabled: var(--sp-component-input-bg-disabled,
-        var(--sp-color-neutral-50, #f8fafc));
+        var(--sp-surface-input, var(--sp-color-neutral-50, #f8fafc)));
     --sp-component-input-role-text-disabled: var(--sp-component-input-text-disabled,
-        var(--sp-color-neutral-400, #94a3b8));
+        var(--sp-text-on-surface-muted, var(--sp-color-neutral-400, #94a3b8)));
     --sp-component-input-role-border-disabled: var(--sp-component-input-border-disabled,
-        var(--sp-color-neutral-200, #e2e8f0));
+        var(--sp-surface-input, var(--sp-color-neutral-200, #e2e8f0)));
   }
 
   /* BUTTONS -------------------------------------------------------------- */
