@@ -37,6 +37,12 @@ describe('getBadgeClasses', () => {
       expect(result).toContain(className);
     });
   });
+
+  it('creates trimmed, space-delimited class strings for non-default badges', () => {
+    const result = getBadgeClasses({ variant: 'warning', size: 'lg' });
+    expect(result).toBe(result.trim());
+    expect(result.includes('  ')).toBe(false);
+  });
 });
 
 describe('getIconBoxClasses', () => {
@@ -74,5 +80,11 @@ describe('getIconBoxClasses', () => {
       const result = getIconBoxClasses({ size });
       expect(result).toContain(className);
     });
+  });
+
+  it('creates trimmed, space-delimited class strings for non-default icon boxes', () => {
+    const result = getIconBoxClasses({ variant: 'info', size: 'sm' });
+    expect(result).toBe(result.trim());
+    expect(result.includes('  ')).toBe(false);
   });
 });
