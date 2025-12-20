@@ -91,6 +91,8 @@ import {
   getButtonClasses,
   getCardClasses,
   getInputClasses,
+  getBadgeClasses,
+  getIconBoxClasses,
 } from "@phcdevworks/spectre-ui";
 
 const buttonClasses = getButtonClasses({
@@ -109,6 +111,12 @@ const inputClasses = getInputClasses({
   fullWidth: true,
 });
 // "sp-input sp-input--error sp-input--sm sp-input--full"
+
+const badgeClasses = getBadgeClasses({ variant: "success", size: "sm" });
+// "sp-badge sp-badge--success sp-badge--sm"
+
+const iconBoxClasses = getIconBoxClasses({ variant: "info", size: "lg" });
+// "sp-iconbox sp-iconbox--info sp-iconbox--lg"
 ```
 
 ## Component Surfaces
@@ -160,6 +168,39 @@ getInputClasses({ state: "success" });
 getCardClasses({ variant: "elevated" }); // Default shadow
 getCardClasses({ variant: "outline" }); // Bordered
 getCardClasses({ variant: "ghost" }); // Transparent
+```
+
+### Badge variants
+
+```ts
+getBadgeClasses({ variant: "primary" }); // Primary/default
+getBadgeClasses({ variant: "success" }); // Success state
+getBadgeClasses({ variant: "warning" }); // Warning state
+getBadgeClasses({ variant: "danger" }); // Danger/error state
+```
+
+Available sizes: `sm`, `md`, `lg`
+
+```ts
+getBadgeClasses({ variant: "success", size: "sm" });
+// "sp-badge sp-badge--success sp-badge--sm"
+```
+
+### Icon Box variants
+
+```ts
+getIconBoxClasses({ variant: "primary" }); // Primary/default
+getIconBoxClasses({ variant: "success" }); // Success state
+getIconBoxClasses({ variant: "warning" }); // Warning state
+getIconBoxClasses({ variant: "danger" }); // Danger/error state
+getIconBoxClasses({ variant: "info" }); // Info state
+```
+
+Available sizes: `sm`, `md`, `lg`
+
+```ts
+getIconBoxClasses({ variant: "info", size: "lg" });
+// "sp-iconbox sp-iconbox--info sp-iconbox--lg"
 ```
 
 ## Surface & Typography Roles
@@ -281,9 +322,15 @@ import type {
   InputState,
   InputSize,
   CardVariant,
+  BadgeVariant,
+  BadgeSize,
+  IconBoxVariant,
+  IconBoxSize,
   ButtonRecipeOptions,
   CardRecipeOptions,
   InputRecipeOptions,
+  BadgeRecipeOptions,
+  IconBoxRecipeOptions,
 } from "@phcdevworks/spectre-ui";
 ```
 
