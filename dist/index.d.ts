@@ -58,4 +58,20 @@ interface InputRecipeOptions {
 }
 declare function getInputClasses(opts?: InputRecipeOptions): string;
 
-export { type ButtonRecipeOptions, type ButtonSize, type ButtonVariant, type CardRecipeOptions, type CardVariant, type CreateSpectreTailwindThemeOptions, type InputRecipeOptions, type InputSize, type InputState, type SpectreTailwindTheme, createSpectreTailwindTheme, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreUtilitiesStylesPath };
+type BadgeVariant = "primary" | "success" | "warning" | "danger";
+type BadgeSize = "sm" | "md" | "lg";
+interface BadgeRecipeOptions {
+    variant?: BadgeVariant;
+    size?: BadgeSize;
+}
+declare function getBadgeClasses(opts?: BadgeRecipeOptions): string;
+
+type IconBoxVariant = "primary" | "success" | "warning" | "danger" | "info";
+type IconBoxSize = "sm" | "md" | "lg";
+interface IconBoxRecipeOptions {
+    variant?: IconBoxVariant;
+    size?: IconBoxSize;
+}
+declare function getIconBoxClasses(opts?: IconBoxRecipeOptions): string;
+
+export { type BadgeRecipeOptions, type BadgeSize, type BadgeVariant, type ButtonRecipeOptions, type ButtonSize, type ButtonVariant, type CardRecipeOptions, type CardVariant, type CreateSpectreTailwindThemeOptions, type IconBoxRecipeOptions, type IconBoxSize, type IconBoxVariant, type InputRecipeOptions, type InputSize, type InputState, type SpectreTailwindTheme, createSpectreTailwindTheme, getBadgeClasses, getButtonClasses, getCardClasses, getIconBoxClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreUtilitiesStylesPath };
