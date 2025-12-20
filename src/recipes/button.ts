@@ -1,11 +1,25 @@
 import { cx } from "../internal/cx";
 import { resolveOption } from "../internal/resolve-option";
 
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger" | "success";
-export type ButtonSize = "sm" | "md" | "lg";
+const buttonVariants = ["primary", "secondary", "ghost", "danger", "success"] as const;
+const buttonSizes = ["sm", "md", "lg"] as const;
 
-const buttonVariants: ButtonVariant[] = ["primary", "secondary", "ghost", "danger", "success"];
-const buttonSizes: ButtonSize[] = ["sm", "md", "lg"];
+export type ButtonVariant = (typeof buttonVariants)[number];
+export type ButtonSize = (typeof buttonSizes)[number];
+
+const BUTTON_VARIANTS = {
+  primary: true,
+  secondary: true,
+  ghost: true,
+  danger: true,
+  success: true,
+} as const;
+
+const BUTTON_SIZES = {
+  sm: true,
+  md: true,
+  lg: true,
+} as const;
 
 export interface ButtonRecipeOptions {
   variant?: ButtonVariant;
@@ -29,13 +43,13 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
   const variant = resolveOption({
     name: "button variant",
     value: variantInput,
-    allowed: buttonVariants,
+    allowed: BUTTON_VARIANTS,
     fallback: "primary",
   });
   const size = resolveOption({
     name: "button size",
     value: sizeInput,
-    allowed: buttonSizes,
+    allowed: BUTTON_SIZES,
     fallback: "md",
   });
 
