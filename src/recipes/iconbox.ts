@@ -1,5 +1,11 @@
+import { cx } from "../internal/cx";
+import { resolveOption } from "../internal/resolve-option";
+
 export type IconBoxVariant = "primary" | "success" | "warning" | "danger" | "info";
 export type IconBoxSize = "sm" | "md" | "lg";
+
+const iconBoxVariants: IconBoxVariant[] = ["primary", "success", "warning", "danger", "info"];
+const iconBoxSizes: IconBoxSize[] = ["sm", "md", "lg"];
 
 export interface IconBoxRecipeOptions {
   variant?: IconBoxVariant;
@@ -7,9 +13,20 @@ export interface IconBoxRecipeOptions {
 }
 
 export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
-  const { variant = "primary", size = "md" } = opts;
+  const { variant: variantInput, size: sizeInput } = opts;
 
-  const classes: string[] = ["sp-iconbox"];
+  const variant = resolveOption({
+    name: "icon box variant",
+    value: variantInput,
+    allowed: iconBoxVariants,
+    fallback: "primary",
+  });
+  const size = resolveOption({
+    name: "icon box size",
+    value: sizeInput,
+    allowed: iconBoxSizes,
+    fallback: "md",
+  });
 
   const variantMap: Record<IconBoxVariant, string> = {
     primary: "sp-iconbox--primary",
@@ -18,14 +35,14 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
     danger: "sp-iconbox--danger",
     info: "sp-iconbox--info",
   };
-  classes.push(variantMap[variant]);
+  const variantClass = variantMap[variant];
 
   const sizeMap: Record<IconBoxSize, string> = {
     sm: "sp-iconbox--sm",
     md: "sp-iconbox--md",
     lg: "sp-iconbox--lg",
   };
-  classes.push(sizeMap[size]);
+  const sizeClass = sizeMap[size];
 
-  return classes.join(" ").trim();
+  return cx("sp-iconbox", variantClass, sizeClass);
 }
