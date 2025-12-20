@@ -1,6 +1,5 @@
-import { createRequire } from "node:module";
 import type { Config as TailwindConfig } from "tailwindcss";
-import type { SpectreTokens } from "../tokens";
+import { spectreTokens, type SpectreTokens } from "../tokens";
 import { createSpectreTailwindTheme } from "./theme";
 
 type TailwindTheme = NonNullable<TailwindConfig["theme"]>;
@@ -10,8 +9,6 @@ export interface CreateSpectreTailwindPresetOptions {
   themeOverrides?: TailwindTheme;
   presetOverrides?: TailwindConfig;
 }
-
-const require = createRequire(import.meta.url);
 
 const isPlainObject = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
@@ -36,11 +33,7 @@ const deepMerge = <T extends Record<string, unknown>>(
   return result as T;
 };
 
-const resolveTokens = (tokens?: SpectreTokens): SpectreTokens => {
-  if (tokens) return tokens;
-  const { spectreTokens } = require("../tokens") as { spectreTokens: SpectreTokens };
-  return spectreTokens;
-};
+const resolveTokens = (tokens?: SpectreTokens): SpectreTokens => tokens ?? spectreTokens;
 
 export const createSpectreTailwindPreset = (
   options: CreateSpectreTailwindPresetOptions = {}

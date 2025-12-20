@@ -28,8 +28,10 @@ declare function createSpectreTailwindTheme(options: CreateSpectreTailwindThemeO
 
 declare const spectrePreset: Config;
 
-type ButtonVariant = "primary" | "secondary" | "ghost" | "danger" | "success";
-type ButtonSize = "sm" | "md" | "lg";
+declare const buttonVariants: readonly ["primary", "secondary", "ghost", "danger", "success"];
+declare const buttonSizes: readonly ["sm", "md", "lg"];
+type ButtonVariant = (typeof buttonVariants)[number];
+type ButtonSize = (typeof buttonSizes)[number];
 interface ButtonRecipeOptions {
     variant?: ButtonVariant;
     size?: ButtonSize;
@@ -40,7 +42,8 @@ interface ButtonRecipeOptions {
 }
 declare function getButtonClasses(opts?: ButtonRecipeOptions): string;
 
-type CardVariant = "elevated" | "flat" | "outline" | "ghost";
+declare const cardVariants: readonly ["elevated", "flat", "outline", "ghost"];
+type CardVariant = (typeof cardVariants)[number];
 interface CardRecipeOptions {
     variant?: CardVariant;
     interactive?: boolean;
@@ -49,8 +52,10 @@ interface CardRecipeOptions {
 }
 declare function getCardClasses(opts?: CardRecipeOptions): string;
 
-type InputState = "default" | "error" | "success" | "disabled";
-type InputSize = "sm" | "md" | "lg";
+declare const inputStates: readonly ["default", "error", "success", "disabled"];
+declare const inputSizes: readonly ["sm", "md", "lg"];
+type InputState = (typeof inputStates)[number];
+type InputSize = (typeof inputSizes)[number];
 interface InputRecipeOptions {
     state?: InputState;
     size?: InputSize;
@@ -58,16 +63,20 @@ interface InputRecipeOptions {
 }
 declare function getInputClasses(opts?: InputRecipeOptions): string;
 
-type BadgeVariant = "primary" | "success" | "warning" | "danger";
-type BadgeSize = "sm" | "md" | "lg";
+declare const badgeVariants: readonly ["primary", "success", "warning", "danger"];
+declare const badgeSizes: readonly ["sm", "md", "lg"];
+type BadgeVariant = (typeof badgeVariants)[number];
+type BadgeSize = (typeof badgeSizes)[number];
 interface BadgeRecipeOptions {
     variant?: BadgeVariant;
     size?: BadgeSize;
 }
 declare function getBadgeClasses(opts?: BadgeRecipeOptions): string;
 
-type IconBoxVariant = "primary" | "success" | "warning" | "danger" | "info";
-type IconBoxSize = "sm" | "md" | "lg";
+declare const iconBoxVariants: readonly ["primary", "success", "warning", "danger", "info"];
+declare const iconBoxSizes: readonly ["sm", "md", "lg"];
+type IconBoxVariant = (typeof iconBoxVariants)[number];
+type IconBoxSize = (typeof iconBoxSizes)[number];
 interface IconBoxRecipeOptions {
     variant?: IconBoxVariant;
     size?: IconBoxSize;
