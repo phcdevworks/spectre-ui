@@ -1,5 +1,11 @@
+import { cx } from "../internal/cx";
+import { resolveOption } from "../internal/resolve-option";
+
 export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger" | "success";
 export type ButtonSize = "sm" | "md" | "lg";
+
+const buttonVariants: ButtonVariant[] = ["primary", "secondary", "ghost", "danger", "success"];
+const buttonSizes: ButtonSize[] = ["sm", "md", "lg"];
 
 export interface ButtonRecipeOptions {
   variant?: ButtonVariant;
@@ -12,15 +18,26 @@ export interface ButtonRecipeOptions {
 
 export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
   const {
-    variant = "primary",
-    size = "md",
+    variant: variantInput,
+    size: sizeInput,
     fullWidth = false,
     loading = false,
     disabled = false,
     iconOnly = false,
   } = opts;
 
-  const classes: string[] = ["sp-btn"];
+  const variant = resolveOption({
+    name: "button variant",
+    value: variantInput,
+    allowed: buttonVariants,
+    fallback: "primary",
+  });
+  const size = resolveOption({
+    name: "button size",
+    value: sizeInput,
+    allowed: buttonSizes,
+    fallback: "md",
+  });
 
   const variantMap: Record<ButtonVariant, string> = {
     primary: "sp-btn--primary",
@@ -29,19 +46,22 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     danger: "sp-btn--danger",
     success: "sp-btn--success",
   };
-  classes.push(variantMap[variant]);
+  const variantClass = variantMap[variant];
 
   const sizeMap: Record<ButtonSize, string> = {
     sm: "sp-btn--sm",
     md: "sp-btn--md",
     lg: "sp-btn--lg",
   };
-  classes.push(sizeMap[size]);
+  const sizeClass = sizeMap[size];
 
-  if (fullWidth) classes.push("sp-btn--full");
-  if (loading) classes.push("sp-btn--loading");
-  if (disabled) classes.push("sp-btn--disabled");
-  if (iconOnly) classes.push("sp-btn--icon");
-
-  return classes.join(" ").trim();
+  return cx(
+    "sp-btn",
+    variantClass,
+    sizeClass,
+    fullWidth && "sp-btn--full",
+    loading && "sp-btn--loading",
+    disabled && "sp-btn--disabled",
+    iconOnly && "sp-btn--icon",
+  );
 }

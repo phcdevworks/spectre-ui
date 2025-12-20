@@ -1,4 +1,9 @@
+import { cx } from "../internal/cx";
+import { resolveOption } from "../internal/resolve-option";
+
 export type CardVariant = "elevated" | "flat" | "outline" | "ghost";
+
+const cardVariants: CardVariant[] = ["elevated", "flat", "outline", "ghost"];
 
 export interface CardRecipeOptions {
   variant?: CardVariant;
@@ -9,13 +14,18 @@ export interface CardRecipeOptions {
 
 export function getCardClasses(opts: CardRecipeOptions = {}): string {
   const {
-    variant = "elevated",
+    variant: variantInput,
     interactive = false,
     padded = false,
     fullHeight = false,
   } = opts;
 
-  const classes: string[] = ["sp-card"];
+  const variant = resolveOption({
+    name: "card variant",
+    value: variantInput,
+    allowed: cardVariants,
+    fallback: "elevated",
+  });
 
   const variantMap: Record<CardVariant, string> = {
     elevated: "sp-card--elevated",
@@ -23,11 +33,13 @@ export function getCardClasses(opts: CardRecipeOptions = {}): string {
     outline: "sp-card--outline",
     ghost: "sp-card--ghost",
   };
-  classes.push(variantMap[variant]);
+  const variantClass = variantMap[variant];
 
-  if (interactive) classes.push("sp-card--interactive");
-  if (padded) classes.push("sp-card--padded");
-  if (fullHeight) classes.push("sp-card--full");
-
-  return classes.join(" ").trim();
+  return cx(
+    "sp-card",
+    variantClass,
+    interactive && "sp-card--interactive",
+    padded && "sp-card--padded",
+    fullHeight && "sp-card--full",
+  );
 }

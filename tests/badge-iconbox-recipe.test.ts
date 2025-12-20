@@ -6,6 +6,8 @@ describe('getBadgeClasses', () => {
   it('returns defaults for badges', () => {
     const result = getBadgeClasses();
     expect(result).toBe('sp-badge sp-badge--primary sp-badge--md');
+    expect(result).toBe(result.trim());
+    expect(result.includes('  ')).toBe(false);
   });
 
   it('supports all badge variants', () => {
@@ -41,6 +43,8 @@ describe('getIconBoxClasses', () => {
   it('returns defaults for icon boxes', () => {
     const result = getIconBoxClasses();
     expect(result).toBe('sp-iconbox sp-iconbox--primary sp-iconbox--md');
+    expect(result).toBe(result.trim());
+    expect(result.includes('  ')).toBe(false);
   });
 
   it('supports all icon box variants', () => {

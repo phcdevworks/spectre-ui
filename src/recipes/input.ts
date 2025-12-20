@@ -1,5 +1,11 @@
+import { cx } from "../internal/cx";
+import { resolveOption } from "../internal/resolve-option";
+
 export type InputState = "default" | "error" | "success" | "disabled";
 export type InputSize = "sm" | "md" | "lg";
+
+const inputStates: InputState[] = ["default", "error", "success", "disabled"];
+const inputSizes: InputSize[] = ["sm", "md", "lg"];
 
 export interface InputRecipeOptions {
   state?: InputState;
@@ -8,23 +14,35 @@ export interface InputRecipeOptions {
 }
 
 export function getInputClasses(opts: InputRecipeOptions = {}): string {
-  const { state = "default", size = "md", fullWidth = false } = opts;
+  const { state: stateInput, size: sizeInput, fullWidth = false } = opts;
 
-  const classes: string[] = ["sp-input"];
+  const state = resolveOption({
+    name: "input state",
+    value: stateInput,
+    allowed: inputStates,
+    fallback: "default",
+  });
+  const size = resolveOption({
+    name: "input size",
+    value: sizeInput,
+    allowed: inputSizes,
+    fallback: "md",
+  });
 
   const sizeMap: Record<InputSize, string> = {
     sm: "sp-input--sm",
     md: "sp-input--md",
     lg: "sp-input--lg",
   };
-  classes.push(sizeMap[size]);
+  const sizeClass = sizeMap[size];
 
   // State
-  if (state === "error") classes.push("sp-input--error");
-  if (state === "success") classes.push("sp-input--success");
-  if (state === "disabled") classes.push("sp-input--disabled");
-
-  if (fullWidth) classes.push("sp-input--full");
-
-  return classes.join(" ").trim();
+  return cx(
+    "sp-input",
+    sizeClass,
+    state === "error" && "sp-input--error",
+    state === "success" && "sp-input--success",
+    state === "disabled" && "sp-input--disabled",
+    fullWidth && "sp-input--full",
+  );
 }
