@@ -1,5 +1,5 @@
 import type { Config as TailwindConfig } from "tailwindcss";
-import { spectreTokens, type SpectreTokens } from "../tokens";
+import type { SpectreTokens } from "../tokens";
 import { createSpectreTailwindTheme } from "./theme";
 
 type TailwindTheme = NonNullable<TailwindConfig["theme"]>;
@@ -13,6 +13,7 @@ export interface CreateSpectreTailwindPresetOptions {
 const isPlainObject = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
 
+// Deep-merge plain objects only; arrays and primitives replace by override.
 const deepMerge = <T extends Record<string, unknown>>(
   base: T,
   overrides?: Record<string, unknown>
@@ -33,7 +34,34 @@ const deepMerge = <T extends Record<string, unknown>>(
   return result as T;
 };
 
-const resolveTokens = (tokens?: SpectreTokens): SpectreTokens => tokens ?? spectreTokens;
+let cachedTokens: SpectreTokens | null = null;
+
+const getRequire = (): ((id: string) => unknown) | null => {
+  try {
+    // eslint-disable-next-line no-new-func
+    return Function("return typeof require !== 'undefined' ? require : null")() as
+      | ((id: string) => unknown)
+      | null;
+  } catch {
+    return null;
+  }
+};
+
+const resolveTokens = (tokens?: SpectreTokens): SpectreTokens => {
+  if (tokens) return tokens;
+  if (cachedTokens) return cachedTokens;
+
+  const req = getRequire();
+  if (!req) {
+    throw new Error(
+      "[spectre-ui] Unable to load spectre tokens; pass tokens to createSpectreTailwindPreset."
+    );
+  }
+
+  const mod = req("../tokens") as { spectreTokens: SpectreTokens };
+  cachedTokens = mod.spectreTokens;
+  return cachedTokens;
+};
 
 export const createSpectreTailwindPreset = (
   options: CreateSpectreTailwindPresetOptions = {}
