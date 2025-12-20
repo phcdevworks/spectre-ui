@@ -17,3 +17,17 @@ export {
   type InputState,
   type InputSize,
 } from "./input";
+
+export {
+  getBadgeClasses,
+  type BadgeRecipeOptions,
+  type BadgeVariant,
+  type BadgeSize,
+} from "./badge";
+
+export {
+  getIconBoxClasses,
+  type IconBoxRecipeOptions,
+  type IconBoxVariant,
+  type IconBoxSize,
+} from "./iconbox";
