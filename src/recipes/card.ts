@@ -1,9 +1,16 @@
 import { cx } from "../internal/cx";
 import { resolveOption } from "../internal/resolve-option";
 
-export type CardVariant = "elevated" | "flat" | "outline" | "ghost";
+const cardVariants = ["elevated", "flat", "outline", "ghost"] as const;
 
-const cardVariants: CardVariant[] = ["elevated", "flat", "outline", "ghost"];
+export type CardVariant = (typeof cardVariants)[number];
+
+const CARD_VARIANTS = {
+  elevated: true,
+  flat: true,
+  outline: true,
+  ghost: true,
+} as const;
 
 export interface CardRecipeOptions {
   variant?: CardVariant;
@@ -23,7 +30,7 @@ export function getCardClasses(opts: CardRecipeOptions = {}): string {
   const variant = resolveOption({
     name: "card variant",
     value: variantInput,
-    allowed: cardVariants,
+    allowed: CARD_VARIANTS,
     fallback: "elevated",
   });
 

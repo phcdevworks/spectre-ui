@@ -1,11 +1,24 @@
 import { cx } from "../internal/cx";
 import { resolveOption } from "../internal/resolve-option";
 
-export type BadgeVariant = "primary" | "success" | "warning" | "danger";
-export type BadgeSize = "sm" | "md" | "lg";
+const badgeVariants = ["primary", "success", "warning", "danger"] as const;
+const badgeSizes = ["sm", "md", "lg"] as const;
 
-const badgeVariants: BadgeVariant[] = ["primary", "success", "warning", "danger"];
-const badgeSizes: BadgeSize[] = ["sm", "md", "lg"];
+export type BadgeVariant = (typeof badgeVariants)[number];
+export type BadgeSize = (typeof badgeSizes)[number];
+
+const BADGE_VARIANTS = {
+  primary: true,
+  success: true,
+  warning: true,
+  danger: true,
+} as const;
+
+const BADGE_SIZES = {
+  sm: true,
+  md: true,
+  lg: true,
+} as const;
 
 export interface BadgeRecipeOptions {
   variant?: BadgeVariant;
@@ -18,13 +31,13 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
   const variant = resolveOption({
     name: "badge variant",
     value: variantInput,
-    allowed: badgeVariants,
+    allowed: BADGE_VARIANTS,
     fallback: "primary",
   });
   const size = resolveOption({
     name: "badge size",
     value: sizeInput,
-    allowed: badgeSizes,
+    allowed: BADGE_SIZES,
     fallback: "md",
   });
 
