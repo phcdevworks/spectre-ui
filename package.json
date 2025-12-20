@@ -71,7 +71,7 @@
     "tailwindcss": "^3.4.0 || ^4.0.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^0.1.0"
+    "@phcdevworks/spectre-tokens": "^0.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
