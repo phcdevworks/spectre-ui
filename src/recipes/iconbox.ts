@@ -1,11 +1,25 @@
 import { cx } from "../internal/cx";
 import { resolveOption } from "../internal/resolve-option";
 
-export type IconBoxVariant = "primary" | "success" | "warning" | "danger" | "info";
-export type IconBoxSize = "sm" | "md" | "lg";
+const iconBoxVariants = ["primary", "success", "warning", "danger", "info"] as const;
+const iconBoxSizes = ["sm", "md", "lg"] as const;
 
-const iconBoxVariants: IconBoxVariant[] = ["primary", "success", "warning", "danger", "info"];
-const iconBoxSizes: IconBoxSize[] = ["sm", "md", "lg"];
+export type IconBoxVariant = (typeof iconBoxVariants)[number];
+export type IconBoxSize = (typeof iconBoxSizes)[number];
+
+const ICONBOX_VARIANTS = {
+  primary: true,
+  success: true,
+  warning: true,
+  danger: true,
+  info: true,
+} as const;
+
+const ICONBOX_SIZES = {
+  sm: true,
+  md: true,
+  lg: true,
+} as const;
 
 export interface IconBoxRecipeOptions {
   variant?: IconBoxVariant;
@@ -18,13 +32,13 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
   const variant = resolveOption({
     name: "icon box variant",
     value: variantInput,
-    allowed: iconBoxVariants,
+    allowed: ICONBOX_VARIANTS,
     fallback: "primary",
   });
   const size = resolveOption({
     name: "icon box size",
     value: sizeInput,
-    allowed: iconBoxSizes,
+    allowed: ICONBOX_SIZES,
     fallback: "md",
   });
 
