@@ -4,4 +4,4 @@ export {
   type CreateSpectreTailwindThemeOptions,
 } from "./theme";
 
-export { spectrePreset, spectreTailwindPreset } from "./preset";
+export { createSpectreTailwindPreset, spectrePreset, spectreTailwindPreset } from "./preset";
