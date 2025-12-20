@@ -4,6 +4,30 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [0.2.0] - 2025-12-20
+
+### Added
+
+- Add badge and iconbox primitives with recipes and CSS ([9401716]).
+- Add `createSpectreTailwindPreset` for customizable Tailwind config ([c4df729]).
+- Add tests for trimmed, space-delimited class strings ([44eca8a]).
+- Move config files to `src/config` directory ([1aaeae8]).
+
+### Changed
+
+- Update README with badge and icon box usage ([63a432a]).
+- Improve token resolution for Node and browser environments ([cde98f7]).
+- Refactor class utilities and add option validation ([cc9a074]).
+- Refactor deep merge logic in Tailwind preset ([1968f1f]).
+- Update utility classes to use new CSS variable names ([09f3dda]).
+- Refactor option validation to use object maps ([85cd156]).
+- Improve class merging and option resolution logic ([961ac52]).
+- Refactor recipes to use `cx` and `resolveOption` utilities ([39a1794]).
+
+### Dependencies
+
+- Update dependencies in package.json and lock file ([4f22950]).
+
 ## [0.1.0] - 2025-12-13
 
 ### Added
@@ -132,8 +156,22 @@ All notable changes to this project will be documented here. The format follows 
 - Revise `FUNDING.yml` for Spectre sponsorship options ([ec69610]).
 - Add VS Code workspace settings and extension recommendations ([4c7bb7f]).
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.1.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.5...v0.1.0
+[63a432a]: https://github.com/phcdevworks/spectre-ui/commit/63a432a
+[cde98f7]: https://github.com/phcdevworks/spectre-ui/commit/cde98f7
+[cc9a074]: https://github.com/phcdevworks/spectre-ui/commit/cc9a074
+[1968f1f]: https://github.com/phcdevworks/spectre-ui/commit/1968f1f
+[c4df729]: https://github.com/phcdevworks/spectre-ui/commit/c4df729
+[09f3dda]: https://github.com/phcdevworks/spectre-ui/commit/09f3dda
+[85cd156]: https://github.com/phcdevworks/spectre-ui/commit/85cd156
+[961ac52]: https://github.com/phcdevworks/spectre-ui/commit/961ac52
+[1aaeae8]: https://github.com/phcdevworks/spectre-ui/commit/1aaeae8
+[44eca8a]: https://github.com/phcdevworks/spectre-ui/commit/44eca8a
+[39a1794]: https://github.com/phcdevworks/spectre-ui/commit/39a1794
+[4f22950]: https://github.com/phcdevworks/spectre-ui/commit/4f22950
+[9401716]: https://github.com/phcdevworks/spectre-ui/commit/9401716
 [0.0.5]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.3...v0.0.4
 [7f87a21]: https://github.com/phcdevworks/spectre-ui/commit/7f87a21
