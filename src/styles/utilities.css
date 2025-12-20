@@ -2,29 +2,28 @@
   .sp-stack {
     display: flex;
     flex-direction: column;
-    gap: var(--sp-space-md, 1rem);
+    gap: var(--sp-layout-stack-gap-md, var(--sp-space-md, 1rem));
   }
 
   .sp-hstack {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: var(--sp-space-md, 1rem);
+    gap: var(--sp-layout-stack-gap-md, var(--sp-space-md, 1rem));
   }
 
   .sp-container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: var(--sp-space-md, 1rem);
-    padding-right: var(--sp-space-md, 1rem);
-    max-width: var(--sp-container-max-width,
-        var(--sp-breakpoint-2xl, 72rem));
+    padding-left: var(--sp-layout-container-padding-inline-md, var(--sp-space-md, 1rem));
+    padding-right: var(--sp-layout-container-padding-inline-md, var(--sp-space-md, 1rem));
+    max-width: var(--sp-container-max-width, 72rem);
   }
 
   .sp-section {
-    padding-top: var(--sp-space-2xl, 3rem);
-    padding-bottom: var(--sp-space-2xl, 3rem);
+    padding-top: var(--sp-layout-section-padding-md, var(--sp-space-2xl, 3rem));
+    padding-bottom: var(--sp-layout-section-padding-md, var(--sp-space-2xl, 3rem));
   }
 
   .sp-shadow-soft {
