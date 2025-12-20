@@ -84,6 +84,50 @@
         var(--sp-text-on-surface-muted, var(--sp-color-neutral-400, #94a3b8)));
     --sp-component-input-role-border-disabled: var(--sp-component-input-border-disabled,
         var(--sp-surface-input, var(--sp-color-neutral-200, #e2e8f0)));
+
+    /* badge roles */
+    --sp-component-badge-font: var(--sp-font-family-sans, system-ui);
+    --sp-component-badge-weight: var(--sp-font-sm-weight, 500);
+    --sp-component-badge-gap: var(--sp-space-4xs, 0.125rem);
+    --sp-component-badge-radius: var(--sp-radius-pill, 999px);
+    --sp-component-badge-primary-bg: var(--sp-badge-primary-bg,
+        var(--sp-color-brand-500, #8652ff));
+    --sp-component-badge-primary-text: var(--sp-badge-primary-text,
+        var(--sp-text-on-surface-default, var(--sp-color-neutral-900, #0f172a)));
+    --sp-component-badge-success-bg: var(--sp-badge-success-bg,
+        var(--sp-color-success-500, #22c55e));
+    --sp-component-badge-success-text: var(--sp-badge-success-text,
+        var(--sp-text-on-surface-default, var(--sp-color-neutral-900, #0f172a)));
+    --sp-component-badge-warning-bg: var(--sp-badge-warning-bg,
+        var(--sp-color-warning-500, #f59e0b));
+    --sp-component-badge-warning-text: var(--sp-badge-warning-text,
+        var(--sp-text-on-surface-default, var(--sp-color-neutral-900, #0f172a)));
+    --sp-component-badge-danger-bg: var(--sp-badge-danger-bg,
+        var(--sp-color-error-500, #ef4444));
+    --sp-component-badge-danger-text: var(--sp-badge-danger-text,
+        var(--sp-text-on-surface-default, var(--sp-color-neutral-900, #0f172a)));
+    --sp-component-badge-padding-x-sm: var(--sp-space-xs, 0.5rem);
+    --sp-component-badge-padding-x-md: var(--sp-space-sm, 0.75rem);
+    --sp-component-badge-padding-x-lg: var(--sp-space-md, 1rem);
+    --sp-component-badge-padding-y-sm: var(--sp-space-4xs, 0.125rem);
+    --sp-component-badge-padding-y-md: var(--sp-space-3xs, 0.1875rem);
+    --sp-component-badge-padding-y-lg: var(--sp-space-2xs, 0.25rem);
+
+    /* icon box roles */
+    --sp-component-iconbox-radius: var(--sp-radius-lg, 8px);
+    --sp-component-iconbox-size-sm: var(--sp-space-xl, 2rem);
+    --sp-component-iconbox-size-md: var(--sp-space-2xl, 3rem);
+    --sp-component-iconbox-size-lg: var(--sp-space-3xl, 4rem);
+    --sp-component-iconbox-primary-bg: var(--sp-color-brand-50, #f5f0ff);
+    --sp-component-iconbox-primary-text: var(--sp-color-brand-700, #5626b4);
+    --sp-component-iconbox-success-bg: var(--sp-color-success-50, #f0fdf4);
+    --sp-component-iconbox-success-text: var(--sp-color-success-700, #15803d);
+    --sp-component-iconbox-warning-bg: var(--sp-color-warning-50, #fffbeb);
+    --sp-component-iconbox-warning-text: var(--sp-color-warning-700, #b45309);
+    --sp-component-iconbox-danger-bg: var(--sp-color-error-50, #fef2f2);
+    --sp-component-iconbox-danger-text: var(--sp-color-error-700, #b91c1c);
+    --sp-component-iconbox-info-bg: var(--sp-color-info-50, #eff6ff);
+    --sp-component-iconbox-info-text: var(--sp-color-info-700, #1d4ed8);
   }
 
   /* BUTTONS -------------------------------------------------------------- */
@@ -432,5 +476,126 @@
   .sp-card--interactive:focus-within {
     transform: translateY(-1px);
     box-shadow: var(--sp-component-card-shadow-elevated, var(--sp-shadow-lg));
+  }
+
+  /* BADGES --------------------------------------------------------------- */
+
+  .sp-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-component-badge-gap, var(--sp-space-4xs, 0.125rem));
+    border-radius: var(--sp-component-badge-radius, var(--sp-radius-pill, 999px));
+    font-family: var(--sp-component-badge-font, var(--sp-font-family-sans, system-ui));
+    font-weight: var(--sp-component-badge-weight, var(--sp-font-sm-weight, 500));
+    padding: var(--sp-component-badge-padding-y-md, var(--sp-space-3xs, 0.1875rem))
+      var(--sp-component-badge-padding-x-md, var(--sp-space-sm, 0.75rem));
+    font-size: var(--sp-font-sm-size, 0.875rem);
+    line-height: var(--sp-font-sm-line-height, 1.5rem);
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+
+  .sp-badge--sm {
+    padding: var(--sp-component-badge-padding-y-sm, var(--sp-space-4xs, 0.125rem))
+      var(--sp-component-badge-padding-x-sm, var(--sp-space-xs, 0.5rem));
+    font-size: var(--sp-font-xs-size, 0.75rem);
+    line-height: var(--sp-font-xs-line-height, 1.25rem);
+  }
+
+  .sp-badge--md {
+    padding: var(--sp-component-badge-padding-y-md, var(--sp-space-3xs, 0.1875rem))
+      var(--sp-component-badge-padding-x-md, var(--sp-space-sm, 0.75rem));
+    font-size: var(--sp-font-sm-size, 0.875rem);
+    line-height: var(--sp-font-sm-line-height, 1.5rem);
+  }
+
+  .sp-badge--lg {
+    padding: var(--sp-component-badge-padding-y-lg, var(--sp-space-2xs, 0.25rem))
+      var(--sp-component-badge-padding-x-lg, var(--sp-space-md, 1rem));
+    font-size: var(--sp-font-md-size, 1rem);
+    line-height: var(--sp-font-md-line-height, 1.75rem);
+  }
+
+  .sp-badge--primary {
+    background-color: var(--sp-component-badge-primary-bg);
+    color: var(--sp-component-badge-primary-text);
+  }
+
+  .sp-badge--success {
+    background-color: var(--sp-component-badge-success-bg);
+    color: var(--sp-component-badge-success-text);
+  }
+
+  .sp-badge--warning {
+    background-color: var(--sp-component-badge-warning-bg);
+    color: var(--sp-component-badge-warning-text);
+  }
+
+  .sp-badge--danger {
+    background-color: var(--sp-component-badge-danger-bg);
+    color: var(--sp-component-badge-danger-text);
+  }
+
+  /* ICON BOXES ----------------------------------------------------------- */
+
+  .sp-iconbox {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--sp-component-iconbox-radius, var(--sp-radius-lg, 8px));
+    color: var(--sp-component-iconbox-primary-text);
+    background-color: var(--sp-component-iconbox-primary-bg);
+    font-family: var(--sp-font-family-sans, system-ui);
+    font-weight: var(--sp-font-md-weight, 500);
+  }
+
+  .sp-iconbox--sm {
+    width: var(--sp-component-iconbox-size-sm, var(--sp-space-xl, 2rem));
+    height: var(--sp-component-iconbox-size-sm, var(--sp-space-xl, 2rem));
+    font-size: var(--sp-font-sm-size, 0.875rem);
+  }
+
+  .sp-iconbox--md {
+    width: var(--sp-component-iconbox-size-md, var(--sp-space-2xl, 3rem));
+    height: var(--sp-component-iconbox-size-md, var(--sp-space-2xl, 3rem));
+    font-size: var(--sp-font-md-size, 1rem);
+  }
+
+  .sp-iconbox--lg {
+    width: var(--sp-component-iconbox-size-lg, var(--sp-space-3xl, 4rem));
+    height: var(--sp-component-iconbox-size-lg, var(--sp-space-3xl, 4rem));
+    font-size: var(--sp-font-lg-size, 1.125rem);
+  }
+
+  .sp-iconbox > svg,
+  .sp-iconbox > i {
+    width: 1em;
+    height: 1em;
+  }
+
+  .sp-iconbox--primary {
+    background-color: var(--sp-component-iconbox-primary-bg);
+    color: var(--sp-component-iconbox-primary-text);
+  }
+
+  .sp-iconbox--success {
+    background-color: var(--sp-component-iconbox-success-bg);
+    color: var(--sp-component-iconbox-success-text);
+  }
+
+  .sp-iconbox--warning {
+    background-color: var(--sp-component-iconbox-warning-bg);
+    color: var(--sp-component-iconbox-warning-text);
+  }
+
+  .sp-iconbox--danger {
+    background-color: var(--sp-component-iconbox-danger-bg);
+    color: var(--sp-component-iconbox-danger-text);
+  }
+
+  .sp-iconbox--info {
+    background-color: var(--sp-component-iconbox-info-bg);
+    color: var(--sp-component-iconbox-info-text);
   }
 }

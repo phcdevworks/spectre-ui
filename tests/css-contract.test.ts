@@ -48,6 +48,35 @@ describe('dist/components.css contract', () => {
     });
   });
 
+  it('contains badge selectors', () => {
+    const selectors = [
+      '.sp-badge',
+      '.sp-badge--primary',
+      '.sp-badge--success',
+      '.sp-badge--warning',
+      '.sp-badge--danger',
+    ];
+
+    selectors.forEach((selector) => {
+      expect(css).toContain(selector);
+    });
+  });
+
+  it('contains icon box selectors', () => {
+    const selectors = [
+      '.sp-iconbox',
+      '.sp-iconbox--primary',
+      '.sp-iconbox--success',
+      '.sp-iconbox--warning',
+      '.sp-iconbox--danger',
+      '.sp-iconbox--info',
+    ];
+
+    selectors.forEach((selector) => {
+      expect(css).toContain(selector);
+    });
+  });
+
   it('does not contain legacy form tokens', () => {
     expect(css).not.toContain('--sp-form-');
   });

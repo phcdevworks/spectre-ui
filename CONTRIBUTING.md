@@ -2,6 +2,46 @@
 
 Thanks for helping improve Spectre UI! This package is the canonical source for Spectre styles, tokens, recipes, and Tailwind helpers. Keeping changes intentional and well-documented ensures every downstream integration stays in sync.
 
+## Spectre Design System Non-Negotiables (Authoritative)
+
+Spectre is a specification-driven design system with three strict layers. Keep these in mind for any contribution so responsibilities never blur.
+
+### 1. @phcdevworks/spectre-tokens (Foundation, Source of Truth)
+
+- Purpose: single source of truth for design values (colors, surfaces, text roles, spacing, radii, shadows, etc.).
+- Exports: CSS variables (`--sp-*`), TypeScript token object, Tailwind-compatible theme mappings.
+- Rules: tokens define meaning, not UI behavior; UI must never invent new colors; tokens may provide fallbacks but semantics live here.
+- Status: v0.1.0 released with stable semantic roles (surface._, text._, component.\*) and considered correct/locked.
+
+### 2. @phcdevworks/spectre-ui (Framework-Agnostic UI Layer)
+
+- Purpose: converts tokens into real CSS and class recipes.
+- Ships: `index.css` (canonical CSS bundle: tokens + base + components + utilities), `base.css` (resets + globals), `components.css` (.sp-btn, .sp-card, .sp-input, etc.), `utilities.css` (.sp-stack, .sp-container, etc.).
+- Provides recipes: `getButtonClasses`, `getCardClasses`, `getInputClasses`.
+- Rules: UI must consume tokens, not redefine design values; literal values in CSS are fallbacks only; every CSS selector has a matching recipe where applicable; Tailwind preset is optional and non-authoritative.
+- Status: v0.1.0 released, hardened and aligned to tokens (no badge or iconbox primitives yet).
+
+### 3. @phcdevworks/spectre-ui-astro (Adapter/Wrapper Only)
+
+- Purpose: thin Astro wrapper around spectre-ui; imports class recipes and outputs correct HTML + classes; exposes a single CSS entry constant.
+- Canonical CSS entry: `export const SPECTRE_UI_CSS = "@phcdevworks/spectre-ui/index.css";`
+- Astro layout usage: `<link rel="stylesheet" href={SPECTRE_UI_CSS} />`
+- Rules: Astro never loads tokens directly, never defines styles, never duplicates CSS; Astro components are HTML + classes only.
+- Status: v0.1.0 released with `<SpButton />`, `<SpCard />`, `<SpInput />`; packaging bugs fixed (dist paths, exports).
+
+### Known Gaps (Not Done Yet)
+
+- Badge primitive and IconBox primitive (and their recipes/CSS/Astro wrappers) were intentionally not part of v0.1.0.
+
+### What Needs to Happen Next
+
+- Spectre UI: add CSS primitives (`.sp-badge`, `.sp-iconbox`), variants/sizes, class recipes (`getBadgeClasses()`, `getIconBoxClasses()`), exports (`src/recipes/index.ts`, `src/index.ts`), and tests (class string correctness, CSS selector existence).
+- Spectre UI Astro: add wrappers (`<SpBadge />`, `<SpIconBox />`), ensure components copy to `dist`, exports resolve cleanly, and no CSS logic is added.
+
+### Golden Rule (Non-Negotiable)
+
+Tokens define meaning. UI defines structure. Adapters only translate. If a value looks like design, it belongs in tokens. If it is a class, it belongs in spectre-ui. If it is markup, it belongs in Astro.
+
 ## Development Setup
 
 1. Clone the repo:

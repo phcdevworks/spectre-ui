@@ -34,3 +34,15 @@ export {
   type InputState,
   type InputSize,
 } from './recipes/input';
+export {
+  getBadgeClasses,
+  type BadgeRecipeOptions,
+  type BadgeVariant,
+  type BadgeSize,
+} from './recipes/badge';
+export {
+  getIconBoxClasses,
+  type IconBoxRecipeOptions,
+  type IconBoxVariant,
+  type IconBoxSize,
+} from './recipes/iconbox';

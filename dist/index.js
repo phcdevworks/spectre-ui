@@ -116,6 +116,47 @@ function getInputClasses(opts = {}) {
   return classes.join(" ").trim();
 }
 
-export { createSpectreTailwindTheme, getButtonClasses, getCardClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreUtilitiesStylesPath };
+// src/recipes/badge.ts
+function getBadgeClasses(opts = {}) {
+  const { variant = "primary", size = "md" } = opts;
+  const classes = ["sp-badge"];
+  const variantMap = {
+    primary: "sp-badge--primary",
+    success: "sp-badge--success",
+    warning: "sp-badge--warning",
+    danger: "sp-badge--danger"
+  };
+  classes.push(variantMap[variant]);
+  const sizeMap = {
+    sm: "sp-badge--sm",
+    md: "sp-badge--md",
+    lg: "sp-badge--lg"
+  };
+  classes.push(sizeMap[size]);
+  return classes.join(" ").trim();
+}
+
+// src/recipes/iconbox.ts
+function getIconBoxClasses(opts = {}) {
+  const { variant = "primary", size = "md" } = opts;
+  const classes = ["sp-iconbox"];
+  const variantMap = {
+    primary: "sp-iconbox--primary",
+    success: "sp-iconbox--success",
+    warning: "sp-iconbox--warning",
+    danger: "sp-iconbox--danger",
+    info: "sp-iconbox--info"
+  };
+  classes.push(variantMap[variant]);
+  const sizeMap = {
+    sm: "sp-iconbox--sm",
+    md: "sp-iconbox--md",
+    lg: "sp-iconbox--lg"
+  };
+  classes.push(sizeMap[size]);
+  return classes.join(" ").trim();
+}
+
+export { createSpectreTailwindTheme, getBadgeClasses, getButtonClasses, getCardClasses, getIconBoxClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreUtilitiesStylesPath };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map
