@@ -13,12 +13,14 @@ describe('getButtonClasses', () => {
   });
 
   it('includes variant modifiers', () => {
-    const variants: Array<{ variant: Parameters<typeof getButtonClasses>[0]['variant']; token: string }> =
-      [
-        { variant: 'secondary', token: 'sp-btn--secondary' },
-        { variant: 'ghost', token: 'sp-btn--ghost' },
-        { variant: 'danger', token: 'sp-btn--danger' },
-      ];
+    const variants: Array<{
+      variant: NonNullable<Parameters<typeof getButtonClasses>[0]>['variant'];
+      token: string;
+    }> = [
+      { variant: 'secondary', token: 'sp-btn--secondary' },
+      { variant: 'ghost', token: 'sp-btn--ghost' },
+      { variant: 'danger', token: 'sp-btn--danger' },
+    ];
 
     variants.forEach(({ variant, token }) => {
       const result = getButtonClasses({ variant });
@@ -27,7 +29,10 @@ describe('getButtonClasses', () => {
   });
 
   it('includes size modifiers', () => {
-    const sizes: Array<{ size: Parameters<typeof getButtonClasses>[0]['size']; token: string }> = [
+    const sizes: Array<{
+      size: NonNullable<Parameters<typeof getButtonClasses>[0]>['size'];
+      token: string;
+    }> = [
       { size: 'sm', token: 'sp-btn--sm' },
       { size: 'md', token: 'sp-btn--md' },
       { size: 'lg', token: 'sp-btn--lg' },

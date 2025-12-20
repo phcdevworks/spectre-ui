@@ -39,6 +39,22 @@ describe('getCardClasses', () => {
     const result = getCardClasses({ variant: 'outline', interactive: true, padded: true });
     expect(result).toBe('sp-card sp-card--outline sp-card--interactive sp-card--padded');
   });
+
+  it('creates trimmed, space-delimited class strings for a full option card', () => {
+    const result = getCardClasses({
+      variant: 'ghost',
+      interactive: true,
+      padded: true,
+      fullHeight: true,
+    });
+
+    expect(result).toContain('sp-card--ghost');
+    expect(result).toContain('sp-card--interactive');
+    expect(result).toContain('sp-card--padded');
+    expect(result).toContain('sp-card--full');
+    expect(result).toBe(result.trim());
+    expect(result.includes('  ')).toBe(false);
+  });
 });
 
 describe('getInputClasses', () => {
@@ -75,5 +91,15 @@ describe('getInputClasses', () => {
   it('adds fullWidth modifier', () => {
     const result = getInputClasses({ fullWidth: true });
     expect(result).toContain('sp-input--full');
+  });
+
+  it('creates trimmed, space-delimited class strings for complex input options', () => {
+    const result = getInputClasses({ state: 'success', size: 'lg', fullWidth: true });
+
+    expect(result).toContain('sp-input--success');
+    expect(result).toContain('sp-input--lg');
+    expect(result).toContain('sp-input--full');
+    expect(result).toBe(result.trim());
+    expect(result.includes('  ')).toBe(false);
   });
 });

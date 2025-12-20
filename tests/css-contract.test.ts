@@ -14,17 +14,30 @@ const __dirname = path.dirname(__filename);
 const cssPath = path.join(__dirname, '..', 'dist', 'components.css');
 const css = fs.readFileSync(cssPath, 'utf8');
 
+const escapeRegex = (value: string): string => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 const recipeClassMatrix = [
   getButtonClasses(),
   getButtonClasses({ variant: 'secondary', size: 'lg', fullWidth: true, iconOnly: true }),
+  getButtonClasses({
+    variant: 'danger',
+    size: 'lg',
+    fullWidth: true,
+    loading: true,
+    disabled: true,
+    iconOnly: true,
+  }),
   getCardClasses(),
-  getCardClasses({ variant: 'outline', interactive: true, padded: true }),
+  getCardClasses({ variant: 'outline', interactive: true, padded: true, fullHeight: true }),
   getInputClasses(),
   getInputClasses({ state: 'error', size: 'lg', fullWidth: true }),
+  getInputClasses({ state: 'success', size: 'sm', fullWidth: true }),
   getBadgeClasses(),
   getBadgeClasses({ variant: 'danger', size: 'lg' }),
+  getBadgeClasses({ variant: 'success', size: 'sm' }),
   getIconBoxClasses(),
   getIconBoxClasses({ variant: 'info', size: 'sm' }),
+  getIconBoxClasses({ variant: 'warning', size: 'lg' }),
 ];
 
 const generatedClassNames = new Set(
@@ -107,7 +120,8 @@ describe('dist/components.css contract', () => {
 
   it('contains selectors for all generated recipe classes', () => {
     generatedClassNames.forEach((className) => {
-      expect(css).toContain(`.${className}`);
+      const matcher = new RegExp(String.raw`\.${escapeRegex(className)}(\s|\{|,)`);
+      expect(css).toMatch(matcher);
     });
   });
 });
