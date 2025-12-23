@@ -83,7 +83,3 @@ export const createSpectreTailwindPreset = (
     options.presetOverrides as Record<string, unknown> | undefined
   ) as TailwindConfig;
 };
-
-export const spectrePreset: TailwindConfig = createSpectreTailwindPreset();
-
-export const spectreTailwindPreset: TailwindConfig = spectrePreset;

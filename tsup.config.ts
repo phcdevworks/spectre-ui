@@ -36,7 +36,7 @@ const copyStylesPlugin = (): Plugin => ({
 });
 
 export default defineConfig((options) => ({
-  entry: ['src/index.ts'],
+  entry: ['src/index.ts', 'src/tailwind/index.ts'],
   target: 'esnext',
   format: ['esm', 'cjs'],
   dts: true,

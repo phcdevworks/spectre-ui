@@ -1,5 +1,3 @@
-import { Config } from 'tailwindcss';
-import { SpectreTokens } from '@phcdevworks/spectre-tokens';
 export { SpectreTokens, default as spectreTokens } from '@phcdevworks/spectre-tokens';
 
 declare const spectreBaseStylesPath = "@phcdevworks/spectre-ui/base.css";
@@ -11,22 +9,6 @@ declare const spectreStyles: {
     components: string;
     utilities: string;
 };
-
-type TailwindTheme = NonNullable<Config["theme"]>;
-interface SpectreTailwindTheme {
-    theme: TailwindTheme;
-}
-interface CreateSpectreTailwindThemeOptions {
-    tokens: SpectreTokens;
-    overrides?: Partial<SpectreTokens>;
-}
-/**
- * Minimal, type-safe theme mapper.
- * Important: theme is NEVER undefined (fixes exactOptionalPropertyTypes + DTS).
- */
-declare function createSpectreTailwindTheme(options: CreateSpectreTailwindThemeOptions): SpectreTailwindTheme;
-
-declare const spectrePreset: Config;
 
 declare const buttonVariants: readonly ["primary", "secondary", "ghost", "danger", "success"];
 declare const buttonSizes: readonly ["sm", "md", "lg"];
@@ -83,4 +65,4 @@ interface IconBoxRecipeOptions {
 }
 declare function getIconBoxClasses(opts?: IconBoxRecipeOptions): string;
 
-export { type BadgeRecipeOptions, type BadgeSize, type BadgeVariant, type ButtonRecipeOptions, type ButtonSize, type ButtonVariant, type CardRecipeOptions, type CardVariant, type CreateSpectreTailwindThemeOptions, type IconBoxRecipeOptions, type IconBoxSize, type IconBoxVariant, type InputRecipeOptions, type InputSize, type InputState, type SpectreTailwindTheme, createSpectreTailwindTheme, getBadgeClasses, getButtonClasses, getCardClasses, getIconBoxClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectrePreset, spectreStyles, spectreUtilitiesStylesPath };
+export { type BadgeRecipeOptions, type BadgeSize, type BadgeVariant, type ButtonRecipeOptions, type ButtonSize, type ButtonVariant, type CardRecipeOptions, type CardVariant, type IconBoxRecipeOptions, type IconBoxSize, type IconBoxVariant, type InputRecipeOptions, type InputSize, type InputState, getBadgeClasses, getButtonClasses, getCardClasses, getIconBoxClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectreStyles, spectreUtilitiesStylesPath };
