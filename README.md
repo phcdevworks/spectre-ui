@@ -57,7 +57,33 @@ export default {
 
 Works with Tailwind 3.x and 4.x through the classic config API.
 
-Need a plain theme object without presets? Generate it from the first-party tokens.
+**Custom preset:** Need to customize the preset or provide your own tokens?
+
+```ts
+// tailwind.config.ts
+import {
+  createSpectreTailwindPreset,
+  spectreTokens,
+} from "@phcdevworks/spectre-ui";
+
+const customPreset = createSpectreTailwindPreset({
+  tokens: spectreTokens,
+  themeOverrides: {
+    colors: {
+      brand: {
+        500: "#ff6b6b",
+      },
+    },
+  },
+});
+
+export default {
+  content: ["./src/**/*.{js,ts,jsx,tsx,astro}"],
+  presets: [customPreset],
+};
+```
+
+**Plain theme object:** Need a plain theme object without presets? Generate it from the first-party tokens.
 
 ```ts
 // tailwind.config.ts
