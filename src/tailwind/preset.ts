@@ -5,7 +5,7 @@ import { createSpectreTailwindTheme } from "./theme";
 type TailwindTheme = NonNullable<TailwindConfig["theme"]>;
 
 export interface CreateSpectreTailwindPresetOptions {
-  tokens?: SpectreTokens;
+  tokens: SpectreTokens;
   themeOverrides?: TailwindTheme;
   presetOverrides?: TailwindConfig;
 }
@@ -34,39 +34,15 @@ const deepMerge = <T extends Record<string, unknown>>(
   return result as T;
 };
 
-let cachedTokens: SpectreTokens | null = null;
-
-const getRequire = (): ((id: string) => unknown) | null => {
-  try {
-    // eslint-disable-next-line no-new-func
-    return Function("return typeof require !== 'undefined' ? require : null")() as
-      | ((id: string) => unknown)
-      | null;
-  } catch {
-    return null;
-  }
-};
-
-const resolveTokens = (tokens?: SpectreTokens): SpectreTokens => {
-  if (tokens) return tokens;
-  if (cachedTokens) return cachedTokens;
-
-  const req = getRequire();
-  if (!req) {
+export const createSpectreTailwindPreset = (
+  options: CreateSpectreTailwindPresetOptions
+): TailwindConfig => {
+  if (!options.tokens) {
     throw new Error(
-      "[spectre-ui] Unable to load spectre tokens; pass tokens to createSpectreTailwindPreset."
+      "[spectre-ui] createSpectreTailwindPreset requires tokens; pass { tokens } explicitly."
     );
   }
-
-  const mod = req("../tokens") as { spectreTokens: SpectreTokens };
-  cachedTokens = mod.spectreTokens;
-  return cachedTokens;
-};
-
-export const createSpectreTailwindPreset = (
-  options: CreateSpectreTailwindPresetOptions = {}
-): TailwindConfig => {
-  const tokens = resolveTokens(options.tokens);
+  const { tokens } = options;
   const { theme } = createSpectreTailwindTheme({ tokens });
   const mergedTheme = deepMerge(
     theme as Record<string, unknown>,

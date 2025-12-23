@@ -1,5 +1,3 @@
-export { default as spectreTokens } from '@phcdevworks/spectre-tokens';
-
 // src/css-constants.ts
 var spectreBaseStylesPath = "@phcdevworks/spectre-ui/base.css";
 var spectreComponentsStylesPath = "@phcdevworks/spectre-ui/components.css";

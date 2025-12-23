@@ -6,11 +6,6 @@ export {
 } from './css-constants';
 
 export {
-  spectreTokens,
-  type SpectreTokens,
-} from './tokens';
-
-export {
   getButtonClasses,
   type ButtonRecipeOptions,
   type ButtonVariant,

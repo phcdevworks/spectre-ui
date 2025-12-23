@@ -1,5 +1,3 @@
-export { SpectreTokens, default as spectreTokens } from '@phcdevworks/spectre-tokens';
-
 declare const spectreBaseStylesPath = "@phcdevworks/spectre-ui/base.css";
 declare const spectreComponentsStylesPath = "@phcdevworks/spectre-ui/components.css";
 declare const spectreUtilitiesStylesPath = "@phcdevworks/spectre-ui/utilities.css";
