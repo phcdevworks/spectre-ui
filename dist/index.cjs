@@ -1,11 +1,5 @@
 'use strict';
 
-var spectreTokens = require('@phcdevworks/spectre-tokens');
-
-function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
-
-var spectreTokens__default = /*#__PURE__*/_interopDefault(spectreTokens);
-
 // src/css-constants.ts
 var spectreBaseStylesPath = "@phcdevworks/spectre-ui/base.css";
 var spectreComponentsStylesPath = "@phcdevworks/spectre-ui/components.css";
@@ -279,10 +273,6 @@ function getIconBoxClasses(opts = {}) {
   return cx("sp-iconbox", variantClass, sizeClass);
 }
 
-Object.defineProperty(exports, "spectreTokens", {
-  enumerable: true,
-  get: function () { return spectreTokens__default.default; }
-});
 exports.getBadgeClasses = getBadgeClasses;
 exports.getButtonClasses = getButtonClasses;
 exports.getCardClasses = getCardClasses;

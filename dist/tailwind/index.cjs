@@ -39,29 +39,13 @@ var deepMerge = (base, overrides) => {
   }
   return result;
 };
-var cachedTokens = null;
-var getRequire = () => {
-  try {
-    return Function("return typeof require !== 'undefined' ? require : null")();
-  } catch {
-    return null;
-  }
-};
-var resolveTokens = (tokens) => {
-  if (tokens) return tokens;
-  if (cachedTokens) return cachedTokens;
-  const req = getRequire();
-  if (!req) {
+var createSpectreTailwindPreset = (options) => {
+  if (!options.tokens) {
     throw new Error(
-      "[spectre-ui] Unable to load spectre tokens; pass tokens to createSpectreTailwindPreset."
+      "[spectre-ui] createSpectreTailwindPreset requires tokens; pass { tokens } explicitly."
     );
   }
-  const mod = req("../tokens");
-  cachedTokens = mod.spectreTokens;
-  return cachedTokens;
-};
-var createSpectreTailwindPreset = (options = {}) => {
-  const tokens = resolveTokens(options.tokens);
+  const { tokens } = options;
   const { theme } = createSpectreTailwindTheme({ tokens });
   const mergedTheme = deepMerge(
     theme,
