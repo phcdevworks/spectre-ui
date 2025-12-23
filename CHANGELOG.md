@@ -4,15 +4,25 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [0.2.2] - 2025-12-23
+
+### Changed
+
+- Remove spectreTokens export from public API ([d6e0752]).
+
 ## [0.2.1] - 2025-12-23
 
 ### Changed
 
 - Refactor Tailwind theme and preset exports ([474e33d]).
 
+### Dependencies
+
+- Update rollup and chai dependencies ([1ea9fa2]).
+
 ### Documentation
 
-- Add documentation for `createSpectreTailwindPreset` in README.
+- Update changelog and README for v0.2.1 release ([86a6355]).
 
 ## [0.2.0] - 2025-12-20
 
@@ -166,11 +176,15 @@ All notable changes to this project will be documented here. The format follows 
 - Revise `FUNDING.yml` for Spectre sponsorship options ([ec69610]).
 - Add VS Code workspace settings and extension recommendations ([4c7bb7f]).
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.1...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.5...v0.1.0
+[d6e0752]: https://github.com/phcdevworks/spectre-ui/commit/d6e0752
 [474e33d]: https://github.com/phcdevworks/spectre-ui/commit/474e33d
+[1ea9fa2]: https://github.com/phcdevworks/spectre-ui/commit/1ea9fa2
+[86a6355]: https://github.com/phcdevworks/spectre-ui/commit/86a6355
 [63a432a]: https://github.com/phcdevworks/spectre-ui/commit/63a432a
 [cde98f7]: https://github.com/phcdevworks/spectre-ui/commit/cde98f7
 [cc9a074]: https://github.com/phcdevworks/spectre-ui/commit/cc9a074
