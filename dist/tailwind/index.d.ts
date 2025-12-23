@@ -17,10 +17,10 @@ declare function createSpectreTailwindTheme(options: CreateSpectreTailwindThemeO
 
 type TailwindTheme = NonNullable<Config["theme"]>;
 interface CreateSpectreTailwindPresetOptions {
-    tokens?: SpectreTokens;
+    tokens: SpectreTokens;
     themeOverrides?: TailwindTheme;
     presetOverrides?: Config;
 }
-declare const createSpectreTailwindPreset: (options?: CreateSpectreTailwindPresetOptions) => Config;
+declare const createSpectreTailwindPreset: (options: CreateSpectreTailwindPresetOptions) => Config;
 
-export { type CreateSpectreTailwindThemeOptions, type SpectreTailwindTheme, createSpectreTailwindPreset, createSpectreTailwindTheme };
+export { type CreateSpectreTailwindPresetOptions, type CreateSpectreTailwindThemeOptions, type SpectreTailwindTheme, createSpectreTailwindPreset, createSpectreTailwindTheme };
