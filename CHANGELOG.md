@@ -4,6 +4,16 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [0.2.1] - 2025-12-23
+
+### Changed
+
+- Refactor Tailwind theme and preset exports ([474e33d]).
+
+### Documentation
+
+- Add documentation for `createSpectreTailwindPreset` in README.
+
 ## [0.2.0] - 2025-12-20
 
 ### Added
@@ -156,9 +166,11 @@ All notable changes to this project will be documented here. The format follows 
 - Revise `FUNDING.yml` for Spectre sponsorship options ([ec69610]).
 - Add VS Code workspace settings and extension recommendations ([4c7bb7f]).
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.5...v0.1.0
+[474e33d]: https://github.com/phcdevworks/spectre-ui/commit/474e33d
 [63a432a]: https://github.com/phcdevworks/spectre-ui/commit/63a432a
 [cde98f7]: https://github.com/phcdevworks/spectre-ui/commit/cde98f7
 [cc9a074]: https://github.com/phcdevworks/spectre-ui/commit/cc9a074
