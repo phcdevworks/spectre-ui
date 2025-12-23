@@ -6,13 +6,6 @@ export {
 } from './css-constants';
 
 export {
-  createSpectreTailwindTheme,
-  type SpectreTailwindTheme,
-  type CreateSpectreTailwindThemeOptions,
-} from './tailwind/theme';
-export { spectrePreset } from './tailwind/preset';
-
-export {
   spectreTokens,
   type SpectreTokens,
 } from './tokens';
