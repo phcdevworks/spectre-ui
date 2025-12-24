@@ -197,6 +197,9 @@ All notable changes to this project will be documented here. The format follows 
 [0.2.1]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.5...v0.1.0
+[03cc520]: https://github.com/phcdevworks/spectre-ui/commit/03cc520
+[fb68b25]: https://github.com/phcdevworks/spectre-ui/commit/fb68b25
+[0663b1a]: https://github.com/phcdevworks/spectre-ui/commit/0663b1a
 [d6e0752]: https://github.com/phcdevworks/spectre-ui/commit/d6e0752
 [474e33d]: https://github.com/phcdevworks/spectre-ui/commit/474e33d
 [1ea9fa2]: https://github.com/phcdevworks/spectre-ui/commit/1ea9fa2
