@@ -323,7 +323,24 @@ Designers update tokens in `@phcdevworks/spectre-tokens`. Engineering evolves re
 npm run build
 ```
 
-`tsup` compiles the TypeScript library (ESM, CJS, `.d.ts`) and copies CSS files to `dist/`. Because `dist/` is generated, releases are reproducible from `src/`.
+The build process consists of two steps:
+
+1. **TypeScript & CSS Copy (via tsup):**
+
+- Compiles the TypeScript source to ESM, CJS, and type definitions in `dist/`.
+- Copies raw CSS files (`base.css`, `components.css`, `utilities.css`) from `src/styles/` to `dist/`.
+
+2. **CSS Bundling (via PostCSS):**
+
+- Processes `src/styles/index.css` with PostCSS (including imports and plugins) and outputs the bundled CSS as `dist/index.css`.
+
+The `npm run build` script runs both steps in sequence:
+
+```bash
+tsup --config tsup.config.ts && npm run build:css
+```
+
+This ensures all JavaScript, type definitions, and CSS bundles are up to date in `dist/` for publishing.
 
 For release history and version notes, see the **[Changelog](CHANGELOG.md)**.
 
