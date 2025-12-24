@@ -4,6 +4,21 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [0.3.0] - 2025-12-24
+
+### Changed
+
+- Replace direct CSS imports with a PostCSS build step for `index.css` ([03cc520]).
+- Add `postcss.config.cjs` and integrate PostCSS into the build process ([03cc520]).
+- Update `package.json` scripts: `build` now runs both TypeScript (via tsup) and CSS bundling (via PostCSS) ([03cc520]).
+- All CSS bundles (`base.css`, `components.css`, `utilities.css`, and the new `index.css`) are now output to `dist/` ([03cc520]).
+- Update README to clarify the new two-step build and release process ([fb68b25]).
+- Bump version to 0.3.0 ([0663b1a]).
+
+### Documentation
+
+- Expanded build and release instructions in README for maintainers and contributors ([fb68b25]).
+
 ## [0.2.2] - 2025-12-23
 
 ### Changed
@@ -176,7 +191,8 @@ All notable changes to this project will be documented here. The format follows 
 - Revise `FUNDING.yml` for Spectre sponsorship options ([ec69610]).
 - Add VS Code workspace settings and extension recommendations ([4c7bb7f]).
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.2...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.2...v0.3.0
 [0.2.2]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.1.0...v0.2.0
