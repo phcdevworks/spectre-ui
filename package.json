@@ -64,7 +64,8 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "tsup --config tsup.config.ts",
+    "build": "tsup --config tsup.config.ts && npm run build:css",
+    "build:css": "mkdir -p dist && postcss src/styles/index.css -o dist/index.css",
     "dev": "tsup --config tsup.config.ts --watch",
     "clean": "rm -rf dist",
     "test": "vitest run"
@@ -81,6 +82,8 @@
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.35",
+    "postcss-cli": "^11.0.1",
+    "postcss-import": "^16.1.1",
     "tailwindcss": "^3.4.15",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
