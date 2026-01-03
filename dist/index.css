@@ -451,17 +451,17 @@
 
     /* input roles */
     --sp-component-input-role-border: var(--sp-component-input-border,
-        var(--sp-surface-input, var(--sp-color-neutral-200, #e2e8f0)));
+        var(--sp-form-default-border, var(--sp-color-neutral-300, #cbd5f5)));
     --sp-component-input-role-bg: var(--sp-component-input-bg,
         var(--sp-surface-input, var(--sp-color-neutral-50, #f8fafc)));
     --sp-component-input-role-text: var(--sp-component-input-text,
         var(--sp-text-on-surface-default, var(--sp-color-neutral-900, #0f172a)));
     --sp-component-input-role-placeholder: var(--sp-component-input-placeholder,
-        var(--sp-text-on-surface-muted, var(--sp-color-neutral-500, #64748b)));
+        var(--sp-text-on-surface-muted, var(--sp-color-neutral-600, #475569)));
     --sp-component-input-role-border-focus: var(--sp-component-input-border-focus,
-        var(--sp-color-brand-500, #8652ff));
+        var(--sp-form-focus-border, var(--sp-color-focus-primary, #8652ff)));
     --sp-component-input-role-ring: var(--sp-component-input-ring,
-        var(--sp-color-brand-500, #8652ff));
+        var(--sp-form-focus-ring, var(--sp-color-focus-primary, #8652ff)));
     --sp-component-input-role-border-error: var(--sp-component-input-border-error,
         var(--sp-color-error-500, #ef4444));
     --sp-component-input-role-bg-error: var(--sp-component-input-bg-error,
@@ -489,19 +489,22 @@
     --sp-component-badge-primary-bg: var(--sp-badge-primary-bg,
         var(--sp-color-brand-500, #8652ff));
     --sp-component-badge-primary-text: var(--sp-badge-primary-text,
-        var(--sp-text-on-surface-default, var(--sp-color-neutral-900, #0f172a)));
+        var(--sp-button-text-on-primary, #ffffff));
     --sp-component-badge-success-bg: var(--sp-badge-success-bg,
         var(--sp-color-success-500, #22c55e));
     --sp-component-badge-success-text: var(--sp-badge-success-text,
-        var(--sp-text-on-surface-default, var(--sp-color-neutral-900, #0f172a)));
+        var(--sp-text-on-success-strong,
+          var(--sp-text-on-surface-default, var(--sp-color-neutral-900, #0f172a))));
     --sp-component-badge-warning-bg: var(--sp-badge-warning-bg,
         var(--sp-color-warning-500, #f59e0b));
     --sp-component-badge-warning-text: var(--sp-badge-warning-text,
-        var(--sp-text-on-surface-default, var(--sp-color-neutral-900, #0f172a)));
+        var(--sp-text-on-warning-strong,
+          var(--sp-text-on-surface-default, var(--sp-color-neutral-900, #0f172a))));
     --sp-component-badge-danger-bg: var(--sp-badge-danger-bg,
         var(--sp-color-error-500, #ef4444));
     --sp-component-badge-danger-text: var(--sp-badge-danger-text,
-        var(--sp-text-on-surface-default, var(--sp-color-neutral-900, #0f172a)));
+        var(--sp-text-on-danger-strong,
+          var(--sp-text-on-surface-default, var(--sp-color-neutral-900, #0f172a))));
     --sp-component-badge-padding-x-sm: var(--sp-space-xs, 0.5rem);
     --sp-component-badge-padding-x-md: var(--sp-space-sm, 0.75rem);
     --sp-component-badge-padding-x-lg: var(--sp-space-md, 1rem);
@@ -515,15 +518,20 @@
     --sp-component-iconbox-size-md: var(--sp-space-2xl, 3rem);
     --sp-component-iconbox-size-lg: var(--sp-space-3xl, 4rem);
     --sp-component-iconbox-primary-bg: var(--sp-color-brand-50, #f5f0ff);
-    --sp-component-iconbox-primary-text: var(--sp-color-brand-700, #5626b4);
+    --sp-component-iconbox-primary-text: var(--sp-text-on-brand-soft,
+        var(--sp-icon-box-icon-default, var(--sp-color-brand-700, #5626b4)));
     --sp-component-iconbox-success-bg: var(--sp-color-success-50, #f0fdf4);
-    --sp-component-iconbox-success-text: var(--sp-color-success-700, #15803d);
+    --sp-component-iconbox-success-text: var(--sp-text-on-success-soft,
+        var(--sp-icon-box-icon-success, var(--sp-color-success-700, #15803d)));
     --sp-component-iconbox-warning-bg: var(--sp-color-warning-50, #fffbeb);
-    --sp-component-iconbox-warning-text: var(--sp-color-warning-700, #b45309);
+    --sp-component-iconbox-warning-text: var(--sp-text-on-warning-soft,
+        var(--sp-icon-box-icon-warning, var(--sp-color-warning-700, #b45309)));
     --sp-component-iconbox-danger-bg: var(--sp-color-error-50, #fef2f2);
-    --sp-component-iconbox-danger-text: var(--sp-color-error-700, #b91c1c);
+    --sp-component-iconbox-danger-text: var(--sp-text-on-danger-soft,
+        var(--sp-icon-box-icon-danger, var(--sp-color-error-700, #b91c1c)));
     --sp-component-iconbox-info-bg: var(--sp-color-info-50, #eff6ff);
-    --sp-component-iconbox-info-text: var(--sp-color-info-700, #1d4ed8);
+    --sp-component-iconbox-info-text: var(--sp-text-on-info-soft,
+        var(--sp-color-info-700, #1d4ed8));
   }
 
   /* BUTTONS -------------------------------------------------------------- */
