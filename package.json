@@ -1,7 +1,7 @@
 {
   "name": "@phcdevworks/spectre-ui",
   "version": "0.4.0",
-  "description": "Framework-agnostic UI layer for the Spectre design system. Provides base CSS, component classes, utilities, and a Tailwind preset powered by @phcdevworks/spectre-tokens.",
+  "description": "Cross-platform UI built on Spectre Tokens. A Tailwind-powered design system that turns the tokens into consistent CSS utilities, component classes and design recipes for WordPress blocks, Astro components, 11ty templates and other modern web apps.",
   "keywords": [
     "phcdevworks",
     "spectre",
@@ -36,7 +36,7 @@
   "bugs": {
     "url": "https://github.com/phcdevworks/spectre-ui/issues"
   },
-  "homepage": "https://github.com/phcdevworks/spectre-ui#readme",
+  "homepage": "https://phcdevworks.com",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
