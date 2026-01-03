@@ -4,6 +4,13 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+### Documentation
+
+- Fix README API examples to reflect correct exports: Tailwind utilities now require explicit import from `/tailwind` submodule.
+- Update import examples to use `@phcdevworks/spectre-tokens` for `spectreTokens` (removed from spectre-ui public API in v0.2.2).
+- Clarify that `createSpectreTailwindPreset` is the recommended approach (no default `spectrePreset` export exists).
+- Update TypeScript types section to show correct import paths for Tailwind-related types.
+
 ## [0.3.0] - 2025-12-24
 
 ### Changed
