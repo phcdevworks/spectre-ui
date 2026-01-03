@@ -2,7 +2,7 @@
 
   :root {
     /* button roles */
-    --sp-component-button-border-base: var(--sp-component-button-ghost-bg, var(--sp-button-ghost-bg));
+    --sp-component-button-border-base: var(--sp-component-button-ghost-bg);
     --sp-component-button-shadow: var(--sp-shadow-sm);
     --sp-component-button-primary-bg: var(--sp-button-primary-bg);
     --sp-component-button-primary-bg-hover: var(--sp-button-primary-bghover);
@@ -38,11 +38,11 @@
     --sp-component-button-success-text-disabled: var(--sp-button-success-textdisabled);
 
     /* card roles */
-    --sp-component-card-bg: var(--sp-surface-card, var(--sp-color-neutral-50));
-    --sp-component-card-text: var(--sp-text-on-surface-default, var(--sp-color-neutral-900));
-    --sp-component-card-text-muted: var(--sp-text-on-surface-muted, var(--sp-color-neutral-600));
+    --sp-component-card-bg: var(--sp-surface-card);
+    --sp-component-card-text: var(--sp-text-on-surface-default);
+    --sp-component-card-text-muted: var(--sp-text-on-surface-muted);
     --sp-component-card-border: var(--sp-color-neutral-200);
-    --sp-component-card-border-base: var(--sp-component-card-ghost-border, var(--sp-component-card-bg));
+    --sp-component-card-border-base: var(--sp-component-card-ghost-border);
     --sp-component-card-shadow: var(--sp-shadow-sm);
     --sp-component-card-shadow-elevated: var(--sp-shadow-lg);
     --sp-component-card-shadow-flat: var(--sp-shadow-none);
@@ -50,89 +50,62 @@
     --sp-component-card-shadow-ghost: var(--sp-shadow-none);
     --sp-component-card-outline-bg: var(--sp-component-card-bg);
     --sp-component-card-outline-border: var(--sp-component-card-border);
-    --sp-component-card-ghost-bg: var(--sp-component-button-ghost-bg, var(--sp-button-ghost-bg));
+    --sp-component-card-ghost-bg: var(--sp-component-button-ghost-bg);
     --sp-component-card-ghost-border: var(--sp-component-card-ghost-bg);
 
     /* input roles */
-    --sp-component-input-role-border: var(--sp-component-input-border,
-        var(--sp-color-neutral-300, #cbd5f5));
-    --sp-component-input-role-bg: var(--sp-component-input-bg,
-        var(--sp-surface-input, var(--sp-color-neutral-50, #f8fafc)));
-    --sp-component-input-role-text: var(--sp-component-input-text,
-        var(--sp-text-on-surface-default, var(--sp-color-neutral-900, #0f172a)));
-    --sp-component-input-role-placeholder: var(--sp-component-input-placeholder,
-        var(--sp-text-on-surface-muted, var(--sp-color-neutral-600, #475569)));
-    --sp-component-input-role-border-focus: var(--sp-component-input-border-focus,
-        var(--sp-color-focus-primary, #8652ff));
-    --sp-component-input-role-ring: var(--sp-component-input-ring,
-        var(--sp-color-focus-primary, #8652ff));
-    --sp-component-input-role-border-error: var(--sp-component-input-border-error,
-        var(--sp-color-error-500, #ef4444));
-    --sp-component-input-role-bg-error: var(--sp-component-input-bg-error,
-        var(--sp-color-error-50, #fef2f2));
-    --sp-component-input-role-text-error: var(--sp-component-input-text-error,
-        var(--sp-color-error-700, #b91c1c));
-    --sp-component-input-role-border-success: var(--sp-component-input-border-success,
-        var(--sp-color-success-500, #22c55e));
-    --sp-component-input-role-bg-success: var(--sp-component-input-bg-success,
-        var(--sp-color-success-50, #f0fdf4));
-    --sp-component-input-role-text-success: var(--sp-component-input-text-success,
-        var(--sp-color-success-700, #15803d));
-    --sp-component-input-role-bg-disabled: var(--sp-component-input-bg-disabled,
-        var(--sp-surface-input, var(--sp-color-neutral-50, #f8fafc)));
-    --sp-component-input-role-text-disabled: var(--sp-component-input-text-disabled,
-        var(--sp-text-on-surface-meta, var(--sp-color-neutral-400, #94a3b8)));
+    --sp-component-input-role-border: var(--sp-color-neutral-300);
+    --sp-component-input-role-bg: var(--sp-surface-input);
+    --sp-component-input-role-text: var(--sp-component-input-text);
+    --sp-component-input-role-placeholder: var(--sp-component-input-placeholder);
+    --sp-component-input-role-border-focus: var(--sp-color-focus-primary);
+    --sp-component-input-role-ring: var(--sp-color-focus-primary);
+    --sp-component-input-role-border-error: var(--sp-color-error-500);
+    --sp-component-input-role-bg-error: var(--sp-color-error-50);
+    --sp-component-input-role-text-error: var(--sp-color-error-700);
+    --sp-component-input-role-border-success: var(--sp-color-success-500);
+    --sp-component-input-role-bg-success: var(--sp-color-success-50);
+    --sp-component-input-role-text-success: var(--sp-color-success-700);
+    --sp-component-input-role-bg-disabled: var(--sp-surface-input);
+    --sp-component-input-role-text-disabled: var(--sp-text-on-surface-meta);
     /* Important: border-disabled should fall back to a BORDER token, not a surface token */
-    --sp-component-input-role-border-disabled: var(--sp-component-input-border-disabled,
-        var(--sp-color-neutral-200, #e2e8f0));
+    --sp-component-input-role-border-disabled: var(--sp-color-neutral-200);
 
     /* badge roles */
-    --sp-component-badge-font: var(--sp-font-family-sans, system-ui);
-    --sp-component-badge-weight: var(--sp-font-sm-weight, 500);
-    --sp-component-badge-gap: var(--sp-space-4, 0.25rem);
-    --sp-component-badge-radius: var(--sp-radius-pill, 999px);
-    --sp-component-badge-primary-bg: var(--sp-button-primary-bg,
-        var(--sp-color-brand-500, #8652ff));
-    --sp-component-badge-primary-text: var(--sp-button-text-on-primary, #ffffff);
-    --sp-component-badge-success-bg: var(--sp-badge-success-bg,
-        var(--sp-color-success-500, #22c55e));
-    --sp-component-badge-success-text: var(--sp-badge-success-text,
-        var(--sp-color-success-700, #15803d));
-    --sp-component-badge-warning-bg: var(--sp-badge-warning-bg,
-        var(--sp-color-warning-500, #f59e0b));
-    --sp-component-badge-warning-text: var(--sp-badge-warning-text,
-        var(--sp-color-warning-700, #b45309));
-    --sp-component-badge-danger-bg: var(--sp-badge-danger-bg,
-        var(--sp-color-error-500, #ef4444));
-    --sp-component-badge-danger-text: var(--sp-badge-danger-text,
-        var(--sp-color-error-700, #b91c1c));
-    --sp-component-badge-padding-x-sm: var(--sp-space-8, 0.5rem);
-    --sp-component-badge-padding-x-md: var(--sp-space-12, 0.75rem);
-    --sp-component-badge-padding-x-lg: var(--sp-space-16, 1rem);
-    --sp-component-badge-padding-y-sm: var(--sp-space-4, 0.25rem);
-    --sp-component-badge-padding-y-md: var(--sp-space-4, 0.25rem);
-    --sp-component-badge-padding-y-lg: var(--sp-space-4, 0.25rem);
+    --sp-component-badge-font: var(--sp-font-family-sans);
+    --sp-component-badge-weight: var(--sp-font-sm-weight);
+    --sp-component-badge-gap: var(--sp-space-4);
+    --sp-component-badge-radius: var(--sp-radius-pill);
+    --sp-component-badge-primary-bg: var(--sp-button-primary-bg);
+    --sp-component-badge-primary-text: var(--sp-button-text-on-primary);
+    --sp-component-badge-success-bg: var(--sp-badge-success-bg);
+    --sp-component-badge-success-text: var(--sp-badge-success-text);
+    --sp-component-badge-warning-bg: var(--sp-badge-warning-bg);
+    --sp-component-badge-warning-text: var(--sp-badge-warning-text);
+    --sp-component-badge-danger-bg: var(--sp-badge-danger-bg);
+    --sp-component-badge-danger-text: var(--sp-badge-danger-text);
+    --sp-component-badge-padding-x-sm: var(--sp-space-8);
+    --sp-component-badge-padding-x-md: var(--sp-space-12);
+    --sp-component-badge-padding-x-lg: var(--sp-space-16);
+    --sp-component-badge-padding-y-sm: var(--sp-space-4);
+    --sp-component-badge-padding-y-md: var(--sp-space-4);
+    --sp-component-badge-padding-y-lg: var(--sp-space-4);
 
     /* icon box roles */
-    --sp-component-iconbox-radius: var(--sp-radius-lg, 8px);
-    --sp-component-iconbox-size-sm: var(--sp-space-32, 2rem);
-    --sp-component-iconbox-size-md: var(--sp-space-48, 3rem);
-    --sp-component-iconbox-size-lg: var(--sp-space-64, 4rem);
-    --sp-component-iconbox-primary-bg: var(--sp-color-brand-50, #f5f0ff);
-    --sp-component-iconbox-primary-text: var(--sp-icon-box-icon-default,
-        var(--sp-color-brand-700, #5626b4));
-    --sp-component-iconbox-success-bg: var(--sp-color-success-50, #f0fdf4);
-    --sp-component-iconbox-success-text: var(--sp-icon-box-icon-success,
-        var(--sp-color-success-700, #15803d));
-    --sp-component-iconbox-warning-bg: var(--sp-color-warning-50, #fffbeb);
-    --sp-component-iconbox-warning-text: var(--sp-icon-box-icon-warning,
-        var(--sp-color-warning-700, #b45309));
-    --sp-component-iconbox-danger-bg: var(--sp-color-error-50, #fef2f2);
-    --sp-component-iconbox-danger-text: var(--sp-icon-box-icon-danger,
-        var(--sp-color-error-700, #b91c1c));
-    --sp-component-iconbox-info-bg: var(--sp-color-info-50, #eff6ff);
-    --sp-component-iconbox-info-text: var(--sp-badge-info-text,
-        var(--sp-color-info-700, #1d4ed8));
+    --sp-component-iconbox-radius: var(--sp-radius-lg);
+    --sp-component-iconbox-size-sm: var(--sp-space-32);
+    --sp-component-iconbox-size-md: var(--sp-space-48);
+    --sp-component-iconbox-size-lg: var(--sp-space-64);
+    --sp-component-iconbox-primary-bg: var(--sp-color-brand-50);
+    --sp-component-iconbox-primary-text: var(--sp-icon-box-icon-default);
+    --sp-component-iconbox-success-bg: var(--sp-color-success-50);
+    --sp-component-iconbox-success-text: var(--sp-icon-box-icon-success);
+    --sp-component-iconbox-warning-bg: var(--sp-color-warning-50);
+    --sp-component-iconbox-warning-text: var(--sp-icon-box-icon-warning);
+    --sp-component-iconbox-danger-bg: var(--sp-color-error-50);
+    --sp-component-iconbox-danger-text: var(--sp-icon-box-icon-danger);
+    --sp-component-iconbox-info-bg: var(--sp-color-info-50);
+    --sp-component-iconbox-info-text: var(--sp-badge-info-text);
   }
 
   /* BUTTONS -------------------------------------------------------------- */
@@ -140,37 +113,36 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--sp-space-4, 0.25rem);
-    padding: var(--sp-space-4, 0.25rem) var(--sp-space-16, 1rem);
-    border-radius: var(--sp-radius-md, 4px);
-    border: 1px solid var(--sp-component-button-border-base,
-        var(--sp-component-button-ghost-bg, var(--sp-button-ghost-bg)));
-    font-family: var(--sp-font-family-sans, system-ui);
-    font-size: var(--sp-font-md-size, 1rem);
+    gap: var(--sp-space-4);
+    padding: var(--sp-space-4) var(--sp-space-16);
+    border-radius: var(--sp-radius-md);
+    border: 1px solid var(--sp-component-button-border-base);
+    font-family: var(--sp-font-family-sans);
+    font-size: var(--sp-font-md-size);
     line-height: 1;
-    font-weight: var(--sp-font-md-weight, 500);
+    font-weight: var(--sp-font-md-weight);
     text-decoration: none;
     appearance: none;
     transition:
-      background-color var(--sp-duration-fast, 150ms) var(--sp-easing-out, ease),
-      color var(--sp-duration-fast, 150ms) var(--sp-easing-out, ease),
-      box-shadow var(--sp-duration-fast, 150ms) var(--sp-easing-out, ease),
-      border-color var(--sp-duration-fast, 150ms) var(--sp-easing-out, ease);
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out),
+      border-color var(--sp-duration-fast) var(--sp-easing-out);
     cursor: pointer;
-    min-height: var(--sp-min-touch-target, 44px);
+    min-height: var(--sp-min-touch-target);
   }
 
   .sp-btn:disabled,
   .sp-btn[aria-disabled="true"],
   .sp-btn.sp-btn--disabled {
     cursor: not-allowed;
-    opacity: var(--sp-opacity-disabled, 0.5);
+    opacity: var(--sp-opacity-disabled);
     pointer-events: none;
   }
 
   .sp-btn--loading {
     pointer-events: none;
-    opacity: var(--sp-opacity-active, 0.84);
+    opacity: var(--sp-opacity-active);
   }
 
   .sp-btn--full {
@@ -178,27 +150,27 @@
   }
 
   .sp-btn--icon {
-    padding-inline: var(--sp-space-12, 0.75rem);
-    padding-block: var(--sp-space-4, 0.25rem);
+    padding-inline: var(--sp-space-12);
+    padding-block: var(--sp-space-4);
   }
 
   /* sizes */
   .sp-btn--sm {
-    padding: var(--sp-space-4, 0.25rem) var(--sp-space-12, 0.75rem);
-    font-size: var(--sp-font-sm-size, 0.875rem);
-    line-height: var(--sp-font-sm-line-height, 1.5rem);
+    padding: var(--sp-space-4) var(--sp-space-12);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
   }
 
   .sp-btn--md {
-    padding: var(--sp-space-4, 0.25rem) var(--sp-space-16, 1rem);
-    font-size: var(--sp-font-md-size, 1rem);
-    line-height: var(--sp-font-md-line-height, 1.75rem);
+    padding: var(--sp-space-4) var(--sp-space-16);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
   }
 
   .sp-btn--lg {
-    padding: var(--sp-space-8, 0.5rem) var(--sp-space-24, 1.5rem);
-    font-size: var(--sp-font-lg-size, 1.125rem);
-    line-height: var(--sp-font-lg-line-height, 1.75rem);
+    padding: var(--sp-space-8) var(--sp-space-24);
+    font-size: var(--sp-font-lg-size);
+    line-height: var(--sp-font-lg-line-height);
   }
 
   /* Generic forced-state helpers (safe, variant rules still set actual colors) */
@@ -216,7 +188,7 @@
   .sp-btn--primary {
     background-color: var(--sp-component-button-primary-bg);
     color: var(--sp-component-button-primary-text);
-    box-shadow: var(--sp-component-button-shadow, var(--sp-shadow-sm));
+    box-shadow: var(--sp-component-button-shadow);
   }
 
   .sp-btn--primary.sp-btn--hover,
@@ -340,45 +312,45 @@
 
   .sp-input-wrapper {
     display: grid;
-    gap: var(--sp-space-4, 0.25rem);
+    gap: var(--sp-space-4);
     width: 100%;
   }
 
   .sp-label {
     color: var(--sp-component-input-role-text);
-    font-size: var(--sp-font-sm-size, 0.875rem);
-    font-weight: var(--sp-font-sm-weight, 500);
-    line-height: var(--sp-font-sm-line-height, 1.25rem);
+    font-size: var(--sp-font-sm-size);
+    font-weight: var(--sp-font-sm-weight);
+    line-height: var(--sp-font-sm-line-height);
   }
 
   .sp-helper-text {
     color: var(--sp-text-on-surface-meta);
-    font-size: var(--sp-font-xs-size, 0.75rem);
-    line-height: var(--sp-font-xs-line-height, 1rem);
+    font-size: var(--sp-font-xs-size);
+    line-height: var(--sp-font-xs-line-height);
   }
 
   .sp-error-message {
     color: var(--sp-component-input-role-text-error);
-    font-size: var(--sp-font-xs-size, 0.75rem);
-    line-height: var(--sp-font-xs-line-height, 1rem);
+    font-size: var(--sp-font-xs-size);
+    line-height: var(--sp-font-xs-line-height);
   }
 
   .sp-input {
     width: 100%;
     display: block;
     appearance: none;
-    padding: var(--sp-space-4, 0.25rem) var(--sp-space-16, 1rem);
-    border-radius: var(--sp-radius-md, 4px);
+    padding: var(--sp-space-4) var(--sp-space-16);
+    border-radius: var(--sp-radius-md);
     border: 1px solid var(--sp-component-input-role-border);
     background-color: var(--sp-component-input-role-bg);
     color: var(--sp-component-input-role-text);
-    font-family: var(--sp-font-family-sans, system-ui);
-    font-size: var(--sp-font-md-size, 1rem);
-    line-height: var(--sp-font-md-line-height, 1.5rem);
+    font-family: var(--sp-font-family-sans);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
     transition:
-      border-color var(--sp-duration-fast, 150ms) var(--sp-easing-out, ease),
-      box-shadow var(--sp-duration-fast, 150ms) var(--sp-easing-out, ease),
-      background-color var(--sp-duration-fast, 150ms) var(--sp-easing-out, ease);
+      border-color var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out),
+      background-color var(--sp-duration-fast) var(--sp-easing-out);
   }
 
   .sp-input::placeholder {
@@ -386,21 +358,21 @@
   }
 
   .sp-input--sm {
-    padding: var(--sp-space-4, 0.25rem) var(--sp-space-12, 0.75rem);
-    font-size: var(--sp-font-sm-size, 0.875rem);
-    line-height: var(--sp-font-sm-line-height, 1.25rem);
+    padding: var(--sp-space-4) var(--sp-space-12);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
   }
 
   .sp-input--md {
-    padding: var(--sp-space-4, 0.25rem) var(--sp-space-16, 1rem);
-    font-size: var(--sp-font-md-size, 1rem);
-    line-height: var(--sp-font-md-line-height, 1.5rem);
+    padding: var(--sp-space-4) var(--sp-space-16);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
   }
 
   .sp-input--lg {
-    padding: var(--sp-space-8, 0.5rem) var(--sp-space-24, 1.5rem);
-    font-size: var(--sp-font-lg-size, 1.125rem);
-    line-height: var(--sp-font-lg-line-height, 1.75rem);
+    padding: var(--sp-space-8) var(--sp-space-24);
+    font-size: var(--sp-font-lg-size);
+    line-height: var(--sp-font-lg-line-height);
   }
 
   .sp-input--full {
@@ -410,7 +382,7 @@
   .sp-input:focus,
   .sp-input--focus {
     border-color: var(--sp-component-input-role-border-focus);
-    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width, 2px) + 1px) var(--sp-component-input-role-ring);
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + 1px) var(--sp-component-input-role-ring);
     outline: none;
   }
 
@@ -448,11 +420,10 @@
   .sp-card {
     background-color: var(--sp-component-card-bg);
     color: var(--sp-component-card-text);
-    border-radius: var(--sp-radius-lg, 8px);
-    padding: var(--sp-space-24, 1.5rem);
-    box-shadow: var(--sp-component-card-shadow, var(--sp-shadow-sm));
-    border: 1px solid var(--sp-component-card-border-base,
-        var(--sp-component-card-ghost-border, var(--sp-component-card-bg)));
+    border-radius: var(--sp-radius-lg);
+    padding: var(--sp-space-24);
+    box-shadow: var(--sp-component-card-shadow);
+    border: 1px solid var(--sp-component-card-border-base);
   }
 
   .sp-card p {
@@ -465,28 +436,28 @@
   }
 
   .sp-card--elevated {
-    box-shadow: var(--sp-component-card-shadow-elevated, var(--sp-shadow-lg));
+    box-shadow: var(--sp-component-card-shadow-elevated);
   }
 
   .sp-card--flat {
-    box-shadow: var(--sp-component-card-shadow-flat, var(--sp-shadow-none));
+    box-shadow: var(--sp-component-card-shadow-flat);
     border-color: var(--sp-component-card-border);
   }
 
   .sp-card--outline {
-    background-color: var(--sp-component-card-outline-bg, var(--sp-component-card-bg));
-    border-color: var(--sp-component-card-outline-border, var(--sp-component-card-border));
-    box-shadow: var(--sp-component-card-shadow-outline, var(--sp-shadow-none));
+    background-color: var(--sp-component-card-outline-bg);
+    border-color: var(--sp-component-card-outline-border);
+    box-shadow: var(--sp-component-card-shadow-outline);
   }
 
   .sp-card--ghost {
     background-color: var(--sp-component-card-ghost-bg);
     border-color: var(--sp-component-card-ghost-border);
-    box-shadow: var(--sp-component-card-shadow-ghost, var(--sp-shadow-none));
+    box-shadow: var(--sp-component-card-shadow-ghost);
   }
 
   .sp-card--padded {
-    padding: var(--sp-space-32, 2rem);
+    padding: var(--sp-space-32);
   }
 
   .sp-card--full {
@@ -496,15 +467,15 @@
   .sp-card--interactive {
     cursor: pointer;
     transition:
-      transform var(--sp-duration-fast, 150ms) var(--sp-easing-out, ease),
-      box-shadow var(--sp-duration-fast, 150ms) var(--sp-easing-out, ease);
+      transform var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out);
   }
 
   .sp-card--interactive:hover,
   .sp-card--interactive:focus-visible,
   .sp-card--interactive:focus-within {
     transform: translateY(-1px);
-    box-shadow: var(--sp-component-card-shadow-elevated, var(--sp-shadow-lg));
+    box-shadow: var(--sp-component-card-shadow-elevated);
   }
 
   /* BADGES --------------------------------------------------------------- */
@@ -513,33 +484,33 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--sp-component-badge-gap, var(--sp-space-4, 0.25rem));
-    border-radius: var(--sp-component-badge-radius, var(--sp-radius-pill, 999px));
-    font-family: var(--sp-component-badge-font, var(--sp-font-family-sans, system-ui));
-    font-weight: var(--sp-component-badge-weight, var(--sp-font-sm-weight, 500));
-    padding: var(--sp-component-badge-padding-y-md, var(--sp-space-4, 0.1875rem)) var(--sp-component-badge-padding-x-md, var(--sp-space-12, 0.75rem));
-    font-size: var(--sp-font-sm-size, 0.875rem);
-    line-height: var(--sp-font-sm-line-height, 1.5rem);
+    gap: var(--sp-component-badge-gap);
+    border-radius: var(--sp-component-badge-radius);
+    font-family: var(--sp-component-badge-font);
+    font-weight: var(--sp-component-badge-weight);
+    padding: var(--sp-component-badge-padding-y-md) var(--sp-component-badge-padding-x-md);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
     border: 1px solid transparent;
     white-space: nowrap;
   }
 
   .sp-badge--sm {
-    padding: var(--sp-component-badge-padding-y-sm, var(--sp-space-4, 0.25rem)) var(--sp-component-badge-padding-x-sm, var(--sp-space-8, 0.5rem));
-    font-size: var(--sp-font-xs-size, 0.75rem);
-    line-height: var(--sp-font-xs-line-height, 1.25rem);
+    padding: var(--sp-component-badge-padding-y-sm) var(--sp-component-badge-padding-x-sm);
+    font-size: var(--sp-font-xs-size);
+    line-height: var(--sp-font-xs-line-height);
   }
 
   .sp-badge--md {
-    padding: var(--sp-component-badge-padding-y-md, var(--sp-space-4, 0.1875rem)) var(--sp-component-badge-padding-x-md, var(--sp-space-12, 0.75rem));
-    font-size: var(--sp-font-sm-size, 0.875rem);
-    line-height: var(--sp-font-sm-line-height, 1.5rem);
+    padding: var(--sp-component-badge-padding-y-md) var(--sp-component-badge-padding-x-md);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
   }
 
   .sp-badge--lg {
-    padding: var(--sp-component-badge-padding-y-lg, var(--sp-space-4, 0.25rem)) var(--sp-component-badge-padding-x-lg, var(--sp-space-16, 1rem));
-    font-size: var(--sp-font-md-size, 1rem);
-    line-height: var(--sp-font-md-line-height, 1.75rem);
+    padding: var(--sp-component-badge-padding-y-lg) var(--sp-component-badge-padding-x-lg);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
   }
 
   .sp-badge--primary {
@@ -568,11 +539,11 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--sp-component-iconbox-radius, var(--sp-radius-lg, 8px));
+    border-radius: var(--sp-component-iconbox-radius);
     color: var(--sp-component-iconbox-primary-text);
     background-color: var(--sp-component-iconbox-primary-bg);
-    font-family: var(--sp-font-family-sans, system-ui);
-    font-weight: var(--sp-font-md-weight, 500);
+    font-family: var(--sp-font-family-sans);
+    font-weight: var(--sp-font-md-weight);
     line-height: 0;
   }
 
@@ -625,21 +596,21 @@
   }
 
   .sp-iconbox--sm {
-    width: var(--sp-component-iconbox-size-sm, var(--sp-space-32, 2rem));
-    height: var(--sp-component-iconbox-size-sm, var(--sp-space-32, 2rem));
-    font-size: var(--sp-font-sm-size, 0.875rem);
+    width: var(--sp-component-iconbox-size-sm);
+    height: var(--sp-component-iconbox-size-sm);
+    font-size: var(--sp-font-sm-size);
   }
 
   .sp-iconbox--md {
-    width: var(--sp-component-iconbox-size-md, var(--sp-space-48, 3rem));
-    height: var(--sp-component-iconbox-size-md, var(--sp-space-48, 3rem));
-    font-size: var(--sp-font-md-size, 1rem);
+    width: var(--sp-component-iconbox-size-md);
+    height: var(--sp-component-iconbox-size-md);
+    font-size: var(--sp-font-md-size);
   }
 
   .sp-iconbox--lg {
-    width: var(--sp-component-iconbox-size-lg, var(--sp-space-64, 4rem));
-    height: var(--sp-component-iconbox-size-lg, var(--sp-space-64, 4rem));
-    font-size: var(--sp-font-lg-size, 1.125rem);
+    width: var(--sp-component-iconbox-size-lg);
+    height: var(--sp-component-iconbox-size-lg);
+    font-size: var(--sp-font-lg-size);
   }
 
   .sp-iconbox--primary {
