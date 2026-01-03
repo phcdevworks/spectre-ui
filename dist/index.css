@@ -478,8 +478,9 @@
         var(--sp-surface-input, var(--sp-color-neutral-50, #f8fafc)));
     --sp-component-input-role-text-disabled: var(--sp-component-input-text-disabled,
         var(--sp-text-on-surface-meta, var(--sp-color-neutral-400, #94a3b8)));
+    /* Important: border-disabled should fall back to a BORDER token, not a surface token */
     --sp-component-input-role-border-disabled: var(--sp-component-input-border-disabled,
-        var(--sp-surface-input, var(--sp-color-neutral-200, #e2e8f0)));
+        var(--sp-color-neutral-200, #e2e8f0));
 
     /* badge roles */
     --sp-component-badge-font: var(--sp-font-family-sans, system-ui);
@@ -600,12 +601,22 @@
     line-height: var(--sp-font-lg-line-height, 1.75rem);
   }
 
+  /* Generic forced-state helpers (safe, variant rules still set actual colors) */
+  .sp-btn.sp-btn--hover,
+  .sp-btn.is-hover {
+    /* no-op here; variant sections below define the actual hover colors */
+  }
+
+  .sp-btn.sp-btn--active,
+  .sp-btn.is-active {
+    /* no-op here; variant sections below define the actual active colors */
+  }
+
   /* primary */
   .sp-btn--primary {
     background-color: var(--sp-component-button-primary-bg);
     color: var(--sp-component-button-primary-text);
-    box-shadow: var(--sp-component-button-shadow,
-        var(--sp-shadow-sm));
+    box-shadow: var(--sp-component-button-shadow, var(--sp-shadow-sm));
   }
 
   .sp-btn--primary.sp-btn--hover,
@@ -803,16 +814,17 @@
     outline: none;
   }
 
+  /* State styling should not force typed text to be red/green by default */
   .sp-input--error {
     border-color: var(--sp-component-input-role-border-error);
     background-color: var(--sp-component-input-role-bg-error);
-    color: var(--sp-component-input-role-text-error);
+    color: var(--sp-component-input-role-text);
   }
 
   .sp-input--success {
     border-color: var(--sp-component-input-role-border-success);
     background-color: var(--sp-component-input-role-bg-success);
-    color: var(--sp-component-input-role-text-success);
+    color: var(--sp-component-input-role-text);
   }
 
   .sp-input--disabled {
@@ -906,8 +918,7 @@
     border-radius: var(--sp-component-badge-radius, var(--sp-radius-pill, 999px));
     font-family: var(--sp-component-badge-font, var(--sp-font-family-sans, system-ui));
     font-weight: var(--sp-component-badge-weight, var(--sp-font-sm-weight, 500));
-    padding: var(--sp-component-badge-padding-y-md, var(--sp-space-3xs, 0.1875rem))
-      var(--sp-component-badge-padding-x-md, var(--sp-space-sm, 0.75rem));
+    padding: var(--sp-component-badge-padding-y-md, var(--sp-space-3xs, 0.1875rem)) var(--sp-component-badge-padding-x-md, var(--sp-space-sm, 0.75rem));
     font-size: var(--sp-font-sm-size, 0.875rem);
     line-height: var(--sp-font-sm-line-height, 1.5rem);
     border: 1px solid transparent;
@@ -915,22 +926,19 @@
   }
 
   .sp-badge--sm {
-    padding: var(--sp-component-badge-padding-y-sm, var(--sp-space-4xs, 0.125rem))
-      var(--sp-component-badge-padding-x-sm, var(--sp-space-xs, 0.5rem));
+    padding: var(--sp-component-badge-padding-y-sm, var(--sp-space-4xs, 0.125rem)) var(--sp-component-badge-padding-x-sm, var(--sp-space-xs, 0.5rem));
     font-size: var(--sp-font-xs-size, 0.75rem);
     line-height: var(--sp-font-xs-line-height, 1.25rem);
   }
 
   .sp-badge--md {
-    padding: var(--sp-component-badge-padding-y-md, var(--sp-space-3xs, 0.1875rem))
-      var(--sp-component-badge-padding-x-md, var(--sp-space-sm, 0.75rem));
+    padding: var(--sp-component-badge-padding-y-md, var(--sp-space-3xs, 0.1875rem)) var(--sp-component-badge-padding-x-md, var(--sp-space-sm, 0.75rem));
     font-size: var(--sp-font-sm-size, 0.875rem);
     line-height: var(--sp-font-sm-line-height, 1.5rem);
   }
 
   .sp-badge--lg {
-    padding: var(--sp-component-badge-padding-y-lg, var(--sp-space-2xs, 0.25rem))
-      var(--sp-component-badge-padding-x-lg, var(--sp-space-md, 1rem));
+    padding: var(--sp-component-badge-padding-y-lg, var(--sp-space-2xs, 0.25rem)) var(--sp-component-badge-padding-x-lg, var(--sp-space-md, 1rem));
     font-size: var(--sp-font-md-size, 1rem);
     line-height: var(--sp-font-md-line-height, 1.75rem);
   }
@@ -969,17 +977,52 @@
     line-height: 0;
   }
 
+  /* Harden icon rendering:
+     - center, no baseline wobble
+     - force currentColor for common svg shapes
+     - preserve stroke-only icons (fill="none")
+  */
+  .sp-iconbox,
+  .sp-iconbox>i {
+    line-height: 0;
+  }
+
+  .sp-iconbox>i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
+
   .sp-iconbox svg {
     display: block;
     width: 1em;
     height: 1em;
-    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  /* default to inheriting via currentColor */
+  .sp-iconbox svg,
+  .sp-iconbox svg path,
+  .sp-iconbox svg circle,
+  .sp-iconbox svg rect,
+  .sp-iconbox svg line,
+  .sp-iconbox svg polyline,
+  .sp-iconbox svg polygon,
+  .sp-iconbox svg g {
     stroke: currentColor;
   }
 
-  .sp-iconbox svg * {
+  /* only force fill when the icon isn't explicitly stroke-only */
+  .sp-iconbox svg:not([fill="none"]),
+  .sp-iconbox svg:not([fill="none"]) path,
+  .sp-iconbox svg:not([fill="none"]) circle,
+  .sp-iconbox svg:not([fill="none"]) rect,
+  .sp-iconbox svg:not([fill="none"]) polygon {
     fill: currentColor;
-    stroke: currentColor;
   }
 
   .sp-iconbox--sm {
@@ -998,15 +1041,6 @@
     width: var(--sp-component-iconbox-size-lg, var(--sp-space-3xl, 4rem));
     height: var(--sp-component-iconbox-size-lg, var(--sp-space-3xl, 4rem));
     font-size: var(--sp-font-lg-size, 1.125rem);
-  }
-
-  .sp-iconbox > i {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1em;
-    height: 1em;
-    line-height: 0;
   }
 
   .sp-iconbox--primary {
