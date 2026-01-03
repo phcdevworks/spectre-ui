@@ -6,8 +6,9 @@ We aim to support the latest published version of Spectre UI. Security updates a
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 0.1.x   | :white_check_mark: |
-| < 0.1   | :x:                |
+| 0.4.x   | :white_check_mark: |
+| 0.3.x   | :white_check_mark: |
+| < 0.3   | :x:                |
 
 **Please ensure you are using the most recent version** of both:
 
