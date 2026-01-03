@@ -93,6 +93,26 @@ npm run build
 npm run dev
 ```
 
+## Testing
+
+The project includes a comprehensive test suite to ensure code quality and design system integrity:
+
+```bash
+npm test
+```
+
+**Test Coverage**:
+
+- **Recipe tests** – Validates `getButtonClasses`, `getCardClasses`, `getInputClasses`, `getBadgeClasses`, `getIconBoxClasses` generate correct class strings
+- **CSS contract tests** – Ensures all component CSS selectors exist in `components.css`
+- **Token drift tests** – Guards against:
+  - Using undefined CSS variables
+  - Legacy token usage (e.g., `--sp-form-*`)
+  - Fallback values in token references
+  - Raw color literals (enforces token-first design)
+
+All tests must pass before merging changes.
+
 ## Project Structure
 
 ```
@@ -162,6 +182,7 @@ spectre-ui/
 - Use modern TypeScript + ES modules
 - Prefer small, composable helpers
 - Add JSDoc comments for complex logic
+- Run `npm test` to validate recipes, CSS contracts, and token usage
 - Run `npm run build` before committing to ensure type safety
 - Update exports in `src/index.ts` when adding new public APIs
 
@@ -176,7 +197,7 @@ spectre-ui/
 
 1. **Branch from `main`**
 2. **Make your changes** and test locally (`npm run build` and verify in example projects)
-3. **Run tests** to ensure nothing breaks (`npm test` if applicable)
+3. **Run tests** to ensure nothing breaks (`npm test` - all tests must pass)
 4. **Commit generated artifacts** in `dist/` when necessary
 5. **Update documentation** (README.md, JSDoc comments) to reflect behavior changes
 6. **Open a PR** describing:

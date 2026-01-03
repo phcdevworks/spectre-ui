@@ -316,6 +316,16 @@ import {
 
 Designers update tokens in `@phcdevworks/spectre-tokens`. Engineering evolves recipes, presets, and CSS in this package.
 
+## Testing
+
+The package includes automated tests to ensure recipe correctness, CSS contract integrity, and token-first design compliance:
+
+```bash
+npm test
+```
+
+Tests validate recipe output, CSS selector coverage, and guard against token drift (undefined variables, fallback values, raw color literals). All tests run via Vitest.
+
 ## Build & Release
 
 ```bash
