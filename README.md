@@ -43,11 +43,14 @@ import "@phcdevworks/spectre-ui/index.css";
 
 ### 2. Tailwind integration
 
-Spectre ships an opinionated Tailwind preset that mirrors the design tokens exactly.
+Spectre ships utilities to create Tailwind presets that mirror the design tokens exactly.
 
 ```ts
 // tailwind.config.ts
-import { spectrePreset } from "@phcdevworks/spectre-ui";
+import { createSpectreTailwindPreset } from "@phcdevworks/spectre-ui/tailwind";
+import { spectreTokens } from "@phcdevworks/spectre-tokens";
+
+const spectrePreset = createSpectreTailwindPreset({ tokens: spectreTokens });
 
 export default {
   content: ["./src/**/*.{js,ts,jsx,tsx,astro}"],
@@ -61,10 +64,8 @@ Works with Tailwind 3.x and 4.x through the classic config API.
 
 ```ts
 // tailwind.config.ts
-import {
-  createSpectreTailwindPreset,
-  spectreTokens,
-} from "@phcdevworks/spectre-ui";
+import { createSpectreTailwindPreset } from "@phcdevworks/spectre-ui/tailwind";
+import { spectreTokens } from "@phcdevworks/spectre-tokens";
 
 const customPreset = createSpectreTailwindPreset({
   tokens: spectreTokens,
@@ -87,10 +88,8 @@ export default {
 
 ```ts
 // tailwind.config.ts
-import {
-  createSpectreTailwindTheme,
-  spectreTokens,
-} from "@phcdevworks/spectre-ui";
+import { createSpectreTailwindTheme } from "@phcdevworks/spectre-ui/tailwind";
+import { spectreTokens } from "@phcdevworks/spectre-tokens";
 
 const { theme } = createSpectreTailwindTheme({
   tokens: spectreTokens,
@@ -420,8 +419,6 @@ Type definitions are bundled automatically:
 
 ```ts
 import type {
-  SpectreTokens,
-  SpectreTailwindTheme,
   ButtonVariant,
   ButtonSize,
   InputState,
@@ -437,6 +434,14 @@ import type {
   BadgeRecipeOptions,
   IconBoxRecipeOptions,
 } from "@phcdevworks/spectre-ui";
+
+import type {
+  SpectreTailwindTheme,
+  CreateSpectreTailwindThemeOptions,
+  CreateSpectreTailwindPresetOptions,
+} from "@phcdevworks/spectre-ui/tailwind";
+
+import type { SpectreTokens } from "@phcdevworks/spectre-tokens";
 ```
 
 ## Part of the Spectre Suite
