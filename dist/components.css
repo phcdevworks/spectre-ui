@@ -127,7 +127,9 @@
     --sp-component-iconbox-size-lg: var(--sp-space-3xl, 4rem);
   }
 
-  /* BUTTONS */
+  /* =========================
+     BUTTONS
+     ========================= */
   .sp-btn {
     display: inline-flex;
     align-items: center;
@@ -143,6 +145,12 @@
     white-space: nowrap;
     transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease,
       box-shadow 120ms ease, transform 120ms ease, filter 120ms ease;
+  }
+
+  /* DEFAULT size = md (fixes “tiny unstyled buttons” when no size class present) */
+  .sp-btn:not(.sp-btn--sm):not(.sp-btn--md):not(.sp-btn--lg) {
+    padding: var(--sp-component-button-padding-y-md) var(--sp-component-button-padding-x-md);
+    font-size: var(--sp-font-md-size, 1rem);
   }
 
   .sp-btn:focus-visible {
@@ -176,7 +184,7 @@
     opacity: 0.7;
   }
 
-  /* Make forced hover classes actually visible even if tokens are subtle */
+  /* Forced hover/active preview classes + real hover */
   .sp-btn--hover,
   .sp-btn.is-hover,
   .sp-btn:hover:not(:disabled):not([aria-disabled="true"]) {
@@ -185,7 +193,8 @@
   }
 
   .sp-btn:active:not(:disabled):not([aria-disabled="true"]),
-  .sp-btn.is-active {
+  .sp-btn.is-active,
+  .sp-btn--active {
     transform: translateY(0);
     filter: brightness(0.97);
   }
@@ -325,7 +334,9 @@
     border-color: var(--sp-component-button-success-border-disabled);
   }
 
-  /* INPUTS */
+  /* =========================
+     INPUTS
+     ========================= */
   .sp-input-wrapper {
     display: grid;
     gap: var(--sp-space-2xs, 0.375rem);
@@ -341,12 +352,14 @@
     width: 100%;
     padding: var(--sp-component-input-padding-y) var(--sp-component-input-padding-x);
     border-radius: var(--sp-component-input-radius);
-    border: var(--sp-component-input-border-width) solid var(--sp-component-input-border-default, rgba(29, 26, 20, 0.18));
+    border: var(--sp-component-input-border-width) solid
+      var(--sp-component-input-border-default, rgba(29, 26, 20, 0.18));
     background-color: var(--sp-component-input-bg-default, #ffffff);
     color: var(--sp-component-input-text-default, rgba(29, 26, 20, 0.92));
     font-size: var(--sp-font-md-size, 1rem);
     line-height: var(--sp-font-md-line-height, 1.5);
-    transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease, color 120ms ease;
+    transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease,
+      color 120ms ease;
   }
 
   .sp-input::placeholder {
@@ -386,10 +399,7 @@
   }
 
   .sp-input--disabled:focus,
-  .sp-input--disabled:focus-visible,
-  .sp-input--disabled:focus-within,
-  .sp-input:disabled:focus,
-  .sp-input:disabled:focus-visible {
+  .sp-input:disabled:focus {
     box-shadow: none;
   }
 
@@ -403,7 +413,9 @@
     color: var(--sp-text-danger, #c92a2a);
   }
 
-  /* CARDS */
+  /* =========================
+     CARDS
+     ========================= */
   .sp-card {
     background-color: var(--sp-component-card-bg-default);
     border-radius: var(--sp-component-card-radius);
@@ -413,10 +425,6 @@
   }
 
   .sp-card p {
-    color: var(--sp-component-card-text-muted);
-  }
-
-  .sp-card .sp-text-muted {
     color: var(--sp-component-card-text-muted);
   }
 
@@ -469,45 +477,51 @@
     transform: translateY(-1px);
   }
 
-  /* ICONBOX (token-first: subtle surface + semantic text) */
+  /* =========================
+     ICONBOX
+     ========================= */
   .sp-iconbox {
     --_iconbox-bg: var(--sp-surface-subtle, rgba(29, 26, 20, 0.06));
     --_iconbox-fg: var(--sp-text-on-page-default, rgba(29, 26, 20, 0.92));
 
     display: inline-flex;
-    line-height: 0;
     align-items: center;
     justify-content: center;
+    line-height: 0;
     border-radius: var(--sp-component-iconbox-radius);
 
     background-color: var(--_iconbox-bg);
     color: var(--_iconbox-fg);
   }
 
+  /* DEFAULT size = sm (so a bare .sp-iconbox isn’t microscopic) */
+  .sp-iconbox:not(.sp-iconbox--sm):not(.sp-iconbox--md):not(.sp-iconbox--lg) {
+    width: var(--sp-component-iconbox-size-sm, var(--sp-space-xl, 2rem));
+    height: var(--sp-component-iconbox-size-sm, var(--sp-space-xl, 2rem));
+    --sp-iconbox-icon-size: 1rem;
+  }
+
   .sp-iconbox--sm {
     width: var(--sp-component-iconbox-size-sm, var(--sp-space-xl, 2rem));
     height: var(--sp-component-iconbox-size-sm, var(--sp-space-xl, 2rem));
-    font-size: var(--sp-font-sm-size, 0.875rem);
     --sp-iconbox-icon-size: 1rem;
   }
 
   .sp-iconbox--md {
     width: var(--sp-component-iconbox-size-md, var(--sp-space-2xl, 3rem));
     height: var(--sp-component-iconbox-size-md, var(--sp-space-2xl, 3rem));
-    font-size: var(--sp-font-md-size, 1rem);
     --sp-iconbox-icon-size: 1.25rem;
   }
 
   .sp-iconbox--lg {
     width: var(--sp-component-iconbox-size-lg, var(--sp-space-3xl, 4rem));
     height: var(--sp-component-iconbox-size-lg, var(--sp-space-3xl, 4rem));
-    font-size: var(--sp-font-lg-size, 1.125rem);
     --sp-iconbox-icon-size: 1.5rem;
   }
 
-  .sp-iconbox>svg,
-  .sp-iconbox>i,
-  .sp-iconbox>i>svg {
+  .sp-iconbox > svg,
+  .sp-iconbox > i,
+  .sp-iconbox > i > svg {
     width: var(--sp-iconbox-icon-size, 1em);
     height: var(--sp-iconbox-icon-size, 1em);
     display: block;
@@ -538,7 +552,9 @@
     --_iconbox-fg: var(--sp-text-info, #2563eb);
   }
 
-  /* BADGES (token-first: subtle surface + semantic text) */
+  /* =========================
+     BADGES
+     ========================= */
   .sp-badge {
     --_badge-bg: var(--sp-surface-subtle, rgba(29, 26, 20, 0.06));
     --_badge-fg: var(--sp-text-on-page-default, rgba(29, 26, 20, 0.92));
@@ -554,6 +570,12 @@
 
     background-color: var(--_badge-bg);
     color: var(--_badge-fg);
+  }
+
+  /* DEFAULT size = md */
+  .sp-badge:not(.sp-badge--sm):not(.sp-badge--md):not(.sp-badge--lg) {
+    padding: var(--sp-component-badge-padding-y-md) var(--sp-component-badge-padding-x-md);
+    font-size: var(--sp-font-sm-size, 0.875rem);
   }
 
   .sp-badge--sm {
