@@ -395,7 +395,6 @@
   }
 }
 @layer components {
-
   :root {
     /* button roles */
     --sp-component-button-radius: var(--sp-radius-md, 0.75rem);
@@ -488,21 +487,6 @@
     --sp-component-input-padding-y: var(--sp-space-xs, 0.5rem);
     --sp-component-input-padding-x: var(--sp-space-sm, 0.875rem);
 
-    --sp-component-input-bg-default: var(--sp-component-input-bg-default);
-    --sp-component-input-bg-disabled: var(--sp-component-input-bg-disabled);
-
-    --sp-component-input-border-default: var(--sp-component-input-border-default);
-    --sp-component-input-border-focus: var(--sp-component-input-border-focus);
-    --sp-component-input-border-error: var(--sp-component-input-border-error);
-    --sp-component-input-border-success: var(--sp-component-input-border-success);
-    --sp-component-input-border-disabled: var(--sp-component-input-border-disabled);
-
-    --sp-component-input-role-text-default: var(--sp-component-input-text-default);
-    --sp-component-input-role-text-placeholder: var(--sp-component-input-text-placeholder);
-    --sp-component-input-role-text-disabled: var(--sp-component-input-text-disabled);
-
-    --sp-component-input-shadow-focus: var(--sp-component-input-shadow-focus);
-
     /* card roles */
     --sp-component-card-radius: var(--sp-radius-xl, 1.25rem);
     --sp-component-card-padding: var(--sp-space-xl, 2rem);
@@ -553,7 +537,8 @@
     user-select: none;
     text-decoration: none;
     white-space: nowrap;
-    transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+    transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease,
+      box-shadow 120ms ease, transform 120ms ease, filter 120ms ease;
   }
 
   .sp-btn:focus-visible {
@@ -585,6 +570,20 @@
   .sp-btn[aria-disabled="true"] {
     cursor: not-allowed;
     opacity: 0.7;
+  }
+
+  /* Make forced hover classes actually visible even if tokens are subtle */
+  .sp-btn--hover,
+  .sp-btn.is-hover,
+  .sp-btn:hover:not(:disabled):not([aria-disabled="true"]) {
+    filter: brightness(0.98);
+    transform: translateY(-1px);
+  }
+
+  .sp-btn:active:not(:disabled):not([aria-disabled="true"]),
+  .sp-btn.is-active {
+    transform: translateY(0);
+    filter: brightness(0.97);
   }
 
   /* primary */
@@ -738,54 +737,53 @@
     width: 100%;
     padding: var(--sp-component-input-padding-y) var(--sp-component-input-padding-x);
     border-radius: var(--sp-component-input-radius);
-    border: var(--sp-component-input-border-width) solid var(--sp-component-input-border-default);
-    background-color: var(--sp-component-input-bg-default);
-    color: var(--sp-component-input-role-text-default);
+    border: var(--sp-component-input-border-width) solid var(--sp-component-input-border-default, rgba(29, 26, 20, 0.18));
+    background-color: var(--sp-component-input-bg-default, #ffffff);
+    color: var(--sp-component-input-text-default, rgba(29, 26, 20, 0.92));
     font-size: var(--sp-font-md-size, 1rem);
     line-height: var(--sp-font-md-line-height, 1.5);
     transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease, color 120ms ease;
   }
 
   .sp-input::placeholder {
-    color: var(--sp-component-input-role-text-placeholder);
+    color: var(--sp-component-input-text-placeholder, rgba(29, 26, 20, 0.45));
   }
 
   .sp-input:focus {
     outline: none;
-    border-color: var(--sp-component-input-border-focus);
-    box-shadow: var(--sp-component-input-shadow-focus);
+    border-color: var(--sp-component-input-border-focus, rgba(110, 72, 255, 0.6));
+    box-shadow: var(--sp-component-input-shadow-focus, 0 0 0 3px rgba(110, 72, 255, 0.18));
   }
 
   .sp-input--focus {
-    border-color: var(--sp-component-input-border-focus);
-    box-shadow: var(--sp-component-input-shadow-focus);
+    border-color: var(--sp-component-input-border-focus, rgba(110, 72, 255, 0.6));
+    box-shadow: var(--sp-component-input-shadow-focus, 0 0 0 3px rgba(110, 72, 255, 0.18));
   }
 
   .sp-input--error {
-    border-color: var(--sp-component-input-border-error);
+    border-color: var(--sp-component-input-border-error, rgba(239, 68, 68, 0.75));
   }
 
   .sp-input--success {
-    border-color: var(--sp-component-input-border-success);
+    border-color: var(--sp-component-input-border-success, rgba(34, 197, 94, 0.75));
   }
 
   .sp-input--disabled,
   .sp-input:disabled {
-    background-color: var(--sp-component-input-bg-disabled);
-    border-color: var(--sp-component-input-border-disabled);
-    color: var(--sp-component-input-role-text-disabled);
+    background-color: var(--sp-component-input-bg-disabled, rgba(29, 26, 20, 0.04));
+    border-color: var(--sp-component-input-border-disabled, rgba(29, 26, 20, 0.12));
+    color: var(--sp-component-input-text-disabled, rgba(29, 26, 20, 0.45));
     cursor: not-allowed;
   }
 
   .sp-input--disabled::placeholder,
   .sp-input:disabled::placeholder {
-    color: var(--sp-component-input-role-text-disabled);
+    color: var(--sp-component-input-text-disabled, rgba(29, 26, 20, 0.45));
   }
 
   .sp-input--disabled:focus,
   .sp-input--disabled:focus-visible,
   .sp-input--disabled:focus-within,
-  .sp-input--disabled:focus-within-visible,
   .sp-input:disabled:focus,
   .sp-input:disabled:focus-visible {
     box-shadow: none;
@@ -814,7 +812,6 @@
     color: var(--sp-component-card-text-muted);
   }
 
-  /* Opt-in muted text utility inside cards (do not blanket-style spans) */
   .sp-card .sp-text-muted {
     color: var(--sp-component-card-text-muted);
   }
@@ -868,13 +865,19 @@
     transform: translateY(-1px);
   }
 
-  /* ICONBOX */
+  /* ICONBOX (token-first: subtle surface + semantic text) */
   .sp-iconbox {
+    --_iconbox-bg: var(--sp-surface-subtle, rgba(29, 26, 20, 0.06));
+    --_iconbox-fg: var(--sp-text-on-page-default, rgba(29, 26, 20, 0.92));
+
     display: inline-flex;
     line-height: 0;
     align-items: center;
     justify-content: center;
     border-radius: var(--sp-component-iconbox-radius);
+
+    background-color: var(--_iconbox-bg);
+    color: var(--_iconbox-fg);
   }
 
   .sp-iconbox--sm {
@@ -907,32 +910,35 @@
   }
 
   .sp-iconbox--primary {
-    background-color: var(--sp-component-status-primary-bg, rgba(110, 72, 255, 0.1));
-    color: var(--sp-component-status-primary-text, var(--sp-component-interactive-primary-bg-default));
+    --_iconbox-bg: var(--sp-surface-primary-subtle, rgba(110, 72, 255, 0.12));
+    --_iconbox-fg: var(--sp-text-primary, rgba(110, 72, 255, 1));
   }
 
   .sp-iconbox--success {
-    background-color: var(--sp-component-status-success-bg, rgba(34, 197, 94, 0.12));
-    color: var(--sp-component-status-success-text, #16a34a);
+    --_iconbox-bg: var(--sp-surface-success-subtle, rgba(34, 197, 94, 0.14));
+    --_iconbox-fg: var(--sp-text-success, #16a34a);
   }
 
   .sp-iconbox--warning {
-    background-color: var(--sp-component-status-warning-bg, rgba(245, 158, 11, 0.16));
-    color: var(--sp-component-status-warning-text, #b45309);
+    --_iconbox-bg: var(--sp-surface-warning-subtle, rgba(245, 158, 11, 0.16));
+    --_iconbox-fg: var(--sp-text-warning, #b45309);
   }
 
   .sp-iconbox--danger {
-    background-color: var(--sp-component-status-danger-bg, rgba(239, 68, 68, 0.14));
-    color: var(--sp-component-status-danger-text, #dc2626);
+    --_iconbox-bg: var(--sp-surface-danger-subtle, rgba(239, 68, 68, 0.14));
+    --_iconbox-fg: var(--sp-text-danger, #dc2626);
   }
 
   .sp-iconbox--info {
-    background-color: var(--sp-component-status-info-bg, rgba(59, 130, 246, 0.12));
-    color: var(--sp-component-status-info-text, #2563eb);
+    --_iconbox-bg: var(--sp-surface-info-subtle, rgba(59, 130, 246, 0.12));
+    --_iconbox-fg: var(--sp-text-info, #2563eb);
   }
 
-  /* BADGES */
+  /* BADGES (token-first: subtle surface + semantic text) */
   .sp-badge {
+    --_badge-bg: var(--sp-surface-subtle, rgba(29, 26, 20, 0.06));
+    --_badge-fg: var(--sp-text-on-page-default, rgba(29, 26, 20, 0.92));
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -941,6 +947,9 @@
     line-height: var(--sp-component-badge-line-height);
     white-space: nowrap;
     border: 1px solid transparent;
+
+    background-color: var(--_badge-bg);
+    color: var(--_badge-fg);
   }
 
   .sp-badge--sm {
@@ -959,23 +968,23 @@
   }
 
   .sp-badge--primary {
-    background-color: var(--sp-component-status-primary-bg, rgba(110, 72, 255, 0.1));
-    color: var(--sp-component-status-primary-text, var(--sp-component-interactive-primary-bg-default));
+    --_badge-bg: var(--sp-surface-primary-subtle, rgba(110, 72, 255, 0.12));
+    --_badge-fg: var(--sp-text-primary, rgba(110, 72, 255, 1));
   }
 
   .sp-badge--success {
-    background-color: var(--sp-component-status-success-bg, rgba(34, 197, 94, 0.12));
-    color: var(--sp-component-status-success-text, #16a34a);
+    --_badge-bg: var(--sp-surface-success-subtle, rgba(34, 197, 94, 0.14));
+    --_badge-fg: var(--sp-text-success, #16a34a);
   }
 
   .sp-badge--warning {
-    background-color: var(--sp-component-status-warning-bg, rgba(245, 158, 11, 0.16));
-    color: var(--sp-component-status-warning-text, #b45309);
+    --_badge-bg: var(--sp-surface-warning-subtle, rgba(245, 158, 11, 0.16));
+    --_badge-fg: var(--sp-text-warning, #b45309);
   }
 
   .sp-badge--danger {
-    background-color: var(--sp-component-status-danger-bg, rgba(239, 68, 68, 0.14));
-    color: var(--sp-component-status-danger-text, #dc2626);
+    --_badge-bg: var(--sp-surface-danger-subtle, rgba(239, 68, 68, 0.14));
+    --_badge-fg: var(--sp-text-danger, #dc2626);
   }
 }
 @layer utilities {
