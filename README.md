@@ -381,7 +381,7 @@ Spectre is a **specification-driven design system** built on three strict layers
 - Every CSS selector has a matching recipe where applicable
 - Tailwind preset is optional and non-authoritative
 
-**Status**: v0.1.0 released, hardened and aligned to tokens
+**Status**: v0.4.0 released with refactored component styles and enhanced CSS variable system
 
 ### 3. Framework Adapters (WordPress, Astro, 11ty)
 
