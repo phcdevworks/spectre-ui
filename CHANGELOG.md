@@ -4,12 +4,47 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-01-03
+
+### Changed
+
+- Refactor CSS variables and backgrounds for consistency ([c6acb19]).
+- Remove fallback values from CSS variable usage in base.css to enforce consistent theming ([c6acb19]).
+- Refactor component styles and update CSS custom properties ([1d3586d]).
+- Rework CSS for components, inputs, cards, badges, and icon boxes with new custom properties ([1d3586d]).
+- Simplify and standardize sizing, spacing, and color variables ([1d3586d]).
+- Refactor and enhance component styles for better maintainability ([147d1a8]).
+- Introduce more semantic variable names and consolidate state/size handling ([147d1a8]).
+- Improve default styling for unstyled components ([147d1a8]).
+- Enhance focus, hover, and disabled state handling ([147d1a8]).
+- Update layout and spacing for better usability and accessibility ([147d1a8]).
+- Refactor CSS tokens and improve button/badge styles ([06e434e]).
+- Refactor component CSS variables and structure ([ca00795]).
+- Refine UI primitives and icon rendering ([c303bad]).
+- Refine input, button, badge, and icon styles ([c1d1bd4]).
+- Improve button and iconbox CSS states and structure ([1a797e1]).
+- Refine color variables for badges, iconboxes, and inputs ([ea55184]).
+- Refine component styles and remove callback HTML file ([1a51a99]).
+- Update badge and iconbox CSS tokens, enhance vanilla showcase ([460cd72]).
+- Revise documentation for clarity and design philosophy ([6731535]).
+
 ### Documentation
 
-- Fix README API examples to reflect correct exports: Tailwind utilities now require explicit import from `/tailwind` submodule.
-- Update import examples to use `@phcdevworks/spectre-tokens` for `spectreTokens` (removed from spectre-ui public API in v0.2.2).
-- Clarify that `createSpectreTailwindPreset` is the recommended approach (no default `spectrePreset` export exists).
-- Update TypeScript types section to show correct import paths for Tailwind-related types.
+- Fix README API examples to reflect correct exports: Tailwind utilities now require explicit import from `/tailwind` submodule ([eff390c]).
+- Update import examples to use `@phcdevworks/spectre-tokens` for `spectreTokens` (removed from spectre-ui public API in v0.2.2) ([eff390c]).
+- Clarify that `createSpectreTailwindPreset` is the recommended approach (no default `spectrePreset` export exists) ([eff390c]).
+- Update TypeScript types section to show correct import paths for Tailwind-related types ([eff390c]).
+
+### Examples
+
+- Refactor vanilla.html to use CSS variables for theming ([e61d7a9]).
+- Replace hardcoded color values with CSS variables referencing the Spectre UI theme ([e61d7a9]).
+- Update background gradients, text, and card styles to use theme variables ([e61d7a9]).
+- Remove background gradients and use theme variables for card backgrounds ([c6acb19]).
+
+### Dependencies
+
+- Update caniuse-lite dependency version ([355393b]).
 
 ## [0.3.0] - 2025-12-24
 
@@ -198,12 +233,28 @@ All notable changes to this project will be documented here. The format follows 
 - Revise `FUNDING.yml` for Spectre sponsorship options ([ec69610]).
 - Add VS Code workspace settings and extension recommendations ([4c7bb7f]).
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.3.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.2...v0.3.0
 [0.2.2]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.5...v0.1.0
+[c6acb19]: https://github.com/phcdevworks/spectre-ui/commit/c6acb19
+[eff390c]: https://github.com/phcdevworks/spectre-ui/commit/eff390c
+[e61d7a9]: https://github.com/phcdevworks/spectre-ui/commit/e61d7a9
+[1d3586d]: https://github.com/phcdevworks/spectre-ui/commit/1d3586d
+[147d1a8]: https://github.com/phcdevworks/spectre-ui/commit/147d1a8
+[06e434e]: https://github.com/phcdevworks/spectre-ui/commit/06e434e
+[ca00795]: https://github.com/phcdevworks/spectre-ui/commit/ca00795
+[c303bad]: https://github.com/phcdevworks/spectre-ui/commit/c303bad
+[c1d1bd4]: https://github.com/phcdevworks/spectre-ui/commit/c1d1bd4
+[1a797e1]: https://github.com/phcdevworks/spectre-ui/commit/1a797e1
+[ea55184]: https://github.com/phcdevworks/spectre-ui/commit/ea55184
+[1a51a99]: https://github.com/phcdevworks/spectre-ui/commit/1a51a99
+[460cd72]: https://github.com/phcdevworks/spectre-ui/commit/460cd72
+[6731535]: https://github.com/phcdevworks/spectre-ui/commit/6731535
+[355393b]: https://github.com/phcdevworks/spectre-ui/commit/355393b
 [03cc520]: https://github.com/phcdevworks/spectre-ui/commit/03cc520
 [fb68b25]: https://github.com/phcdevworks/spectre-ui/commit/fb68b25
 [0663b1a]: https://github.com/phcdevworks/spectre-ui/commit/0663b1a
