@@ -55,7 +55,7 @@
 
     /* input roles */
     --sp-component-input-role-border: var(--sp-component-input-border,
-        var(--sp-form-default-border, var(--sp-color-neutral-300, #cbd5f5)));
+        var(--sp-color-neutral-300, #cbd5f5));
     --sp-component-input-role-bg: var(--sp-component-input-bg,
         var(--sp-surface-input, var(--sp-color-neutral-50, #f8fafc)));
     --sp-component-input-role-text: var(--sp-component-input-text,
@@ -63,9 +63,9 @@
     --sp-component-input-role-placeholder: var(--sp-component-input-placeholder,
         var(--sp-text-on-surface-muted, var(--sp-color-neutral-600, #475569)));
     --sp-component-input-role-border-focus: var(--sp-component-input-border-focus,
-        var(--sp-form-focus-border, var(--sp-color-focus-primary, #8652ff)));
+        var(--sp-color-focus-primary, #8652ff));
     --sp-component-input-role-ring: var(--sp-component-input-ring,
-        var(--sp-form-focus-ring, var(--sp-color-focus-primary, #8652ff)));
+        var(--sp-color-focus-primary, #8652ff));
     --sp-component-input-role-border-error: var(--sp-component-input-border-error,
         var(--sp-color-error-500, #ef4444));
     --sp-component-input-role-bg-error: var(--sp-component-input-bg-error,
@@ -213,11 +213,13 @@
   }
 
   .sp-btn--primary.sp-btn--hover,
+  .sp-btn--primary.is-hover,
   .sp-btn--primary:hover {
     background-color: var(--sp-component-button-primary-bg-hover);
   }
 
   .sp-btn--primary.sp-btn--active,
+  .sp-btn--primary.is-active,
   .sp-btn--primary:active {
     background-color: var(--sp-component-button-primary-bg-active);
   }
@@ -237,11 +239,13 @@
   }
 
   .sp-btn--secondary.sp-btn--hover,
+  .sp-btn--secondary.is-hover,
   .sp-btn--secondary:hover {
     background-color: var(--sp-component-button-secondary-bg-hover);
   }
 
   .sp-btn--secondary.sp-btn--active,
+  .sp-btn--secondary.is-active,
   .sp-btn--secondary:active {
     background-color: var(--sp-component-button-secondary-bg-active);
   }
@@ -260,11 +264,13 @@
   }
 
   .sp-btn--ghost.sp-btn--hover,
+  .sp-btn--ghost.is-hover,
   .sp-btn--ghost:hover {
     background-color: var(--sp-component-button-ghost-bg-hover);
   }
 
   .sp-btn--ghost.sp-btn--active,
+  .sp-btn--ghost.is-active,
   .sp-btn--ghost:active {
     background-color: var(--sp-component-button-ghost-bg-active);
   }
@@ -282,11 +288,13 @@
   }
 
   .sp-btn--danger.sp-btn--hover,
+  .sp-btn--danger.is-hover,
   .sp-btn--danger:hover {
     background-color: var(--sp-component-button-danger-bg-hover);
   }
 
   .sp-btn--danger.sp-btn--active,
+  .sp-btn--danger.is-active,
   .sp-btn--danger:active {
     background-color: var(--sp-component-button-danger-bg-active);
   }
@@ -304,11 +312,13 @@
   }
 
   .sp-btn--success.sp-btn--hover,
+  .sp-btn--success.is-hover,
   .sp-btn--success:hover {
     background-color: var(--sp-component-button-success-bg-hover);
   }
 
   .sp-btn--success.sp-btn--active,
+  .sp-btn--success.is-active,
   .sp-btn--success:active {
     background-color: var(--sp-component-button-success-bg-active);
   }
@@ -560,6 +570,20 @@
     background-color: var(--sp-component-iconbox-primary-bg);
     font-family: var(--sp-font-family-sans, system-ui);
     font-weight: var(--sp-font-md-weight, 500);
+    line-height: 0;
+  }
+
+  .sp-iconbox svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    stroke: currentColor;
+  }
+
+  .sp-iconbox svg * {
+    fill: currentColor;
+    stroke: currentColor;
   }
 
   .sp-iconbox--sm {
@@ -580,10 +604,13 @@
     font-size: var(--sp-font-lg-size, 1.125rem);
   }
 
-  .sp-iconbox > svg,
   .sp-iconbox > i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 1em;
     height: 1em;
+    line-height: 0;
   }
 
   .sp-iconbox--primary {
