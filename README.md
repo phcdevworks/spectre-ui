@@ -344,6 +344,68 @@ This ensures all JavaScript, type definitions, and CSS bundles are up to date in
 
 For release history and version notes, see the **[Changelog](CHANGELOG.md)**.
 
+## Spectre Design Philosophy
+
+Spectre is a **specification-driven design system** built on three strict layers:
+
+### 1. @phcdevworks/spectre-tokens (Foundation)
+
+**Purpose**: Single source of truth for design values (colors, surfaces, text roles, space, radii, shadows, etc.)
+
+**Exports**: CSS variables (`--sp-*`), TypeScript token object, Tailwind-compatible theme mappings
+
+**Rules**:
+
+- Tokens define semantic meaning, not UI behavior
+- UI must never invent new colors or values
+- Designers own `tokens/*.json`; engineers maintain `src/` transforms
+- Contrast targets and accessibility constraints are encoded at the token level
+
+**Status**: v0.1.0 released with stable semantic roles (`surface.*`, `text.*`, `component.*`) and considered correct/locked
+
+### 2. @phcdevworks/spectre-ui (Framework-Agnostic UI Layer)
+
+**Purpose**: Converts tokens into real CSS and class recipes
+
+**Ships**:
+
+- `index.css` (canonical CSS bundle: tokens + base + components + utilities)
+- `base.css` (resets + globals)
+- `components.css` (`.sp-btn`, `.sp-card`, `.sp-input`, etc.)
+- `utilities.css` (`.sp-stack`, `.sp-container`, etc.)
+- Type-safe recipes: `getButtonClasses`, `getCardClasses`, `getInputClasses`
+
+**Rules**:
+
+- UI must consume tokens, not redefine design values
+- Literal values in CSS are fallbacks only
+- Every CSS selector has a matching recipe where applicable
+- Tailwind preset is optional and non-authoritative
+
+**Status**: v0.1.0 released, hardened and aligned to tokens
+
+### 3. Framework Adapters (WordPress, Astro, 11ty)
+
+**Purpose**: Thin adapter layer around spectre-ui; automatically syncs and enqueues the Spectre UI CSS bundle
+
+**Rules**:
+
+- Adapters never define styles, never duplicate CSS, never load tokens directly
+- Adapters only synchronize and load CSS
+- All design values come from tokens, all CSS comes from spectre-ui
+
+**Status**: WordPress and Astro adapters at v0.1.0 with frontend and editor integration
+
+### Golden Rule (Non-Negotiable)
+
+**Tokens define meaning. UI defines structure. Adapters only translate.**
+
+Frameworks never invent CSS or design values—they only load what spectre-ui provides.
+
+- If it's a design token → belongs in `@phcdevworks/spectre-tokens`
+- If it's a CSS class or style → belongs in `@phcdevworks/spectre-ui`
+- If it's framework integration (hooks, blocks, components) → belongs in the adapter
+
 ## Design Principles
 
 1. **Single source of truth** – All Spectre products consume these styles and recipes.

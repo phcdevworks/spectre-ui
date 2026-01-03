@@ -1,50 +1,78 @@
-# Contributing to @phcdevworks/spectre-ui
+# Contributing to Spectre UI
 
-Thanks for helping improve Spectre UI! This package is the canonical source for Spectre styles, tokens, recipes, and Tailwind helpers. Keeping changes intentional and well-documented ensures every downstream integration stays in sync.
+Thanks for helping improve Spectre UI! This package is the core styling layer of the Spectre design system. It consumes `@phcdevworks/spectre-tokens` and ships precompiled CSS, type-safe recipe helpers, and a Tailwind preset so downstream frameworks can stay in sync without duplicating logic.
 
-## Spectre Design System Non-Negotiables (Authoritative)
+## Spectre Design Philosophy
 
-Spectre is a specification-driven design system with three strict layers. Keep these in mind for any contribution so responsibilities never blur.
+Spectre is a **specification-driven design system** built on three strict layers:
 
-### 1. @phcdevworks/spectre-tokens (Foundation, Source of Truth)
+### 1. @phcdevworks/spectre-tokens (Foundation)
 
-- Purpose: single source of truth for design values (colors, surfaces, text roles, spacing, radii, shadows, etc.).
-- Exports: CSS variables (`--sp-*`), TypeScript token object, Tailwind-compatible theme mappings.
-- Rules: tokens define meaning, not UI behavior; UI must never invent new colors; tokens may provide fallbacks but semantics live here.
-- Status: v0.1.0 released with stable semantic roles (surface._, text._, component.\*) and considered correct/locked.
+**Purpose**: Single source of truth for design values (colors, surfaces, text roles, space, radii, shadows, etc.)
+
+**Exports**: CSS variables (`--sp-*`), TypeScript token object, Tailwind-compatible theme mappings
+
+**Rules**:
+
+- Tokens define semantic meaning, not UI behavior
+- UI must never invent new colors or values
+- Designers own `tokens/*.json`; engineers maintain `src/` transforms
+- Contrast targets and accessibility constraints are encoded at the token level
+
+**Status**: v0.1.0 released with stable semantic roles (`surface.*`, `text.*`, `component.*`) and considered correct/locked
 
 ### 2. @phcdevworks/spectre-ui (Framework-Agnostic UI Layer)
 
-- Purpose: converts tokens into real CSS and class recipes.
-- Ships: `index.css` (canonical CSS bundle: tokens + base + components + utilities), `base.css` (resets + globals), `components.css` (.sp-btn, .sp-card, .sp-input, etc.), `utilities.css` (.sp-stack, .sp-container, etc.).
-- Provides recipes: `getButtonClasses`, `getCardClasses`, `getInputClasses`.
-- Rules: UI must consume tokens, not redefine design values; literal values in CSS are fallbacks only; every CSS selector has a matching recipe where applicable; Tailwind preset is optional and non-authoritative.
-- Status: v0.1.0 released, hardened and aligned to tokens (no badge or iconbox primitives yet).
+**Purpose**: Converts tokens into real CSS and class recipes
 
-### 3. @phcdevworks/spectre-ui-astro (Adapter/Wrapper Only)
+**Ships**:
 
-- Purpose: thin Astro wrapper around spectre-ui; imports class recipes and outputs correct HTML + classes; exposes a single CSS entry constant.
-- Canonical CSS entry: `export const SPECTRE_UI_CSS = "@phcdevworks/spectre-ui/index.css";`
-- Astro layout usage: `<link rel="stylesheet" href={SPECTRE_UI_CSS} />`
-- Rules: Astro never loads tokens directly, never defines styles, never duplicates CSS; Astro components are HTML + classes only.
-- Status: v0.1.0 released with `<SpButton />`, `<SpCard />`, `<SpInput />`; packaging bugs fixed (dist paths, exports).
+- `index.css` (canonical CSS bundle: tokens + base + components + utilities)
+- `base.css` (resets + globals)
+- `components.css` (`.sp-btn`, `.sp-card`, `.sp-input`, etc.)
+- `utilities.css` (`.sp-stack`, `.sp-container`, etc.)
+- Type-safe recipes: `getButtonClasses`, `getCardClasses`, `getInputClasses`
 
-### Known Gaps (Not Done Yet)
+**Rules**:
 
-- Badge primitive and IconBox primitive (and their recipes/CSS/Astro wrappers) were intentionally not part of v0.1.0.
+- UI must consume tokens, not redefine design values
+- Literal values in CSS are fallbacks only
+- Every CSS selector has a matching recipe where applicable
+- Tailwind preset is optional and non-authoritative
 
-### What Needs to Happen Next
+**Status**: v0.1.0 released, hardened and aligned to tokens
 
-- Spectre UI: add CSS primitives (`.sp-badge`, `.sp-iconbox`), variants/sizes, class recipes (`getBadgeClasses()`, `getIconBoxClasses()`), exports (`src/recipes/index.ts`, `src/index.ts`), and tests (class string correctness, CSS selector existence).
-- Spectre UI Astro: add wrappers (`<SpBadge />`, `<SpIconBox />`), ensure components copy to `dist`, exports resolve cleanly, and no CSS logic is added.
+### 3. Framework Adapters (WordPress, Astro, 11ty)
+
+**Purpose**: Thin adapter layer around spectre-ui; automatically syncs and enqueues the Spectre UI CSS bundle
+
+**Key mechanism**:
+
+- Sync scripts resolve import-free CSS from `@phcdevworks/spectre-ui` at build time
+- Copies to adapter's asset directory
+- Framework-specific hooks enqueue CSS
+
+**Rules**:
+
+- Adapters never define styles, never duplicate CSS, never load tokens directly
+- Adapters only synchronize and load CSS
+- All design values come from tokens, all CSS comes from spectre-ui
+
+**Status**: WordPress and Astro adapters at v0.1.0 with frontend and editor integration
 
 ### Golden Rule (Non-Negotiable)
 
-Tokens define meaning. UI defines structure. Adapters only translate. If a value looks like design, it belongs in tokens. If it is a class, it belongs in spectre-ui. If it is markup, it belongs in Astro.
+**Tokens define meaning. UI defines structure. Adapters only translate.**
+
+Frameworks never invent CSS or design values—they only load what spectre-ui provides.
+
+- If it's a design token → belongs in `@phcdevworks/spectre-tokens`
+- If it's a CSS class or style → belongs in `@phcdevworks/spectre-ui`
+- If it's framework integration (hooks, blocks, components) → belongs in the adapter
 
 ## Development Setup
 
-1. Clone the repo:
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/phcdevworks/spectre-ui.git
@@ -57,54 +85,120 @@ cd spectre-ui
 npm install
 ```
 
-3. Build once (or run in watch mode) to verify changes:
+3. Build the package (compiles TypeScript and generates CSS):
 
 ```bash
 npm run build
-# or: npm run dev   # tsup watch build
+# or for development with watch mode:
+npm run dev
 ```
 
 ## Project Structure
 
-- `src/tokens.ts` – Spectre token exports plus helpers to create CSS variable maps and Tailwind themes
-- `src/tailwind/` – `spectrePreset` and any Tailwind-facing utilities
-- `src/recipes/` – class composition helpers (`getButtonClasses`, `getInputClasses`, etc.)
-- `src/components/` – config files that define prop/state enums shared by recipes
-- `src/styles/` – source CSS before it is bundled into `dist/*.css`
-- `dist/` – generated JS, types, and CSS (do not edit by hand)
+```
+spectre-ui/
+├── src/
+│   ├── index.ts                 # Main exports
+│   ├── css-constants.ts         # CSS path constants
+│   ├── config/                  # Component configuration
+│   │   ├── button.config.ts
+│   │   ├── card.config.ts
+│   │   └── input.config.ts
+│   ├── recipes/                 # Class composition helpers
+│   │   ├── button.ts
+│   │   ├── card.ts
+│   │   ├── input.ts
+│   │   ├── badge.ts
+│   │   ├── iconbox.ts
+│   │   └── index.ts
+│   ├── tailwind/                # Tailwind preset and theme
+│   │   ├── preset.ts
+│   │   ├── theme.ts
+│   │   └── index.ts
+│   ├── tokens/                  # Token re-exports
+│   │   └── index.ts
+│   └── styles/                  # Source CSS
+│       ├── index.css
+│       ├── base.css
+│       ├── components.css
+│       └── utilities.css
+├── dist/                        # Generated artifacts (do not edit)
+└── tests/                       # Test files
+```
 
-## Guidelines
+**Responsibilities**:
 
-### Tokens, CSS, and Recipes
+- **Designers**: Update tokens in `@phcdevworks/spectre-tokens`
+- **Frontend developers**: Edit recipes, CSS, and Tailwind preset in `src/`
+- **Build engineers**: Update build configuration when structure changes
 
-1. **Tokens first**: Modify or add design tokens in `src/tokens.ts` so every consumer (CSS, Tailwind, recipes) inherits the change.
-2. **Generated CSS only**: Source styles live in `src/styles/`; `dist/*.css` is built output. Never edit `dist` directly.
-3. **Consistent recipes**: When updating recipes, keep prop/state names aligned with the configs in `src/components/` and export strict types.
-4. **No logic duplication**: If a framework-specific feature is needed, expose it here as a token, preset addition, or recipe helper instead of re-encoding classes downstream.
+## Contribution Guidelines
 
-### TypeScript & Code Style
+### CSS and Token Integration
 
-- Use modern TypeScript + ES modules (the project is `"type": "module"`).
-- Prefer small, composable helpers; add comments only when behavior is non-obvious.
-- Run `npm run build` (tsup + TypeScript) before opening a PR to ensure type safety.
-- If you add new public APIs, update `src/index.ts` exports and document them in `README.md`.
+1. **Never edit `dist/` manually** – All artifacts in `dist/` are generated via `npm run build`
+2. **Token-first development** – All design values must come from `@phcdevworks/spectre-tokens`
+3. **No hard-coded design values** – Use CSS variables from tokens; literal values are fallbacks only
+4. **Maintain CSS-recipe parity** – Every CSS selector should have a corresponding recipe where applicable
+5. **Test in multiple environments** – Verify changes work with various frameworks (Astro, WordPress, vanilla HTML)
+
+### Recipe Development
+
+- Keep prop/state names aligned with configs in `src/config/`
+- Export strict TypeScript types for all recipe options
+- Ensure recipes generate valid `.sp-*` class combinations
+- Write tests for class string correctness (`tests/` directory)
+- Document new recipes in README.md with usage examples
+
+### Tailwind Preset
+
+- The Tailwind preset is a convenience layer, not the source of truth
+- Preset must consume tokens, never define design values
+- Test preset with both Tailwind 3.x and 4.x
+- Keep preset optional; CSS classes should work without Tailwind
+
+### Code Quality
+
+- Use modern TypeScript + ES modules
+- Prefer small, composable helpers
+- Add JSDoc comments for complex logic
+- Run `npm run build` before committing to ensure type safety
+- Update exports in `src/index.ts` when adding new public APIs
 
 ### Documentation
 
-- Update `README.md` or related guides when you add or change public features.
-- Leave helpful JSDoc comments on new helpers or complex types to aid downstream consumers.
+- Update README.md when adding or changing public features
+- Include code examples for new components or recipes
+- Document breaking changes in commit messages
+- Keep inline code comments clear and concise
 
 ## Pull Request Process
 
-1. Create a feature branch from `main`.
-2. Make your changes with tests/build passing (`npm run build`).
-3. Verify generated files (`dist/**`) are rebuilt as needed and committed.
-4. Update documentation or examples when behavior changes.
-5. Open a PR with a clear description of the change and any follow-up considerations.
+1. **Branch from `main`**
+2. **Make your changes** and test locally (`npm run build` and verify in example projects)
+3. **Run tests** to ensure nothing breaks (`npm test` if applicable)
+4. **Commit generated artifacts** in `dist/` when necessary
+5. **Update documentation** (README.md, JSDoc comments) to reflect behavior changes
+6. **Open a PR** describing:
+   - The motivation for the change
+   - What was changed
+   - Testing notes (frameworks tested, edge cases considered)
+7. **Respond to feedback** and make requested changes
 
-## Questions?
+## Known Gaps (Not Done Yet)
 
-Open an issue on GitHub or start a discussion if you're unsure about the best way to approach a change.
+- Additional component primitives (tabs, modals, tooltips)
+- Dark mode token variants
+- Animation utilities
+- Advanced layout primitives
+
+## Questions or Issues?
+
+Please open an issue or discussion on GitHub if you're unsure about the best approach for a change. Coordinating early avoids conflicts across the Spectre Suite.
+
+## Code of Conduct
+
+This project adheres to the [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to the project maintainers.
 
 ## License
 
