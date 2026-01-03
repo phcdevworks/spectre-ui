@@ -459,8 +459,7 @@
         var(--sp-component-card-ghost-border, var(--sp-component-card-bg)));
   }
 
-  .sp-card p,
-  .sp-card span {
+  .sp-card p {
     color: var(--sp-component-card-text-muted);
   }
 
