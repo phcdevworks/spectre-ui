@@ -2,7 +2,7 @@
 
 Cross-platform UI built on Spectre Tokens. A Tailwind-powered design system that turns the tokens into consistent CSS utilities, component classes and design recipes for WordPress blocks, Astro components, 11ty templates and other modern web apps.
 
-> 🤝 **[Contributing Guide](CONTRIBUTING.md)** | 📝 **[Changelog](CHANGELOG.md)**
+🤝 **[Contributing Guide](CONTRIBUTING.md)** | 📝 **[Changelog](CHANGELOG.md)**
 
 ## Overview
 
