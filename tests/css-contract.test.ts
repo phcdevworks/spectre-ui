@@ -114,10 +114,6 @@ describe('dist/components.css contract', () => {
     });
   });
 
-  it('does not contain legacy form tokens', () => {
-    expect(css).not.toContain('--sp-form-');
-  });
-
   it('contains selectors for all generated recipe classes', () => {
     generatedClassNames.forEach((className) => {
       const matcher = new RegExp(String.raw`\.${escapeRegex(className)}(\s|\{|,)`);

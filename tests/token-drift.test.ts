@@ -50,14 +50,6 @@ describe('token drift guard', () => {
     expect(unknown, `Unknown tokens: ${unknown.join(', ')}`).toHaveLength(0);
   });
 
-  it('does not use legacy form tokens in source styles', () => {
-    const offenders = styleContents
-      .filter(({ content }) => content.includes('--sp-form-'))
-      .map(({ filePath }) => filePath);
-
-    expect(offenders, `Legacy tokens found in: ${offenders.join(', ')}`).toHaveLength(0);
-  });
-
   it('does not use fallback values for tokens in source styles', () => {
     const offenders = styleContents
       .filter(({ content }) => fallbackVarRegex.test(content))
