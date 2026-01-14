@@ -54,22 +54,21 @@
     --sp-component-card-ghost-border: var(--sp-component-card-ghost-bg);
 
     /* input roles */
-    --sp-component-input-role-border: var(--sp-color-neutral-300);
-    --sp-component-input-role-bg: var(--sp-surface-input);
-    --sp-component-input-role-text: var(--sp-component-input-text);
-    --sp-component-input-role-placeholder: var(--sp-component-input-placeholder);
-    --sp-component-input-role-border-focus: var(--sp-color-focus-primary);
-    --sp-component-input-role-ring: var(--sp-color-focus-primary);
-    --sp-component-input-role-border-error: var(--sp-color-error-500);
-    --sp-component-input-role-bg-error: var(--sp-color-error-50);
-    --sp-component-input-role-text-error: var(--sp-color-error-700);
-    --sp-component-input-role-border-success: var(--sp-color-success-500);
-    --sp-component-input-role-bg-success: var(--sp-color-success-50);
-    --sp-component-input-role-text-success: var(--sp-color-success-700);
-    --sp-component-input-role-bg-disabled: var(--sp-surface-input);
-    --sp-component-input-role-text-disabled: var(--sp-text-on-surface-meta);
-    /* Important: border-disabled should fall back to a BORDER token, not a surface token */
-    --sp-component-input-role-border-disabled: var(--sp-color-neutral-200);
+    --sp-component-input-role-border: var(--sp-form-default-border);
+    --sp-component-input-role-bg: var(--sp-form-default-bg);
+    --sp-component-input-role-text: var(--sp-form-default-text);
+    --sp-component-input-role-placeholder: var(--sp-form-default-placeholder);
+    --sp-component-input-role-border-focus: var(--sp-form-focus-border);
+    --sp-component-input-role-ring: var(--sp-form-focus-ring);
+    --sp-component-input-role-border-error: var(--sp-form-invalid-border);
+    --sp-component-input-role-bg-error: var(--sp-form-invalid-bg);
+    --sp-component-input-role-text-error: var(--sp-form-invalid-text);
+    --sp-component-input-role-border-success: var(--sp-form-valid-border);
+    --sp-component-input-role-bg-success: var(--sp-form-valid-bg);
+    --sp-component-input-role-text-success: var(--sp-form-valid-text);
+    --sp-component-input-role-bg-disabled: var(--sp-form-disabled-bg);
+    --sp-component-input-role-text-disabled: var(--sp-form-disabled-text);
+    --sp-component-input-role-border-disabled: var(--sp-form-disabled-border);
 
     /* badge roles */
     --sp-component-badge-font: var(--sp-font-family-sans);
