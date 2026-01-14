@@ -4,6 +4,24 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-01-14
+
+### Changed
+
+- Refactor CSS variables and add z-index/animation utilities ([4a8252a]).
+- Add z-index scale and animation utility custom properties ([4a8252a]).
+- Refactor input role tokens and add utility classes ([7fa700c]).
+- Update input component styles to use new CSS variable structure ([7fa700c]).
+- Add helper text and error message utility classes ([7fa700c]).
+
+### Documentation
+
+- Remove extra character before contributing guide link ([58b642c]).
+
+### Dependencies
+
+- Update dependencies in package-lock.json ([044be22]).
+
 ## [0.4.0] - 2026-01-03
 
 ### Changed
@@ -344,3 +362,7 @@ All notable changes to this project will be documented here. The format follows 
 [1d02612]: https://github.com/phcdevworks/spectre-ui/commit/1d02612
 [ec69610]: https://github.com/phcdevworks/spectre-ui/commit/ec69610
 [4c7bb7f]: https://github.com/phcdevworks/spectre-ui/commit/4c7bb7f
+[4a8252a]: https://github.com/phcdevworks/spectre-ui/commit/4a8252a
+[7fa700c]: https://github.com/phcdevworks/spectre-ui/commit/7fa700c
+[58b642c]: https://github.com/phcdevworks/spectre-ui/commit/58b642c
+[044be22]: https://github.com/phcdevworks/spectre-ui/commit/044be22
