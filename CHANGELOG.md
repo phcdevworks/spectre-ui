@@ -4,6 +4,10 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+### Dependencies
+
+- Update @phcdevworks/spectre-tokens to 0.2.1 ([d96484d]).
+
 ## [0.4.1] - 2026-01-14
 
 ### Changed
@@ -251,13 +255,19 @@ All notable changes to this project will be documented here. The format follows 
 - Revise `FUNDING.yml` for Spectre sponsorship options ([ec69610]).
 - Add VS Code workspace settings and extension recommendations ([4c7bb7f]).
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.4.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.4.1...HEAD
+[0.4.1]: https://github.com/phcdevworks/spectre-ui/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.2...v0.3.0
 [0.2.2]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.5...v0.1.0
+[d96484d]: https://github.com/phcdevworks/spectre-ui/commit/d96484d
+[4a8252a]: https://github.com/phcdevworks/spectre-ui/commit/4a8252a
+[7fa700c]: https://github.com/phcdevworks/spectre-ui/commit/7fa700c
+[58b642c]: https://github.com/phcdevworks/spectre-ui/commit/58b642c
+[044be22]: https://github.com/phcdevworks/spectre-ui/commit/044be22
 [c6acb19]: https://github.com/phcdevworks/spectre-ui/commit/c6acb19
 [eff390c]: https://github.com/phcdevworks/spectre-ui/commit/eff390c
 [e61d7a9]: https://github.com/phcdevworks/spectre-ui/commit/e61d7a9
