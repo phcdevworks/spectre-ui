@@ -8,6 +8,16 @@ declare const spectreStyles: {
     utilities: string;
 };
 
+declare const badgeVariants: readonly ["primary", "success", "warning", "danger"];
+declare const badgeSizes: readonly ["sm", "md", "lg"];
+type BadgeVariant = (typeof badgeVariants)[number];
+type BadgeSize = (typeof badgeSizes)[number];
+interface BadgeRecipeOptions {
+    variant?: BadgeVariant;
+    size?: BadgeSize;
+}
+declare function getBadgeClasses(opts?: BadgeRecipeOptions): string;
+
 declare const buttonVariants: readonly ["primary", "secondary", "ghost", "danger", "success"];
 declare const buttonSizes: readonly ["sm", "md", "lg"];
 type ButtonVariant = (typeof buttonVariants)[number];
@@ -32,6 +42,16 @@ interface CardRecipeOptions {
 }
 declare function getCardClasses(opts?: CardRecipeOptions): string;
 
+declare const iconBoxVariants: readonly ["primary", "success", "warning", "danger", "info"];
+declare const iconBoxSizes: readonly ["sm", "md", "lg"];
+type IconBoxVariant = (typeof iconBoxVariants)[number];
+type IconBoxSize = (typeof iconBoxSizes)[number];
+interface IconBoxRecipeOptions {
+    variant?: IconBoxVariant;
+    size?: IconBoxSize;
+}
+declare function getIconBoxClasses(opts?: IconBoxRecipeOptions): string;
+
 declare const inputStates: readonly ["default", "error", "success", "disabled"];
 declare const inputSizes: readonly ["sm", "md", "lg"];
 type InputState = (typeof inputStates)[number];
@@ -42,25 +62,5 @@ interface InputRecipeOptions {
     fullWidth?: boolean;
 }
 declare function getInputClasses(opts?: InputRecipeOptions): string;
-
-declare const badgeVariants: readonly ["primary", "success", "warning", "danger"];
-declare const badgeSizes: readonly ["sm", "md", "lg"];
-type BadgeVariant = (typeof badgeVariants)[number];
-type BadgeSize = (typeof badgeSizes)[number];
-interface BadgeRecipeOptions {
-    variant?: BadgeVariant;
-    size?: BadgeSize;
-}
-declare function getBadgeClasses(opts?: BadgeRecipeOptions): string;
-
-declare const iconBoxVariants: readonly ["primary", "success", "warning", "danger", "info"];
-declare const iconBoxSizes: readonly ["sm", "md", "lg"];
-type IconBoxVariant = (typeof iconBoxVariants)[number];
-type IconBoxSize = (typeof iconBoxSizes)[number];
-interface IconBoxRecipeOptions {
-    variant?: IconBoxVariant;
-    size?: IconBoxSize;
-}
-declare function getIconBoxClasses(opts?: IconBoxRecipeOptions): string;
 
 export { type BadgeRecipeOptions, type BadgeSize, type BadgeVariant, type ButtonRecipeOptions, type ButtonSize, type ButtonVariant, type CardRecipeOptions, type CardVariant, type IconBoxRecipeOptions, type IconBoxSize, type IconBoxVariant, type InputRecipeOptions, type InputSize, type InputState, getBadgeClasses, getButtonClasses, getCardClasses, getIconBoxClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectreStyles, spectreUtilitiesStylesPath };
