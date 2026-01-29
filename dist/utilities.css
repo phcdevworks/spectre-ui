@@ -67,50 +67,42 @@
   }
 
   .sp-animate-fade-in {
-    animation: var(--sp-animation-fadein-keyframes)
-      var(--sp-animation-fadein-duration) var(--sp-animation-fadein-easing);
+    animation: var(--sp-animation-fadein-keyframes) var(--sp-animation-fadein-duration) var(--sp-animation-fadein-easing);
   }
 
   .sp-animate-fade-out {
-    animation: var(--sp-animation-fadeout-keyframes)
-      var(--sp-animation-fadeout-duration) var(--sp-animation-fadeout-easing);
+    animation: var(--sp-animation-fadeout-keyframes) var(--sp-animation-fadeout-duration) var(--sp-animation-fadeout-easing);
   }
 
   .sp-animate-slide-up {
-    animation: var(--sp-animation-slideup-keyframes)
-      var(--sp-animation-slideup-duration) var(--sp-animation-slideup-easing);
+    animation: var(--sp-animation-slideup-keyframes) var(--sp-animation-slideup-duration) var(--sp-animation-slideup-easing);
   }
 
   .sp-animate-slide-down {
-    animation: var(--sp-animation-slidedown-keyframes)
-      var(--sp-animation-slidedown-duration)
-      var(--sp-animation-slidedown-easing);
+    animation: var(--sp-animation-slidedown-keyframes) var(--sp-animation-slidedown-duration) var(--sp-animation-slidedown-easing);
   }
 
   .sp-animate-scale-in {
-    animation: var(--sp-animation-scalein-keyframes)
-      var(--sp-animation-scalein-duration) var(--sp-animation-scalein-easing);
+    animation: var(--sp-animation-scalein-keyframes) var(--sp-animation-scalein-duration) var(--sp-animation-scalein-easing);
   }
 
   .sp-animate-bounce {
-    animation: var(--sp-animation-bounce-keyframes)
-      var(--sp-animation-bounce-duration) var(--sp-animation-bounce-easing);
+    animation: var(--sp-animation-bounce-keyframes) var(--sp-animation-bounce-duration) var(--sp-animation-bounce-easing);
   }
 
   .sp-animate-shake {
-    animation: var(--sp-animation-shake-keyframes)
-      var(--sp-animation-shake-duration) var(--sp-animation-shake-easing);
+    animation: var(--sp-animation-shake-keyframes) var(--sp-animation-shake-duration) var(--sp-animation-shake-easing);
   }
 
   .sp-animate-pulse {
-    animation: var(--sp-animation-pulse-keyframes)
-      var(--sp-animation-pulse-duration) var(--sp-animation-pulse-easing);
+    animation: var(--sp-animation-pulse-keyframes) var(--sp-animation-pulse-duration) var(--sp-animation-pulse-easing);
   }
 
   @keyframes fade-in {
     from {
       opacity: 0;
     }
+
     to {
       opacity: 1;
     }
@@ -120,6 +112,7 @@
     from {
       opacity: 1;
     }
+
     to {
       opacity: 0;
     }
@@ -130,6 +123,7 @@
       opacity: 0;
       transform: translateY(0.5rem);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -141,6 +135,7 @@
       opacity: 0;
       transform: translateY(-0.5rem);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -152,6 +147,7 @@
       opacity: 0;
       transform: scale(0.95);
     }
+
     to {
       opacity: 1;
       transform: scale(1);
@@ -159,24 +155,29 @@
   }
 
   @keyframes bounce {
+
     0%,
     100% {
       transform: translateY(0);
     }
+
     50% {
       transform: translateY(-0.375rem);
     }
   }
 
   @keyframes shake {
+
     0%,
     100% {
       transform: translateX(0);
     }
+
     20%,
     60% {
       transform: translateX(-0.375rem);
     }
+
     40%,
     80% {
       transform: translateX(0.375rem);
@@ -184,10 +185,12 @@
   }
 
   @keyframes pulse {
+
     0%,
     100% {
       transform: scale(1);
     }
+
     50% {
       transform: scale(1.04);
     }
