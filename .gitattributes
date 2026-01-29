@@ -30,7 +30,11 @@
 *.toml      text eol=lf
 *.json      text eol=lf
 *.sql       text eol=lf
+.env*       text eol=lf
 Dockerfile  text eol=lf
+devcontainer.json text eol=lf
+vite.config.* text eol=lf
+vitest.config.* text eol=lf
 *.gradle    text eol=lf
 
 # Windows-only scripts that expect CRLF
@@ -179,6 +183,8 @@ docker-compose*.yml merge=union
 /.devcontainer/ export-ignore
 /.docker/       export-ignore
 /scripts/       export-ignore
+node_modules/   export-ignore
+*.log           export-ignore
 
 ###############################################################################
 # GitHub Linguist tuning (visual stats only—does not affect Git operations)

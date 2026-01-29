@@ -1,11 +1,29 @@
 {
-	"recommendations": [
-		"github.copilot",
-		"github.copilot-chat",
-		"editorconfig.editorconfig",
-		"esbenp.prettier-vscode",
-		"GitHub.github-vscode-theme",
-		"openai.chatgpt",
-		"streetsidesoftware.code-spell-checker",
-	]
+  "recommendations": [
+    // AI Assistants
+    "github.copilot",
+    "github.copilot-chat",
+    "openai.chatgpt",
+    // Code Quality & Linting
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "editorconfig.editorconfig",
+    "streetsidesoftware.code-spell-checker",
+    // TypeScript & JavaScript
+    "usernamehw.errorlens",
+    "yoavbls.pretty-ts-errors",
+    // Import Management
+    "wix.vscode-import-cost",
+    // Theming & Icons
+    "zhuangtongfa.material-theme",
+    "pkief.material-icon-theme",
+    // Git & Version Control
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    // Utilities
+    "christian-kohler.path-intellisense",
+    "zignd.html-css-class-completion",
+    "formulahendry.auto-rename-tag",
+    "bradlc.vscode-tailwindcss"
+  ]
 }
