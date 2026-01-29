@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { getButtonClasses } from '../src/recipes/button';
 
 describe('getButtonClasses', () => {
@@ -17,10 +17,10 @@ describe('getButtonClasses', () => {
       variant: NonNullable<Parameters<typeof getButtonClasses>[0]>['variant'];
       token: string;
     }> = [
-      { variant: 'secondary', token: 'sp-btn--secondary' },
-      { variant: 'ghost', token: 'sp-btn--ghost' },
-      { variant: 'danger', token: 'sp-btn--danger' },
-    ];
+        { variant: 'secondary', token: 'sp-btn--secondary' },
+        { variant: 'ghost', token: 'sp-btn--ghost' },
+        { variant: 'danger', token: 'sp-btn--danger' },
+      ];
 
     variants.forEach(({ variant, token }) => {
       const result = getButtonClasses({ variant });
@@ -33,10 +33,10 @@ describe('getButtonClasses', () => {
       size: NonNullable<Parameters<typeof getButtonClasses>[0]>['size'];
       token: string;
     }> = [
-      { size: 'sm', token: 'sp-btn--sm' },
-      { size: 'md', token: 'sp-btn--md' },
-      { size: 'lg', token: 'sp-btn--lg' },
-    ];
+        { size: 'sm', token: 'sp-btn--sm' },
+        { size: 'md', token: 'sp-btn--md' },
+        { size: 'lg', token: 'sp-btn--lg' },
+      ];
 
     sizes.forEach(({ size, token }) => {
       const result = getButtonClasses({ size });

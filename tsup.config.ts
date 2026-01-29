@@ -1,8 +1,8 @@
-import { defineConfig } from 'tsup';
 import type { Plugin } from 'esbuild';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { defineConfig } from 'tsup';
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 const stylesDir = path.resolve(rootDir, 'src', 'styles');

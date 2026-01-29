@@ -179,7 +179,8 @@ getInputClasses({ state: "success" });
 ```css
 .input:focus {
   border-color: var(--sp-component-input-border-focus);
-  outline: var(--sp-focus-ring-width) var(--sp-focus-ring-style) var(--sp-component-input-ring-focus);
+  outline: var(--sp-focus-ring-width) var(--sp-focus-ring-style)
+    var(--sp-component-input-ring-focus);
 }
 .input.error {
   border-color: var(--sp-component-input-border-error);

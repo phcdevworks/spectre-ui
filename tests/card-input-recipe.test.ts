@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { getCardClasses } from '../src/recipes/card';
 import { getInputClasses } from '../src/recipes/input';
 

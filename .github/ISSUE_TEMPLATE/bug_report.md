@@ -15,6 +15,7 @@ labels: bug
 ## Screenshots or Logs
 
 ## Environment
+
 - Version:
 - Node/NPM:
 - OS:

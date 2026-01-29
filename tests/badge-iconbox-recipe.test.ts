@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { getBadgeClasses } from '../src/recipes/badge';
 import { getIconBoxClasses } from '../src/recipes/iconbox';
 
