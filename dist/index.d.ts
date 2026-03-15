@@ -8,16 +8,6 @@ declare const spectreStyles: {
     utilities: string;
 };
 
-declare const badgeVariants: readonly ["primary", "success", "warning", "danger", "neutral", "info"];
-declare const badgeSizes: readonly ["sm", "md", "lg"];
-type BadgeVariant = (typeof badgeVariants)[number];
-type BadgeSize = (typeof badgeSizes)[number];
-interface BadgeRecipeOptions {
-    variant?: BadgeVariant;
-    size?: BadgeSize;
-}
-declare function getBadgeClasses(opts?: BadgeRecipeOptions): string;
-
 declare const buttonVariants: readonly ["primary", "secondary", "ghost", "danger", "success", "cta", "accent"];
 declare const buttonSizes: readonly ["sm", "md", "lg"];
 type ButtonVariant = (typeof buttonVariants)[number];
@@ -43,16 +33,6 @@ interface CardRecipeOptions {
 }
 declare function getCardClasses(opts?: CardRecipeOptions): string;
 
-declare const iconBoxVariants: readonly ["primary", "success", "warning", "danger", "info"];
-declare const iconBoxSizes: readonly ["sm", "md", "lg"];
-type IconBoxVariant = (typeof iconBoxVariants)[number];
-type IconBoxSize = (typeof iconBoxSizes)[number];
-interface IconBoxRecipeOptions {
-    variant?: IconBoxVariant;
-    size?: IconBoxSize;
-}
-declare function getIconBoxClasses(opts?: IconBoxRecipeOptions): string;
-
 declare const inputStates: readonly ["default", "error", "success", "disabled"];
 declare const inputSizes: readonly ["sm", "md", "lg"];
 type InputState = (typeof inputStates)[number];
@@ -64,4 +44,49 @@ interface InputRecipeOptions {
 }
 declare function getInputClasses(opts?: InputRecipeOptions): string;
 
-export { type BadgeRecipeOptions, type BadgeSize, type BadgeVariant, type ButtonRecipeOptions, type ButtonSize, type ButtonVariant, type CardRecipeOptions, type CardVariant, type IconBoxRecipeOptions, type IconBoxSize, type IconBoxVariant, type InputRecipeOptions, type InputSize, type InputState, getBadgeClasses, getButtonClasses, getCardClasses, getIconBoxClasses, getInputClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectreStyles, spectreUtilitiesStylesPath };
+declare const badgeVariants: readonly ["primary", "success", "warning", "danger", "neutral", "info"];
+declare const badgeSizes: readonly ["sm", "md", "lg"];
+type BadgeVariant = (typeof badgeVariants)[number];
+type BadgeSize = (typeof badgeSizes)[number];
+interface BadgeRecipeOptions {
+    variant?: BadgeVariant;
+    size?: BadgeSize;
+}
+declare function getBadgeClasses(opts?: BadgeRecipeOptions): string;
+
+declare const iconBoxVariants: readonly ["primary", "success", "warning", "danger", "info"];
+declare const iconBoxSizes: readonly ["sm", "md", "lg"];
+type IconBoxVariant = (typeof iconBoxVariants)[number];
+type IconBoxSize = (typeof iconBoxSizes)[number];
+interface IconBoxRecipeOptions {
+    variant?: IconBoxVariant;
+    size?: IconBoxSize;
+}
+declare function getIconBoxClasses(opts?: IconBoxRecipeOptions): string;
+
+interface TestimonialRecipeOptions {
+}
+declare function getTestimonialClasses(_opts?: TestimonialRecipeOptions): string;
+declare function getTestimonialQuoteClasses(): string;
+declare function getTestimonialAuthorClasses(): string;
+declare function getTestimonialAuthorInfoClasses(): string;
+declare function getTestimonialAuthorNameClasses(): string;
+declare function getTestimonialAuthorTitleClasses(): string;
+
+interface PricingCardRecipeOptions {
+    featured?: boolean;
+}
+declare function getPricingCardClasses(opts?: PricingCardRecipeOptions): string;
+declare function getPricingCardBadgeClasses(): string;
+declare function getPricingCardPriceContainerClasses(): string;
+declare function getPricingCardPriceClasses(): string;
+declare function getPricingCardDescriptionClasses(): string;
+
+interface RatingRecipeOptions {
+}
+declare function getRatingClasses(_opts?: RatingRecipeOptions): string;
+declare function getRatingStarsClasses(): string;
+declare function getRatingStarClasses(isFilled?: boolean): string;
+declare function getRatingTextClasses(): string;
+
+export { type BadgeRecipeOptions, type BadgeSize, type BadgeVariant, type ButtonRecipeOptions, type ButtonSize, type ButtonVariant, type CardRecipeOptions, type CardVariant, type IconBoxRecipeOptions, type IconBoxSize, type IconBoxVariant, type InputRecipeOptions, type InputSize, type InputState, type PricingCardRecipeOptions, type RatingRecipeOptions, type TestimonialRecipeOptions, getBadgeClasses, getButtonClasses, getCardClasses, getIconBoxClasses, getInputClasses, getPricingCardBadgeClasses, getPricingCardClasses, getPricingCardDescriptionClasses, getPricingCardPriceClasses, getPricingCardPriceContainerClasses, getRatingClasses, getRatingStarClasses, getRatingStarsClasses, getRatingTextClasses, getTestimonialAuthorClasses, getTestimonialAuthorInfoClasses, getTestimonialAuthorNameClasses, getTestimonialAuthorTitleClasses, getTestimonialClasses, getTestimonialQuoteClasses, spectreBaseStylesPath, spectreComponentsStylesPath, spectreStyles, spectreUtilitiesStylesPath };

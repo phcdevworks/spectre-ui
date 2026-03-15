@@ -2,11 +2,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { getBadgeClasses } from '../src/recipes/badge';
-import { getButtonClasses } from '../src/recipes/button';
-import { getCardClasses } from '../src/recipes/card';
-import { getIconBoxClasses } from '../src/recipes/iconbox';
-import { getInputClasses } from '../src/recipes/input';
+import {
+  getBadgeClasses,
+  getButtonClasses,
+  getCardClasses,
+  getIconBoxClasses,
+  getInputClasses,
+  getPricingCardClasses,
+  getRatingClasses,
+  getTestimonialClasses,
+} from '../src/recipes';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,9 +40,10 @@ const recipeClassMatrix = [
   getBadgeClasses(),
   getBadgeClasses({ variant: 'danger', size: 'lg' }),
   getBadgeClasses({ variant: 'success', size: 'sm' }),
-  getIconBoxClasses(),
-  getIconBoxClasses({ variant: 'info', size: 'sm' }),
   getIconBoxClasses({ variant: 'warning', size: 'lg' }),
+  getTestimonialClasses(),
+  getPricingCardClasses({ featured: true }),
+  getRatingClasses(),
 ];
 
 const generatedClassNames = new Set(

@@ -28,7 +28,14 @@ export function createSpectreTailwindTheme(
   // Tailwind accepts nested objects of strings for colors.
   const t: any = mergedTokens;
 
-  const colors = (t.colors ?? t.color ?? t.palette ?? {}) as Record<string, any>;
+  const colors = {
+    ...((t.colors ?? t.color ?? t.palette ?? {}) as Record<string, any>),
+    surface: t.surface ?? {},
+    text: t.text ?? {},
+    buttons: t.buttons ?? {},
+    forms: t.forms ?? {},
+    component: t.component ?? {},
+  };
   const spacing = (t.spacing ?? t.space ?? {}) as Record<string, any>;
   const borderRadius = (t.radii ?? t.radius ?? {}) as Record<string, any>;
   const boxShadow = (t.shadows ?? t.shadow ?? {}) as Record<string, any>;

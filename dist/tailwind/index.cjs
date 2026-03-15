@@ -7,7 +7,14 @@ function createSpectreTailwindTheme(options) {
     ...options.overrides ?? {}
   };
   const t = mergedTokens;
-  const colors = t.colors ?? t.color ?? t.palette ?? {};
+  const colors = {
+    ...t.colors ?? t.color ?? t.palette ?? {},
+    surface: t.surface ?? {},
+    text: t.text ?? {},
+    buttons: t.buttons ?? {},
+    forms: t.forms ?? {},
+    component: t.component ?? {}
+  };
   const spacing = t.spacing ?? t.space ?? {};
   const borderRadius = t.radii ?? t.radius ?? {};
   const boxShadow = t.shadows ?? t.shadow ?? {};
