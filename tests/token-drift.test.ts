@@ -26,6 +26,7 @@ const styleFiles = [
 const tokenVarRegex = /--sp-[a-z0-9-]+/g;
 const fallbackVarRegex = /var\(--sp-[a-z0-9-]+\s*,/;
 const rawColorRegex = /#[0-9a-fA-F]{3,8}\b|rgba?\(/;
+const rawMeasurementRegex = /\b([0-9]*\.[0-9]+|[1-9][0-9]*)(px|rem)\b/g;
 
 const readFile = (filePath: string): string => fs.readFileSync(filePath, 'utf8');
 
@@ -64,5 +65,21 @@ describe('token drift guard', () => {
       .map(({ filePath }) => filePath);
 
     expect(offenders, `Raw color literals found in: ${offenders.join(', ')}`).toHaveLength(0);
+  });
+
+  it('does not include literal px or rem measurements (outside base.css)', () => {
+    const offenders: string[] = [];
+    
+    styleContents
+      .filter(({ filePath }) => !filePath.endsWith('base.css'))
+      .forEach(({ filePath, content }) => {
+        const matches = content.match(rawMeasurementRegex);
+        if (matches) {
+          const uniqueMatches = Array.from(new Set(matches));
+          offenders.push(`${path.basename(filePath)}: ${uniqueMatches.join(', ')}`);
+        }
+      });
+
+    expect(offenders, `Literal measurements found:\n- ${offenders.join('\n- ')}`).toHaveLength(0);
   });
 });

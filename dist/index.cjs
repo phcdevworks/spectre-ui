@@ -117,7 +117,8 @@ function getButtonClasses(opts = {}) {
     fullWidth = false,
     loading = false,
     disabled = false,
-    iconOnly = false
+    iconOnly = false,
+    pill = false
   } = opts;
   const variant = resolveOption({
     name: "button variant",
@@ -154,7 +155,8 @@ function getButtonClasses(opts = {}) {
     fullWidth && "sp-btn--full",
     loading && "sp-btn--loading",
     disabled && "sp-btn--disabled",
-    iconOnly && "sp-btn--icon"
+    iconOnly && "sp-btn--icon",
+    pill && "sp-btn--pill"
   );
 }
 
