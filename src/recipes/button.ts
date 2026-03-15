@@ -30,6 +30,7 @@ export interface ButtonRecipeOptions {
   loading?: boolean;
   disabled?: boolean;
   iconOnly?: boolean;
+  pill?: boolean;
 }
 
 export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
@@ -40,6 +41,7 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     loading = false,
     disabled = false,
     iconOnly = false,
+    pill = false,
   } = opts;
 
   const variant = resolveOption({
@@ -81,5 +83,6 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     loading && "sp-btn--loading",
     disabled && "sp-btn--disabled",
     iconOnly && "sp-btn--icon",
+    pill && "sp-btn--pill",
   );
 }
