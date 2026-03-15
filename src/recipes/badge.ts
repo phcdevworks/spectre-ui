@@ -1,7 +1,7 @@
 import { cx } from "../internal/cx";
 import { resolveOption } from "../internal/resolve-option";
 
-const badgeVariants = ["primary", "success", "warning", "danger"] as const;
+const badgeVariants = ["primary", "success", "warning", "danger", "neutral", "info"] as const;
 const badgeSizes = ["sm", "md", "lg"] as const;
 
 export type BadgeVariant = (typeof badgeVariants)[number];
@@ -12,6 +12,8 @@ const BADGE_VARIANTS = {
   success: true,
   warning: true,
   danger: true,
+  neutral: true,
+  info: true,
 } as const;
 
 const BADGE_SIZES = {
@@ -46,6 +48,8 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
     success: "sp-badge--success",
     warning: "sp-badge--warning",
     danger: "sp-badge--danger",
+    neutral: "sp-badge--neutral",
+    info: "sp-badge--info",
   };
   const variantClass = variantMap[variant];
 
