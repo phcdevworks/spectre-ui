@@ -4,96 +4,69 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Spectre UI Vanilla Showcase</title>
+  <title>Spectre UI — Component Showcase</title>
   <base href=".." />
   <link rel="stylesheet" href="./dist/index.css" />
 
   <style>
+    /* ------------------------------------------------------------------ */
+    /* Page chrome — NOT part of Spectre UI.                               */
+    /* Uses token vars for consistency but these styles are demo-only.     */
+    /* ------------------------------------------------------------------ */
     :root {
       color-scheme: light;
-
-      /* page-only styling (NOT part of Spectre UI) */
       --page-bg: var(--sp-surface-page);
       --page-ink: var(--sp-text-on-page-default);
       --panel-bg: var(--sp-surface-card);
       --panel-border: var(--sp-color-neutral-200);
       --panel-shadow: var(--sp-shadow-md);
-      --accent-warm: var(--sp-color-brand-500);
-      --accent-cool: var(--sp-color-accent-600);
-      --accent-muted: var(--sp-color-neutral-100);
-      --sp-radius-meta: 18px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-
-      /* IMPORTANT: test Spectre typography, not a custom serif theme */
-      font-family: var(--sp-font-family-sans, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
-
-      color: var(--page-ink);
-      background: var(--page-bg);
     }
 
     main {
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
       padding: var(--sp-space-48) var(--sp-space-24) var(--sp-space-64);
       display: grid;
       gap: var(--sp-space-40);
     }
 
-    header.hero {
+    /* Hero ------------------------------------------------------------ */
+    .hero {
       display: grid;
       gap: var(--sp-space-32);
       align-items: center;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       padding: var(--sp-space-40);
       border-radius: var(--sp-radius-lg);
       background: var(--panel-bg);
-      border: var(--sp-border-width-base) solid var(--panel-border);
+      border: var(--sp-component-border-width) solid var(--panel-border);
       box-shadow: var(--panel-shadow);
-      position: relative;
-      overflow: hidden;
-      animation: fade-up 600ms ease-out both;
+      animation: page-enter var(--sp-duration-moderate) var(--sp-easing-out) both;
     }
 
-    header.hero::after {
-      content: "";
-      position: absolute;
-      inset: auto -10% -60% -10%;
-      height: 65%;
-      background: none;
-      pointer-events: none;
-    }
-
-    .hero-copy {
-      position: relative;
-      z-index: 1;
-    }
+    .hero-copy { position: relative; z-index: 1; }
 
     .eyebrow {
       text-transform: uppercase;
-      letter-spacing: 0.24em;
+      letter-spacing: var(--sp-font-xs-letter-spacing);
       font-size: var(--sp-font-xs-size);
       margin: 0 0 var(--sp-space-8);
-      color: var(--accent-cool);
+      color: var(--sp-color-accent-600);
     }
 
-    h1 {
-      font-size: var(--sp-font-xl-size);
+    .hero h1 {
+      font-size: var(--sp-font-2xl-size);
+      font-weight: var(--sp-font-2xl-weight);
+      line-height: var(--sp-font-2xl-line-height);
       margin: 0 0 var(--sp-space-16);
     }
 
     .lead {
       font-size: var(--sp-font-md-size);
       line-height: var(--sp-font-md-line-height);
+      color: var(--sp-text-on-page-muted);
       margin: 0 0 var(--sp-space-24);
-      max-width: 35rem;
+      max-width: 38ch;
     }
 
     .hero-actions {
@@ -105,194 +78,149 @@
 
     .hero-meta {
       display: grid;
-      gap: 1rem;
+      gap: var(--sp-space-16);
       position: relative;
       z-index: 1;
     }
 
     .meta-card {
       padding: var(--sp-space-20) var(--sp-space-24);
-      border-radius: var(--sp-radius-meta);
-      border: var(--sp-border-width-base) solid var(--panel-border);
+      border-radius: var(--sp-radius-lg);
+      border: var(--sp-component-border-width) solid var(--panel-border);
       background: var(--sp-surface-card);
       display: grid;
       gap: var(--sp-space-8);
     }
 
     .meta-title {
-      font-weight: 600;
-      font-size: 1rem;
+      font-weight: var(--sp-font-xl-weight);
+      font-size: var(--sp-font-md-size);
     }
 
     .meta-line {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 0.95rem;
+      gap: var(--sp-space-8);
+      font-size: var(--sp-font-sm-size);
     }
 
+    /* Section cards --------------------------------------------------- */
     .section-card {
       padding: var(--sp-space-32);
       border-radius: var(--sp-radius-lg);
       background: var(--panel-bg);
-      border: var(--sp-border-width-base) solid var(--panel-border);
+      border: var(--sp-component-border-width) solid var(--panel-border);
       box-shadow: var(--panel-shadow);
-      animation: fade-up 700ms ease-out both;
+      animation: page-enter var(--sp-duration-moderate) var(--sp-easing-out) both;
     }
 
-    .section-title {
+    .section-header {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      gap: 1rem;
-      margin: 0 0 1.5rem;
-    }
-
-    .section-title h2 {
-      margin: 0;
-      font-size: 1.6rem;
-    }
-
-    .section-title p {
-      margin: 0;
-      max-width: 24rem;
-      color: var(--sp-text-on-surface-muted);
-    }
-
-    .demo-grid {
-      display: grid;
-      gap: 1.5rem;
-    }
-
-    .demo-row {
-      display: flex;
       flex-wrap: wrap;
-      gap: var(--sp-space-12);
-      align-items: center;
+      gap: var(--sp-space-16);
+      margin-bottom: var(--sp-space-24);
     }
 
-    .card-grid {
-      display: grid;
-      gap: 1.25rem;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    .section-header h2 {
+      margin: 0;
+      font-size: var(--sp-font-xl-size);
+      font-weight: var(--sp-font-xl-weight);
     }
 
-    .panel-stack {
-      display: grid;
-      gap: 1rem;
+    .section-header p {
+      margin: 0;
+      max-width: 28ch;
+      color: var(--sp-text-on-surface-muted);
+      font-size: var(--sp-font-sm-size);
     }
 
+    /* Grids & rows ---------------------------------------------------- */
+    .demo-grid   { display: grid; gap: var(--sp-space-20); }
+    .demo-row    { display: flex; flex-wrap: wrap; gap: var(--sp-space-12); align-items: center; }
+    .card-grid   { display: grid; gap: var(--sp-space-20); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .split-grid  { display: grid; gap: var(--sp-space-24); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .panel-stack { display: grid; gap: var(--sp-space-16); }
     .panel-muted {
-      background: var(--accent-muted);
-      border-radius: 18px;
-      padding: 1rem 1.25rem;
-    }
-
-    .sample-card {
-      min-height: 170px;
-      display: grid;
-      gap: 0.8rem;
-    }
-
-    .sample-card--ghost {
       background: var(--sp-color-neutral-100);
-      border-color: var(--sp-color-neutral-200);
+      border-radius: var(--sp-radius-lg);
+      padding: var(--sp-space-16) var(--sp-space-20);
     }
 
-    .iconbox-row {
+    .sample-card { min-height: 180px; display: grid; gap: var(--sp-space-12); }
+
+    /* Code block ------------------------------------------------------ */
+    .code-block {
+      font-family: var(--sp-font-family-mono);
+      font-size: var(--sp-font-sm-size);
+      padding: var(--sp-space-16) var(--sp-space-20);
+      background: var(--sp-color-neutral-900);
+      color: var(--sp-color-neutral-50);
+      border-radius: var(--sp-radius-lg);
+      overflow-x: auto;
+      line-height: var(--sp-font-md-line-height);
+    }
+
+    .code-block .comment { color: var(--sp-color-neutral-400); }
+
+    /* Iconbox showcase row -------------------------------------------- */
+    .iconbox-grid {
       display: grid;
-      gap: 1.25rem;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--sp-space-20);
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     }
-
     .iconbox-item {
       display: grid;
-      gap: 0.75rem;
+      gap: var(--sp-space-8);
       align-items: center;
       justify-items: start;
     }
+    .iconbox-item strong { font-size: var(--sp-font-sm-size); }
+    .iconbox-item span   { font-size: var(--sp-font-xs-size); color: var(--sp-text-on-surface-muted); }
 
-    .iconbox-item strong {
-      font-size: 1rem;
-    }
-
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
-
-    .code-block {
-      font-family: "SFMono-Regular", "Fira Code", "Consolas", "Liberation Mono", monospace;
-      font-size: 0.9rem;
-      padding: 1rem 1.25rem;
-      background: var(--sp-color-neutral-900);
-      color: var(--sp-color-neutral-50);
-      border-radius: 16px;
-      overflow-x: auto;
-    }
-
-    .split-grid {
-      display: grid;
-      gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    }
-
+    /* Footer ---------------------------------------------------------- */
     .footer-note {
       text-align: center;
-      font-size: 0.95rem;
+      font-size: var(--sp-font-sm-size);
       color: var(--sp-text-on-surface-meta);
     }
 
-    /* Make inline SVG icons deterministic */
-    .demo-icon svg {
-      display: block;
-      width: 1em;
-      height: 1em;
-    }
+    /* Inline SVG sizing ----------------------------------------------- */
+    .demo-icon svg { display: block; width: 1em; height: 1em; }
 
-    @keyframes fade-up {
-      from {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* Page entrance animation ----------------------------------------- */
+    @keyframes page-enter {
+      from { opacity: 0; transform: translateY(var(--sp-space-12)); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 640px) {
-      header.hero {
-        padding: 2rem 1.5rem;
-      }
-
-      .section-card {
-        padding: 1.5rem;
-      }
-
-      .section-title {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      .hero { padding: var(--sp-space-24); }
+      .section-card { padding: var(--sp-space-20); }
+      .section-header { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 
 <body>
   <main>
+
+    <!-- ============================================================= -->
+    <!-- HERO                                                           -->
+    <!-- ============================================================= -->
     <header class="hero">
       <div class="hero-copy">
         <p class="eyebrow">Spectre Design System</p>
-        <h1>Spectre UI Vanilla Showcase</h1>
+        <h1>Spectre UI v0.4.1</h1>
         <p class="lead">
-          A focused QA surface that uses the canonical <code>dist/index.css</code> bundle. This page highlights core
-          components plus the new badge and iconbox primitives.
+          A comprehensive showcase of every component, variant,
+          size, and state class shipped in the canonical
+          <code>dist/index.css</code> bundle.
         </p>
         <div class="hero-actions">
-          <button class="sp-btn sp-btn--primary sp-btn--lg" type="button">Create Layout</button>
-          <button class="sp-btn sp-btn--ghost sp-btn--lg" type="button">Review Tokens</button>
+          <button class="sp-btn sp-btn--primary sp-btn--lg" type="button">Get Started</button>
+          <button class="sp-btn sp-btn--ghost sp-btn--lg" type="button">Browse Tokens</button>
           <span class="sp-badge sp-badge--success sp-badge--lg">v0.4.1</span>
         </div>
       </div>
@@ -302,11 +230,15 @@
           <div class="meta-title">Release snapshot</div>
           <div class="meta-line">
             <span class="sp-badge sp-badge--primary sp-badge--sm">Foundation</span>
-            <span>Tokens + components aligned.</span>
+            <span>Tokens + CSS aligned</span>
+          </div>
+          <div class="meta-line">
+            <span class="sp-badge sp-badge--success sp-badge--sm">Tests</span>
+            <span>43 / 43 passing</span>
           </div>
           <div class="meta-line">
             <span class="sp-badge sp-badge--warning sp-badge--sm">Adapters</span>
-            <span>Astro is markup-only.</span>
+            <span>Astro markup-only</span>
           </div>
         </div>
 
@@ -315,156 +247,169 @@
           <div class="demo-row">
             <button class="sp-btn sp-btn--secondary sp-btn--sm" type="button">Download</button>
             <button class="sp-btn sp-btn--danger sp-btn--sm" type="button">Report Issue</button>
+            <button class="sp-btn sp-btn--cta sp-btn--sm" type="button">Sponsor</button>
           </div>
         </div>
       </div>
     </header>
 
+    <!-- ============================================================= -->
+    <!-- BUTTONS                                                        -->
+    <!-- ============================================================= -->
     <section class="section-card">
-      <div class="section-title">
-        <h2>Buttons & States</h2>
-        <p>Variants, sizes, and forced state classes.</p>
+      <div class="section-header">
+        <h2>Buttons</h2>
+        <p>7 variants · 3 sizes · pill, icon-only, loading, disabled</p>
       </div>
 
       <div class="demo-grid">
+        <!-- all variants -->
         <div class="demo-row">
           <button class="sp-btn sp-btn--primary" type="button">Primary</button>
           <button class="sp-btn sp-btn--secondary" type="button">Secondary</button>
           <button class="sp-btn sp-btn--ghost" type="button">Ghost</button>
           <button class="sp-btn sp-btn--success" type="button">Success</button>
           <button class="sp-btn sp-btn--danger" type="button">Danger</button>
+          <button class="sp-btn sp-btn--cta" type="button">CTA</button>
+          <button class="sp-btn sp-btn--accent" type="button">Accent</button>
+        </div>
+
+        <!-- sizes -->
+        <div class="demo-row">
+          <button class="sp-btn sp-btn--primary sp-btn--sm" type="button">Small</button>
+          <button class="sp-btn sp-btn--primary sp-btn--md" type="button">Medium</button>
+          <button class="sp-btn sp-btn--primary sp-btn--lg" type="button">Large</button>
+        </div>
+
+        <!-- modifiers -->
+        <div class="demo-row">
+          <button class="sp-btn sp-btn--primary sp-btn--pill" type="button">Pill</button>
+          <button class="sp-btn sp-btn--secondary sp-btn--pill" type="button">Secondary Pill</button>
+          <button class="sp-btn sp-btn--primary sp-btn--icon" type="button" aria-label="Star">★</button>
+          <button class="sp-btn sp-btn--primary sp-btn--loading" type="button">Loading…</button>
+          <button class="sp-btn sp-btn--primary" disabled type="button">Disabled</button>
+        </div>
+
+        <!-- forced states -->
+        <div class="demo-row">
+          <button class="sp-btn sp-btn--secondary is-hover" type="button">Forced Hover</button>
+          <button class="sp-btn sp-btn--secondary is-active" type="button">Forced Active</button>
+          <button class="sp-btn sp-btn--ghost is-hover" type="button">Ghost Hover</button>
+        </div>
+
+        <!-- full-width -->
+        <button class="sp-btn sp-btn--cta sp-btn--full sp-btn--lg" type="button">Full-width CTA</button>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- BADGES                                                         -->
+    <!-- ============================================================= -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2>Badges</h2>
+        <p>6 semantic variants · 3 sizes</p>
+      </div>
+
+      <div class="demo-grid">
+        <div class="demo-row">
+          <span class="sp-badge sp-badge--primary sp-badge--sm">Primary sm</span>
+          <span class="sp-badge sp-badge--success sp-badge--sm">Success sm</span>
+          <span class="sp-badge sp-badge--warning sp-badge--sm">Warning sm</span>
+          <span class="sp-badge sp-badge--danger sp-badge--sm">Danger sm</span>
+          <span class="sp-badge sp-badge--neutral sp-badge--sm">Neutral sm</span>
+          <span class="sp-badge sp-badge--info sp-badge--sm">Info sm</span>
         </div>
 
         <div class="demo-row">
-          <button class="sp-btn sp-btn--primary sp-btn--sm" type="button">Small</button>
-          <button class="sp-btn sp-btn--secondary sp-btn--md" type="button">Medium</button>
-          <button class="sp-btn sp-btn--ghost sp-btn--lg" type="button">Large</button>
-          <button class="sp-btn sp-btn--primary sp-btn--loading" type="button">Loading</button>
+          <span class="sp-badge sp-badge--primary sp-badge--md">Primary md</span>
+          <span class="sp-badge sp-badge--success sp-badge--md">Success md</span>
+          <span class="sp-badge sp-badge--warning sp-badge--md">Warning md</span>
+          <span class="sp-badge sp-badge--danger sp-badge--md">Danger md</span>
+          <span class="sp-badge sp-badge--neutral sp-badge--md">Neutral md</span>
+          <span class="sp-badge sp-badge--info sp-badge--md">Info md</span>
+        </div>
 
-          <!-- use forced state classes -->
-          <button class="sp-btn sp-btn--secondary is-active" type="button">Active</button>
-          <button class="sp-btn sp-btn--ghost is-hover" type="button">Hover</button>
-
-          <button class="sp-btn sp-btn--primary" disabled type="button">Disabled</button>
+        <div class="demo-row">
+          <span class="sp-badge sp-badge--primary sp-badge--lg">Primary lg</span>
+          <span class="sp-badge sp-badge--success sp-badge--lg">Success lg</span>
+          <span class="sp-badge sp-badge--warning sp-badge--lg">Warning lg</span>
+          <span class="sp-badge sp-badge--danger sp-badge--lg">Danger lg</span>
+          <span class="sp-badge sp-badge--neutral sp-badge--lg">Neutral lg</span>
+          <span class="sp-badge sp-badge--info sp-badge--lg">Info lg</span>
         </div>
       </div>
     </section>
 
+    <!-- ============================================================= -->
+    <!-- ICON BOXES                                                     -->
+    <!-- ============================================================= -->
     <section class="section-card">
-      <div class="section-title">
-        <h2>Badges</h2>
-        <p>Multiple sizes and semantic variants.</p>
-      </div>
-
-      <div class="panel-stack">
-        <div class="badge-row">
-          <span class="sp-badge sp-badge--primary sp-badge--sm">Primary</span>
-          <span class="sp-badge sp-badge--success sp-badge--sm">Success</span>
-          <span class="sp-badge sp-badge--warning sp-badge--sm">Warning</span>
-          <span class="sp-badge sp-badge--danger sp-badge--sm">Danger</span>
-        </div>
-
-        <div class="badge-row">
-          <span class="sp-badge sp-badge--primary sp-badge--md">Release</span>
-          <span class="sp-badge sp-badge--success sp-badge--md">Passing</span>
-          <span class="sp-badge sp-badge--warning sp-badge--md">Review</span>
-          <span class="sp-badge sp-badge--danger sp-badge--md">Blocked</span>
-        </div>
-
-        <div class="badge-row">
-          <span class="sp-badge sp-badge--primary sp-badge--lg">Primary</span>
-          <span class="sp-badge sp-badge--success sp-badge--lg">Success</span>
-          <span class="sp-badge sp-badge--warning sp-badge--lg">Warning</span>
-          <span class="sp-badge sp-badge--danger sp-badge--lg">Danger</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-card">
-      <div class="section-title">
+      <div class="section-header">
         <h2>Icon Boxes</h2>
-        <p>Iconbox primitive with sizing and semantic variants.</p>
+        <p>5 semantic variants · 3 sizes · SVG color inheritance</p>
       </div>
 
-      <div class="iconbox-row">
+      <div class="iconbox-grid">
         <div class="iconbox-item">
           <span class="sp-iconbox sp-iconbox--primary sp-iconbox--sm">
             <i class="demo-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M12 4.5l6.5 3.7v7.6L12 19.5l-6.5-3.7V8.2L12 4.5z" />
-                <path d="M12 6.6L7 9v6l5 2.9 5-2.9V9l-5-2.4z" />
-              </svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5l6.5 3.7v7.6L12 19.5l-6.5-3.7V8.2L12 4.5z"/></svg>
             </i>
           </span>
-          <strong>Primary</strong>
-          <span>Small iconbox for tags.</span>
+          <strong>Primary sm</strong>
+          <span>Compact tag icon</span>
         </div>
 
         <div class="iconbox-item">
           <span class="sp-iconbox sp-iconbox--success sp-iconbox--md">
             <i class="demo-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M20 6L9 17l-5-5" />
-              </svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
             </i>
           </span>
-          <strong>Success</strong>
-          <span>Medium iconbox for status.</span>
+          <strong>Success md</strong>
+          <span>Status indicator</span>
         </div>
 
         <div class="iconbox-item">
           <span class="sp-iconbox sp-iconbox--warning sp-iconbox--md">
             <i class="demo-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M12 9v4" />
-                <path d="M12 17h.01" />
-                <path d="M10.3 4.4l-8.6 15A2 2 0 004.4 22h15.2a2 2 0 001.7-2.6l-8.6-15a2 2 0 00-3.4 0z" />
-              </svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 4.4l-8.6 15A2 2 0 004.4 22h15.2a2 2 0 001.7-2.6l-8.6-15a2 2 0 00-3.4 0z"/></svg>
             </i>
           </span>
-          <strong>Warning</strong>
-          <span>Attention-friendly callout.</span>
+          <strong>Warning md</strong>
+          <span>Attention callout</span>
         </div>
 
         <div class="iconbox-item">
           <span class="sp-iconbox sp-iconbox--danger sp-iconbox--lg">
             <i class="demo-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M12 2l10 10-10 10L2 12 12 2z" />
-                <path d="M15 9l-6 6" />
-                <path d="M9 9l6 6" />
-              </svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l10 10-10 10L2 12 12 2z"/><path d="M15 9l-6 6"/><path d="M9 9l6 6"/></svg>
             </i>
           </span>
-          <strong>Danger</strong>
-          <span>Large iconbox for alerts.</span>
+          <strong>Danger lg</strong>
+          <span>Critical alert</span>
         </div>
 
         <div class="iconbox-item">
           <span class="sp-iconbox sp-iconbox--info sp-iconbox--lg">
             <i class="demo-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M12 17v-6" />
-                <path d="M12 8h.01" />
-                <circle cx="12" cy="12" r="9" />
-              </svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 17v-6"/><path d="M12 8h.01"/></svg>
             </i>
           </span>
-          <strong>Info</strong>
-          <span>Info-ready iconbox.</span>
+          <strong>Info lg</strong>
+          <span>Informational</span>
         </div>
       </div>
     </section>
 
+    <!-- ============================================================= -->
+    <!-- CARDS                                                          -->
+    <!-- ============================================================= -->
     <section class="section-card">
-      <div class="section-title">
+      <div class="section-header">
         <h2>Cards</h2>
-        <p>Surface treatments with inline badge + iconbox usage.</p>
+        <p>4 surface variants · interactive, padded, full-height modifiers</p>
       </div>
 
       <div class="card-grid">
@@ -472,18 +417,23 @@
           <div class="demo-row">
             <span class="sp-iconbox sp-iconbox--primary sp-iconbox--sm">
               <i class="demo-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <rect x="4" y="7" width="16" height="12" rx="2" />
-                  <path d="M8 7V5h8v2" />
-                </svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M8 7V5h8v2"/></svg>
               </i>
             </span>
             <span class="sp-badge sp-badge--primary sp-badge--sm">Elevated</span>
           </div>
           <h3>Design Preview</h3>
-          <p>Elevated surface with aligned tokens.</p>
+          <p>Elevated surface with shadow depth.</p>
           <button class="sp-btn sp-btn--secondary sp-btn--sm" type="button">Open</button>
+        </article>
+
+        <article class="sp-card sp-card--flat sp-card--padded sample-card">
+          <div class="demo-row">
+            <span class="sp-badge sp-badge--neutral sp-badge--sm">Flat</span>
+          </div>
+          <h3>Content Panel</h3>
+          <p>Flat treatment for embedded content.</p>
+          <button class="sp-btn sp-btn--ghost sp-btn--sm" type="button">Explore</button>
         </article>
 
         <article class="sp-card sp-card--outline sp-card--padded sample-card">
@@ -491,21 +441,16 @@
             <span class="sp-badge sp-badge--warning sp-badge--sm">Outline</span>
             <span class="sp-badge sp-badge--danger sp-badge--sm">New</span>
           </div>
-          <h3>Review Bundle</h3>
-          <p>Outline surface for documentation or checklist content.</p>
+          <h3>Documentation</h3>
+          <p>Outline surface for checklist content.</p>
           <button class="sp-btn sp-btn--ghost sp-btn--sm" type="button">Inspect</button>
         </article>
 
-        <article class="sp-card sp-card--ghost sp-card--padded sample-card sample-card--ghost">
+        <article class="sp-card sp-card--ghost sp-card--padded sample-card">
           <div class="demo-row">
             <span class="sp-iconbox sp-iconbox--info sp-iconbox--sm">
               <i class="demo-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M12 11v6" />
-                  <path d="M12 8h.01" />
-                </svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><path d="M12 8h.01"/></svg>
               </i>
             </span>
             <span class="sp-badge sp-badge--success sp-badge--sm">Ghost</span>
@@ -515,78 +460,49 @@
           <button class="sp-btn sp-btn--primary sp-btn--sm" type="button">View</button>
         </article>
       </div>
-    </section>
 
-    <section class="section-card">
-      <div class="section-title">
-        <h2>Pricing Cards</h2>
-        <p>Tiered plans with featured state and custom badges.</p>
-      </div>
-
-      <div class="card-grid">
-        <div class="sp-pricing-card">
-          <h3>Standard Plan</h3>
-          <div class="sp-pricing-card-price-container">
-            <span class="sp-pricing-card-price">$29</span>
-            <span class="sp-pricing-card-description">/month</span>
-          </div>
-          <p>Perfect for small teams and startups.</p>
-          <button class="sp-btn sp-btn--primary sp-btn--full">Get Started</button>
-        </div>
-
-        <div class="sp-pricing-card sp-pricing-card--featured">
-          <span class="sp-pricing-card-badge">Most Popular</span>
-          <h3>Pro Plan</h3>
-          <div class="sp-pricing-card-price-container">
-            <span class="sp-pricing-card-price">$94</span>
-            <span class="sp-pricing-card-description">/month</span>
-          </div>
-          <p>For growing enterprises and power users.</p>
-          <button class="sp-btn sp-btn--cta sp-btn--full">Go Pro</button>
-        </div>
+      <!-- interactive card -->
+      <div class="demo-grid" style="margin-top: var(--sp-space-20);">
+        <article class="sp-card sp-card--elevated sp-card--padded sp-card--interactive" tabindex="0">
+          <h3>Interactive Card</h3>
+          <p>Hover or focus this card to see the lift + shadow transition. Uses <code>sp-card--interactive</code>.</p>
+        </article>
       </div>
     </section>
 
+    <!-- ============================================================= -->
+    <!-- INPUTS                                                         -->
+    <!-- ============================================================= -->
     <section class="section-card">
-      <div class="section-title">
-        <h2>Ratings</h2>
-        <p>Interactive rating components with state support.</p>
-      </div>
-
-      <div class="demo-grid">
-        <div class="demo-row">
-          <div class="sp-rating">
-            <div class="sp-rating-stars">
-              <span class="sp-rating-star sp-rating-star--filled">★</span>
-              <span class="sp-rating-star sp-rating-star--filled">★</span>
-              <span class="sp-rating-star sp-rating-star--filled">★</span>
-              <span class="sp-rating-star sp-rating-star--filled">★</span>
-              <span class="sp-rating-star">★</span>
-            </div>
-            <span class="sp-rating-text">4.0 (128 reviews)</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-card">
-      <div class="section-title">
+      <div class="section-header">
         <h2>Inputs</h2>
-        <p>Input states with helper text and messaging.</p>
+        <p>3 sizes · 4 states · wrapper, label, helper, error</p>
       </div>
 
       <div class="split-grid">
         <div class="panel-stack">
           <label class="sp-input-wrapper">
             <span class="sp-label">Default</span>
-            <input class="sp-input" placeholder="Type here" />
+            <input class="sp-input" placeholder="Type something…" />
+          </label>
+
+          <label class="sp-input-wrapper">
+            <span class="sp-label">Small</span>
+            <input class="sp-input sp-input--sm" placeholder="Small input" />
+          </label>
+
+          <label class="sp-input-wrapper">
+            <span class="sp-label">Large</span>
+            <input class="sp-input sp-input--lg" placeholder="Large input" />
           </label>
 
           <label class="sp-input-wrapper">
             <span class="sp-label">Focused (forced)</span>
             <input class="sp-input sp-input--focus" value="Focus ring preview" />
           </label>
+        </div>
 
+        <div class="panel-stack">
           <label class="sp-input-wrapper">
             <span class="sp-label">Error</span>
             <input class="sp-input sp-input--error" value="Bad value" />
@@ -601,36 +517,188 @@
 
           <label class="sp-input-wrapper">
             <span class="sp-label">Disabled</span>
-            <input class="sp-input sp-input--disabled" value="Can’t edit" disabled />
+            <input class="sp-input sp-input--disabled" value="Can't edit" disabled />
+          </label>
+
+          <label class="sp-input-wrapper">
+            <span class="sp-label">Full width</span>
+            <input class="sp-input sp-input--full" placeholder="Takes full container width" />
           </label>
         </div>
+      </div>
+    </section>
 
-        <div class="panel-stack">
-          <div class="panel-muted">
-            <h3>Recipe usage</h3>
-            <p>Generated classes should mirror the CSS selectors.</p>
+    <!-- ============================================================= -->
+    <!-- TESTIMONIALS                                                   -->
+    <!-- ============================================================= -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2>Testimonials</h2>
+        <p>Social proof component with quote, author name & title.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="sp-testimonial">
+          <p class="sp-testimonial-quote">"This design system is incredible. It synced our entire product in a weekend."</p>
+          <div class="sp-testimonial-author">
+            <div class="sp-testimonial-author-info">
+              <span class="sp-testimonial-author-name">Jules Martinez</span>
+              <span class="sp-testimonial-author-title">Senior Software Engineer</span>
+            </div>
           </div>
+        </div>
 
-          <pre class="code-block"><code>getBadgeClasses({ variant: "warning", size: "sm" })
-// sp-badge sp-badge--warning sp-badge--sm
-
-getIconBoxClasses({ variant: "info", size: "lg" })
-// sp-iconbox sp-iconbox--info sp-iconbox--lg</code></pre>
-
-          <div class="panel-muted">
-            <div class="demo-row">
-              <button class="sp-btn sp-btn--primary" type="button">Submit</button>
-              <button class="sp-btn sp-btn--ghost" type="button">Cancel</button>
+        <div class="sp-testimonial">
+          <p class="sp-testimonial-quote">"Spectre tokens mean I never argue about spacing or colors again."</p>
+          <div class="sp-testimonial-author">
+            <div class="sp-testimonial-author-info">
+              <span class="sp-testimonial-author-name">Aria Chen</span>
+              <span class="sp-testimonial-author-title">Design Lead, Acme Corp</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ============================================================= -->
+    <!-- PRICING CARDS                                                  -->
+    <!-- ============================================================= -->
     <section class="section-card">
-      <div class="section-title">
+      <div class="section-header">
+        <h2>Pricing Cards</h2>
+        <p>Standard & featured tiers with badge, price, and description.</p>
+      </div>
+
+      <div class="card-grid" style="align-items: start;">
+        <div class="sp-pricing-card">
+          <h3>Starter</h3>
+          <div class="sp-pricing-card-price-container">
+            <span class="sp-pricing-card-price">$0</span>
+            <span class="sp-pricing-card-description">/month</span>
+          </div>
+          <p>Perfect for trying things out.</p>
+          <button class="sp-btn sp-btn--secondary sp-btn--full" type="button">Start Free</button>
+        </div>
+
+        <div class="sp-pricing-card sp-pricing-card--featured">
+          <span class="sp-pricing-card-badge">Most Popular</span>
+          <h3>Pro</h3>
+          <div class="sp-pricing-card-price-container">
+            <span class="sp-pricing-card-price">$49</span>
+            <span class="sp-pricing-card-description">/month</span>
+          </div>
+          <p>For growing teams and power users.</p>
+          <button class="sp-btn sp-btn--cta sp-btn--full" type="button">Go Pro</button>
+        </div>
+
+        <div class="sp-pricing-card">
+          <h3>Enterprise</h3>
+          <div class="sp-pricing-card-price-container">
+            <span class="sp-pricing-card-price">$199</span>
+            <span class="sp-pricing-card-description">/month</span>
+          </div>
+          <p>Custom SLAs, SSO, and priority support.</p>
+          <button class="sp-btn sp-btn--primary sp-btn--full" type="button">Contact Sales</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- RATINGS                                                        -->
+    <!-- ============================================================= -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2>Ratings</h2>
+        <p>Star display with filled / empty states and label.</p>
+      </div>
+
+      <div class="demo-grid">
+        <div class="demo-row">
+          <div class="sp-rating">
+            <div class="sp-rating-stars">
+              <span class="sp-rating-star sp-rating-star--filled">★</span>
+              <span class="sp-rating-star sp-rating-star--filled">★</span>
+              <span class="sp-rating-star sp-rating-star--filled">★</span>
+              <span class="sp-rating-star sp-rating-star--filled">★</span>
+              <span class="sp-rating-star sp-rating-star--filled">★</span>
+            </div>
+            <span class="sp-rating-text">5.0 — Perfect</span>
+          </div>
+        </div>
+
+        <div class="demo-row">
+          <div class="sp-rating">
+            <div class="sp-rating-stars">
+              <span class="sp-rating-star sp-rating-star--filled">★</span>
+              <span class="sp-rating-star sp-rating-star--filled">★</span>
+              <span class="sp-rating-star sp-rating-star--filled">★</span>
+              <span class="sp-rating-star sp-rating-star--filled">★</span>
+              <span class="sp-rating-star">★</span>
+            </div>
+            <span class="sp-rating-text">4.0 (128 reviews)</span>
+          </div>
+        </div>
+
+        <div class="demo-row">
+          <div class="sp-rating">
+            <div class="sp-rating-stars">
+              <span class="sp-rating-star sp-rating-star--filled">★</span>
+              <span class="sp-rating-star sp-rating-star--filled">★</span>
+              <span class="sp-rating-star sp-rating-star--filled">★</span>
+              <span class="sp-rating-star">★</span>
+              <span class="sp-rating-star">★</span>
+            </div>
+            <span class="sp-rating-text">3.0 — Good</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- LAYOUT UTILITIES                                               -->
+    <!-- ============================================================= -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2>Layout Utilities</h2>
+        <p>Stack, hstack, container, section, shadows, z-index.</p>
+      </div>
+
+      <div class="split-grid">
+        <div class="panel-muted">
+          <h3>sp-stack + sp-hstack</h3>
+          <div class="sp-stack" style="border: var(--sp-border-width-base) dashed var(--sp-color-neutral-300); padding: var(--sp-space-12); border-radius: var(--sp-radius-md);">
+            <div class="sp-hstack">
+              <span class="sp-badge sp-badge--primary sp-badge--sm">Row 1</span>
+              <span class="sp-badge sp-badge--neutral sp-badge--sm">Horizontal</span>
+            </div>
+            <div class="sp-hstack">
+              <span class="sp-badge sp-badge--success sp-badge--sm">Row 2</span>
+              <span class="sp-badge sp-badge--info sp-badge--sm">Stack</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-muted">
+          <h3>Shadows</h3>
+          <div class="demo-row">
+            <div class="sp-shadow-soft" style="padding: var(--sp-space-16); border-radius: var(--sp-radius-md); background: var(--sp-surface-card);">
+              sp-shadow-soft
+            </div>
+            <div class="sp-shadow-strong" style="padding: var(--sp-space-16); border-radius: var(--sp-radius-md); background: var(--sp-surface-card);">
+              sp-shadow-strong
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- COMPOSITION — notification rail                                -->
+    <!-- ============================================================= -->
+    <section class="section-card">
+      <div class="section-header">
         <h2>Composition</h2>
-        <p>Combine primitives to prototype a notification rail.</p>
+        <p>Combining primitives into a notification rail.</p>
       </div>
 
       <div class="panel-stack">
@@ -638,20 +706,13 @@ getIconBoxClasses({ variant: "info", size: "lg" })
           <div class="demo-row">
             <span class="sp-iconbox sp-iconbox--warning sp-iconbox--sm">
               <i class="demo-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path d="M12 9v4" />
-                  <path d="M12 17h.01" />
-                  <path d="M10.3 4.4l-8.6 15A2 2 0 004.4 22h15.2a2 2 0 001.7-2.6l-8.6-15a2 2 0 00-3.4 0z" />
-                </svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 4.4l-8.6 15A2 2 0 004.4 22h15.2a2 2 0 001.7-2.6l-8.6-15a2 2 0 00-3.4 0z"/></svg>
               </i>
             </span>
-
             <div>
               <strong>Token audit pending</strong>
-              <div>3 components awaiting surface updates.</div>
+              <div style="font-size: var(--sp-font-sm-size); color: var(--sp-text-on-surface-muted);">3 components awaiting surface updates.</div>
             </div>
-
             <span class="sp-badge sp-badge--warning sp-badge--sm">Review</span>
             <button class="sp-btn sp-btn--secondary sp-btn--sm" type="button">Open</button>
           </div>
@@ -661,26 +722,82 @@ getIconBoxClasses({ variant: "info", size: "lg" })
           <div class="demo-row">
             <span class="sp-iconbox sp-iconbox--success sp-iconbox--sm">
               <i class="demo-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path d="M20 6L9 17l-5-5" />
-                </svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
               </i>
             </span>
-
             <div>
               <strong>Build green</strong>
-              <div>All CSS contract tests are passing.</div>
+              <div style="font-size: var(--sp-font-sm-size); color: var(--sp-text-on-surface-muted);">All CSS contract tests are passing.</div>
             </div>
-
             <span class="sp-badge sp-badge--success sp-badge--sm">Passing</span>
             <button class="sp-btn sp-btn--ghost sp-btn--sm" type="button">View</button>
+          </div>
+        </div>
+
+        <div class="panel-muted">
+          <div class="demo-row">
+            <span class="sp-iconbox sp-iconbox--danger sp-iconbox--sm">
+              <i class="demo-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l10 10-10 10L2 12 12 2z"/><path d="M15 9l-6 6"/><path d="M9 9l6 6"/></svg>
+              </i>
+            </span>
+            <div>
+              <strong>Deploy blocked</strong>
+              <div style="font-size: var(--sp-font-sm-size); color: var(--sp-text-on-surface-muted);">Hex code detected in components.css. Fix required.</div>
+            </div>
+            <span class="sp-badge sp-badge--danger sp-badge--sm">Critical</span>
+            <button class="sp-btn sp-btn--danger sp-btn--sm" type="button">Fix Now</button>
           </div>
         </div>
       </div>
     </section>
 
-    <p class="footer-note">Loaded from <code>dist/index.css</code> for smoke testing.</p>
+    <!-- ============================================================= -->
+    <!-- RECIPE USAGE                                                   -->
+    <!-- ============================================================= -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2>Recipe API</h2>
+        <p>TypeScript class recipes shown with their CSS output.</p>
+      </div>
+
+      <pre class="code-block"><code><span class="comment">// Buttons</span>
+getButtonClasses({ variant: "primary", size: "lg" })
+<span class="comment">// → "sp-btn sp-btn--primary sp-btn--lg"</span>
+
+getButtonClasses({ variant: "cta", pill: true, fullWidth: true })
+<span class="comment">// → "sp-btn sp-btn--cta sp-btn--md sp-btn--pill sp-btn--full"</span>
+
+<span class="comment">// Badges</span>
+getBadgeClasses({ variant: "warning", size: "sm" })
+<span class="comment">// → "sp-badge sp-badge--warning sp-badge--sm"</span>
+
+<span class="comment">// Icon Boxes</span>
+getIconBoxClasses({ variant: "info", size: "lg" })
+<span class="comment">// → "sp-iconbox sp-iconbox--info sp-iconbox--lg"</span>
+
+<span class="comment">// Cards</span>
+getCardClasses({ variant: "outline", interactive: true, padded: true })
+<span class="comment">// → "sp-card sp-card--outline sp-card--interactive sp-card--padded"</span>
+
+<span class="comment">// Inputs</span>
+getInputClasses({ state: "error", size: "lg" })
+<span class="comment">// → "sp-input sp-input--lg sp-input--error"</span>
+
+<span class="comment">// Pricing Cards</span>
+getPricingCardClasses({ featured: true })
+<span class="comment">// → "sp-pricing-card sp-pricing-card--featured"</span>
+
+<span class="comment">// Ratings</span>
+getRatingStarClasses(true)
+<span class="comment">// → "sp-rating-star sp-rating-star--filled"</span></code></pre>
+    </section>
+
+    <!-- Footer -->
+    <p class="footer-note">
+      Loaded from <code>dist/index.css</code>&ensp;·&ensp;@phcdevworks/spectre-ui v0.4.1&ensp;·&ensp;Zero hardcoded values
+    </p>
+
   </main>
 </body>
 
