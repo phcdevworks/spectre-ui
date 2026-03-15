@@ -50,12 +50,14 @@ describe('getButtonClasses', () => {
       loading: true,
       disabled: true,
       iconOnly: true,
+      pill: true,
     });
 
     expect(result).toContain('sp-btn--full');
     expect(result).toContain('sp-btn--loading');
     expect(result).toContain('sp-btn--disabled');
     expect(result).toContain('sp-btn--icon');
+    expect(result).toContain('sp-btn--pill');
   });
 
   it('creates trimmed, space-delimited class strings with no duplicates', () => {

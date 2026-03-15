@@ -188,6 +188,10 @@
     width: 100%;
   }
 
+  .sp-btn--pill {
+    border-radius: var(--sp-radius-pill);
+  }
+
   .sp-btn--icon {
     padding-inline: var(--sp-space-12);
     padding-block: var(--sp-space-4);
