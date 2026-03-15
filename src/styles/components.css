@@ -216,16 +216,8 @@
     line-height: var(--sp-font-lg-line-height);
   }
 
-  /* Generic forced-state helpers (safe, variant rules still set actual colors) */
-  .sp-btn.sp-btn--hover,
-  .sp-btn.is-hover {
-    /* no-op here; variant sections below define the actual hover colors */
-  }
+  /* Generic forced-state helpers (actual colors defined in variant sections below) */
 
-  .sp-btn.sp-btn--active,
-  .sp-btn.is-active {
-    /* no-op here; variant sections below define the actual active colors */
-  }
 
   /* primary */
   .sp-btn--primary {
