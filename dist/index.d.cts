@@ -8,7 +8,7 @@ declare const spectreStyles: {
     utilities: string;
 };
 
-declare const badgeVariants: readonly ["primary", "success", "warning", "danger"];
+declare const badgeVariants: readonly ["primary", "success", "warning", "danger", "neutral", "info"];
 declare const badgeSizes: readonly ["sm", "md", "lg"];
 type BadgeVariant = (typeof badgeVariants)[number];
 type BadgeSize = (typeof badgeSizes)[number];
@@ -18,7 +18,7 @@ interface BadgeRecipeOptions {
 }
 declare function getBadgeClasses(opts?: BadgeRecipeOptions): string;
 
-declare const buttonVariants: readonly ["primary", "secondary", "ghost", "danger", "success"];
+declare const buttonVariants: readonly ["primary", "secondary", "ghost", "danger", "success", "cta", "accent"];
 declare const buttonSizes: readonly ["sm", "md", "lg"];
 type ButtonVariant = (typeof buttonVariants)[number];
 type ButtonSize = (typeof buttonSizes)[number];

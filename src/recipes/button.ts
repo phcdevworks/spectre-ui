@@ -1,7 +1,7 @@
 import { cx } from "../internal/cx";
 import { resolveOption } from "../internal/resolve-option";
 
-const buttonVariants = ["primary", "secondary", "ghost", "danger", "success"] as const;
+const buttonVariants = ["primary", "secondary", "ghost", "danger", "success", "cta", "accent"] as const;
 const buttonSizes = ["sm", "md", "lg"] as const;
 
 export type ButtonVariant = (typeof buttonVariants)[number];
@@ -13,6 +13,8 @@ const BUTTON_VARIANTS = {
   ghost: true,
   danger: true,
   success: true,
+  cta: true,
+  accent: true,
 } as const;
 
 const BUTTON_SIZES = {
@@ -59,6 +61,8 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     ghost: "sp-btn--ghost",
     danger: "sp-btn--danger",
     success: "sp-btn--success",
+    cta: "sp-btn--cta",
+    accent: "sp-btn--accent",
   };
   const variantClass = variantMap[variant];
 

@@ -23,3 +23,30 @@ export {
   getIconBoxClasses,
   type IconBoxRecipeOptions, type IconBoxSize, type IconBoxVariant
 } from "./iconbox";
+
+export {
+  getTestimonialClasses,
+  getTestimonialAuthorClasses,
+  getTestimonialAuthorInfoClasses,
+  getTestimonialAuthorNameClasses,
+  getTestimonialAuthorTitleClasses,
+  getTestimonialQuoteClasses,
+  type TestimonialRecipeOptions
+} from "./testimonial";
+
+export {
+  getPricingCardClasses,
+  getPricingCardBadgeClasses,
+  getPricingCardDescriptionClasses,
+  getPricingCardPriceClasses,
+  getPricingCardPriceContainerClasses,
+  type PricingCardRecipeOptions
+} from "./pricing-card";
+
+export {
+  getRatingClasses,
+  getRatingStarClasses,
+  getRatingStarsClasses,
+  getRatingTextClasses,
+  type RatingRecipeOptions
+} from "./rating";
