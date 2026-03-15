@@ -54,7 +54,9 @@ var BADGE_VARIANTS = {
   primary: true,
   success: true,
   warning: true,
-  danger: true
+  danger: true,
+  neutral: true,
+  info: true
 };
 var BADGE_SIZES = {
   sm: true,
@@ -79,7 +81,9 @@ function getBadgeClasses(opts = {}) {
     primary: "sp-badge--primary",
     success: "sp-badge--success",
     warning: "sp-badge--warning",
-    danger: "sp-badge--danger"
+    danger: "sp-badge--danger",
+    neutral: "sp-badge--neutral",
+    info: "sp-badge--info"
   };
   const variantClass = variantMap[variant];
   const sizeMap = {
@@ -97,7 +101,9 @@ var BUTTON_VARIANTS = {
   secondary: true,
   ghost: true,
   danger: true,
-  success: true
+  success: true,
+  cta: true,
+  accent: true
 };
 var BUTTON_SIZES = {
   sm: true,
@@ -130,7 +136,9 @@ function getButtonClasses(opts = {}) {
     secondary: "sp-btn--secondary",
     ghost: "sp-btn--ghost",
     danger: "sp-btn--danger",
-    success: "sp-btn--success"
+    success: "sp-btn--success",
+    cta: "sp-btn--cta",
+    accent: "sp-btn--accent"
   };
   const variantClass = variantMap[variant];
   const sizeMap = {
