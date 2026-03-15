@@ -29,6 +29,7 @@ interface ButtonRecipeOptions {
     loading?: boolean;
     disabled?: boolean;
     iconOnly?: boolean;
+    pill?: boolean;
 }
 declare function getButtonClasses(opts?: ButtonRecipeOptions): string;
 
