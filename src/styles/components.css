@@ -764,11 +764,11 @@
   .sp-testimonial-quote::before {
     content: "“";
     color: var(--sp-component-testimonial-quote-mark);
-    font-size: 3rem;
+    font-size: var(--sp-space-48);
     position: absolute;
-    top: -1.5rem;
-    left: -1rem;
-    opacity: 0.5;
+    top: calc(var(--sp-space-24) * -1);
+    left: calc(var(--sp-space-16) * -1);
+    opacity: var(--sp-opacity-overlay);
   }
 
   .sp-testimonial-author {
