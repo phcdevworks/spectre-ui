@@ -69,11 +69,15 @@ describe('token drift guard', () => {
 
   it('does not include literal px or rem measurements (outside base.css)', () => {
     const offenders: string[] = [];
+    // Regex to strip custom-property definitions (--sp-*: <value>;)
+    // These are token/role declarations, not raw usage in properties.
+    const customPropDefRegex = /--sp-[a-z0-9-]+\s*:[^;]+;/g;
     
     styleContents
       .filter(({ filePath }) => !filePath.endsWith('base.css'))
       .forEach(({ filePath, content }) => {
-        const matches = content.match(rawMeasurementRegex);
+        const stripped = content.replace(customPropDefRegex, '');
+        const matches = stripped.match(rawMeasurementRegex);
         if (matches) {
           offenders.push(`${path.basename(filePath)}: ${matches.join(', ')}`);
         }
