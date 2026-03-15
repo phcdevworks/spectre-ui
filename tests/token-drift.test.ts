@@ -75,12 +75,7 @@ describe('token drift guard', () => {
       .forEach(({ filePath, content }) => {
         const matches = content.match(rawMeasurementRegex);
         if (matches) {
-          // CHEAT: Temporarily allow 1px until spectre-tokens v2.1.0 is released
-          const uniqueMatches = Array.from(new Set(matches)).filter((m) => m !== '1px');
-          
-          if (uniqueMatches.length > 0) {
-            offenders.push(`${path.basename(filePath)}: ${uniqueMatches.join(', ')}`);
-          }
+          offenders.push(`${path.basename(filePath)}: ${matches.join(', ')}`);
         }
       });
 

@@ -155,7 +155,7 @@
     gap: var(--sp-space-4);
     padding: var(--sp-space-4) var(--sp-space-16);
     border-radius: var(--sp-radius-md);
-    border: 1px solid var(--sp-component-button-border-base);
+    border: var(--sp-border-width-base) solid var(--sp-component-button-border-base);
     font-family: var(--sp-font-family-sans);
     font-size: var(--sp-font-md-size);
     line-height: 1;
@@ -426,7 +426,7 @@
     appearance: none;
     padding: var(--sp-space-4) var(--sp-space-16);
     border-radius: var(--sp-radius-md);
-    border: 1px solid var(--sp-component-input-role-border);
+    border: var(--sp-border-width-base) solid var(--sp-component-input-role-border);
     background-color: var(--sp-component-input-role-bg);
     color: var(--sp-component-input-role-text);
     font-family: var(--sp-font-family-sans);
@@ -467,7 +467,7 @@
   .sp-input:focus,
   .sp-input--focus {
     border-color: var(--sp-component-input-role-border-focus);
-    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + 1px) var(--sp-component-input-role-ring);
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-border-width-base)) var(--sp-component-input-role-ring);
     outline: none;
   }
 
@@ -508,7 +508,7 @@
     border-radius: var(--sp-radius-lg);
     padding: var(--sp-space-24);
     box-shadow: var(--sp-component-card-shadow);
-    border: 1px solid var(--sp-component-card-border-base);
+    border: var(--sp-border-width-base) solid var(--sp-component-card-border-base);
   }
 
   .sp-card p {
@@ -559,7 +559,7 @@
   .sp-card--interactive:hover,
   .sp-card--interactive:focus-visible,
   .sp-card--interactive:focus-within {
-    transform: translateY(-1px);
+    transform: translateY(calc(var(--sp-border-width-base) * -1));
     box-shadow: var(--sp-component-card-shadow-elevated);
   }
 
@@ -576,7 +576,7 @@
     padding: var(--sp-component-badge-padding-y-md) var(--sp-component-badge-padding-x-md);
     font-size: var(--sp-font-sm-size);
     line-height: var(--sp-font-sm-line-height);
-    border: 1px solid transparent;
+    border: var(--sp-border-width-base) solid transparent;
     white-space: nowrap;
   }
 
@@ -737,7 +737,7 @@
 
   .sp-testimonial {
     background-color: var(--sp-component-testimonial-bg);
-    border: 1px solid var(--sp-component-testimonial-border);
+    border: var(--sp-border-width-base) solid var(--sp-component-testimonial-border);
     border-radius: var(--sp-radius-lg);
     padding: var(--sp-space-32);
     display: flex;
@@ -789,7 +789,7 @@
 
   .sp-pricing-card {
     background-color: var(--sp-component-pricing-card-bg);
-    border: 1px solid var(--sp-component-pricing-card-border);
+    border: var(--sp-border-width-base) solid var(--sp-component-pricing-card-border);
     border-radius: var(--sp-radius-lg);
     padding: var(--sp-space-32);
     display: flex;
