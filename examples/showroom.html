@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spectre UI — Premium Showroom</title>
+  <link rel="stylesheet" href="../dist/index.css">
+  <style>
+    /* Premium Showroom Styles - Extending Spectre Primitives */
+    :root {
+      --showroom-accent: var(--sp-color-brand-600);
+    }
+
+    body {
+      transition: background-color var(--sp-duration-moderate) var(--sp-easing-inout), color var(--sp-duration-moderate) var(--sp-easing-inout);
+    }
+
+    .showroom-navbar {
+      position: sticky;
+      top: 0;
+      z-index: var(--sp-z-index-sticky);
+      background: var(--sp-surface-page);
+      border-bottom: var(--sp-component-border-width) solid var(--sp-color-neutral-200);
+      padding: var(--sp-space-16) 0;
+      backdrop-filter: blur(8px);
+    }
+
+    .navbar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-space-8);
+      font-weight: var(--sp-font-xl-weight);
+      font-size: var(--sp-font-lg-size);
+      color: var(--sp-color-neutral-900);
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      background: var(--sp-surface-hero);
+      border-radius: var(--sp-radius-md);
+    }
+
+    .hero-section {
+      background: var(--sp-surface-hero);
+      color: white;
+      padding: var(--sp-space-96) 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 8vw, 4rem);
+      font-weight: var(--sp-font-2xl-weight);
+      line-height: 1.1;
+      margin-bottom: var(--sp-space-24);
+      animation: var(--sp-animation-slideup-keyframes) var(--sp-animation-slideup-duration) var(--sp-easing-out);
+    }
+
+    .hero-subtitle {
+      font-size: var(--sp-font-lg-size);
+      max-width: 60ch;
+      margin: 0 auto var(--sp-space-40);
+      opacity: 0.9;
+      animation: var(--sp-animation-fadein-keyframes) var(--sp-animation-fadein-duration) var(--sp-easing-out);
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--sp-space-32);
+      margin-top: calc(var(--sp-space-64) * -1);
+      position: relative;
+      z-index: 10;
+    }
+
+    .bento-item {
+      transition: transform var(--sp-duration-fast) var(--sp-easing-out);
+    }
+
+    .bento-item:hover {
+      transform: translateY(calc(var(--sp-space-4) * -1));
+    }
+
+    .col-span-8 { grid-column: span 8; }
+    .col-span-4 { grid-column: span 4; }
+    .col-span-6 { grid-column: span 6; }
+    .col-span-3 { grid-column: span 3; }
+
+    @media (max-width: 1024px) {
+      .col-span-8, .col-span-4, .col-span-6, .col-span-3 { grid-column: span 12; }
+    }
+
+    /* Abstract Shapes for Flair */
+    .shape {
+      position: absolute;
+      opacity: 0.2;
+      filter: blur(40px);
+      z-index: 0;
+    }
+  </style>
+</head>
+<body class="sp-animate-fade-in">
+
+  <nav class="showroom-navbar">
+    <div class="sp-container navbar-content">
+      <div class="brand">
+        <div class="brand-logo"></div>
+        <span>Spectre Arsenal</span>
+      </div>
+      <div class="sp-hstack" style="gap: var(--sp-space-24);">
+        <a href="#" class="sp-label" style="text-decoration: none;">Components</a>
+        <a href="#" class="sp-label" style="text-decoration: none;">Tokens</a>
+        <a href="#" class="sp-label" style="text-decoration: none;">Guidelines</a>
+        <button class="sp-btn sp-btn--primary">Join Beta</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero-section">
+    <div class="sp-container">
+      <span class="sp-badge sp-badge--accent sp-badge--lg sp-animate-bounce" style="margin-bottom: var(--sp-space-24);">NOW IN CANONICAL V0.4.1</span>
+      <h1 class="hero-title">Experience the Future of Design Systems.</h1>
+      <p class="hero-subtitle">Spectre UI is Layer 2 of the 8-Layer Arsenal. A perfectly synchronized bridge between design DNA and real-world implementation.</p>
+      <div class="sp-hstack" style="justify-content: center; gap: var(--sp-space-16);">
+        <button class="sp-btn sp-btn--cta sp-btn--lg cta-button-glow">Get Started Today</button>
+        <button class="sp-btn sp-btn--secondary sp-btn--lg" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">View Documentation</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="sp-container sp-section">
+    <div class="bento-grid">
+      <!-- Row 1 -->
+      <article class="sp-card sp-card--elevated sp-card--padded bento-item col-span-8">
+        <div class="sp-hstack" style="margin-bottom: var(--sp-space-16);">
+          <span class="sp-iconbox sp-iconbox--primary sp-iconbox--md">
+            <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></i>
+          </span>
+          <span class="sp-badge sp-badge--primary sp-badge--sm">AHA Architecture</span>
+        </div>
+        <h3>Framework Agnostic Blueprint</h3>
+        <p>Zero dependencies. Pure CSS and TypeScript class recipes ensure your UI remains portable across any environment, from Astro to React.</p>
+        <div class="sp-hstack" style="margin-top: var(--sp-space-24);">
+            <div class="sp-badge sp-badge--neutral sp-badge--sm">vanilla.js</div>
+            <div class="sp-badge sp-badge--neutral sp-badge--sm">astro</div>
+            <div class="sp-badge sp-badge--neutral sp-badge--sm">web-components</div>
+        </div>
+      </article>
+
+      <article class="sp-pricing-card sp-pricing-card--featured bento-item col-span-4" style="order: -1;">
+          <span class="sp-pricing-card-badge">PRODUCTION READY</span>
+          <h3>Enterprise</h3>
+          <div class="sp-pricing-card-price-container">
+            <span class="sp-pricing-card-price" style="font-size: var(--sp-font-xl-size);">$0</span>
+          </div>
+          <p style="font-size: var(--sp-font-xs-size); opacity: 0.8;">Get started for free with the core community edition.</p>
+          <button class="sp-btn sp-btn--cta sp-btn--full">Start Coding</button>
+      </article>
+
+      <!-- Row 2 -->
+      <article class="sp-card sp-card--outline bento-item col-span-4" style="padding: var(--sp-space-32);">
+        <div class="sp-iconbox sp-iconbox--success sp-iconbox--sm" style="margin-bottom: var(--sp-space-16);">
+          <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></i>
+        </div>
+        <h4>Token Drift Guard</h4>
+        <p style="font-size: var(--sp-font-sm-size);">Automated tests ensure zero hex codes leak into production.</p>
+      </article>
+
+      <article class="sp-card sp-card--elevated bento-item col-span-8" style="padding: 0; overflow: hidden; display: flex;">
+        <div style="flex: 1; padding: var(--sp-space-32); display: flex; flex-direction: column; justify-content: center;">
+            <span class="sp-badge sp-badge--info sp-badge--sm" style="width: fit-content; margin-bottom: var(--sp-space-8);">LATEST SYSTEM UPDATE</span>
+            <h3>Enterprise Shielding</h3>
+            <p>Scaling to millions of users with rock-solid CSS variable encapsulation.</p>
+        </div>
+        <div style="flex: 1; background: var(--sp-color-neutral-100); display: flex; align-items: center; justify-content: center;">
+             <span class="sp-iconbox sp-iconbox--primary sp-iconbox--lg sp-animate-pulse">
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></i>
+             </span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Testimonial -->
+    <section class="sp-section">
+        <div class="sp-testimonial sp-animate-scale-in">
+            <p class="sp-testimonial-quote">"Spectre is the first design system that actually respects the boundary between design and code while making both better. The 8-layer model is a masterpiece."</p>
+            <div class="sp-testimonial-author">
+              <div class="brand-logo" style="width: 48px; height: 48px;"></div>
+              <div class="sp-testimonial-author-info">
+                <span class="sp-testimonial-author-name">Alex Rivera</span>
+                <span class="sp-testimonial-author-title">CTO @ TechFlow</span>
+              </div>
+            </div>
+          </div>
+    </section>
+  </main>
+
+  <footer class="sp-section" style="border-top: var(--sp-component-border-width) solid var(--sp-color-neutral-200); margin-top: var(--sp-space-64);">
+    <div class="sp-container" style="text-align: center;">
+        <p class="sp-helper-text">© 2026 Spectre Arsenal. Built with Blueprint Layer 2.</p>
+        <div class="sp-hstack" style="justify-content: center; margin-top: var(--sp-space-16);">
+            <button class="sp-btn sp-btn--ghost sp-btn--sm">GitHub</button>
+            <button class="sp-btn sp-btn--ghost sp-btn--sm">Discord</button>
+            <button class="sp-btn sp-btn--ghost sp-btn--sm">Twitter</button>
+        </div>
+    </div>
+  </footer>
+
+  <div class="theme-toggle">
+    <button id="themeSwitcher" class="sp-btn sp-btn--secondary sp-btn--pill sp-shadow-strong">
+        <span id="themeIcon">🌙</span>
+        <span id="themeText">Dark Mode</span>
+    </button>
+  </div>
+
+  <script>
+    const btn = document.getElementById('themeSwitcher');
+    const icon = document.getElementById('themeIcon');
+    const text = document.getElementById('themeText');
+    const html = document.documentElement;
+
+    btn.addEventListener('click', () => {
+      const isDark = html.getAttribute('data-spectre-theme') === 'dark';
+      if (isDark) {
+        html.removeAttribute('data-spectre-theme');
+        icon.innerText = '🌙';
+        text.innerText = 'Dark Mode';
+      } else {
+        html.setAttribute('data-spectre-theme', 'dark');
+        icon.innerText = '☀️';
+        text.innerText = 'Light Mode';
+      }
+    });
+
+    // Intersection Observer for slide-up reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('sp-animate-slide-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.bento-item').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
