@@ -36,6 +36,19 @@
     --sp-component-button-success-bg-disabled: var(--sp-button-success-bgdisabled);
     --sp-component-button-success-text: var(--sp-button-success-text);
     --sp-component-button-success-text-disabled: var(--sp-button-success-textdisabled);
+    --sp-component-button-cta-bg: var(--sp-button-cta-bg);
+    --sp-component-button-cta-bg-hover: var(--sp-button-cta-bghover);
+    --sp-component-button-cta-bg-active: var(--sp-button-cta-bgactive);
+    --sp-component-button-cta-bg-disabled: var(--sp-button-cta-bgdisabled);
+    --sp-component-button-cta-text: var(--sp-button-cta-text);
+    --sp-component-button-cta-text-disabled: var(--sp-button-cta-textdisabled);
+    --sp-component-button-cta-shadow: var(--sp-button-cta-shadow);
+    --sp-component-button-accent-bg: var(--sp-button-accent-bg);
+    --sp-component-button-accent-bg-hover: var(--sp-button-accent-bghover);
+    --sp-component-button-accent-bg-active: var(--sp-button-accent-bgactive);
+    --sp-component-button-accent-bg-disabled: var(--sp-button-accent-bgdisabled);
+    --sp-component-button-accent-text: var(--sp-button-accent-text);
+    --sp-component-button-accent-text-disabled: var(--sp-button-accent-textdisabled);
 
     /* card roles */
     --sp-component-card-bg: var(--sp-surface-card);
@@ -83,6 +96,10 @@
     --sp-component-badge-warning-text: var(--sp-badge-warning-text);
     --sp-component-badge-danger-bg: var(--sp-badge-danger-bg);
     --sp-component-badge-danger-text: var(--sp-badge-danger-text);
+    --sp-component-badge-neutral-bg: var(--sp-badge-neutral-bg);
+    --sp-component-badge-neutral-text: var(--sp-badge-neutral-text);
+    --sp-component-badge-info-bg: var(--sp-badge-info-bg);
+    --sp-component-badge-info-text: var(--sp-badge-info-text);
     --sp-component-badge-padding-x-sm: var(--sp-space-8);
     --sp-component-badge-padding-x-md: var(--sp-space-12);
     --sp-component-badge-padding-x-lg: var(--sp-space-16);
@@ -105,6 +122,29 @@
     --sp-component-iconbox-danger-text: var(--sp-icon-box-icon-danger);
     --sp-component-iconbox-info-bg: var(--sp-color-info-50);
     --sp-component-iconbox-info-text: var(--sp-badge-info-text);
+
+    /* testimonial roles */
+    --sp-component-testimonial-bg: var(--sp-surface-card);
+    --sp-component-testimonial-border: var(--sp-color-neutral-200);
+    --sp-component-testimonial-text: var(--sp-color-neutral-700);
+    --sp-component-testimonial-author-name: var(--sp-color-neutral-900);
+    --sp-component-testimonial-author-title: var(--sp-color-neutral-500);
+    --sp-component-testimonial-quote-mark: var(--sp-color-neutral-300);
+
+    /* pricing card roles */
+    --sp-component-pricing-card-bg: var(--sp-surface-card);
+    --sp-component-pricing-card-border: var(--sp-color-neutral-200);
+    --sp-component-pricing-card-featured-bg: var(--sp-color-info-600);
+    --sp-component-pricing-card-featured-text: var(--sp-text-on-surface-default);
+    --sp-component-pricing-card-featured-badge-bg: var(--sp-color-warning-500);
+    --sp-component-pricing-card-featured-badge-text: var(--sp-text-on-surface-default);
+    --sp-component-pricing-card-price: var(--sp-color-neutral-900);
+    --sp-component-pricing-card-price-description: var(--sp-color-neutral-500);
+
+    /* rating roles */
+    --sp-component-rating-star-filled: var(--sp-color-warning-500);
+    --sp-component-rating-star-empty: var(--sp-color-neutral-200);
+    --sp-component-rating-text: var(--sp-color-neutral-500);
   }
 
   /* BUTTONS -------------------------------------------------------------- */
@@ -305,6 +345,56 @@
   .sp-btn--success:disabled {
     background-color: var(--sp-component-button-success-bg-disabled);
     color: var(--sp-component-button-success-text-disabled);
+  }
+
+  /* cta */
+  .sp-btn--cta {
+    background-color: var(--sp-component-button-cta-bg);
+    color: var(--sp-component-button-cta-text);
+    box-shadow: var(--sp-component-button-cta-shadow);
+  }
+
+  .sp-btn--cta.sp-btn--hover,
+  .sp-btn--cta.is-hover,
+  .sp-btn--cta:hover {
+    background-color: var(--sp-component-button-cta-bg-hover);
+  }
+
+  .sp-btn--cta.sp-btn--active,
+  .sp-btn--cta.is-active,
+  .sp-btn--cta:active {
+    background-color: var(--sp-component-button-cta-bg-active);
+  }
+
+  .sp-btn--cta.sp-btn--disabled,
+  .sp-btn--cta:disabled {
+    background-color: var(--sp-component-button-cta-bg-disabled);
+    color: var(--sp-component-button-cta-text-disabled);
+    box-shadow: none;
+  }
+
+  /* accent */
+  .sp-btn--accent {
+    background-color: var(--sp-component-button-accent-bg);
+    color: var(--sp-component-button-accent-text);
+  }
+
+  .sp-btn--accent.sp-btn--hover,
+  .sp-btn--accent.is-hover,
+  .sp-btn--accent:hover {
+    background-color: var(--sp-component-button-accent-bg-hover);
+  }
+
+  .sp-btn--accent.sp-btn--active,
+  .sp-btn--accent.is-active,
+  .sp-btn--accent:active {
+    background-color: var(--sp-component-button-accent-bg-active);
+  }
+
+  .sp-btn--accent.sp-btn--disabled,
+  .sp-btn--accent:disabled {
+    background-color: var(--sp-component-button-accent-bg-disabled);
+    color: var(--sp-component-button-accent-text-disabled);
   }
 
   /* INPUTS --------------------------------------------------------------- */
@@ -532,6 +622,16 @@
     color: var(--sp-component-badge-danger-text);
   }
 
+  .sp-badge--neutral {
+    background-color: var(--sp-component-badge-neutral-bg);
+    color: var(--sp-component-badge-neutral-text);
+  }
+
+  .sp-badge--info {
+    background-color: var(--sp-component-badge-info-bg);
+    color: var(--sp-component-badge-info-text);
+  }
+
   /* ICON BOXES ----------------------------------------------------------- */
 
   .sp-iconbox {
@@ -635,5 +735,140 @@
   .sp-iconbox--info {
     background-color: var(--sp-component-iconbox-info-bg);
     color: var(--sp-component-iconbox-info-text);
+  }
+
+  /* TESTIMONIALS --------------------------------------------------------- */
+
+  .sp-testimonial {
+    background-color: var(--sp-component-testimonial-bg);
+    border: 1px solid var(--sp-component-testimonial-border);
+    border-radius: var(--sp-radius-lg);
+    padding: var(--sp-space-32);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-space-24);
+  }
+
+  .sp-testimonial-quote {
+    color: var(--sp-component-testimonial-text);
+    font-size: var(--sp-font-lg-size);
+    line-height: var(--sp-font-lg-line-height);
+    font-style: italic;
+    position: relative;
+  }
+
+  .sp-testimonial-quote::before {
+    content: "“";
+    color: var(--sp-component-testimonial-quote-mark);
+    font-size: 3rem;
+    position: absolute;
+    top: -1.5rem;
+    left: -1rem;
+    opacity: 0.5;
+  }
+
+  .sp-testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-space-16);
+  }
+
+  .sp-testimonial-author-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sp-testimonial-author-name {
+    color: var(--sp-component-testimonial-author-name);
+    font-weight: var(--sp-font-xl-weight);
+    font-size: var(--sp-font-md-size);
+  }
+
+  .sp-testimonial-author-title {
+    color: var(--sp-component-testimonial-author-title);
+    font-size: var(--sp-font-sm-size);
+  }
+
+  /* PRICING CARDS -------------------------------------------------------- */
+
+  .sp-pricing-card {
+    background-color: var(--sp-component-pricing-card-bg);
+    border: 1px solid var(--sp-component-pricing-card-border);
+    border-radius: var(--sp-radius-lg);
+    padding: var(--sp-space-32);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-space-24);
+    position: relative;
+    transition: transform var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-pricing-card--featured {
+    background-color: var(--sp-component-pricing-card-featured-bg);
+    color: var(--sp-component-pricing-card-featured-text);
+    transform: scale(1.05);
+    z-index: 1;
+    border: none;
+  }
+
+  .sp-pricing-card-badge {
+    position: absolute;
+    top: var(--sp-space-16);
+    right: var(--sp-space-16);
+    background-color: var(--sp-component-pricing-card-featured-badge-bg);
+    color: var(--sp-component-pricing-card-featured-badge-text);
+    padding: var(--sp-space-4) var(--sp-space-12);
+    border-radius: var(--sp-radius-pill);
+    font-size: var(--sp-font-xs-size);
+    font-weight: var(--sp-font-md-weight);
+  }
+
+  .sp-pricing-card-price-container {
+    display: flex;
+    align-items: baseline;
+    gap: var(--sp-space-4);
+  }
+
+  .sp-pricing-card-price {
+    font-size: var(--sp-font-2xl-size);
+    font-weight: var(--sp-font-2xl-weight);
+    color: var(--sp-component-pricing-card-price);
+  }
+
+  .sp-pricing-card--featured .sp-pricing-card-price {
+    color: var(--sp-component-pricing-card-featured-text);
+  }
+
+  .sp-pricing-card-description {
+    color: var(--sp-component-pricing-card-price-description);
+    font-size: var(--sp-font-sm-size);
+  }
+
+  .sp-pricing-card--featured .sp-pricing-card-description {
+    color: var(--sp-component-pricing-card-featured-text);
+    opacity: 0.8;
+  }
+
+  /* RATING --------------------------------------------------------------- */
+
+  .sp-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-space-8);
+  }
+
+  .sp-rating-stars {
+    display: flex;
+    gap: var(--sp-space-4);
+    color: var(--sp-component-rating-star-empty);
+  }
+
+  .sp-rating-star--filled {
+    color: var(--sp-component-rating-star-filled);
+  }
+
+  .sp-rating-text {
+    color: var(--sp-component-rating-text);
+    font-size: var(--sp-font-sm-size);
   }
 }
