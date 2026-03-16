@@ -13,6 +13,7 @@ describe('getBadgeClasses', () => {
   it('supports all badge variants', () => {
     const variants = [
       { variant: 'primary' as const, className: 'sp-badge--primary' },
+      { variant: 'secondary' as const, className: 'sp-badge--secondary' },
       { variant: 'success' as const, className: 'sp-badge--success' },
       { variant: 'warning' as const, className: 'sp-badge--warning' },
       { variant: 'danger' as const, className: 'sp-badge--danger' },

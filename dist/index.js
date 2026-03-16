@@ -194,6 +194,7 @@ function getInputClasses(opts = {}) {
 // src/recipes/badge.ts
 var BADGE_VARIANTS = {
   primary: true,
+  secondary: true,
   success: true,
   warning: true,
   danger: true,
@@ -221,6 +222,7 @@ function getBadgeClasses(opts = {}) {
   });
   const variantMap = {
     primary: "sp-badge--primary",
+    secondary: "sp-badge--secondary",
     success: "sp-badge--success",
     warning: "sp-badge--warning",
     danger: "sp-badge--danger",
