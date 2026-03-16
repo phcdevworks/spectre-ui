@@ -38,7 +38,7 @@ This Code of Conduct applies within all community spaces, and also applies when 
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement via:
 
-- GitHub Issues: [spectre-ui/issues](https://github.com/phcdevworks/spectre-ui/issues)
+- GitHub Issues: The relevant repository's issue tracker under `phcdevworks`.
 - Email: [Contact maintainers through GitHub](https://github.com/phcdevworks)
 
 All complaints will be reviewed and investigated promptly and fairly.
