@@ -1,5 +1,7 @@
 # Spectre Agent Instructions: @phcdevworks/spectre-ui
 
+### **The Blueprint (Layer 2 of the Spectre 8-Layer Arsenal)**
+
 You are an autonomous agent responsible for Layer 2 of the Spectre 8-Layer Arsenal. This package is the **Blueprint**. Your mission is to consume the design "DNA" from `@phcdevworks/spectre-tokens` and translate it into structural CSS, Tailwind presets, and type-safe class recipes.
 
 ## The Golden Rule of Structure

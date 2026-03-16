@@ -2,7 +2,7 @@
 
 ### **The Blueprint (Layer 2 of the Spectre 8-Layer Arsenal)**
 
-`@phcdevworks/spectre-ui` is the structural engine of the Spectre design system. It consumes the raw "DNA" from `@phcdevworks/spectre-tokens` and translates it into standard CSS, a localized Tailwind preset, and type-safe class recipes.
+`@phcdevworks/spectre-ui` is the structural engine of the Spectre design system. It translates the design "DNA" from `@phcdevworks/spectre-tokens` into CSS structure, localized Tailwind presets, and type-safe class recipes.
 
 🤝 **[Contributing Guide](CONTRIBUTING.md)** | 📝 **[Changelog](CHANGELOG.md)** | 🏛️ **[Spectre Arsenal](https://github.com/phcdevworks)**
 
@@ -10,7 +10,7 @@
 
 ## 🏗️ Core Architecture
 
-This package operates as a pure structural layer. It follows a strict **Zero-Hex Enforcement** policy—visual values are imported via `--sp-*` variables, ensuring that if tokens change, the entire UI layer updates automatically.
+This package operates as a pure **Blueprint Layer**. It follows a strict **Zero-Hex Enforcement** policy—visual values are imported via `--sp-*` variables, ensuring that if tokens change, the entire UI layer updates automatically.
 
 - 💎 **Token-Driven**: Fully compatible with `@phcdevworks/spectre-tokens` v2.0.0.
 - 📦 **Precompiled CSS**: Ships `base`, `components`, and `utilities` bundles.

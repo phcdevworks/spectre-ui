@@ -8,7 +8,7 @@ This package is **Layer 2** of the Spectre 8-Layer Arsenal. It translates design
 
 Spectre is a **specification-driven design system** built on a strict hierarchy:
 
-### 1. @phcdevworks/spectre-tokens (Layer 1 - Foundation)
+### 1. @phcdevworks/spectre-tokens (Layer 1 - DNA)
 - **Purpose**: Single source of truth for design values.
 - **Rules**: Defines semantic meaning, not UI behavior. Designers own JSON; engineers maintain transforms.
 
