@@ -103,6 +103,15 @@
     --sp-component-badge-neutral-text: var(--sp-badge-neutral-text);
     --sp-component-badge-info-bg: var(--sp-badge-info-bg);
     --sp-component-badge-info-text: var(--sp-badge-info-text);
+
+    /* badge hover states — missing from core token exports, mapped to semantic logic */
+    --sp-component-badge-primary-bg-hover: var(--sp-button-primary-bghover);
+    --sp-component-badge-success-bg-hover: var(--sp-color-success-200);
+    --sp-component-badge-warning-bg-hover: var(--sp-color-warning-200);
+    --sp-component-badge-danger-bg-hover: var(--sp-color-error-200);
+    --sp-component-badge-neutral-bg-hover: var(--sp-color-neutral-200);
+    --sp-component-badge-info-bg-hover: var(--sp-color-info-200);
+
     --sp-component-badge-padding-x-sm: var(--sp-space-8);
     --sp-component-badge-padding-x-md: var(--sp-space-12);
     --sp-component-badge-padding-x-lg: var(--sp-space-16);
@@ -129,9 +138,9 @@
     /* testimonial roles */
     --sp-component-testimonial-bg: var(--sp-surface-card);
     --sp-component-testimonial-border: var(--sp-color-neutral-200);
-    --sp-component-testimonial-text: var(--sp-color-neutral-700);
-    --sp-component-testimonial-author-name: var(--sp-color-neutral-900);
-    --sp-component-testimonial-author-title: var(--sp-color-neutral-500);
+    --sp-component-testimonial-text: var(--sp-text-on-surface-muted);
+    --sp-component-testimonial-author-name: var(--sp-text-on-surface-default);
+    --sp-component-testimonial-author-title: var(--sp-text-on-surface-subtle);
     --sp-component-testimonial-quote-mark: var(--sp-color-neutral-300);
 
     /* pricing card roles */
@@ -139,15 +148,30 @@
     --sp-component-pricing-card-border: var(--sp-color-neutral-200);
     --sp-component-pricing-card-featured-bg: var(--sp-color-neutral-900);
     --sp-component-pricing-card-featured-text: var(--sp-color-neutral-50);
-    --sp-component-pricing-card-featured-badge-bg: var(--sp-color-accent-600);
-    --sp-component-pricing-card-featured-badge-text: var(--sp-color-neutral-50);
-    --sp-component-pricing-card-price: var(--sp-color-neutral-900);
-    --sp-component-pricing-card-price-description: var(--sp-color-neutral-500);
+    --sp-component-pricing-card-featured-badge-bg: var(--sp-color-warning-500);
+    --sp-component-pricing-card-featured-badge-text: var(--sp-color-neutral-900);
+    --sp-component-pricing-card-price: var(--sp-text-on-surface-default);
+    --sp-component-pricing-card-featured-price: var(--sp-color-neutral-50);
+    --sp-component-pricing-card-price-description: var(--sp-text-on-surface-subtle);
 
     /* rating roles */
     --sp-component-rating-star-filled: var(--sp-color-warning-500);
     --sp-component-rating-star-empty: var(--sp-color-neutral-200);
-    --sp-component-rating-text: var(--sp-color-neutral-500);
+    --sp-component-rating-text: var(--sp-text-on-surface-subtle);
+  }
+
+  /* dark mode overrides for complex component tokens not yet exported by spectre-tokens v2.x */
+  :root[data-spectre-theme="dark"] {
+    --sp-component-testimonial-border: var(--sp-color-neutral-700);
+    --sp-component-testimonial-quote-mark: var(--sp-color-neutral-600);
+    --sp-component-pricing-card-border: var(--sp-color-neutral-700);
+    --sp-component-rating-star-empty: var(--sp-color-neutral-700);
+
+    --sp-component-badge-success-bg-hover: var(--sp-color-success-700);
+    --sp-component-badge-warning-bg-hover: var(--sp-color-warning-700);
+    --sp-component-badge-danger-bg-hover: var(--sp-color-error-700);
+    --sp-component-badge-neutral-bg-hover: var(--sp-color-neutral-600);
+    --sp-component-badge-info-bg-hover: var(--sp-color-info-700);
   }
 
   /* BUTTONS -------------------------------------------------------------- */
@@ -606,9 +630,17 @@
     color: var(--sp-component-badge-primary-text);
   }
 
+  .sp-badge--primary.sp-badge--interactive:hover {
+    background-color: var(--sp-component-badge-primary-bg-hover);
+  }
+
   .sp-badge--success {
     background-color: var(--sp-component-badge-success-bg);
     color: var(--sp-component-badge-success-text);
+  }
+
+  .sp-badge--success.sp-badge--interactive:hover {
+    background-color: var(--sp-component-badge-success-bg-hover);
   }
 
   .sp-badge--warning {
@@ -616,9 +648,17 @@
     color: var(--sp-component-badge-warning-text);
   }
 
+  .sp-badge--warning.sp-badge--interactive:hover {
+    background-color: var(--sp-component-badge-warning-bg-hover);
+  }
+
   .sp-badge--danger {
     background-color: var(--sp-component-badge-danger-bg);
     color: var(--sp-component-badge-danger-text);
+  }
+
+  .sp-badge--danger.sp-badge--interactive:hover {
+    background-color: var(--sp-component-badge-danger-bg-hover);
   }
 
   .sp-badge--neutral {
@@ -626,9 +666,22 @@
     color: var(--sp-component-badge-neutral-text);
   }
 
+  .sp-badge--neutral.sp-badge--interactive:hover {
+    background-color: var(--sp-component-badge-neutral-bg-hover);
+  }
+
   .sp-badge--info {
     background-color: var(--sp-component-badge-info-bg);
     color: var(--sp-component-badge-info-text);
+  }
+
+  .sp-badge--info.sp-badge--interactive:hover {
+    background-color: var(--sp-component-badge-info-bg-hover);
+  }
+
+  .sp-badge--interactive {
+    cursor: pointer;
+    transition: background-color var(--sp-duration-fast) var(--sp-easing-out);
   }
 
   /* ICON BOXES ----------------------------------------------------------- */
@@ -831,11 +884,11 @@
   .sp-pricing-card-price {
     font-size: var(--sp-font-2xl-size);
     font-weight: var(--sp-font-2xl-weight);
-    color: inherit;
+    color: var(--sp-component-pricing-card-price);
   }
 
   .sp-pricing-card--featured .sp-pricing-card-price {
-    color: var(--sp-component-pricing-card-featured-text);
+    color: var(--sp-component-pricing-card-featured-price);
   }
 
   .sp-pricing-card-description {
