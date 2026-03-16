@@ -1,7 +1,7 @@
 import { cx } from "../internal/cx";
 import { resolveOption } from "../internal/resolve-option";
 
-const badgeVariants = ["primary", "success", "warning", "danger", "neutral", "info"] as const;
+const badgeVariants = ["primary", "secondary", "success", "warning", "danger", "neutral", "info"] as const;
 const badgeSizes = ["sm", "md", "lg"] as const;
 
 export type BadgeVariant = (typeof badgeVariants)[number];
@@ -9,6 +9,7 @@ export type BadgeSize = (typeof badgeSizes)[number];
 
 const BADGE_VARIANTS = {
   primary: true,
+  secondary: true,
   success: true,
   warning: true,
   danger: true,
@@ -46,6 +47,7 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
 
   const variantMap: Record<BadgeVariant, string> = {
     primary: "sp-badge--primary",
+    secondary: "sp-badge--secondary",
     success: "sp-badge--success",
     warning: "sp-badge--warning",
     danger: "sp-badge--danger",
