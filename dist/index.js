@@ -206,7 +206,7 @@ var BADGE_SIZES = {
   lg: true
 };
 function getBadgeClasses(opts = {}) {
-  const { variant: variantInput, size: sizeInput } = opts;
+  const { variant: variantInput, size: sizeInput, interactive } = opts;
   const variant = resolveOption({
     name: "badge variant",
     value: variantInput,
@@ -234,7 +234,12 @@ function getBadgeClasses(opts = {}) {
     lg: "sp-badge--lg"
   };
   const sizeClass = sizeMap[size];
-  return cx("sp-badge", variantClass, sizeClass);
+  return cx(
+    "sp-badge",
+    variantClass,
+    sizeClass,
+    interactive && "sp-badge--interactive"
+  );
 }
 
 // src/recipes/iconbox.ts
