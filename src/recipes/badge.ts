@@ -25,10 +25,11 @@ const BADGE_SIZES = {
 export interface BadgeRecipeOptions {
   variant?: BadgeVariant;
   size?: BadgeSize;
+  interactive?: boolean;
 }
 
 export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
-  const { variant: variantInput, size: sizeInput } = opts;
+  const { variant: variantInput, size: sizeInput, interactive } = opts;
 
   const variant = resolveOption({
     name: "badge variant",
@@ -60,5 +61,10 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
   };
   const sizeClass = sizeMap[size];
 
-  return cx("sp-badge", variantClass, sizeClass);
+  return cx(
+    "sp-badge",
+    variantClass,
+    sizeClass,
+    interactive && "sp-badge--interactive"
+  );
 }
