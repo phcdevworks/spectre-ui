@@ -117,5 +117,4 @@ npm test
 
 ## ❤️ Support & Community
 
-- **Sponsor**: [GitHub Sponsors](https://github.com/sponsors/phcdevworks) | [Buy Me a Coffee](https://buymeacoffee.com/phcdevworks)
 - **License**: MIT © [PHCDevworks](https://phcdevworks.com)
