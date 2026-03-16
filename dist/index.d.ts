@@ -44,7 +44,7 @@ interface InputRecipeOptions {
 }
 declare function getInputClasses(opts?: InputRecipeOptions): string;
 
-declare const badgeVariants: readonly ["primary", "success", "warning", "danger", "neutral", "info"];
+declare const badgeVariants: readonly ["primary", "secondary", "success", "warning", "danger", "neutral", "info"];
 declare const badgeSizes: readonly ["sm", "md", "lg"];
 type BadgeVariant = (typeof badgeVariants)[number];
 type BadgeSize = (typeof badgeSizes)[number];
