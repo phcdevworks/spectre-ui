@@ -93,6 +93,9 @@
     --sp-component-badge-radius: var(--sp-radius-pill);
     --sp-component-badge-primary-bg: var(--sp-button-primary-bg);
     --sp-component-badge-primary-text: var(--sp-button-text-on-primary);
+    --sp-component-badge-secondary-bg: var(--sp-button-secondary-bg);
+    --sp-component-badge-secondary-text: var(--sp-button-secondary-text);
+    --sp-component-badge-secondary-border: var(--sp-button-secondary-border);
     --sp-component-badge-success-bg: var(--sp-badge-success-bg);
     --sp-component-badge-success-text: var(--sp-badge-success-text);
     --sp-component-badge-warning-bg: var(--sp-badge-warning-bg);
@@ -106,6 +109,7 @@
 
     /* badge hover states — missing from core token exports, mapped to semantic logic */
     --sp-component-badge-primary-bg-hover: var(--sp-button-primary-bghover);
+    --sp-component-badge-secondary-bg-hover: var(--sp-button-secondary-bghover);
     --sp-component-badge-success-bg-hover: var(--sp-color-success-200);
     --sp-component-badge-warning-bg-hover: var(--sp-color-warning-200);
     --sp-component-badge-danger-bg-hover: var(--sp-color-error-200);
@@ -632,6 +636,16 @@
 
   .sp-badge--primary.sp-badge--interactive:hover {
     background-color: var(--sp-component-badge-primary-bg-hover);
+  }
+
+  .sp-badge--secondary {
+    background-color: var(--sp-component-badge-secondary-bg);
+    color: var(--sp-component-badge-secondary-text);
+    border-color: var(--sp-component-badge-secondary-border);
+  }
+
+  .sp-badge--secondary.sp-badge--interactive:hover {
+    background-color: var(--sp-component-badge-secondary-bg-hover);
   }
 
   .sp-badge--success {
