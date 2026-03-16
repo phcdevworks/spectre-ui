@@ -51,6 +51,7 @@ type BadgeSize = (typeof badgeSizes)[number];
 interface BadgeRecipeOptions {
     variant?: BadgeVariant;
     size?: BadgeSize;
+    interactive?: boolean;
 }
 declare function getBadgeClasses(opts?: BadgeRecipeOptions): string;
 
