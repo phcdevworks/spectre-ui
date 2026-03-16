@@ -4,9 +4,16 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-03-16
+
+### Added
+- **Specialized Recipes**: Introduced `PricingCard`, `Testimonial`, and `Rating` class generators for complex UI patterns.
+- **Architectural Foundation**: Officially established as Layer 2 (The Blueprint) of the Spectre 8-Layer Arsenal.
+
 ### Changed
 - **Dependencies**: Updated `@phcdevworks/spectre-tokens` to `v2.0.0`.
 - **Maintenance**: Refactored `CHANGELOG.md` to follow industry best practices and improved scannability.
+- **Documentation**: Revitalized `README.md` and `CONTRIBUTING.md` with updated architecture maps and Quick Start guides.
 
 ## [0.4.1] - 2026-01-14
 
@@ -99,7 +106,8 @@ All notable changes to this project will be documented here. The format follows 
 - **Initial Release**: Comprehensive implementation of the Spectre Blueprint package.
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v0.4.1...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.4.1...v1.0.0
 [0.4.1]: https://github.com/phcdevworks/spectre-ui/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.2...v0.3.0
