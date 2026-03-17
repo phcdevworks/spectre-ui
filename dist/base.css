@@ -45,7 +45,7 @@
   }
 
   a {
-    color: var(--sp-color-brand-600);
+    color: var(--sp-text-on-page-brand);
     text-decoration: none;
   }
 
@@ -54,7 +54,7 @@
   }
 
   :focus-visible {
-    outline: var(--sp-focus-ring-width) solid var(--sp-color-focus-primary);
+    outline: var(--sp-focus-ring-width) var(--sp-focus-ring-style) var(--sp-color-focus-primary);
     outline-offset: var(--sp-focus-ring-offset);
   }
 

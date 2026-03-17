@@ -1,5 +1,9 @@
 import { cx } from "../internal/cx";
 
+/**
+ * Generate classes for the Rating component.
+ * @sync v2.x - Synced with latest design tokens.
+ */
 export interface RatingRecipeOptions {
   // Potential for variants later if needed
 }
