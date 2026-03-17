@@ -23,6 +23,10 @@ const BUTTON_SIZES = {
   lg: true,
 } as const;
 
+/**
+ * Generate classes for the Button component.
+ * @sync v2.x - Synced with latest design tokens, including CTA variants.
+ */
 export interface ButtonRecipeOptions {
   variant?: ButtonVariant;
   size?: ButtonSize;

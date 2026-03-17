@@ -18,7 +18,7 @@
     margin-right: auto;
     padding-left: var(--sp-layout-container-padding-inline-md);
     padding-right: var(--sp-layout-container-padding-inline-md);
-    max-width: calc(var(--sp-space-96) * 12);
+    max-width: var(--sp-layout-container-max-width);
   }
 
   .sp-section {
