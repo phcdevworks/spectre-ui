@@ -23,6 +23,10 @@ const BADGE_SIZES = {
   lg: true,
 } as const;
 
+/**
+ * Generate classes for the Badge component.
+ * @sync v2.x - Synced with latest design tokens, including hover states.
+ */
 export interface BadgeRecipeOptions {
   variant?: BadgeVariant;
   size?: BadgeSize;
