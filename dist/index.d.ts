@@ -12,6 +12,10 @@ declare const buttonVariants: readonly ["primary", "secondary", "ghost", "danger
 declare const buttonSizes: readonly ["sm", "md", "lg"];
 type ButtonVariant = (typeof buttonVariants)[number];
 type ButtonSize = (typeof buttonSizes)[number];
+/**
+ * Generate classes for the Button component.
+ * @sync v2.x - Synced with latest design tokens, including CTA variants.
+ */
 interface ButtonRecipeOptions {
     variant?: ButtonVariant;
     size?: ButtonSize;
@@ -48,6 +52,10 @@ declare const badgeVariants: readonly ["primary", "secondary", "success", "warni
 declare const badgeSizes: readonly ["sm", "md", "lg"];
 type BadgeVariant = (typeof badgeVariants)[number];
 type BadgeSize = (typeof badgeSizes)[number];
+/**
+ * Generate classes for the Badge component.
+ * @sync v2.x - Synced with latest design tokens, including hover states.
+ */
 interface BadgeRecipeOptions {
     variant?: BadgeVariant;
     size?: BadgeSize;
@@ -65,6 +73,10 @@ interface IconBoxRecipeOptions {
 }
 declare function getIconBoxClasses(opts?: IconBoxRecipeOptions): string;
 
+/**
+ * Generate classes for the Testimonial component.
+ * @sync v2.x - Synced with latest design tokens.
+ */
 interface TestimonialRecipeOptions {
 }
 declare function getTestimonialClasses(_opts?: TestimonialRecipeOptions): string;
@@ -74,6 +86,10 @@ declare function getTestimonialAuthorInfoClasses(): string;
 declare function getTestimonialAuthorNameClasses(): string;
 declare function getTestimonialAuthorTitleClasses(): string;
 
+/**
+ * Generate classes for the PricingCard component.
+ * @sync v2.x - Synced with latest design tokens.
+ */
 interface PricingCardRecipeOptions {
     featured?: boolean;
 }
@@ -83,6 +99,10 @@ declare function getPricingCardPriceContainerClasses(): string;
 declare function getPricingCardPriceClasses(): string;
 declare function getPricingCardDescriptionClasses(): string;
 
+/**
+ * Generate classes for the Rating component.
+ * @sync v2.x - Synced with latest design tokens.
+ */
 interface RatingRecipeOptions {
 }
 declare function getRatingClasses(_opts?: RatingRecipeOptions): string;
