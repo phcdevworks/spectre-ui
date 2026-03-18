@@ -520,6 +520,10 @@
     width: 100%;
   }
 
+  .sp-input--pill {
+    border-radius: var(--sp-radius-pill);
+  }
+
   .sp-input:focus,
   .sp-input--focus {
     border-color: var(--sp-component-input-role-border-focus);
