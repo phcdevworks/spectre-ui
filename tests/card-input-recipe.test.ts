@@ -93,6 +93,11 @@ describe('getInputClasses', () => {
     expect(result).toContain('sp-input--full');
   });
 
+  it('adds pill modifier', () => {
+    const result = getInputClasses({ pill: true });
+    expect(result).toContain('sp-input--pill');
+  });
+
   it('creates trimmed, space-delimited class strings for complex input options', () => {
     const result = getInputClasses({ state: 'success', size: 'lg', fullWidth: true });
 
