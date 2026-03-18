@@ -418,7 +418,7 @@
   }
 
   a {
-    color: var(--sp-text-on-page-brand);
+    color: var(--sp-color-brand-600);
     text-decoration: none;
   }
 
@@ -956,6 +956,10 @@
 
   .sp-input--full {
     width: 100%;
+  }
+
+  .sp-input--pill {
+    border-radius: var(--sp-radius-pill);
   }
 
   .sp-input:focus,
