@@ -727,6 +727,11 @@
     transition: background-color var(--sp-duration-fast) var(--sp-easing-out);
   }
 
+  .sp-badge--disabled {
+    opacity: var(--sp-opacity-disabled);
+    pointer-events: none;
+  }
+
   /* ICON BOXES ----------------------------------------------------------- */
 
   .sp-iconbox {
