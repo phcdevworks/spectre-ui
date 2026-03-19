@@ -31,10 +31,11 @@ export interface BadgeRecipeOptions {
   variant?: BadgeVariant;
   size?: BadgeSize;
   interactive?: boolean;
+  disabled?: boolean;
 }
 
 export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
-  const { variant: variantInput, size: sizeInput, interactive } = opts;
+  const { variant: variantInput, size: sizeInput, interactive, disabled } = opts;
 
   const variant = resolveOption({
     name: "badge variant",
@@ -71,6 +72,7 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
     "sp-badge",
     variantClass,
     sizeClass,
-    interactive && "sp-badge--interactive"
+    interactive && "sp-badge--interactive",
+    disabled && "sp-badge--disabled"
   );
 }
