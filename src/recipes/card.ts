@@ -17,6 +17,7 @@ export interface CardRecipeOptions {
   interactive?: boolean; // hover/focus styles
   padded?: boolean;      // apply default padding
   fullHeight?: boolean;
+  disabled?: boolean;
 }
 
 export function getCardClasses(opts: CardRecipeOptions = {}): string {
@@ -25,6 +26,7 @@ export function getCardClasses(opts: CardRecipeOptions = {}): string {
     interactive = false,
     padded = false,
     fullHeight = false,
+    disabled = false,
   } = opts;
 
   const variant = resolveOption({
@@ -48,5 +50,6 @@ export function getCardClasses(opts: CardRecipeOptions = {}): string {
     interactive && "sp-card--interactive",
     padded && "sp-card--padded",
     fullHeight && "sp-card--full",
+    disabled && "sp-card--disabled",
   );
 }
