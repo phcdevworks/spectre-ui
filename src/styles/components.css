@@ -609,6 +609,11 @@
     height: 100%;
   }
 
+  .sp-card--disabled {
+    opacity: var(--sp-opacity-disabled);
+    pointer-events: none;
+  }
+
   .sp-card--interactive {
     cursor: pointer;
     transition:
