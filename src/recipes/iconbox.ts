@@ -24,10 +24,11 @@ const ICONBOX_SIZES = {
 export interface IconBoxRecipeOptions {
   variant?: IconBoxVariant;
   size?: IconBoxSize;
+  disabled?: boolean;
 }
 
 export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
-  const { variant: variantInput, size: sizeInput } = opts;
+  const { variant: variantInput, size: sizeInput, disabled = false } = opts;
 
   const variant = resolveOption({
     name: "icon box variant",
@@ -58,5 +59,5 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
   };
   const sizeClass = sizeMap[size];
 
-  return cx("sp-iconbox", variantClass, sizeClass);
+  return cx("sp-iconbox", variantClass, sizeClass, disabled && "sp-iconbox--disabled");
 }
