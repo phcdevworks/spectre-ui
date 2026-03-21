@@ -842,6 +842,11 @@
     color: var(--sp-component-iconbox-info-text);
   }
 
+  .sp-iconbox--disabled {
+    opacity: var(--sp-opacity-disabled);
+    pointer-events: none;
+  }
+
   /* TESTIMONIALS --------------------------------------------------------- */
 
   .sp-testimonial {
