@@ -1047,6 +1047,11 @@
     height: 100%;
   }
 
+  .sp-card--disabled {
+    opacity: var(--sp-opacity-disabled);
+    pointer-events: none;
+  }
+
   .sp-card--interactive {
     cursor: pointer;
     transition:
@@ -1165,6 +1170,11 @@
     transition: background-color var(--sp-duration-fast) var(--sp-easing-out);
   }
 
+  .sp-badge--disabled {
+    opacity: var(--sp-opacity-disabled);
+    pointer-events: none;
+  }
+
   /* ICON BOXES ----------------------------------------------------------- */
 
   .sp-iconbox {
@@ -1270,6 +1280,11 @@
     color: var(--sp-component-iconbox-info-text);
   }
 
+  .sp-iconbox--disabled {
+    opacity: var(--sp-opacity-disabled);
+    pointer-events: none;
+  }
+
   /* TESTIMONIALS --------------------------------------------------------- */
 
   .sp-testimonial {
@@ -1342,6 +1357,11 @@
     transform: scale(1.05);
     z-index: 1;
     border: none;
+  }
+
+  .sp-pricing-card--disabled {
+    opacity: var(--sp-opacity-disabled);
+    pointer-events: none;
   }
 
   .sp-pricing-card-badge {
