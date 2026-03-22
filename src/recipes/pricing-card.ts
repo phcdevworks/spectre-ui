@@ -6,13 +6,15 @@ import { cx } from "../internal/cx";
  */
 export interface PricingCardRecipeOptions {
   featured?: boolean;
+  disabled?: boolean;
 }
 
 export function getPricingCardClasses(opts: PricingCardRecipeOptions = {}): string {
-  const { featured = false } = opts;
+  const { featured = false, disabled = false } = opts;
   return cx(
     "sp-pricing-card",
-    featured && "sp-pricing-card--featured"
+    featured && "sp-pricing-card--featured",
+    disabled && "sp-pricing-card--disabled"
   );
 }
 
