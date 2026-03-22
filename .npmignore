@@ -1,0 +1,30 @@
+# Source files (keep src/ for source maps)
+*.ts
+!*.d.ts
+tsconfig.json
+tsup.config.ts
+
+# Development files
+.devcontainer/
+.vscode/
+.github/
+examples/
+*.code-workspace
+
+# Documentation (exclude from package, available in repo)
+CONTRIBUTING.md
+PROJECT.md
+QUICKSTART.md
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# Misc
+*.log
+*.tmp
+.DS_Store
+node_modules/
+coverage/
+.env*
