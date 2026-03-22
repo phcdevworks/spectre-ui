@@ -126,7 +126,8 @@ function getCardClasses(opts = {}) {
     variant: variantInput,
     interactive = false,
     padded = false,
-    fullHeight = false
+    fullHeight = false,
+    disabled = false
   } = opts;
   const variant = resolveOption({
     name: "card variant",
@@ -146,7 +147,8 @@ function getCardClasses(opts = {}) {
     variantClass,
     interactive && "sp-card--interactive",
     padded && "sp-card--padded",
-    fullHeight && "sp-card--full"
+    fullHeight && "sp-card--full",
+    disabled && "sp-card--disabled"
   );
 }
 
@@ -163,7 +165,7 @@ var INPUT_SIZES = {
   lg: true
 };
 function getInputClasses(opts = {}) {
-  const { state: stateInput, size: sizeInput, fullWidth = false } = opts;
+  const { state: stateInput, size: sizeInput, fullWidth = false, pill = false } = opts;
   const state = resolveOption({
     name: "input state",
     value: stateInput,
@@ -189,7 +191,8 @@ function getInputClasses(opts = {}) {
     state === "success" && "sp-input--success",
     // Visual state only; actual disabled attribute is handled by adapters.
     state === "disabled" && "sp-input--disabled",
-    fullWidth && "sp-input--full"
+    fullWidth && "sp-input--full",
+    pill && "sp-input--pill"
   );
 }
 
@@ -209,7 +212,7 @@ var BADGE_SIZES = {
   lg: true
 };
 function getBadgeClasses(opts = {}) {
-  const { variant: variantInput, size: sizeInput, interactive } = opts;
+  const { variant: variantInput, size: sizeInput, interactive, disabled } = opts;
   const variant = resolveOption({
     name: "badge variant",
     value: variantInput,
@@ -242,7 +245,8 @@ function getBadgeClasses(opts = {}) {
     "sp-badge",
     variantClass,
     sizeClass,
-    interactive && "sp-badge--interactive"
+    interactive && "sp-badge--interactive",
+    disabled && "sp-badge--disabled"
   );
 }
 
@@ -260,7 +264,7 @@ var ICONBOX_SIZES = {
   lg: true
 };
 function getIconBoxClasses(opts = {}) {
-  const { variant: variantInput, size: sizeInput } = opts;
+  const { variant: variantInput, size: sizeInput, disabled = false } = opts;
   const variant = resolveOption({
     name: "icon box variant",
     value: variantInput,
@@ -287,7 +291,7 @@ function getIconBoxClasses(opts = {}) {
     lg: "sp-iconbox--lg"
   };
   const sizeClass = sizeMap[size];
-  return cx("sp-iconbox", variantClass, sizeClass);
+  return cx("sp-iconbox", variantClass, sizeClass, disabled && "sp-iconbox--disabled");
 }
 
 // src/recipes/testimonial.ts
@@ -312,10 +316,11 @@ function getTestimonialAuthorTitleClasses() {
 
 // src/recipes/pricing-card.ts
 function getPricingCardClasses(opts = {}) {
-  const { featured = false } = opts;
+  const { featured = false, disabled = false } = opts;
   return cx(
     "sp-pricing-card",
-    featured && "sp-pricing-card--featured"
+    featured && "sp-pricing-card--featured",
+    disabled && "sp-pricing-card--disabled"
   );
 }
 function getPricingCardBadgeClasses() {
