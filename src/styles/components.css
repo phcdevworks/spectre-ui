@@ -921,6 +921,11 @@
     border: none;
   }
 
+  .sp-pricing-card--disabled {
+    opacity: var(--sp-opacity-disabled);
+    pointer-events: none;
+  }
+
   .sp-pricing-card-badge {
     position: absolute;
     top: var(--sp-space-16);
