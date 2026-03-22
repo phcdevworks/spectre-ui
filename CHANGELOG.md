@@ -4,6 +4,21 @@ All notable changes to this project will be documented here. The format follows 
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-03-22
+
+### Added
+- **Component States**: Implemented `disabled` states across `Card`, `Badge`, `IconBox`, and `PricingCard` components for improved accessibility and interactivity.
+- **Pill Variant**: Added `pill` variant support for `Input` components.
+- **Project Structure**: Introduced `.keep` files for `skills` directory and unified workspace configuration.
+- **Arsenal Sync**: Synchronized design tokens from `@phcdevworks/spectre-tokens` v2.x ecosystem.
+
+### Changed
+- **Dependencies**: Bumping `@phcdevworks/spectre-tokens` to `v2.1.0` for latest design token features.
+- **Maintenance**: Standardized project configurations (ESLint, Prettier, .npmignore) across the Spectre suite.
+- **ESLint**: Migrated `eslint.config.js` to `eslint.config.ts` for type-safe linting with `import.meta.dirname` support.
+- **Documentation**: Refined Layer 2 Blueprint terminology in `AGENTS.md` and clarified 'Blueprint' vs 'DNA' definitions in `README.md`.
+- **Infrastructure**: Removed legacy devcontainer configurations and tidied VS Code workspace settings.
+
 ## [1.0.0] - 2026-03-16
 
 ### Added

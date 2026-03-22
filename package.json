@@ -1,6 +1,6 @@
 {
   "name": "@phcdevworks/spectre-ui",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Cross-platform UI built on Spectre Tokens. A Tailwind-powered design system that turns the tokens into consistent CSS utilities, component classes and design recipes for WordPress blocks, Astro components, 11ty templates and other modern web apps.",
   "keywords": [
     "phcdevworks",
@@ -79,7 +79,7 @@
     "tailwindcss": "^3.4.0 || ^4.0.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "github:phcdevworks/spectre-tokens#main"
+    "@phcdevworks/spectre-tokens": "^2.1.0"
   },
   "devDependencies": {
     "@types/node": "^25.5.0",
@@ -96,5 +96,8 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.57.1",
     "vitest": "^4.0.15"
-  }
+  },
+  "cSpell.words": [
+    "phcdevworks"
+  ]
 }

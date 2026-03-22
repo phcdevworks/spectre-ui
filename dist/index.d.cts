@@ -34,6 +34,7 @@ interface CardRecipeOptions {
     interactive?: boolean;
     padded?: boolean;
     fullHeight?: boolean;
+    disabled?: boolean;
 }
 declare function getCardClasses(opts?: CardRecipeOptions): string;
 
@@ -45,6 +46,7 @@ interface InputRecipeOptions {
     state?: InputState;
     size?: InputSize;
     fullWidth?: boolean;
+    pill?: boolean;
 }
 declare function getInputClasses(opts?: InputRecipeOptions): string;
 
@@ -60,6 +62,7 @@ interface BadgeRecipeOptions {
     variant?: BadgeVariant;
     size?: BadgeSize;
     interactive?: boolean;
+    disabled?: boolean;
 }
 declare function getBadgeClasses(opts?: BadgeRecipeOptions): string;
 
@@ -70,6 +73,7 @@ type IconBoxSize = (typeof iconBoxSizes)[number];
 interface IconBoxRecipeOptions {
     variant?: IconBoxVariant;
     size?: IconBoxSize;
+    disabled?: boolean;
 }
 declare function getIconBoxClasses(opts?: IconBoxRecipeOptions): string;
 
@@ -92,6 +96,7 @@ declare function getTestimonialAuthorTitleClasses(): string;
  */
 interface PricingCardRecipeOptions {
     featured?: boolean;
+    disabled?: boolean;
 }
 declare function getPricingCardClasses(opts?: PricingCardRecipeOptions): string;
 declare function getPricingCardBadgeClasses(): string;

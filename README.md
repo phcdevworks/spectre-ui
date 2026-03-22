@@ -12,7 +12,7 @@
 
 This package operates as a pure **Blueprint Layer**. It follows a strict **Zero-Hex Enforcement** policy—visual values are imported via `--sp-*` variables, ensuring that if tokens change, the entire UI layer updates automatically.
 
-- 💎 **Token-Driven**: Fully compatible with `@phcdevworks/spectre-tokens` v2.0.0.
+- 💎 **Token-Driven**: Fully compatible with `@phcdevworks/spectre-tokens` v2.1.0.
 - 📦 **Precompiled CSS**: Ships `base`, `components`, and `utilities` bundles.
 - 🧪 **Type-Safe Recipes**: Pure JS/TS functions for generating framework-agnostic class strings.
 - 🌪️ **Tailwind Preset**: Mirrors the design scale into the Tailwind utility engine.

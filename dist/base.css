@@ -45,7 +45,7 @@
   }
 
   a {
-    color: var(--sp-text-on-page-brand);
+    color: var(--sp-color-brand-600);
     text-decoration: none;
   }
 
