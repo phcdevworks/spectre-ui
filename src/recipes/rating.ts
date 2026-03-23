@@ -5,11 +5,12 @@ import { cx } from "../internal/cx";
  * @sync v2.x - Synced with latest design tokens.
  */
 export interface RatingRecipeOptions {
-  // Potential for variants later if needed
+  disabled?: boolean;
 }
 
-export function getRatingClasses(_opts: RatingRecipeOptions = {}): string {
-  return cx("sp-rating");
+export function getRatingClasses(opts: RatingRecipeOptions = {}): string {
+  const { disabled = false } = opts;
+  return cx("sp-rating", disabled && "sp-rating--disabled");
 }
 
 export function getRatingStarsClasses(): string {

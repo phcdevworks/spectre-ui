@@ -972,6 +972,11 @@
     gap: var(--sp-space-8);
   }
 
+  .sp-rating--disabled {
+    opacity: var(--sp-opacity-disabled);
+    pointer-events: none;
+  }
+
   .sp-rating-stars {
     display: flex;
     gap: var(--sp-space-4);
