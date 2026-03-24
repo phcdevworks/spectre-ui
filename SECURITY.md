@@ -2,17 +2,21 @@
 
 ## Supported Versions
 
-We aim to support the latest published version of the project. Security updates are applied to the current major version only.
+We aim to support the latest published version of the project. Security updates
+are applied to the current major version only.
 
-**Please ensure you are using the most recent versions** of the Spectre Arsenal packages. Older releases may not receive security fixes.
+**Please ensure you are using the most recent versions** of the Spectre Arsenal
+packages. Older releases may not receive security fixes.
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability, please **DO NOT** open a public issue. Security issues should be reported privately to protect users.
+If you discover a security vulnerability, please **DO NOT** open a public issue.
+Security issues should be reported privately to protect users.
 
 ### How to Report
 
-**Preferred method**: Use GitHub Security Advisories to privately report vulnerabilities on the specific repository.
+**Preferred method**: Use GitHub Security Advisories to privately report
+vulnerabilities on the specific repository.
 
 **Alternative methods**:
 
@@ -21,7 +25,8 @@ If you discover a security vulnerability, please **DO NOT** open a public issue.
 
 ### What to Include
 
-Please provide as much detail as possible to help us reproduce and assess impact:
+Please provide as much detail as possible to help us reproduce and assess
+impact:
 
 1. **Description of the vulnerability** and potential impact
 2. **Steps to reproduce** or proof-of-concept code
@@ -32,10 +37,14 @@ Please provide as much detail as possible to help us reproduce and assess impact
 ### What to Expect
 
 1. **Acknowledgment**: We will acknowledge receipt within **48 hours**
-2. **Assessment**: We will investigate and provide an initial assessment within **5 business days**
-3. **Updates**: We will keep you informed of the fix status throughout the process
-4. **Resolution**: We will work on a fix and coordinate disclosure timing with you
-5. **Credit**: We will credit you in the security advisory (unless you prefer to remain anonymous)
+2. **Assessment**: We will investigate and provide an initial assessment within
+   **5 business days**
+3. **Updates**: We will keep you informed of the fix status throughout the
+   process
+4. **Resolution**: We will work on a fix and coordinate disclosure timing with
+   you
+5. **Credit**: We will credit you in the security advisory (unless you prefer to
+   remain anonymous)
 
 ## Responsible Disclosure
 
@@ -46,7 +55,8 @@ We appreciate responsible disclosure and will work with you to:
 - Coordinate public disclosure timing
 - Credit your contribution (if desired)
 
-**Please allow us reasonable time to address the issue before public disclosure.**
+**Please allow us reasonable time to address the issue before public
+disclosure.**
 
 ## Security Best Practices
 

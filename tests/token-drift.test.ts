@@ -72,7 +72,7 @@ describe('token drift guard', () => {
     // Regex to strip custom-property definitions (--sp-*: <value>;)
     // These are token/role declarations, not raw usage in properties.
     const customPropDefRegex = /--sp-[a-z0-9-]+\s*:[^;]+;/g;
-    
+
     styleContents
       .filter(({ filePath }) => !filePath.endsWith('base.css'))
       .forEach(({ filePath, content }) => {

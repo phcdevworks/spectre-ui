@@ -988,7 +988,7 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .sp-rating-star--filled {
     color: var(--sp-component-rating-star-filled);
   }

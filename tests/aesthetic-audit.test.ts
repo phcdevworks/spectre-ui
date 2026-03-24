@@ -5,9 +5,9 @@ import { describe, expect, it } from 'vitest';
 
 /**
  * Aesthetic Guard (The "Shit Test")
- * 
- * This test scans the component role mappings in Layer 2 to ensure 
- * we aren't creating visually offensive or unreadable combinations 
+ *
+ * This test scans the component role mappings in Layer 2 to ensure
+ * we aren't creating visually offensive or unreadable combinations
  * using the design tokens.
  */
 
@@ -24,13 +24,13 @@ const getLuminance = (hex: string) => {
   const r = parseInt(hex.slice(1, 3), 16) / 255;
   const g = parseInt(hex.slice(3, 5), 16) / 255;
   const b = parseInt(hex.slice(5, 7), 16) / 255;
-  
+
   if (isNaN(r) || isNaN(g) || isNaN(b)) return undefined;
 
   const a = [r, g, b].map(v => {
     return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
   });
-  
+
   return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 };
 
@@ -74,11 +74,11 @@ describe('aesthetic guard (the "shit test")', () => {
     if (bgMatch && textMatch && bgMatch[1] && textMatch[1]) {
       const bg = bgMatch[1].trim();
       const text = textMatch[1].trim();
-      
+
       // Specifically catch the "Gold on Blue" user complaint
       const isBlue = bg?.includes('info-600') || bg?.includes('brand-600');
       const isGold = text?.includes('warning-500') || (badgeBgMatch && badgeBgMatch[1] && badgeBgMatch[1].includes('warning-500'));
-      
+
       if (isBlue && isGold) {
         throw new Error('Aesthetic Violation: Blue and Gold clashing combination detected. This looks like shit.');
       }
