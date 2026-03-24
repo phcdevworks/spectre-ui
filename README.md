@@ -1,14 +1,17 @@
 # @phcdevworks/spectre-ui
 
-### **The Blueprint (Layer 2 of the Spectre 8-Layer Arsenal)**
+[![GitHub issues](https://img.shields.io/github/issues/phcdevworks/spectre-ui)](https://github.com/phcdevworks/spectre-ui/issues) [![GitHub pulls](https://img.shields.io/github/issues-pr/phcdevworks/spectre-ui)](https://github.com/phcdevworks/spectre-ui/pulls) [![License](https://img.shields.io/github/license/phcdevworks/spectre-ui)](LICENSE)
 
-`@phcdevworks/spectre-ui` is the structural engine of the Spectre design system. It translates the design "DNA" from `@phcdevworks/spectre-tokens` into CSS structure, localized Tailwind presets, and type-safe class recipes.
+The structural engine (Blueprint) of the Spectre design system. It translates the design "DNA" from `@phcdevworks/spectre-tokens` into CSS structure, localized Tailwind presets, and type-safe class recipes.
 
-🤝 **[Contributing Guide](CONTRIBUTING.md)** | 📝 **[Changelog](CHANGELOG.md)** | 🏛️ **[Spectre Arsenal](https://github.com/phcdevworks)**
 
----
 
-## 🏗️ Core Architecture
+🤝 **[Contributing Guide](CONTRIBUTING.md)** | 📝 **[Changelog](CHANGELOG.md)** | 🛡️ **[Security Policy](SECURITY.md)**
+
+## Overview
+
+`@phcdevworks/spectre-ui` is the structural engine of the Spectre design system. It operates as a pure **Blueprint Layer** following a strict **Zero-Hex Enforcement** policy—visual values are imported via `--sp-*` variables, ensuring that if tokens change, the entire UI layer updates automatically.
+
 
 This package operates as a pure **Blueprint Layer**. It follows a strict **Zero-Hex Enforcement** policy—visual values are imported via `--sp-*` variables, ensuring that if tokens change, the entire UI layer updates automatically.
 
@@ -113,8 +116,12 @@ Run the Vitest suite to verify recipe outputs and token-first compliance.
 npm test
 ```
 
----
+## Contributing
 
-## ❤️ Support & Community
+We welcome contributions from the community. Please review our **[CONTRIBUTING.md](CONTRIBUTING.md)** for details on our workflow and standards.
 
-- **License**: MIT © [PHCDevworks](https://phcdevworks.com)
+## License
+
+MIT © PHCDevworks — See **[LICENSE](LICENSE)** for details.
+
+
