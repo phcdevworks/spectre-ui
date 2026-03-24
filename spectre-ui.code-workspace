@@ -62,7 +62,12 @@
 		"[markdown]": {
 			"editor.wordWrap": "on",
 			"editor.formatOnSave": true,
-			"editor.defaultFormatter": "vscode.markdown-language-features"
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.quickSuggestions": {
+				"comments": "off",
+				"strings": "off",
+				"other": "off"
+			}
 		},
 		"files.associations": {
 			"*.css": "css",
@@ -70,10 +75,6 @@
 			"*.tsx": "typescriptreact",
 			"*.astro": "astro"
 		},
-		"tailwindCSS.includeLanguages": {
-			"astro": "html"
-		},
-		"tailwindCSS.emmetCompletions": true,
 		"files.exclude": {
 			"**/.git": true,
 			"**/.DS_Store": true,
@@ -105,10 +106,10 @@
 		"version": "0.2.0",
 		"configurations": [
 			{
-				"command": "./node_modules/.bin/astro dev",
-				"name": "Development server",
+				"name": "Build UI",
+				"type": "node-terminal",
 				"request": "launch",
-				"type": "node-terminal"
+				"command": "npm run build"
 			}
 		]
 	},
@@ -120,6 +121,8 @@
 			"dbaeumer.vscode-eslint",
 			"esbenp.prettier-vscode",
 			"editorconfig.editorconfig",
+			"yzhang.markdown-all-in-one",
+			"davidanson.vscode-markdownlint",
 			"streetsidesoftware.code-spell-checker",
 			"usernamehw.errorlens",
 			"yoavbls.pretty-ts-errors",
@@ -143,23 +146,13 @@
 		"version": "2.0.0",
 		"tasks": [
 			{
-				"label": "dev",
-				"command": "npm run dev",
+				"label": "build",
+				"command": "npm run build",
 				"type": "shell",
 				"group": {
 					"kind": "build",
 					"isDefault": true
 				}
-			},
-			{
-				"label": "build",
-				"command": "npm run build",
-				"type": "shell"
-			},
-			{
-				"label": "preview",
-				"command": "npm run preview",
-				"type": "shell"
 			},
 			{
 				"label": "lint",
