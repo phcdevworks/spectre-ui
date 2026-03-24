@@ -82,8 +82,9 @@ declare function getIconBoxClasses(opts?: IconBoxRecipeOptions): string;
  * @sync v2.x - Synced with latest design tokens.
  */
 interface TestimonialRecipeOptions {
+    disabled?: boolean;
 }
-declare function getTestimonialClasses(_opts?: TestimonialRecipeOptions): string;
+declare function getTestimonialClasses(opts?: TestimonialRecipeOptions): string;
 declare function getTestimonialQuoteClasses(): string;
 declare function getTestimonialAuthorClasses(): string;
 declare function getTestimonialAuthorInfoClasses(): string;
@@ -109,8 +110,9 @@ declare function getPricingCardDescriptionClasses(): string;
  * @sync v2.x - Synced with latest design tokens.
  */
 interface RatingRecipeOptions {
+    disabled?: boolean;
 }
-declare function getRatingClasses(_opts?: RatingRecipeOptions): string;
+declare function getRatingClasses(opts?: RatingRecipeOptions): string;
 declare function getRatingStarsClasses(): string;
 declare function getRatingStarClasses(isFilled?: boolean): string;
 declare function getRatingTextClasses(): string;

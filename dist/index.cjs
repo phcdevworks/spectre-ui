@@ -295,8 +295,9 @@ function getIconBoxClasses(opts = {}) {
 }
 
 // src/recipes/testimonial.ts
-function getTestimonialClasses(_opts = {}) {
-  return cx("sp-testimonial");
+function getTestimonialClasses(opts = {}) {
+  const { disabled = false } = opts;
+  return cx("sp-testimonial", disabled && "sp-testimonial--disabled");
 }
 function getTestimonialQuoteClasses() {
   return cx("sp-testimonial-quote");
@@ -337,8 +338,9 @@ function getPricingCardDescriptionClasses() {
 }
 
 // src/recipes/rating.ts
-function getRatingClasses(_opts = {}) {
-  return cx("sp-rating");
+function getRatingClasses(opts = {}) {
+  const { disabled = false } = opts;
+  return cx("sp-rating", disabled && "sp-rating--disabled");
 }
 function getRatingStarsClasses() {
   return cx("sp-rating-stars");

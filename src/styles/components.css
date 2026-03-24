@@ -859,6 +859,11 @@
     gap: var(--sp-space-24);
   }
 
+  .sp-testimonial--disabled {
+    opacity: var(--sp-opacity-disabled);
+    pointer-events: none;
+  }
+
   .sp-testimonial-quote {
     color: var(--sp-component-testimonial-text);
     font-size: var(--sp-font-lg-size);
