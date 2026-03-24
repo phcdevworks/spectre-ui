@@ -5,11 +5,12 @@ import { cx } from "../internal/cx";
  * @sync v2.x - Synced with latest design tokens.
  */
 export interface TestimonialRecipeOptions {
-  // Potential for variants later if needed
+  disabled?: boolean;
 }
 
-export function getTestimonialClasses(_opts: TestimonialRecipeOptions = {}): string {
-  return cx("sp-testimonial");
+export function getTestimonialClasses(opts: TestimonialRecipeOptions = {}): string {
+  const { disabled = false } = opts;
+  return cx("sp-testimonial", disabled && "sp-testimonial--disabled");
 }
 
 export function getTestimonialQuoteClasses(): string {
