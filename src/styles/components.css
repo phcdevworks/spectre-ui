@@ -560,6 +560,11 @@
     box-shadow: none;
   }
 
+  .sp-input--loading {
+    pointer-events: none;
+    opacity: var(--sp-opacity-active);
+  }
+
   /* CARDS ---------------------------------------------------------------- */
 
   .sp-card {

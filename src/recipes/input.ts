@@ -1,7 +1,7 @@
 import { cx } from "../internal/cx";
 import { resolveOption } from "../internal/resolve-option";
 
-const inputStates = ["default", "error", "success", "disabled"] as const;
+const inputStates = ["default", "error", "success", "disabled", "loading"] as const;
 const inputSizes = ["sm", "md", "lg"] as const;
 
 export type InputState = (typeof inputStates)[number];
@@ -12,6 +12,7 @@ const INPUT_STATES = {
   error: true,
   success: true,
   disabled: true,
+  loading: true,
 } as const;
 
 const INPUT_SIZES = {
@@ -58,6 +59,7 @@ export function getInputClasses(opts: InputRecipeOptions = {}): string {
     state === "success" && "sp-input--success",
     // Visual state only; actual disabled attribute is handled by adapters.
     state === "disabled" && "sp-input--disabled",
+    state === "loading" && "sp-input--loading",
     fullWidth && "sp-input--full",
     pill && "sp-input--pill",
   );
