@@ -742,6 +742,11 @@
     pointer-events: none;
   }
 
+  .sp-badge--loading {
+    opacity: var(--sp-opacity-active);
+    pointer-events: none;
+  }
+
   /* ICON BOXES ----------------------------------------------------------- */
 
   .sp-iconbox {
