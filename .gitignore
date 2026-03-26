@@ -1,1 +1,12 @@
+# Dependencies
 node_modules/
+
+# Build artifacts
+dist/
+
+# Logs and caches
+*.log
+.eslintcache
+
+# OS files
+.DS_Store

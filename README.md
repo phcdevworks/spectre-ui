@@ -4,24 +4,20 @@
 [![GitHub pulls](https://img.shields.io/github/issues-pr/phcdevworks/spectre-ui)](https://github.com/phcdevworks/spectre-ui/pulls)
 [![License](https://img.shields.io/github/license/phcdevworks/spectre-ui)](LICENSE)
 
-The structural engine (Blueprint) of the Spectre design system. It translates
-the design "DNA" from `@phcdevworks/spectre-tokens` into CSS structure,
-localized Tailwind presets, and type-safe class recipes.
+Layer 2 of the Spectre suite, maintained by PHCDevworks. This package turns
+`@phcdevworks/spectre-tokens` into reusable CSS, Tailwind helpers, and
+type-safe class recipes for downstream adapters and applications.
 
 🤝 **[Contributing Guide](CONTRIBUTING.md)** | 📝 **[Changelog](CHANGELOG.md)**
 | 🛡️ **[Security Policy](SECURITY.md)**
 
 ## Overview
 
-`@phcdevworks/spectre-ui` is the structural engine of the Spectre design system.
-It operates as a pure **Blueprint Layer** following a strict **Zero-Hex
-Enforcement** policy—visual values are imported via `--sp-*` variables, ensuring
-that if tokens change, the entire UI layer updates automatically.
-
-This package operates as a pure **Blueprint Layer**. It follows a strict
-**Zero-Hex Enforcement** policy—visual values are imported via `--sp-*`
-variables, ensuring that if tokens change, the entire UI layer updates
-automatically.
+`@phcdevworks/spectre-ui` is the structural layer of the Spectre suite. It
+consumes token meaning from `@phcdevworks/spectre-tokens` and turns that
+contract into implementation: CSS bundles, utility classes, and recipe helpers.
+It follows a strict **zero-hex** policy so visual values stay connected to the
+token layer instead of drifting locally.
 
 - 💎 **Token-Driven**: Fully compatible with `@phcdevworks/spectre-tokens`
   v2.1.0.
@@ -31,9 +27,12 @@ automatically.
 - 🌪️ **Tailwind Preset**: Mirrors the design scale into the Tailwind utility
   engine.
 
+PHCDevworks maintains this package as the bridge between token definitions and
+framework-specific adapters.
+
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -68,7 +67,7 @@ export default {
 
 ---
 
-## 🧩 Class Recipes
+## Class Recipes
 
 Recipes are the API contract for all Spectre framework adapters. They ensure
 `.sp-btn--primary` always behaves identical whether used in React, Astro, or
