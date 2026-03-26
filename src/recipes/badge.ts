@@ -32,10 +32,11 @@ export interface BadgeRecipeOptions {
   size?: BadgeSize;
   interactive?: boolean;
   disabled?: boolean;
+  loading?: boolean;
 }
 
 export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
-  const { variant: variantInput, size: sizeInput, interactive, disabled } = opts;
+  const { variant: variantInput, size: sizeInput, interactive, disabled, loading } = opts;
 
   const variant = resolveOption({
     name: "badge variant",
@@ -73,6 +74,7 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
     variantClass,
     sizeClass,
     interactive && "sp-badge--interactive",
-    disabled && "sp-badge--disabled"
+    disabled && "sp-badge--disabled",
+    loading && "sp-badge--loading"
   );
 }
