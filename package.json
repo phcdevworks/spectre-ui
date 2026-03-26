@@ -83,7 +83,7 @@
   },
   "devDependencies": {
     "@types/node": "^25.5.0",
-    "@typescript-eslint/eslint-plugin": "^8.57.1",
+    "@typescript-eslint/eslint-plugin": "^8.57.2",
     "@typescript-eslint/parser": "^8.57.1",
     "autoprefixer": "^10.4.20",
     "eslint": "^10.1.0",
