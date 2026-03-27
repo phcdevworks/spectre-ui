@@ -44,6 +44,12 @@ describe('getBadgeClasses', () => {
     expect(result).toBe(result.trim());
     expect(result.includes('  ')).toBe(false);
   });
+
+  it('supports loading and disabled states', () => {
+    const result = getIconBoxClasses({ loading: true, disabled: true });
+    expect(result).toContain('sp-iconbox--loading');
+    expect(result).toContain('sp-iconbox--disabled');
+  });
 });
 
 describe('getIconBoxClasses', () => {
