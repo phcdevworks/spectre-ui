@@ -83,18 +83,18 @@
   },
   "devDependencies": {
     "@types/node": "^25.5.0",
-    "@typescript-eslint/eslint-plugin": "^8.57.1",
+    "@typescript-eslint/eslint-plugin": "^8.57.2",
     "@typescript-eslint/parser": "^8.57.2",
-    "autoprefixer": "^10.4.20",
+    "autoprefixer": "^10.4.27",
     "eslint": "^10.1.0",
-    "postcss": "^8.4.35",
+    "postcss": "^8.5.8",
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.1",
     "prettier": "^3.8.1",
     "tailwindcss": "^4.2.2",
     "tsup": "^8.5.1",
-    "typescript": "^6.0.2",
-    "typescript-eslint": "^8.57.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.2",
     "vitest": "^4.1.2"
   },
   "cSpell.words": [
