@@ -857,6 +857,11 @@
     pointer-events: none;
   }
 
+  .sp-iconbox--loading {
+    opacity: var(--sp-opacity-active);
+    pointer-events: none;
+  }
+
   /* TESTIMONIALS --------------------------------------------------------- */
 
   .sp-testimonial {
