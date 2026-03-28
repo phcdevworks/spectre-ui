@@ -9,9 +9,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "target": "es2020",
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
@@ -39,13 +37,6 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
-  "include": [
-    "src",
-    "tests"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "tsup.config.ts"
-  ]
+  "include": ["src", "tests"],
+  "exclude": ["node_modules", "dist", "tsup.config.ts"]
 }
