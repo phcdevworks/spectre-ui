@@ -2,14 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-
-/**
- * Aesthetic Guard (The "Shit Test")
- *
- * This test scans the component role mappings in Layer 2 to ensure
- * we aren't creating visually offensive or unreadable combinations
- * using the design tokens.
- */
+// Replace this import path with the real generated token export your package exposes.
+import tokens from '@phcdevworks/spectre-tokens';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,99 +12,179 @@ const projectRoot = path.join(__dirname, '..');
 const componentsCssPath = path.join(projectRoot, 'src', 'styles', 'components.css');
 const cssContent = fs.readFileSync(componentsCssPath, 'utf8');
 
-// Rough luminance weights
-const getLuminance = (hex: string) => {
-  if (hex.length < 7) return undefined;
-  const r = parseInt(hex.slice(1, 3), 16) / 255;
-  const g = parseInt(hex.slice(3, 5), 16) / 255;
-  const b = parseInt(hex.slice(5, 7), 16) / 255;
+function getCssCustomProperty(name: string): string | undefined {
+  const match = cssContent.match(new RegExp(`${escapeRegExp(name)}\\s*:\\s*([^;]+);`));
+  return match?.[1]?.trim();
+}
 
-  if (isNaN(r) || isNaN(g) || isNaN(b)) return undefined;
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
-  const a = [r, g, b].map(v => {
-    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+function getLuminance(hex: string): number | undefined {
+  const normalized = normalizeHex(hex);
+  if (!normalized) return undefined;
+
+  const r = parseInt(normalized.slice(1, 3), 16) / 255;
+  const g = parseInt(normalized.slice(3, 5), 16) / 255;
+  const b = parseInt(normalized.slice(5, 7), 16) / 255;
+
+  const channels = [r, g, b].map(v =>
+    v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4
+  );
+
+  return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
+}
+
+function getContrastRatio(hexA: string, hexB: string): number | undefined {
+  const lumA = getLuminance(hexA);
+  const lumB = getLuminance(hexB);
+
+  if (lumA === undefined || lumB === undefined) return undefined;
+
+  const lighter = Math.max(lumA, lumB);
+  const darker = Math.min(lumA, lumB);
+
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
+function normalizeHex(value: string): string | undefined {
+  if (!value.startsWith('#')) return undefined;
+  if (value.length === 7) return value.toLowerCase();
+  if (value.length === 4) {
+    const r = value[1];
+    const g = value[2];
+    const b = value[3];
+    return `#${r}${r}${g}${g}${b}${b}`.toLowerCase();
+  }
+  return undefined;
+}
+
+/**
+ * Transitional token resolver
+ *
+ * Prefer mapping directly from a generated token export when available.
+ * This helper keeps the lookup isolated so it can be replaced cleanly.
+ */
+function resolveTokenReferenceToHex(reference: string): string | undefined {
+  const tokenMap: Record<string, string | undefined> = {
+    'var(--sp-color-neutral-900)': getNestedToken(tokens, ['colors', 'neutral', '900']),
+    'var(--sp-color-neutral-50)': getNestedToken(tokens, ['colors', 'neutral', '50']),
+    'var(--sp-color-brand-600)': getNestedToken(tokens, ['colors', 'brand', '600']),
+    'var(--sp-color-info-600)': getNestedToken(tokens, ['colors', 'info', '600']),
+    'var(--sp-color-warning-500)': getNestedToken(tokens, ['colors', 'warning', '500']),
+    'var(--sp-color-warning-600)': getNestedToken(tokens, ['colors', 'warning', '600']),
+    'var(--sp-surface-card)': getNestedToken(tokens, ['surface', 'card']),
+    'var(--sp-text-on-surface-default)': getNestedToken(tokens, ['text', 'onSurface', 'default']),
+  };
+
+  const resolved = tokenMap[reference];
+  return typeof resolved === 'string' ? resolved : undefined;
+}
+
+function getNestedToken(source: unknown, pathParts: string[]): string | undefined {
+  let current: unknown = source;
+
+  for (const part of pathParts) {
+    if (!current || typeof current !== 'object' || !(part in current)) {
+      return undefined;
+    }
+    current = (current as Record<string, unknown>)[part];
+  }
+
+  return typeof current === 'string' ? current : undefined;
+}
+
+describe('design contract guard', () => {
+  describe('semantic role guard', () => {
+    it('prevents CTA roles from using warning palette backgrounds', () => {
+      const ctaBg = getCssCustomProperty('--sp-component-button-cta-bg');
+
+      expect(ctaBg, 'Missing --sp-component-button-cta-bg').toBeDefined();
+
+      if (!ctaBg) return;
+
+      const forbiddenWarningUsage =
+        ctaBg.includes('warning-500') || ctaBg.includes('warning-600');
+
+      expect(
+        forbiddenWarningUsage,
+        'CTA background must not map to warning palette tokens.'
+      ).toBe(false);
+    });
   });
 
-  return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
-};
+  describe('brand pairing guard', () => {
+    it('prevents forbidden featured pricing combinations', () => {
+      const featuredBg = getCssCustomProperty('--sp-component-pricing-card-featured-bg');
+      const featuredText = getCssCustomProperty('--sp-component-pricing-card-featured-text');
+      const featuredBadgeBg = getCssCustomProperty('--sp-component-pricing-card-featured-badge-bg');
 
-const getContrast = (l1: number, l2: number) => {
-  const brightest = Math.max(l1, l2);
-  const darkest = Math.min(l1, l2);
-  return (brightest + 0.05) / (darkest + 0.05);
-};
+      expect(featuredBg, 'Missing --sp-component-pricing-card-featured-bg').toBeDefined();
+      expect(featuredText, 'Missing --sp-component-pricing-card-featured-text').toBeDefined();
 
-// Hardcoded token values for the audit (simulating the token layer knowledge)
-// In a real prod environment, we'd pull these from the core.json of @phcdevworks/spectre-tokens
-const TOKEN_VALUES: Record<string, string> = {
-  'var(--sp-color-neutral-900)': '#0f172a',
-  'var(--sp-color-neutral-50)': '#f8fafc',
-  'var(--sp-color-brand-600)': '#2563eb',
-  'var(--sp-color-info-600)': '#2563eb',
-  'var(--sp-color-warning-500)': '#f59e0b',
-  'var(--sp-color-accent-600)': '#7c3aed',
-  'var(--sp-surface-card)': '#ffffff',
-  'var(--sp-text-on-surface-default)': '#0f172a',
-  // ... and others
-};
+      if (!featuredBg || !featuredText) return;
 
-describe('aesthetic guard (the "shit test")', () => {
-  it('prevents known visual clashes in component roles', () => {
-    // Audit pricing card featured roles
-    const bgMatch = cssContent.match(/--sp-component-pricing-card-featured-bg:\s*([^;]+)/);
-    const textMatch = cssContent.match(/--sp-component-pricing-card-featured-text:\s*([^;]+)/);
-    const badgeBgMatch = cssContent.match(/--sp-component-pricing-card-featured-badge-bg:\s*([^;]+)/);
+      const backgroundUsesBrandFamily =
+        featuredBg.includes('brand-600') || featuredBg.includes('info-600');
 
-    const ctaBgMatch = cssContent.match(/--sp-component-button-cta-bg:\s*([^;]+)/);
-    const ctaTextMatch = cssContent.match(/--sp-component-button-cta-text:\s*([^;]+)/);
+      const textUsesWarningFamily =
+        featuredText.includes('warning-500') || featuredText.includes('warning-600');
 
-    if (ctaBgMatch && ctaBgMatch[1]) {
-      const bg = ctaBgMatch[1].trim();
-      if (bg.includes('warning-500') || bg.includes('warning-600') || bg.includes('button-cta-bg')) {
-        throw new Error('Aesthetic Violation: CTA buttons must not use the warning/gold palette. It looks like a warning, not a call to action.');
-      }
-    }
+      const badgeUsesWarningFamily =
+        featuredBadgeBg?.includes('warning-500') || featuredBadgeBg?.includes('warning-600');
 
-    if (bgMatch && textMatch && bgMatch[1] && textMatch[1]) {
-      const bg = bgMatch[1].trim();
-      const text = textMatch[1].trim();
+      const forbiddenPairing =
+        backgroundUsesBrandFamily && (textUsesWarningFamily || badgeUsesWarningFamily === true);
 
-      // Specifically catch the "Gold on Blue" user complaint
-      const isBlue = bg?.includes('info-600') || bg?.includes('brand-600');
-      const isGold = text?.includes('warning-500') || (badgeBgMatch && badgeBgMatch[1] && badgeBgMatch[1].includes('warning-500'));
-
-      if (isBlue && isGold) {
-        throw new Error('Aesthetic Violation: Blue and Gold clashing combination detected. This looks like shit.');
-      }
-    }
+      expect(
+        forbiddenPairing,
+        'Featured pricing roles must not combine brand/info backgrounds with warning foreground accents.'
+      ).toBe(false);
+    });
   });
 
-  it('enforces a minimum contrast ratio for primary component roles', () => {
-    // This is a simplified version that checks the mappings we just fixed
-    const pricingBgMatch = cssContent.match(/--sp-component-pricing-card-featured-bg:\s*([^;]+)/);
-    const pricingTextMatch = cssContent.match(/--sp-component-pricing-card-featured-text:\s*([^;]+)/);
+  describe('contrast compliance guard', () => {
+    it('enforces minimum contrast for key component roles', () => {
+      const roles = [
+        {
+          name: 'Pricing Card Featured',
+          background: getCssCustomProperty('--sp-component-pricing-card-featured-bg'),
+          foreground: getCssCustomProperty('--sp-component-pricing-card-featured-text'),
+          minContrast: 4.5,
+        },
+        {
+          name: 'CTA Button',
+          background: getCssCustomProperty('--sp-component-button-cta-bg'),
+          foreground: getCssCustomProperty('--sp-component-button-cta-text'),
+          minContrast: 4.5,
+        },
+      ];
 
-    const roles = [
-      {
-        name: 'Pricing Card Featured',
-        bg: pricingBgMatch?.[1]?.trim(),
-        text: pricingTextMatch?.[1]?.trim()
-      }
-    ];
+      for (const role of roles) {
+        expect(role.background, `Missing background for ${role.name}`).toBeDefined();
+        expect(role.foreground, `Missing foreground for ${role.name}`).toBeDefined();
 
-    roles.forEach(role => {
-      if (role.bg && role.text) {
-        const bgHex = TOKEN_VALUES[role.bg] || (role.bg.includes('neutral-900') ? '#0f172a' : null);
-        const textHex = TOKEN_VALUES[role.text] || (role.text.includes('neutral-50') ? '#f8fafc' : null);
+        if (!role.background || !role.foreground) continue;
 
-        if (bgHex && textHex) {
-          const l1 = getLuminance(bgHex);
-          const l2 = getLuminance(textHex);
-          if (l1 !== undefined && l2 !== undefined) {
-            const contrast = getContrast(l1, l2);
-            expect(contrast, `Role "${role.name}" has poor contrast (${contrast.toFixed(2)}:1)`).toBeGreaterThan(4.5);
-          }
-        }
+        const bgHex = resolveTokenReferenceToHex(role.background);
+        const fgHex = resolveTokenReferenceToHex(role.foreground);
+
+        expect(bgHex, `Could not resolve background token for ${role.name}: ${role.background}`).toBeDefined();
+        expect(fgHex, `Could not resolve foreground token for ${role.name}: ${role.foreground}`).toBeDefined();
+
+        if (!bgHex || !fgHex) continue;
+
+        const contrast = getContrastRatio(bgHex, fgHex);
+
+        expect(contrast, `Could not compute contrast for ${role.name}`).toBeDefined();
+
+        if (contrast === undefined) continue;
+
+        expect(
+          contrast,
+          `${role.name} contrast ratio is ${contrast.toFixed(2)}:1, below ${role.minContrast}:1`
+        ).toBeGreaterThanOrEqual(role.minContrast);
       }
     });
   });

@@ -1,7 +1,7 @@
 # Contributing to @phcdevworks/spectre-ui
 
-Thanks for helping improve Spectre. This package is maintained by PHCDevworks
-as Layer 2 of the Spectre suite. It converts Spectre tokens into reusable CSS,
+Thanks for helping improve Spectre. This package is maintained by PHCDevworks as
+Layer 2 of the Spectre suite. It converts Spectre tokens into reusable CSS,
 utilities, and framework-agnostic recipes.
 
 ## Spectre Suite Model
