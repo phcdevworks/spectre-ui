@@ -1,154 +1,172 @@
 # @phcdevworks/spectre-ui
 
 [![GitHub issues](https://img.shields.io/github/issues/phcdevworks/spectre-ui)](https://github.com/phcdevworks/spectre-ui/issues)
-[![GitHub pulls](https://img.shields.io/github/issues-pr/phcdevworks/spectre-ui)](https://github.com/phcdevworks/spectre-ui/pulls)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/phcdevworks/spectre-ui)](https://github.com/phcdevworks/spectre-ui/pulls)
 [![License](https://img.shields.io/github/license/phcdevworks/spectre-ui)](LICENSE)
 
-Layer 2 of the Spectre suite, maintained by PHCDevworks. This package turns
-`@phcdevworks/spectre-tokens` into reusable CSS, Tailwind helpers, and
-type-safe class recipes for downstream adapters and applications.
+`@phcdevworks/spectre-ui` is the implementation layer between [`@phcdevworks/spectre-tokens`](https://github.com/phcdevworks/spectre-tokens) and downstream adapters or apps.
 
-🤝 **[Contributing Guide](CONTRIBUTING.md)** | 📝 **[Changelog](CHANGELOG.md)**
-| 🛡️ **[Security Policy](SECURITY.md)**
+Maintained by PHCDevworks, it turns Spectre tokens into reusable CSS bundles, Tailwind tooling, and type-safe class recipes. It is framework-agnostic, token-driven, and follows a strict zero-hex policy so visual values do not drift locally.
 
-## Overview
+[Contributing](CONTRIBUTING.md) | [Changelog](CHANGELOG.md) | [Security Policy](SECURITY.md)
 
-`@phcdevworks/spectre-ui` is the structural layer of the Spectre suite. It
-consumes token meaning from `@phcdevworks/spectre-tokens` and turns that
-contract into implementation: CSS bundles, utility classes, and recipe helpers.
-It follows a strict **zero-hex** policy so visual values stay connected to the
-token layer instead of drifting locally.
+## Key capabilities
 
-- 💎 **Token-Driven**: Fully compatible with `@phcdevworks/spectre-tokens`
-  v2.1.0.
-- 📦 **Precompiled CSS**: Ships `base`, `components`, and `utilities` bundles.
-- 🧪 **Type-Safe Recipes**: Pure JS/TS functions for generating
-  framework-agnostic class strings.
-- 🌪️ **Tailwind Preset**: Mirrors the design scale into the Tailwind utility
-  engine.
+- Ships precompiled CSS: `index.css`, `base.css`, `components.css`, and `utilities.css`
+- Provides Tailwind theme and preset helpers built from Spectre tokens
+- Exports type-safe class recipes for shared UI patterns
+- Keeps CSS classes and recipe APIs aligned
+- Gives adapters and apps a stable styling contract instead of re-implementing classes
+- Enforces a zero-hex approach so visual values stay tied to `@phcdevworks/spectre-tokens`
 
-PHCDevworks maintains this package as the bridge between token definitions and
-framework-specific adapters.
-
----
-
-## Quick Start
-
-### Installation
+## Installation
 
 ```bash
 npm install @phcdevworks/spectre-ui
 ```
 
-### 1. Import CSS
+## Quick start
 
-For most applications, importing the unified `index.css` is recommended.
+### CSS import
+
+Import the full stylesheet:
 
 ```ts
 import '@phcdevworks/spectre-ui/index.css'
 ```
 
-### 2. Tailwind Integration
+Or import the bundles separately:
 
-Synchronize your Tailwind theme with the Spectre token scale.
+```ts
+import '@phcdevworks/spectre-ui/base.css'
+import '@phcdevworks/spectre-ui/components.css'
+import '@phcdevworks/spectre-ui/utilities.css'
+```
+
+### Tailwind preset usage
+
+Use Spectre tokens as the source of truth for your Tailwind theme:
 
 ```ts
 // tailwind.config.ts
+import type { Config } from 'tailwindcss'
 import { createSpectreTailwindPreset } from '@phcdevworks/spectre-ui/tailwind'
 import { spectreTokens } from '@phcdevworks/spectre-tokens'
 
-const spectrePreset = createSpectreTailwindPreset({ tokens: spectreTokens })
-
-export default {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
-  presets: [spectrePreset]
+const config: Config = {
+  content: ['./src/**/*.{ts,tsx,js,jsx,html}'],
+  presets: [createSpectreTailwindPreset({ tokens: spectreTokens })]
 }
+
+export default config
 ```
 
----
+### Class recipe usage
 
-## Class Recipes
-
-Recipes are the API contract for all Spectre framework adapters. They ensure
-`.sp-btn--primary` always behaves identical whether used in React, Astro, or
-WordPress.
-
-### Core Components
-
-| Recipe              | Primary Variants                                     | Sizes            |
-| :------------------ | :--------------------------------------------------- | :--------------- |
-| `getButtonClasses`  | `primary`, `secondary`, `ghost`, `danger`, `success` | `sm`, `md`, `lg` |
-| `getBadgeClasses`   | `primary`, `success`, `warning`, `danger`            | `sm`, `md`, `lg` |
-| `getCardClasses`    | `elevated`, `outline`, `ghost`                       | `padded`         |
-| `getInputClasses`   | `default`, `error`, `success`                        | `sm`, `md`, `lg` |
-| `getIconBoxClasses` | `primary`, `success`, `warning`, `danger`, `info`    | `sm`, `md`, `lg` |
-
-### Specialized Components
-
-| Recipe                  | Description                                       |
-| :---------------------- | :------------------------------------------------ |
-| `getPricingCardClasses` | Semantic structure for pricing tables and plans.  |
-| `getTestimonialClasses` | Compound classes for quotes, authors, and roles.  |
-| `getRatingClasses`      | Layout recipes for star ratings and count labels. |
+Class recipes are the stable styling API for adapters and apps. They return predictable class strings and keep behavior consistent across frameworks.
 
 ```ts
 import {
+  getBadgeClasses,
   getButtonClasses,
   getPricingCardClasses
 } from '@phcdevworks/spectre-ui'
 
-// Generate a primary CTA class string
 const cta = getButtonClasses({ variant: 'primary', size: 'lg' })
-// Result: "sp-btn sp-btn--primary sp-btn--lg"
-
-// Generate pricing card layout
-const pricing = getPricingCardClasses({ featured: true })
+const badge = getBadgeClasses({ variant: 'success', size: 'sm' })
+const pricingCard = getPricingCardClasses({ featured: true })
 ```
 
----
+## What this package owns
 
-## 🏛️ The Spectre Suite Hierarchy
+- Token-driven CSS implementation
+- Precompiled CSS bundles and utility classes
+- Tailwind helpers and preset generation
+- Type-safe class recipes for shared UI contracts
+- Stable styling behavior consumed by downstream adapters and apps
 
-Spectre is built on a non-negotiable hierarchy to prevent style leakage and
-duplication:
+Golden rule: consume tokens, do not redefine them.
 
-1.  **Layer 1: Tokens**
-    ([@phcdevworks/spectre-tokens](https://github.com/phcdevworks/spectre-tokens))
-    – The source of truth for all design values.
-2.  **Layer 2: UI (This Package)** – Translates tokens into CSS structure and
-    recipes.
-3.  **Layer 3: Adapters** (WordPress, Astro, etc.) – Thin bridges that map Layer
-    2 to specific frameworks.
+## What this package does not own
 
-> **The Golden Rule**: Tokens define _meaning_. UI defines _structure_. Adapters
-> define _delivery_.
+- Design values or semantic meaning  
+  That belongs to `@phcdevworks/spectre-tokens`.
+- Framework-specific component delivery  
+  Adapters and apps consume `@phcdevworks/spectre-ui`; they do not recreate its styling logic.
+- Local visual values outside the token contract  
+  Hardcoded hex, spacing, or shadow values are drift unless clearly intentional and documented.
 
----
+## Package exports / API surface
 
-## 🛠️ Development
+### Root package
 
-### Build Pipeline
+Exports CSS path constants and class recipes, including:
 
-Compiles TypeScript, processes PostCSS, and bundles artifacts into `dist/`.
+- `spectreStyles`
+- `getButtonClasses`
+- `getBadgeClasses`
+- `getCardClasses`
+- `getInputClasses`
+- `getIconBoxClasses`
+- `getPricingCardClasses`
+- `getTestimonialClasses`
+- `getRatingClasses`
+
+Recipes also export their related TypeScript option and variant types.
+
+### Tailwind entry point
+
+`@phcdevworks/spectre-ui/tailwind` exports:
+
+- `createSpectreTailwindPreset`
+- `createSpectreTailwindTheme`
+
+### CSS entry points
+
+- `@phcdevworks/spectre-ui/index.css`
+- `@phcdevworks/spectre-ui/base.css`
+- `@phcdevworks/spectre-ui/components.css`
+- `@phcdevworks/spectre-ui/utilities.css`
+
+## Relationship to the rest of Spectre
+
+Spectre keeps responsibilities separate:
+
+- [`@phcdevworks/spectre-tokens`](https://github.com/phcdevworks/spectre-tokens) defines design values and semantic meaning
+- `@phcdevworks/spectre-ui` turns those tokens into reusable CSS, Tailwind tooling, and type-safe class recipes
+- Adapters and apps consume `@phcdevworks/spectre-ui` instead of re-implementing its styling layer
+
+That separation keeps recipe behavior consistent across frameworks and reduces implementation drift.
+
+## Development
+
+Install dependencies, then run the package checks:
 
 ```bash
 npm run build
-```
-
-### Testing
-
-Run the Vitest suite to verify recipe outputs and token-first compliance.
-
-```bash
 npm test
 ```
 
+Key source areas:
+
+- `src/styles/` for source CSS
+- `src/recipes/` for class recipes
+- `src/tailwind/` for Tailwind helpers
+- `tests/` for contract and regression coverage
+
 ## Contributing
 
-We welcome contributions from the community. Please review our
-**[CONTRIBUTING.md](CONTRIBUTING.md)** for details on our workflow and
-standards.
+PHCDevworks maintains this package as part of the Spectre suite.
+
+When contributing:
+
+- keep styling token-driven
+- keep recipe APIs and CSS classes in sync
+- avoid local visual values unless clearly intentional
+- run `npm run build` and `npm test` before opening a pull request
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full workflow.
 
 ## License
 
-MIT © PHCDevworks — See **[LICENSE](LICENSE)** for details.
+MIT © PHCDevworks. See [LICENSE](LICENSE).
