@@ -879,6 +879,11 @@
     pointer-events: none;
   }
 
+  .sp-testimonial--loading {
+    opacity: var(--sp-opacity-active);
+    pointer-events: none;
+  }
+
   .sp-testimonial-quote {
     color: var(--sp-component-testimonial-text);
     font-size: var(--sp-font-lg-size);
