@@ -6,11 +6,16 @@ import { cx } from "../internal/cx";
  */
 export interface TestimonialRecipeOptions {
   disabled?: boolean;
+  loading?: boolean;
 }
 
 export function getTestimonialClasses(opts: TestimonialRecipeOptions = {}): string {
-  const { disabled = false } = opts;
-  return cx("sp-testimonial", disabled && "sp-testimonial--disabled");
+  const { disabled = false, loading = false } = opts;
+  return cx(
+    "sp-testimonial",
+    disabled && "sp-testimonial--disabled",
+    loading && "sp-testimonial--loading"
+  );
 }
 
 export function getTestimonialQuoteClasses(): string {
