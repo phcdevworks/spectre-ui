@@ -4,20 +4,29 @@
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/phcdevworks/spectre-ui)](https://github.com/phcdevworks/spectre-ui/pulls)
 [![License](https://img.shields.io/github/license/phcdevworks/spectre-ui)](LICENSE)
 
-`@phcdevworks/spectre-ui` is the implementation layer between [`@phcdevworks/spectre-tokens`](https://github.com/phcdevworks/spectre-tokens) and downstream adapters or apps.
+`@phcdevworks/spectre-ui` is the implementation layer between
+[`@phcdevworks/spectre-tokens`](https://github.com/phcdevworks/spectre-tokens)
+and downstream adapters or apps.
 
-Maintained by PHCDevworks, it turns Spectre tokens into reusable CSS bundles, Tailwind tooling, and type-safe class recipes. It is framework-agnostic, token-driven, and follows a strict zero-hex policy so visual values do not drift locally.
+Maintained by PHCDevworks, it turns Spectre tokens into reusable CSS bundles,
+Tailwind tooling, and type-safe class recipes. It is framework-agnostic,
+token-driven, and follows a strict zero-hex policy so visual values do not drift
+locally.
 
-[Contributing](CONTRIBUTING.md) | [Changelog](CHANGELOG.md) | [Security Policy](SECURITY.md)
+[Contributing](CONTRIBUTING.md) | [Changelog](CHANGELOG.md) |
+[Security Policy](SECURITY.md)
 
 ## Key capabilities
 
-- Ships precompiled CSS: `index.css`, `base.css`, `components.css`, and `utilities.css`
+- Ships precompiled CSS: `index.css`, `base.css`, `components.css`, and
+  `utilities.css`
 - Provides Tailwind theme and preset helpers built from Spectre tokens
 - Exports type-safe class recipes for shared UI patterns
 - Keeps CSS classes and recipe APIs aligned
-- Gives adapters and apps a stable styling contract instead of re-implementing classes
-- Enforces a zero-hex approach so visual values stay tied to `@phcdevworks/spectre-tokens`
+- Gives adapters and apps a stable styling contract instead of re-implementing
+  classes
+- Enforces a zero-hex approach so visual values stay tied to
+  `@phcdevworks/spectre-tokens`
 
 ## Installation
 
@@ -63,7 +72,8 @@ export default config
 
 ### Class recipe usage
 
-Class recipes are the stable styling API for adapters and apps. They return predictable class strings and keep behavior consistent across frameworks.
+Class recipes are the stable styling API for adapters and apps. They return
+predictable class strings and keep behavior consistent across frameworks.
 
 ```ts
 import {
@@ -89,12 +99,12 @@ Golden rule: consume tokens, do not redefine them.
 
 ## What this package does not own
 
-- Design values or semantic meaning  
-  That belongs to `@phcdevworks/spectre-tokens`.
-- Framework-specific component delivery  
-  Adapters and apps consume `@phcdevworks/spectre-ui`; they do not recreate its styling logic.
-- Local visual values outside the token contract  
-  Hardcoded hex, spacing, or shadow values are drift unless clearly intentional and documented.
+- Design values or semantic meaning That belongs to
+  `@phcdevworks/spectre-tokens`.
+- Framework-specific component delivery Adapters and apps consume
+  `@phcdevworks/spectre-ui`; they do not recreate its styling logic.
+- Local visual values outside the token contract Hardcoded hex, spacing, or
+  shadow values are drift unless clearly intentional and documented.
 
 ## Package exports / API surface
 
@@ -132,11 +142,15 @@ Recipes also export their related TypeScript option and variant types.
 
 Spectre keeps responsibilities separate:
 
-- [`@phcdevworks/spectre-tokens`](https://github.com/phcdevworks/spectre-tokens) defines design values and semantic meaning
-- `@phcdevworks/spectre-ui` turns those tokens into reusable CSS, Tailwind tooling, and type-safe class recipes
-- Adapters and apps consume `@phcdevworks/spectre-ui` instead of re-implementing its styling layer
+- [`@phcdevworks/spectre-tokens`](https://github.com/phcdevworks/spectre-tokens)
+  defines design values and semantic meaning
+- `@phcdevworks/spectre-ui` turns those tokens into reusable CSS, Tailwind
+  tooling, and type-safe class recipes
+- Adapters and apps consume `@phcdevworks/spectre-ui` instead of re-implementing
+  its styling layer
 
-That separation keeps recipe behavior consistent across frameworks and reduces implementation drift.
+That separation keeps recipe behavior consistent across frameworks and reduces
+implementation drift.
 
 ## Development
 

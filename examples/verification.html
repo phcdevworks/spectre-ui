@@ -1,173 +1,197 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spectre UI — Arsenal Sync Verification</title>
-  <link rel="stylesheet" href="../dist/index.css">
-  <style>
-    body {
-      background-color: var(--sp-surface-page);
-      color: var(--sp-text-on-page-default);
-      transition: background-color var(--sp-duration-moderate) var(--sp-easing-inout);
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spectre UI — Arsenal Sync Verification</title>
+    <link rel="stylesheet" href="../dist/index.css" />
+    <style>
+      body {
+        background-color: var(--sp-surface-page);
+        color: var(--sp-text-on-page-default);
+        transition: background-color var(--sp-duration-moderate)
+          var(--sp-easing-inout);
+      }
 
-    .verification-header {
-      padding: var(--sp-space-64) 0;
-      border-bottom: var(--sp-component-border-width) solid var(--sp-color-neutral-200);
-      background: var(--sp-surface-card);
-    }
+      .verification-header {
+        padding: var(--sp-space-64) 0;
+        border-bottom: var(--sp-component-border-width) solid
+          var(--sp-color-neutral-200);
+        background: var(--sp-surface-card);
+      }
 
-    .verification-header h1 {
-      font-size: var(--sp-font-2xl-size);
-      font-weight: var(--sp-font-2xl-weight);
-      margin-bottom: var(--sp-space-8);
-      background: var(--sp-surface-hero);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+      .verification-header h1 {
+        font-size: var(--sp-font-2xl-size);
+        font-weight: var(--sp-font-2xl-weight);
+        margin-bottom: var(--sp-space-8);
+        background: var(--sp-surface-hero);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
 
-    .grid-layout {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-      gap: var(--sp-space-32);
-      padding: var(--sp-space-48) 0;
-    }
+      .grid-layout {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: var(--sp-space-32);
+        padding: var(--sp-space-48) 0;
+      }
 
-    .test-section {
-      display: flex;
-      flex-direction: column;
-      gap: var(--sp-space-24);
-      padding: var(--sp-space-32);
-      background: var(--sp-surface-card);
-      border: var(--sp-component-border-width) solid var(--sp-color-neutral-200);
-      border-radius: var(--sp-radius-lg);
-      box-shadow: var(--sp-shadow-sm);
-    }
+      .test-section {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-space-24);
+        padding: var(--sp-space-32);
+        background: var(--sp-surface-card);
+        border: var(--sp-component-border-width) solid
+          var(--sp-color-neutral-200);
+        border-radius: var(--sp-radius-lg);
+        box-shadow: var(--sp-shadow-sm);
+      }
 
-    .test-section:hover {
+      .test-section:hover {
         box-shadow: var(--sp-shadow-md);
         border-color: var(--sp-color-brand-300);
-    }
+      }
 
-    .test-section h2 {
-      font-size: var(--sp-font-lg-size);
-      font-weight: var(--sp-font-lg-weight);
-      margin: 0;
-      display: flex;
-      align-items: center;
-      gap: var(--sp-space-12);
-    }
+      .test-section h2 {
+        font-size: var(--sp-font-lg-size);
+        font-weight: var(--sp-font-lg-weight);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: var(--sp-space-12);
+      }
 
-    .test-section h2::before {
+      .test-section h2::before {
         content: '';
         width: 4px;
         height: 1.2em;
         background: var(--sp-color-brand-500);
         border-radius: var(--sp-radius-pill);
-    }
+      }
 
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--sp-space-16);
-      align-items: center;
-    }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-space-16);
+        align-items: center;
+      }
 
-    .component-label {
+      .component-label {
         font-size: var(--sp-font-xs-size);
         color: var(--sp-text-on-surface-meta);
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-bottom: var(--sp-space-8);
         display: block;
-    }
+      }
 
-    @media (max-width: 640px) {
-      .grid-layout { grid-template-columns: 1fr; }
-    }
-  </style>
-</head>
-<body class="sp-animate-fade-in">
+      @media (max-width: 640px) {
+        .grid-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body class="sp-animate-fade-in">
+    <header class="verification-header">
+      <div class="sp-container">
+        <span
+          class="sp-badge sp-badge--primary sp-badge--sm"
+          style="margin-bottom: var(--sp-space-12)"
+          >SYSTEM HEALTH CHECK</span
+        >
+        <h1>Arsenal Sync Verification</h1>
+        <p class="sp-helper-text" style="font-size: var(--sp-font-md-size)">
+          Verifies that all token-powered components render correctly from
+          <code>dist/index.css</code>.
+        </p>
+      </div>
+    </header>
 
-  <header class="verification-header">
-    <div class="sp-container">
-      <span class="sp-badge sp-badge--primary sp-badge--sm" style="margin-bottom: var(--sp-space-12);">SYSTEM HEALTH CHECK</span>
-      <h1>Arsenal Sync Verification</h1>
-      <p class="sp-helper-text" style="font-size: var(--sp-font-md-size);">
-        Verifies that all token-powered components render correctly from <code>dist/index.css</code>.
-      </p>
-    </div>
-  </header>
-
-  <main class="sp-container">
-    <div class="grid-layout">
-
-      <!-- BUTTONS -->
-      <section class="test-section">
-        <h2>Interactive Elements</h2>
-        <div>
+    <main class="sp-container">
+      <div class="grid-layout">
+        <!-- BUTTONS -->
+        <section class="test-section">
+          <h2>Interactive Elements</h2>
+          <div>
             <span class="component-label">Button Variants</span>
             <div class="row">
-                <button class="sp-btn sp-btn--cta">CTA Action</button>
-                <button class="sp-btn sp-btn--accent">Accent Action</button>
-                <button class="sp-btn sp-btn--primary">Primary</button>
-                <button class="sp-btn sp-btn--secondary">Secondary</button>
+              <button class="sp-btn sp-btn--cta">CTA Action</button>
+              <button class="sp-btn sp-btn--accent">Accent Action</button>
+              <button class="sp-btn sp-btn--primary">Primary</button>
+              <button class="sp-btn sp-btn--secondary">Secondary</button>
             </div>
-        </div>
-        <div>
+          </div>
+          <div>
             <span class="component-label">Shapes & Sizes</span>
             <div class="row">
-                <button class="sp-btn sp-btn--cta sp-btn--sm sp-btn--pill">Small Pill</button>
-                <button class="sp-btn sp-btn--accent sp-btn--md sp-btn--pill">Medium Pill</button>
-                <button class="sp-btn sp-btn--primary sp-btn--lg sp-btn--pill">Large Pill</button>
+              <button class="sp-btn sp-btn--cta sp-btn--sm sp-btn--pill">
+                Small Pill
+              </button>
+              <button class="sp-btn sp-btn--accent sp-btn--md sp-btn--pill">
+                Medium Pill
+              </button>
+              <button class="sp-btn sp-btn--primary sp-btn--lg sp-btn--pill">
+                Large Pill
+              </button>
             </div>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <!-- BADGES -->
-      <section class="test-section">
-        <h2>Status & Meta</h2>
-        <div>
+        <!-- BADGES -->
+        <section class="test-section">
+          <h2>Status & Meta</h2>
+          <div>
             <span class="component-label">Semantic Badges</span>
             <div class="row">
-                <span class="sp-badge sp-badge--info">Information</span>
-                <span class="sp-badge sp-badge--success">Success</span>
-                <span class="sp-badge sp-badge--warning">Warning</span>
-                <span class="sp-badge sp-badge--danger">Critical</span>
+              <span class="sp-badge sp-badge--info">Information</span>
+              <span class="sp-badge sp-badge--success">Success</span>
+              <span class="sp-badge sp-badge--warning">Warning</span>
+              <span class="sp-badge sp-badge--danger">Critical</span>
             </div>
-        </div>
-        <div>
+          </div>
+          <div>
             <span class="component-label">Sized Badges</span>
             <div class="row">
-                <span class="sp-badge sp-badge--neutral sp-badge--sm">Small</span>
-                <span class="sp-badge sp-badge--neutral sp-badge--md">Medium</span>
-                <span class="sp-badge sp-badge--neutral sp-badge--lg">Large</span>
+              <span class="sp-badge sp-badge--neutral sp-badge--sm">Small</span>
+              <span class="sp-badge sp-badge--neutral sp-badge--md"
+                >Medium</span
+              >
+              <span class="sp-badge sp-badge--neutral sp-badge--lg">Large</span>
             </div>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <!-- CARDS -->
-      <section class="test-section">
-        <h2>Surface Composition</h2>
-        <div class="sp-stack">
-            <article class="sp-card sp-card--elevated sp-card--interactive" tabindex="0">
-                <h3>Elevated Interactive</h3>
-                <p>Surface lift and shadow depth on hover/focus.</p>
+        <!-- CARDS -->
+        <section class="test-section">
+          <h2>Surface Composition</h2>
+          <div class="sp-stack">
+            <article
+              class="sp-card sp-card--elevated sp-card--interactive"
+              tabindex="0"
+            >
+              <h3>Elevated Interactive</h3>
+              <p>Surface lift and shadow depth on hover/focus.</p>
             </article>
             <article class="sp-card sp-card--outline">
-                <h3>Outline Pattern</h3>
-                <p>Flat surface with structural borders.</p>
-                <button class="sp-btn sp-btn--ghost sp-btn--sm" style="margin-top: var(--sp-space-12);">Explore</button>
+              <h3>Outline Pattern</h3>
+              <p>Flat surface with structural borders.</p>
+              <button
+                class="sp-btn sp-btn--ghost sp-btn--sm"
+                style="margin-top: var(--sp-space-12)"
+              >
+                Explore
+              </button>
             </article>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <!-- PRICING -->
-      <section class="test-section">
-        <h2>Component Patterns</h2>
-        <div class="sp-pricing-card sp-pricing-card--featured">
+        <!-- PRICING -->
+        <section class="test-section">
+          <h2>Component Patterns</h2>
+          <div class="sp-pricing-card sp-pricing-card--featured">
             <span class="sp-pricing-card-badge">PRODUCTION READY</span>
             <h3>Enterprise License</h3>
             <div class="sp-pricing-card-price-container">
@@ -176,18 +200,22 @@
             </div>
             <p>Full-stack synchronization for large organizations.</p>
             <button class="sp-btn sp-btn--cta sp-btn--full">Upgrade Now</button>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <!-- FEEDBACK -->
-      <section class="test-section">
-        <h2>User Feedback</h2>
-        <div class="sp-testimonial">
-            <p class="sp-testimonial-quote">"The synchronization logic is flawless."</p>
+        <!-- FEEDBACK -->
+        <section class="test-section">
+          <h2>User Feedback</h2>
+          <div class="sp-testimonial">
+            <p class="sp-testimonial-quote">
+              "The synchronization logic is flawless."
+            </p>
             <div class="sp-testimonial-author">
               <div class="sp-testimonial-author-info">
                 <span class="sp-testimonial-author-name">Jules Martinez</span>
-                <span class="sp-testimonial-author-title">Senior Software Engineer</span>
+                <span class="sp-testimonial-author-title"
+                  >Senior Software Engineer</span
+                >
               </div>
             </div>
           </div>
@@ -201,33 +229,42 @@
             </div>
             <span class="sp-rating-text">4.0 Verified</span>
           </div>
-      </section>
+        </section>
 
-       <!-- INPUTS -->
-       <section class="test-section">
-        <h2>Form Primitives</h2>
-        <div class="sp-stack">
+        <!-- INPUTS -->
+        <section class="test-section">
+          <h2>Form Primitives</h2>
+          <div class="sp-stack">
             <label class="sp-input-wrapper">
-                <span class="sp-label">System Search</span>
-                <input class="sp-input" placeholder="Query tokens...">
+              <span class="sp-label">System Search</span>
+              <input class="sp-input" placeholder="Query tokens..." />
             </label>
             <label class="sp-input-wrapper">
-                <span class="sp-label">Critical Input</span>
-                <input class="sp-input sp-input--error" value="INVALID_HEX">
-                <span class="sp-error-message">Hex codes are forbidden in Layer 2.</span>
+              <span class="sp-label">Critical Input</span>
+              <input class="sp-input sp-input--error" value="INVALID_HEX" />
+              <span class="sp-error-message"
+                >Hex codes are forbidden in Layer 2.</span
+              >
             </label>
-        </div>
-      </section>
+          </div>
+        </section>
+      </div>
+    </main>
 
-    </div>
-  </main>
-
-  <footer class="sp-section" style="border-top: var(--sp-component-border-width) solid var(--sp-color-neutral-200); background: var(--sp-surface-card);">
-    <div class="sp-container" style="text-align: center;">
-        <p class="sp-helper-text">Spectre UI Verification Suite &ensp;·&ensp; Built with Layer 2 Primitives</p>
-    </div>
-  </footer>
-
-</body>
+    <footer
+      class="sp-section"
+      style="
+        border-top: var(--sp-component-border-width) solid
+          var(--sp-color-neutral-200);
+        background: var(--sp-surface-card);
+      "
+    >
+      <div class="sp-container" style="text-align: center">
+        <p class="sp-helper-text">
+          Spectre UI Verification Suite &ensp;·&ensp; Built with Layer 2
+          Primitives
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>
-

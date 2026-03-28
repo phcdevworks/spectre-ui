@@ -1,154 +1,180 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spectre UI — Pill Verification</title>
-  <link rel="stylesheet" href="../dist/index.css">
-  <style>
-    body {
-      background-color: var(--sp-surface-page);
-      color: var(--sp-text-on-page-default);
-      transition: background-color var(--sp-duration-moderate) var(--sp-easing-inout);
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spectre UI — Pill Verification</title>
+    <link rel="stylesheet" href="../dist/index.css" />
+    <style>
+      body {
+        background-color: var(--sp-surface-page);
+        color: var(--sp-text-on-page-default);
+        transition: background-color var(--sp-duration-moderate)
+          var(--sp-easing-inout);
+      }
 
-    .verification-header {
-      padding: var(--sp-space-64) 0;
-      border-bottom: var(--sp-component-border-width) solid var(--sp-color-neutral-200);
-      background: var(--sp-surface-card);
-    }
+      .verification-header {
+        padding: var(--sp-space-64) 0;
+        border-bottom: var(--sp-component-border-width) solid
+          var(--sp-color-neutral-200);
+        background: var(--sp-surface-card);
+      }
 
-    .verification-header h1 {
-      font-size: var(--sp-font-2xl-size);
-      font-weight: var(--sp-font-2xl-weight);
-      margin-bottom: var(--sp-space-8);
-      background: var(--sp-surface-hero);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+      .verification-header h1 {
+        font-size: var(--sp-font-2xl-size);
+        font-weight: var(--sp-font-2xl-weight);
+        margin-bottom: var(--sp-space-8);
+        background: var(--sp-surface-hero);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
 
-    .grid-layout {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-      gap: var(--sp-space-32);
-      padding: var(--sp-space-48) 0;
-    }
+      .grid-layout {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: var(--sp-space-32);
+        padding: var(--sp-space-48) 0;
+      }
 
-    .test-section {
-      display: flex;
-      flex-direction: column;
-      gap: var(--sp-space-24);
-      padding: var(--sp-space-32);
-      background: var(--sp-surface-card);
-      border: var(--sp-component-border-width) solid var(--sp-color-neutral-200);
-      border-radius: var(--sp-radius-lg);
-      box-shadow: var(--sp-shadow-sm);
-    }
+      .test-section {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-space-24);
+        padding: var(--sp-space-32);
+        background: var(--sp-surface-card);
+        border: var(--sp-component-border-width) solid
+          var(--sp-color-neutral-200);
+        border-radius: var(--sp-radius-lg);
+        box-shadow: var(--sp-shadow-sm);
+      }
 
-    .test-section h2 {
-      font-size: var(--sp-font-lg-size);
-      font-weight: var(--sp-font-lg-weight);
-      margin: 0;
-      display: flex;
-      align-items: center;
-      gap: var(--sp-space-12);
-    }
+      .test-section h2 {
+        font-size: var(--sp-font-lg-size);
+        font-weight: var(--sp-font-lg-weight);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: var(--sp-space-12);
+      }
 
-    .test-section h2::before {
+      .test-section h2::before {
         content: '';
         width: 4px;
         height: 1.2em;
         background: var(--sp-color-brand-300);
         border-radius: var(--sp-radius-pill);
-    }
+      }
 
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--sp-space-16);
-      align-items: center;
-    }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-space-16);
+        align-items: center;
+      }
 
-    .component-label {
+      .component-label {
         font-size: var(--sp-font-xs-size);
         color: var(--sp-text-on-surface-meta);
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-bottom: var(--sp-space-8);
         display: block;
-    }
-  </style>
-</head>
-<body class="sp-animate-fade-in">
+      }
+    </style>
+  </head>
+  <body class="sp-animate-fade-in">
+    <header class="verification-header">
+      <div class="sp-container">
+        <span
+          class="sp-badge sp-badge--success sp-badge--sm"
+          style="margin-bottom: var(--sp-space-12)"
+          >GEOMETRY AUDIT</span
+        >
+        <h1>Pill Button Verification</h1>
+        <p class="sp-helper-text" style="font-size: var(--sp-font-md-size)">
+          Verifies that <code>sp-btn--pill</code> correctly applies
+          <code>border-radius: var(--sp-radius-pill)</code>.
+        </p>
+      </div>
+    </header>
 
-  <header class="verification-header">
-    <div class="sp-container">
-      <span class="sp-badge sp-badge--success sp-badge--sm" style="margin-bottom: var(--sp-space-12);">GEOMETRY AUDIT</span>
-      <h1>Pill Button Verification</h1>
-      <p class="sp-helper-text" style="font-size: var(--sp-font-md-size);">
-        Verifies that <code>sp-btn--pill</code> correctly applies <code>border-radius: var(--sp-radius-pill)</code>.
-      </p>
-    </div>
-  </header>
-
-  <main class="sp-container">
-    <div class="grid-layout">
-
-      <section class="test-section">
-        <h2>Pill Variants</h2>
-        <div class="row">
-          <button class="sp-btn sp-btn--primary sp-btn--pill">Primary</button>
-          <button class="sp-btn sp-btn--secondary sp-btn--pill">Secondary</button>
-          <button class="sp-btn sp-btn--ghost sp-btn--pill">Ghost</button>
-          <button class="sp-btn sp-btn--success sp-btn--pill">Success</button>
-          <button class="sp-btn sp-btn--danger sp-btn--pill">Danger</button>
-          <button class="sp-btn sp-btn--cta sp-btn--pill">CTA</button>
-          <button class="sp-btn sp-btn--accent sp-btn--pill">Accent</button>
-        </div>
-      </section>
-
-      <section class="test-section">
-        <h2>Scale Comparison</h2>
-        <div class="row">
-          <button class="sp-btn sp-btn--primary sp-btn--pill sp-btn--sm">Small Pill</button>
-          <button class="sp-btn sp-btn--primary sp-btn--pill sp-btn--md">Medium Pill</button>
-          <button class="sp-btn sp-btn--primary sp-btn--pill sp-btn--lg">Large Pill</button>
-        </div>
-      </section>
-
-      <section class="test-section">
-        <h2>Radius Delta</h2>
-        <div class="row">
-          <div class="sp-stack">
-            <span class="component-label">Standard (md)</span>
-            <button class="sp-btn sp-btn--primary">Standard Base</button>
+    <main class="sp-container">
+      <div class="grid-layout">
+        <section class="test-section">
+          <h2>Pill Variants</h2>
+          <div class="row">
+            <button class="sp-btn sp-btn--primary sp-btn--pill">Primary</button>
+            <button class="sp-btn sp-btn--secondary sp-btn--pill">
+              Secondary
+            </button>
+            <button class="sp-btn sp-btn--ghost sp-btn--pill">Ghost</button>
+            <button class="sp-btn sp-btn--success sp-btn--pill">Success</button>
+            <button class="sp-btn sp-btn--danger sp-btn--pill">Danger</button>
+            <button class="sp-btn sp-btn--cta sp-btn--pill">CTA</button>
+            <button class="sp-btn sp-btn--accent sp-btn--pill">Accent</button>
           </div>
-          <div class="sp-stack">
-            <span class="component-label">Pill (999px)</span>
-            <button class="sp-btn sp-btn--primary sp-btn--pill">Pill Shape</button>
+        </section>
+
+        <section class="test-section">
+          <h2>Scale Comparison</h2>
+          <div class="row">
+            <button class="sp-btn sp-btn--primary sp-btn--pill sp-btn--sm">
+              Small Pill
+            </button>
+            <button class="sp-btn sp-btn--primary sp-btn--pill sp-btn--md">
+              Medium Pill
+            </button>
+            <button class="sp-btn sp-btn--primary sp-btn--pill sp-btn--lg">
+              Large Pill
+            </button>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="test-section">
-        <h2>States</h2>
-        <div class="row">
-          <button class="sp-btn sp-btn--primary sp-btn--pill" disabled>Disabled Pill</button>
-          <button class="sp-btn sp-btn--danger sp-btn--pill" disabled>Disabled Pill</button>
-          <button class="sp-btn sp-btn--cta sp-btn--pill sp-btn--loading">Loading Pill</button>
-        </div>
-      </section>
+        <section class="test-section">
+          <h2>Radius Delta</h2>
+          <div class="row">
+            <div class="sp-stack">
+              <span class="component-label">Standard (md)</span>
+              <button class="sp-btn sp-btn--primary">Standard Base</button>
+            </div>
+            <div class="sp-stack">
+              <span class="component-label">Pill (999px)</span>
+              <button class="sp-btn sp-btn--primary sp-btn--pill">
+                Pill Shape
+              </button>
+            </div>
+          </div>
+        </section>
 
-    </div>
-  </main>
+        <section class="test-section">
+          <h2>States</h2>
+          <div class="row">
+            <button class="sp-btn sp-btn--primary sp-btn--pill" disabled>
+              Disabled Pill
+            </button>
+            <button class="sp-btn sp-btn--danger sp-btn--pill" disabled>
+              Disabled Pill
+            </button>
+            <button class="sp-btn sp-btn--cta sp-btn--pill sp-btn--loading">
+              Loading Pill
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
 
-  <footer class="sp-section" style="border-top: var(--sp-component-border-width) solid var(--sp-color-neutral-200); background: var(--sp-surface-card);">
-    <div class="sp-container" style="text-align: center;">
+    <footer
+      class="sp-section"
+      style="
+        border-top: var(--sp-component-border-width) solid
+          var(--sp-color-neutral-200);
+        background: var(--sp-surface-card);
+      "
+    >
+      <div class="sp-container" style="text-align: center">
         <p class="sp-helper-text">Spectre UI Geometry Verification</p>
-    </div>
-  </footer>
-
-</body>
+      </div>
+    </footer>
+  </body>
 </html>
-
