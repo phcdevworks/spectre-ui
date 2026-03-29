@@ -6,11 +6,16 @@ import { cx } from "../internal/cx";
  */
 export interface RatingRecipeOptions {
   disabled?: boolean;
+  loading?: boolean;
 }
 
 export function getRatingClasses(opts: RatingRecipeOptions = {}): string {
-  const { disabled = false } = opts;
-  return cx("sp-rating", disabled && "sp-rating--disabled");
+  const { disabled = false, loading = false } = opts;
+  return cx(
+    "sp-rating",
+    disabled && "sp-rating--disabled",
+    loading && "sp-rating--loading"
+  );
 }
 
 export function getRatingStarsClasses(): string {
