@@ -1002,6 +1002,11 @@
     pointer-events: none;
   }
 
+  .sp-rating--loading {
+    opacity: var(--sp-opacity-active);
+    pointer-events: none;
+  }
+
   .sp-rating-stars {
     display: flex;
     gap: var(--sp-space-4);
