@@ -1,7 +1,7 @@
 {
   "name": "@phcdevworks/spectre-ui",
   "version": "1.1.0",
-  "description": "Layer 2 of the Spectre suite: framework-agnostic UI primitives, recipes, and CSS built on Spectre tokens.",
+  "description": "@phcdevworks/spectre-ui is the implementation layer between @phcdevworks/spectre-tokens and downstream adapters or apps.",
   "keywords": [
     "phcdevworks",
     "spectre",
