@@ -6,6 +6,8 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-03-29
+
 ### Added
 
 - **Component States**: Added `loading` state support for `Badge`, `IconBox`,
@@ -204,7 +206,8 @@ reflects package releases published to npm.
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe
   helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/1.1.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/1.1.1...HEAD
+[1.1.1]: https://github.com/phcdevworks/spectre-ui/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/phcdevworks/spectre-ui/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/phcdevworks/spectre-ui/compare/0.4.1...1.0.0
 [0.4.1]: https://github.com/phcdevworks/spectre-ui/compare/0.4.0...0.4.1
