@@ -6,6 +6,26 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+### Added
+
+- **Component States**: Added `loading` state support for `Badge`, `IconBox`,
+  `Input`, `Rating`, and `Testimonial` recipes and CSS classes.
+- **Component States**: Added `disabled` state support for `Rating` and
+  `Testimonial` components.
+
+### Changed
+
+- **Tailwind Preset**: Tightened `createSpectreTailwindPreset` typing so the
+  merged preset and theme preserve Tailwind config types during DTS builds.
+- **Dependencies**: Updated Tailwind CSS to `4.2.2`, Vitest to `4.1.2`,
+  `@phcdevworks/spectre-tokens` to `2.1.1`, and refreshed supporting build and
+  lint dependencies.
+- **Documentation**: Reworked `README.md` for clearer package ownership, setup,
+  exports, and usage examples.
+- **Maintenance**: Refined repository guidance in `AGENTS.md`, refreshed VS
+  Code and Dependabot configuration, and normalized formatting across docs,
+  examples, and config files.
+
 ## [1.1.0] - 2026-03-22
 
 ### Added
@@ -184,17 +204,18 @@ reflects package releases published to npm.
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe
   helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.4.1...v1.0.0
-[0.4.1]: https://github.com/phcdevworks/spectre-ui/compare/v0.4.0...v0.4.1
-[0.4.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.3.0...v0.4.0
-[0.3.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.2...v0.3.0
-[0.2.2]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.1...v0.2.2
-[0.2.1]: https://github.com/phcdevworks/spectre-ui/compare/v0.2.0...v0.2.1
-[0.2.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.5...v0.1.0
-[0.0.5]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.4...v0.0.5
-[0.0.4]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.3...v0.0.4
-[0.0.3]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.2...v0.0.3
-[0.0.2]: https://github.com/phcdevworks/spectre-ui/compare/v0.0.1...v0.0.2
-[0.0.1]: https://github.com/phcdevworks/spectre-ui/tree/v0.0.1
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/phcdevworks/spectre-ui/compare/1.0.0...1.1.0
+[1.0.0]: https://github.com/phcdevworks/spectre-ui/compare/0.4.1...1.0.0
+[0.4.1]: https://github.com/phcdevworks/spectre-ui/compare/0.4.0...0.4.1
+[0.4.0]: https://github.com/phcdevworks/spectre-ui/compare/0.3.0...0.4.0
+[0.3.0]: https://github.com/phcdevworks/spectre-ui/compare/0.2.2...0.3.0
+[0.2.2]: https://github.com/phcdevworks/spectre-ui/compare/0.2.1...0.2.2
+[0.2.1]: https://github.com/phcdevworks/spectre-ui/compare/0.2.0...0.2.1
+[0.2.0]: https://github.com/phcdevworks/spectre-ui/compare/0.1.0...0.2.0
+[0.1.0]: https://github.com/phcdevworks/spectre-ui/compare/0.0.5...0.1.0
+[0.0.5]: https://github.com/phcdevworks/spectre-ui/compare/0.0.4...0.0.5
+[0.0.4]: https://github.com/phcdevworks/spectre-ui/compare/0.0.3...0.0.4
+[0.0.3]: https://github.com/phcdevworks/spectre-ui/compare/0.0.2...0.0.3
+[0.0.2]: https://github.com/phcdevworks/spectre-ui/compare/0.0.1...0.0.2
+[0.0.1]: https://github.com/phcdevworks/spectre-ui/tree/0.0.1
