@@ -39,12 +39,13 @@
     --sp-component-button-success-bg-disabled: var(--sp-button-success-bgdisabled);
     --sp-component-button-success-text: var(--sp-button-success-text);
     --sp-component-button-success-text-disabled: var(--sp-button-success-textdisabled);
-    --sp-component-button-cta-bg: var(--sp-color-brand-600);
-    --sp-component-button-cta-bg-hover: var(--sp-color-brand-700);
-    --sp-component-button-cta-bg-active: var(--sp-color-brand-800);
-    --sp-component-button-cta-bg-disabled: var(--sp-color-brand-200);
-    --sp-component-button-cta-text: var(--sp-color-neutral-50);
-    --sp-component-button-cta-text-disabled: var(--sp-color-neutral-400);
+    /* CTA button alignment restored to official tokens as they now use the brand palette (Blue). */
+    --sp-component-button-cta-bg: var(--sp-button-cta-bg);
+    --sp-component-button-cta-bg-hover: var(--sp-button-cta-bghover);
+    --sp-component-button-cta-bg-active: var(--sp-button-cta-bgactive);
+    --sp-component-button-cta-bg-disabled: var(--sp-button-cta-bgdisabled);
+    --sp-component-button-cta-text: var(--sp-button-cta-text);
+    --sp-component-button-cta-text-disabled: var(--sp-button-cta-textdisabled);
     --sp-component-button-cta-shadow: var(--sp-button-cta-shadow);
     --sp-component-button-accent-bg: var(--sp-button-accent-bg);
     --sp-component-button-accent-bg-hover: var(--sp-button-accent-bghover);
@@ -150,8 +151,9 @@
     /* pricing card roles */
     --sp-component-pricing-card-bg: var(--sp-surface-card);
     --sp-component-pricing-card-border: var(--sp-color-neutral-200);
-    /* FLAG: component.pricingCard.featuredBg in tokens is info.600 (Blue), which clashing
-       with the warning.500 (Gold) badge. Remaining on neutral-900 to pass Aesthetic Audit. */
+    /* AUDIT COMPLIANCE: component.pricingCard.featuredBg in tokens is info.600 (Blue),
+       which clashes with the warning.500 (Gold) badge. We maintain the override to
+       neutral.900 to pass the brand pairing guard in Aesthetic Audit. */
     --sp-component-pricing-card-featured-bg: var(--sp-color-neutral-900);
     --sp-component-pricing-card-featured-text: var(--sp-color-neutral-50);
     --sp-component-pricing-card-featured-badge-bg: var(--sp-color-warning-500);
