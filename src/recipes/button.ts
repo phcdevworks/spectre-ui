@@ -33,6 +33,8 @@ export interface ButtonRecipeOptions {
   fullWidth?: boolean;
   loading?: boolean;
   disabled?: boolean;
+  hovered?: boolean;
+  active?: boolean;
   iconOnly?: boolean;
   pill?: boolean;
 }
@@ -44,6 +46,8 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     fullWidth = false,
     loading = false,
     disabled = false,
+    hovered = false,
+    active = false,
     iconOnly = false,
     pill = false,
   } = opts;
@@ -86,6 +90,8 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     fullWidth && "sp-btn--full",
     loading && "sp-btn--loading",
     disabled && "sp-btn--disabled",
+    hovered && "sp-btn--hover",
+    active && "sp-btn--active",
     iconOnly && "sp-btn--icon",
     pill && "sp-btn--pill",
   );
