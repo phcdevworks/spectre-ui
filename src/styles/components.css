@@ -39,15 +39,13 @@
     --sp-component-button-success-bg-disabled: var(--sp-button-success-bgdisabled);
     --sp-component-button-success-text: var(--sp-button-success-text);
     --sp-component-button-success-text-disabled: var(--sp-button-success-textdisabled);
-    /* FLAG: buttons.cta tokens in spectre-tokens v2.x use warning.500 (Gold),
-       which violates the Aesthetic Audit guardrails. Remaining on accent palette. */
-    --sp-component-button-cta-bg: var(--sp-color-accent-600);
-    --sp-component-button-cta-bg-hover: var(--sp-color-accent-700);
-    --sp-component-button-cta-bg-active: var(--sp-color-accent-800);
-    --sp-component-button-cta-bg-disabled: var(--sp-color-accent-200);
+    --sp-component-button-cta-bg: var(--sp-color-brand-600);
+    --sp-component-button-cta-bg-hover: var(--sp-color-brand-700);
+    --sp-component-button-cta-bg-active: var(--sp-color-brand-800);
+    --sp-component-button-cta-bg-disabled: var(--sp-color-brand-200);
     --sp-component-button-cta-text: var(--sp-color-neutral-50);
     --sp-component-button-cta-text-disabled: var(--sp-color-neutral-400);
-    --sp-component-button-cta-shadow: 0 4px 14px 0 var(--sp-color-accent-500) / 0.39;
+    --sp-component-button-cta-shadow: var(--sp-button-cta-shadow);
     --sp-component-button-accent-bg: var(--sp-button-accent-bg);
     --sp-component-button-accent-bg-hover: var(--sp-button-accent-bghover);
     --sp-component-button-accent-bg-active: var(--sp-button-accent-bgactive);
