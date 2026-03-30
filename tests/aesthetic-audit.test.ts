@@ -71,11 +71,15 @@ function resolveTokenReferenceToHex(reference: string): string | undefined {
     'var(--sp-color-neutral-900)': getNestedToken(tokens, ['colors', 'neutral', '900']),
     'var(--sp-color-neutral-50)': getNestedToken(tokens, ['colors', 'neutral', '50']),
     'var(--sp-color-brand-600)': getNestedToken(tokens, ['colors', 'brand', '600']),
+    'var(--sp-color-accent-600)': getNestedToken(tokens, ['colors', 'accent', '600']),
     'var(--sp-color-info-600)': getNestedToken(tokens, ['colors', 'info', '600']),
     'var(--sp-color-warning-500)': getNestedToken(tokens, ['colors', 'warning', '500']),
     'var(--sp-color-warning-600)': getNestedToken(tokens, ['colors', 'warning', '600']),
     'var(--sp-surface-card)': getNestedToken(tokens, ['surface', 'card']),
     'var(--sp-text-on-surface-default)': getNestedToken(tokens, ['text', 'onSurface', 'default']),
+    // Component tokens
+    'var(--sp-button-cta-bg)': getNestedToken(tokens, ['buttons', 'cta', 'bg']),
+    'var(--sp-button-cta-text)': getNestedToken(tokens, ['buttons', 'cta', 'text']),
   };
 
   const resolved = tokenMap[reference];
@@ -90,6 +94,17 @@ function getNestedToken(source: unknown, pathParts: string[]): string | undefine
       return undefined;
     }
     current = (current as Record<string, unknown>)[part];
+  }
+
+  // Handle { value: "..." } structure found in raw token definitions
+  if (current && typeof current === 'object' && 'value' in current) {
+    current = (current as { value: unknown }).value;
+  }
+
+  // Handle "{colors.path.to.token}" references by recursing
+  if (typeof current === 'string' && current.startsWith('{') && current.endsWith('}')) {
+    const referencePath = current.slice(1, -1).split('.');
+    return getNestedToken(source, referencePath);
   }
 
   return typeof current === 'string' ? current : undefined;
