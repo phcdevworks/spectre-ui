@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spectre UI - Examples</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        padding: 2rem;
+        background: #f8fafc;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #0f172a;
+      }
+
+      p {
+        font-size: 1.125rem;
+        color: #475569;
+        margin-bottom: 2rem;
+      }
+
+      .examples-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .example-card {
+        background: white;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        color: inherit;
+        transition: all 200ms;
+        border: 1px solid #e2e8f0;
+      }
+
+      .example-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+      }
+
+      .example-card h2 {
+        font-size: 1.5rem;
+        color: #2563eb;
+        margin-bottom: 0.5rem;
+      }
+
+      .example-card p {
+        font-size: 0.875rem;
+        color: #64748b;
+        margin-bottom: 0;
+      }
+
+      .icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>🧩 Spectre UI Examples</h1>
+      <p>
+        Explore framework-agnostic demos for the Spectre UI implementation
+        layer, including showcase pages and focused verification fixtures.
+      </p>
+
+      <div class="examples-grid">
+        <a href="vanilla.html" class="example-card">
+          <div class="icon">🪟</div>
+          <h2>Vanilla Showcase</h2>
+          <p>
+            Broad component walkthrough with cards, badges, forms, icon boxes,
+            and production-ready layout patterns.
+          </p>
+        </a>
+
+        <a href="showroom.html" class="example-card">
+          <div class="icon">✨</div>
+          <h2>Premium Showroom</h2>
+          <p>
+            High-polish landing page example showing how Spectre UI scales into
+            a richer product-marketing presentation.
+          </p>
+        </a>
+
+        <a href="verification.html" class="example-card">
+          <div class="icon">🧪</div>
+          <h2>System Verification</h2>
+          <p>
+            Token-powered component health check for buttons, badges, cards,
+            pricing, testimonials, and dark mode behavior.
+          </p>
+        </a>
+
+        <a href="arsenal-sync-check.html" class="example-card">
+          <div class="icon">🔄</div>
+          <h2>Arsenal Sync Check</h2>
+          <p>
+            Focused regression page for interactive badges, pricing cards,
+            testimonials, and core synchronization states.
+          </p>
+        </a>
+
+        <a href="pill-verification.html" class="example-card">
+          <div class="icon">💊</div>
+          <h2>Pill Button Verification</h2>
+          <p>
+            Geometry audit for pill button variants, scales, disabled states,
+            and loading treatments.
+          </p>
+        </a>
+
+        <a href="input-pill.html" class="example-card">
+          <div class="icon">⌨️</div>
+          <h2>Pill Input Verification</h2>
+          <p>
+            Input shape comparison fixture covering default and pill-radius
+            fields across supported size variants.
+          </p>
+        </a>
+
+        <a href="verification/badge-secondary.html" class="example-card">
+          <div class="icon">🏷️</div>
+          <h2>Badge Secondary Verification</h2>
+          <p>
+            Narrow validation page for secondary badge styling in isolation,
+            useful during visual regression checks.
+          </p>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
