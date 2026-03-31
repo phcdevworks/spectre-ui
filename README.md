@@ -167,6 +167,18 @@ Key source areas:
 - `src/recipes/` for class recipes
 - `src/tailwind/` for Tailwind helpers
 - `tests/` for contract and regression coverage
+- `examples/` for visual demos and verification fixtures
+
+## Examples
+
+Use [`examples/examples.html`](examples/examples.html) as the visual index for
+the package demos.
+
+Available examples include:
+
+- `vanilla.html` for the broad component showcase
+- `showroom.html` for a richer marketing-style composition
+- `verification.html` and focused verification fixtures for regression checks
 
 ## Contributing
 
