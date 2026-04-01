@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Spectre UI — Pricing Card Loading State Verification</title>
+    <base href=".." />
+    <link rel="stylesheet" href="./dist/index.css" />
+    <style>
+      body {
+        background-color: var(--sp-surface-page);
+        color: var(--sp-text-on-page-default);
+        padding: var(--sp-space-48);
+        font-family: var(--sp-font-family-sans);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--sp-space-32);
+        align-items: start;
+      }
+      h1 {
+        margin-bottom: var(--sp-space-32);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Pricing Card Loading State</h1>
+    <div class="grid">
+      <div class="sp-pricing-card">
+        <h3>Standard</h3>
+        <div class="sp-pricing-card-price-container">
+          <span class="sp-pricing-card-price">$29</span>
+          <span class="sp-pricing-card-description">/month</span>
+        </div>
+        <p>Standard pricing card in normal state.</p>
+        <button class="sp-btn sp-btn--primary sp-btn--full">Choose Plan</button>
+      </div>
+
+      <div class="sp-pricing-card sp-pricing-card--loading">
+        <h3>Standard (Loading)</h3>
+        <div class="sp-pricing-card-price-container">
+          <span class="sp-pricing-card-price">$29</span>
+          <span class="sp-pricing-card-description">/month</span>
+        </div>
+        <p>This card is in the loading state (low opacity, no interaction).</p>
+        <button class="sp-btn sp-btn--primary sp-btn--full">Choose Plan</button>
+      </div>
+
+      <div class="sp-pricing-card sp-pricing-card--featured">
+        <span class="sp-pricing-card-badge">Featured</span>
+        <h3>Featured</h3>
+        <div class="sp-pricing-card-price-container">
+          <span class="sp-pricing-card-price">$99</span>
+          <span class="sp-pricing-card-description">/month</span>
+        </div>
+        <p>Featured pricing card in normal state.</p>
+        <button class="sp-btn sp-btn--cta sp-btn--full">Choose Plan</button>
+      </div>
+
+      <div class="sp-pricing-card sp-pricing-card--featured sp-pricing-card--loading">
+        <span class="sp-pricing-card-badge">Featured</span>
+        <h3>Featured (Loading)</h3>
+        <div class="sp-pricing-card-price-container">
+          <span class="sp-pricing-card-price">$99</span>
+          <span class="sp-pricing-card-description">/month</span>
+        </div>
+        <p>Featured card in the loading state.</p>
+        <button class="sp-btn sp-btn--cta sp-btn--full">Choose Plan</button>
+      </div>
+    </div>
+  </body>
+</html>
