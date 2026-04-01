@@ -3,155 +3,239 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arsenal Sync Verification</title>
+    <title>Spectre UI — Arsenal Sync Check</title>
     <link rel="stylesheet" href="../dist/index.css" />
     <style>
       body {
-        padding: 40px;
+        color: var(--sp-text-on-page-default);
+        background: var(--sp-surface-page);
       }
+
+      main {
+        max-width: var(--sp-layout-container-max-width);
+        margin: 0 auto;
+        padding: var(--sp-space-48) var(--sp-space-24) var(--sp-space-64);
+        display: grid;
+        gap: var(--sp-space-24);
+      }
+
+      .page-header,
       .section {
-        margin-bottom: 40px;
+        border-radius: var(--sp-radius-xl);
+        border: var(--sp-component-border-width) solid
+          var(--sp-color-neutral-200);
+        background: var(--sp-surface-card);
+        box-shadow: var(--sp-shadow-sm);
       }
-      h2 {
-        margin-bottom: 20px;
-        font-family: sans-serif;
+
+      .page-header {
+        padding: var(--sp-space-32);
+        display: grid;
+        gap: var(--sp-space-12);
       }
+
+      .page-header h1,
+      .section h2 {
+        margin: 0;
+      }
+
+      .page-header p {
+        margin: 0;
+        color: var(--sp-text-on-page-muted);
+        max-width: 62ch;
+      }
+
+      .section {
+        padding: var(--sp-space-24);
+        display: grid;
+        gap: var(--sp-space-16);
+      }
+
+      .section h2 {
+        font-size: var(--sp-font-lg-size);
+        font-weight: var(--sp-font-lg-weight);
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-space-12);
+        align-items: center;
+      }
+
       .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: var(--sp-space-20);
+      }
+
+      .dark-preview {
+        background: var(--sp-color-neutral-950);
+        color: var(--sp-color-neutral-50);
+      }
+
+      .dark-preview p {
+        margin: 0;
+        color: color-mix(
+          in srgb,
+          var(--sp-color-neutral-50) 82%,
+          var(--sp-color-neutral-400)
+        );
+      }
+
+      .footer-note {
+        text-align: center;
+        color: var(--sp-text-on-page-muted);
+        font-size: var(--sp-font-sm-size);
+      }
+
+      @media (max-width: 640px) {
+        main {
+          padding-inline: var(--sp-space-16);
+        }
       }
     </style>
   </head>
   <body>
-    <h1>Arsenal Sync Verification</h1>
+    <main>
+      <section class="page-header">
+        <span class="sp-badge sp-badge--info sp-badge--sm">SPOT CHECK</span>
+        <h1>Arsenal Sync Check</h1>
+        <p>
+          A compact regression page for interaction states, pricing composition,
+          testimonial output, and dark-theme rendering.
+        </p>
+      </section>
 
-    <div class="section">
-      <h2>Badges (Interactive)</h2>
-      <div style="display: flex; gap: 10px; flex-wrap: wrap">
-        <span
-          class="sp-badge sp-badge--primary sp-badge--md sp-badge--interactive"
-          >Primary Interactive</span
-        >
-        <span
-          class="sp-badge sp-badge--success sp-badge--md sp-badge--interactive"
-          >Success Interactive</span
-        >
-        <span
-          class="sp-badge sp-badge--warning sp-badge--md sp-badge--interactive"
-          >Warning Interactive</span
-        >
-        <span
-          class="sp-badge sp-badge--danger sp-badge--md sp-badge--interactive"
-          >Danger Interactive</span
-        >
-        <span class="sp-badge sp-badge--info sp-badge--md sp-badge--interactive"
-          >Info Interactive</span
-        >
-        <span
-          class="sp-badge sp-badge--neutral sp-badge--md sp-badge--interactive"
-          >Neutral Interactive</span
-        >
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>CTA Button (Accent Palette)</h2>
-      <button class="sp-btn sp-btn--cta sp-btn--lg">Call to Action</button>
-    </div>
-
-    <div class="section">
-      <h2>Pricing Card (Featured)</h2>
-      <div class="grid">
-        <div class="sp-pricing-card sp-pricing-card--featured">
-          <span class="sp-pricing-card-badge">Most Popular</span>
-          <div class="sp-pricing-card-price-container">
-            <span class="sp-pricing-card-price">$49</span>
-            <span class="sp-pricing-card-description">/month</span>
-          </div>
-          <p>Premium features for growing teams.</p>
-          <button class="sp-btn sp-btn--cta sp-btn--full">Get Started</button>
+      <section class="section">
+        <h2>Badges</h2>
+        <div class="row">
+          <span
+            class="sp-badge sp-badge--primary sp-badge--md sp-badge--interactive"
+            >Primary Interactive</span
+          >
+          <span
+            class="sp-badge sp-badge--success sp-badge--md sp-badge--interactive"
+            >Success Interactive</span
+          >
+          <span
+            class="sp-badge sp-badge--warning sp-badge--md sp-badge--interactive"
+            >Warning Interactive</span
+          >
+          <span
+            class="sp-badge sp-badge--danger sp-badge--md sp-badge--interactive"
+            >Danger Interactive</span
+          >
+          <span
+            class="sp-badge sp-badge--info sp-badge--md sp-badge--interactive"
+            >Info Interactive</span
+          >
+          <span
+            class="sp-badge sp-badge--neutral sp-badge--md sp-badge--interactive"
+            >Neutral Interactive</span
+          >
         </div>
-        <div class="sp-pricing-card">
-          <div class="sp-pricing-card-price-container">
-            <span class="sp-pricing-card-price">$19</span>
-            <span class="sp-pricing-card-description">/month</span>
-          </div>
-          <p>Basic features for individuals.</p>
-          <button class="sp-btn sp-btn--secondary sp-btn--full">
-            Start Free Trial
+      </section>
+
+      <section class="section">
+        <h2>Call To Action</h2>
+        <div class="row">
+          <button class="sp-btn sp-btn--cta sp-btn--lg">Call to Action</button>
+          <button class="sp-btn sp-btn--secondary sp-btn--lg">
+            Secondary Path
           </button>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <div class="section">
-      <h2>Testimonial</h2>
-      <div class="sp-testimonial">
-        <blockquote class="sp-testimonial-quote">
-          Spectre UI has completely transformed our development workflow. The
-          token-driven approach makes theming a breeze.
-        </blockquote>
-        <div class="sp-testimonial-author">
-          <div class="sp-testimonial-author-info">
-            <span class="sp-testimonial-author-name">Jane Doe</span>
-            <span class="sp-testimonial-author-title">CTO at TechCorp</span>
+      <section class="section">
+        <h2>Pricing</h2>
+        <div class="grid">
+          <div class="sp-pricing-card sp-pricing-card--featured">
+            <span class="sp-pricing-card-badge">Most Popular</span>
+            <div class="sp-pricing-card-price-container">
+              <span class="sp-pricing-card-price">$49</span>
+              <span class="sp-pricing-card-description">/month</span>
+            </div>
+            <p>Premium features for growing teams.</p>
+            <button class="sp-btn sp-btn--cta sp-btn--full">Get Started</button>
+          </div>
+          <div class="sp-pricing-card">
+            <div class="sp-pricing-card-price-container">
+              <span class="sp-pricing-card-price">$19</span>
+              <span class="sp-pricing-card-description">/month</span>
+            </div>
+            <p>Basic features for individuals.</p>
+            <button class="sp-btn sp-btn--secondary sp-btn--full">
+              Start Free Trial
+            </button>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <div class="section">
-      <h2>Rating</h2>
-      <div class="sp-rating">
-        <div class="sp-rating-stars">
-          <span class="sp-rating-star sp-rating-star--filled">★</span>
-          <span class="sp-rating-star sp-rating-star--filled">★</span>
-          <span class="sp-rating-star sp-rating-star--filled">★</span>
-          <span class="sp-rating-star sp-rating-star--filled">★</span>
-          <span class="sp-rating-star">★</span>
-        </div>
-        <span class="sp-rating-text">4.0 (128 reviews)</span>
-      </div>
-    </div>
-
-    <div
-      class="section"
-      style="
-        background: #0f172a;
-        padding: 40px;
-        margin: -40px;
-        margin-top: 40px;
-      "
-      data-spectre-theme="dark"
-    >
-      <h2 style="color: white">Dark Mode Preview</h2>
-      <div class="grid">
-        <div class="sp-card">
-          <h3>Dark Card</h3>
-          <p>This card is in dark mode.</p>
-          <button class="sp-btn sp-btn--primary">Primary Button</button>
-        </div>
-        <div class="sp-pricing-card sp-pricing-card--featured">
-          <span class="sp-pricing-card-badge">Most Popular</span>
-          <div class="sp-pricing-card-price-container">
-            <span class="sp-pricing-card-price">$49</span>
-            <span class="sp-pricing-card-description">/month</span>
-          </div>
-          <button class="sp-btn sp-btn--cta sp-btn--full">Get Started</button>
-        </div>
-      </div>
-      <div class="sp-testimonial" style="margin-top: 20px">
-        <blockquote class="sp-testimonial-quote">
-          Dark mode support is built-in and looks great.
-        </blockquote>
-        <div class="sp-testimonial-author">
-          <div class="sp-testimonial-author-info">
-            <span class="sp-testimonial-author-name">John Smith</span>
-            <span class="sp-testimonial-author-title">Lead Designer</span>
+      <section class="section">
+        <h2>Testimonial</h2>
+        <div class="sp-testimonial">
+          <blockquote class="sp-testimonial-quote">
+            Spectre UI has completely transformed our development workflow. The
+            token-driven approach makes theming a breeze.
+          </blockquote>
+          <div class="sp-testimonial-author">
+            <div class="sp-testimonial-author-info">
+              <span class="sp-testimonial-author-name">Jane Doe</span>
+              <span class="sp-testimonial-author-title">CTO at TechCorp</span>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <section class="section">
+        <h2>Rating</h2>
+        <div class="sp-rating">
+          <div class="sp-rating-stars">
+            <span class="sp-rating-star sp-rating-star--filled">★</span>
+            <span class="sp-rating-star sp-rating-star--filled">★</span>
+            <span class="sp-rating-star sp-rating-star--filled">★</span>
+            <span class="sp-rating-star sp-rating-star--filled">★</span>
+            <span class="sp-rating-star">★</span>
+          </div>
+          <span class="sp-rating-text">4.0 (128 reviews)</span>
+        </div>
+      </section>
+
+      <section class="section dark-preview" data-spectre-theme="dark">
+        <h2>Dark Mode Preview</h2>
+        <div class="grid">
+          <div class="sp-card">
+            <h3>Dark Card</h3>
+            <p>This card is in dark mode.</p>
+            <button class="sp-btn sp-btn--primary">Primary Button</button>
+          </div>
+          <div class="sp-pricing-card sp-pricing-card--featured">
+            <span class="sp-pricing-card-badge">Most Popular</span>
+            <div class="sp-pricing-card-price-container">
+              <span class="sp-pricing-card-price">$49</span>
+              <span class="sp-pricing-card-description">/month</span>
+            </div>
+            <button class="sp-btn sp-btn--cta sp-btn--full">Get Started</button>
+          </div>
+        </div>
+        <div class="sp-testimonial">
+          <blockquote class="sp-testimonial-quote">
+            Dark mode support is built-in and looks great.
+          </blockquote>
+          <div class="sp-testimonial-author">
+            <div class="sp-testimonial-author-info">
+              <span class="sp-testimonial-author-name">John Smith</span>
+              <span class="sp-testimonial-author-title">Lead Designer</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <p class="footer-note">
+        This fixture is intentionally compact so regressions are easy to spot in
+        a single viewport.
+      </p>
+    </main>
   </body>
 </html>
