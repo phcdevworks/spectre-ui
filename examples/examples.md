@@ -1,7 +1,10 @@
 # Spectre UI Examples
 
 This directory contains framework-agnostic demos for the Spectre UI
-implementation layer.
+implementation layer. The pages are meant to do two jobs:
+
+- show how token-driven Spectre primitives compose into realistic interfaces
+- provide fast visual fixtures for regression and contract checks
 
 ## Available Examples
 
@@ -68,8 +71,8 @@ Single-purpose verification including:
 
 ## How to View
 
-Open [`examples.html`](examples.html) in a browser for the visual index of all
-available demos.
+Run `npm run build`, then open [`examples.html`](examples.html) in a browser for
+the visual index of all available demos.
 
 Open any individual `.html` file directly to inspect that example in isolation.
 

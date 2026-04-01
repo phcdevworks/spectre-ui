@@ -6,11 +6,6 @@
     <title>Spectre UI — Premium Showroom</title>
     <link rel="stylesheet" href="../dist/index.css" />
     <style>
-      /* Premium Showroom Styles - Extending Spectre Primitives */
-      :root {
-        --showroom-accent: var(--sp-color-brand-600);
-      }
-
       body {
         transition:
           background-color var(--sp-duration-moderate) var(--sp-easing-inout),
@@ -52,7 +47,7 @@
 
       .hero-section {
         background: var(--sp-surface-hero);
-        color: white;
+        color: var(--sp-color-neutral-50);
         padding: var(--sp-space-96) 0;
         text-align: center;
         position: relative;
@@ -68,7 +63,7 @@
         bottom: 0;
         background: radial-gradient(
           circle at 50% 50%,
-          rgba(255, 255, 255, 0.1) 0%,
+          color-mix(in srgb, var(--sp-color-neutral-50) 10%, transparent) 0%,
           transparent 70%
         );
         pointer-events: none;
@@ -138,6 +133,62 @@
         filter: blur(40px);
         z-index: 0;
       }
+
+      .hero-secondary-action {
+        background: color-mix(
+          in srgb,
+          var(--sp-color-neutral-50) 12%,
+          transparent
+        );
+        color: var(--sp-color-neutral-50);
+        border-color: color-mix(
+          in srgb,
+          var(--sp-color-neutral-50) 24%,
+          transparent
+        );
+      }
+
+      .split-feature {
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+      }
+
+      .split-feature-copy {
+        flex: 1;
+        padding: var(--sp-space-32);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .split-feature-visual {
+        flex: 1;
+        background: var(--sp-color-neutral-100);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .theme-toggle {
+        position: fixed;
+        right: var(--sp-space-24);
+        bottom: var(--sp-space-24);
+        z-index: var(--sp-z-index-fixed);
+      }
+
+      .theme-toggle button {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--sp-space-8);
+      }
+
+      @media (max-width: 768px) {
+        .theme-toggle {
+          right: var(--sp-space-16);
+          bottom: var(--sp-space-16);
+        }
+      }
     </style>
   </head>
   <body class="sp-animate-fade-in">
@@ -176,16 +227,9 @@
           class="sp-hstack"
           style="justify-content: center; gap: var(--sp-space-16)"
         >
-          <button class="sp-btn sp-btn--cta sp-btn--lg cta-button-glow">
-            Get Started Today
-          </button>
+          <button class="sp-btn sp-btn--cta sp-btn--lg">Get Started Today</button>
           <button
-            class="sp-btn sp-btn--secondary sp-btn--lg"
-            style="
-              background: rgba(255, 255, 255, 0.1);
-              color: white;
-              border-color: rgba(255, 255, 255, 0.2);
-            "
+            class="sp-btn sp-btn--secondary sp-btn--lg hero-secondary-action"
           >
             View Documentation
           </button>
@@ -279,18 +323,9 @@
         </article>
 
         <article
-          class="sp-card sp-card--elevated bento-item col-span-8"
-          style="padding: 0; overflow: hidden; display: flex"
+          class="sp-card sp-card--elevated bento-item col-span-8 split-feature"
         >
-          <div
-            style="
-              flex: 1;
-              padding: var(--sp-space-32);
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-            "
-          >
+          <div class="split-feature-copy">
             <span
               class="sp-badge sp-badge--info sp-badge--sm"
               style="width: fit-content; margin-bottom: var(--sp-space-8)"
@@ -302,15 +337,7 @@
               encapsulation.
             </p>
           </div>
-          <div
-            style="
-              flex: 1;
-              background: var(--sp-color-neutral-100);
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
+          <div class="split-feature-visual">
             <span
               class="sp-iconbox sp-iconbox--primary sp-iconbox--lg sp-animate-pulse"
             >

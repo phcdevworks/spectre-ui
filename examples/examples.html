@@ -4,153 +4,279 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spectre UI - Examples</title>
+    <link rel="stylesheet" href="../dist/index.css" />
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+      :root {
+        --examples-shell-border: var(--sp-color-neutral-200);
+        --examples-shell-muted: var(--sp-text-on-page-muted);
+        --examples-shell-shadow: var(--sp-shadow-md);
       }
 
       body {
-        font-family:
-          system-ui,
-          -apple-system,
-          sans-serif;
-        padding: 2rem;
-        background: #f8fafc;
+        color: var(--sp-text-on-page-default);
+        background:
+          radial-gradient(
+            circle at top,
+            color-mix(in srgb, var(--sp-color-brand-100) 65%, transparent),
+            transparent 55%
+          ),
+          var(--sp-surface-page);
       }
 
-      .container {
-        max-width: 1200px;
+      main {
+        max-width: var(--sp-layout-container-max-width);
         margin: 0 auto;
+        padding: var(--sp-space-48) var(--sp-space-24) var(--sp-space-64);
+        display: grid;
+        gap: var(--sp-space-32);
       }
 
-      h1 {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        color: #0f172a;
+      .hero,
+      .catalog {
+        border-radius: var(--sp-radius-xl);
+        border: var(--sp-component-border-width) solid
+          var(--examples-shell-border);
+        background: var(--sp-surface-card);
+        box-shadow: var(--examples-shell-shadow);
       }
 
-      p {
-        font-size: 1.125rem;
-        color: #475569;
-        margin-bottom: 2rem;
+      .hero {
+        padding: var(--sp-space-40);
+        display: grid;
+        gap: var(--sp-space-20);
+      }
+
+      .hero h1 {
+        margin: 0;
+        font-size: clamp(
+          var(--sp-font-xl-size),
+          6vw,
+          calc(var(--sp-font-2xl-size) * 1.15)
+        );
+        line-height: 1.05;
+      }
+
+      .hero p,
+      .example-card p,
+      .catalog-note {
+        margin: 0;
+        color: var(--examples-shell-muted);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-space-12);
+      }
+
+      .catalog {
+        padding: var(--sp-space-32);
+        display: grid;
+        gap: var(--sp-space-24);
+      }
+
+      .catalog-header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: var(--sp-space-16);
+        flex-wrap: wrap;
+      }
+
+      .catalog-header h2 {
+        margin: 0;
+        font-size: var(--sp-font-xl-size);
       }
 
       .examples-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: var(--sp-space-20);
       }
 
       .example-card {
-        background: white;
-        border-radius: 8px;
-        padding: 1.5rem;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        text-decoration: none;
+        display: grid;
+        gap: var(--sp-space-12);
+        padding: var(--sp-space-24);
+        border-radius: var(--sp-radius-lg);
+        border: var(--sp-component-border-width) solid
+          var(--examples-shell-border);
+        background: var(--sp-surface-page);
+        box-shadow: var(--sp-shadow-sm);
         color: inherit;
-        transition: all 200ms;
-        border: 1px solid #e2e8f0;
+        text-decoration: none;
+        transition:
+          transform var(--sp-duration-fast) var(--sp-easing-out),
+          box-shadow var(--sp-duration-fast) var(--sp-easing-out),
+          border-color var(--sp-duration-fast) var(--sp-easing-out);
       }
 
-      .example-card:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        transform: translateY(-2px);
+      .example-card:hover,
+      .example-card:focus-visible {
+        transform: translateY(calc(var(--sp-space-4) * -1));
+        box-shadow: var(--sp-shadow-lg);
+        border-color: var(--sp-color-brand-300);
+        text-decoration: none;
       }
 
-      .example-card h2 {
-        font-size: 1.5rem;
-        color: #2563eb;
-        margin-bottom: 0.5rem;
+      .example-card h3 {
+        margin: 0;
+        font-size: var(--sp-font-lg-size);
       }
 
-      .example-card p {
-        font-size: 0.875rem;
-        color: #64748b;
-        margin-bottom: 0;
+      .example-meta {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-space-8);
+        flex-wrap: wrap;
       }
 
-      .icon {
-        font-size: 2rem;
-        margin-bottom: 0.75rem;
+      .catalog-note {
+        font-size: var(--sp-font-sm-size);
+      }
+
+      @media (max-width: 640px) {
+        main {
+          padding-inline: var(--sp-space-16);
+        }
+
+        .hero,
+        .catalog {
+          padding: var(--sp-space-24);
+        }
       }
     </style>
   </head>
 
   <body>
-    <div class="container">
-      <h1>🧩 Spectre UI Examples</h1>
-      <p>
-        Explore framework-agnostic demos for the Spectre UI implementation
-        layer, including showcase pages and focused verification fixtures.
-      </p>
-
-      <div class="examples-grid">
-        <a href="vanilla.html" class="example-card">
-          <div class="icon">🪟</div>
-          <h2>Vanilla Showcase</h2>
+    <main>
+      <section class="hero">
+        <div class="sp-stack">
+          <span class="sp-badge sp-badge--accent sp-badge--sm">
+            SPECTRE UI EXAMPLES
+          </span>
+          <h1>Framework-agnostic demos for the Spectre implementation layer.</h1>
           <p>
-            Broad component walkthrough with cards, badges, forms, icon boxes,
-            and production-ready layout patterns.
+            Use these pages to review the shipping styling contract, spot-check
+            recipe output, and sanity-test token-driven composition before it
+            lands in an adapter or app.
           </p>
-        </a>
+        </div>
 
-        <a href="showroom.html" class="example-card">
-          <div class="icon">✨</div>
-          <h2>Premium Showroom</h2>
-          <p>
-            High-polish landing page example showing how Spectre UI scales into
-            a richer product-marketing presentation.
-          </p>
-        </a>
+        <div class="hero-actions">
+          <a class="sp-btn sp-btn--primary" href="vanilla.html">Open Showcase</a>
+          <a class="sp-btn sp-btn--secondary" href="verification.html"
+            >Run Verification</a
+          >
+        </div>
 
-        <a href="verification.html" class="example-card">
-          <div class="icon">🧪</div>
-          <h2>System Verification</h2>
-          <p>
-            Token-powered component health check for buttons, badges, cards,
-            pricing, testimonials, and dark mode behavior.
-          </p>
-        </a>
+        <p class="catalog-note">
+          These examples read from <code>dist/index.css</code>, so run the build
+          before opening them if you have changed the source styles.
+        </p>
+      </section>
 
-        <a href="arsenal-sync-check.html" class="example-card">
-          <div class="icon">🔄</div>
-          <h2>Arsenal Sync Check</h2>
-          <p>
-            Focused regression page for interactive badges, pricing cards,
-            testimonials, and core synchronization states.
-          </p>
-        </a>
+      <section class="catalog">
+        <div class="catalog-header">
+          <div class="sp-stack">
+            <h2>Example Catalog</h2>
+            <p class="catalog-note">
+              Broader showcases first, then focused regression fixtures.
+            </p>
+          </div>
+          <a class="sp-btn sp-btn--ghost sp-btn--sm" href="examples.md"
+            >Read Overview</a
+          >
+        </div>
 
-        <a href="pill-verification.html" class="example-card">
-          <div class="icon">💊</div>
-          <h2>Pill Button Verification</h2>
-          <p>
-            Geometry audit for pill button variants, scales, disabled states,
-            and loading treatments.
-          </p>
-        </a>
+        <div class="examples-grid">
+          <a href="vanilla.html" class="example-card">
+            <div class="example-meta">
+              <span class="sp-badge sp-badge--primary sp-badge--sm">Showcase</span>
+              <span class="sp-label">Broad composition demo</span>
+            </div>
+            <h3>Vanilla Showcase</h3>
+            <p>
+              Walks through cards, badges, forms, icon boxes, ratings, and
+              production-style layout assembly.
+            </p>
+          </a>
 
-        <a href="input-pill.html" class="example-card">
-          <div class="icon">⌨️</div>
-          <h2>Pill Input Verification</h2>
-          <p>
-            Input shape comparison fixture covering default and pill-radius
-            fields across supported size variants.
-          </p>
-        </a>
+          <a href="showroom.html" class="example-card">
+            <div class="example-meta">
+              <span class="sp-badge sp-badge--accent sp-badge--sm">Marketing</span>
+              <span class="sp-label">High-polish landing page</span>
+            </div>
+            <h3>Premium Showroom</h3>
+            <p>
+              Demonstrates how Spectre UI scales into a richer product and
+              storytelling surface.
+            </p>
+          </a>
 
-        <a href="verification/badge-secondary.html" class="example-card">
-          <div class="icon">🏷️</div>
-          <h2>Badge Secondary Verification</h2>
-          <p>
-            Narrow validation page for secondary badge styling in isolation,
-            useful during visual regression checks.
-          </p>
-        </a>
-      </div>
-    </div>
+          <a href="verification.html" class="example-card">
+            <div class="example-meta">
+              <span class="sp-badge sp-badge--success sp-badge--sm"
+                >Verification</span
+              >
+              <span class="sp-label">Broad health check</span>
+            </div>
+            <h3>System Verification</h3>
+            <p>
+              Covers buttons, badges, cards, pricing, testimonials, inputs, and
+              overall token-powered rendering.
+            </p>
+          </a>
+
+          <a href="arsenal-sync-check.html" class="example-card">
+            <div class="example-meta">
+              <span class="sp-badge sp-badge--info sp-badge--sm">Regression</span>
+              <span class="sp-label">Compact spot-check</span>
+            </div>
+            <h3>Arsenal Sync Check</h3>
+            <p>
+              Focused page for interactive badges, pricing cards, testimonial
+              output, and dark-theme spot checks.
+            </p>
+          </a>
+
+          <a href="pill-verification.html" class="example-card">
+            <div class="example-meta">
+              <span class="sp-badge sp-badge--warning sp-badge--sm">Geometry</span>
+              <span class="sp-label">Button radius audit</span>
+            </div>
+            <h3>Pill Button Verification</h3>
+            <p>
+              Audits pill variants, sizes, loading, and disabled states against
+              the standard button radius.
+            </p>
+          </a>
+
+          <a href="input-pill.html" class="example-card">
+            <div class="example-meta">
+              <span class="sp-badge sp-badge--neutral sp-badge--sm">Inputs</span>
+              <span class="sp-label">Shape comparison</span>
+            </div>
+            <h3>Pill Input Verification</h3>
+            <p>
+              Minimal fixture for comparing default and pill-radius inputs across
+              supported size variants.
+            </p>
+          </a>
+
+          <a href="verification/badge-secondary.html" class="example-card">
+            <div class="example-meta">
+              <span class="sp-badge sp-badge--secondary sp-badge--sm">Badges</span>
+              <span class="sp-label">Targeted fixture</span>
+            </div>
+            <h3>Badge Secondary Verification</h3>
+            <p>
+              Small, isolated badge page for targeted styling checks and visual
+              regression snapshots.
+            </p>
+          </a>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
