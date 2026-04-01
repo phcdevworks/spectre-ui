@@ -951,6 +951,11 @@
     pointer-events: none;
   }
 
+  .sp-pricing-card--loading {
+    opacity: var(--sp-opacity-active);
+    pointer-events: none;
+  }
+
   .sp-pricing-card-badge {
     position: absolute;
     top: var(--sp-space-16);

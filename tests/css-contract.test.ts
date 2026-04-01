@@ -43,6 +43,7 @@ const recipeClassMatrix = [
   getIconBoxClasses({ variant: 'warning', size: 'lg' }),
   getTestimonialClasses(),
   getPricingCardClasses({ featured: true }),
+  getPricingCardClasses({ loading: true }),
   getRatingClasses(),
 ];
 
