@@ -4,7 +4,7 @@ import { spectreTokens } from '../src/tokens';
 
 describe('Tailwind Preset Contract', () => {
   const preset = createSpectreTailwindPreset({ tokens: spectreTokens });
-  const theme = preset.theme as any;
+  const theme = preset.theme as NonNullable<typeof preset.theme>;
 
   it('maps core palettes correctly', () => {
     expect(theme.colors).toBeDefined();

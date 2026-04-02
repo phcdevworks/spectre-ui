@@ -108,7 +108,7 @@
     --sp-component-badge-info-bg: var(--sp-badge-info-bg);
     --sp-component-badge-info-text: var(--sp-badge-info-text);
 
-    /* badge hover states — missing from core token exports, mapped to semantic logic */
+    /* badge hover states derived from Spectre token semantics */
     --sp-component-badge-primary-bg-hover: var(--sp-button-primary-bghover);
     --sp-component-badge-secondary-bg-hover: var(--sp-button-secondary-bghover);
     --sp-component-badge-success-bg-hover: var(--sp-color-success-200);
@@ -151,11 +151,8 @@
     /* pricing card roles */
     --sp-component-pricing-card-bg: var(--sp-surface-card);
     --sp-component-pricing-card-border: var(--sp-color-neutral-200);
-    /* AUDIT COMPLIANCE: component.pricingCard.featuredBg in tokens is info.600 (Blue),
-       which clashes with the warning.500 (Gold) badge. We maintain the override to
-       neutral.900 to pass the brand pairing guard in Aesthetic Audit. */
-    --sp-component-pricing-card-featured-bg: var(--sp-color-neutral-900);
-    --sp-component-pricing-card-featured-text: var(--sp-color-neutral-50);
+    --sp-component-pricing-card-featured-bg: var(--sp-color-info-600);
+    --sp-component-pricing-card-featured-text: var(--sp-button-text-on-primary);
     --sp-component-pricing-card-featured-badge-bg: var(--sp-color-warning-500);
     --sp-component-pricing-card-featured-badge-text: var(--sp-color-neutral-900);
     --sp-component-pricing-card-price: var(--sp-color-neutral-900);
@@ -168,20 +165,21 @@
     --sp-component-rating-text: var(--sp-color-neutral-500);
   }
 
-  /* dark mode overrides for complex component tokens not yet exported by spectre-tokens v2.x */
+  /* dark mode overrides mapped from Spectre token mode definitions */
   :root[data-spectre-theme="dark"] {
     --sp-component-testimonial-bg: var(--sp-color-neutral-800);
     --sp-component-testimonial-border: var(--sp-color-neutral-700);
-    --sp-component-testimonial-text: var(--sp-color-neutral-300);
+    --sp-component-testimonial-text: var(--sp-color-neutral-200);
     --sp-component-testimonial-author-name: var(--sp-color-neutral-100);
-    --sp-component-testimonial-author-title: var(--sp-color-neutral-400);
+    --sp-component-testimonial-author-title: var(--sp-color-neutral-300);
     --sp-component-testimonial-quote-mark: var(--sp-color-neutral-600);
 
     --sp-component-pricing-card-bg: var(--sp-color-neutral-800);
     --sp-component-pricing-card-border: var(--sp-color-neutral-700);
     --sp-component-pricing-card-price: var(--sp-color-neutral-100);
-    --sp-component-pricing-card-price-description: var(--sp-color-neutral-400);
+    --sp-component-pricing-card-price-description: var(--sp-color-neutral-300);
 
+    --sp-component-rating-star-filled: var(--sp-color-warning-400);
     --sp-component-rating-star-empty: var(--sp-color-neutral-700);
     --sp-component-rating-text: var(--sp-color-neutral-400);
 
@@ -193,11 +191,11 @@
     --sp-component-badge-danger-text: var(--sp-color-error-100);
     --sp-component-badge-neutral-bg: var(--sp-color-neutral-700);
     --sp-component-badge-neutral-text: var(--sp-color-neutral-100);
-    --sp-component-badge-info-bg: var(--sp-color-info-800);
+    --sp-component-badge-info-bg: var(--sp-color-info-900);
     --sp-component-badge-info-text: var(--sp-color-info-100);
 
     --sp-component-badge-success-bg-hover: var(--sp-color-success-700);
-    --sp-component-badge-warning-bg-hover: var(--sp-color-warning-700);
+    --sp-component-badge-warning-bg-hover: var(--sp-color-warning-800);
     --sp-component-badge-danger-bg-hover: var(--sp-color-error-700);
     --sp-component-badge-neutral-bg-hover: var(--sp-color-neutral-600);
     --sp-component-badge-info-bg-hover: var(--sp-color-info-700);

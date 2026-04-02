@@ -6,7 +6,7 @@ export default tseslint.config(
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parserOptions: {
-        project: true,
+        project: './tsconfig.eslint.json',
         tsconfigRootDir: new URL('.', import.meta.url).pathname,
       },
     },
@@ -18,6 +18,6 @@ export default tseslint.config(
     },
   },
   {
-    ignores: ['dist/**', 'node_modules/**', 'example/**', 'examples/**'],
+    ignores: ['dist/**', 'node_modules/**', 'example/**', 'examples/**', 'postcss.config.cjs'],
   }
 )

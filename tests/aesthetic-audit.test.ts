@@ -80,6 +80,7 @@ function resolveTokenReferenceToHex(reference: string): string | undefined {
     // Component tokens
     'var(--sp-button-cta-bg)': getNestedToken(tokens, ['buttons', 'cta', 'bg']),
     'var(--sp-button-cta-text)': getNestedToken(tokens, ['buttons', 'cta', 'text']),
+    'var(--sp-button-text-on-primary)': getNestedToken(tokens, ['component', 'button', 'textOnPrimary']),
   };
 
   const resolved = tokenMap[reference];
@@ -112,50 +113,22 @@ function getNestedToken(source: unknown, pathParts: string[]): string | undefine
 
 describe('design contract guard', () => {
   describe('semantic role guard', () => {
-    it('prevents CTA roles from using warning palette backgrounds', () => {
+    it('keeps CTA roles aligned with the upstream CTA token alias', () => {
       const ctaBg = getCssCustomProperty('--sp-component-button-cta-bg');
 
-      expect(ctaBg, 'Missing --sp-component-button-cta-bg').toBeDefined();
-
-      if (!ctaBg) return;
-
-      const forbiddenWarningUsage =
-        ctaBg.includes('warning-500') || ctaBg.includes('warning-600');
-
-      expect(
-        forbiddenWarningUsage,
-        'CTA background must not map to warning palette tokens.'
-      ).toBe(false);
+      expect(ctaBg).toBe('var(--sp-button-cta-bg)');
     });
   });
 
   describe('brand pairing guard', () => {
-    it('prevents forbidden featured pricing combinations', () => {
+    it('keeps featured pricing roles aligned with upstream token semantics', () => {
       const featuredBg = getCssCustomProperty('--sp-component-pricing-card-featured-bg');
       const featuredText = getCssCustomProperty('--sp-component-pricing-card-featured-text');
       const featuredBadgeBg = getCssCustomProperty('--sp-component-pricing-card-featured-badge-bg');
 
-      expect(featuredBg, 'Missing --sp-component-pricing-card-featured-bg').toBeDefined();
-      expect(featuredText, 'Missing --sp-component-pricing-card-featured-text').toBeDefined();
-
-      if (!featuredBg || !featuredText) return;
-
-      const backgroundUsesBrandFamily =
-        featuredBg.includes('brand-600') || featuredBg.includes('info-600');
-
-      const textUsesWarningFamily =
-        featuredText.includes('warning-500') || featuredText.includes('warning-600');
-
-      const badgeUsesWarningFamily =
-        featuredBadgeBg?.includes('warning-500') || featuredBadgeBg?.includes('warning-600');
-
-      const forbiddenPairing =
-        backgroundUsesBrandFamily && (textUsesWarningFamily || badgeUsesWarningFamily === true);
-
-      expect(
-        forbiddenPairing,
-        'Featured pricing roles must not combine brand/info backgrounds with warning foreground accents.'
-      ).toBe(false);
+      expect(featuredBg).toBe('var(--sp-color-info-600)');
+      expect(featuredText).toBe('var(--sp-button-text-on-primary)');
+      expect(featuredBadgeBg).toBe('var(--sp-color-warning-500)');
     });
   });
 

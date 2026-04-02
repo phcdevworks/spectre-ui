@@ -16,6 +16,12 @@ class recipes without redefining the underlying design values.
 4. Treat hardcoded visual literals as drift unless clearly intentional.
 5. Preserve the stable styling contract consumed by adapters and apps.
 6. Follow the zero-hex policy unless an exception is deliberate and documented.
+7. Prefer isolated, non-breaking micro-evolutions over broad refactors.
+8. If a required visual value does not exist in `@phcdevworks/spectre-tokens`,
+   stop and document the token gap instead of inventing a fallback.
+9. During synchronization work, treat the published NPM package of
+   `@phcdevworks/spectre-tokens` as the only authority.
+10. Do not mix alignment work with opportunistic feature expansion.
 
 ## Working Boundaries
 
@@ -25,9 +31,74 @@ class recipes without redefining the underlying design values.
   `@phcdevworks/spectre-ui-astro`.
 - Adapters and apps consume `@phcdevworks/spectre-ui`; they should not
   re-implement its styling logic.
+- Build tooling and package infrastructure are not part of normal feature,
+  hardening, or synchronization tasks unless the scoped task explicitly targets
+  them.
+
+## Change Discipline
+
+- Keep changes atomic and tightly scoped.
+- Focus on one clearly bounded UI contract concern at a time.
+- For recipe or state hardening work, prefer a blast radius of exactly one CSS
+  file and one matching TypeScript recipe file.
+- For token synchronization work, update only the local UI files required to
+  restore alignment with the published token package.
+- Do not expand scope into adapters, runtime components, token authoring, build
+  tooling, or infrastructure.
+- If alignment introduces a structural conflict, stop and report it instead of
+  forcing a workaround.
+- Do not invent fallback hex, pixel, or off-contract values to make a change
+  pass.
+
+## Standard Workflows
+
+### Micro Hardening
+
+Use this workflow for isolated, non-breaking improvements to the styling
+contract.
+
+Typical targets:
+
+- missing standard states such as `disabled` or `loading`
+- missing structural variants such as `ghost` or `outline`
+- CSS and recipe parity gaps
+- small token-driven contract inconsistencies
+
+Default expectations:
+
+- modify one component CSS file
+- modify one matching TypeScript recipe file
+- keep the change backward-compatible
+- stop if the work requires a missing token
+
+### Weekly Synchronization
+
+Use this workflow after a published token release to keep the UI layer aligned.
+
+Authority and scope:
+
+- install `@phcdevworks/spectre-tokens@latest` from NPM
+- treat `node_modules/@phcdevworks/spectre-tokens/` as the source of truth
+- compare the published package against local `src/styles/` and `src/recipes/`
+- update only what is required to restore alignment
+
+Guardrails:
+
+- do not sync from GitHub branches or unpublished local token files
+- do not combine synchronization with unrelated cleanup or feature work
+- if the token change creates structural conflicts, stop and report the drift
+  clearly
 
 ## Validation Flow
 
-1. Update source CSS, recipes, or package metadata as needed.
-2. Run `npm run build`.
+1. Update source CSS, recipes, or package metadata only as required by the
+   scoped task.
+2. Run `npm run build` when the task affects package outputs or token alignment.
 3. Run `npm test`.
+4. Confirm the styling contract remains token-driven, aligned, and non-breaking.
+5. Stop immediately and report the issue if validation fails; do not patch
+   infrastructure as part of feature or sync work.
+
+## Governance Rule
+
+Tokens define meaning. UI defines structure. Adapters define delivery.
