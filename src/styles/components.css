@@ -617,6 +617,11 @@
     pointer-events: none;
   }
 
+  .sp-card--loading {
+    opacity: var(--sp-opacity-active);
+    pointer-events: none;
+  }
+
   .sp-card--interactive {
     cursor: pointer;
     transition:
