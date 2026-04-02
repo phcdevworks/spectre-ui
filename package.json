@@ -65,7 +65,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "tsup --config tsup.config.ts && npm run build:css",
-    "build:css": "mkdir -p dist && postcss src/styles/index.css -o dist/index.css",
+    "build:css": "node ./scripts/build-css.mjs",
     "dev": "tsup --config tsup.config.ts --watch",
     "clean": "rm -rf dist",
     "lint": "eslint .",
@@ -88,6 +88,7 @@
     "@typescript-eslint/parser": "^8.58.0",
     "autoprefixer": "^10.4.27",
     "eslint": "^10.1.0",
+    "jiti": "^2.6.1",
     "postcss": "^8.5.8",
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.1",
