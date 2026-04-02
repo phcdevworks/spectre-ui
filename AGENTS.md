@@ -25,7 +25,8 @@ class recipes without redefining the underlying design values.
 11. Keep every CSS entry point exported from `package.json` standalone,
     distributable, and token-backed, not only the canonical `index.css` bundle.
 12. If local component aliases are necessary, keep them as direct mappings from
-    upstream token intent rather than package-owned semantic overrides.
+    upstream token intent. Do not introduce new semantic meaning here when that
+    meaning belongs in `@phcdevworks/spectre-tokens`.
 
 ## Working Boundaries
 
