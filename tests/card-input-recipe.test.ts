@@ -28,11 +28,19 @@ describe('getCardClasses', () => {
   });
 
   it('adds card flag modifiers', () => {
-    const result = getCardClasses({ interactive: true, padded: true, fullHeight: true });
+    const result = getCardClasses({
+      interactive: true,
+      padded: true,
+      fullHeight: true,
+      disabled: true,
+      loading: true,
+    });
 
     expect(result).toContain('sp-card--interactive');
     expect(result).toContain('sp-card--padded');
     expect(result).toContain('sp-card--full');
+    expect(result).toContain('sp-card--disabled');
+    expect(result).toContain('sp-card--loading');
   });
 
   it('combines classes deterministically for a complex card', () => {
