@@ -12,6 +12,11 @@ export interface CreateSpectreTailwindThemeOptions {
   overrides?: Partial<SpectreTokens>;
 }
 
+type TokenTree = Record<string, unknown>;
+
+const asTokenTree = (value: unknown): TokenTree =>
+  value && typeof value === "object" ? (value as TokenTree) : {};
+
 /**
  * Minimal, type-safe theme mapper.
  * Important: theme is NEVER undefined (fixes exactOptionalPropertyTypes + DTS).
@@ -26,29 +31,30 @@ export function createSpectreTailwindTheme(
 
   // We keep mapping shallow + permissive because token shapes will evolve.
   // Tailwind accepts nested objects of strings for colors.
-  const t: any = mergedTokens;
+  const t = asTokenTree(mergedTokens);
+  const typography = asTokenTree(t.typography);
 
   const colors = {
-    ...((t.colors ?? t.color ?? t.palette ?? {}) as Record<string, any>),
-    surface: t.surface ?? {},
-    text: t.text ?? {},
-    buttons: t.buttons ?? {},
-    forms: t.forms ?? {},
-    component: t.component ?? {},
+    ...asTokenTree(t.colors ?? t.color ?? t.palette),
+    surface: asTokenTree(t.surface),
+    text: asTokenTree(t.text),
+    buttons: asTokenTree(t.buttons),
+    forms: asTokenTree(t.forms),
+    component: asTokenTree(t.component),
   };
-  const spacing = (t.spacing ?? t.space ?? {}) as Record<string, any>;
-  const borderRadius = (t.radii ?? t.radius ?? {}) as Record<string, any>;
-  const boxShadow = (t.shadows ?? t.shadow ?? {}) as Record<string, any>;
-  const fontFamily = (t.typography?.families ?? t.fonts ?? {}) as Record<string, any>;
-  const fontSize = (t.typography?.scale ?? t.fontSize ?? {}) as Record<string, any>;
+  const spacing = asTokenTree(t.spacing ?? t.space);
+  const borderRadius = asTokenTree(t.radii ?? t.radius);
+  const boxShadow = asTokenTree(t.shadows ?? t.shadow);
+  const fontFamily = asTokenTree(typography.families ?? t.fonts);
+  const fontSize = asTokenTree(typography.scale ?? t.fontSize);
 
   const theme: TailwindTheme = {
-    colors: colors as any,
-    spacing: spacing as any,
-    borderRadius: borderRadius as any,
-    boxShadow: boxShadow as any,
-    fontFamily: fontFamily as any,
-    fontSize: fontSize as any,
+    colors: colors as TailwindTheme["colors"],
+    spacing: spacing as TailwindTheme["spacing"],
+    borderRadius: borderRadius as TailwindTheme["borderRadius"],
+    boxShadow: boxShadow as TailwindTheme["boxShadow"],
+    fontFamily: fontFamily as TailwindTheme["fontFamily"],
+    fontSize: fontSize as TailwindTheme["fontSize"],
   };
 
   return { theme };

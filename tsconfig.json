@@ -30,6 +30,7 @@
     // "noPropertyAccessFromIndexSignature": true,
     // Recommended Options
     "strict": true,
+    "ignoreDeprecations": "6.0",
     "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
@@ -37,6 +38,6 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
-  "include": ["src", "tests"],
+  "include": ["src"],
   "exclude": ["node_modules", "dist", "tsup.config.ts"]
 }
