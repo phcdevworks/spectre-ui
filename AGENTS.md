@@ -22,6 +22,10 @@ class recipes without redefining the underlying design values.
 9. During synchronization work, treat the published NPM package of
    `@phcdevworks/spectre-tokens` as the only authority.
 10. Do not mix alignment work with opportunistic feature expansion.
+11. Keep every CSS entry point exported from `package.json` standalone,
+    distributable, and token-backed, not only the canonical `index.css` bundle.
+12. If local component aliases are necessary, keep them as direct mappings from
+    upstream token intent rather than package-owned semantic overrides.
 
 ## Working Boundaries
 
@@ -34,6 +38,9 @@ class recipes without redefining the underlying design values.
 - Build tooling and package infrastructure are not part of normal feature,
   hardening, or synchronization tasks unless the scoped task explicitly targets
   them.
+- Exported package contracts are in scope when a task touches them. If
+  `package.json` exports a CSS or TypeScript entry point, the build must emit a
+  real distributable file that matches that contract.
 
 ## Change Discipline
 
@@ -93,11 +100,23 @@ Guardrails:
 
 1. Update source CSS, recipes, or package metadata only as required by the
    scoped task.
-2. Run `npm run build` when the task affects package outputs or token alignment.
-3. Run `npm test`.
-4. Confirm the styling contract remains token-driven, aligned, and non-breaking.
-5. Stop immediately and report the issue if validation fails; do not patch
-   infrastructure as part of feature or sync work.
+2. Run `npm run lint` when the task changes TypeScript, tests, config, or build
+   tooling.
+3. Run `npm run build` when the task affects package outputs, CSS entry points,
+   or token alignment.
+4. Run `npm test` after a successful build.
+5. Confirm the styling contract remains token-driven, aligned, and non-breaking.
+6. Stop immediately and report the issue if validation fails. Do not widen a
+   styling task into unrelated tooling work unless the broken tooling blocks the
+   scoped contract.
+
+Validation notes:
+
+- Some contract tests read from `dist`, so `npm run build` should complete
+  before `npm test`.
+- If a CSS entry point is exported from `package.json`, verify that the build
+  emits a real standalone file for it and that the file includes the token
+  context required to work on its own.
 
 ## Governance Rule
 
