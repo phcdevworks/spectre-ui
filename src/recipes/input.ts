@@ -26,10 +26,11 @@ export interface InputRecipeOptions {
   size?: InputSize;
   fullWidth?: boolean;
   pill?: boolean;
+  focused?: boolean;
 }
 
 export function getInputClasses(opts: InputRecipeOptions = {}): string {
-  const { state: stateInput, size: sizeInput, fullWidth = false, pill = false } = opts;
+  const { state: stateInput, size: sizeInput, fullWidth = false, pill = false, focused = false } = opts;
 
   const state = resolveOption({
     name: "input state",
@@ -60,6 +61,7 @@ export function getInputClasses(opts: InputRecipeOptions = {}): string {
     // Visual state only; actual disabled attribute is handled by adapters.
     state === "disabled" && "sp-input--disabled",
     state === "loading" && "sp-input--loading",
+    focused && "sp-input--focus",
     fullWidth && "sp-input--full",
     pill && "sp-input--pill",
   );
