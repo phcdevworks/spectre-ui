@@ -529,7 +529,8 @@
   }
 
   .sp-input:focus,
-  .sp-input--focus {
+  .sp-input--focus,
+  .sp-input.is-focus {
     border-color: var(--sp-component-input-role-border-focus);
     box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-input-role-ring);
     outline: none;
