@@ -27,6 +27,10 @@ export interface InputRecipeOptions {
   fullWidth?: boolean;
   pill?: boolean;
   focused?: boolean;
+}
+
+export function getInputClasses(opts: InputRecipeOptions = {}): string {
+  const { state: stateInput, size: sizeInput, fullWidth = false, pill = false, focused = false } = opts;
   hovered?: boolean;
 }
 
