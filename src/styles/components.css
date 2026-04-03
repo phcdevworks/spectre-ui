@@ -75,6 +75,7 @@
     --sp-component-input-role-bg: var(--sp-form-default-bg);
     --sp-component-input-role-text: var(--sp-form-default-text);
     --sp-component-input-role-placeholder: var(--sp-form-default-placeholder);
+    --sp-component-input-role-border-hover: var(--sp-form-hover-border);
     --sp-component-input-role-border-focus: var(--sp-form-focus-border);
     --sp-component-input-role-ring: var(--sp-form-focus-ring);
     --sp-component-input-role-border-error: var(--sp-form-invalid-border);
@@ -522,6 +523,11 @@
     border-radius: var(--sp-radius-pill);
   }
 
+  .sp-input:hover,
+  .sp-input--hover {
+    border-color: var(--sp-component-input-role-border-hover);
+  }
+
   .sp-input:focus,
   .sp-input--focus,
   .sp-input.is-focus {
@@ -543,11 +549,14 @@
     color: var(--sp-component-input-role-text);
   }
 
+  .sp-input:disabled,
+  .sp-input[aria-disabled="true"],
   .sp-input--disabled {
     background-color: var(--sp-component-input-role-bg-disabled);
     color: var(--sp-component-input-role-text-disabled);
     border-color: var(--sp-component-input-role-border-disabled);
     cursor: not-allowed;
+    pointer-events: none;
   }
 
   .sp-input--disabled::placeholder {
