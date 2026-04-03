@@ -106,6 +106,12 @@ describe('getInputClasses', () => {
     expect(result).toContain('sp-input--pill');
   });
 
+  it('adds focused and hovered modifiers', () => {
+    const result = getInputClasses({ focused: true, hovered: true });
+    expect(result).toContain('sp-input--focus');
+    expect(result).toContain('sp-input--hover');
+  });
+
   it('creates trimmed, space-delimited class strings for complex input options', () => {
     const result = getInputClasses({ state: 'success', size: 'lg', fullWidth: true });
 
