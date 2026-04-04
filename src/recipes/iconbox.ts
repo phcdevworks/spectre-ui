@@ -1,12 +1,6 @@
 import { cx } from "../internal/cx";
 import { resolveOption } from "../internal/resolve-option";
 
-const iconBoxVariants = ["primary", "success", "warning", "danger", "info"] as const;
-const iconBoxSizes = ["sm", "md", "lg"] as const;
-
-export type IconBoxVariant = (typeof iconBoxVariants)[number];
-export type IconBoxSize = (typeof iconBoxSizes)[number];
-
 const ICONBOX_VARIANTS = {
   primary: true,
   success: true,
@@ -20,6 +14,9 @@ const ICONBOX_SIZES = {
   md: true,
   lg: true,
 } as const;
+
+export type IconBoxVariant = keyof typeof ICONBOX_VARIANTS;
+export type IconBoxSize = keyof typeof ICONBOX_SIZES;
 
 export interface IconBoxRecipeOptions {
   variant?: IconBoxVariant;

@@ -1,12 +1,6 @@
 import { cx } from "../internal/cx";
 import { resolveOption } from "../internal/resolve-option";
 
-const badgeVariants = ["primary", "secondary", "success", "warning", "danger", "neutral", "info"] as const;
-const badgeSizes = ["sm", "md", "lg"] as const;
-
-export type BadgeVariant = (typeof badgeVariants)[number];
-export type BadgeSize = (typeof badgeSizes)[number];
-
 const BADGE_VARIANTS = {
   primary: true,
   secondary: true,
@@ -22,6 +16,9 @@ const BADGE_SIZES = {
   md: true,
   lg: true,
 } as const;
+
+export type BadgeVariant = keyof typeof BADGE_VARIANTS;
+export type BadgeSize = keyof typeof BADGE_SIZES;
 
 /**
  * Generate classes for the Badge component.
