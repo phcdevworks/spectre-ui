@@ -58,7 +58,9 @@
     "README.md",
     "LICENSE"
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "build": "tsup --config tsup.config.ts && npm run build:css",
     "build:css": "node ./scripts/build-css.mjs",
