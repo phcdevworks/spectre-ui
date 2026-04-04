@@ -1,16 +1,14 @@
 import { cx } from "../internal/cx";
 import { resolveOption } from "../internal/resolve-option";
 
-const cardVariants = ["elevated", "flat", "outline", "ghost"] as const;
-
-export type CardVariant = (typeof cardVariants)[number];
-
 const CARD_VARIANTS = {
   elevated: true,
   flat: true,
   outline: true,
   ghost: true,
 } as const;
+
+export type CardVariant = keyof typeof CARD_VARIANTS;
 
 export interface CardRecipeOptions {
   variant?: CardVariant;

@@ -1,12 +1,6 @@
 import { cx } from "../internal/cx";
 import { resolveOption } from "../internal/resolve-option";
 
-const buttonVariants = ["primary", "secondary", "ghost", "danger", "success", "cta", "accent"] as const;
-const buttonSizes = ["sm", "md", "lg"] as const;
-
-export type ButtonVariant = (typeof buttonVariants)[number];
-export type ButtonSize = (typeof buttonSizes)[number];
-
 const BUTTON_VARIANTS = {
   primary: true,
   secondary: true,
@@ -22,6 +16,9 @@ const BUTTON_SIZES = {
   md: true,
   lg: true,
 } as const;
+
+export type ButtonVariant = keyof typeof BUTTON_VARIANTS;
+export type ButtonSize = keyof typeof BUTTON_SIZES;
 
 /**
  * Generate classes for the Button component.

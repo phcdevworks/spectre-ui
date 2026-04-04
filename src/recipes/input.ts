@@ -1,12 +1,6 @@
 import { cx } from "../internal/cx";
 import { resolveOption } from "../internal/resolve-option";
 
-const inputStates = ["default", "error", "success", "disabled", "loading"] as const;
-const inputSizes = ["sm", "md", "lg"] as const;
-
-export type InputState = (typeof inputStates)[number];
-export type InputSize = (typeof inputSizes)[number];
-
 const INPUT_STATES = {
   default: true,
   error: true,
@@ -21,16 +15,15 @@ const INPUT_SIZES = {
   lg: true,
 } as const;
 
+export type InputState = keyof typeof INPUT_STATES;
+export type InputSize = keyof typeof INPUT_SIZES;
+
 export interface InputRecipeOptions {
   state?: InputState;
   size?: InputSize;
   fullWidth?: boolean;
   pill?: boolean;
   focused?: boolean;
-}
-
-export function getInputClasses(opts: InputRecipeOptions = {}): string {
-  const { state: stateInput, size: sizeInput, fullWidth = false, pill = false, focused = false } = opts;
   hovered?: boolean;
 }
 
