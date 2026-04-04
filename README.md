@@ -60,11 +60,11 @@ Use Spectre tokens as the source of truth for your Tailwind theme:
 // tailwind.config.ts
 import type { Config } from 'tailwindcss'
 import { createSpectreTailwindPreset } from '@phcdevworks/spectre-ui/tailwind'
-import { spectreTokens } from '@phcdevworks/spectre-tokens'
+import { tokens } from '@phcdevworks/spectre-tokens'
 
 const config: Config = {
   content: ['./src/**/*.{ts,tsx,js,jsx,html}'],
-  presets: [createSpectreTailwindPreset({ tokens: spectreTokens })]
+  presets: [createSpectreTailwindPreset({ tokens })]
 }
 
 export default config
