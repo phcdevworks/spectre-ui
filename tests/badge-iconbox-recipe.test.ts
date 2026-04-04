@@ -17,6 +17,8 @@ describe('getBadgeClasses', () => {
       { variant: 'success' as const, className: 'sp-badge--success' },
       { variant: 'warning' as const, className: 'sp-badge--warning' },
       { variant: 'danger' as const, className: 'sp-badge--danger' },
+      { variant: 'neutral' as const, className: 'sp-badge--neutral' },
+      { variant: 'info' as const, className: 'sp-badge--info' },
     ];
 
     variants.forEach(({ variant, className }) => {
@@ -45,10 +47,16 @@ describe('getBadgeClasses', () => {
     expect(result.includes('  ')).toBe(false);
   });
 
+  it('supports interactive and hovered states', () => {
+    const result = getBadgeClasses({ interactive: true, hovered: true });
+    expect(result).toContain('sp-badge--interactive');
+    expect(result).toContain('sp-badge--hover');
+  });
+
   it('supports loading and disabled states', () => {
-    const result = getIconBoxClasses({ loading: true, disabled: true });
-    expect(result).toContain('sp-iconbox--loading');
-    expect(result).toContain('sp-iconbox--disabled');
+    const result = getBadgeClasses({ loading: true, disabled: true });
+    expect(result).toContain('sp-badge--loading');
+    expect(result).toContain('sp-badge--disabled');
   });
 });
 
