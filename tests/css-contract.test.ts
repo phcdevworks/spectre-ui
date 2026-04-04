@@ -10,6 +10,9 @@ import {
   getInputClasses,
   getPricingCardClasses,
   getRatingClasses,
+  getRatingStarClasses,
+  getRatingStarsClasses,
+  getRatingTextClasses,
   getTestimonialClasses,
 } from '../src/recipes';
 
@@ -45,6 +48,12 @@ const recipeClassMatrix = [
   getPricingCardClasses({ featured: true }),
   getPricingCardClasses({ loading: true }),
   getRatingClasses(),
+  getRatingClasses({ disabled: true }),
+  getRatingClasses({ loading: true }),
+  getRatingStarsClasses(),
+  getRatingStarClasses(),
+  getRatingStarClasses(true),
+  getRatingTextClasses(),
 ];
 
 const generatedClassNames = new Set(
@@ -114,6 +123,22 @@ describe('dist/components.css contract', () => {
       '.sp-iconbox--warning',
       '.sp-iconbox--danger',
       '.sp-iconbox--info',
+    ];
+
+    selectors.forEach((selector) => {
+      expect(css).toContain(selector);
+    });
+  });
+
+  it('contains rating selectors', () => {
+    const selectors = [
+      '.sp-rating',
+      '.sp-rating--disabled',
+      '.sp-rating--loading',
+      '.sp-rating-stars',
+      '.sp-rating-star',
+      '.sp-rating-star--filled',
+      '.sp-rating-text',
     ];
 
     selectors.forEach((selector) => {
