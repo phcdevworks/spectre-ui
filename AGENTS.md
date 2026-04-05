@@ -13,7 +13,8 @@ class recipes without redefining the underlying design values.
 1. Consume tokens instead of inventing local visual values.
 2. Keep CSS classes and recipe APIs in sync.
 3. Keep recipes framework-agnostic and predictable.
-4. Treat hardcoded visual literals as drift unless clearly intentional.
+4. Treat hardcoded visual literals as drift unless clearly intentional and
+   documented.
 5. Preserve the stable styling contract consumed by adapters and apps.
 6. Follow the zero-hex policy unless an exception is deliberate and documented.
 7. Prefer isolated, non-breaking micro-evolutions over broad refactors.
@@ -25,8 +26,15 @@ class recipes without redefining the underlying design values.
 11. Keep every CSS entry point exported from `package.json` standalone,
     distributable, and token-backed, not only the canonical `index.css` bundle.
 12. If local component aliases are necessary, keep them as direct mappings from
-    upstream token intent. Do not introduce new semantic meaning here when that
-    meaning belongs in `@phcdevworks/spectre-tokens`.
+    upstream token intent.
+13. Do not introduce new semantic meaning here when that meaning belongs in
+    `@phcdevworks/spectre-tokens`.
+14. Keep README examples and package documentation aligned with the actual
+    published export surface of both this package and upstream Spectre packages.
+15. If `package.json` exports a runtime CSS entry point, package metadata must
+    preserve that import as a live side effect for consumers and bundlers.
+16. Validation requirements documented in this file should be enforced in CI for
+    pull requests and `main`, not only expected locally.
 
 ## Working Boundaries
 
@@ -42,6 +50,8 @@ class recipes without redefining the underlying design values.
 - Exported package contracts are in scope when a task touches them. If
   `package.json` exports a CSS or TypeScript entry point, the build must emit a
   real distributable file that matches that contract.
+- Public documentation is part of the package contract when it shows
+  installation, imports, exports, setup flows, or validation expectations.
 
 ## Change Discipline
 
@@ -51,12 +61,16 @@ class recipes without redefining the underlying design values.
   file and one matching TypeScript recipe file.
 - For token synchronization work, update only the local UI files required to
   restore alignment with the published token package.
-- Do not expand scope into adapters, runtime components, token authoring, build
-  tooling, or infrastructure.
+- Do not expand scope into adapters, runtime components, token authoring, or
+  unrelated infrastructure.
 - If alignment introduces a structural conflict, stop and report it instead of
   forcing a workaround.
 - Do not invent fallback hex, pixel, or off-contract values to make a change
   pass.
+- If a task is documentation-only, keep it documentation-only unless the docs
+  reveal a broken public contract that must be fixed in code.
+- If a task is package-metadata-only, keep it metadata-only unless the metadata
+  reveals a broken emitted artifact contract that must be fixed in build output.
 
 ## Standard Workflows
 
@@ -87,7 +101,8 @@ Authority and scope:
 
 - install `@phcdevworks/spectre-tokens@latest` from NPM
 - treat `node_modules/@phcdevworks/spectre-tokens/` as the source of truth
-- compare the published package against local `src/styles/` and `src/recipes/`
+- compare the published package against local `src/styles/`, `src/recipes/`, and
+  public setup docs where relevant
 - update only what is required to restore alignment
 
 Guardrails:
@@ -97,19 +112,57 @@ Guardrails:
 - if the token change creates structural conflicts, stop and report the drift
   clearly
 
+### Package Contract Hardening
+
+Use this workflow when the task touches exports, CSS entry points, package
+metadata, or public setup instructions.
+
+Typical targets:
+
+- `package.json` export surface changes
+- CSS entry point packaging
+- `sideEffects` correctness
+- README import/setup examples
+- emitted `dist` contract verification
+
+Default expectations:
+
+- keep public entry point names stable unless the task explicitly scopes a
+  breaking change
+- confirm exported files are real emitted artifacts
+- confirm docs examples match the published package API
+- prefer the smallest standards-aligned fix
+
+### CI Governance
+
+Use this workflow when repo guidance exists but is not automatically enforced.
+
+Typical targets:
+
+- missing validation workflows
+- stale workflow commands
+- validation order mismatches
+- branch/PR coverage gaps
+
+Default expectations:
+
+- prefer a single lean validation workflow
+- run the repo’s real scripts rather than duplicating logic
+- preserve the documented order when tests depend on built output
+- avoid release automation unless explicitly scoped
+
 ## Validation Flow
 
-1. Update source CSS, recipes, or package metadata only as required by the
-   scoped task.
-2. Run `npm run lint` when the task changes TypeScript, tests, config, or build
-   tooling.
+1. Update source CSS, recipes, docs, package metadata, or workflow files only as
+   required by the scoped task.
+2. Run `npm run lint` when the task changes TypeScript, tests, config, docs
+   examples that include typed code, or build tooling.
 3. Run `npm run build` when the task affects package outputs, CSS entry points,
-   or token alignment.
+   export contracts, token alignment, or tests that read from `dist`.
 4. Run `npm test` after a successful build.
-5. Confirm the styling contract remains token-driven, aligned, and non-breaking.
-6. Stop immediately and report the issue if validation fails. Do not widen a
-   styling task into unrelated tooling work unless the broken tooling blocks the
-   scoped contract.
+5. Confirm the styling contract remains token-driven, aligned, documented
+   correctly, and non-breaking.
+6. Stop immediately and report the issue if validation fails.
 
 Validation notes:
 
@@ -118,6 +171,9 @@ Validation notes:
 - If a CSS entry point is exported from `package.json`, verify that the build
   emits a real standalone file for it and that the file includes the token
   context required to work on its own.
+- If documentation shows a public import or setup flow, verify it matches the
+  current published package API before closing the task.
+- CI should enforce this flow for pull requests and pushes to `main`.
 
 ## Governance Rule
 
