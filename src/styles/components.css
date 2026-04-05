@@ -641,7 +641,11 @@
 
   .sp-card--interactive:hover,
   .sp-card--interactive:focus-visible,
-  .sp-card--interactive:focus-within {
+  .sp-card--interactive:focus-within,
+  .sp-card--interactive.sp-card--hover,
+  .sp-card--interactive.is-hover,
+  .sp-card--interactive.sp-card--focus,
+  .sp-card--interactive.is-focus {
     transform: translateY(calc(var(--sp-component-border-width) * -1));
     box-shadow: var(--sp-component-card-shadow-elevated);
   }

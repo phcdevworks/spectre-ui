@@ -17,6 +17,8 @@ export interface CardRecipeOptions {
   fullHeight?: boolean;
   disabled?: boolean;
   loading?: boolean;
+  hovered?: boolean;
+  focused?: boolean;
 }
 
 export function getCardClasses(opts: CardRecipeOptions = {}): string {
@@ -27,6 +29,8 @@ export function getCardClasses(opts: CardRecipeOptions = {}): string {
     fullHeight = false,
     disabled = false,
     loading = false,
+    hovered = false,
+    focused = false,
   } = opts;
 
   const variant = resolveOption({
@@ -52,5 +56,7 @@ export function getCardClasses(opts: CardRecipeOptions = {}): string {
     fullHeight && "sp-card--full",
     disabled && "sp-card--disabled",
     loading && "sp-card--loading",
+    hovered && "sp-card--hover",
+    focused && "sp-card--focus",
   );
 }
