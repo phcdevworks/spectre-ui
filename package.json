@@ -59,7 +59,10 @@
     "LICENSE"
   ],
   "sideEffects": [
-    "**/*.css"
+    "./dist/index.css",
+    "./dist/base.css",
+    "./dist/components.css",
+    "./dist/utilities.css"
   ],
   "scripts": {
     "build": "tsup --config tsup.config.ts && npm run build:css",
