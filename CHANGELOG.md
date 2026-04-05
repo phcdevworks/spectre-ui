@@ -6,6 +6,45 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [1.1.2] - 2026-04-05
+
+Release Title: State Parity and Package Contract Hardening
+
+### Added
+
+- **Component States**: Added `loading` state support for `Card` and
+  `PricingCard`, plus explicit `hovered` and `focused` recipe parity for
+  `Card` and `Input`.
+- **Recipe APIs**: Expanded state flags across `Badge`, `Button`, `Card`, and
+  `Input` so adapters can opt into hover, focus, and active contract classes
+  without inventing local styling logic.
+- **Validation**: Added a GitHub Actions CI workflow that runs `npm run lint`,
+  `npm run build`, and `npm test` for pull requests and pushes to `main`.
+- **Examples**: Added a visual examples index and focused verification fixtures
+  for card, pricing, and badge state checks.
+
+### Changed
+
+- **Token Alignment**: Synchronized the UI layer with the published
+  `@phcdevworks/spectre-tokens@2.1.1` package, restoring CTA button mappings to
+  upstream tokens and aligning featured pricing-card roles with token intent.
+- **Packaging**: Reworked CSS bundling so every exported CSS entry point emits
+  a real standalone artifact with token context, and marked exported CSS files
+  as runtime side effects in `package.json`.
+- **Typing & Tooling**: Tightened recipe option typing with `keyof`-based
+  unions, improved Tailwind theme type safety, and refreshed TypeScript and
+  ESLint-related tooling.
+- **Documentation**: Updated README setup examples and expanded package
+  guidance around examples, exported CSS entry points, and validation
+  expectations.
+
+### Fixed
+
+- **Badge States**: Added forced hovered-state support for interactive `Badge`
+  variants so recipe-driven state previews stay in sync with CSS behavior.
+- **Contract Coverage**: Extended tests to cover standalone CSS entry points,
+  rating selectors, and state-parity regressions across the updated recipes.
+
 ## [1.1.1] - 2026-03-29
 
 Release Title: Loading States and Package Refinement
@@ -236,7 +275,8 @@ Release Title: Initial Blueprint Release
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe
   helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/1.1.1...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/1.1.2...HEAD
+[1.1.2]: https://github.com/phcdevworks/spectre-ui/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/phcdevworks/spectre-ui/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/phcdevworks/spectre-ui/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/phcdevworks/spectre-ui/compare/0.4.1...1.0.0
