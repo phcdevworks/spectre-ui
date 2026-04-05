@@ -8,6 +8,8 @@ reflects package releases published to npm.
 
 ## [1.1.1] - 2026-03-29
 
+Release Title: Loading States and Package Refinement
+
 ### Added
 
 - **Component States**: Added `loading` state support for `Badge`, `IconBox`,
@@ -29,6 +31,8 @@ reflects package releases published to npm.
   examples, and config files.
 
 ## [1.1.0] - 2026-03-22
+
+Release Title: Disabled States and Layer Alignment
 
 ### Added
 
@@ -56,6 +60,8 @@ reflects package releases published to npm.
 
 ## [1.0.0] - 2026-03-16
 
+Release Title: Blueprint Foundation Release
+
 ### Added
 
 - **Specialized Recipes**: Introduced `PricingCard`, `Testimonial`, and `Rating`
@@ -73,6 +79,8 @@ reflects package releases published to npm.
 
 ## [0.4.1] - 2026-01-14
 
+Release Title: Input Tokens and Utility Cleanup
+
 ### Changed
 
 - **Z-Index & Animations**: Refactored CSS variables to include a standardized
@@ -87,6 +95,8 @@ reflects package releases published to npm.
 - **Documentation**: Fixed broken link in the contributing guide.
 
 ## [0.4.0] - 2026-01-03
+
+Release Title: Semantic CSS System Refresh
 
 ### Changed
 
@@ -105,6 +115,8 @@ reflects package releases published to npm.
 
 ## [0.3.0] - 2025-12-24
 
+Release Title: Bundled CSS Distribution
+
 ### Changed
 
 - **Build Pipeline**: Migrated from direct CSS imports to a PostCSS-driven build
@@ -119,6 +131,8 @@ reflects package releases published to npm.
 
 ## [0.2.2] - 2025-12-23
 
+Release Title: Public API Tightening
+
 ### Changed
 
 - **Public API**: Removed internal `spectreTokens` export to reduce bundle size
@@ -126,12 +140,16 @@ reflects package releases published to npm.
 
 ## [0.2.1] - 2025-12-23
 
+Release Title: Tailwind Export Refinement
+
 ### Changed
 
 - **Tailwind Exports**: Refactored Tailwind theme and preset exports for better
   tree-shaking and developer experience.
 
 ## [0.2.0] - 2025-12-20
+
+Release Title: Primitive Expansion and Tailwind Control
 
 ### Added
 
@@ -148,6 +166,8 @@ reflects package releases published to npm.
 
 ## [0.1.0] - 2025-12-13
 
+Release Title: Community Standards and Variant Growth
+
 ### Added
 
 - **Compliance & Community**: Added issue templates, code of conduct, security
@@ -163,11 +183,15 @@ reflects package releases published to npm.
 
 ## [0.0.5] - 2025-12-08
 
+Release Title: Canonical CSS Bundle
+
 ### Added
 
 - **Distribution**: Introduced the canonical `index.css` bundle.
 
 ## [0.0.4] - 2025-12-07
+
+Release Title: Contract Testing and Utility Growth
 
 ### Added
 
@@ -182,6 +206,8 @@ reflects package releases published to npm.
 
 ## [0.0.3] - 2025-12-06
 
+Release Title: Surface Roles and Package Metadata
+
 ### Added
 
 - **Surface Tokens**: Added CSS variables for semantic surface colors and text
@@ -189,6 +215,8 @@ reflects package releases published to npm.
 - **Meta**: Added funding information and expanded package metadata.
 
 ## [0.0.2] - 2025-12-04
+
+Release Title: Recipe API Alignment and Token Decoupling
 
 ### Changed
 
@@ -198,6 +226,8 @@ reflects package releases published to npm.
   package.
 
 ## [0.0.1] - 2025-11-27
+
+Release Title: Initial Blueprint Release
 
 ### Added
 
