@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card State Verification</title>
+    <link rel="stylesheet" href="../dist/index.css" />
+    <style>
+      body {
+        background-color: var(--sp-surface-page);
+        color: var(--sp-text-on-page-default);
+        padding: var(--sp-space-48);
+        font-family: var(--sp-font-family-sans);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: var(--sp-space-32);
+      }
+      .section-title {
+        grid-column: 1 / -1;
+        font-size: var(--sp-font-xl-size);
+        margin-bottom: var(--sp-space-16);
+        border-bottom: 1px solid var(--sp-color-neutral-200);
+        padding-bottom: var(--sp-space-8);
+      }
+      .label {
+        font-size: var(--sp-font-xs-size);
+        color: var(--sp-text-on-surface-meta);
+        margin-bottom: var(--sp-space-8);
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Card State Verification</h1>
+
+    <div class="grid">
+      <h2 class="section-title">Standard States</h2>
+
+      <div>
+        <span class="label">Default (Elevated)</span>
+        <div class="sp-card sp-card--elevated">
+          <h3>Card Title</h3>
+          <p>Standard elevated card.</p>
+        </div>
+      </div>
+
+      <div>
+        <span class="label">Interactive (Default)</span>
+        <div class="sp-card sp-card--elevated sp-card--interactive">
+          <h3>Interactive Card</h3>
+          <p>Hover me to see the lift effect.</p>
+        </div>
+      </div>
+
+      <h2 class="section-title">Forced States (New)</h2>
+
+      <div>
+        <span class="label">Interactive + Forced Hover (.sp-card--hover)</span>
+        <div class="sp-card sp-card--elevated sp-card--interactive sp-card--hover">
+          <h3>Forced Hover</h3>
+          <p>This card should look lifted by default.</p>
+        </div>
+      </div>
+
+      <div>
+        <span class="label">Interactive + Forced Hover (.is-hover)</span>
+        <div class="sp-card sp-card--elevated sp-card--interactive is-hover">
+          <h3>Forced Hover (Generic)</h3>
+          <p>This card should also look lifted.</p>
+        </div>
+      </div>
+
+      <div>
+        <span class="label">Interactive + Forced Focus (.sp-card--focus)</span>
+        <div class="sp-card sp-card--elevated sp-card--interactive sp-card--focus">
+          <h3>Forced Focus</h3>
+          <p>This card should look lifted as if focused.</p>
+        </div>
+      </div>
+
+      <div>
+        <span class="label">Interactive + Forced Focus (.is-focus)</span>
+        <div class="sp-card sp-card--elevated sp-card--interactive is-focus">
+          <h3>Forced Focus (Generic)</h3>
+          <p>This card should also look lifted.</p>
+        </div>
+      </div>
+
+      <h2 class="section-title">Variants</h2>
+
+      <div>
+        <span class="label">Outline + Interactive + Forced Hover</span>
+        <div class="sp-card sp-card--outline sp-card--interactive sp-card--hover">
+          <h3>Outline Hover</h3>
+          <p>Outline cards also support the lift effect.</p>
+        </div>
+      </div>
+
+      <div>
+        <span class="label">Flat + Interactive + Forced Hover</span>
+        <div class="sp-card sp-card--flat sp-card--interactive sp-card--hover">
+          <h3>Flat Hover</h3>
+          <p>Flat cards also support the lift effect.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
