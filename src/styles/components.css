@@ -239,6 +239,13 @@
     opacity: var(--sp-opacity-active);
   }
 
+  .sp-btn:focus-visible,
+  .sp-btn--focus,
+  .sp-btn.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
+  }
+
   .sp-btn--full {
     width: 100%;
   }
