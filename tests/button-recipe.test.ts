@@ -49,6 +49,7 @@ describe('getButtonClasses', () => {
       fullWidth: true,
       loading: true,
       disabled: true,
+      focused: true,
       iconOnly: true,
       pill: true,
     });
@@ -56,6 +57,7 @@ describe('getButtonClasses', () => {
     expect(result).toContain('sp-btn--full');
     expect(result).toContain('sp-btn--loading');
     expect(result).toContain('sp-btn--disabled');
+    expect(result).toContain('sp-btn--focus');
     expect(result).toContain('sp-btn--icon');
     expect(result).toContain('sp-btn--pill');
   });
