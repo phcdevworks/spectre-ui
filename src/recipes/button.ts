@@ -31,6 +31,7 @@ export interface ButtonRecipeOptions {
   loading?: boolean;
   disabled?: boolean;
   hovered?: boolean;
+  focused?: boolean;
   active?: boolean;
   iconOnly?: boolean;
   pill?: boolean;
@@ -44,6 +45,7 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     loading = false,
     disabled = false,
     hovered = false,
+    focused = false,
     active = false,
     iconOnly = false,
     pill = false,
@@ -88,6 +90,7 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     loading && "sp-btn--loading",
     disabled && "sp-btn--disabled",
     hovered && "sp-btn--hover",
+    focused && "sp-btn--focus",
     active && "sp-btn--active",
     iconOnly && "sp-btn--icon",
     pill && "sp-btn--pill",
