@@ -110,19 +110,44 @@ Golden rule: consume tokens, do not redefine them.
 
 ### Root package
 
-Exports CSS path constants and class recipes, including:
+The root package exports CSS path constants plus the recipe functions re-exported
+from `src/recipes/index.ts`.
+
+Root constants:
 
 - `spectreStyles`
-- `getButtonClasses`
-- `getBadgeClasses`
-- `getCardClasses`
-- `getInputClasses`
-- `getIconBoxClasses`
-- `getPricingCardClasses`
-- `getTestimonialClasses`
-- `getRatingClasses`
+- `spectreBaseStylesPath`
+- `spectreComponentsStylesPath`
+- `spectreUtilitiesStylesPath`
 
-Recipes also export their related TypeScript option and variant types.
+Root recipe functions:
+
+- `getBadgeClasses`
+- `getButtonClasses`
+- `getCardClasses`
+- `getIconBoxClasses`
+- `getInputClasses`
+- `getPricingCardClasses`
+- `getRatingClasses`
+- `getTestimonialClasses`
+
+Root recipe helper functions:
+
+- `getPricingCardBadgeClasses`
+- `getPricingCardDescriptionClasses`
+- `getPricingCardPriceClasses`
+- `getPricingCardPriceContainerClasses`
+- `getRatingStarClasses`
+- `getRatingStarsClasses`
+- `getRatingTextClasses`
+- `getTestimonialAuthorClasses`
+- `getTestimonialAuthorInfoClasses`
+- `getTestimonialAuthorNameClasses`
+- `getTestimonialAuthorTitleClasses`
+- `getTestimonialQuoteClasses`
+
+The root package also re-exports the related recipe option, variant, size, and
+state TypeScript types defined by those recipes.
 
 ### Tailwind entry point
 
