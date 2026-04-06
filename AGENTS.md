@@ -35,6 +35,16 @@ class recipes without redefining the underlying design values.
     preserve that import as a live side effect for consumers and bundlers.
 16. Validation requirements documented in this file should be enforced in CI for
     pull requests and `main`, not only expected locally.
+17. Keep `package.json` and `package-lock.json` dependency metadata synchronized
+    whenever dependency ranges change.
+18. Treat export documentation parity as a contract requirement, not a
+    nice-to-have.
+19. Treat lockfile freshness and latest-token verification as separate concerns:
+    the lockfile must be internally consistent, and synchronization work must
+    still verify against the latest published token package.
+20. Never use the GitHub state of `@phcdevworks/spectre-tokens` as proof of the
+    latest consumable token contract when synchronization scope is defined
+    against the published package.
 
 ## Working Boundaries
 
@@ -52,6 +62,8 @@ class recipes without redefining the underlying design values.
   real distributable file that matches that contract.
 - Public documentation is part of the package contract when it shows
   installation, imports, exports, setup flows, or validation expectations.
+- Dependency declarations, lockfile metadata, and emitted artifacts are all part
+  of package maintenance when dependency alignment changes.
 
 ## Change Discipline
 
@@ -71,6 +83,8 @@ class recipes without redefining the underlying design values.
   reveal a broken public contract that must be fixed in code.
 - If a task is package-metadata-only, keep it metadata-only unless the metadata
   reveals a broken emitted artifact contract that must be fixed in build output.
+- If a task changes a dependency range, refresh the lockfile so root metadata,
+  resolved packages, and install behavior all agree.
 
 ## Standard Workflows
 
@@ -111,6 +125,10 @@ Guardrails:
 - do not combine synchronization with unrelated cleanup or feature work
 - if the token change creates structural conflicts, stop and report the drift
   clearly
+- if a token dependency range is changed, refresh `package-lock.json` in the
+  same unit of work
+- verify both local lockfile consistency and latest-published-token
+  compatibility before calling synchronization complete
 
 ### Package Contract Hardening
 
@@ -124,6 +142,8 @@ Typical targets:
 - `sideEffects` correctness
 - README import/setup examples
 - emitted `dist` contract verification
+- exported symbol inventory drift
+- dependency metadata drift between `package.json` and `package-lock.json`
 
 Default expectations:
 
@@ -131,50 +151,28 @@ Default expectations:
   breaking change
 - confirm exported files are real emitted artifacts
 - confirm docs examples match the published package API
+- confirm README export inventories match actual source exports
 - prefer the smallest standards-aligned fix
 
 ### CI Governance
 
 Use this workflow when repo guidance exists but is not automatically enforced.
 
-Typical targets:
+Required CI coverage:
 
-- missing validation workflows
-- stale workflow commands
-- validation order mismatches
-- branch/PR coverage gaps
+- lint
+- build
+- test
+- CSS entry point contract validation
+- export-surface validation
+- latest-published-token synchronization validation for pull requests and
+  `main`, either as a dedicated job or an equivalent enforced check
 
-Default expectations:
+Governance rules:
 
-- prefer a single lean validation workflow
-- run the repo’s real scripts rather than duplicating logic
-- preserve the documented order when tests depend on built output
-- avoid release automation unless explicitly scoped
-
-## Validation Flow
-
-1. Update source CSS, recipes, docs, package metadata, or workflow files only as
-   required by the scoped task.
-2. Run `npm run lint` when the task changes TypeScript, tests, config, docs
-   examples that include typed code, or build tooling.
-3. Run `npm run build` when the task affects package outputs, CSS entry points,
-   export contracts, token alignment, or tests that read from `dist`.
-4. Run `npm test` after a successful build.
-5. Confirm the styling contract remains token-driven, aligned, documented
-   correctly, and non-breaking.
-6. Stop immediately and report the issue if validation fails.
-
-Validation notes:
-
-- Some contract tests read from `dist`, so `npm run build` should complete
-  before `npm test`.
-- If a CSS entry point is exported from `package.json`, verify that the build
-  emits a real standalone file for it and that the file includes the token
-  context required to work on its own.
-- If documentation shows a public import or setup flow, verify it matches the
-  current published package API before closing the task.
-- CI should enforce this flow for pull requests and pushes to `main`.
-
-## Governance Rule
-
-Tokens define meaning. UI defines structure. Adapters define delivery.
+- guidance in this file is incomplete unless there is an executable validation
+  path for the contract it defines
+- if a rule cannot yet be enforced automatically, document that gap explicitly
+  and keep the rule narrow and testable
+- Dependabot helps surface dependency movement but does not replace contract
+  enforcement
