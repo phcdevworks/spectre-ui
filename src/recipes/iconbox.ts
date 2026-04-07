@@ -23,10 +23,21 @@ export interface IconBoxRecipeOptions {
   size?: IconBoxSize;
   disabled?: boolean;
   loading?: boolean;
+  interactive?: boolean;
+  hovered?: boolean;
+  focused?: boolean;
 }
 
 export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
-  const { variant: variantInput, size: sizeInput, disabled = false, loading = false } = opts;
+  const {
+    variant: variantInput,
+    size: sizeInput,
+    disabled = false,
+    loading = false,
+    interactive = false,
+    hovered = false,
+    focused = false,
+  } = opts;
 
   const variant = resolveOption({
     name: "icon box variant",
@@ -63,5 +74,8 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
     sizeClass,
     disabled && "sp-iconbox--disabled",
     loading && "sp-iconbox--loading",
+    interactive && "sp-iconbox--interactive",
+    hovered && "sp-iconbox--hover",
+    focused && "sp-iconbox--focus",
   );
 }
