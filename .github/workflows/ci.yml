@@ -14,6 +14,11 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    env:
+      TMPDIR: /tmp
+      TMP: /tmp
+      TEMP: /tmp
+      npm_config_cache: /tmp/.npm
 
     steps:
       - name: Check out repository
@@ -31,8 +36,17 @@ jobs:
       - name: Run lint
         run: npm run lint
 
+      - name: Validate exports
+        run: npm run validate:exports
+
+      - name: Validate latest published tokens
+        run: npm run validate:tokens
+
       - name: Build package
         run: npm run build
+
+      - name: Validate CSS contract
+        run: npm run validate:css-contract
 
       - name: Run tests
         run: npm test
