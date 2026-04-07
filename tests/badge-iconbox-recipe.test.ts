@@ -102,4 +102,17 @@ describe('getIconBoxClasses', () => {
     expect(result).toBe(result.trim());
     expect(result.includes('  ')).toBe(false);
   });
+
+  it('supports interactive, hovered and focused states', () => {
+    const result = getIconBoxClasses({ interactive: true, hovered: true, focused: true });
+    expect(result).toContain('sp-iconbox--interactive');
+    expect(result).toContain('sp-iconbox--hover');
+    expect(result).toContain('sp-iconbox--focus');
+  });
+
+  it('supports loading and disabled states', () => {
+    const result = getIconBoxClasses({ loading: true, disabled: true });
+    expect(result).toContain('sp-iconbox--loading');
+    expect(result).toContain('sp-iconbox--disabled');
+  });
 });
