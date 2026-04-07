@@ -200,6 +200,12 @@
     --sp-component-badge-danger-bg-hover: var(--sp-color-error-700);
     --sp-component-badge-neutral-bg-hover: var(--sp-color-neutral-600);
     --sp-component-badge-info-bg-hover: var(--sp-color-info-700);
+
+    --sp-component-iconbox-primary-bg: var(--sp-color-brand-900);
+    --sp-component-iconbox-success-bg: var(--sp-color-success-900);
+    --sp-component-iconbox-warning-bg: var(--sp-color-warning-900);
+    --sp-component-iconbox-danger-bg: var(--sp-color-error-900);
+    --sp-component-iconbox-info-bg: var(--sp-color-info-900);
   }
 
   /* BUTTONS -------------------------------------------------------------- */
