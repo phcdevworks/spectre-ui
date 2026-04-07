@@ -71,7 +71,11 @@
     "clean": "rm -rf dist",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "validate:css-contract": "node ./scripts/validate-css-contract.mjs",
+    "validate:exports": "node ./scripts/validate-exports.mjs",
+    "validate:exports:update": "node ./scripts/validate-exports.mjs --update",
+    "validate:tokens": "node ./scripts/validate-tokens.mjs"
   },
   "publishConfig": {
     "access": "public"
