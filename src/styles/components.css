@@ -796,6 +796,12 @@
     font-family: var(--sp-font-family-sans);
     font-weight: var(--sp-font-md-weight);
     line-height: 0;
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out),
+      border-color var(--sp-duration-fast) var(--sp-easing-out),
+      opacity var(--sp-duration-fast) var(--sp-easing-out);
   }
 
   /* Harden icon rendering:
@@ -889,9 +895,29 @@
     color: var(--sp-component-iconbox-info-text);
   }
 
+  .sp-iconbox--interactive {
+    cursor: pointer;
+  }
+
+  .sp-iconbox--interactive:hover,
+  .sp-iconbox--interactive.sp-iconbox--hover,
+  .sp-iconbox--interactive.is-hover {
+    opacity: var(--sp-opacity-active);
+  }
+
+  .sp-iconbox:focus-visible,
+  .sp-iconbox--focus,
+  .sp-iconbox.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
+  }
+
+  .sp-iconbox:disabled,
+  .sp-iconbox[aria-disabled="true"],
   .sp-iconbox--disabled {
     opacity: var(--sp-opacity-disabled);
     pointer-events: none;
+    cursor: not-allowed;
   }
 
   .sp-iconbox--loading {
