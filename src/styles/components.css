@@ -704,7 +704,8 @@
   }
 
   .sp-badge--primary.sp-badge--interactive:hover,
-  .sp-badge--primary.sp-badge--interactive.sp-badge--hover {
+  .sp-badge--primary.sp-badge--interactive.sp-badge--hover,
+  .sp-badge--primary.sp-badge--interactive.is-hover {
     background-color: var(--sp-component-badge-primary-bg-hover);
   }
 
@@ -715,7 +716,8 @@
   }
 
   .sp-badge--secondary.sp-badge--interactive:hover,
-  .sp-badge--secondary.sp-badge--interactive.sp-badge--hover {
+  .sp-badge--secondary.sp-badge--interactive.sp-badge--hover,
+  .sp-badge--secondary.sp-badge--interactive.is-hover {
     background-color: var(--sp-component-badge-secondary-bg-hover);
   }
 
@@ -725,7 +727,8 @@
   }
 
   .sp-badge--success.sp-badge--interactive:hover,
-  .sp-badge--success.sp-badge--interactive.sp-badge--hover {
+  .sp-badge--success.sp-badge--interactive.sp-badge--hover,
+  .sp-badge--success.sp-badge--interactive.is-hover {
     background-color: var(--sp-component-badge-success-bg-hover);
   }
 
@@ -735,7 +738,8 @@
   }
 
   .sp-badge--warning.sp-badge--interactive:hover,
-  .sp-badge--warning.sp-badge--interactive.sp-badge--hover {
+  .sp-badge--warning.sp-badge--interactive.sp-badge--hover,
+  .sp-badge--warning.sp-badge--interactive.is-hover {
     background-color: var(--sp-component-badge-warning-bg-hover);
   }
 
@@ -745,7 +749,8 @@
   }
 
   .sp-badge--danger.sp-badge--interactive:hover,
-  .sp-badge--danger.sp-badge--interactive.sp-badge--hover {
+  .sp-badge--danger.sp-badge--interactive.sp-badge--hover,
+  .sp-badge--danger.sp-badge--interactive.is-hover {
     background-color: var(--sp-component-badge-danger-bg-hover);
   }
 
@@ -755,7 +760,8 @@
   }
 
   .sp-badge--neutral.sp-badge--interactive:hover,
-  .sp-badge--neutral.sp-badge--interactive.sp-badge--hover {
+  .sp-badge--neutral.sp-badge--interactive.sp-badge--hover,
+  .sp-badge--neutral.sp-badge--interactive.is-hover {
     background-color: var(--sp-component-badge-neutral-bg-hover);
   }
 
@@ -765,13 +771,25 @@
   }
 
   .sp-badge--info.sp-badge--interactive:hover,
-  .sp-badge--info.sp-badge--interactive.sp-badge--hover {
+  .sp-badge--info.sp-badge--interactive.sp-badge--hover,
+  .sp-badge--info.sp-badge--interactive.is-hover {
     background-color: var(--sp-component-badge-info-bg-hover);
   }
 
   .sp-badge--interactive {
     cursor: pointer;
-    transition: background-color var(--sp-duration-fast) var(--sp-easing-out);
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out),
+      border-color var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-badge--interactive:focus-visible,
+  .sp-badge--interactive.sp-badge--focus,
+  .sp-badge--interactive.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
   }
 
   .sp-badge--disabled {

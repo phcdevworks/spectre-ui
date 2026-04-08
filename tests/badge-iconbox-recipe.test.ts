@@ -47,10 +47,11 @@ describe('getBadgeClasses', () => {
     expect(result.includes('  ')).toBe(false);
   });
 
-  it('supports interactive and hovered states', () => {
-    const result = getBadgeClasses({ interactive: true, hovered: true });
+  it('supports interactive, hovered and focused states', () => {
+    const result = getBadgeClasses({ interactive: true, hovered: true, focused: true });
     expect(result).toContain('sp-badge--interactive');
     expect(result).toContain('sp-badge--hover');
+    expect(result).toContain('sp-badge--focus');
   });
 
   it('supports loading and disabled states', () => {
