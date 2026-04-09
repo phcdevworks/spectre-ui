@@ -164,6 +164,9 @@
     --sp-component-rating-star-filled: var(--sp-color-warning-500);
     --sp-component-rating-star-empty: var(--sp-color-neutral-200);
     --sp-component-rating-text: var(--sp-color-neutral-500);
+    --sp-component-rating-size-sm: var(--sp-font-sm-size);
+    --sp-component-rating-size-md: var(--sp-font-md-size);
+    --sp-component-rating-size-lg: var(--sp-font-lg-size);
   }
 
   /* dark mode overrides mapped from Spectre token mode definitions */
@@ -1081,6 +1084,19 @@
     display: inline-flex;
     align-items: center;
     gap: var(--sp-space-8);
+    font-size: var(--sp-component-rating-size-md);
+  }
+
+  .sp-rating--sm {
+    font-size: var(--sp-component-rating-size-sm);
+  }
+
+  .sp-rating--md {
+    font-size: var(--sp-component-rating-size-md);
+  }
+
+  .sp-rating--lg {
+    font-size: var(--sp-component-rating-size-lg);
   }
 
   .sp-rating--disabled {

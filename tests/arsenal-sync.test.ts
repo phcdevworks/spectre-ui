@@ -28,6 +28,8 @@ describe('Arsenal Sync Recipes', () => {
   });
 
   it('returns classes for rating', () => {
-    expect(getRatingClasses()).toBe('sp-rating');
+    expect(getRatingClasses()).toBe('sp-rating sp-rating--md');
+    expect(getRatingClasses({ size: 'sm' })).toContain('sp-rating--sm');
+    expect(getRatingClasses({ size: 'lg' })).toContain('sp-rating--lg');
   });
 });
