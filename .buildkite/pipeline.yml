@@ -4,16 +4,11 @@ steps:
     command:
       - 'node --version'
       - 'npm --version'
-      - 'node ./scripts/validate-runtime.mjs'
       - 'npm ci'
       - 'npm run ci:verify'
     agents:
       queue: 'default'
-    env:
-      TMPDIR: '/tmp'
-      TMP: '/tmp'
-      TEMP: '/tmp'
-      npm_config_cache: '/tmp/.npm'
+      node_version: '22'
     artifact_paths:
       - 'dist/**/*'
     timeout_in_minutes: 20
