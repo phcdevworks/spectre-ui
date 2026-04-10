@@ -26,6 +26,7 @@ export interface IconBoxRecipeOptions {
   interactive?: boolean;
   hovered?: boolean;
   focused?: boolean;
+  active?: boolean;
 }
 
 export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
@@ -37,6 +38,7 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
     interactive = false,
     hovered = false,
     focused = false,
+    active = false,
   } = opts;
 
   const variant = resolveOption({
@@ -77,5 +79,6 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
     interactive && "sp-iconbox--interactive",
     hovered && "sp-iconbox--hover",
     focused && "sp-iconbox--focus",
+    active && "sp-iconbox--active"
   );
 }
