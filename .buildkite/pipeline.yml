@@ -1,14 +1,14 @@
 steps:
   - label: ':node: spectre-ui verify'
     key: 'verify'
+    plugins:
+      - docker#v5.13.0:
+          image: 'node:22.12.0'
     command:
       - 'node --version'
       - 'npm --version'
       - 'npm ci'
       - 'npm run ci:verify'
-    agents:
-      queue: 'default'
-      node_version: '22'
     artifact_paths:
       - 'dist/**/*'
     timeout_in_minutes: 20
