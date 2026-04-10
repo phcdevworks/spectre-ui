@@ -27,26 +27,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run lint
-        run: npm run lint
-
-      - name: Validate exports
-        run: npm run validate:exports
-
-      - name: Validate latest published tokens
-        run: npm run validate:tokens
-
-      - name: Build package
-        run: npm run build
-
-      - name: Validate CSS contract
-        run: npm run validate:css-contract
-
-      - name: Run tests
-        run: npm test
+      - name: Run validation suite
+        run: npm run ci:verify

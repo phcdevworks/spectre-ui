@@ -2,16 +2,20 @@ steps:
   - label: ':node: spectre-ui verify'
     key: 'verify'
     command:
+      - 'source ~/.nvm/nvm.sh'
+      - 'nvm install'
+      - 'nvm use'
       - 'node --version'
+      - 'npm --version'
       - 'npm ci'
-      - 'npm run lint'
-      - 'npm run validate:exports'
-      - 'npm run validate:tokens'
-      - 'npm run build'
-      - 'npm run validate:css-contract'
-      - 'npm test'
+      - 'npm run ci:verify'
     agents:
       queue: 'default'
+    env:
+      TMPDIR: '/tmp'
+      TMP: '/tmp'
+      TEMP: '/tmp'
+      npm_config_cache: '/tmp/.npm'
     artifact_paths:
       - 'dist/**/*'
     timeout_in_minutes: 20

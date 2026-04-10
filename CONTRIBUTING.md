@@ -27,9 +27,9 @@ structure, adapters define delivery.
 ## Development Setup
 
 1. Clone the repository.
-2. Install dependencies with `npm install`.
-3. Run `npm run build`.
-4. Run `npm test` before opening a pull request.
+2. Use the repository Node version with `nvm use`.
+3. Install dependencies with `npm install`.
+4. Run `npm run ci:verify` before opening a pull request.
 
 ## Project Structure
 
@@ -56,6 +56,11 @@ structure, adapters define delivery.
 - Keep implementation readable and easy to trace.
 - Run `npm run build` when generated artifacts need to be refreshed.
 - Run `npm test` to catch recipe, CSS, and contract regressions.
+- Treat Buildkite and GitHub Actions as equal release gates. Test changes should
+  stay compatible with the Node version pinned in [.nvmrc](.nvmrc), not only a
+  locally installed default runtime.
+- Run `npm run ci:verify` when changing tests, CI, package metadata, or
+  validation scripts so the full contract stays aligned.
 
 ### Documentation
 
@@ -67,8 +72,8 @@ structure, adapters define delivery.
 ## Pull Request Checklist
 
 1. Keep the change focused.
-2. Run `npm run build`.
-3. Run `npm test`.
+2. Run `npm run ci:verify`.
+3. Run `npm run build` only when generated artifacts need to be refreshed.
 4. Update docs if public behavior or guidance changed.
 5. Commit generated artifacts only when they are part of the release surface.
 
