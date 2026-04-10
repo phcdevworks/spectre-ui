@@ -20,6 +20,8 @@ describe('getButtonClasses', () => {
         { variant: 'secondary', token: 'sp-btn--secondary' },
         { variant: 'ghost', token: 'sp-btn--ghost' },
         { variant: 'danger', token: 'sp-btn--danger' },
+        { variant: 'cta', token: 'sp-btn--cta' },
+        { variant: 'accent', token: 'sp-btn--accent' },
       ];
 
     variants.forEach(({ variant, token }) => {
@@ -49,7 +51,9 @@ describe('getButtonClasses', () => {
       fullWidth: true,
       loading: true,
       disabled: true,
+      hovered: true,
       focused: true,
+      active: true,
       iconOnly: true,
       pill: true,
     });
@@ -57,7 +61,9 @@ describe('getButtonClasses', () => {
     expect(result).toContain('sp-btn--full');
     expect(result).toContain('sp-btn--loading');
     expect(result).toContain('sp-btn--disabled');
+    expect(result).toContain('sp-btn--hover');
     expect(result).toContain('sp-btn--focus');
+    expect(result).toContain('sp-btn--active');
     expect(result).toContain('sp-btn--icon');
     expect(result).toContain('sp-btn--pill');
   });
