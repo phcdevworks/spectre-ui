@@ -26,6 +26,8 @@ const escapeRegex = (value: string): string => value.replace(/[.*+?^${}()|[\]\\]
 
 const recipeClassMatrix = [
   getButtonClasses(),
+  getButtonClasses({ variant: 'cta', hovered: true }),
+  getButtonClasses({ variant: 'accent', focused: true, active: true }),
   getButtonClasses({ variant: 'secondary', size: 'lg', fullWidth: true, iconOnly: true }),
   getButtonClasses({
     variant: 'danger',
@@ -71,6 +73,11 @@ describe('dist/components.css contract', () => {
       '.sp-btn--ghost',
       '.sp-btn--danger',
       '.sp-btn--success',
+      '.sp-btn--cta',
+      '.sp-btn--accent',
+      '.sp-btn--hover',
+      '.sp-btn--focus',
+      '.sp-btn--active',
     ];
 
     selectors.forEach((selector) => {
