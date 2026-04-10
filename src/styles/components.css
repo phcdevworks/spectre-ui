@@ -923,12 +923,18 @@
   .sp-iconbox--interactive:hover,
   .sp-iconbox--interactive.sp-iconbox--hover,
   .sp-iconbox--interactive.is-hover {
+    opacity: var(--sp-opacity-hover);
+  }
+
+  .sp-iconbox--interactive:active,
+  .sp-iconbox--interactive.sp-iconbox--active,
+  .sp-iconbox--interactive.is-active {
     opacity: var(--sp-opacity-active);
   }
 
-  .sp-iconbox:focus-visible,
-  .sp-iconbox--focus,
-  .sp-iconbox.is-focus {
+  .sp-iconbox--interactive:focus-visible,
+  .sp-iconbox--interactive.sp-iconbox--focus,
+  .sp-iconbox--interactive.is-focus {
     outline: none;
     box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
   }
