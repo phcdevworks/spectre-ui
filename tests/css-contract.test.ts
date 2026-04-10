@@ -8,13 +8,22 @@ import {
   getCardClasses,
   getIconBoxClasses,
   getInputClasses,
+  getPricingCardBadgeClasses,
   getPricingCardClasses,
+  getPricingCardDescriptionClasses,
+  getPricingCardPriceClasses,
+  getPricingCardPriceContainerClasses,
   getRatingClasses,
   getRatingStarClasses,
   getRatingStarsClasses,
   getRatingTextClasses,
+  getTestimonialAuthorClasses,
+  getTestimonialAuthorInfoClasses,
+  getTestimonialAuthorNameClasses,
+  getTestimonialAuthorTitleClasses,
   getTestimonialClasses,
-} from '../src/recipes';
+  getTestimonialQuoteClasses,
+} from '../src';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -47,8 +56,17 @@ const recipeClassMatrix = [
   getBadgeClasses({ variant: 'success', size: 'sm' }),
   getIconBoxClasses({ variant: 'warning', size: 'lg' }),
   getTestimonialClasses(),
+  getTestimonialQuoteClasses(),
+  getTestimonialAuthorClasses(),
+  getTestimonialAuthorInfoClasses(),
+  getTestimonialAuthorNameClasses(),
+  getTestimonialAuthorTitleClasses(),
   getPricingCardClasses({ featured: true }),
   getPricingCardClasses({ loading: true }),
+  getPricingCardBadgeClasses(),
+  getPricingCardPriceContainerClasses(),
+  getPricingCardPriceClasses(),
+  getPricingCardDescriptionClasses(),
   getRatingClasses(),
   getRatingClasses({ disabled: true }),
   getRatingClasses({ loading: true }),
@@ -146,6 +164,24 @@ describe('dist/components.css contract', () => {
       '.sp-rating-star',
       '.sp-rating-star--filled',
       '.sp-rating-text',
+    ];
+
+    selectors.forEach((selector) => {
+      expect(css).toContain(selector);
+    });
+  });
+
+  it('contains testimonial and pricing helper selectors', () => {
+    const selectors = [
+      '.sp-testimonial-quote',
+      '.sp-testimonial-author',
+      '.sp-testimonial-author-info',
+      '.sp-testimonial-author-name',
+      '.sp-testimonial-author-title',
+      '.sp-pricing-card-badge',
+      '.sp-pricing-card-price-container',
+      '.sp-pricing-card-price',
+      '.sp-pricing-card-description',
     ];
 
     selectors.forEach((selector) => {
