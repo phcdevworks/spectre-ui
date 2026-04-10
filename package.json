@@ -34,10 +34,6 @@
   },
   "homepage": "https://github.com/phcdevworks/spectre-ui#readme",
   "type": "module",
-  "engines": {
-    "node": ">=20",
-    "npm": ">=10"
-  },
   "packageManager": "npm@11.12.1",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
