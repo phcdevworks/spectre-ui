@@ -34,6 +34,11 @@
   },
   "homepage": "https://github.com/phcdevworks/spectre-ui#readme",
   "type": "module",
+  "engines": {
+    "node": "^22.12.0 || >=24.0.0",
+    "npm": ">=10"
+  },
+  "packageManager": "npm@11.12.1",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -67,6 +72,7 @@
   "scripts": {
     "build": "tsup --config tsup.config.ts && npm run build:css",
     "build:css": "node ./scripts/build-css.mjs",
+    "ci:verify": "npm run lint && npm run validate:exports && npm run validate:tokens && npm run build && npm run validate:css-contract && npm test",
     "dev": "tsup --config tsup.config.ts --watch",
     "clean": "rm -rf dist",
     "lint": "eslint .",
@@ -92,7 +98,7 @@
     "@typescript-eslint/eslint-plugin": "^8.58.1",
     "@typescript-eslint/parser": "^8.58.1",
     "autoprefixer": "^10.4.27",
-    "eslint": "^9.39.4",
+    "eslint": "^10.2.0",
     "jiti": "^2.6.1",
     "postcss": "^8.5.9",
     "postcss-cli": "^11.0.1",
@@ -102,8 +108,8 @@
     "tsup": "^8.5.1",
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.58.1",
-    "vite": "^6.4.2",
-    "vitest": "^3.2.4"
+    "vite": "^8.0.8",
+    "vitest": "^4.1.4"
   },
   "cSpell.words": [
     "phcdevworks"
