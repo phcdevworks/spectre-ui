@@ -1,0 +1,17 @@
+steps:
+  - label: ':node: spectre-ui verify'
+    key: 'verify'
+    command:
+      - 'node --version'
+      - 'npm ci'
+      - 'npm run lint'
+      - 'npm run validate:exports'
+      - 'npm run validate:tokens'
+      - 'npm run build'
+      - 'npm run validate:css-contract'
+      - 'npm test'
+    agents:
+      queue: 'default'
+    artifact_paths:
+      - 'dist/**/*'
+    timeout_in_minutes: 20
