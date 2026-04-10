@@ -2,11 +2,9 @@ steps:
   - label: ':node: spectre-ui verify'
     key: 'verify'
     command:
-      - 'source ~/.nvm/nvm.sh'
-      - 'nvm install'
-      - 'nvm use'
       - 'node --version'
       - 'npm --version'
+      - 'node ./scripts/validate-runtime.mjs'
       - 'npm ci'
       - 'npm run ci:verify'
     agents:
