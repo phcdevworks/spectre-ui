@@ -30,12 +30,13 @@ export interface BadgeRecipeOptions {
   interactive?: boolean;
   hovered?: boolean;
   focused?: boolean;
+  active?: boolean;
   disabled?: boolean;
   loading?: boolean;
 }
 
 export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
-  const { variant: variantInput, size: sizeInput, interactive, hovered, focused, disabled, loading } = opts;
+  const { variant: variantInput, size: sizeInput, interactive, hovered, focused, active, disabled, loading } = opts;
 
   const variant = resolveOption({
     name: "badge variant",
@@ -75,6 +76,7 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
     interactive && "sp-badge--interactive",
     hovered && "sp-badge--hover",
     focused && "sp-badge--focus",
+    active && "sp-badge--active",
     disabled && "sp-badge--disabled",
     loading && "sp-badge--loading"
   );
