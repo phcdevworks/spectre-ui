@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { createSpectreTailwindPreset } from '../src/tailwind';
-import { spectreTokens } from '../src/tokens';
+import spectreTokens from '@phcdevworks/spectre-tokens';
+import { createSpectreTailwindPreset } from '@phcdevworks/spectre-ui/tailwind';
 
 describe('Tailwind Preset Contract', () => {
   const preset = createSpectreTailwindPreset({ tokens: spectreTokens });
