@@ -785,7 +785,14 @@
       background-color var(--sp-duration-fast) var(--sp-easing-out),
       color var(--sp-duration-fast) var(--sp-easing-out),
       box-shadow var(--sp-duration-fast) var(--sp-easing-out),
-      border-color var(--sp-duration-fast) var(--sp-easing-out);
+      border-color var(--sp-duration-fast) var(--sp-easing-out),
+      opacity var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-badge--interactive:active,
+  .sp-badge--interactive.sp-badge--active,
+  .sp-badge--interactive.is-active {
+    opacity: var(--sp-opacity-active);
   }
 
   .sp-badge--interactive:focus-visible,
