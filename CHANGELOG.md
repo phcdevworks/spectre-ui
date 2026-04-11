@@ -6,6 +6,28 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-04-11
+
+Release Title: Interactive State Parity and Validation Governance
+
+### Added
+
+- **Component States**: Added programmatic focus support to Button, focused and active support to Badge, and interactive, hovered, focused, and active parity for IconBox.
+- **Rating Variants**: Added sm, md, and lg size variants to Rating recipes and structural CSS for size-driven rendering.
+- **Validation Governance**: Added export snapshot checks, CSS entry-point validation, runtime validation, token freshness checks, and a Buildkite pipeline alongside the existing GitHub Actions workflow.
+
+### Changed
+
+- **Token Alignment**: Synchronized the UI layer with published @phcdevworks/spectre-tokens releases through 2.2.0, including the weekly alignment pass for 2.1.2 and the subsequent dependency bump to 2.2.0.
+- **Release Tooling**: Consolidated the release verification flow under npm run ci:verify, added a pretest build step, pinned the Node runtime contract in .nvmrc and package.json, and tightened package-manager expectations with engine-strict.
+- **Documentation**: Expanded README export guidance, clarified dependency and synchronization rules, and aligned contributor guidance with the stricter validation flow.
+- **Dependencies**: Refreshed Node, ESLint, Vitest, Vite, and related build tooling to match the current validation and packaging contract.
+
+### Fixed
+
+- **Component Behavior**: Corrected IconBox hover opacity and ensured active, focus, and hover state classes render consistently across recipe-driven and structural component usage.
+- **Contract Coverage**: Extended tests for CTA and accent button states, Tailwind preset deep merging, testimonial and pricing selectors, and scoped Tailwind package imports.
+
 ## [1.1.2] - 2026-04-05
 
 Release Title: State Parity and Package Contract Hardening
@@ -275,7 +297,8 @@ Release Title: Initial Blueprint Release
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe
   helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/1.1.2...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/1.2.0...HEAD
+[1.2.0]: https://github.com/phcdevworks/spectre-ui/compare/1.1.2...1.2.0
 [1.1.2]: https://github.com/phcdevworks/spectre-ui/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/phcdevworks/spectre-ui/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/phcdevworks/spectre-ui/compare/1.0.0...1.1.0

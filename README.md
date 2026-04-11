@@ -179,12 +179,9 @@ implementation drift.
 
 ## Development
 
-Install dependencies, then run the package checks:
+Install dependencies, then run the package verification flow:
 
-```bash
-npm run build
-npm test
-```
+    npm run ci:verify
 
 Key source areas:
 
@@ -214,7 +211,7 @@ When contributing:
 - keep styling token-driven
 - keep recipe APIs and CSS classes in sync
 - avoid local visual values unless clearly intentional
-- run `npm run build` and `npm test` before opening a pull request
+- run npm run ci:verify before opening a pull request
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the full workflow.
 
