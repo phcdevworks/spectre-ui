@@ -2,6 +2,15 @@ import { describe, expect, it } from 'vitest';
 import { getCardClasses } from '../src/recipes/card';
 import { getInputClasses } from '../src/recipes/input';
 
+const expectTokenizedClassString = (result: string) => {
+  const tokens = result.split(/\s+/);
+
+  expect(result).toBe(result.trim());
+  expect(tokens).not.toContain('');
+  expect(tokens.join(' ')).toBe(result);
+  expect(new Set(tokens).size).toBe(tokens.length);
+};
+
 describe('getCardClasses', () => {
   it('returns defaults for elevated card without extra flags', () => {
     const result = getCardClasses();
@@ -10,8 +19,7 @@ describe('getCardClasses', () => {
     expect(result).not.toContain('sp-card--interactive');
     expect(result).not.toContain('sp-card--padded');
     expect(result).not.toContain('sp-card--full');
-    expect(result).toBe(result.trim());
-    expect(result.includes('  ')).toBe(false);
+    expectTokenizedClassString(result);
   });
 
   it('maps card variants correctly', () => {
@@ -67,8 +75,7 @@ describe('getCardClasses', () => {
     expect(result).toContain('sp-card--interactive');
     expect(result).toContain('sp-card--padded');
     expect(result).toContain('sp-card--full');
-    expect(result).toBe(result.trim());
-    expect(result.includes('  ')).toBe(false);
+    expectTokenizedClassString(result);
   });
 });
 
@@ -80,8 +87,7 @@ describe('getInputClasses', () => {
     expect(result).not.toContain('sp-input--error');
     expect(result).not.toContain('sp-input--success');
     expect(result).not.toContain('sp-input--full');
-    expect(result).toBe(result.trim());
-    expect(result.includes('  ')).toBe(false);
+    expectTokenizedClassString(result);
   });
 
   it('includes size modifiers', () => {
@@ -125,7 +131,6 @@ describe('getInputClasses', () => {
     expect(result).toContain('sp-input--success');
     expect(result).toContain('sp-input--lg');
     expect(result).toContain('sp-input--full');
-    expect(result).toBe(result.trim());
-    expect(result.includes('  ')).toBe(false);
+    expectTokenizedClassString(result);
   });
 });
