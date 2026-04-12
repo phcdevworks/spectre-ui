@@ -23,7 +23,7 @@ import {
   getTestimonialAuthorTitleClasses,
   getTestimonialClasses,
   getTestimonialQuoteClasses,
-} from '../src';
+} from '@phcdevworks/spectre-ui';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -191,7 +191,7 @@ describe('dist/components.css contract', () => {
 
   it('contains selectors for all generated recipe classes', () => {
     generatedClassNames.forEach((className) => {
-      const matcher = new RegExp(String.raw`\.${escapeRegex(className)}(\s|\{|,)`);
+      const matcher = new RegExp(String.raw`\\.${escapeRegex(className)}(\s|\{|,)`);
       expect(css).toMatch(matcher);
     });
   });
