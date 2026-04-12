@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getCardClasses } from '../src/recipes/card';
-import { getInputClasses } from '../src/recipes/input';
+import { getCardClasses, getInputClasses } from '@phcdevworks/spectre-ui';
 
 const expectTokenizedClassString = (result: string) => {
   const tokens = result.split(/\s+/);

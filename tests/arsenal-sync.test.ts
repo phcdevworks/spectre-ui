@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { getButtonClasses } from '../src';
 import {
-  getTestimonialClasses,
+  getBadgeClasses,
+  getButtonClasses,
   getPricingCardClasses,
   getRatingClasses,
-  getBadgeClasses
-} from '../src/recipes';
+  getTestimonialClasses,
+} from '@phcdevworks/spectre-ui';
 
 describe('Arsenal Sync Recipes', () => {
   it('supports new button variants from the root package export surface', () => {

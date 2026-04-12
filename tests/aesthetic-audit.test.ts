@@ -2,7 +2,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-// Replace this import path with the real generated token export your package exposes.
 import tokens from '@phcdevworks/spectre-tokens';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -61,10 +60,8 @@ function normalizeHex(value: string): string | undefined {
 }
 
 /**
- * Transitional token resolver
- *
- * Prefer mapping directly from a generated token export when available.
- * This helper keeps the lookup isolated so it can be replaced cleanly.
+ * Resolve the specific token references this audit enforces into concrete color values.
+ * The lookup stays intentionally narrow so the audit only covers the published roles it asserts.
  */
 function resolveTokenReferenceToHex(reference: string): string | undefined {
   const tokenMap: Record<string, string | undefined> = {
