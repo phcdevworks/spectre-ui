@@ -77,8 +77,11 @@ describe('getButtonClasses', () => {
       disabled: true,
       iconOnly: true,
     });
+    const tokens = result.split(/\s+/);
 
     expect(result).toBe(result.trim());
-    expect(result.includes('  ')).toBe(false);
+    expect(tokens).not.toContain('');
+    expect(tokens.join(' ')).toBe(result);
+    expect(new Set(tokens).size).toBe(tokens.length);
   });
 });
