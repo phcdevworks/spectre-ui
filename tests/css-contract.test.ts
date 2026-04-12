@@ -191,7 +191,7 @@ describe('dist/components.css contract', () => {
 
   it('contains selectors for all generated recipe classes', () => {
     generatedClassNames.forEach((className) => {
-      const matcher = new RegExp(String.raw`\\.${escapeRegex(className)}(\s|\{|,)`);
+      const matcher = new RegExp(String.raw`\.${escapeRegex(className)}(\s|\{|,)`);
       expect(css).toMatch(matcher);
     });
   });
