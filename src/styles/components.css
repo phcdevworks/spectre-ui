@@ -652,7 +652,8 @@
     cursor: pointer;
     transition:
       transform var(--sp-duration-fast) var(--sp-easing-out),
-      box-shadow var(--sp-duration-fast) var(--sp-easing-out);
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out),
+      opacity var(--sp-duration-fast) var(--sp-easing-out);
   }
 
   .sp-card--interactive:hover,
@@ -664,6 +665,13 @@
   .sp-card--interactive.is-focus {
     transform: translateY(calc(var(--sp-component-border-width) * -1));
     box-shadow: var(--sp-component-card-shadow-elevated);
+  }
+
+  .sp-card--interactive:active,
+  .sp-card--interactive.sp-card--active,
+  .sp-card--interactive.is-active {
+    opacity: var(--sp-opacity-active);
+    transform: translateY(0);
   }
 
   /* BADGES --------------------------------------------------------------- */
