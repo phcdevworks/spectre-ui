@@ -2,12 +2,20 @@ import { describe, expect, it } from 'vitest';
 import { getBadgeClasses } from '../src/recipes/badge';
 import { getIconBoxClasses } from '../src/recipes/iconbox';
 
+const expectTokenizedClassString = (result: string) => {
+  const tokens = result.split(/\s+/);
+
+  expect(result).toBe(result.trim());
+  expect(tokens).not.toContain('');
+  expect(tokens.join(' ')).toBe(result);
+  expect(new Set(tokens).size).toBe(tokens.length);
+};
+
 describe('getBadgeClasses', () => {
   it('returns defaults for badges', () => {
     const result = getBadgeClasses();
     expect(result).toBe('sp-badge sp-badge--primary sp-badge--md');
-    expect(result).toBe(result.trim());
-    expect(result.includes('  ')).toBe(false);
+    expectTokenizedClassString(result);
   });
 
   it('supports all badge variants', () => {
@@ -43,8 +51,7 @@ describe('getBadgeClasses', () => {
 
   it('creates trimmed, space-delimited class strings for non-default badges', () => {
     const result = getBadgeClasses({ variant: 'warning', size: 'lg' });
-    expect(result).toBe(result.trim());
-    expect(result.includes('  ')).toBe(false);
+    expectTokenizedClassString(result);
   });
 
   it('supports interactive, hovered, focused and active states', () => {
@@ -66,8 +73,7 @@ describe('getIconBoxClasses', () => {
   it('returns defaults for icon boxes', () => {
     const result = getIconBoxClasses();
     expect(result).toBe('sp-iconbox sp-iconbox--primary sp-iconbox--md');
-    expect(result).toBe(result.trim());
-    expect(result.includes('  ')).toBe(false);
+    expectTokenizedClassString(result);
   });
 
   it('supports all icon box variants', () => {
@@ -101,8 +107,7 @@ describe('getIconBoxClasses', () => {
 
   it('creates trimmed, space-delimited class strings for non-default icon boxes', () => {
     const result = getIconBoxClasses({ variant: 'info', size: 'sm' });
-    expect(result).toBe(result.trim());
-    expect(result.includes('  ')).toBe(false);
+    expectTokenizedClassString(result);
   });
 
   it('supports interactive, hovered and focused states', () => {

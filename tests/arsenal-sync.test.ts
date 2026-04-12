@@ -1,14 +1,14 @@
 import { describe, expect, it } from 'vitest';
+import { getButtonClasses } from '../src';
 import {
   getTestimonialClasses,
   getPricingCardClasses,
   getRatingClasses,
-  getButtonClasses,
   getBadgeClasses
 } from '../src/recipes';
 
 describe('Arsenal Sync Recipes', () => {
-  it('supports new button variants', () => {
+  it('supports new button variants from the root package export surface', () => {
     expect(getButtonClasses({ variant: 'cta' })).toContain('sp-btn--cta');
     expect(getButtonClasses({ variant: 'accent' })).toContain('sp-btn--accent');
   });
