@@ -43,10 +43,11 @@ describe('getCardClasses', () => {
     expect(result).toContain('sp-card--loading');
   });
 
-  it('adds hovered and focused state modifiers', () => {
-    const result = getCardClasses({ hovered: true, focused: true });
+  it('adds hovered, focused and active state modifiers', () => {
+    const result = getCardClasses({ hovered: true, focused: true, active: true });
     expect(result).toContain('sp-card--hover');
     expect(result).toContain('sp-card--focus');
+    expect(result).toContain('sp-card--active');
   });
 
   it('combines classes deterministically for a complex card', () => {

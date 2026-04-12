@@ -19,6 +19,7 @@ export interface CardRecipeOptions {
   loading?: boolean;
   hovered?: boolean;
   focused?: boolean;
+  active?: boolean;
 }
 
 export function getCardClasses(opts: CardRecipeOptions = {}): string {
@@ -31,6 +32,7 @@ export function getCardClasses(opts: CardRecipeOptions = {}): string {
     loading = false,
     hovered = false,
     focused = false,
+    active = false,
   } = opts;
 
   const variant = resolveOption({
@@ -58,5 +60,6 @@ export function getCardClasses(opts: CardRecipeOptions = {}): string {
     loading && "sp-card--loading",
     hovered && "sp-card--hover",
     focused && "sp-card--focus",
+    active && "sp-card--active",
   );
 }
