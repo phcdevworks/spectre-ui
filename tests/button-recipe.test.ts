@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getButtonClasses } from '../src/recipes/button';
+import { getButtonClasses } from '@phcdevworks/spectre-ui';
 
 describe('getButtonClasses', () => {
   it('returns default primary md button classes', () => {
