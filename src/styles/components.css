@@ -1040,7 +1040,10 @@
     flex-direction: column;
     gap: var(--sp-space-24);
     position: relative;
-    transition: transform var(--sp-duration-fast) var(--sp-easing-out);
+    transition:
+      transform var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out),
+      opacity var(--sp-duration-fast) var(--sp-easing-out);
   }
 
   .sp-pricing-card--featured {
@@ -1059,6 +1062,51 @@
   .sp-pricing-card--loading {
     opacity: var(--sp-opacity-active);
     pointer-events: none;
+  }
+
+  .sp-pricing-card--interactive {
+    cursor: pointer;
+  }
+
+  .sp-pricing-card--interactive:hover,
+  .sp-pricing-card--interactive:focus-visible,
+  .sp-pricing-card--interactive:focus-within,
+  .sp-pricing-card--interactive.sp-pricing-card--hover,
+  .sp-pricing-card--interactive.is-hover,
+  .sp-pricing-card--interactive.sp-pricing-card--focus,
+  .sp-pricing-card--interactive.is-focus {
+    transform: translateY(calc(var(--sp-component-border-width) * -1));
+    box-shadow: var(--sp-shadow-lg);
+  }
+
+  .sp-pricing-card--featured.sp-pricing-card--interactive:hover,
+  .sp-pricing-card--featured.sp-pricing-card--interactive:focus-visible,
+  .sp-pricing-card--featured.sp-pricing-card--interactive:focus-within,
+  .sp-pricing-card--featured.sp-pricing-card--interactive.sp-pricing-card--hover,
+  .sp-pricing-card--featured.sp-pricing-card--interactive.is-hover,
+  .sp-pricing-card--featured.sp-pricing-card--interactive.sp-pricing-card--focus,
+  .sp-pricing-card--featured.sp-pricing-card--interactive.is-focus {
+    transform: scale(1.05) translateY(calc(var(--sp-component-border-width) * -1));
+  }
+
+  .sp-pricing-card--interactive:active,
+  .sp-pricing-card--interactive.sp-pricing-card--active,
+  .sp-pricing-card--interactive.is-active {
+    opacity: var(--sp-opacity-active);
+    transform: translateY(0);
+  }
+
+  .sp-pricing-card--featured.sp-pricing-card--interactive:active,
+  .sp-pricing-card--featured.sp-pricing-card--interactive.sp-pricing-card--active,
+  .sp-pricing-card--featured.sp-pricing-card--interactive.is-active {
+    transform: scale(1.05) translateY(0);
+  }
+
+  .sp-pricing-card--interactive:focus-visible,
+  .sp-pricing-card--interactive.sp-pricing-card--focus,
+  .sp-pricing-card--interactive.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
   }
 
   .sp-pricing-card-badge {

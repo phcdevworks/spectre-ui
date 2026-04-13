@@ -63,6 +63,7 @@ const recipeClassMatrix = [
   getTestimonialAuthorTitleClasses(),
   getPricingCardClasses({ featured: true }),
   getPricingCardClasses({ loading: true }),
+  getPricingCardClasses({ interactive: true, hovered: true, focused: true, active: true }),
   getPricingCardBadgeClasses(),
   getPricingCardPriceContainerClasses(),
   getPricingCardPriceClasses(),
