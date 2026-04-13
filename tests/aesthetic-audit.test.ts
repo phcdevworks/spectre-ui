@@ -11,6 +11,14 @@ const projectRoot = path.join(__dirname, '..');
 const componentsCssPath = path.join(projectRoot, 'src', 'styles', 'components.css');
 const cssContent = fs.readFileSync(componentsCssPath, 'utf8');
 
+const ASSERTED_TOKEN_REFERENCES = [
+  'var(--sp-button-cta-bg)',
+  'var(--sp-button-cta-text)',
+  'var(--sp-button-text-on-primary)',
+  'var(--sp-color-info-600)',
+  'var(--sp-color-warning-500)',
+] as const;
+
 function getCssCustomProperty(name: string): string | undefined {
   const match = cssContent.match(new RegExp(`${escapeRegExp(name)}\\s*:\\s*([^;]+);`));
   return match?.[1]?.trim();
@@ -60,27 +68,19 @@ function normalizeHex(value: string): string | undefined {
 }
 
 /**
- * Resolve the specific token references this audit enforces into concrete color values.
- * The lookup stays intentionally narrow so the audit only covers the published roles it asserts.
+ * Resolve only the token references asserted by this audit into concrete color values.
+ * Any asserted role without an explicit mapping fails the test instead of falling back silently.
  */
-function resolveTokenReferenceToHex(reference: string): string | undefined {
-  const tokenMap: Record<string, string | undefined> = {
-    'var(--sp-color-neutral-900)': getNestedToken(tokens, ['colors', 'neutral', '900']),
-    'var(--sp-color-neutral-50)': getNestedToken(tokens, ['colors', 'neutral', '50']),
-    'var(--sp-color-brand-600)': getNestedToken(tokens, ['colors', 'brand', '600']),
-    'var(--sp-color-accent-600)': getNestedToken(tokens, ['colors', 'accent', '600']),
-    'var(--sp-color-info-600)': getNestedToken(tokens, ['colors', 'info', '600']),
-    'var(--sp-color-warning-500)': getNestedToken(tokens, ['colors', 'warning', '500']),
-    'var(--sp-color-warning-600)': getNestedToken(tokens, ['colors', 'warning', '600']),
-    'var(--sp-surface-card)': getNestedToken(tokens, ['surface', 'card']),
-    'var(--sp-text-on-surface-default)': getNestedToken(tokens, ['text', 'onSurface', 'default']),
-    // Component tokens
-    'var(--sp-button-cta-bg)': getNestedToken(tokens, ['buttons', 'cta', 'bg']),
-    'var(--sp-button-cta-text)': getNestedToken(tokens, ['buttons', 'cta', 'text']),
-    'var(--sp-button-text-on-primary)': getNestedToken(tokens, ['component', 'button', 'textOnPrimary']),
-  };
+const ASSERTED_TOKEN_MAP: Record<(typeof ASSERTED_TOKEN_REFERENCES)[number], string | undefined> = {
+  'var(--sp-button-cta-bg)': getNestedToken(tokens, ['buttons', 'cta', 'bg']),
+  'var(--sp-button-cta-text)': getNestedToken(tokens, ['buttons', 'cta', 'text']),
+  'var(--sp-button-text-on-primary)': getNestedToken(tokens, ['component', 'button', 'textOnPrimary']),
+  'var(--sp-color-info-600)': getNestedToken(tokens, ['colors', 'info', '600']),
+  'var(--sp-color-warning-500)': getNestedToken(tokens, ['colors', 'warning', '500']),
+};
 
-  const resolved = tokenMap[reference];
+function resolveTokenReferenceToHex(reference: string): string | undefined {
+  const resolved = ASSERTED_TOKEN_MAP[reference as keyof typeof ASSERTED_TOKEN_MAP];
   return typeof resolved === 'string' ? resolved : undefined;
 }
 
@@ -109,6 +109,18 @@ function getNestedToken(source: unknown, pathParts: string[]): string | undefine
 }
 
 describe('design contract guard', () => {
+  describe('asserted token mapping guard', () => {
+    it('explicitly maps every token reference used by audit assertions', () => {
+      ASSERTED_TOKEN_REFERENCES.forEach((reference) => {
+        expect(ASSERTED_TOKEN_MAP).toHaveProperty(reference);
+        expect(
+          ASSERTED_TOKEN_MAP[reference],
+          `Missing explicit token mapping for asserted reference: ${reference}`
+        ).toBeDefined();
+      });
+    });
+  });
+
   describe('semantic role guard', () => {
     it('keeps CTA roles aligned with the upstream CTA token alias', () => {
       const ctaBg = getCssCustomProperty('--sp-component-button-cta-bg');
