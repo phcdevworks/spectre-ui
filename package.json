@@ -96,9 +96,9 @@
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
-    "@typescript-eslint/eslint-plugin": "^8.58.1",
-    "@typescript-eslint/parser": "^8.58.1",
-    "autoprefixer": "^10.4.27",
+    "@typescript-eslint/eslint-plugin": "^8.58.2",
+    "@typescript-eslint/parser": "^8.58.2",
+    "autoprefixer": "^10.5.0",
     "eslint": "^10.2.0",
     "jiti": "^2.6.1",
     "postcss": "^8.5.9",
@@ -108,7 +108,7 @@
     "tailwindcss": "^4.2.2",
     "tsup": "^8.5.1",
     "typescript": "^6.0.2",
-    "typescript-eslint": "^8.58.1",
+    "typescript-eslint": "^8.58.2",
     "vite": "^8.0.8",
     "vitest": "^4.1.4"
   },
