@@ -17,10 +17,22 @@ export interface RatingRecipeOptions {
   size?: RatingSize;
   disabled?: boolean;
   loading?: boolean;
+  interactive?: boolean;
+  hovered?: boolean;
+  focused?: boolean;
+  active?: boolean;
 }
 
 export function getRatingClasses(opts: RatingRecipeOptions = {}): string {
-  const { size: sizeInput, disabled = false, loading = false } = opts;
+  const {
+    size: sizeInput,
+    disabled = false,
+    loading = false,
+    interactive = false,
+    hovered = false,
+    focused = false,
+    active = false,
+  } = opts;
 
   const size = resolveOption({
     name: "rating size",
@@ -40,7 +52,11 @@ export function getRatingClasses(opts: RatingRecipeOptions = {}): string {
     "sp-rating",
     sizeClass,
     disabled && "sp-rating--disabled",
-    loading && "sp-rating--loading"
+    loading && "sp-rating--loading",
+    interactive && "sp-rating--interactive",
+    hovered && "sp-rating--hover",
+    focused && "sp-rating--focus",
+    active && "sp-rating--active"
   );
 }
 
