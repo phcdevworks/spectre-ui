@@ -56,8 +56,7 @@
 
     /* card roles */
     --sp-component-card-bg: var(--sp-surface-card);
-    --sp-component-card-text: var(--sp-text-on-surface-default);
-    --sp-component-card-text-muted: var(--sp-text-on-surface-muted);
+    /* --sp-component-card-text and --sp-component-card-text-muted are now provided directly by the token package */
     --sp-component-card-border: var(--sp-color-neutral-200);
     --sp-component-card-border-base: var(--sp-component-card-ghost-border);
     --sp-component-card-shadow: var(--sp-shadow-sm);
@@ -73,8 +72,8 @@
     /* input roles */
     --sp-component-input-role-border: var(--sp-form-default-border);
     --sp-component-input-role-bg: var(--sp-form-default-bg);
-    --sp-component-input-role-text: var(--sp-form-default-text);
-    --sp-component-input-role-placeholder: var(--sp-form-default-placeholder);
+    --sp-component-input-role-text: var(--sp-component-input-text);
+    --sp-component-input-role-placeholder: var(--sp-component-input-placeholder);
     --sp-component-input-role-border-hover: var(--sp-form-hover-border);
     --sp-component-input-role-border-focus: var(--sp-form-focus-border);
     --sp-component-input-role-ring: var(--sp-form-focus-ring);
@@ -186,29 +185,6 @@
     --sp-component-rating-star-filled: var(--sp-color-warning-400);
     --sp-component-rating-star-empty: var(--sp-color-neutral-700);
     --sp-component-rating-text: var(--sp-color-neutral-400);
-
-    --sp-component-badge-success-bg: var(--sp-color-success-800);
-    --sp-component-badge-success-text: var(--sp-color-success-100);
-    --sp-component-badge-warning-bg: var(--sp-color-warning-800);
-    --sp-component-badge-warning-text: var(--sp-color-warning-100);
-    --sp-component-badge-danger-bg: var(--sp-color-error-800);
-    --sp-component-badge-danger-text: var(--sp-color-error-100);
-    --sp-component-badge-neutral-bg: var(--sp-color-neutral-700);
-    --sp-component-badge-neutral-text: var(--sp-color-neutral-100);
-    --sp-component-badge-info-bg: var(--sp-color-info-900);
-    --sp-component-badge-info-text: var(--sp-color-info-100);
-
-    --sp-component-badge-success-bg-hover: var(--sp-color-success-700);
-    --sp-component-badge-warning-bg-hover: var(--sp-color-warning-800);
-    --sp-component-badge-danger-bg-hover: var(--sp-color-error-700);
-    --sp-component-badge-neutral-bg-hover: var(--sp-color-neutral-600);
-    --sp-component-badge-info-bg-hover: var(--sp-color-info-700);
-
-    --sp-component-iconbox-primary-bg: var(--sp-color-brand-900);
-    --sp-component-iconbox-success-bg: var(--sp-color-success-900);
-    --sp-component-iconbox-warning-bg: var(--sp-color-warning-900);
-    --sp-component-iconbox-danger-bg: var(--sp-color-error-900);
-    --sp-component-iconbox-info-bg: var(--sp-color-info-900);
   }
 
   /* BUTTONS -------------------------------------------------------------- */
