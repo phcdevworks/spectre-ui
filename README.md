@@ -183,6 +183,11 @@ Install dependencies, then run the package verification flow:
 
     npm run ci:verify
 
+Planning artifacts for contract hardening live in:
+
+- [`ROADMAP.md`](ROADMAP.md)
+- [`TODO.md`](TODO.md)
+
 Key source areas:
 
 - `src/styles/` for source CSS
