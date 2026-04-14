@@ -1,12 +1,17 @@
+# ROADMAP.md
+
 # Spectre UI Roadmap
 
 This roadmap is grounded in the current repository shape and public contract of
 `@phcdevworks/spectre-ui` as it exists today.
 
-The package already acts as the authoritative styling contract layer between
-`@phcdevworks/spectre-tokens` and downstream adapters or apps. The work below is
-focused on keeping that contract trustworthy through stronger parity,
-validation, and downstream safety, without expanding package responsibilities or
+`@phcdevworks/spectre-ui` is the authoritative styling contract layer in the
+Spectre system. It translates `@phcdevworks/spectre-tokens` into reusable CSS
+entrypoints, Tailwind helpers, and framework-agnostic recipe APIs for downstream
+adapters and apps.
+
+The work below is focused on protecting that contract through stronger parity,
+validation, and downstream safety without expanding package responsibilities or
 introducing broad rewrites.
 
 ## 1. Current Repo Assessment
@@ -14,381 +19,368 @@ introducing broad rewrites.
 ### Current strengths
 
 - The package contract is already intentionally split across root exports,
-  `./tailwind`, and standalone CSS entrypoints in `package.json`.
-- Source ownership is clearly separated:
-  - `src/styles/` for CSS contract surfaces
-  - `src/recipes/` for framework-agnostic class recipes
-  - `src/tailwind/` for Tailwind helpers
-  - `scripts/` for contract validation
-  - `tests/` for regression and parity coverage
-- CI already runs on pull requests and `main` through
-  `.github/workflows/ci.yml`.
-- Existing validation coverage is real and useful:
-  - `scripts/validate-runtime.mjs`
-  - `scripts/validate-exports.mjs`
-  - `scripts/validate-css-contract.mjs`
-  - `scripts/validate-tokens.mjs`
-- Existing tests already protect several contract areas:
-  - recipe output stability
-  - CSS selector presence
-  - token drift and zero-hex enforcement in source styles
-  - Tailwind token mapping
-  - CSS entrypoint token inlining
-- The repo already checks against the latest published
-  `@phcdevworks/spectre-tokens`, which is the correct authority for alignment
-  work.
+  `./tailwind`, and standalone CSS entrypoints.
+- Source ownership is already legible:
+  - `src/styles/` owns CSS contract surfaces
+  - `src/recipes/` owns framework-agnostic recipe APIs
+  - `src/tailwind/` owns Tailwind-facing helpers
+  - `scripts/` owns validation
+  - `tests/` owns regression and parity coverage
+- CI already runs on pull requests and `main`.
+- Existing validation and test coverage already protects meaningful parts of the
+  contract, including runtime validation, export checks, CSS contract checks,
+  token alignment, selector presence, zero-hex enforcement, Tailwind mapping,
+  and recipe output stability.
+- The repo already aligns against the published `@phcdevworks/spectre-tokens`
+  package, which is the correct upstream authority.
 
 ### Current gaps to harden
 
-- Root export validation exists, but subpath export validation for `./tailwind`
-  is not equally explicit.
-- Public export documentation in `README.md` is manually maintained and not
-  currently checked against the package contract.
-- CSS entrypoint validation is present, but it is still lighter than the policy
-  the repo claims for standalone distributable CSS entrypoints.
-- There is an internal/public ambiguity around `spectreIndexStylesPath` in
-  `src/css-constants.ts` because it exists in source but is not re-exported from
-  the root package alongside the other path constants.
-- There is no dedicated built-package smoke coverage for downstream import
-  patterns across:
-  - root package exports
-  - `@phcdevworks/spectre-ui/tailwind`
-  - CSS entrypoints
-- Policy is strong in `AGENTS.md`, but not every downstream-facing claim is yet
-  backed by an executable guard.
+- The repo validates several public surfaces, but it does not yet declare one
+  single machine-readable contract anchor for the package.
+- Root export validation is stronger than subpath validation for `./tailwind`.
+- Public export documentation in `README.md` is still manually maintained and
+  can drift from emitted reality.
+- CSS entrypoint validation exists, but it is still lighter than the public
+  claims made for standalone distributable CSS entrypoints.
+- There is internal/public ambiguity around `spectreIndexStylesPath`.
+- Recipe families are clearly owned by this repo, but public recipe parity is
+  not yet treated as an explicit protected contract surface.
+- There is no dedicated built-package smoke coverage for real downstream import
+  patterns across root exports, `./tailwind`, and CSS entrypoints.
 
 ### Missing policy, docs, or tests that would improve downstream safety
 
-- A lightweight machine-readable contract manifest that declares the public
-  styling surface used for parity and drift checks
-- Executable README export-surface parity validation
-- Explicit `./tailwind` artifact and subpath contract validation
-- Recipe-family parity validation for stable public recipe families
+- A small contract manifest that declares the public styling surface of the repo
+- Executable README contract parity validation
+- Explicit `./tailwind` subpath artifact and packaging validation
 - Built-package downstream import smoke tests
-- A short maintainer-facing contract coverage map that shows which rule is
-  enforced by which script or test
+- Explicit parity checks for stable public recipe families, including names,
+  variants, sizes, and states
+- A short maintainer-facing contract coverage map showing which script or test
+  enforces which rule
 
 ## 2. Roadmap
 
 ## P0: Contract Integrity / Must-Do
 
-### P0.1 Export Surface Parity
+### P0.1 Add a Single Styling Contract Anchor
 
-**Objective**  
-Make the declared public API consistent across source exports, emitted
-artifacts, package metadata, and README documentation by anchoring checks to one
-lightweight contract manifest.
+Objective Declare one machine-readable contract surface for the package and use
+it as the basis for parity and drift checks.
 
-**Why it matters**  
-This repo is the authoritative styling contract layer. If the export surface is
-ambiguous or only partially validated, downstream adapters and apps can drift or
-break despite source code appearing healthy.
+Why it matters This repo is a public styling contract, not just a source tree.
+Public exports, CSS entrypoints, Tailwind surfaces, and stable recipe families
+should be declared once and validated from that declaration instead of being
+inferred separately from source, docs, and emitted files.
 
-**Suggested deliverables**
+Suggested deliverables
 
-- Introduce a small machine-readable contract manifest that declares the public
-  styling surface for this package.
-- Keep the manifest limited to current owned contract areas:
+- Add a lightweight manifest such as `ui-contract.manifest.json`
+- Declare, at minimum:
   - root public exports
   - `./tailwind` public exports
   - public CSS entrypoints
   - stable public recipe families
-- Use that manifest as the parity anchor for export drift checks, README-facing
-  contract checks, and package-surface validation.
-- Resolve `spectreIndexStylesPath` decisively as part of the public contract:
-  - if it is public, export it from `src/index.ts`, include it in the manifest,
-    keep it in the export snapshot, and document it in `README.md`
-  - if it is not public, remove or reclassify it so downstream consumers no
-    longer see an ambiguous standalone path constant alongside supported public
-    constants
-- Extend export validation so `./tailwind` is validated as a first-class public
-  contract, not only the root package exports.
+- Use the manifest as the anchor for export, docs, CSS, Tailwind, and recipe
+  parity checks
 
-**Dependency notes**
+Dependency notes
 
-- Should be completed before adding or documenting any new public exports.
-- README parity checks and recipe parity checks depend on the final contract
-  manifest shape.
+- This should happen before expanding any public surface
+- This should become the anchor for downstream parity validation work
 
-**Risk if skipped**
+Risk if skipped
 
-- Consumers will continue to see mixed signals about what is stable to import.
-- Package docs can drift from actual emitted behavior without immediate
-  detection.
-- Contract checks will keep depending on scattered assumptions instead of one
-  declared package surface.
+- Contract enforcement stays dispersed across multiple truth sources
+- Public-surface drift remains harder to detect cleanly
 
-### P0.2 CSS Entrypoint Contract Hardening
+### P0.2 Export Surface Parity
 
-**Objective**  
-Strengthen validation around standalone CSS entrypoints so the emitted files
-match the declared package contract more completely.
+Objective Make the declared public API consistent across source exports, emitted
+artifacts, package metadata, the contract manifest, and README documentation.
 
-**Why it matters**  
-The package claims that exported CSS entrypoints are standalone, distributable,
-and token-backed. That needs stronger executable proof than simple presence
-checks.
+Why it matters If the export surface is ambiguous or only partially validated,
+downstream adapters and apps can drift or break despite source code appearing
+healthy.
 
-**Suggested deliverables**
+Suggested deliverables
 
-- Expand `scripts/validate-css-contract.mjs` to validate:
-  - every declared public CSS entrypoint from the contract manifest exists
+- Decide whether `spectreIndexStylesPath` is part of the public root API or an
+  internal implementation detail
+- If public:
+  - export it from `src/index.ts`
+  - add it to the contract manifest
+  - add it to export snapshots and README documentation
+- If internal:
+  - remove the standalone constant from the root-facing public path
+  - keep `spectreStyles.index` as the supported access pattern
+- Extend validation so `./tailwind` is enforced as a first-class public
+  contract, not just the root package
+
+Dependency notes
+
+- Depends on the contract manifest being defined first
+- README parity checks depend on the final export inventory decision
+
+Risk if skipped
+
+- Consumers keep getting mixed signals about what is stable to import
+- Docs can drift from actual emitted behavior without immediate detection
+
+### P0.3 CSS Entrypoint Contract Hardening
+
+Objective Strengthen validation around standalone CSS entrypoints so emitted
+files match the declared package contract completely and predictably.
+
+Why it matters The package claims that exported CSS entrypoints are standalone,
+distributable, and token-backed. That needs stronger executable proof than basic
+presence checks.
+
+Suggested deliverables
+
+- Expand CSS contract validation to prove:
+  - every declared CSS entrypoint exists
   - no undocumented CSS artifacts are emitted
-  - each exported CSS file remains token-backed
-- Expand `tests/css-entrypoints.test.ts` to validate:
-  - `index.css` composes the expected contract surface
+  - each declared CSS file remains token-backed
+  - entrypoint roles stay distinct over time
+- Expand CSS entrypoint tests so:
+  - `index.css` composes the intended contract surface
   - `base.css`, `components.css`, and `utilities.css` remain independently
     consumable
-  - entrypoint roles do not silently blur over time
+  - entrypoint responsibilities do not silently blur
 
-**Dependency notes**
+Dependency notes
 
-- Builds on the current `scripts/build-css.mjs` contract.
-- Should be settled before adding more examples or usage docs that depend on CSS
-  entrypoint guarantees.
+- Builds on the current CSS build contract
+- Should be settled before adding more docs or examples that rely on CSS
+  entrypoint guarantees
 
-**Risk if skipped**
+Risk if skipped
 
-- CSS entrypoint drift can ship while still passing basic file-presence checks.
-- Downstream consumers may import bundles that are technically emitted but no
-  longer meet the documented contract.
+- CSS entrypoint drift can ship while still passing lighter checks
+- Downstream consumers may import files that exist but no longer satisfy the
+  documented contract
 
-### P0.3 Stable Recipe Family Parity
+### P0.4 Stable Recipe Family Parity
 
-**Objective**  
-Treat stable recipe families as first-class public contract surfaces with
-explicit parity protection across code, docs, and CSS-backed behavior.
+Objective Treat stable public recipe families as a first-class protected styling
+surface.
 
-**Why it matters**  
-Adapters and apps consume this package partly through recipe APIs, not only CSS
-files. Silent drift in recipe names, variants, sizes, states, or documented
-usage weakens the package’s role as the authoritative styling contract layer.
+Why it matters `src/recipes/` is core ownership for this repo. Public recipe
+names, variants, sizes, and states should not drift silently relative to
+exports, docs, or downstream expectations.
 
-**Suggested deliverables**
+Suggested deliverables
 
-- Declare stable public recipe families in the contract manifest.
-- Protect against drift in the public recipe surface for those families:
-  - recipe names
-  - supported variants
-  - supported sizes
-  - supported states and booleans where part of the stable API
-- Add parity checks that keep recipe expectations aligned across:
-  - source recipe exports
-  - README contract-facing usage and inventories
-  - CSS selector availability where recipe output depends on CSS classes
-  - Tailwind-facing contract language where the documented relationship matters
-- Keep this limited to stable public recipe families already owned by this repo.
+- Declare stable public recipe families in the contract manifest
+- Add parity checks for:
+  - recipe family names
+  - public variants
+  - public sizes
+  - public states
+- Keep parity checks focused on stable documented families only
+- Ensure recipe expectations stay aligned with root exports and downstream
+  contract docs
 
-**Dependency notes**
+Dependency notes
 
-- Depends on the contract manifest introduced in P0.1.
-- Should stay tightly scoped to stable public recipe families, not example-only
-  patterns or future expansion ideas.
+- Depends on the contract manifest
+- Should be completed before expanding recipe coverage
 
-**Risk if skipped**
+Risk if skipped
 
-- Recipe APIs can drift quietly while root export checks still appear healthy.
-- Downstream adapters may keep compiling while consuming an unstable or
-  partially undocumented styling contract.
+- Recipe contract drift can occur without obvious breakage until downstream
+  adapters or apps surface it
 
-### P0.4 Zero-Hex Enforcement Completion
+### P0.5 Zero-Hex Enforcement Completion
 
-**Objective**  
-Treat zero-hex and off-contract visual literal prevention as a complete public
-contract rule, not a partial source-style convention.
+Objective Treat zero-hex and off-contract visual literal prevention as a
+complete contract rule for this package’s owned public styling surfaces.
 
-**Why it matters**  
-This repo exists to translate token authority into implementation. Local visual
-values weaken the contract and make downstream behavior less trustworthy.
+Why it matters This repo exists to translate token authority into
+implementation. Local visual values weaken the contract and make downstream
+behavior less trustworthy.
 
-**Suggested deliverables**
+Suggested deliverables
 
-- Keep `tests/token-drift.test.ts` as the source-style guard.
-- Add any narrowly scoped validation still needed so public-facing maintained
-  surfaces declared by the contract manifest cannot regress into raw visual
-  literals unnoticed.
-- Document any deliberate exceptions explicitly if they exist.
+- Keep source-style token drift checks in place
+- Add any narrowly scoped validation still needed so maintained public surfaces
+  cannot regress into raw visual literals unnoticed
+- Document any intentional exceptions explicitly if they exist
 
-**Dependency notes**
+Dependency notes
 
-- Must stay scoped to this package’s owned surfaces.
-- Must not attempt to redefine or validate token authoring responsibilities that
-  belong upstream.
+- Must stay scoped to this package’s owned surfaces
+- Must not drift into token authoring concerns that belong upstream
 
-**Risk if skipped**
+Risk if skipped
 
-- Off-contract values can re-enter the package through edges not fully covered
-  by the current guardrails.
+- Off-contract values can re-enter through edges not fully covered by current
+  guardrails
 
 ## P1: Downstream Safety
 
 ### P1.1 Downstream Import Smoke Coverage
 
-**Objective**  
-Validate the package as downstream consumers actually use it.
+Objective Validate the package as downstream consumers actually use it.
 
-**Why it matters**  
-A contract package is only as reliable as its emitted import behavior. Current
-tests mostly validate source and built CSS content, but there is still room for
-packaging or export wiring drift.
+Why it matters A contract package is only as reliable as its emitted import
+behavior. Source-level checks alone do not fully protect packaging and
+distribution behavior.
 
-**Suggested deliverables**
+Suggested deliverables
 
 - Add smoke tests that exercise:
   - root imports from `@phcdevworks/spectre-ui`
   - subpath imports from `@phcdevworks/spectre-ui/tailwind`
   - CSS entrypoint imports for `index.css`, `base.css`, `components.css`, and
     `utilities.css`
-- Derive the expected downstream import surface from the contract manifest
-  instead of duplicating inventories in multiple checks.
-- Assert that expected runtime and type entrypoints exist in the built package.
+- Assert that expected runtime and type entrypoints exist in the built package
 
-**Dependency notes**
+Dependency notes
 
-- Best added after P0 export parity decisions are complete.
+- Best added after P0 export decisions are complete
 
-**Risk if skipped**
+Risk if skipped
 
-- Downstream breakage can slip through even when source-level contract tests
-  remain green.
+- Downstream breakage can slip through even when source-level checks stay green
 
 ### P1.2 README Contract Parity
 
-**Objective**  
-Keep public documentation aligned with the actual export surface and supported
-usage patterns.
+Objective Keep public documentation aligned with the declared and emitted
+package contract.
 
-**Why it matters**  
-For downstream consumers, README usage examples are part of the public contract.
-Unvalidated docs create avoidable integration mistakes.
+Why it matters For downstream consumers, README usage examples and export
+inventories are part of the public contract.
 
-**Suggested deliverables**
+Suggested deliverables
 
-- Add a script or test that validates README export inventories against:
-  - `package.json`
+- Add a script or test that validates README contract-facing inventories
+  against:
   - the contract manifest
-  - the root export snapshot
-  - the `./tailwind` subpath contract
-- Add README parity checks for stable public recipe family expectations where
-  names, variants, sizes, or states are explicitly documented.
-- Keep the validation narrowly focused on contract-facing inventories and import
-  paths, not general prose.
+  - `package.json`
+  - export snapshots
+  - the `./tailwind` subpath
+- Keep validation tightly focused on public import paths, declared exports, CSS
+  entrypoints, and stable recipe families, not general prose
 
-**Dependency notes**
+Dependency notes
 
-- Depends on P0 export decisions being finalized first.
+- Depends on P0 contract and export decisions being finalized
 
-**Risk if skipped**
+Risk if skipped
 
-- Public docs can slowly diverge from reality while the package itself appears
-  healthy.
+- Public docs can slowly diverge from reality while the package appears healthy
 
 ### P1.3 Tailwind Subpath Packaging Assurance
 
-**Objective**  
-Treat `./tailwind` as a fully enforced public subpath with explicit packaging
-guarantees.
+Objective Treat `./tailwind` as a fully enforced public subpath with explicit
+packaging guarantees.
 
-**Why it matters**  
-Tailwind helpers are part of the repo’s contract surface. They should be
-protected by the same level of rigor as root exports and CSS entrypoints.
+Why it matters Tailwind helpers are part of the repo’s public contract and
+should be protected with the same rigor as root exports and CSS entrypoints.
 
-**Suggested deliverables**
+Suggested deliverables
 
-- Validate declared `./tailwind` exports from the contract manifest against
-  emitted `dist/tailwind` JS, CJS, and DTS artifacts and `package.json`.
-- Add built-package tests that confirm
-  `createSpectreTailwindPreset` and `createSpectreTailwindTheme` are both
-  available from the documented subpath.
+- Validate emitted `dist/tailwind` JS, CJS, and DTS artifacts against the
+  contract manifest and `package.json`
+- Add built-package tests confirming documented Tailwind exports remain
+  available from the documented subpath
 
-**Dependency notes**
+Dependency notes
 
-- Pairs naturally with export-surface validation work.
+- Pairs naturally with export-surface validation work
 
-**Risk if skipped**
+Risk if skipped
 
 - The Tailwind contract can drift independently from the rest of the package and
-  go unnoticed until downstream integrations fail.
+  go unnoticed until downstream integrations fail
 
 ## P2: Later / Controlled Expansion
 
 ### P2.1 Contract Coverage Map
 
-**Objective**  
-Document which contract rule is enforced by which script or test so future
-maintenance stays surgical.
+Objective Document which contract rule is enforced by which script or test so
+future maintenance stays surgical.
 
-**Why it matters**  
-The repo already has meaningful validation. A simple coverage map prevents
-duplicate enforcement work and helps keep new hardening focused.
+Why it matters The repo already has meaningful validation. A simple coverage map
+prevents duplicate enforcement work and keeps future hardening focused.
 
-**Suggested deliverables**
+Suggested deliverables
 
-- Add a short section to `CONTRIBUTING.md` or a dedicated maintenance note that
-  maps:
+- Add a short maintainer-facing map covering:
   - exports
   - CSS entrypoints
+  - recipe parity
   - token drift
   - Tailwind contract
-  - latest published token alignment
+  - token alignment
   - CI enforcement
 
-**Dependency notes**
+Dependency notes
 
-- Easiest after P0 and P1 contract checks are settled.
+- Easiest after P0 and P1 checks are settled
 
-**Risk if skipped**
+Risk if skipped
 
-- Future maintainers may duplicate checks or miss existing blind spots.
+- Future maintainers may duplicate checks or miss existing blind spots
 
 ### P2.2 Example Fixture Boundary Clarification
 
-**Objective**  
-Keep example fixtures useful without turning them into accidental parallel API
-surfaces.
+Objective Keep example fixtures useful without turning them into accidental
+parallel API surfaces.
 
-**Why it matters**  
-The examples directory is helpful for verification and demos, but this repo’s
-public contract is exports, CSS entrypoints, and recipes, not ad hoc example
-markup.
+Why it matters Examples are helpful for verification and demos, but this repo’s
+public contract is exports, CSS entrypoints, Tailwind helpers, and recipe APIs,
+not ad hoc example markup.
 
-**Suggested deliverables**
+Suggested deliverables
 
-- Clarify in docs that examples are verification aids and usage references, not
-  separate supported APIs.
-- Optionally add a narrow guard that keeps example usage inside the current
-  styling contract.
+- Clarify in docs that examples support verification and usage illustration
+- Keep examples out of contract authority decisions
 
-**Dependency notes**
+Dependency notes
 
-- Low priority and intentionally documentation-first.
+- Lower priority than contract and downstream safety work
 
-**Risk if skipped**
+Risk if skipped
 
-- Example drift can create confusion about what downstream consumers should rely
-  on.
+- Examples can slowly become misleading or feel more authoritative than intended
 
-### P2.3 Local Verification Stability
+### P2.3 Local Verification Environment Hygiene
 
-**Objective**  
-Reduce environment-related false negatives in local verification so the contract
-checks stay trusted.
+Objective Keep local validation predictable enough that contract hardening does
+not become environment-fragile.
 
-**Why it matters**  
-A strong contract depends on repeatable verification. Environment noise makes it
-easier to ignore or defer validation failures.
+Why it matters A strong contract repo should fail for real contract issues, not
+because local environment assumptions are unclear.
 
-**Suggested deliverables**
+Suggested deliverables
 
-- Stabilize local Vitest temp-directory behavior where needed.
-- Document any bounded environment requirements that affect local verification.
+- Document narrow local verification requirements
+- Add only the smallest tooling clarifications needed if local verification
+  remains environment-sensitive
 
-**Dependency notes**
+Dependency notes
 
-- Does not change the package contract itself.
-- Can be handled after the contract hardening work above.
+- Should not delay P0 or P1 work
 
-**Risk if skipped**
+Risk if skipped
 
-- Maintainers may lose confidence in local verification and rely too heavily on
-  CI to catch issues.
+- Contributors may get noisy local failures unrelated to actual contract
+  regressions
+
+## 3. Recommended Execution Order
+
+1. Add the contract manifest
+2. Resolve `spectreIndexStylesPath` status
+3. Harden export validation for root and `./tailwind`
+4. Strengthen CSS entrypoint contract validation
+5. Add stable recipe-family parity checks
+6. Complete zero-hex enforcement coverage
+7. Add built-package downstream smoke tests
+8. Add README contract parity validation
+9. Add maintainer coverage mapping
+10. Tidy example-boundary docs
+11. Stabilize local verification behavior only if still needed
