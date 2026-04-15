@@ -10,13 +10,42 @@ const distDir = path.join(__dirname, '..', 'dist');
 const readDistCss = (fileName: string): string =>
   fs.readFileSync(path.join(distDir, fileName), 'utf8');
 
-describe('dist CSS entrypoints', () => {
-  it('ships standalone base/components/utilities bundles with token variables inlined', () => {
-    const entrypoints = ['base.css', 'components.css', 'utilities.css'];
+const ENTRYPOINT_CONTRACTS = [
+  {
+    fileName: 'base.css',
+    standaloneTokens: ['--sp-surface-page:', '--sp-text-on-page-default:'],
+    bundleMarkers: ['@layer base', 'body {', ':focus-visible {'],
+  },
+  {
+    fileName: 'components.css',
+    standaloneTokens: ['--sp-surface-page:', '--sp-button-primary-bg:'],
+    bundleMarkers: ['@layer components', '.sp-btn {', '.sp-card {'],
+  },
+  {
+    fileName: 'utilities.css',
+    standaloneTokens: ['--sp-surface-page:', '--sp-layout-stack-gap-md:'],
+    bundleMarkers: ['@layer utilities', '.sp-stack {', '@keyframes fade-in'],
+  },
+] as const;
 
-    entrypoints.forEach((fileName) => {
+describe('dist CSS entrypoints', () => {
+  it('ships standalone exported bundles with entrypoint-specific contract markers', () => {
+    ENTRYPOINT_CONTRACTS.forEach(({ fileName, standaloneTokens, bundleMarkers }) => {
       const css = readDistCss(fileName);
-      expect(css).toContain('--sp-surface-page:');
+
+      standaloneTokens.forEach((token) => {
+        expect(
+          css,
+          `${fileName} is missing standalone token context: ${token}`
+        ).toContain(token);
+      });
+
+      bundleMarkers.forEach((marker) => {
+        expect(
+          css,
+          `${fileName} is missing its bundle-specific contract marker: ${marker}`
+        ).toContain(marker);
+      });
     });
   });
 });
