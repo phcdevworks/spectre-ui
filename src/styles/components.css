@@ -134,7 +134,7 @@
     --sp-component-iconbox-success-bg: var(--sp-color-success-50);
     --sp-component-iconbox-success-text: var(--sp-icon-box-icon-success);
     --sp-component-iconbox-warning-bg: var(--sp-color-warning-50);
-    --sp-component-iconbox-warning-text: var(--sp-icon-box-icon-warning);
+    --sp-component-iconbox-warning-text: var(--sp-color-warning-800);
     --sp-component-iconbox-danger-bg: var(--sp-color-error-50);
     --sp-component-iconbox-danger-text: var(--sp-icon-box-icon-danger);
     --sp-component-iconbox-info-bg: var(--sp-color-info-50);
