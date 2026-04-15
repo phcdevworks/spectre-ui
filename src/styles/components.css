@@ -965,6 +965,39 @@
     pointer-events: none;
   }
 
+  .sp-testimonial--interactive {
+    cursor: pointer;
+    transition:
+      transform var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out),
+      opacity var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-testimonial--interactive:hover,
+  .sp-testimonial--interactive:focus-visible,
+  .sp-testimonial--interactive:focus-within,
+  .sp-testimonial--interactive.sp-testimonial--hover,
+  .sp-testimonial--interactive.is-hover,
+  .sp-testimonial--interactive.sp-testimonial--focus,
+  .sp-testimonial--interactive.is-focus {
+    transform: translateY(calc(var(--sp-component-border-width) * -1));
+    box-shadow: var(--sp-shadow-lg);
+  }
+
+  .sp-testimonial--interactive:active,
+  .sp-testimonial--interactive.sp-testimonial--active,
+  .sp-testimonial--interactive.is-active {
+    opacity: var(--sp-opacity-active);
+    transform: translateY(0);
+  }
+
+  .sp-testimonial--interactive:focus-visible,
+  .sp-testimonial--interactive.sp-testimonial--focus,
+  .sp-testimonial--interactive.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
+  }
+
   .sp-testimonial-quote {
     color: var(--sp-component-testimonial-text);
     font-size: var(--sp-font-lg-size);

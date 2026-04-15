@@ -7,14 +7,30 @@ import { cx } from "../internal/cx";
 export interface TestimonialRecipeOptions {
   disabled?: boolean;
   loading?: boolean;
+  interactive?: boolean;
+  hovered?: boolean;
+  focused?: boolean;
+  active?: boolean;
 }
 
 export function getTestimonialClasses(opts: TestimonialRecipeOptions = {}): string {
-  const { disabled = false, loading = false } = opts;
+  const {
+    disabled = false,
+    loading = false,
+    interactive = false,
+    hovered = false,
+    focused = false,
+    active = false,
+  } = opts;
+
   return cx(
     "sp-testimonial",
     disabled && "sp-testimonial--disabled",
-    loading && "sp-testimonial--loading"
+    loading && "sp-testimonial--loading",
+    interactive && "sp-testimonial--interactive",
+    hovered && "sp-testimonial--hover",
+    focused && "sp-testimonial--focus",
+    active && "sp-testimonial--active"
   );
 }
 
