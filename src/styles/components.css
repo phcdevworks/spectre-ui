@@ -516,8 +516,15 @@
   }
 
   .sp-input:hover,
-  .sp-input--hover {
+  .sp-input--hover,
+  .sp-input.is-hover {
     border-color: var(--sp-component-input-role-border-hover);
+  }
+
+  .sp-input:active,
+  .sp-input--active,
+  .sp-input.is-active {
+    opacity: var(--sp-opacity-active);
   }
 
   .sp-input:focus,
