@@ -25,6 +25,7 @@ export interface InputRecipeOptions {
   pill?: boolean;
   focused?: boolean;
   hovered?: boolean;
+  active?: boolean;
 }
 
 export function getInputClasses(opts: InputRecipeOptions = {}): string {
@@ -35,6 +36,7 @@ export function getInputClasses(opts: InputRecipeOptions = {}): string {
     pill = false,
     focused = false,
     hovered = false,
+    active = false,
   } = opts;
 
   const state = resolveOption({
@@ -68,6 +70,7 @@ export function getInputClasses(opts: InputRecipeOptions = {}): string {
     state === "loading" && "sp-input--loading",
     focused && "sp-input--focus",
     hovered && "sp-input--hover",
+    active && "sp-input--active",
     fullWidth && "sp-input--full",
     pill && "sp-input--pill",
   );

@@ -51,6 +51,7 @@ const recipeClassMatrix = [
   getInputClasses(),
   getInputClasses({ state: 'error', size: 'lg', fullWidth: true }),
   getInputClasses({ state: 'success', size: 'sm', fullWidth: true }),
+  getInputClasses({ hovered: true, focused: true, active: true }),
   getBadgeClasses(),
   getBadgeClasses({ variant: 'secondary', size: 'sm' }),
   getBadgeClasses({ variant: 'warning', size: 'lg' }),
@@ -132,6 +133,7 @@ describe('dist/components.css contract', () => {
       '.sp-input--lg',
       '.sp-input--error',
       '.sp-input--success',
+      '.sp-input--active',
     ];
 
     selectors.forEach((selector) => {
