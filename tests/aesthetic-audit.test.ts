@@ -78,6 +78,16 @@ type ContrastRolePair = {
   minContrast: number;
 };
 
+type SemanticRolePairRule = {
+  name: string;
+  backgroundProperty: string;
+  allowedBackgrounds: readonly string[];
+  textProperty: string;
+  allowedTexts: readonly string[];
+  borderProperty?: string;
+  allowedBorders?: readonly string[];
+};
+
 const SEMANTIC_ROLE_ASSERTIONS: SemanticRoleAssertion[] = [
   { name: 'Button Primary Background', property: '--sp-component-button-primary-bg', expected: 'var(--sp-button-primary-bg)', requiresContrast: true },
   { name: 'Button Primary Text', property: '--sp-component-button-primary-text', expected: 'var(--sp-button-primary-text)', requiresContrast: true },
@@ -174,6 +184,152 @@ const CONTRAST_ROLE_PAIRS: ContrastRolePair[] = [
   { name: 'Rating Text', backgroundProperty: '--sp-component-pricing-card-bg', foregroundProperty: '--sp-component-rating-text', minContrast: 4.5 },
 ];
 
+const SEMANTIC_ROLE_PAIR_RULES: SemanticRolePairRule[] = [
+  {
+    name: 'Button Primary',
+    backgroundProperty: '--sp-component-button-primary-bg',
+    allowedBackgrounds: ['var(--sp-button-primary-bg)'],
+    textProperty: '--sp-component-button-primary-text',
+    allowedTexts: ['var(--sp-button-primary-text)'],
+  },
+  {
+    name: 'Button Secondary',
+    backgroundProperty: '--sp-component-button-secondary-bg',
+    allowedBackgrounds: ['var(--sp-button-secondary-bg)'],
+    textProperty: '--sp-component-button-secondary-text',
+    allowedTexts: ['var(--sp-button-secondary-text)'],
+    borderProperty: '--sp-component-button-secondary-border',
+    allowedBorders: ['var(--sp-button-secondary-border)'],
+  },
+  {
+    name: 'Badge Primary',
+    backgroundProperty: '--sp-component-badge-primary-bg',
+    allowedBackgrounds: ['var(--sp-button-primary-bg)'],
+    textProperty: '--sp-component-badge-primary-text',
+    allowedTexts: ['var(--sp-button-text-on-primary)'],
+  },
+  {
+    name: 'Badge Secondary',
+    backgroundProperty: '--sp-component-badge-secondary-bg',
+    allowedBackgrounds: ['var(--sp-button-secondary-bg)'],
+    textProperty: '--sp-component-badge-secondary-text',
+    allowedTexts: ['var(--sp-button-secondary-text)'],
+    borderProperty: '--sp-component-badge-secondary-border',
+    allowedBorders: ['var(--sp-button-secondary-border)'],
+  },
+  {
+    name: 'Badge Success',
+    backgroundProperty: '--sp-component-badge-success-bg',
+    allowedBackgrounds: ['var(--sp-badge-success-bg)'],
+    textProperty: '--sp-component-badge-success-text',
+    allowedTexts: ['var(--sp-badge-success-text)'],
+  },
+  {
+    name: 'Badge Warning',
+    backgroundProperty: '--sp-component-badge-warning-bg',
+    allowedBackgrounds: ['var(--sp-badge-warning-bg)'],
+    textProperty: '--sp-component-badge-warning-text',
+    allowedTexts: ['var(--sp-badge-warning-text)'],
+  },
+  {
+    name: 'Badge Danger',
+    backgroundProperty: '--sp-component-badge-danger-bg',
+    allowedBackgrounds: ['var(--sp-badge-danger-bg)'],
+    textProperty: '--sp-component-badge-danger-text',
+    allowedTexts: ['var(--sp-badge-danger-text)'],
+  },
+  {
+    name: 'Badge Neutral',
+    backgroundProperty: '--sp-component-badge-neutral-bg',
+    allowedBackgrounds: ['var(--sp-badge-neutral-bg)'],
+    textProperty: '--sp-component-badge-neutral-text',
+    allowedTexts: ['var(--sp-badge-neutral-text)'],
+  },
+  {
+    name: 'Badge Info',
+    backgroundProperty: '--sp-component-badge-info-bg',
+    allowedBackgrounds: ['var(--sp-badge-info-bg)'],
+    textProperty: '--sp-component-badge-info-text',
+    allowedTexts: ['var(--sp-badge-info-text)'],
+  },
+  {
+    name: 'Icon Box Primary',
+    backgroundProperty: '--sp-component-iconbox-primary-bg',
+    allowedBackgrounds: ['var(--sp-color-brand-50)'],
+    textProperty: '--sp-component-iconbox-primary-text',
+    allowedTexts: ['var(--sp-icon-box-icon-default)'],
+  },
+  {
+    name: 'Icon Box Success',
+    backgroundProperty: '--sp-component-iconbox-success-bg',
+    allowedBackgrounds: ['var(--sp-color-success-50)'],
+    textProperty: '--sp-component-iconbox-success-text',
+    allowedTexts: ['var(--sp-icon-box-icon-success)'],
+  },
+  {
+    name: 'Icon Box Warning',
+    backgroundProperty: '--sp-component-iconbox-warning-bg',
+    allowedBackgrounds: ['var(--sp-color-warning-50)'],
+    textProperty: '--sp-component-iconbox-warning-text',
+    allowedTexts: ['var(--sp-color-warning-800)'],
+  },
+  {
+    name: 'Icon Box Danger',
+    backgroundProperty: '--sp-component-iconbox-danger-bg',
+    allowedBackgrounds: ['var(--sp-color-error-50)'],
+    textProperty: '--sp-component-iconbox-danger-text',
+    allowedTexts: ['var(--sp-icon-box-icon-danger)'],
+  },
+  {
+    name: 'Icon Box Info',
+    backgroundProperty: '--sp-component-iconbox-info-bg',
+    allowedBackgrounds: ['var(--sp-color-info-50)'],
+    textProperty: '--sp-component-iconbox-info-text',
+    allowedTexts: ['var(--sp-badge-info-text)'],
+  },
+  {
+    name: 'Testimonial',
+    backgroundProperty: '--sp-component-testimonial-bg',
+    allowedBackgrounds: ['var(--sp-surface-card)', 'var(--sp-color-neutral-800)'],
+    textProperty: '--sp-component-testimonial-text',
+    allowedTexts: ['var(--sp-color-neutral-700)', 'var(--sp-color-neutral-200)'],
+    borderProperty: '--sp-component-testimonial-border',
+    allowedBorders: ['var(--sp-color-neutral-200)', 'var(--sp-color-neutral-700)'],
+  },
+  {
+    name: 'Pricing Card',
+    backgroundProperty: '--sp-component-pricing-card-bg',
+    allowedBackgrounds: ['var(--sp-surface-card)', 'var(--sp-color-neutral-800)'],
+    textProperty: '--sp-component-pricing-card-price',
+    allowedTexts: ['var(--sp-color-neutral-900)', 'var(--sp-color-neutral-100)'],
+    borderProperty: '--sp-component-pricing-card-border',
+    allowedBorders: ['var(--sp-color-neutral-200)', 'var(--sp-color-neutral-700)'],
+  },
+  {
+    name: 'Pricing Card Featured',
+    backgroundProperty: '--sp-component-pricing-card-featured-bg',
+    allowedBackgrounds: ['var(--sp-color-info-600)'],
+    textProperty: '--sp-component-pricing-card-featured-text',
+    allowedTexts: ['var(--sp-button-text-on-primary)'],
+  },
+  {
+    name: 'Pricing Card Featured Badge',
+    backgroundProperty: '--sp-component-pricing-card-featured-badge-bg',
+    allowedBackgrounds: ['var(--sp-color-warning-500)'],
+    textProperty: '--sp-component-pricing-card-featured-badge-text',
+    allowedTexts: ['var(--sp-color-neutral-900)'],
+  },
+  {
+    name: 'Input Role',
+    backgroundProperty: '--sp-component-input-role-bg',
+    allowedBackgrounds: ['var(--sp-form-default-bg)'],
+    textProperty: '--sp-component-input-role-text',
+    allowedTexts: ['var(--sp-component-input-text)'],
+    borderProperty: '--sp-component-input-role-border',
+    allowedBorders: ['var(--sp-form-default-border)'],
+  },
+] as const;
+
 function getCssCustomProperty(name: string): string | undefined {
   const match = cssContent.match(new RegExp(`${escapeRegExp(name)}\\s*:\\s*([^;]+);`));
   return match?.[1]?.trim();
@@ -218,6 +374,12 @@ function getRoleDeclarations(property: string): RoleDeclarationContext[] {
   });
 
   return declarations;
+}
+
+function getRoleDeclarationMap(property: string): Map<string, string> {
+  return new Map(
+    getRoleDeclarations(property).map(({ selector, value }) => [selector, value])
+  );
 }
 
 const RAW_COLOR_PATTERN = /#(?:[0-9a-fA-F]{3,8})\b|rgba?\([^)]*\)|hsla?\([^)]*\)/;
@@ -349,6 +511,59 @@ describe('design contract guard', () => {
         violations.length === 0
           ? 'Expected asserted roles to remain token-only.'
           : `Found raw-value usage in asserted roles:\n${violations.join('\n')}`
+      ).toEqual([]);
+    });
+  });
+
+  describe('semantic pairing guard', () => {
+    it('enforces valid surface, text, and border token combinations for asserted roles', () => {
+      const violations = SEMANTIC_ROLE_PAIR_RULES.flatMap((rule) => {
+        const backgrounds = getRoleDeclarationMap(rule.backgroundProperty);
+        const texts = getRoleDeclarationMap(rule.textProperty);
+        const borders = rule.borderProperty ? getRoleDeclarationMap(rule.borderProperty) : undefined;
+        const selectors = new Set([
+          ...backgrounds.keys(),
+          ...texts.keys(),
+          ...(borders ? [...borders.keys()] : []),
+        ]);
+
+        return [...selectors].flatMap((selector) => {
+          const problems: string[] = [];
+          const background = backgrounds.get(selector);
+          const text = texts.get(selector);
+          const border = borders?.get(selector);
+
+          if (!background) {
+            problems.push(`missing ${rule.backgroundProperty}`);
+          } else if (!rule.allowedBackgrounds.includes(background)) {
+            problems.push(`${rule.backgroundProperty} uses ${background}`);
+          }
+
+          if (!text) {
+            problems.push(`missing ${rule.textProperty}`);
+          } else if (!rule.allowedTexts.includes(text)) {
+            problems.push(`${rule.textProperty} uses ${text}`);
+          }
+
+          if (rule.borderProperty) {
+            if (!border) {
+              problems.push(`missing ${rule.borderProperty}`);
+            } else if (!rule.allowedBorders?.includes(border)) {
+              problems.push(`${rule.borderProperty} uses ${border}`);
+            }
+          }
+
+          return problems.length > 0
+            ? [`${rule.name}: ${selector} (${problems.join('; ')})`]
+            : [];
+        });
+      });
+
+      expect(
+        violations,
+        violations.length === 0
+          ? 'Expected asserted roles to keep valid semantic token pairings.'
+          : `Found invalid semantic token pairings:\n${violations.join('\n')}`
       ).toEqual([]);
     });
   });
