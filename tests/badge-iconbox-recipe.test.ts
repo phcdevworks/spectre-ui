@@ -121,4 +121,10 @@ describe('getIconBoxClasses', () => {
     expect(result).toContain('sp-iconbox--loading');
     expect(result).toContain('sp-iconbox--disabled');
   });
+
+  it('supports the pill variant', () => {
+    const result = getIconBoxClasses({ pill: true });
+    expect(result).toContain('sp-iconbox--pill');
+    expectTokenizedClassString(result);
+  });
 });
