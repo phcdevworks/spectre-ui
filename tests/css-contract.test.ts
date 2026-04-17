@@ -39,6 +39,9 @@ const toClassNames = (classes: string): string[] =>
 const buildSelectorMatcher = (className: string): RegExp =>
   new RegExp(String.raw`\.${escapeRegex(className)}(?=[\s{,:])`);
 
+const buildSelectorFragmentMatcher = (selector: string): RegExp =>
+  new RegExp(escapeRegex(selector));
+
 const collectSelectors = (classGroups: string[]): string[] =>
   [...new Set(classGroups.flatMap(toClassNames))];
 
@@ -183,11 +186,110 @@ const recipeSelectorContracts = [
   { name: 'rating', selectors: ratingSelectors },
 ] as const;
 
+const interactionStateContracts = [
+  {
+    name: 'button variants',
+    selectors: [
+      '.sp-btn:focus-visible',
+      '.sp-btn.sp-btn--disabled',
+      '.sp-btn[aria-disabled="true"]',
+      '.sp-btn:disabled',
+      '.sp-btn--primary:hover',
+      '.sp-btn--primary:disabled',
+      '.sp-btn--secondary:hover',
+      '.sp-btn--secondary:disabled',
+      '.sp-btn--ghost:hover',
+      '.sp-btn--ghost:disabled',
+      '.sp-btn--danger:hover',
+      '.sp-btn--danger:disabled',
+      '.sp-btn--success:hover',
+      '.sp-btn--success:disabled',
+      '.sp-btn--cta:hover',
+      '.sp-btn--cta:disabled',
+      '.sp-btn--accent:hover',
+      '.sp-btn--accent:disabled',
+    ],
+  },
+  {
+    name: 'input states',
+    selectors: [
+      '.sp-input:hover',
+      '.sp-input:focus',
+      '.sp-input:disabled',
+      '.sp-input[aria-disabled="true"]',
+      '.sp-input--disabled:focus',
+    ],
+  },
+  {
+    name: 'card states',
+    selectors: [
+      '.sp-card--interactive:hover',
+      '.sp-card--interactive:focus-visible',
+      '.sp-card--interactive:focus-within',
+      '.sp-card--disabled',
+    ],
+  },
+  {
+    name: 'badge variants',
+    selectors: [
+      '.sp-badge--interactive:focus-visible',
+      '.sp-badge--disabled',
+      '.sp-badge--primary.sp-badge--interactive:hover',
+      '.sp-badge--secondary.sp-badge--interactive:hover',
+      '.sp-badge--success.sp-badge--interactive:hover',
+      '.sp-badge--warning.sp-badge--interactive:hover',
+      '.sp-badge--danger.sp-badge--interactive:hover',
+      '.sp-badge--neutral.sp-badge--interactive:hover',
+      '.sp-badge--info.sp-badge--interactive:hover',
+    ],
+  },
+  {
+    name: 'icon box variants',
+    selectors: [
+      '.sp-iconbox--interactive:hover',
+      '.sp-iconbox--interactive:focus-visible',
+      '.sp-iconbox:disabled',
+      '.sp-iconbox[aria-disabled="true"]',
+      '.sp-iconbox--disabled',
+    ],
+  },
+  {
+    name: 'pricing card states',
+    selectors: [
+      '.sp-pricing-card--interactive:hover',
+      '.sp-pricing-card--interactive:focus-visible',
+      '.sp-pricing-card--interactive:focus-within',
+      '.sp-pricing-card--disabled',
+      '.sp-pricing-card--featured.sp-pricing-card--interactive:hover',
+      '.sp-pricing-card--featured.sp-pricing-card--interactive:focus-visible',
+      '.sp-pricing-card--featured.sp-pricing-card--interactive:focus-within',
+    ],
+  },
+  {
+    name: 'rating states',
+    selectors: [
+      '.sp-rating--interactive:hover',
+      '.sp-rating--interactive:focus-visible',
+      '.sp-rating:disabled',
+      '.sp-rating[aria-disabled="true"]',
+      '.sp-rating--disabled',
+    ],
+  },
+] as const;
+
 describe('dist/components.css contract', () => {
   recipeSelectorContracts.forEach(({ name, selectors }) => {
     it(`contains all ${name} selectors exposed by recipes`, () => {
       selectors.forEach((selector) => {
         expect(css).toMatch(buildSelectorMatcher(selector));
+      });
+    });
+  });
+
+  interactionStateContracts.forEach(({ name, selectors }) => {
+    it(`contains required interaction state selectors for ${name}`, () => {
+      selectors.forEach((selector) => {
+        expect(css).toMatch(buildSelectorFragmentMatcher(selector));
       });
     });
   });
