@@ -10,6 +10,8 @@ const distDir = path.join(__dirname, '..', 'dist');
 const readDistCss = (fileName: string): string =>
   fs.readFileSync(path.join(distDir, fileName), 'utf8');
 
+const CUSTOM_PROPERTY_DECLARATION_PATTERN = /(^|[{\s;])(--[A-Za-z0-9_-]+)\s*:/gm;
+
 const ENTRYPOINT_CONTRACTS = [
   {
     fileName: 'base.css',
@@ -56,6 +58,28 @@ describe('dist CSS entrypoints', () => {
           `${fileName} leaked cross-bundle marker: ${marker}`
         ).not.toContain(marker);
       });
+    });
+  });
+
+  it('allows only Spectre-prefixed CSS variables in exported bundles', () => {
+    ENTRYPOINT_CONTRACTS.forEach(({ fileName }) => {
+      const css = readDistCss(fileName);
+      const nonSpectreVariables = new Set<string>();
+
+      for (const match of css.matchAll(CUSTOM_PROPERTY_DECLARATION_PATTERN)) {
+        const variableName = match[2];
+
+        if (!variableName.startsWith('--sp-')) {
+          nonSpectreVariables.add(variableName);
+        }
+      }
+
+      expect(
+        [...nonSpectreVariables],
+        nonSpectreVariables.size === 0
+          ? `${fileName} should only declare Spectre-prefixed CSS variables.`
+          : `${fileName} contains non-Spectre CSS variables: ${[...nonSpectreVariables].join(', ')}`
+      ).toEqual([]);
     });
   });
 });
