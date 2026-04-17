@@ -33,203 +33,169 @@ const css = fs.readFileSync(cssPath, 'utf8');
 
 const escapeRegex = (value: string): string => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-const recipeClassMatrix = [
-  getButtonClasses(),
-  getButtonClasses({ variant: 'cta', hovered: true }),
-  getButtonClasses({ variant: 'accent', focused: true, active: true }),
-  getButtonClasses({ variant: 'secondary', size: 'lg', fullWidth: true, iconOnly: true }),
-  getButtonClasses({
-    variant: 'danger',
-    size: 'lg',
-    fullWidth: true,
-    loading: true,
-    disabled: true,
-    iconOnly: true,
+const toClassNames = (classes: string): string[] =>
+  classes.split(/\s+/).filter((className) => className.startsWith('sp-'));
+
+const buildSelectorMatcher = (className: string): RegExp =>
+  new RegExp(String.raw`\.${escapeRegex(className)}(?=[\s{,:])`);
+
+const collectSelectors = (classGroups: string[]): string[] =>
+  [...new Set(classGroups.flatMap(toClassNames))];
+
+const exhaustiveBooleanOptions = <T extends string>(keys: readonly T[]): Array<Record<T, boolean>> => {
+  if (keys.length === 0) {
+    return [{} as Record<T, boolean>];
+  }
+
+  const [currentKey, ...remainingKeys] = keys;
+  const tail = exhaustiveBooleanOptions(remainingKeys);
+
+  return tail.flatMap((entry) => [
+    { ...entry, [currentKey]: false },
+    { ...entry, [currentKey]: true },
+  ]);
+};
+
+const buildRecipeOutputs = <T extends Record<string, unknown>>(config: {
+  axes?: Record<string, readonly unknown[]>;
+  booleans?: readonly (keyof T & string)[];
+  getClasses: (options: T) => string;
+}): string[] => {
+  const axisEntries = Object.entries(config.axes ?? {});
+  const axisOptions = axisEntries.reduce<Array<Record<string, unknown>>>(
+    (combinations, [key, values]) =>
+      combinations.flatMap((combination) =>
+        values.map((value) => ({ ...combination, [key]: value })),
+      ),
+    [{}],
+  );
+  const booleanOptions = exhaustiveBooleanOptions(config.booleans ?? []);
+
+  return axisOptions.flatMap((axisOption) =>
+    booleanOptions.map((booleanOption) =>
+      config.getClasses({
+        ...(axisOption as T),
+        ...(booleanOption as T),
+      }),
+    ),
+  );
+};
+
+const buttonSelectors = collectSelectors(
+  buildRecipeOutputs({
+    axes: {
+      variant: ['primary', 'secondary', 'ghost', 'danger', 'success', 'cta', 'accent'],
+      size: ['sm', 'md', 'lg'],
+    },
+    booleans: ['fullWidth', 'loading', 'disabled', 'hovered', 'focused', 'active', 'iconOnly', 'pill'],
+    getClasses: getButtonClasses,
   }),
-  getCardClasses(),
-  getCardClasses({ variant: 'outline', interactive: true, padded: true, fullHeight: true }),
-  getInputClasses(),
-  getInputClasses({ state: 'error', size: 'lg', fullWidth: true }),
-  getInputClasses({ state: 'success', size: 'sm', fullWidth: true }),
-  getInputClasses({ hovered: true, focused: true, active: true }),
-  getBadgeClasses(),
-  getBadgeClasses({ variant: 'secondary', size: 'sm' }),
-  getBadgeClasses({ variant: 'warning', size: 'lg' }),
-  getBadgeClasses({ variant: 'danger', size: 'lg' }),
-  getBadgeClasses({ variant: 'neutral', size: 'md' }),
-  getBadgeClasses({ variant: 'info', size: 'sm' }),
-  getBadgeClasses({ variant: 'success', size: 'sm' }),
-  getBadgeClasses({ interactive: true, hovered: true, focused: true, active: true }),
-  getBadgeClasses({ loading: true, disabled: true }),
-  getIconBoxClasses(),
-  getIconBoxClasses({ variant: 'success', size: 'sm' }),
-  getIconBoxClasses({ variant: 'warning', size: 'lg' }),
-  getIconBoxClasses({ variant: 'danger', size: 'md' }),
-  getIconBoxClasses({ variant: 'info', size: 'sm' }),
-  getIconBoxClasses({ interactive: true, hovered: true, focused: true }),
-  getIconBoxClasses({ loading: true, disabled: true }),
-  getIconBoxClasses({ pill: true }),
-  getTestimonialClasses(),
+);
+
+const cardSelectors = collectSelectors(
+  buildRecipeOutputs({
+    axes: {
+      variant: ['elevated', 'flat', 'outline', 'ghost'],
+    },
+    booleans: ['interactive', 'padded', 'fullHeight', 'disabled', 'loading', 'hovered', 'focused', 'active'],
+    getClasses: getCardClasses,
+  }),
+);
+
+const inputSelectors = collectSelectors(
+  buildRecipeOutputs({
+    axes: {
+      state: ['default', 'error', 'success', 'disabled', 'loading'],
+      size: ['sm', 'md', 'lg'],
+    },
+    booleans: ['fullWidth', 'pill', 'focused', 'hovered'],
+    getClasses: getInputClasses,
+  }),
+);
+
+const badgeSelectors = collectSelectors(
+  buildRecipeOutputs({
+    axes: {
+      variant: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral', 'info'],
+      size: ['sm', 'md', 'lg'],
+    },
+    booleans: ['interactive', 'hovered', 'focused', 'active', 'disabled', 'loading'],
+    getClasses: getBadgeClasses,
+  }),
+);
+
+const iconBoxSelectors = collectSelectors(
+  buildRecipeOutputs({
+    axes: {
+      variant: ['primary', 'success', 'warning', 'danger', 'info'],
+      size: ['sm', 'md', 'lg'],
+    },
+    booleans: ['disabled', 'loading', 'interactive', 'hovered', 'focused', 'active', 'pill'],
+    getClasses: getIconBoxClasses,
+  }),
+);
+
+const testimonialSelectors = collectSelectors([
+  ...buildRecipeOutputs({
+    booleans: ['disabled', 'loading'],
+    getClasses: getTestimonialClasses,
+  }),
   getTestimonialQuoteClasses(),
   getTestimonialAuthorClasses(),
   getTestimonialAuthorInfoClasses(),
   getTestimonialAuthorNameClasses(),
   getTestimonialAuthorTitleClasses(),
-  getPricingCardClasses({ featured: true }),
-  getPricingCardClasses({ loading: true }),
-  getPricingCardClasses({ interactive: true, hovered: true, focused: true, active: true }),
+]);
+
+const pricingCardSelectors = collectSelectors([
+  ...buildRecipeOutputs({
+    booleans: ['featured', 'disabled', 'loading', 'interactive', 'hovered', 'focused', 'active'],
+    getClasses: getPricingCardClasses,
+  }),
   getPricingCardBadgeClasses(),
   getPricingCardPriceContainerClasses(),
   getPricingCardPriceClasses(),
   getPricingCardDescriptionClasses(),
-  getRatingClasses(),
-  getRatingClasses({ disabled: true }),
-  getRatingClasses({ loading: true }),
+]);
+
+const ratingSelectors = collectSelectors([
+  ...buildRecipeOutputs({
+    axes: {
+      size: ['sm', 'md', 'lg'],
+    },
+    booleans: ['disabled', 'loading', 'interactive', 'hovered', 'focused', 'active'],
+    getClasses: getRatingClasses,
+  }),
   getRatingStarsClasses(),
   getRatingStarClasses(),
   getRatingStarClasses(true),
   getRatingTextClasses(),
-];
+]);
 
-const generatedClassNames = new Set(
-  recipeClassMatrix
-    .flatMap((classes) => classes.split(/\s+/))
-    .filter((className) => className.startsWith('sp-')),
-);
+const recipeSelectorContracts = [
+  { name: 'button', selectors: buttonSelectors },
+  { name: 'card', selectors: cardSelectors },
+  { name: 'input', selectors: inputSelectors },
+  { name: 'badge', selectors: badgeSelectors },
+  { name: 'icon box', selectors: iconBoxSelectors },
+  { name: 'testimonial', selectors: testimonialSelectors },
+  { name: 'pricing card', selectors: pricingCardSelectors },
+  { name: 'rating', selectors: ratingSelectors },
+] as const;
 
 describe('dist/components.css contract', () => {
-  it('contains button selectors', () => {
-    const selectors = [
-      '.sp-btn',
-      '.sp-btn--primary',
-      '.sp-btn--secondary',
-      '.sp-btn--ghost',
-      '.sp-btn--danger',
-      '.sp-btn--success',
-      '.sp-btn--cta',
-      '.sp-btn--accent',
-      '.sp-btn--hover',
-      '.sp-btn--focus',
-      '.sp-btn--active',
-    ];
-
-    selectors.forEach((selector) => {
-      expect(css).toContain(selector);
+  recipeSelectorContracts.forEach(({ name, selectors }) => {
+    it(`contains all ${name} selectors exposed by recipes`, () => {
+      selectors.forEach((selector) => {
+        expect(css).toMatch(buildSelectorMatcher(selector));
+      });
     });
   });
 
-  it('contains card selectors', () => {
-    const selectors = ['.sp-card', '.sp-card--elevated', '.sp-card--outline', '.sp-card--ghost'];
-
-    selectors.forEach((selector) => {
-      expect(css).toContain(selector);
-    });
-  });
-
-  it('contains input selectors', () => {
-    const selectors = [
-      '.sp-input',
-      '.sp-input--sm',
-      '.sp-input--md',
-      '.sp-input--lg',
-      '.sp-input--error',
-      '.sp-input--success',
-      '.sp-input--active',
-    ];
-
-    selectors.forEach((selector) => {
-      expect(css).toContain(selector);
-    });
-  });
-
-  it('contains badge selectors', () => {
-    const selectors = [
-      '.sp-badge',
-      '.sp-badge--primary',
-      '.sp-badge--secondary',
-      '.sp-badge--success',
-      '.sp-badge--warning',
-      '.sp-badge--danger',
-      '.sp-badge--neutral',
-      '.sp-badge--info',
-      '.sp-badge--sm',
-      '.sp-badge--md',
-      '.sp-badge--lg',
-      '.sp-badge--interactive',
-      '.sp-badge--hover',
-      '.sp-badge--focus',
-      '.sp-badge--active',
-      '.sp-badge--loading',
-      '.sp-badge--disabled',
-    ];
-
-    selectors.forEach((selector) => {
-      expect(css).toContain(selector);
-    });
-  });
-
-  it('contains icon box selectors', () => {
-    const selectors = [
-      '.sp-iconbox',
-      '.sp-iconbox--primary',
-      '.sp-iconbox--success',
-      '.sp-iconbox--warning',
-      '.sp-iconbox--danger',
-      '.sp-iconbox--info',
-      '.sp-iconbox--sm',
-      '.sp-iconbox--md',
-      '.sp-iconbox--lg',
-      '.sp-iconbox--interactive',
-      '.sp-iconbox--hover',
-      '.sp-iconbox--focus',
-      '.sp-iconbox--loading',
-      '.sp-iconbox--disabled',
-      '.sp-iconbox--pill',
-    ];
-
-    selectors.forEach((selector) => {
-      expect(css).toContain(selector);
-    });
-  });
-
-  it('contains rating selectors', () => {
-    const selectors = [
-      '.sp-rating',
-      '.sp-rating--disabled',
-      '.sp-rating--loading',
-      '.sp-rating-stars',
-      '.sp-rating-star',
-      '.sp-rating-star--filled',
-      '.sp-rating-text',
-    ];
-
-    selectors.forEach((selector) => {
-      expect(css).toContain(selector);
-    });
-  });
-
-  it('contains testimonial and pricing helper selectors', () => {
-    const selectors = [
-      '.sp-testimonial-quote',
-      '.sp-testimonial-author',
-      '.sp-testimonial-author-info',
-      '.sp-testimonial-author-name',
-      '.sp-testimonial-author-title',
-      '.sp-pricing-card-badge',
-      '.sp-pricing-card-price-container',
-      '.sp-pricing-card-price',
-      '.sp-pricing-card-description',
-    ];
-
-    selectors.forEach((selector) => {
-      expect(css).toContain(selector);
-    });
-  });
-
-  it('contains selectors for all generated recipe classes', () => {
+  it('contains selectors for every public recipe class emitted by the exhaustive matrix', () => {
+    const generatedClassNames = new Set(recipeSelectorContracts.flatMap(({ selectors }) => selectors));
     generatedClassNames.forEach((className) => {
-      const matcher = new RegExp(String.raw`\.${escapeRegex(className)}(\s|\{|,)`);
-      expect(css).toMatch(matcher);
+      expect(css).toMatch(buildSelectorMatcher(className));
     });
   });
 });
