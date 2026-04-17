@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import postcss from 'postcss';
 import { describe, expect, it } from 'vitest';
 import tokens from '@phcdevworks/spectre-tokens';
 
@@ -10,6 +11,7 @@ const projectRoot = path.join(__dirname, '..');
 
 const componentsCssPath = path.join(projectRoot, 'src', 'styles', 'components.css');
 const cssContent = fs.readFileSync(componentsCssPath, 'utf8');
+const cssRoot = postcss.parse(cssContent);
 
 const ASSERTED_TOKEN_PATHS = {
   'var(--sp-surface-card)': ['surface', 'card'],
@@ -177,9 +179,49 @@ function getCssCustomProperty(name: string): string | undefined {
   return match?.[1]?.trim();
 }
 
+type RoleDeclarationContext = {
+  property: string;
+  selector: string;
+  value: string;
+};
+
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
+
+function getSelectorContext(declaration: postcss.Declaration): string {
+  const segments: string[] = [];
+  let current: postcss.Container | undefined = declaration.parent;
+
+  while (current) {
+    if (current.type === 'rule') {
+      segments.unshift(current.selector);
+    } else if (current.type === 'atrule') {
+      segments.unshift(`@${current.name}${current.params ? ` ${current.params}` : ''}`);
+    }
+
+    current = current.parent ?? undefined;
+  }
+
+  return segments.join(' > ');
+}
+
+function getRoleDeclarations(property: string): RoleDeclarationContext[] {
+  const declarations: RoleDeclarationContext[] = [];
+
+  cssRoot.walkDecls(property, (declaration) => {
+    declarations.push({
+      property,
+      selector: getSelectorContext(declaration),
+      value: declaration.value.trim(),
+    });
+  });
+
+  return declarations;
+}
+
+const RAW_COLOR_PATTERN = /#(?:[0-9a-fA-F]{3,8})\b|rgba?\([^)]*\)|hsla?\([^)]*\)/;
+const RAW_SPACING_PATTERN = /(^|[^\w-])-?\d*\.?\d+(?:px|rem)\b/;
 
 function getLuminance(hex: string): number | undefined {
   const normalized = normalizeHex(hex);
@@ -279,6 +321,35 @@ describe('design contract guard', () => {
           `${name} drifted from its token-backed alias`
         ).toBe(expected);
       });
+    });
+  });
+
+  describe('token-only role guard', () => {
+    it('rejects raw color and spacing literals in every asserted role declaration', () => {
+      const violations = SEMANTIC_ROLE_ASSERTIONS.flatMap(({ property, name }) =>
+        getRoleDeclarations(property).flatMap(({ selector, value }) => {
+          const problems: string[] = [];
+
+          if (RAW_COLOR_PATTERN.test(value)) {
+            problems.push('raw color');
+          }
+
+          if (RAW_SPACING_PATTERN.test(value)) {
+            problems.push('raw spacing');
+          }
+
+          return problems.length > 0
+            ? [`${name}: ${selector} sets ${property}: ${value} (${problems.join(', ')})`]
+            : [];
+        })
+      );
+
+      expect(
+        violations,
+        violations.length === 0
+          ? 'Expected asserted roles to remain token-only.'
+          : `Found raw-value usage in asserted roles:\n${violations.join('\n')}`
+      ).toEqual([]);
     });
   });
 
