@@ -15,22 +15,25 @@ const ENTRYPOINT_CONTRACTS = [
     fileName: 'base.css',
     standaloneTokens: ['--sp-surface-page:', '--sp-text-on-page-default:'],
     bundleMarkers: ['@layer base', 'body {', ':focus-visible {'],
+    forbiddenMarkers: ['@layer components', '@layer utilities', '.sp-btn {', '.sp-stack {'],
   },
   {
     fileName: 'components.css',
     standaloneTokens: ['--sp-surface-page:', '--sp-button-primary-bg:'],
     bundleMarkers: ['@layer components', '.sp-btn {', '.sp-card {'],
+    forbiddenMarkers: ['@layer base', '@layer utilities', 'body {', ':focus-visible {', '.sp-stack {', '@keyframes fade-in'],
   },
   {
     fileName: 'utilities.css',
     standaloneTokens: ['--sp-surface-page:', '--sp-layout-stack-gap-md:'],
     bundleMarkers: ['@layer utilities', '.sp-stack {', '@keyframes fade-in'],
+    forbiddenMarkers: ['@layer base', '@layer components', 'body {', ':focus-visible {', '.sp-btn {', '.sp-card {'],
   },
 ] as const;
 
 describe('dist CSS entrypoints', () => {
-  it('ships standalone exported bundles with entrypoint-specific contract markers', () => {
-    ENTRYPOINT_CONTRACTS.forEach(({ fileName, standaloneTokens, bundleMarkers }) => {
+  it('ships standalone exported bundles with enforced entrypoint boundaries', () => {
+    ENTRYPOINT_CONTRACTS.forEach(({ fileName, standaloneTokens, bundleMarkers, forbiddenMarkers }) => {
       const css = readDistCss(fileName);
 
       standaloneTokens.forEach((token) => {
@@ -45,6 +48,13 @@ describe('dist CSS entrypoints', () => {
           css,
           `${fileName} is missing its bundle-specific contract marker: ${marker}`
         ).toContain(marker);
+      });
+
+      forbiddenMarkers.forEach((marker) => {
+        expect(
+          css,
+          `${fileName} leaked cross-bundle marker: ${marker}`
+        ).not.toContain(marker);
       });
     });
   });
