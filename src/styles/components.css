@@ -889,6 +889,10 @@
     font-size: var(--sp-font-lg-size);
   }
 
+  .sp-iconbox--pill {
+    border-radius: var(--sp-radius-pill);
+  }
+
   .sp-iconbox--primary {
     background-color: var(--sp-component-iconbox-primary-bg);
     color: var(--sp-component-iconbox-primary-text);
