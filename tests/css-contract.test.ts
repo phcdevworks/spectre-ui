@@ -194,6 +194,7 @@ describe('dist/components.css contract', () => {
 
   it('contains selectors for every public recipe class emitted by the exhaustive matrix', () => {
     const generatedClassNames = new Set(recipeSelectorContracts.flatMap(({ selectors }) => selectors));
+
     generatedClassNames.forEach((className) => {
       expect(css).toMatch(buildSelectorMatcher(className));
     });
