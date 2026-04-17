@@ -68,6 +68,7 @@ const recipeClassMatrix = [
   getIconBoxClasses({ variant: 'info', size: 'sm' }),
   getIconBoxClasses({ interactive: true, hovered: true, focused: true }),
   getIconBoxClasses({ loading: true, disabled: true }),
+  getIconBoxClasses({ pill: true }),
   getTestimonialClasses(),
   getTestimonialQuoteClasses(),
   getTestimonialAuthorClasses(),
@@ -183,6 +184,7 @@ describe('dist/components.css contract', () => {
       '.sp-iconbox--focus',
       '.sp-iconbox--loading',
       '.sp-iconbox--disabled',
+      '.sp-iconbox--pill',
     ];
 
     selectors.forEach((selector) => {
