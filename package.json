@@ -92,14 +92,14 @@
     "typescript": "^5.9 || ^6.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^2.2.0"
+    "@phcdevworks/spectre-tokens": "^2.3.0"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
     "@typescript-eslint/eslint-plugin": "^8.58.2",
     "@typescript-eslint/parser": "^8.58.2",
     "autoprefixer": "^10.5.0",
-    "eslint": "^10.2.0",
+    "eslint": "^10.2.1",
     "jiti": "^2.6.1",
     "postcss": "^8.5.10",
     "postcss-cli": "^11.0.1",
