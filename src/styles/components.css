@@ -1,6 +1,6 @@
 @layer components {
 
-  :root {
+  :where(:root) {
     /* structural border width */
     --sp-component-border-width: var(--sp-border-width-base);
 
@@ -169,7 +169,7 @@
   }
 
   /* dark mode overrides mapped from Spectre token mode definitions */
-  :root[data-spectre-theme="dark"] {
+  :where(:root[data-spectre-theme="dark"]) {
     --sp-component-testimonial-bg: var(--sp-color-neutral-800);
     --sp-component-testimonial-border: var(--sp-color-neutral-700);
     --sp-component-testimonial-text: var(--sp-color-neutral-200);
@@ -198,7 +198,7 @@
     border: var(--sp-component-border-width) solid var(--sp-component-button-border-base);
     font-family: var(--sp-font-family-sans);
     font-size: var(--sp-font-md-size);
-    line-height: 1;
+    line-height: var(--sp-font-md-line-height);
     font-weight: var(--sp-font-md-weight);
     text-decoration: none;
     appearance: none;
@@ -554,6 +554,7 @@
     background-color: var(--sp-component-input-role-bg-disabled);
     color: var(--sp-component-input-role-text-disabled);
     border-color: var(--sp-component-input-role-border-disabled);
+    box-shadow: none;
     cursor: not-allowed;
     pointer-events: none;
   }
@@ -562,7 +563,6 @@
     color: var(--sp-component-input-role-text-disabled);
   }
 
-  .sp-input--disabled,
   .sp-input--disabled:focus {
     box-shadow: none;
   }
@@ -814,7 +814,6 @@
     background-color: var(--sp-component-iconbox-primary-bg);
     font-family: var(--sp-font-family-sans);
     font-weight: var(--sp-font-md-weight);
-    line-height: 0;
     transition:
       background-color var(--sp-duration-fast) var(--sp-easing-out),
       color var(--sp-duration-fast) var(--sp-easing-out),
@@ -828,11 +827,6 @@
      - force currentColor for common svg shapes
      - preserve stroke-only icons (fill="none")
   */
-  .sp-iconbox,
-  .sp-iconbox>i {
-    line-height: 0;
-  }
-
   .sp-iconbox>i {
     display: inline-flex;
     align-items: center;
@@ -851,7 +845,6 @@
   }
 
   /* default to inheriting via currentColor */
-  .sp-iconbox svg,
   .sp-iconbox svg path,
   .sp-iconbox svg circle,
   .sp-iconbox svg rect,
@@ -985,12 +978,9 @@
   }
 
   .sp-testimonial--interactive:hover,
-  .sp-testimonial--interactive:focus-visible,
   .sp-testimonial--interactive:focus-within,
   .sp-testimonial--interactive.sp-testimonial--hover,
-  .sp-testimonial--interactive.is-hover,
-  .sp-testimonial--interactive.sp-testimonial--focus,
-  .sp-testimonial--interactive.is-focus {
+  .sp-testimonial--interactive.is-hover {
     transform: translateY(calc(var(--sp-component-border-width) * -1));
     box-shadow: var(--sp-shadow-lg);
   }
@@ -1006,6 +996,7 @@
   .sp-testimonial--interactive.sp-testimonial--focus,
   .sp-testimonial--interactive.is-focus {
     outline: none;
+    transform: translateY(calc(var(--sp-component-border-width) * -1));
     box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
   }
 
@@ -1089,12 +1080,9 @@
   }
 
   .sp-pricing-card--interactive:hover,
-  .sp-pricing-card--interactive:focus-visible,
   .sp-pricing-card--interactive:focus-within,
   .sp-pricing-card--interactive.sp-pricing-card--hover,
-  .sp-pricing-card--interactive.is-hover,
-  .sp-pricing-card--interactive.sp-pricing-card--focus,
-  .sp-pricing-card--interactive.is-focus {
+  .sp-pricing-card--interactive.is-hover {
     transform: translateY(calc(var(--sp-component-border-width) * -1));
     box-shadow: var(--sp-shadow-lg);
   }
@@ -1126,6 +1114,7 @@
   .sp-pricing-card--interactive.sp-pricing-card--focus,
   .sp-pricing-card--interactive.is-focus {
     outline: none;
+    transform: translateY(calc(var(--sp-component-border-width) * -1));
     box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
   }
 

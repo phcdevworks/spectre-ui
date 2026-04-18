@@ -41,6 +41,20 @@ const ENTRYPOINT_CONTRACTS = [
 const getEntryPointRules = (fileName: string) =>
   postcss.parse(readDistCss(fileName), { from: path.join(distDir, fileName) });
 
+const getRuleContext = (rule: postcss.Rule): string => {
+  const contexts: string[] = [];
+  let current = rule.parent;
+
+  while (current) {
+    if (current.type === 'atrule') {
+      contexts.unshift(`@${current.name} ${current.params}`.trim());
+    }
+    current = current.parent;
+  }
+
+  return contexts.join(' > ');
+};
+
 describe('dist CSS entrypoints', () => {
   it('ships standalone exported bundles with enforced entrypoint boundaries', () => {
     ENTRYPOINT_CONTRACTS.forEach(({ fileName, standaloneTokens, bundleMarkers, forbiddenMarkers }) => {
@@ -104,21 +118,25 @@ describe('dist CSS entrypoints', () => {
 
   it('does not repeat selectors within the same exported bundle', () => {
     ENTRYPOINT_CONTRACTS.forEach(({ fileName }) => {
-      const selectorCounts = new Map<string, number>();
+      const selectorCounts = new Map<string, { count: number; selector: string }>();
 
       getEntryPointRules(fileName).walkRules((rule) => {
+        const context = getRuleContext(rule);
+
         rule.selectors.forEach((selector) => {
           const normalizedSelector = selector.trim();
-          selectorCounts.set(
-            normalizedSelector,
-            (selectorCounts.get(normalizedSelector) ?? 0) + 1,
-          );
+          const key = context ? `${context} :: ${normalizedSelector}` : normalizedSelector;
+          const existing = selectorCounts.get(key);
+          selectorCounts.set(key, {
+            selector: normalizedSelector,
+            count: (existing?.count ?? 0) + 1,
+          });
         });
       });
 
-      const duplicates = [...selectorCounts.entries()]
-        .filter(([, count]) => count > 1)
-        .map(([selector, count]) => `${selector} (${count}x)`);
+      const duplicates = [...selectorCounts.values()]
+        .filter(({ count }) => count > 1)
+        .map(({ selector, count }) => `${selector} (${count}x)`);
 
       expect(
         duplicates,
