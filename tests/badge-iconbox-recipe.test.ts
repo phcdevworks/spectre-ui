@@ -26,6 +26,7 @@ describe('getBadgeClasses', () => {
       { variant: 'danger' as const, className: 'sp-badge--danger' },
       { variant: 'neutral' as const, className: 'sp-badge--neutral' },
       { variant: 'info' as const, className: 'sp-badge--info' },
+      { variant: 'ghost' as const, className: 'sp-badge--ghost' },
     ];
 
     variants.forEach(({ variant, className }) => {
