@@ -118,6 +118,8 @@ const SEMANTIC_ROLE_ASSERTIONS: SemanticRoleAssertion[] = [
   { name: 'Badge Neutral Text', property: '--sp-component-badge-neutral-text', expected: 'var(--sp-badge-neutral-text)', requiresContrast: true },
   { name: 'Badge Info Background', property: '--sp-component-badge-info-bg', expected: 'var(--sp-badge-info-bg)', requiresContrast: true },
   { name: 'Badge Info Text', property: '--sp-component-badge-info-text', expected: 'var(--sp-badge-info-text)', requiresContrast: true },
+  { name: 'Badge Ghost Background', property: '--sp-component-badge-ghost-bg', expected: 'var(--sp-button-ghost-bg)' },
+  { name: 'Badge Ghost Text', property: '--sp-component-badge-ghost-text', expected: 'var(--sp-button-ghost-text)' },
 
   { name: 'Icon Box Primary Background', property: '--sp-component-iconbox-primary-bg', expected: 'var(--sp-color-brand-50)', requiresContrast: true },
   { name: 'Icon Box Primary Text', property: '--sp-component-iconbox-primary-text', expected: 'var(--sp-icon-box-icon-default)', requiresContrast: true },
@@ -251,6 +253,13 @@ const SEMANTIC_ROLE_PAIR_RULES: SemanticRolePairRule[] = [
     allowedBackgrounds: ['var(--sp-badge-info-bg)'],
     textProperty: '--sp-component-badge-info-text',
     allowedTexts: ['var(--sp-badge-info-text)'],
+  },
+  {
+    name: 'Badge Ghost',
+    backgroundProperty: '--sp-component-badge-ghost-bg',
+    allowedBackgrounds: ['var(--sp-button-ghost-bg)'],
+    textProperty: '--sp-component-badge-ghost-text',
+    allowedTexts: ['var(--sp-button-ghost-text)'],
   },
   {
     name: 'Icon Box Primary',
