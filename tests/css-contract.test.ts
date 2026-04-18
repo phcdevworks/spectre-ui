@@ -277,6 +277,29 @@ const interactionStateContracts = [
   },
 ] as const;
 
+const sizeVariantContracts = [
+  {
+    name: 'button sizes',
+    selectors: ['.sp-btn--sm', '.sp-btn--md', '.sp-btn--lg'],
+  },
+  {
+    name: 'input sizes',
+    selectors: ['.sp-input--sm', '.sp-input--md', '.sp-input--lg'],
+  },
+  {
+    name: 'badge sizes',
+    selectors: ['.sp-badge--sm', '.sp-badge--md', '.sp-badge--lg'],
+  },
+  {
+    name: 'icon box sizes',
+    selectors: ['.sp-iconbox--sm', '.sp-iconbox--md', '.sp-iconbox--lg'],
+  },
+  {
+    name: 'rating sizes',
+    selectors: ['.sp-rating--sm', '.sp-rating--md', '.sp-rating--lg'],
+  },
+] as const;
+
 describe('dist/components.css contract', () => {
   recipeSelectorContracts.forEach(({ name, selectors }) => {
     it(`contains all ${name} selectors exposed by recipes`, () => {
@@ -288,6 +311,14 @@ describe('dist/components.css contract', () => {
 
   interactionStateContracts.forEach(({ name, selectors }) => {
     it(`contains required interaction state selectors for ${name}`, () => {
+      selectors.forEach((selector) => {
+        expect(css).toMatch(buildSelectorFragmentMatcher(selector));
+      });
+    });
+  });
+
+  sizeVariantContracts.forEach(({ name, selectors }) => {
+    it(`contains required size selectors for ${name}`, () => {
       selectors.forEach((selector) => {
         expect(css).toMatch(buildSelectorFragmentMatcher(selector));
       });
