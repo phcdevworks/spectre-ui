@@ -6,6 +6,43 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-04-18
+
+Release Title: Contract Coverage Expansion and Interaction Parity
+
+### Added
+
+- **Component States**: Added interactive state support for `Rating`,
+  `PricingCard`, and `Testimonial`, plus active-state support for `Card` and
+  `Input`.
+- **IconBox Variants**: Added `pill` variant support for `IconBox` in both
+  recipe output and component CSS contract.
+- **Contract Enforcement**: Added and expanded CSS contract tests for generated
+  selectors, interaction states, size-variant selectors, entrypoint boundaries,
+  token-role guards, and Spectre-prefixed CSS variable enforcement.
+- **Governance Docs**: Added hardening planning and tracking documents
+  (`ROADMAP.md`, `TODO.md`) and expanded repository guidance for contract
+  parity.
+
+### Changed
+
+- **Token Alignment**: Synchronized with published
+  `@phcdevworks/spectre-tokens` updates and tightened local token-mapping
+  coverage.
+- **CSS Quality**: Improved component CSS rules and selector consistency to
+  align structural styles with recipe-emitted class contracts.
+- **Dependencies**: Updated `@phcdevworks/spectre-tokens`, ESLint, PostCSS,
+  TypeScript, Prettier, and related development tooling.
+- **Testing Surface**: Standardized tests on public package exports and refined
+  contract/aesthetic validation paths.
+
+### Fixed
+
+- **Selector Matching**: Corrected generated-class selector matching regex and
+  eliminated false negatives in CSS contract tests.
+- **IconBox Warning Role**: Updated warning text tone mapping to the intended
+  `warning-800` token-backed color role.
+
 ## [1.2.0] - 2026-04-11
 
 Release Title: Interactive State Parity and Validation Governance
