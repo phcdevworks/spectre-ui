@@ -107,6 +107,8 @@
     --sp-component-badge-neutral-text: var(--sp-badge-neutral-text);
     --sp-component-badge-info-bg: var(--sp-badge-info-bg);
     --sp-component-badge-info-text: var(--sp-badge-info-text);
+    --sp-component-badge-ghost-bg: var(--sp-button-ghost-bg);
+    --sp-component-badge-ghost-text: var(--sp-button-ghost-text);
 
     /* badge hover states derived from Spectre token semantics */
     --sp-component-badge-primary-bg-hover: var(--sp-button-primary-bghover);
@@ -116,6 +118,7 @@
     --sp-component-badge-danger-bg-hover: var(--sp-color-error-200);
     --sp-component-badge-neutral-bg-hover: var(--sp-color-neutral-200);
     --sp-component-badge-info-bg-hover: var(--sp-color-info-200);
+    --sp-component-badge-ghost-bg-hover: var(--sp-button-ghost-bghover);
 
     --sp-component-badge-padding-x-sm: var(--sp-space-8);
     --sp-component-badge-padding-x-md: var(--sp-space-12);
@@ -768,6 +771,17 @@
   .sp-badge--info.sp-badge--interactive.sp-badge--hover,
   .sp-badge--info.sp-badge--interactive.is-hover {
     background-color: var(--sp-component-badge-info-bg-hover);
+  }
+
+  .sp-badge--ghost {
+    background-color: var(--sp-component-badge-ghost-bg);
+    color: var(--sp-component-badge-ghost-text);
+  }
+
+  .sp-badge--ghost.sp-badge--interactive:hover,
+  .sp-badge--ghost.sp-badge--interactive.sp-badge--hover,
+  .sp-badge--ghost.sp-badge--interactive.is-hover {
+    background-color: var(--sp-component-badge-ghost-bg-hover);
   }
 
   .sp-badge--interactive {

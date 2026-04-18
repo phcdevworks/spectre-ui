@@ -9,6 +9,7 @@ const BADGE_VARIANTS = {
   danger: true,
   neutral: true,
   info: true,
+  ghost: true,
 } as const;
 
 const BADGE_SIZES = {
@@ -59,6 +60,7 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
     danger: "sp-badge--danger",
     neutral: "sp-badge--neutral",
     info: "sp-badge--info",
+    ghost: "sp-badge--ghost",
   };
   const variantClass = variantMap[variant];
 
