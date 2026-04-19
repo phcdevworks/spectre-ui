@@ -26,6 +26,8 @@ export interface InputRecipeOptions {
   focused?: boolean;
   hovered?: boolean;
   active?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
 }
 
 export function getInputClasses(opts: InputRecipeOptions = {}): string {
@@ -37,6 +39,8 @@ export function getInputClasses(opts: InputRecipeOptions = {}): string {
     focused = false,
     hovered = false,
     active = false,
+    disabled = false,
+    loading = false,
   } = opts;
 
   const state = resolveOption({
@@ -66,8 +70,8 @@ export function getInputClasses(opts: InputRecipeOptions = {}): string {
     state === "error" && "sp-input--error",
     state === "success" && "sp-input--success",
     // Visual state only; actual disabled attribute is handled by adapters.
-    state === "disabled" && "sp-input--disabled",
-    state === "loading" && "sp-input--loading",
+    (state === "disabled" || disabled) && "sp-input--disabled",
+    (state === "loading" || loading) && "sp-input--loading",
     focused && "sp-input--focus",
     hovered && "sp-input--hover",
     active && "sp-input--active",
