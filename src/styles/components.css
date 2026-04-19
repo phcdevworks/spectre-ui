@@ -570,7 +570,8 @@
     box-shadow: none;
   }
 
-  .sp-input--loading {
+  .sp-input--loading,
+  .sp-input[aria-busy="true"] {
     pointer-events: none;
     opacity: var(--sp-opacity-active);
   }
