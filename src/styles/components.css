@@ -137,7 +137,7 @@
     --sp-component-iconbox-success-bg: var(--sp-color-success-50);
     --sp-component-iconbox-success-text: var(--sp-icon-box-icon-success);
     --sp-component-iconbox-warning-bg: var(--sp-color-warning-50);
-    --sp-component-iconbox-warning-text: var(--sp-color-warning-800);
+    --sp-component-iconbox-warning-text: var(--sp-icon-box-icon-warning);
     --sp-component-iconbox-danger-bg: var(--sp-color-error-50);
     --sp-component-iconbox-danger-text: var(--sp-icon-box-icon-danger);
     --sp-component-iconbox-info-bg: var(--sp-color-info-50);
@@ -149,7 +149,7 @@
     --sp-component-testimonial-text: var(--sp-color-neutral-700);
     --sp-component-testimonial-author-name: var(--sp-color-neutral-900);
     --sp-component-testimonial-author-title: var(--sp-color-neutral-500);
-    --sp-component-testimonial-quote-mark: var(--sp-color-neutral-300);
+    --sp-component-testimonial-quote-mark: var(--sp-color-neutral-500);
 
     /* pricing card roles */
     --sp-component-pricing-card-bg: var(--sp-surface-card);
@@ -159,7 +159,7 @@
     --sp-component-pricing-card-featured-badge-bg: var(--sp-color-warning-500);
     --sp-component-pricing-card-featured-badge-text: var(--sp-color-neutral-900);
     --sp-component-pricing-card-price: var(--sp-color-neutral-900);
-    --sp-component-pricing-card-featured-price: var(--sp-color-neutral-50);
+    --sp-component-pricing-card-featured-price: var(--sp-color-white);
     --sp-component-pricing-card-price-description: var(--sp-color-neutral-500);
 
     /* rating roles */
@@ -177,13 +177,13 @@
     --sp-component-testimonial-border: var(--sp-color-neutral-700);
     --sp-component-testimonial-text: var(--sp-color-neutral-200);
     --sp-component-testimonial-author-name: var(--sp-color-neutral-100);
-    --sp-component-testimonial-author-title: var(--sp-color-neutral-300);
-    --sp-component-testimonial-quote-mark: var(--sp-color-neutral-600);
+    --sp-component-testimonial-author-title: var(--sp-color-neutral-400);
+    --sp-component-testimonial-quote-mark: var(--sp-color-neutral-400);
 
     --sp-component-pricing-card-bg: var(--sp-color-neutral-800);
     --sp-component-pricing-card-border: var(--sp-color-neutral-700);
     --sp-component-pricing-card-price: var(--sp-color-neutral-100);
-    --sp-component-pricing-card-price-description: var(--sp-color-neutral-300);
+    --sp-component-pricing-card-price-description: var(--sp-color-neutral-400);
 
     --sp-component-rating-star-filled: var(--sp-color-warning-400);
     --sp-component-rating-star-empty: var(--sp-color-neutral-700);
