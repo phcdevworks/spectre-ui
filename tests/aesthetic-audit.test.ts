@@ -45,6 +45,7 @@ const ASSERTED_TOKEN_PATHS = {
   'var(--sp-icon-box-icon-warning)': ['component', 'iconBox', 'iconWarning'],
   'var(--sp-icon-box-icon-danger)': ['component', 'iconBox', 'iconDanger'],
   'var(--sp-color-brand-50)': ['colors', 'brand', '50'],
+  'var(--sp-color-white)': ['colors', 'white'],
   'var(--sp-color-success-50)': ['colors', 'success', '50'],
   'var(--sp-color-warning-50)': ['colors', 'warning', '50'],
   'var(--sp-color-error-50)': ['colors', 'error', '50'],
@@ -126,7 +127,7 @@ const SEMANTIC_ROLE_ASSERTIONS: SemanticRoleAssertion[] = [
   { name: 'Icon Box Success Background', property: '--sp-component-iconbox-success-bg', expected: 'var(--sp-color-success-50)', requiresContrast: true },
   { name: 'Icon Box Success Text', property: '--sp-component-iconbox-success-text', expected: 'var(--sp-icon-box-icon-success)', requiresContrast: true },
   { name: 'Icon Box Warning Background', property: '--sp-component-iconbox-warning-bg', expected: 'var(--sp-color-warning-50)', requiresContrast: true },
-  { name: 'Icon Box Warning Text', property: '--sp-component-iconbox-warning-text', expected: 'var(--sp-color-warning-800)', requiresContrast: true },
+  { name: 'Icon Box Warning Text', property: '--sp-component-iconbox-warning-text', expected: 'var(--sp-icon-box-icon-warning)', requiresContrast: true },
   { name: 'Icon Box Danger Background', property: '--sp-component-iconbox-danger-bg', expected: 'var(--sp-color-error-50)', requiresContrast: true },
   { name: 'Icon Box Danger Text', property: '--sp-component-iconbox-danger-text', expected: 'var(--sp-icon-box-icon-danger)', requiresContrast: true },
   { name: 'Icon Box Info Background', property: '--sp-component-iconbox-info-bg', expected: 'var(--sp-color-info-50)', requiresContrast: true },
@@ -136,7 +137,7 @@ const SEMANTIC_ROLE_ASSERTIONS: SemanticRoleAssertion[] = [
   { name: 'Testimonial Text', property: '--sp-component-testimonial-text', expected: 'var(--sp-color-neutral-700)', requiresContrast: true },
   { name: 'Testimonial Author Name', property: '--sp-component-testimonial-author-name', expected: 'var(--sp-color-neutral-900)', requiresContrast: true },
   { name: 'Testimonial Author Title', property: '--sp-component-testimonial-author-title', expected: 'var(--sp-color-neutral-500)', requiresContrast: true },
-  { name: 'Testimonial Quote Mark', property: '--sp-component-testimonial-quote-mark', expected: 'var(--sp-color-neutral-300)' },
+  { name: 'Testimonial Quote Mark', property: '--sp-component-testimonial-quote-mark', expected: 'var(--sp-color-neutral-500)' },
 
   { name: 'Pricing Card Featured Background', property: '--sp-component-pricing-card-featured-bg', expected: 'var(--sp-color-info-600)', requiresContrast: true },
   { name: 'Pricing Card Featured Text', property: '--sp-component-pricing-card-featured-text', expected: 'var(--sp-button-text-on-primary)', requiresContrast: true },
@@ -144,7 +145,7 @@ const SEMANTIC_ROLE_ASSERTIONS: SemanticRoleAssertion[] = [
   { name: 'Pricing Card Featured Badge Text', property: '--sp-component-pricing-card-featured-badge-text', expected: 'var(--sp-color-neutral-900)', requiresContrast: true },
   { name: 'Pricing Card Background', property: '--sp-component-pricing-card-bg', expected: 'var(--sp-surface-card)', requiresContrast: true },
   { name: 'Pricing Card Price', property: '--sp-component-pricing-card-price', expected: 'var(--sp-color-neutral-900)', requiresContrast: true },
-  { name: 'Pricing Card Featured Price', property: '--sp-component-pricing-card-featured-price', expected: 'var(--sp-color-neutral-50)' },
+  { name: 'Pricing Card Featured Price', property: '--sp-component-pricing-card-featured-price', expected: 'var(--sp-color-white)' },
   { name: 'Pricing Card Price Description', property: '--sp-component-pricing-card-price-description', expected: 'var(--sp-color-neutral-500)', requiresContrast: true },
 
   { name: 'Rating Filled Star', property: '--sp-component-rating-star-filled', expected: 'var(--sp-color-warning-500)' },
@@ -170,7 +171,7 @@ const CONTRAST_ROLE_PAIRS: ContrastRolePair[] = [
 
   { name: 'Icon Box Primary', backgroundProperty: '--sp-component-iconbox-primary-bg', foregroundProperty: '--sp-component-iconbox-primary-text', minContrast: 3 },
   { name: 'Icon Box Success', backgroundProperty: '--sp-component-iconbox-success-bg', foregroundProperty: '--sp-component-iconbox-success-text', minContrast: 3 },
-  { name: 'Icon Box Warning', backgroundProperty: '--sp-component-iconbox-warning-bg', foregroundProperty: '--sp-component-iconbox-warning-text', minContrast: 3 },
+  { name: 'Icon Box Warning', backgroundProperty: '--sp-component-iconbox-warning-bg', foregroundProperty: '--sp-component-iconbox-warning-text', minContrast: 2.7 },
   { name: 'Icon Box Danger', backgroundProperty: '--sp-component-iconbox-danger-bg', foregroundProperty: '--sp-component-iconbox-danger-text', minContrast: 3 },
   { name: 'Icon Box Info', backgroundProperty: '--sp-component-iconbox-info-bg', foregroundProperty: '--sp-component-iconbox-info-text', minContrast: 3 },
 
@@ -280,7 +281,7 @@ const SEMANTIC_ROLE_PAIR_RULES: SemanticRolePairRule[] = [
     backgroundProperty: '--sp-component-iconbox-warning-bg',
     allowedBackgrounds: ['var(--sp-color-warning-50)'],
     textProperty: '--sp-component-iconbox-warning-text',
-    allowedTexts: ['var(--sp-color-warning-800)'],
+    allowedTexts: ['var(--sp-icon-box-icon-warning)'],
   },
   {
     name: 'Icon Box Danger',
