@@ -118,10 +118,22 @@ describe('getInputClasses', () => {
     expect(result).toContain('sp-input--pill');
   });
 
-  it('adds focused and hovered modifiers', () => {
-    const result = getInputClasses({ focused: true, hovered: true });
+  it('adds focused, hovered and active modifiers', () => {
+    const result = getInputClasses({ focused: true, hovered: true, active: true });
     expect(result).toContain('sp-input--focus');
     expect(result).toContain('sp-input--hover');
+    expect(result).toContain('sp-input--active');
+  });
+
+  it('adds disabled and loading boolean modifiers', () => {
+    const result = getInputClasses({ disabled: true, loading: true });
+    expect(result).toContain('sp-input--disabled');
+    expect(result).toContain('sp-input--loading');
+  });
+
+  it('respects state-based disabled and loading modifiers', () => {
+    expect(getInputClasses({ state: 'disabled' })).toContain('sp-input--disabled');
+    expect(getInputClasses({ state: 'loading' })).toContain('sp-input--loading');
   });
 
   it('creates trimmed, space-delimited class strings for complex input options', () => {
