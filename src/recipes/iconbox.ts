@@ -7,6 +7,7 @@ const ICONBOX_VARIANTS = {
   warning: true,
   danger: true,
   info: true,
+  ghost: true,
 } as const;
 
 const ICONBOX_SIZES = {
@@ -62,6 +63,7 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
     warning: "sp-iconbox--warning",
     danger: "sp-iconbox--danger",
     info: "sp-iconbox--info",
+    ghost: "sp-iconbox--ghost",
   };
   const variantClass = variantMap[variant];
 
