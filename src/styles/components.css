@@ -142,6 +142,8 @@
     --sp-component-iconbox-danger-text: var(--sp-icon-box-icon-danger);
     --sp-component-iconbox-info-bg: var(--sp-color-info-50);
     --sp-component-iconbox-info-text: var(--sp-badge-info-text);
+    --sp-component-iconbox-ghost-bg: var(--sp-button-ghost-bg);
+    --sp-component-iconbox-ghost-text: var(--sp-button-ghost-text);
 
     /* testimonial roles */
     --sp-component-testimonial-bg: var(--sp-surface-card);
@@ -924,6 +926,11 @@
   .sp-iconbox--info {
     background-color: var(--sp-component-iconbox-info-bg);
     color: var(--sp-component-iconbox-info-text);
+  }
+
+  .sp-iconbox--ghost {
+    background-color: var(--sp-component-iconbox-ghost-bg);
+    color: var(--sp-component-iconbox-ghost-text);
   }
 
   .sp-iconbox--interactive {
