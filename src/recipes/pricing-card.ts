@@ -12,6 +12,7 @@ export interface PricingCardRecipeOptions {
   hovered?: boolean;
   focused?: boolean;
   active?: boolean;
+  fullHeight?: boolean;
 }
 
 export function getPricingCardClasses(opts: PricingCardRecipeOptions = {}): string {
@@ -23,6 +24,7 @@ export function getPricingCardClasses(opts: PricingCardRecipeOptions = {}): stri
     hovered = false,
     focused = false,
     active = false,
+    fullHeight = false,
   } = opts;
 
   return cx(
@@ -33,7 +35,8 @@ export function getPricingCardClasses(opts: PricingCardRecipeOptions = {}): stri
     interactive && "sp-pricing-card--interactive",
     hovered && "sp-pricing-card--hover",
     focused && "sp-pricing-card--focus",
-    active && "sp-pricing-card--active"
+    active && "sp-pricing-card--active",
+    fullHeight && "sp-pricing-card--full"
   );
 }
 
