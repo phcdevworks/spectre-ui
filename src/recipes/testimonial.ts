@@ -11,6 +11,7 @@ export interface TestimonialRecipeOptions {
   hovered?: boolean;
   focused?: boolean;
   active?: boolean;
+  fullHeight?: boolean;
 }
 
 export function getTestimonialClasses(opts: TestimonialRecipeOptions = {}): string {
@@ -21,6 +22,7 @@ export function getTestimonialClasses(opts: TestimonialRecipeOptions = {}): stri
     hovered = false,
     focused = false,
     active = false,
+    fullHeight = false,
   } = opts;
 
   return cx(
@@ -30,7 +32,8 @@ export function getTestimonialClasses(opts: TestimonialRecipeOptions = {}): stri
     interactive && "sp-testimonial--interactive",
     hovered && "sp-testimonial--hover",
     focused && "sp-testimonial--focus",
-    active && "sp-testimonial--active"
+    active && "sp-testimonial--active",
+    fullHeight && "sp-testimonial--full"
   );
 }
 

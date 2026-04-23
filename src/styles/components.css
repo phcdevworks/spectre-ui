@@ -991,6 +991,10 @@
     pointer-events: none;
   }
 
+  .sp-testimonial--full {
+    height: 100%;
+  }
+
   .sp-testimonial--interactive {
     cursor: pointer;
     transition:
