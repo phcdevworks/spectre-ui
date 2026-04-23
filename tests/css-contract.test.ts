@@ -140,7 +140,7 @@ const iconBoxSelectors = collectSelectors(
 
 const testimonialSelectors = collectSelectors([
   ...buildRecipeOutputs({
-    booleans: ['disabled', 'loading'],
+    booleans: ['disabled', 'loading', 'interactive', 'hovered', 'focused', 'active', 'fullHeight'],
     getClasses: getTestimonialClasses,
   }),
   getTestimonialQuoteClasses(),
