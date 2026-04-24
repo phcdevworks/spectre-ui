@@ -132,6 +132,8 @@ const SEMANTIC_ROLE_ASSERTIONS: SemanticRoleAssertion[] = [
   { name: 'Icon Box Danger Text', property: '--sp-component-iconbox-danger-text', expected: 'var(--sp-icon-box-icon-danger)', requiresContrast: true },
   { name: 'Icon Box Info Background', property: '--sp-component-iconbox-info-bg', expected: 'var(--sp-color-info-50)', requiresContrast: true },
   { name: 'Icon Box Info Text', property: '--sp-component-iconbox-info-text', expected: 'var(--sp-badge-info-text)', requiresContrast: true },
+  { name: 'Icon Box Neutral Background', property: '--sp-component-iconbox-neutral-bg', expected: 'var(--sp-color-neutral-50)', requiresContrast: true },
+  { name: 'Icon Box Neutral Text', property: '--sp-component-iconbox-neutral-text', expected: 'var(--sp-badge-neutral-text)', requiresContrast: true },
 
   { name: 'Testimonial Background', property: '--sp-component-testimonial-bg', expected: 'var(--sp-surface-card)', requiresContrast: true },
   { name: 'Testimonial Text', property: '--sp-component-testimonial-text', expected: 'var(--sp-color-neutral-700)', requiresContrast: true },
@@ -174,6 +176,7 @@ const CONTRAST_ROLE_PAIRS: ContrastRolePair[] = [
   { name: 'Icon Box Warning', backgroundProperty: '--sp-component-iconbox-warning-bg', foregroundProperty: '--sp-component-iconbox-warning-text', minContrast: 2.7 },
   { name: 'Icon Box Danger', backgroundProperty: '--sp-component-iconbox-danger-bg', foregroundProperty: '--sp-component-iconbox-danger-text', minContrast: 3 },
   { name: 'Icon Box Info', backgroundProperty: '--sp-component-iconbox-info-bg', foregroundProperty: '--sp-component-iconbox-info-text', minContrast: 3 },
+  { name: 'Icon Box Neutral', backgroundProperty: '--sp-component-iconbox-neutral-bg', foregroundProperty: '--sp-component-iconbox-neutral-text', minContrast: 4.5 },
 
   { name: 'Testimonial Quote', backgroundProperty: '--sp-component-testimonial-bg', foregroundProperty: '--sp-component-testimonial-text', minContrast: 4.5 },
   { name: 'Testimonial Author Name', backgroundProperty: '--sp-component-testimonial-bg', foregroundProperty: '--sp-component-testimonial-author-name', minContrast: 4.5 },
@@ -256,11 +259,11 @@ const SEMANTIC_ROLE_PAIR_RULES: SemanticRolePairRule[] = [
     allowedTexts: ['var(--sp-badge-info-text)'],
   },
   {
-    name: 'Badge Ghost',
-    backgroundProperty: '--sp-component-badge-ghost-bg',
-    allowedBackgrounds: ['var(--sp-button-ghost-bg)'],
-    textProperty: '--sp-component-badge-ghost-text',
-    allowedTexts: ['var(--sp-button-ghost-text)'],
+    name: 'Icon Box Neutral',
+    backgroundProperty: '--sp-component-iconbox-neutral-bg',
+    allowedBackgrounds: ['var(--sp-color-neutral-50)'],
+    textProperty: '--sp-component-iconbox-neutral-text',
+    allowedTexts: ['var(--sp-badge-neutral-text)'],
   },
   {
     name: 'Icon Box Primary',
