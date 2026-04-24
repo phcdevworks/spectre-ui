@@ -90,3 +90,18 @@ reusable implementation layer:
 - Use `examples.html` as the entry point for the visual catalog
 - Open focused verification pages when validating a specific component contract
 - Use `vanilla.html` and `showroom.html` as higher-level composition references
+
+## Boundaries
+
+Examples are verification fixtures and usage illustrations. They are not part
+of the public package API and are not distributed to consumers.
+
+The public contract of `@phcdevworks/spectre-ui` is its exported recipe
+functions, CSS entrypoints, and Tailwind helpers as declared in
+`ui-contract.manifest.json`. Examples exist to validate and demonstrate that
+contract — they do not extend or redefine it.
+
+Do not add markup patterns or class names to examples that are not already
+backed by the exported recipe and CSS contract. If an example needs a class
+that does not exist in the published surface, that is a gap to report in the
+relevant recipe or CSS file, not something to patch locally in the HTML.
