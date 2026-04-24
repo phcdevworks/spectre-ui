@@ -83,6 +83,8 @@ describe('getIconBoxClasses', () => {
       { variant: 'warning' as const, className: 'sp-iconbox--warning' },
       { variant: 'danger' as const, className: 'sp-iconbox--danger' },
       { variant: 'info' as const, className: 'sp-iconbox--info' },
+      { variant: 'neutral' as const, className: 'sp-iconbox--neutral' },
+      { variant: 'ghost' as const, className: 'sp-iconbox--ghost' },
     ];
 
     variants.forEach(({ variant, className }) => {
