@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -rn \"#[0-9a-fA-F]\\\\{3,8\\\\}\\\\|[0-9]*\\\\.?[0-9]\\\\+px\\\\|[0-9]*\\\\.?[0-9]\\\\+rem\" /home/bradpotts/development/phcdev/spectre-ui/src --include=\"*.ts\" --include=\"*.tsx\" --include=\"*.css\")"
+    ]
+  }
+}
