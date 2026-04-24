@@ -31,6 +31,36 @@ structure, adapters define delivery.
 3. Install dependencies with `npm install`.
 4. Run `npm run ci:verify` before opening a pull request.
 
+## Local Verification Environment
+
+### Node.js version
+
+This repository requires Node.js `^22.12.0` or `>=24.0.0` as declared in
+`package.json`. `validate:runtime` will fail immediately on anything outside
+that range. Use the version pinned in `.nvmrc` locally — `nvm use` picks it up
+automatically.
+
+### Build before test
+
+`npm test` runs `npm run build` automatically via the `pretest` hook. You do
+not need to build separately before running tests locally. If you run vitest
+directly without the npm script, build first with `npm run build` or the test
+output may reflect stale dist artifacts.
+
+### Token validation and network access
+
+`npm run validate:tokens` installs `@phcdevworks/spectre-tokens@latest` into a
+temporary directory to confirm the locked version matches the latest published
+release. It requires outbound npm registry access. In network-restricted
+environments this step will fail; the rest of `ci:verify` is unaffected if you
+run the other validators individually.
+
+### Lint
+
+`npm run lint` runs ESLint with the project's TypeScript-aware config. If lint
+fails locally but not in CI (or vice versa), confirm you are on the same Node
+version — ESLint plugin resolution can differ across runtimes.
+
 ## Project Structure
 
 - `src/styles/`: base, components, and utilities source CSS
