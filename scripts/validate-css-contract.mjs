@@ -1,11 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import process from 'node:process';
 
 const projectRoot = path.resolve(import.meta.dirname, '..');
 const packageJsonPath = path.join(projectRoot, 'package.json');
+const manifestPath = path.join(projectRoot, 'ui-contract.manifest.json');
 const distDir = path.join(projectRoot, 'dist');
 
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const exportEntries = Object.entries(packageJson.exports ?? {});
 
 const cssExportMap = new Map(
@@ -14,6 +17,22 @@ const cssExportMap = new Map(
 
 if (cssExportMap.size === 0) {
   console.error('No CSS entry points were found in package.json exports.');
+  process.exit(1);
+}
+
+// Cross-check manifest CSS entrypoints against package.json
+const manifestEntrypoints = new Set(manifest.cssEntrypoints ?? []);
+const packageEntrypoints = new Set(
+  Array.from(cssExportMap.keys()).map((k) => `@phcdevworks/spectre-ui${k.slice(1)}`),
+);
+
+const manifestOnly = [...manifestEntrypoints].filter((e) => !packageEntrypoints.has(e));
+const packageOnly = [...packageEntrypoints].filter((e) => !manifestEntrypoints.has(e));
+
+if (manifestOnly.length > 0 || packageOnly.length > 0) {
+  console.error('CSS entrypoint drift between ui-contract.manifest.json and package.json:');
+  if (manifestOnly.length > 0) console.error(`  In manifest only: ${manifestOnly.join(', ')}`);
+  if (packageOnly.length > 0) console.error(`  In package.json only: ${packageOnly.join(', ')}`);
   process.exit(1);
 }
 
