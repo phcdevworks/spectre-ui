@@ -72,18 +72,17 @@ validation, export clarity, and downstream safety.
   - `CONTRIBUTING.md` now includes a Contract Coverage Map table listing every
     contract area and its enforcer.
 
-- [ ] Clarify example fixture boundaries
-  - `README.md` and `examples/examples.md` should make clear that examples
-    support verification and usage illustration, not separate public APIs.
+- [x] Clarify example fixture boundaries
+  - `examples/examples.md` now includes a Boundaries section clarifying that
+    examples are verification fixtures and usage illustrations, not a public
+    API surface, and that class names used in examples must be backed by the
+    published recipe and CSS contract.
 
-- [ ] Stabilize or document local verification environment requirements
-  - `CONTRIBUTING.md` should document narrow local verification requirements if
-    local failures from environment assumptions still reproduce.
+- [x] Stabilize or document local verification environment requirements
+  - `CONTRIBUTING.md` now includes a Local Verification Environment section
+    covering Node.js version requirements, the pretest build hook, network
+    access requirements for `validate:tokens`, and lint environment parity.
 
 ## Recommended Execution Order
 
-All P0 and P1 items are complete. Remaining work is documentation cleanup only:
-
-1. Clarify example fixture boundaries in README and examples docs.
-2. Document local verification environment requirements in CONTRIBUTING.md if
-   still needed.
+All P0, P1, and P2 items are complete.
