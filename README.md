@@ -118,6 +118,7 @@ Root constants:
 - `spectreStyles`
 - `spectreBaseStylesPath`
 - `spectreComponentsStylesPath`
+- `spectreIndexStylesPath`
 - `spectreUtilitiesStylesPath`
 
 Root recipe functions:

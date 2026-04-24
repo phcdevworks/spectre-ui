@@ -69,6 +69,30 @@ structure, adapters define delivery.
 - Keep wording aligned with the rest of the Spectre suite and PHCDevworks
   ownership.
 
+## Contract Coverage Map
+
+`ui-contract.manifest.json` is the single source of truth for the public styling
+surface. Each area of the contract has a dedicated enforcer:
+
+| Contract area | Enforced by |
+| --- | --- |
+| Root export surface | `scripts/validate-exports.mjs` + `scripts/export-snapshot.json` |
+| `./tailwind` export surface | `scripts/validate-tailwind-contract.mjs` + `scripts/tailwind-export-snapshot.json` |
+| CSS entrypoints (presence + manifest parity) | `scripts/validate-css-contract.mjs` |
+| CSS entrypoint isolation (no cross-bundle leakage) | `tests/css-entrypoints.test.ts` |
+| CSS ↔ recipe class parity | `tests/css-contract.test.ts` |
+| Recipe family parity (manifest → live output) | `tests/recipe-parity.test.ts` |
+| Token drift (CSS vars backed by published tokens) | `tests/token-drift.test.ts` + `scripts/validate-tokens.mjs` |
+| Zero-hex enforcement | `tests/aesthetic-audit.test.ts` |
+| Tailwind mapping correctness | `tests/tailwind-contract.test.ts` |
+| Built-package smoke (dist artifacts + import) | `tests/package-smoke.test.ts` |
+| README contract parity | `scripts/validate-readme-contract.mjs` |
+| Node.js runtime version | `scripts/validate-runtime.mjs` |
+
+All of the above run in order via `npm run ci:verify`. If you add a new public
+surface, add a corresponding row here and a corresponding enforcer before
+merging.
+
 ## Pull Request Checklist
 
 1. Keep the change focused.
