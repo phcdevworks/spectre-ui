@@ -6,6 +6,44 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+### Added
+
+- **Component Variants**: Added `ghost` support for `Badge`; `ghost`,
+  `neutral`, and `secondary` support for `IconBox`; and `fullHeight` structural
+  support for `PricingCard` and `Testimonial`.
+- **Input States**: Added explicit boolean recipe flags for `Input` disabled
+  and loading classes while preserving the existing state-option contract.
+- **Contract Manifest**: Added `ui-contract.manifest.json` as a machine-readable
+  inventory of CSS entry points, root exports, Tailwind exports, and recipe
+  family contracts.
+- **Contract Validation**: Added README parity validation, Tailwind subpath
+  export validation, built-package smoke tests, recipe parity checks, and CSS
+  entry point manifest cross-checks.
+- **Verification Docs**: Added local verification guidance, a contract coverage
+  map, and example-boundary documentation for maintainers.
+
+### Changed
+
+- **Token Alignment**: Synchronized component role mappings with
+  `@phcdevworks/spectre-tokens` releases through `^2.4.0`.
+- **Public Exports**: Formalized `spectreIndexStylesPath` as part of the root
+  package contract and simplified Spectre token re-exports.
+- **CI Verification**: Expanded `npm run ci:verify` to include README, Tailwind,
+  and strengthened CSS contract validation.
+- **Dependencies**: Updated the npm package manager pin, Tailwind CSS, Vite,
+  Vitest, TypeScript ESLint packages, Rollup lockfile metadata, and related
+  lockfile entries.
+
+### Fixed
+
+- **Token Roles**: Corrected IconBox warning, testimonial quote/title, and
+  pricing-card featured-price role mappings to current published token intent.
+- **Test Coverage**: Filled variant and contract test gaps for Badge, IconBox,
+  PricingCard, Testimonial, Tailwind exports, package smoke behavior, and README
+  parity.
+- **CI Script Order**: Adjusted verification ordering so generated artifacts are
+  available before Tailwind and CSS contract checks run.
+
 ## [1.3.0] - 2026-04-18
 
 Release Title: Contract Coverage Expansion and Interaction Parity
