@@ -71,7 +71,7 @@
   "scripts": {
     "build": "tsup --config tsup.config.ts && npm run build:css",
     "build:css": "node ./scripts/build-css.mjs",
-    "ci:verify": "npm run validate:runtime && npm run lint && npm run validate:exports && npm run validate:tailwind && npm run validate:readme && npm run validate:tokens && npm run build && npm run validate:css-contract && npm test",
+    "ci:verify": "npm run validate:runtime && npm run lint && npm run validate:exports && npm run validate:readme && npm run validate:tokens && npm run build && npm run validate:tailwind && npm run validate:css-contract && npm test",
     "dev": "tsup --config tsup.config.ts --watch",
     "clean": "rm -rf dist",
     "lint": "eslint .",
