@@ -3,6 +3,7 @@ import { resolveOption } from "../internal/resolve-option";
 
 const ICONBOX_VARIANTS = {
   primary: true,
+  secondary: true,
   success: true,
   warning: true,
   danger: true,
@@ -60,6 +61,7 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
 
   const variantMap: Record<IconBoxVariant, string> = {
     primary: "sp-iconbox--primary",
+    secondary: "sp-iconbox--secondary",
     success: "sp-iconbox--success",
     warning: "sp-iconbox--warning",
     danger: "sp-iconbox--danger",

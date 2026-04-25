@@ -142,6 +142,9 @@
     --sp-component-iconbox-danger-text: var(--sp-icon-box-icon-danger);
     --sp-component-iconbox-info-bg: var(--sp-color-info-50);
     --sp-component-iconbox-info-text: var(--sp-badge-info-text);
+    --sp-component-iconbox-secondary-bg: var(--sp-button-secondary-bg);
+    --sp-component-iconbox-secondary-text: var(--sp-button-secondary-text);
+    --sp-component-iconbox-secondary-border: var(--sp-button-secondary-border);
     --sp-component-iconbox-neutral-bg: var(--sp-color-neutral-50);
     --sp-component-iconbox-neutral-text: var(--sp-badge-neutral-text);
     --sp-component-iconbox-ghost-bg: var(--sp-button-ghost-bg);
@@ -831,6 +834,7 @@
     border-radius: var(--sp-component-iconbox-radius);
     color: var(--sp-component-iconbox-primary-text);
     background-color: var(--sp-component-iconbox-primary-bg);
+    border: var(--sp-component-border-width) solid transparent;
     font-family: var(--sp-font-family-sans);
     font-weight: var(--sp-font-md-weight);
     transition:
@@ -908,6 +912,12 @@
   .sp-iconbox--primary {
     background-color: var(--sp-component-iconbox-primary-bg);
     color: var(--sp-component-iconbox-primary-text);
+  }
+
+  .sp-iconbox--secondary {
+    background-color: var(--sp-component-iconbox-secondary-bg);
+    color: var(--sp-component-iconbox-secondary-text);
+    border-color: var(--sp-component-iconbox-secondary-border);
   }
 
   .sp-iconbox--success {
