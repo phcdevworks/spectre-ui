@@ -1,6 +1,6 @@
 {
   "name": "@phcdevworks/spectre-ui",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "@phcdevworks/spectre-ui is the implementation layer between @phcdevworks/spectre-tokens and downstream adapters or apps.",
   "keywords": [
     "phcdevworks",
