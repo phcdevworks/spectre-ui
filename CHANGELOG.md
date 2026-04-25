@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-04-25
+
+Release Title: Contract Manifest and Variant Parity
+
 ### Added
 
 - **Component Variants**: Added `ghost` support for `Badge`; `ghost`,
