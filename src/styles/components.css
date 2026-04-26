@@ -1228,6 +1228,10 @@
     font-size: var(--sp-component-rating-size-lg);
   }
 
+  .sp-rating--pill {
+    border-radius: var(--sp-radius-pill);
+  }
+
   .sp-rating:disabled,
   .sp-rating[aria-disabled="true"],
   .sp-rating--disabled {
