@@ -34,10 +34,21 @@ export interface BadgeRecipeOptions {
   active?: boolean;
   disabled?: boolean;
   loading?: boolean;
+  fullWidth?: boolean;
 }
 
 export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
-  const { variant: variantInput, size: sizeInput, interactive, hovered, focused, active, disabled, loading } = opts;
+  const {
+    variant: variantInput,
+    size: sizeInput,
+    interactive,
+    hovered,
+    focused,
+    active,
+    disabled,
+    loading,
+    fullWidth = false,
+  } = opts;
 
   const variant = resolveOption({
     name: "badge variant",
@@ -80,6 +91,7 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
     focused && "sp-badge--focus",
     active && "sp-badge--active",
     disabled && "sp-badge--disabled",
-    loading && "sp-badge--loading"
+    loading && "sp-badge--loading",
+    fullWidth && "sp-badge--full"
   );
 }
