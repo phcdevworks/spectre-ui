@@ -152,14 +152,16 @@
 
     /* testimonial roles */
     --sp-component-testimonial-bg: var(--sp-surface-card);
+    --sp-component-testimonial-bg-hover: var(--sp-color-neutral-50);
     --sp-component-testimonial-border: var(--sp-color-neutral-200);
     --sp-component-testimonial-text: var(--sp-color-neutral-700);
     --sp-component-testimonial-author-name: var(--sp-color-neutral-900);
-    --sp-component-testimonial-author-title: var(--sp-color-neutral-500);
-    --sp-component-testimonial-quote-mark: var(--sp-color-neutral-500);
+    --sp-component-testimonial-author-title: var(--sp-color-neutral-600);
+    --sp-component-testimonial-quote-mark: var(--sp-color-neutral-600);
 
     /* pricing card roles */
     --sp-component-pricing-card-bg: var(--sp-surface-card);
+    --sp-component-pricing-card-bg-hover: var(--sp-color-neutral-50);
     --sp-component-pricing-card-border: var(--sp-color-neutral-200);
     --sp-component-pricing-card-featured-bg: var(--sp-color-info-600);
     --sp-component-pricing-card-featured-text: var(--sp-button-text-on-primary);
@@ -167,7 +169,7 @@
     --sp-component-pricing-card-featured-badge-text: var(--sp-color-neutral-900);
     --sp-component-pricing-card-price: var(--sp-color-neutral-900);
     --sp-component-pricing-card-featured-price: var(--sp-color-white);
-    --sp-component-pricing-card-price-description: var(--sp-color-neutral-500);
+    --sp-component-pricing-card-price-description: var(--sp-color-neutral-600);
 
     /* rating roles */
     --sp-component-rating-star-filled: var(--sp-color-warning-500);
@@ -180,7 +182,35 @@
 
   /* dark mode overrides mapped from Spectre token mode definitions */
   :where(:root[data-spectre-theme="dark"]) {
+    --sp-component-badge-success-bg: var(--sp-color-success-800);
+    --sp-component-badge-success-text: var(--sp-color-success-100);
+    --sp-component-badge-success-bg-hover: var(--sp-color-success-700);
+    --sp-component-badge-warning-bg: var(--sp-color-warning-800);
+    --sp-component-badge-warning-text: var(--sp-color-warning-100);
+    --sp-component-badge-warning-bg-hover: var(--sp-color-warning-700);
+    --sp-component-badge-danger-bg: var(--sp-color-error-800);
+    --sp-component-badge-danger-text: var(--sp-color-error-100);
+    --sp-component-badge-danger-bg-hover: var(--sp-color-error-700);
+    --sp-component-badge-neutral-bg: var(--sp-color-neutral-700);
+    --sp-component-badge-neutral-text: var(--sp-color-neutral-100);
+    --sp-component-badge-neutral-bg-hover: var(--sp-color-neutral-600);
+    --sp-component-badge-info-bg: var(--sp-color-info-800);
+    --sp-component-badge-info-text: var(--sp-color-info-100);
+    --sp-component-badge-info-bg-hover: var(--sp-color-info-700);
+
+    --sp-component-iconbox-primary-bg: var(--sp-color-neutral-800);
+    --sp-component-iconbox-primary-text: var(--sp-color-brand-400);
+    --sp-component-iconbox-success-bg: var(--sp-color-neutral-800);
+    --sp-component-iconbox-success-text: var(--sp-color-success-400);
+    --sp-component-iconbox-warning-bg: var(--sp-color-neutral-800);
+    --sp-component-iconbox-warning-text: var(--sp-color-warning-400);
+    --sp-component-iconbox-danger-bg: var(--sp-color-neutral-800);
+    --sp-component-iconbox-danger-text: var(--sp-color-error-400);
+    --sp-component-iconbox-info-bg: var(--sp-color-neutral-800);
+    --sp-component-iconbox-info-text: var(--sp-color-info-400);
+
     --sp-component-testimonial-bg: var(--sp-color-neutral-800);
+    --sp-component-testimonial-bg-hover: var(--sp-color-neutral-700);
     --sp-component-testimonial-border: var(--sp-color-neutral-700);
     --sp-component-testimonial-text: var(--sp-color-neutral-200);
     --sp-component-testimonial-author-name: var(--sp-color-neutral-100);
@@ -188,6 +218,7 @@
     --sp-component-testimonial-quote-mark: var(--sp-color-neutral-400);
 
     --sp-component-pricing-card-bg: var(--sp-color-neutral-800);
+    --sp-component-pricing-card-bg-hover: var(--sp-color-neutral-700);
     --sp-component-pricing-card-border: var(--sp-color-neutral-700);
     --sp-component-pricing-card-price: var(--sp-color-neutral-100);
     --sp-component-pricing-card-price-description: var(--sp-color-neutral-400);
@@ -1026,6 +1057,7 @@
   .sp-testimonial--interactive.is-hover {
     transform: translateY(calc(var(--sp-component-border-width) * -1));
     box-shadow: var(--sp-shadow-lg);
+    background-color: var(--sp-component-testimonial-bg-hover);
   }
 
   .sp-testimonial--interactive:active,
@@ -1132,6 +1164,7 @@
   .sp-pricing-card--interactive.is-hover {
     transform: translateY(calc(var(--sp-component-border-width) * -1));
     box-shadow: var(--sp-shadow-lg);
+    background-color: var(--sp-component-pricing-card-bg-hover);
   }
 
   .sp-pricing-card--featured.sp-pricing-card--interactive:hover,
