@@ -685,6 +685,10 @@
     white-space: nowrap;
   }
 
+  .sp-badge--full {
+    width: 100%;
+  }
+
   .sp-badge--sm {
     padding: var(--sp-component-badge-padding-y-sm) var(--sp-component-badge-padding-x-sm);
     font-size: var(--sp-font-xs-size);
