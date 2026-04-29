@@ -166,7 +166,7 @@ const ratingSelectors = collectSelectors([
     axes: {
       size: ['sm', 'md', 'lg'],
     },
-    booleans: ['disabled', 'loading', 'interactive', 'hovered', 'focused', 'active'],
+    booleans: ['disabled', 'loading', 'interactive', 'hovered', 'focused', 'active', 'fullWidth'],
     getClasses: getRatingClasses,
   }),
   getRatingStarsClasses(),
