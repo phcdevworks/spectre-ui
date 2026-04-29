@@ -22,6 +22,7 @@ export interface RatingRecipeOptions {
   focused?: boolean;
   active?: boolean;
   pill?: boolean;
+  fullWidth?: boolean;
 }
 
 export function getRatingClasses(opts: RatingRecipeOptions = {}): string {
@@ -34,6 +35,7 @@ export function getRatingClasses(opts: RatingRecipeOptions = {}): string {
     focused = false,
     active = false,
     pill = false,
+    fullWidth = false,
   } = opts;
 
   const size = resolveOption({
@@ -59,7 +61,8 @@ export function getRatingClasses(opts: RatingRecipeOptions = {}): string {
     hovered && "sp-rating--hover",
     focused && "sp-rating--focus",
     active && "sp-rating--active",
-    pill && "sp-rating--pill"
+    pill && "sp-rating--pill",
+    fullWidth && "sp-rating--full"
   );
 }
 
