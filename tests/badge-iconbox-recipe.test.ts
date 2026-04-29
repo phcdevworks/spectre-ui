@@ -27,6 +27,7 @@ describe('getBadgeClasses', () => {
       { variant: 'neutral' as const, className: 'sp-badge--neutral' },
       { variant: 'info' as const, className: 'sp-badge--info' },
       { variant: 'ghost' as const, className: 'sp-badge--ghost' },
+      { variant: 'accent' as const, className: 'sp-badge--accent' },
     ];
 
     variants.forEach(({ variant, className }) => {
