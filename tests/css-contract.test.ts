@@ -119,7 +119,7 @@ const inputSelectors = collectSelectors(
 const badgeSelectors = collectSelectors(
   buildRecipeOutputs({
     axes: {
-      variant: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral', 'info'],
+      variant: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral', 'info', 'ghost', 'accent'],
       size: ['sm', 'md', 'lg'],
     },
     booleans: ['interactive', 'hovered', 'focused', 'active', 'disabled', 'loading'],
@@ -241,6 +241,8 @@ const interactionStateContracts = [
       '.sp-badge--danger.sp-badge--interactive:hover',
       '.sp-badge--neutral.sp-badge--interactive:hover',
       '.sp-badge--info.sp-badge--interactive:hover',
+      '.sp-badge--ghost.sp-badge--interactive:hover',
+      '.sp-badge--accent.sp-badge--interactive:hover',
     ],
   },
   {
