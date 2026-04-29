@@ -109,6 +109,8 @@
     --sp-component-badge-info-text: var(--sp-badge-info-text);
     --sp-component-badge-ghost-bg: var(--sp-button-ghost-bg);
     --sp-component-badge-ghost-text: var(--sp-button-ghost-text);
+    --sp-component-badge-accent-bg: var(--sp-button-accent-bg);
+    --sp-component-badge-accent-text: var(--sp-button-accent-text);
 
     /* badge hover states derived from Spectre token semantics */
     --sp-component-badge-primary-bg-hover: var(--sp-button-primary-bghover);
@@ -119,6 +121,7 @@
     --sp-component-badge-neutral-bg-hover: var(--sp-color-neutral-200);
     --sp-component-badge-info-bg-hover: var(--sp-color-info-200);
     --sp-component-badge-ghost-bg-hover: var(--sp-button-ghost-bghover);
+    --sp-component-badge-accent-bg-hover: var(--sp-button-accent-bghover);
 
     --sp-component-badge-padding-x-sm: var(--sp-space-8);
     --sp-component-badge-padding-x-md: var(--sp-space-12);
@@ -825,6 +828,17 @@
   .sp-badge--ghost.sp-badge--interactive.sp-badge--hover,
   .sp-badge--ghost.sp-badge--interactive.is-hover {
     background-color: var(--sp-component-badge-ghost-bg-hover);
+  }
+
+  .sp-badge--accent {
+    background-color: var(--sp-component-badge-accent-bg);
+    color: var(--sp-component-badge-accent-text);
+  }
+
+  .sp-badge--accent.sp-badge--interactive:hover,
+  .sp-badge--accent.sp-badge--interactive.sp-badge--hover,
+  .sp-badge--accent.sp-badge--interactive.is-hover {
+    background-color: var(--sp-component-badge-accent-bg-hover);
   }
 
   .sp-badge--interactive {

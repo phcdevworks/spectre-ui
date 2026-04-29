@@ -49,7 +49,7 @@
     },
     "badge": {
       "fn": "getBadgeClasses",
-      "variants": ["primary", "secondary", "success", "warning", "danger", "neutral", "info", "ghost"],
+      "variants": ["primary", "secondary", "success", "warning", "danger", "neutral", "info", "ghost", "accent"],
       "sizes": ["sm", "md", "lg"]
     },
     "card": {
