@@ -1265,6 +1265,10 @@
     font-size: var(--sp-component-rating-size-lg);
   }
 
+  .sp-rating--full {
+    width: 100%;
+  }
+
   .sp-rating--pill {
     border-radius: var(--sp-radius-pill);
   }
