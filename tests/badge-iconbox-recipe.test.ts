@@ -86,6 +86,7 @@ describe('getIconBoxClasses', () => {
       { variant: 'info' as const, className: 'sp-iconbox--info' },
       { variant: 'neutral' as const, className: 'sp-iconbox--neutral' },
       { variant: 'ghost' as const, className: 'sp-iconbox--ghost' },
+      { variant: 'accent' as const, className: 'sp-iconbox--accent' },
     ];
 
     variants.forEach(({ variant, className }) => {
