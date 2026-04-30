@@ -63,7 +63,7 @@
     },
     "iconbox": {
       "fn": "getIconBoxClasses",
-      "variants": ["primary", "secondary", "success", "warning", "danger", "info", "neutral", "ghost"],
+      "variants": ["primary", "secondary", "success", "warning", "danger", "info", "neutral", "ghost", "accent"],
       "sizes": ["sm", "md", "lg"]
     },
     "pricingCard": {
