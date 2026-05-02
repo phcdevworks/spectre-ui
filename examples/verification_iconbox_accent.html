@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IconBox Accent Verification</title>
+    <link rel="stylesheet" href="../dist/index.css" />
+    <style>
+      body {
+        padding: var(--sp-space-64);
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-space-32);
+        background-color: var(--sp-surface-page);
+        color: var(--sp-color-neutral-900);
+      }
+      .container {
+        display: flex;
+        gap: var(--sp-space-16);
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>IconBox Accent Variant Verification</h1>
+
+    <div class="container">
+      <h3>Light Mode:</h3>
+      <span class="sp-iconbox sp-iconbox--accent sp-iconbox--lg" id="iconbox-accent">
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></i>
+      </span>
+      <span>Accent Variant</span>
+    </div>
+
+    <div class="container">
+      <h3>Compare with Primary:</h3>
+      <span class="sp-iconbox sp-iconbox--primary sp-iconbox--lg">
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></i>
+      </span>
+      <span>Primary Variant</span>
+    </div>
+
+    <div id="dark-zone" data-spectre-theme="dark" style="background-color: var(--sp-color-neutral-800); padding: var(--sp-space-32); border-radius: var(--sp-radius-lg);">
+      <h3 style="color: white;">Dark Mode (via data-spectre-theme="dark"):</h3>
+      <div class="container">
+        <span class="sp-iconbox sp-iconbox--accent sp-iconbox--lg">
+          <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></i>
+        </span>
+        <span style="color: white;">Accent Variant (Dark)</span>
+      </div>
+    </div>
+
+    <script>
+      // Force a small delay to ensure styles are loaded if needed
+    </script>
+  </body>
+</html>
