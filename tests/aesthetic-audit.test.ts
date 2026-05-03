@@ -152,6 +152,8 @@ const SEMANTIC_ROLE_ASSERTIONS: SemanticRoleAssertion[] = [
   { name: 'Icon Box Neutral Text', property: '--sp-component-iconbox-neutral-text', expected: 'var(--sp-badge-neutral-text)', requiresContrast: true },
   { name: 'Icon Box Secondary Background', property: '--sp-component-iconbox-secondary-bg', expected: 'var(--sp-button-secondary-bg)', requiresContrast: true },
   { name: 'Icon Box Secondary Text', property: '--sp-component-iconbox-secondary-text', expected: 'var(--sp-button-secondary-text)', requiresContrast: true },
+  { name: 'Icon Box Accent Background', property: '--sp-component-iconbox-accent-bg', expected: 'var(--sp-button-accent-bg)', requiresContrast: true },
+  { name: 'Icon Box Accent Text', property: '--sp-component-iconbox-accent-text', expected: 'var(--sp-button-accent-text)', requiresContrast: true },
 
   { name: 'Testimonial Background', property: '--sp-component-testimonial-bg', expected: 'var(--sp-surface-card)', requiresContrast: true },
   { name: 'Testimonial Text', property: '--sp-component-testimonial-text', expected: 'var(--sp-color-neutral-700)', requiresContrast: true },
@@ -196,6 +198,7 @@ const CONTRAST_ROLE_PAIRS: ContrastRolePair[] = [
   { name: 'Icon Box Info', backgroundProperty: '--sp-component-iconbox-info-bg', foregroundProperty: '--sp-component-iconbox-info-text', minContrast: 3 },
   { name: 'Icon Box Neutral', backgroundProperty: '--sp-component-iconbox-neutral-bg', foregroundProperty: '--sp-component-iconbox-neutral-text', minContrast: 4.5 },
   { name: 'Icon Box Secondary', backgroundProperty: '--sp-component-iconbox-secondary-bg', foregroundProperty: '--sp-component-iconbox-secondary-text', minContrast: 4.5 },
+  { name: 'Icon Box Accent', backgroundProperty: '--sp-component-iconbox-accent-bg', foregroundProperty: '--sp-component-iconbox-accent-text', minContrast: 4.5 },
 
   { name: 'Testimonial Quote', backgroundProperty: '--sp-component-testimonial-bg', foregroundProperty: '--sp-component-testimonial-text', minContrast: 4.5 },
   { name: 'Testimonial Author Name', backgroundProperty: '--sp-component-testimonial-bg', foregroundProperty: '--sp-component-testimonial-author-name', minContrast: 4.5 },
