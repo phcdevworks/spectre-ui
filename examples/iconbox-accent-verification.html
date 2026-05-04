@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IconBox Accent Verification</title>
+    <link rel="stylesheet" href="../dist/index.css" />
+    <style>
+      body {
+        padding: 48px;
+        background-color: var(--sp-surface-page);
+        color: var(--sp-text-on-page-default);
+        font-family: var(--sp-font-family-sans);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 32px;
+      }
+      .section {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 24px;
+        background: var(--sp-surface-card);
+        border: 1px solid var(--sp-color-neutral-200);
+        border-radius: var(--sp-radius-lg);
+      }
+      h2 {
+        margin: 0;
+        font-size: var(--sp-font-lg-size);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>IconBox Accent Verification</h1>
+    <div class="grid">
+      <section class="section">
+        <h2>Accent Variant</h2>
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <div class="sp-iconbox sp-iconbox--accent sp-iconbox--sm">
+            <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></i>
+          </div>
+          <div class="sp-iconbox sp-iconbox--accent sp-iconbox--md">
+            <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></i>
+          </div>
+          <div class="sp-iconbox sp-iconbox--accent sp-iconbox--lg">
+            <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></i>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Interactive Accent</h2>
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <div class="sp-iconbox sp-iconbox--accent sp-iconbox--md sp-iconbox--interactive" id="hover-target">
+            <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></i>
+          </div>
+          <div class="sp-iconbox sp-iconbox--accent sp-iconbox--md sp-iconbox--pill sp-iconbox--interactive">
+            <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></i>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
