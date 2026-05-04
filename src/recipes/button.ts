@@ -20,10 +20,6 @@ const BUTTON_SIZES = {
 export type ButtonVariant = keyof typeof BUTTON_VARIANTS;
 export type ButtonSize = keyof typeof BUTTON_SIZES;
 
-/**
- * Generate classes for the Button component.
- * @sync v2.x - Synced with latest design tokens, including CTA variants.
- */
 export interface ButtonRecipeOptions {
   variant?: ButtonVariant;
   size?: ButtonSize;

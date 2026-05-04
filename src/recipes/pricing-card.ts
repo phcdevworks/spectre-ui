@@ -1,9 +1,5 @@
 import { cx } from "../internal/cx";
 
-/**
- * Generate classes for the PricingCard component.
- * @sync v2.x - Synced with latest design tokens.
- */
 export interface PricingCardRecipeOptions {
   featured?: boolean;
   disabled?: boolean;

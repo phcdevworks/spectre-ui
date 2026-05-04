@@ -35,6 +35,7 @@
   "InputState",
   "PricingCardRecipeOptions",
   "RatingRecipeOptions",
+  "RatingSize",
   "spectreBaseStylesPath",
   "spectreComponentsStylesPath",
   "spectreIndexStylesPath",

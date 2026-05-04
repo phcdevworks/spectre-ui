@@ -9,10 +9,6 @@ const RATING_SIZES = {
 
 export type RatingSize = keyof typeof RATING_SIZES;
 
-/**
- * Generate classes for the Rating component.
- * @sync v2.x - Synced with latest design tokens.
- */
 export interface RatingRecipeOptions {
   size?: RatingSize;
   disabled?: boolean;
