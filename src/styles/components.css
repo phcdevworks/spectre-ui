@@ -187,20 +187,11 @@
 
   /* dark mode overrides mapped from Spectre token mode definitions */
   :where(:root[data-spectre-theme="dark"]) {
-    --sp-component-badge-success-bg: var(--sp-color-success-800);
-    --sp-component-badge-success-text: var(--sp-color-success-100);
+    /* badge hover states remain manual as they are not currently exported as tokens */
     --sp-component-badge-success-bg-hover: var(--sp-color-success-700);
-    --sp-component-badge-warning-bg: var(--sp-color-warning-800);
-    --sp-component-badge-warning-text: var(--sp-color-warning-100);
-    --sp-component-badge-warning-bg-hover: var(--sp-color-warning-700);
-    --sp-component-badge-danger-bg: var(--sp-color-error-800);
-    --sp-component-badge-danger-text: var(--sp-color-error-100);
+    --sp-component-badge-warning-bg-hover: var(--sp-color-warning-800);
     --sp-component-badge-danger-bg-hover: var(--sp-color-error-700);
-    --sp-component-badge-neutral-bg: var(--sp-color-neutral-700);
-    --sp-component-badge-neutral-text: var(--sp-color-neutral-100);
     --sp-component-badge-neutral-bg-hover: var(--sp-color-neutral-600);
-    --sp-component-badge-info-bg: var(--sp-color-info-800);
-    --sp-component-badge-info-text: var(--sp-color-info-100);
     --sp-component-badge-info-bg-hover: var(--sp-color-info-700);
 
     --sp-component-iconbox-primary-bg: var(--sp-color-neutral-800);
@@ -219,14 +210,14 @@
     --sp-component-testimonial-border: var(--sp-color-neutral-700);
     --sp-component-testimonial-text: var(--sp-color-neutral-200);
     --sp-component-testimonial-author-name: var(--sp-color-neutral-100);
-    --sp-component-testimonial-author-title: var(--sp-color-neutral-400);
-    --sp-component-testimonial-quote-mark: var(--sp-color-neutral-400);
+    --sp-component-testimonial-author-title: var(--sp-color-neutral-300);
+    --sp-component-testimonial-quote-mark: var(--sp-color-neutral-300);
 
     --sp-component-pricing-card-bg: var(--sp-color-neutral-800);
     --sp-component-pricing-card-bg-hover: var(--sp-color-neutral-700);
     --sp-component-pricing-card-border: var(--sp-color-neutral-700);
     --sp-component-pricing-card-price: var(--sp-color-neutral-100);
-    --sp-component-pricing-card-price-description: var(--sp-color-neutral-400);
+    --sp-component-pricing-card-price-description: var(--sp-color-neutral-300);
 
     --sp-component-rating-star-filled: var(--sp-color-warning-400);
     --sp-component-rating-star-empty: var(--sp-color-neutral-700);
