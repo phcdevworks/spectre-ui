@@ -130,7 +130,7 @@ const badgeSelectors = collectSelectors(
 const iconBoxSelectors = collectSelectors(
   buildRecipeOutputs({
     axes: {
-      variant: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'neutral', 'ghost'],
+      variant: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'neutral', 'ghost', 'accent'],
       size: ['sm', 'md', 'lg'],
     },
     booleans: ['disabled', 'loading', 'interactive', 'hovered', 'focused', 'active', 'pill'],
