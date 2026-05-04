@@ -63,7 +63,6 @@ export function getInputClasses(opts: InputRecipeOptions = {}): string {
   };
   const sizeClass = sizeMap[size];
 
-  // State
   return cx(
     "sp-input",
     sizeClass,

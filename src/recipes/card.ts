@@ -12,8 +12,8 @@ export type CardVariant = keyof typeof CARD_VARIANTS;
 
 export interface CardRecipeOptions {
   variant?: CardVariant;
-  interactive?: boolean; // hover/focus styles
-  padded?: boolean;      // apply default padding
+  interactive?: boolean;
+  padded?: boolean;
   fullHeight?: boolean;
   disabled?: boolean;
   loading?: boolean;

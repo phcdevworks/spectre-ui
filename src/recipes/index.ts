@@ -48,5 +48,6 @@ export {
   getRatingStarClasses,
   getRatingStarsClasses,
   getRatingTextClasses,
-  type RatingRecipeOptions
+  type RatingRecipeOptions,
+  type RatingSize
 } from "./rating";

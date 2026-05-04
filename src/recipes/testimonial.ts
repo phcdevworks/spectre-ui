@@ -1,9 +1,5 @@
 import { cx } from "../internal/cx";
 
-/**
- * Generate classes for the Testimonial component.
- * @sync v2.x - Synced with latest design tokens.
- */
 export interface TestimonialRecipeOptions {
   disabled?: boolean;
   loading?: boolean;

@@ -22,10 +22,6 @@ const BADGE_SIZES = {
 export type BadgeVariant = keyof typeof BADGE_VARIANTS;
 export type BadgeSize = keyof typeof BADGE_SIZES;
 
-/**
- * Generate classes for the Badge component.
- * @sync v2.x - Synced with latest design tokens, including hover states.
- */
 export interface BadgeRecipeOptions {
   variant?: BadgeVariant;
   size?: BadgeSize;
