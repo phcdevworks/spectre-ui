@@ -6,6 +6,39 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-05-04
+
+Release Title: Token Alignment and Variant Parity
+
+### Added
+
+- **Badge Variants**: Added `accent` variant support and `fullWidth`
+  structural support across the Badge recipe and component CSS contract.
+- **IconBox Variants**: Added `accent` variant support mapped directly to
+  upstream button accent token intent.
+- **Rating Variants**: Added `pill` and `fullWidth` recipe support, plus the
+  public `RatingSize` type export.
+- **Verification Examples**: Added IconBox accent verification fixtures for
+  local visual contract checks.
+
+### Changed
+
+- **Token Alignment**: Synchronized component roles with current published
+  `@phcdevworks/spectre-tokens` package metadata through `^2.5.0`.
+- **Dark Mode Roles**: Refined dark-mode Badge, IconBox, PricingCard, and
+  Testimonial role mappings using existing Spectre token values.
+- **Contract Coverage**: Expanded recipe, CSS contract, entrypoint, and
+  aesthetic audit coverage for the new variants and token-role mappings.
+- **Dependencies**: Updated Spectre tokens, ESLint, PostCSS,
+  TypeScript ESLint, and related lockfile metadata.
+
+### Fixed
+
+- **Recipe Exports**: Updated the export snapshot and root recipe barrel to keep
+  the public type inventory aligned with source exports.
+- **CSS Contract**: Increased the component entrypoint size budget to account
+  for the added token-backed variant selectors.
+
 ## [1.4.0] - 2026-04-25
 
 Release Title: Contract Manifest and Variant Parity
@@ -376,7 +409,8 @@ Release Title: Initial Blueprint Release
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe
   helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/1.4.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/1.5.0...HEAD
+[1.5.0]: https://github.com/phcdevworks/spectre-ui/compare/1.4.0...1.5.0
 [1.4.0]: https://github.com/phcdevworks/spectre-ui/compare/1.3.0...1.4.0
 [1.3.0]: https://github.com/phcdevworks/spectre-ui/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/phcdevworks/spectre-ui/compare/1.1.2...1.2.0
