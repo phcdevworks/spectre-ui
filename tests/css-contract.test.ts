@@ -8,6 +8,10 @@ import {
   getCardClasses,
   getIconBoxClasses,
   getInputClasses,
+  getInputWrapperClasses,
+  getInputLabelClasses,
+  getInputHelperTextClasses,
+  getInputErrorMessageClasses,
   getPricingCardBadgeClasses,
   getPricingCardClasses,
   getPricingCardDescriptionClasses,
@@ -105,8 +109,8 @@ const cardSelectors = collectSelectors(
   }),
 );
 
-const inputSelectors = collectSelectors(
-  buildRecipeOutputs({
+const inputSelectors = collectSelectors([
+  ...buildRecipeOutputs({
     axes: {
       state: ['default', 'error', 'success', 'disabled', 'loading'],
       size: ['sm', 'md', 'lg'],
@@ -114,7 +118,13 @@ const inputSelectors = collectSelectors(
     booleans: ['fullWidth', 'pill', 'focused', 'hovered'],
     getClasses: getInputClasses,
   }),
-);
+  getInputWrapperClasses(),
+  getInputLabelClasses(),
+  getInputLabelClasses({ disabled: true }),
+  getInputHelperTextClasses(),
+  getInputHelperTextClasses({ disabled: true }),
+  getInputErrorMessageClasses(),
+]);
 
 const badgeSelectors = collectSelectors(
   buildRecipeOutputs({
