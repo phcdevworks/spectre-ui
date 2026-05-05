@@ -11,6 +11,10 @@ export {
 
 export {
   getInputClasses,
+  getInputWrapperClasses,
+  getInputLabelClasses,
+  getInputHelperTextClasses,
+  getInputErrorMessageClasses,
   type InputRecipeOptions, type InputSize, type InputState
 } from "./input";
 

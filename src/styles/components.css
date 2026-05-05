@@ -492,10 +492,18 @@
     line-height: var(--sp-font-sm-line-height);
   }
 
+  .sp-label--disabled {
+    color: var(--sp-component-input-role-text-disabled);
+  }
+
   .sp-helper-text {
     color: var(--sp-text-on-surface-meta);
     font-size: var(--sp-font-xs-size);
     line-height: var(--sp-font-xs-line-height);
+  }
+
+  .sp-helper-text--disabled {
+    opacity: var(--sp-opacity-disabled);
   }
 
   .sp-error-message {

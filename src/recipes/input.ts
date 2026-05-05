@@ -78,3 +78,27 @@ export function getInputClasses(opts: InputRecipeOptions = {}): string {
     pill && "sp-input--pill",
   );
 }
+
+export function getInputWrapperClasses(): string {
+  return cx("sp-input-wrapper");
+}
+
+export function getInputLabelClasses(opts: { disabled?: boolean } = {}): string {
+  const { disabled = false } = opts;
+  return cx(
+    "sp-label",
+    disabled && "sp-label--disabled"
+  );
+}
+
+export function getInputHelperTextClasses(opts: { disabled?: boolean } = {}): string {
+  const { disabled = false } = opts;
+  return cx(
+    "sp-helper-text",
+    disabled && "sp-helper-text--disabled"
+  );
+}
+
+export function getInputErrorMessageClasses(): string {
+  return cx("sp-error-message");
+}
