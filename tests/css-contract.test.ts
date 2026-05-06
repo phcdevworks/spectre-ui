@@ -243,7 +243,10 @@ const interactionStateContracts = [
     name: 'badge variants',
     selectors: [
       '.sp-badge--interactive:focus-visible',
+      '.sp-badge:disabled',
+      '.sp-badge[aria-disabled="true"]',
       '.sp-badge--disabled',
+      '.sp-badge[aria-busy="true"]',
       '.sp-badge--primary.sp-badge--interactive:hover',
       '.sp-badge--secondary.sp-badge--interactive:hover',
       '.sp-badge--success.sp-badge--interactive:hover',

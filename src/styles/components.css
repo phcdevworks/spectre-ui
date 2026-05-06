@@ -865,12 +865,15 @@
     box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
   }
 
+  .sp-badge:disabled,
+  .sp-badge[aria-disabled="true"],
   .sp-badge--disabled {
     opacity: var(--sp-opacity-disabled);
     pointer-events: none;
   }
 
-  .sp-badge--loading {
+  .sp-badge--loading,
+  .sp-badge[aria-busy="true"] {
     opacity: var(--sp-opacity-active);
     pointer-events: none;
   }
