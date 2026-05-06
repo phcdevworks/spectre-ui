@@ -38,12 +38,12 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
   const {
     variant: variantInput,
     size: sizeInput,
-    interactive,
-    hovered,
-    focused,
-    active,
-    disabled,
-    loading,
+    interactive = false,
+    hovered = false,
+    focused = false,
+    active = false,
+    disabled = false,
+    loading = false,
     fullWidth = false,
   } = opts;
 
