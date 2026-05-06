@@ -2,17 +2,29 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
+interface UiContractManifest {
+  cssEntrypoints?: string[];
+  [key: string]: unknown;
+}
+
+interface PackageJson {
+  exports?: Record<string, string | Record<string, string>>;
+  [key: string]: unknown;
+}
+
 const projectRoot = path.resolve(import.meta.dirname, '..');
 const packageJsonPath = path.join(projectRoot, 'package.json');
 const manifestPath = path.join(projectRoot, 'ui-contract.manifest.json');
 const distDir = path.join(projectRoot, 'dist');
 
-const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8')) as PackageJson;
+const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8')) as UiContractManifest;
 const exportEntries = Object.entries(packageJson.exports ?? {});
 
-const cssExportMap = new Map(
-  exportEntries.filter(([exportKey, exportValue]) => exportKey.endsWith('.css') && typeof exportValue === 'string'),
+const cssExportMap = new Map<string, string>(
+  exportEntries
+    .filter(([exportKey, exportValue]) => exportKey.endsWith('.css') && typeof exportValue === 'string')
+    .map(([k, v]) => [k, v as string]),
 );
 
 if (cssExportMap.size === 0) {
@@ -20,9 +32,8 @@ if (cssExportMap.size === 0) {
   process.exit(1);
 }
 
-// Cross-check manifest CSS entrypoints against package.json
-const manifestEntrypoints = new Set(manifest.cssEntrypoints ?? []);
-const packageEntrypoints = new Set(
+const manifestEntrypoints = new Set<string>(manifest.cssEntrypoints ?? []);
+const packageEntrypoints = new Set<string>(
   Array.from(cssExportMap.keys()).map((k) => `@phcdevworks/spectre-ui${k.slice(1)}`),
 );
 
