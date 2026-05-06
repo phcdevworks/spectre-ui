@@ -35,7 +35,7 @@ structure, adapters define delivery.
 
 ### Node.js version
 
-This repository requires Node.js `^22.12.0` or `>=24.0.0` as declared in
+This repository requires Node.js `^22.13.0` or `>=24.0.0` as declared in
 `package.json`. `validate:runtime` will fail immediately on anything outside
 that range. Use the version pinned in `.nvmrc` locally — `nvm use` picks it up
 automatically.
