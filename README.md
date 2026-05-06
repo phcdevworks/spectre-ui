@@ -191,7 +191,7 @@ npm install
 npm run ci:verify
 ```
 
-This project expects Node.js `^22.12.0 || >=24.0.0` and npm `11.13.0`.
+This project expects Node.js `^22.13.0 || >=24.0.0` and npm `11.13.0`.
 
 Planning artifacts for contract hardening live in:
 
