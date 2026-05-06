@@ -70,7 +70,7 @@
   ],
   "scripts": {
     "build": "tsup --config tsup.config.ts && npm run build:css",
-    "build:css": "node ./scripts/build-css.mjs",
+    "build:css": "node --experimental-strip-types ./scripts/build-css.ts",
     "ci:verify": "npm run validate:runtime && npm run lint && npm run validate:exports && npm run validate:readme && npm run validate:tokens && npm run build && npm run validate:tailwind && npm run validate:css-contract && npm test",
     "dev": "tsup --config tsup.config.ts --watch",
     "clean": "rm -rf dist",
@@ -78,14 +78,14 @@
     "pretest": "npm run build",
     "format": "prettier --write .",
     "test": "vitest run",
-    "validate:css-contract": "node ./scripts/validate-css-contract.mjs",
-    "validate:exports": "node ./scripts/validate-exports.mjs",
-    "validate:exports:update": "node ./scripts/validate-exports.mjs --update",
-    "validate:runtime": "node ./scripts/validate-runtime.mjs",
-    "validate:tailwind": "node ./scripts/validate-tailwind-contract.mjs",
-    "validate:tailwind:update": "node ./scripts/validate-tailwind-contract.mjs --update",
-    "validate:readme": "node ./scripts/validate-readme-contract.mjs",
-    "validate:tokens": "node ./scripts/validate-tokens.mjs"
+    "validate:css-contract": "node --experimental-strip-types ./scripts/validate-css-contract.ts",
+    "validate:exports": "node --experimental-strip-types ./scripts/validate-exports.ts",
+    "validate:exports:update": "node --experimental-strip-types ./scripts/validate-exports.ts --update",
+    "validate:runtime": "node --experimental-strip-types ./scripts/validate-runtime.ts",
+    "validate:tailwind": "node --experimental-strip-types ./scripts/validate-tailwind-contract.ts",
+    "validate:tailwind:update": "node --experimental-strip-types ./scripts/validate-tailwind-contract.ts --update",
+    "validate:readme": "node --experimental-strip-types ./scripts/validate-readme-contract.ts",
+    "validate:tokens": "node --experimental-strip-types ./scripts/validate-tokens.ts"
   },
   "publishConfig": {
     "access": "public"

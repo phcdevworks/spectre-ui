@@ -1,11 +1,9 @@
 import process from 'node:process';
 
 const version = process.versions.node;
-const [major, minor] = version.split('.').map(Number);
+const [major, minor] = version.split('.').map(Number) as [number, number, number];
 
-const supported =
-  (major === 22 && minor >= 12) ||
-  major >= 24;
+const supported = (major === 22 && minor >= 12) || major >= 24;
 
 if (!supported) {
   console.error(

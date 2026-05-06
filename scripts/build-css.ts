@@ -12,11 +12,11 @@ const require = createRequire(import.meta.url);
 const processor = postcss([
   postcssImport({
     path: [path.join(rootDir, 'node_modules')],
-    resolve: (id, basedir) => require.resolve(id, { paths: [basedir] }),
+    resolve: (id: string, basedir: string) => require.resolve(id, { paths: [basedir] }),
   }),
 ]);
 
-const entries = {
+const entries: Record<string, string> = {
   'index.css': '@import "./src/styles/index.css";\n',
   'base.css': [
     '@import "@phcdevworks/spectre-tokens/index.css";',

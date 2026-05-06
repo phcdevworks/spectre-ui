@@ -3,14 +3,30 @@ import path from 'node:path';
 import process from 'node:process';
 import { spawnSync } from 'node:child_process';
 
+interface PackageJson {
+  version: string;
+  dependencies?: Record<string, string>;
+  [key: string]: unknown;
+}
+
+interface LockfilePackages {
+  version?: string;
+  [key: string]: unknown;
+}
+
+interface Lockfile {
+  packages?: Record<string, LockfilePackages>;
+  [key: string]: unknown;
+}
+
 const projectRoot = path.resolve(import.meta.dirname, '..');
 const lockfilePath = path.join(projectRoot, 'package-lock.json');
 const packageJsonPath = path.join(projectRoot, 'package.json');
 const packageName = '@phcdevworks/spectre-tokens';
 
-const readJson = (filePath) => JSON.parse(fs.readFileSync(filePath, 'utf8'));
-const lockfile = readJson(lockfilePath);
-const packageJson = readJson(packageJsonPath);
+const readJson = <T>(filePath: string): T => JSON.parse(fs.readFileSync(filePath, 'utf8')) as T;
+const lockfile = readJson<Lockfile>(lockfilePath);
+const packageJson = readJson<PackageJson>(packageJsonPath);
 
 const lockedVersion = lockfile.packages?.[`node_modules/${packageName}`]?.version;
 const declaredRange = packageJson.dependencies?.[packageName];
@@ -20,26 +36,20 @@ if (!lockedVersion || !declaredRange) {
   process.exit(1);
 }
 
-const parseSemver = (value) => {
+const parseSemver = (value: string): [number, number, number] => {
   const match = /^(\d+)\.(\d+)\.(\d+)$/.exec(value);
   if (!match) {
     throw new Error(`Unsupported semver value: ${value}`);
   }
-
-  return match.slice(1).map((part) => Number(part));
+  return match.slice(1).map(Number) as [number, number, number];
 };
 
-const compareSemver = (left, right) => {
+const compareSemver = (left: string, right: string): number => {
   const [leftMajor, leftMinor, leftPatch] = parseSemver(left);
   const [rightMajor, rightMinor, rightPatch] = parseSemver(right);
 
-  if (leftMajor !== rightMajor) {
-    return leftMajor - rightMajor;
-  }
-  if (leftMinor !== rightMinor) {
-    return leftMinor - rightMinor;
-  }
-
+  if (leftMajor !== rightMajor) return leftMajor - rightMajor;
+  if (leftMinor !== rightMinor) return leftMinor - rightMinor;
   return leftPatch - rightPatch;
 };
 
@@ -84,7 +94,7 @@ try {
     process.exit(0);
   }
 
-  const latestPackageJson = readJson(
+  const latestPackageJson = readJson<PackageJson>(
     path.join(tempDir, 'node_modules', '@phcdevworks', 'spectre-tokens', 'package.json'),
   );
   const latestVersion = latestPackageJson.version;

@@ -10,9 +10,9 @@ const shouldUpdate = process.argv.includes('--update');
 const exportBlockRegex = /export\s*\{([\s\S]*?)\}\s*from\s*['"](.+?)['"];?/g;
 const exportAllRegex = /export\s+\*\s+from\s+['"](.+?)['"];?/g;
 
-const visitedFiles = new Set();
+const visitedFiles = new Set<string>();
 
-const resolveImportPath = (fromFile, specifier) => {
+const resolveImportPath = (fromFile: string, specifier: string): string => {
   if (!specifier.startsWith('.')) {
     throw new Error(`Unsupported non-relative export in ${fromFile}: ${specifier}`);
   }
@@ -34,7 +34,7 @@ const resolveImportPath = (fromFile, specifier) => {
   return resolved;
 };
 
-const parseExportSpecifiers = (block) =>
+const parseExportSpecifiers = (block: string): string[] =>
   block
     .split(',')
     .map((part) => part.trim())
@@ -43,26 +43,28 @@ const parseExportSpecifiers = (block) =>
     .map((part) => part.split(/\s+as\s+/).at(-1)?.trim() ?? '')
     .filter(Boolean);
 
-const collectExports = (filePath) => {
+const collectExports = (filePath: string): Set<string> => {
   if (visitedFiles.has(filePath)) {
     return new Set();
   }
 
   visitedFiles.add(filePath);
   const source = fs.readFileSync(filePath, 'utf8');
-  const names = new Set();
+  const names = new Set<string>();
 
   for (const match of source.matchAll(exportBlockRegex)) {
     const [, block, specifier] = match;
-    if (specifier) {
+    if (specifier && block) {
       parseExportSpecifiers(block).forEach((name) => names.add(name));
     }
   }
 
   for (const match of source.matchAll(exportAllRegex)) {
     const [, specifier] = match;
-    const nestedPath = resolveImportPath(filePath, specifier);
-    collectExports(nestedPath).forEach((name) => names.add(name));
+    if (specifier) {
+      const nestedPath = resolveImportPath(filePath, specifier);
+      collectExports(nestedPath).forEach((name) => names.add(name));
+    }
   }
 
   return names;
@@ -77,7 +79,7 @@ if (shouldUpdate) {
   process.exit(0);
 }
 
-const expectedExports = JSON.parse(fs.readFileSync(snapshotFile, 'utf8'));
+const expectedExports = JSON.parse(fs.readFileSync(snapshotFile, 'utf8')) as string[];
 const expectedSerialized = `${JSON.stringify(expectedExports, null, 2)}\n`;
 
 if (serialized !== expectedSerialized) {

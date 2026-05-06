@@ -99,19 +99,19 @@ Golden rule: consume tokens, do not redefine them.
 
 ## What this package does not own
 
-- Design values or semantic meaning That belongs to
+- Design values or semantic meaning. That belongs to
   `@phcdevworks/spectre-tokens`.
-- Framework-specific component delivery Adapters and apps consume
+- Framework-specific component delivery. Adapters and apps consume
   `@phcdevworks/spectre-ui`; they do not recreate its styling logic.
-- Local visual values outside the token contract Hardcoded hex, spacing, or
+- Local visual values outside the token contract. Hardcoded hex, spacing, or
   shadow values are drift unless clearly intentional and documented.
 
 ## Package exports / API surface
 
 ### Root package
 
-The root package exports CSS path constants plus the recipe functions re-exported
-from `src/recipes/index.ts`.
+The root package exports CSS path constants plus the recipe functions
+re-exported from `src/recipes/index.ts`.
 
 Root constants:
 
@@ -134,6 +134,10 @@ Root recipe functions:
 
 Root recipe helper functions:
 
+- `getInputErrorMessageClasses`
+- `getInputHelperTextClasses`
+- `getInputLabelClasses`
+- `getInputWrapperClasses`
 - `getPricingCardBadgeClasses`
 - `getPricingCardDescriptionClasses`
 - `getPricingCardPriceClasses`
@@ -182,7 +186,12 @@ implementation drift.
 
 Install dependencies, then run the package verification flow:
 
-    npm run ci:verify
+```bash
+npm install
+npm run ci:verify
+```
+
+This project expects Node.js `^22.12.0 || >=24.0.0` and npm `11.13.0`.
 
 Planning artifacts for contract hardening live in:
 
