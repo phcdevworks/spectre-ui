@@ -1,4 +1,4 @@
-name: Validation
+name: CI
 
 on:
   pull_request:
@@ -11,8 +11,13 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate:
+    name: Node ${{ matrix.node-version }}
     runs-on: ubuntu-latest
     env:
       TMPDIR: /tmp
@@ -20,18 +25,25 @@ jobs:
       TEMP: /tmp
       npm_config_cache: /tmp/.npm
 
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version:
+          - 22.12.0
+          - 24.x
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version-file: .nvmrc
+          node-version: ${{ matrix.node-version }}
           cache: npm
 
       - name: Install dependencies
-        run: npm run validate:runtime && npm ci
+        run: npm ci
 
       - name: Run validation suite
         run: npm run ci:verify
