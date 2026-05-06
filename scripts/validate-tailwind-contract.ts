@@ -8,14 +8,12 @@ const snapshotFile = path.join(projectRoot, 'scripts', 'tailwind-export-snapshot
 const distDir = path.join(projectRoot, 'dist', 'tailwind');
 const shouldUpdate = process.argv.includes('--update');
 
-// --- Export surface validation (mirrors validate-exports.mjs for the ./tailwind subpath) ---
-
 const exportBlockRegex = /export\s*\{([\s\S]*?)\}\s*from\s*['"](.+?)['"];?/g;
 const exportAllRegex = /export\s+\*\s+from\s+['"](.+?)['"];?/g;
 
-const visitedFiles = new Set();
+const visitedFiles = new Set<string>();
 
-const resolveImportPath = (fromFile, specifier) => {
+const resolveImportPath = (fromFile: string, specifier: string): string => {
   if (!specifier.startsWith('.')) {
     throw new Error(`Unsupported non-relative export in ${fromFile}: ${specifier}`);
   }
@@ -34,7 +32,7 @@ const resolveImportPath = (fromFile, specifier) => {
   return resolved;
 };
 
-const parseExportSpecifiers = (block) =>
+const parseExportSpecifiers = (block: string): string[] =>
   block
     .split(',')
     .map((part) => part.trim())
@@ -43,18 +41,18 @@ const parseExportSpecifiers = (block) =>
     .map((part) => part.split(/\s+as\s+/).at(-1)?.trim() ?? '')
     .filter(Boolean);
 
-const collectExports = (filePath) => {
+const collectExports = (filePath: string): Set<string> => {
   if (visitedFiles.has(filePath)) return new Set();
   visitedFiles.add(filePath);
   const source = fs.readFileSync(filePath, 'utf8');
-  const names = new Set();
+  const names = new Set<string>();
   for (const match of source.matchAll(exportBlockRegex)) {
     const [, block, specifier] = match;
-    if (specifier) parseExportSpecifiers(block).forEach((name) => names.add(name));
+    if (specifier && block) parseExportSpecifiers(block).forEach((name) => names.add(name));
   }
   for (const match of source.matchAll(exportAllRegex)) {
     const [, specifier] = match;
-    collectExports(resolveImportPath(filePath, specifier)).forEach((name) => names.add(name));
+    if (specifier) collectExports(resolveImportPath(filePath, specifier)).forEach((name) => names.add(name));
   }
   return names;
 };
@@ -68,7 +66,7 @@ if (shouldUpdate) {
   process.exit(0);
 }
 
-const expectedExports = JSON.parse(fs.readFileSync(snapshotFile, 'utf8'));
+const expectedExports = JSON.parse(fs.readFileSync(snapshotFile, 'utf8')) as string[];
 const expectedSerialized = `${JSON.stringify(expectedExports, null, 2)}\n`;
 
 if (serialized !== expectedSerialized) {
@@ -86,8 +84,6 @@ if (serialized !== expectedSerialized) {
 }
 
 console.log(`Tailwind export contract matches snapshot (${actualExports.length} exports).`);
-
-// --- Artifact presence validation ---
 
 if (!fs.existsSync(distDir)) {
   console.error('dist/tailwind/ does not exist. Run `npm run build` before validating the tailwind contract.');
