@@ -1,10 +1,10 @@
 name: CI
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-  push:
+  pull_request:
     branches:
       - main
 
@@ -19,11 +19,6 @@ jobs:
   validate:
     name: Node ${{ matrix.node-version }}
     runs-on: ubuntu-latest
-    env:
-      TMPDIR: /tmp
-      TMP: /tmp
-      TEMP: /tmp
-      npm_config_cache: /tmp/.npm
 
     strategy:
       fail-fast: false
@@ -41,6 +36,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
