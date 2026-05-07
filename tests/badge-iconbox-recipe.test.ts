@@ -132,4 +132,10 @@ describe('getIconBoxClasses', () => {
     expect(result).toContain('sp-iconbox--pill');
     expectTokenizedClassString(result);
   });
+
+  it('supports the fullWidth variant', () => {
+    const result = getIconBoxClasses({ fullWidth: true });
+    expect(result).toContain('sp-iconbox--full');
+    expectTokenizedClassString(result);
+  });
 });
