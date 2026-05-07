@@ -143,7 +143,7 @@ const iconBoxSelectors = collectSelectors(
       variant: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'neutral', 'ghost', 'accent'],
       size: ['sm', 'md', 'lg'],
     },
-    booleans: ['disabled', 'loading', 'interactive', 'hovered', 'focused', 'active', 'pill'],
+    booleans: ['disabled', 'loading', 'interactive', 'hovered', 'focused', 'active', 'pill', 'fullWidth'],
     getClasses: getIconBoxClasses,
   }),
 );

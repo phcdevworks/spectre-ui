@@ -958,6 +958,10 @@
     font-size: var(--sp-font-lg-size);
   }
 
+  .sp-iconbox--full {
+    width: 100%;
+  }
+
   .sp-iconbox--pill {
     border-radius: var(--sp-radius-pill);
   }
