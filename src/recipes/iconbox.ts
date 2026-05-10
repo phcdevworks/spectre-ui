@@ -32,6 +32,7 @@ export interface IconBoxRecipeOptions {
   focused?: boolean;
   active?: boolean;
   pill?: boolean;
+  fullWidth?: boolean;
 }
 
 export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
@@ -45,6 +46,7 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
     focused = false,
     active = false,
     pill = false,
+    fullWidth = false,
   } = opts;
 
   const variant = resolveOption({
@@ -90,6 +92,7 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
     hovered && "sp-iconbox--hover",
     focused && "sp-iconbox--focus",
     active && "sp-iconbox--active",
-    pill && "sp-iconbox--pill"
+    pill && "sp-iconbox--pill",
+    fullWidth && "sp-iconbox--full"
   );
 }
