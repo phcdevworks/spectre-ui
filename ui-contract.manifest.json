@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "cssEntrypoints": [
     "@phcdevworks/spectre-ui/index.css",
     "@phcdevworks/spectre-ui/base.css",
