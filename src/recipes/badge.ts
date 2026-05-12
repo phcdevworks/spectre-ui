@@ -11,6 +11,7 @@ const BADGE_VARIANTS = {
   info: true,
   ghost: true,
   accent: true,
+  cta: true,
 } as const;
 
 const BADGE_SIZES = {
@@ -70,6 +71,7 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
     info: "sp-badge--info",
     ghost: "sp-badge--ghost",
     accent: "sp-badge--accent",
+    cta: "sp-badge--cta",
   };
   const variantClass = variantMap[variant];
 
