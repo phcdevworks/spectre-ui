@@ -980,10 +980,6 @@
     border-radius: var(--sp-radius-pill);
   }
 
-  .sp-iconbox--full {
-    width: 100%;
-  }
-
   .sp-iconbox--primary {
     background-color: var(--sp-component-iconbox-primary-bg);
     color: var(--sp-component-iconbox-primary-text);
