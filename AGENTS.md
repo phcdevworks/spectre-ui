@@ -1,7 +1,9 @@
 # Spectre UI Agent Guide
 
-This repository is maintained by PHCDevworks and is the implementation layer
-between `@phcdevworks/spectre-tokens` and downstream adapters or apps.
+This repository is maintained by PHCDevworks. **Claude Code is the primary
+AI maintainer** — see `CLAUDE.md` for the full working guide.
+
+This file documents rules and boundaries for any AI agent working in this repo.
 
 ## Mission
 
@@ -85,6 +87,12 @@ class recipes without redefining the underlying design values.
   reveals a broken emitted artifact contract that must be fixed in build output.
 - If a task changes a dependency range, refresh the lockfile so root metadata,
   resolved packages, and install behavior all agree.
+
+## Claude Code
+
+Claude Code reads `CLAUDE.md` first. All common workflows, the recipe pattern,
+the public contract surface, and enforcement details are documented there.
+The rules in this file (`AGENTS.md`) apply to all AI agents including Claude Code.
 
 ## Standard Workflows
 
