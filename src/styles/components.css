@@ -157,6 +157,8 @@
     --sp-component-iconbox-ghost-text: var(--sp-button-ghost-text);
     --sp-component-iconbox-accent-bg: var(--sp-button-accent-bg);
     --sp-component-iconbox-accent-text: var(--sp-button-accent-text);
+    --sp-component-iconbox-cta-bg: var(--sp-button-cta-bg);
+    --sp-component-iconbox-cta-text: var(--sp-button-cta-text);
 
     /* testimonial roles */
     --sp-component-testimonial-bg: var(--sp-surface-card);
@@ -1024,6 +1026,11 @@
   .sp-iconbox--accent {
     background-color: var(--sp-component-iconbox-accent-bg);
     color: var(--sp-component-iconbox-accent-text);
+  }
+
+  .sp-iconbox--cta {
+    background-color: var(--sp-component-iconbox-cta-bg);
+    color: var(--sp-component-iconbox-cta-text);
   }
 
   .sp-iconbox--interactive {
