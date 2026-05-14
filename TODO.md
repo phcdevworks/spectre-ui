@@ -10,9 +10,9 @@ validation, export clarity, and downstream safety.
       styling surface
   - `ui-contract.manifest.json` declares root exports, `./tailwind` exports,
     CSS entrypoints, and stable recipe families.
-  - `scripts/validate-css-contract.mjs` cross-checks manifest CSS entrypoints
+  - `scripts/validate-css-contract.ts` cross-checks manifest CSS entrypoints
     against `package.json`.
-  - `scripts/validate-exports.mjs` and `scripts/validate-tailwind-contract.mjs`
+  - `scripts/validate-exports.ts` and `scripts/validate-tailwind-contract.ts`
     use per-subpath snapshots anchored to this manifest.
 
 - [x] Resolve `spectreIndexStylesPath` decisively as part of the public contract
@@ -21,13 +21,13 @@ validation, export clarity, and downstream safety.
   - Added to `README.md` root constants section.
 
 - [x] Extend export contract validation beyond the root package
-  - `scripts/validate-tailwind-contract.mjs` + `scripts/tailwind-export-snapshot.json`
+  - `scripts/validate-tailwind-contract.ts` + `scripts/tailwind-export-snapshot.json`
     enforce the `./tailwind` subpath export surface in CI.
   - `npm run validate:tailwind` and `npm run validate:tailwind:update` added.
   - Wired into `ci:verify`.
 
 - [x] Strengthen standalone CSS entrypoint validation
-  - `scripts/validate-css-contract.mjs` now cross-checks against
+  - `scripts/validate-css-contract.ts` now cross-checks against
     `ui-contract.manifest.json` as well as `package.json`.
   - `tests/css-entrypoints.test.ts` enforces isolation, token presence, and
     size budgets per entrypoint.
@@ -54,13 +54,13 @@ validation, export clarity, and downstream safety.
   - Covers root exports, `./tailwind` subpath, and CSS path constants.
 
 - [x] Add README contract parity validation
-  - `scripts/validate-readme-contract.mjs` checks that all manifest-declared
+  - `scripts/validate-readme-contract.ts` checks that all manifest-declared
     CSS entrypoints, tailwind exports, root constants, and primary recipe
     functions appear in `README.md`.
   - `npm run validate:readme` added and wired into `ci:verify`.
 
 - [x] Add explicit Tailwind subpath packaging checks
-  - `scripts/validate-tailwind-contract.mjs` validates export snapshot and
+  - `scripts/validate-tailwind-contract.ts` validates export snapshot and
     checks that `dist/tailwind/index.js`, `index.cjs`, and `index.d.ts` are
     present post-build.
   - `tests/package-smoke.test.ts` imports from `dist/tailwind/index.js` and
