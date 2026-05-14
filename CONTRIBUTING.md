@@ -106,18 +106,18 @@ surface. Each area of the contract has a dedicated enforcer:
 
 | Contract area | Enforced by |
 | --- | --- |
-| Root export surface | `scripts/validate-exports.mjs` + `scripts/export-snapshot.json` |
-| `./tailwind` export surface | `scripts/validate-tailwind-contract.mjs` + `scripts/tailwind-export-snapshot.json` |
-| CSS entrypoints (presence + manifest parity) | `scripts/validate-css-contract.mjs` |
+| Root export surface | `scripts/validate-exports.ts` + `scripts/export-snapshot.json` |
+| `./tailwind` export surface | `scripts/validate-tailwind-contract.ts` + `scripts/tailwind-export-snapshot.json` |
+| CSS entrypoints (presence + manifest parity) | `scripts/validate-css-contract.ts` |
 | CSS entrypoint isolation (no cross-bundle leakage) | `tests/css-entrypoints.test.ts` |
 | CSS ↔ recipe class parity | `tests/css-contract.test.ts` |
 | Recipe family parity (manifest → live output) | `tests/recipe-parity.test.ts` |
-| Token drift (CSS vars backed by published tokens) | `tests/token-drift.test.ts` + `scripts/validate-tokens.mjs` |
+| Token drift (CSS vars backed by published tokens) | `tests/token-drift.test.ts` + `scripts/validate-tokens.ts` |
 | Zero-hex enforcement | `tests/aesthetic-audit.test.ts` |
 | Tailwind mapping correctness | `tests/tailwind-contract.test.ts` |
 | Built-package smoke (dist artifacts + import) | `tests/package-smoke.test.ts` |
-| README contract parity | `scripts/validate-readme-contract.mjs` |
-| Node.js runtime version | `scripts/validate-runtime.mjs` |
+| README contract parity | `scripts/validate-readme-contract.ts` |
+| Node.js runtime version | `scripts/validate-runtime.ts` |
 
 All of the above run in order via `npm run ci:verify`. If you add a new public
 surface, add a corresponding row here and a corresponding enforcer before
