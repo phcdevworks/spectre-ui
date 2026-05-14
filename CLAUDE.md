@@ -1,7 +1,20 @@
 # CLAUDE.md — Spectre UI Maintainer Guide
 
+## Project Identity
+
+**Package:** `@phcdevworks/spectre-ui`
+**Layer:** L2 of the Spectre design suite — CSS bundles, Tailwind tooling, and class recipes
+**Human owner:** Bradley Potts (brad.potts@coastdigitalgroup.com)
+**Primary AI developer:** Claude Code (claude-sonnet-4-6)
+
 Claude Code is the primary maintainer of `@phcdevworks/spectre-ui`. This file is
 the authoritative working guide for all AI-assisted development in this repo.
+
+## Commit Policy
+
+Claude Code does not create git commits in this repository. Prepare changes,
+run all validation, and leave staging, committing, tagging, and pushing to
+human review.
 
 ## Role and Mission
 
@@ -174,7 +187,7 @@ Buildkite also runs `npm run ci:verify` on the default queue.
 - Do not combine a token sync with a feature addition in the same PR.
 - Do not use GitHub source of `@phcdevworks/spectre-tokens` as the token authority —
   only the published NPM package is authoritative.
-- Do not skip `npm run ci:verify` before committing.
+- Do not skip `npm run ci:verify` before handing off for review.
 
 ## Versioning
 
