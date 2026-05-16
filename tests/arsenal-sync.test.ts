@@ -19,7 +19,7 @@ describe('Arsenal Sync Recipes', () => {
   });
 
   it('returns classes for testimonial', () => {
-    expect(getTestimonialClasses()).toBe('sp-testimonial');
+    expect(getTestimonialClasses()).toBe('sp-testimonial sp-testimonial--outline');
   });
 
   it('returns classes for pricing card', () => {
