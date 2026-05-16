@@ -1,0 +1,69 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: "en-US"
+early_access: false
+reviews:
+  profile: "assertive"
+  request_changes_workflow: false
+  high_level_summary: true
+  high_level_summary_placeholder: "@coderabbitai summary"
+  auto_title_placeholder: "@coderabbitai"
+  review_status: true
+  commit_status: true
+  collapse_walkthrough: false
+  changed_files_summary: true
+  sequence_diagrams: true
+  assess_linked_issues: true
+  related_issues: true
+  related_prs: true
+  suggested_labels: true
+  auto_apply_labels: false
+  suggested_reviewers: false
+  poem: false
+  abort_on_close: true
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    drafts: false
+  finishing_touches:
+    docstrings:
+      enabled: true
+  tools:
+    eslint:
+      enabled: true
+    markdownlint:
+      enabled: true
+    gitleaks:
+      enabled: true
+    github-checks:
+      enabled: true
+      timeout_ms: 90000
+    yamllint:
+      enabled: true
+    languagetool:
+      enabled: true
+      level: default
+    actionlint:
+      enabled: true
+  path_instructions:
+    - path: "**/*.ts"
+      instructions: "Enforce strict TypeScript: flag missing type annotations, any usage, and non-null assertions without justification."
+    - path: "src/**"
+      instructions: "CSS utility and recipe generation — the L2 styling contract for all Spectre adapters. Flag hardcoded color values, magic numbers, or values that should be token references from @phcdevworks/spectre-tokens. Verify all utilities follow the established naming convention."
+    - path: "tests/**"
+      instructions: "Verify tests cover recipe output correctness, class name generation, and variant exhaustiveness. Flag snapshot tests that are too broad and would pass for incorrect output."
+    - path: "ui-contract.manifest.json"
+      instructions: "This manifest defines the downstream contract consumed by all adapters (Astro, WordPress Themes). Any changes here are breaking. Flag additions without corresponding documentation and verify no entries are removed without a deprecation cycle."
+    - path: "package.json"
+      instructions: "Review dependency additions carefully. Flag unpinned major versions and any new packages that duplicate existing functionality."
+    - path: "CHANGELOG.md"
+      instructions: "Verify entries follow Keep a Changelog format with correct categorization (Added/Changed/Fixed/Removed) and link to a version tag."
+chat:
+  auto_reply: true
+knowledge_base:
+  opt_out: false
+  learnings:
+    scope: auto
+  issues:
+    scope: auto
+  pull_requests:
+    scope: auto
