@@ -23,6 +23,25 @@ handoff authority.
 - Preserve stable exported contracts (TypeScript exports and CSS entry points).
 - Keep framework-specific behavior in downstream adapters.
 
+## Do Not Generate
+
+The following are **never acceptable** in this repository. If a completion
+would produce any of these, discard it and redirect to the appropriate adapter
+package instead:
+
+- Astro component syntax (`.astro` files, `---` frontmatter, `<slot>`)
+- Lit `LitElement` subclasses, `customElements.define`, or `html\`\`` templates
+- React JSX, `React.createElement`, `useState`, `useEffect`, or any React hook
+- Vue `<template>`, `<script setup>`, `defineComponent`, or Vue composables
+- WordPress PHP output, shortcode handlers, or WP REST endpoint handlers
+- Svelte `.svelte` files or `$:` reactive statements
+- Any import of a framework runtime: `react`, `vue`, `astro:*`, `lit`, `svelte`
+- HTML template rendering of any kind — recipes return class strings only
+
+Recipe functions accept plain TypeScript option objects and return plain class
+strings. They have no lifecycle, no reactivity, and no DOM coupling. Suggestions
+that cross this boundary belong in a downstream adapter package.
+
 ## Working Style
 
 - Prefer narrow, non-breaking changes aligned to existing patterns.

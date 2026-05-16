@@ -1,20 +1,51 @@
 # @phcdevworks/spectre-ui
 
+[![npm version](https://img.shields.io/npm/v/@phcdevworks/spectre-ui)](https://www.npmjs.com/package/@phcdevworks/spectre-ui)
+[![CI](https://github.com/phcdevworks/spectre-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/phcdevworks/spectre-ui/actions/workflows/ci.yml)
 [![GitHub issues](https://img.shields.io/github/issues/phcdevworks/spectre-ui)](https://github.com/phcdevworks/spectre-ui/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/phcdevworks/spectre-ui)](https://github.com/phcdevworks/spectre-ui/pulls)
 [![License](https://img.shields.io/github/license/phcdevworks/spectre-ui)](LICENSE)
 
-`@phcdevworks/spectre-ui` is the implementation layer between
+`@phcdevworks/spectre-ui` is **Layer 2 of the Spectre design suite**. It turns
 [`@phcdevworks/spectre-tokens`](https://github.com/phcdevworks/spectre-tokens)
-and downstream adapters or apps.
+into reusable CSS bundles, Tailwind tooling, and type-safe class recipes for
+downstream adapters and apps.
 
-Maintained by PHCDevworks, it turns Spectre tokens into reusable CSS bundles,
-Tailwind tooling, and type-safe class recipes. It is framework-agnostic,
-token-driven, and follows a strict zero-hex policy so visual values do not drift
-locally.
+**For:** adapter authors and app developers who need a stable, token-driven
+styling contract without re-implementing class logic themselves.
+
+**Not for:** authoring design tokens (that belongs in
+`@phcdevworks/spectre-tokens`) or building framework-specific components (that
+belongs in adapter packages such as `@phcdevworks/spectre-ui-astro`).
 
 [Contributing](CONTRIBUTING.md) | [Changelog](CHANGELOG.md) |
 [Security Policy](SECURITY.md)
+
+## Architecture
+
+```
+┌─────────────────────────────┐
+│  @phcdevworks/spectre-tokens │  Layer 1 — design values, semantic tokens
+│  (design source of truth)   │
+└──────────────┬──────────────┘
+               │ consumed by
+               ▼
+┌─────────────────────────────┐
+│  @phcdevworks/spectre-ui    │  Layer 2 — THIS PACKAGE
+│  CSS bundles, recipes,      │  translates tokens into structure
+│  Tailwind helpers           │
+└──────────────┬──────────────┘
+               │ consumed by
+               ▼
+┌─────────────────────────────┐
+│  Adapters and apps          │  Layer 3 — framework-specific delivery
+│  spectre-ui-astro, React,   │  wraps CSS classes and recipes into
+│  Vue, WordPress, Lit, etc.  │  native components for each runtime
+└─────────────────────────────┘
+```
+
+This package owns Layer 2 only. It does not deliver components and it does not
+define tokens. It translates tokens into a stable contract that adapters and
+apps consume.
 
 ## Key capabilities
 
@@ -36,7 +67,34 @@ npm install @phcdevworks/spectre-ui
 
 ## Quick start
 
-### CSS import
+### Vanilla HTML — CSS classes only
+
+No framework needed. Import the CSS and use the `sp-*` classes directly:
+
+```html
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="node_modules/@phcdevworks/spectre-ui/dist/index.css" />
+  </head>
+  <body>
+    <button class="sp-btn sp-btn--primary sp-btn--md">Save</button>
+    <button class="sp-btn sp-btn--ghost sp-btn--md">Cancel</button>
+    <span class="sp-badge sp-badge--success sp-badge--sm">Published</span>
+
+    <div class="sp-card sp-card--elevated">
+      <p>Card content</p>
+    </div>
+
+    <div class="sp-input-wrapper">
+      <label class="sp-label">Email</label>
+      <input class="sp-input sp-input--md" type="email" />
+    </div>
+  </body>
+</html>
+```
+
+### CSS import (bundler or framework)
 
 Import the full stylesheet:
 
@@ -87,26 +145,69 @@ const badge = getBadgeClasses({ variant: 'success', size: 'sm' })
 const pricingCard = getPricingCardClasses({ featured: true })
 ```
 
-## What this package owns
+## When to use this package
 
-- Token-driven CSS implementation
-- Precompiled CSS bundles and utility classes
-- Tailwind helpers and preset generation
-- Type-safe class recipes for shared UI contracts
-- Stable styling behavior consumed by downstream adapters and apps
+Use `@phcdevworks/spectre-ui` when you need:
 
-Golden rule: consume tokens, do not redefine them.
+- precompiled, token-backed CSS ready to drop into any framework
+- a Tailwind preset or theme helper built from Spectre tokens
+- stable, type-safe class recipes for shared UI patterns (buttons, badges,
+  cards, inputs, etc.) that you want to remain consistent across frameworks
+- a styling contract that is enforced through tests and CI rather than
+  conventions alone
 
-## What this package does not own
+## When not to use this package
 
-- Design values or semantic meaning. That belongs to
-  `@phcdevworks/spectre-tokens`.
-- Framework-specific component delivery. Adapters and apps consume
-  `@phcdevworks/spectre-ui`; they do not recreate its styling logic.
-- Local visual values outside the token contract. Hardcoded hex, spacing, or
-  shadow values are drift unless clearly intentional and documented.
+Do not use `@phcdevworks/spectre-ui` when you need to:
+
+- **Define new design values** — add them to
+  [`@phcdevworks/spectre-tokens`](https://github.com/phcdevworks/spectre-tokens)
+  instead.
+- **Deliver framework components** — use an adapter package such as
+  `@phcdevworks/spectre-ui-astro` that wraps this package in framework-native
+  components.
+- **Use raw Tailwind utilities without a shared recipe contract** — import
+  Tailwind directly and use the Spectre preset; you do not need this package's
+  recipe layer if you are building one-off UI with utility classes.
+
+## What belongs here vs elsewhere
+
+| What | Where it lives |
+|---|---|
+| Semantic color values, spacing scale, type scale | `@phcdevworks/spectre-tokens` |
+| Token-to-CSS variable mapping | **here** — `src/styles/` |
+| Precompiled CSS bundles | **here** — built to `dist/*.css` |
+| Class recipe functions (input → class string) | **here** — `src/recipes/` |
+| Tailwind preset and theme helpers | **here** — `src/tailwind/` |
+| Astro, React, Vue, Lit, Svelte components | Adapter packages (e.g. `spectre-ui-astro`) |
+| WordPress shortcodes or PHP templates | A WordPress adapter package |
+| App-level layout, routing, or data fetching | Consuming apps |
+| New design decisions (new colors, new spacing) | `@phcdevworks/spectre-tokens` |
+
+Golden rule: this package consumes tokens and exposes class contracts. It does
+not define tokens and it does not deliver framework components.
 
 ## Package exports / API surface
+
+### Recipe quick reference
+
+All recipe functions accept a plain options object and return a class string.
+All options are optional and fall back to sensible defaults.
+
+| Recipe | Function | Variants | Sizes | Common boolean flags |
+|---|---|---|---|---|
+| Button | `getButtonClasses` | `primary` `secondary` `ghost` `danger` `success` `cta` `accent` | `sm` `md` `lg` | `disabled` `loading` `fullWidth` `pill` `iconOnly` |
+| Badge | `getBadgeClasses` | `primary` `secondary` `success` `warning` `danger` `neutral` `info` `ghost` `accent` `cta` | `sm` `md` `lg` | `interactive` `disabled` `loading` `fullWidth` |
+| Card | `getCardClasses` | `elevated` `flat` `outline` `ghost` | — | `interactive` `padded` `fullHeight` `disabled` `loading` |
+| Input | `getInputClasses` | — | `sm` `md` `lg` | `disabled` `loading` `fullWidth` `pill` |
+| Input state | `getInputClasses` | `state`: `default` `error` `success` `disabled` `loading` | — | — |
+| IconBox | `getIconBoxClasses` | `primary` `secondary` `success` `warning` `danger` `info` `neutral` `ghost` `accent` `cta` | `sm` `md` `lg` | `interactive` `disabled` `loading` `pill` `fullWidth` |
+| PricingCard | `getPricingCardClasses` | — | — | `featured` `interactive` `disabled` `loading` `fullHeight` |
+| Rating | `getRatingClasses` | — | `sm` `md` `lg` | `interactive` `disabled` `loading` `pill` `fullWidth` |
+| Testimonial | `getTestimonialClasses` | — | — | `interactive` `disabled` `loading` `fullHeight` |
+
+Each recipe family also exports sub-element helpers for its structural parts
+(labels, wrappers, sub-containers, text elements). See the full list below.
 
 ### Root package
 
@@ -184,27 +285,61 @@ implementation drift.
 
 ## Development
 
-Install dependencies, then run the package verification flow:
+### Local setup
 
 ```bash
+git clone https://github.com/phcdevworks/spectre-ui.git
+cd spectre-ui
+nvm use          # picks up .nvmrc (Node 22.22.2)
 npm install
 npm run ci:verify
 ```
 
-This project expects Node.js `^22.13.0 || >=24.0.0` and npm `11.14.1`.
+This project requires Node.js `^22.13.0 || >=24.0.0` and npm `11.14.1`.
 
-Planning artifacts for contract hardening live in:
+### Common commands
 
-- [`ROADMAP.md`](ROADMAP.md)
-- [`TODO.md`](TODO.md)
+| Command | What it does |
+|---|---|
+| `npm run ci:verify` | Full validation gate — run before every PR |
+| `npm test` | Build then run the contract and regression test suite |
+| `npm run build` | Emit TypeScript and CSS artifacts to `dist/` |
+| `npm run lint` | ESLint with TypeScript-aware config |
+| `npm run validate:exports` | Verify root export surface against snapshot |
+| `npm run validate:exports:update` | Update the export snapshot after adding a public export |
+| `npm run validate:tailwind:update` | Update the Tailwind export snapshot |
+| `npm run validate:tokens` | Check for token drift against latest published release |
 
-Key source areas:
+### Troubleshooting
+
+**`validate:runtime` fails** — you are on the wrong Node version. Run
+`nvm use` to switch to the version in `.nvmrc`, or install Node 22 or 24.
+
+**`validate:tokens` fails with a network error** — the check requires outbound
+npm registry access. In a restricted environment, run the other validators
+individually; this step is the only network-dependent one in `ci:verify`.
+
+**Tests pass but the build shows stale output** — `npm test` rebuilds
+automatically via the `pretest` hook. If you ran `vitest` directly, run
+`npm run build` first.
+
+**Lint fails locally but passes in CI** — confirm you are on the same Node
+version as CI (Node 22.13.0 or 24.x). ESLint plugin resolution can differ
+across runtimes.
+
+**Export snapshot out of date** — run `npm run validate:exports:update` after
+adding a public export, then commit the updated `scripts/export-snapshot.json`.
+
+### Key source areas
 
 - `src/styles/` for source CSS
 - `src/recipes/` for class recipes
 - `src/tailwind/` for Tailwind helpers
 - `tests/` for contract and regression coverage
 - `examples/` for visual demos and verification fixtures
+
+Planning artifacts for contract hardening live in [ROADMAP.md](ROADMAP.md) and
+[TODO.md](TODO.md).
 
 ## Examples
 
