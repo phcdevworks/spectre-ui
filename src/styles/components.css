@@ -164,10 +164,20 @@
     --sp-component-testimonial-bg: var(--sp-surface-card);
     --sp-component-testimonial-bg-hover: var(--sp-color-neutral-50);
     --sp-component-testimonial-border: var(--sp-color-neutral-200);
+    --sp-component-testimonial-border-base: var(--sp-component-testimonial-ghost-border);
     --sp-component-testimonial-text: var(--sp-color-neutral-700);
     --sp-component-testimonial-author-name: var(--sp-color-neutral-900);
     --sp-component-testimonial-author-title: var(--sp-color-neutral-600);
     --sp-component-testimonial-quote-mark: var(--sp-color-neutral-600);
+    --sp-component-testimonial-shadow: var(--sp-shadow-none);
+    --sp-component-testimonial-shadow-elevated: var(--sp-shadow-lg);
+    --sp-component-testimonial-shadow-flat: var(--sp-shadow-none);
+    --sp-component-testimonial-shadow-outline: var(--sp-shadow-none);
+    --sp-component-testimonial-shadow-ghost: var(--sp-shadow-none);
+    --sp-component-testimonial-outline-bg: var(--sp-component-testimonial-bg);
+    --sp-component-testimonial-outline-border: var(--sp-component-testimonial-border);
+    --sp-component-testimonial-ghost-bg: var(--sp-button-ghost-bg);
+    --sp-component-testimonial-ghost-border: var(--sp-component-testimonial-ghost-bg);
 
     /* pricing card roles */
     --sp-component-pricing-card-bg: var(--sp-surface-card);
@@ -1073,12 +1083,34 @@
 
   .sp-testimonial {
     background-color: var(--sp-component-testimonial-bg);
-    border: var(--sp-component-border-width) solid var(--sp-component-testimonial-border);
+    border: var(--sp-component-border-width) solid var(--sp-component-testimonial-border-base);
     border-radius: var(--sp-radius-lg);
     padding: var(--sp-space-32);
     display: flex;
     flex-direction: column;
     gap: var(--sp-space-24);
+    box-shadow: var(--sp-component-testimonial-shadow);
+  }
+
+  .sp-testimonial--elevated {
+    box-shadow: var(--sp-component-testimonial-shadow-elevated);
+  }
+
+  .sp-testimonial--flat {
+    box-shadow: var(--sp-component-testimonial-shadow-flat);
+    border-color: var(--sp-component-testimonial-border);
+  }
+
+  .sp-testimonial--outline {
+    background-color: var(--sp-component-testimonial-outline-bg);
+    border-color: var(--sp-component-testimonial-outline-border);
+    box-shadow: var(--sp-component-testimonial-shadow-outline);
+  }
+
+  .sp-testimonial--ghost {
+    background-color: var(--sp-component-testimonial-ghost-bg);
+    border-color: var(--sp-component-testimonial-ghost-border);
+    box-shadow: var(--sp-component-testimonial-shadow-ghost);
   }
 
   .sp-testimonial--disabled {

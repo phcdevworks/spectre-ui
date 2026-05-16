@@ -1,6 +1,17 @@
 import { cx } from "../internal/cx";
+import { resolveOption } from "../internal/resolve-option";
+
+const TESTIMONIAL_VARIANTS = {
+  elevated: true,
+  flat: true,
+  outline: true,
+  ghost: true,
+} as const;
+
+export type TestimonialVariant = keyof typeof TESTIMONIAL_VARIANTS;
 
 export interface TestimonialRecipeOptions {
+  variant?: TestimonialVariant;
   disabled?: boolean;
   loading?: boolean;
   interactive?: boolean;
@@ -12,6 +23,7 @@ export interface TestimonialRecipeOptions {
 
 export function getTestimonialClasses(opts: TestimonialRecipeOptions = {}): string {
   const {
+    variant: variantInput,
     disabled = false,
     loading = false,
     interactive = false,
@@ -21,8 +33,24 @@ export function getTestimonialClasses(opts: TestimonialRecipeOptions = {}): stri
     fullHeight = false,
   } = opts;
 
+  const variant = resolveOption({
+    name: "testimonial variant",
+    value: variantInput,
+    allowed: TESTIMONIAL_VARIANTS,
+    fallback: "outline",
+  });
+
+  const variantMap: Record<TestimonialVariant, string> = {
+    elevated: "sp-testimonial--elevated",
+    flat: "sp-testimonial--flat",
+    outline: "sp-testimonial--outline",
+    ghost: "sp-testimonial--ghost",
+  };
+  const variantClass = variantMap[variant];
+
   return cx(
     "sp-testimonial",
+    variantClass,
     disabled && "sp-testimonial--disabled",
     loading && "sp-testimonial--loading",
     interactive && "sp-testimonial--interactive",
