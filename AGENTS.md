@@ -15,6 +15,21 @@ See [`CLAUDE.md`](CLAUDE.md) for the full working guide.
 
 This file documents rules and boundaries for any AI agent working in this repo.
 
+## AI Operating Model
+
+This repository follows the Spectre AI factory model:
+
+| Agent | Role | Authority |
+| ----- | ---- | --------- |
+| Claude Code | Lead developer responsible for primary implementation | `CLAUDE.md` |
+| OpenAI Codex | Documentation, releases, production stabilization, repo hygiene, and config standardization | `CODEX.md` |
+| GitHub Copilot | General development assistance | `.github/instructions/` and this file |
+| Google Jules | Automated maintenance for small fixes, dependency updates, and micro-updates | `JULES.md` and `.agents/jules.md` |
+
+Claude Code keeps implementation leadership. Codex keeps release and
+stabilization work clean. Copilot assists without owning decisions. Jules works
+only on bounded automated maintenance and must not take on large feature work.
+
 ## Mission
 
 Turn Spectre tokens into reusable CSS bundles, Tailwind tooling, and type-safe
@@ -107,19 +122,31 @@ rules in this file (`AGENTS.md`) apply to all AI agents including Claude Code.
 ## Codex
 
 Codex reads [`CODEX.md`](CODEX.md) after `CLAUDE.md` and this file. Codex serves
-as the release-readiness and production-safety partner while Claude Code remains
-the primary AI developer.
+as the documentation, release-readiness, production-stabilization, repo-hygiene,
+and config-standardization partner while Claude Code remains the primary AI
+developer.
 
 Codex should keep changes scoped, watch for documentation and contract drift,
 run or report release validation, and leave final commit, tag, and publish
 authority with Bradley Potts.
 
+## GitHub Copilot
+
+GitHub Copilot provides general development assistance. Copilot may help with
+targeted edits, refactors, documentation synchronization, GitHub workflow
+support, and validation awareness, but it does not own implementation
+direction, release decisions, or final handoff authority.
+
+Copilot uses the scoped guidance in `.github/instructions/` plus the role
+boundaries in this file.
+
 ## Jules
 
 Jules reads [`JULES.md`](JULES.md) after `CLAUDE.md` and this file. Jules is the
 autonomous scheduled task executor — it runs scoped prompt-driven tasks without
-human supervision and is the only AI agent in this repository that commits and
-pushes completed work directly.
+human supervision for small fixes, dependency updates, token synchronization,
+and micro-updates. Jules is the only AI agent in this repository that commits
+and pushes completed maintenance work directly.
 
 Jules operates in two modes: General Developer (micro hardening — one CSS file,
 one recipe file) and Sync Developer (token synchronization against the latest

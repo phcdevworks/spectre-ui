@@ -1,6 +1,6 @@
 # Jules Agent — Spectre UI Quick Reference
 
-Read in this order before working: `CLAUDE.md` → `AGENTS.md` → `JULES.md`
+Read in this order before working: `CLAUDE.md` -> `AGENTS.md` -> `JULES.md`
 
 ## Package
 
@@ -21,6 +21,10 @@ All nine steps must pass. Do not commit if any step fails.
 |---|---|---|
 | General Developer | One CSS file + one recipe file | `fix(spectre-ui): <description>` |
 | Sync Developer | UI/recipe files required for token alignment | `fix(spectre-ui): sync token contracts to latest` |
+
+Dependency updates are allowed only when the task prompt explicitly scopes them
+and `npm run ci:verify` passes in full. Do not take on large feature work or
+release ownership.
 
 ## Hard Stops
 

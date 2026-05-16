@@ -6,9 +6,9 @@ Jules is the autonomous scheduled task executor for `@phcdevworks/spectre-ui`.
 
 Claude Code remains the primary AI developer and `CLAUDE.md` remains the
 authoritative working guide. Codex acts as the release-readiness partner.
-Jules executes scoped, bounded tasks autonomously on a schedule — running
-prompt-driven micro hardening and token synchronization passes without human
-supervision during execution.
+Jules executes scoped, bounded maintenance tasks autonomously on a schedule —
+running prompt-driven small fixes, dependency updates, micro hardening, and
+token synchronization passes without human supervision during execution.
 
 ## Operating Order
 
@@ -35,6 +35,10 @@ If any gate fails, stop and report the failure clearly without committing.
 
 Jules operates in one of two modes, driven by the prompt Brad pastes into the
 Jules scheduled agent interface.
+
+Dependency updates are allowed only when the prompt scopes them explicitly and
+the update can be validated by the full release gate. Large feature work,
+architectural changes, and release ownership are out of scope for Jules.
 
 ### General Developer (Micro Hardening)
 
