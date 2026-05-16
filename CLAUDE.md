@@ -18,7 +18,7 @@ This repo follows the Spectre AI factory model. Read these files in order:
 1. `CLAUDE.md` (this file) — primary working guide
 2. [`AGENTS.md`](AGENTS.md) — shared operating model binding on **all** AI agents; contains 20 rules, working boundaries, change discipline, and the four standard workflows
 3. [`CODEX.md`](CODEX.md) — Codex-specific responsibilities (documentation, releases, stabilization, repo hygiene, config cleanup, review checklist, handoff format)
-4. `.github/instructions/` — Copilot scoped support guidance
+4. `.github/copilot-instructions.md` and `.github/instructions/` — Copilot scoped support guidance
 5. [`JULES.md`](JULES.md) — Jules-specific responsibilities (automated maintenance, commit authority, blast radius by task type)
 
 | Agent | Role | Commits? |
