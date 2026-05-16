@@ -101,8 +101,18 @@ class recipes without redefining the underlying design values.
 ## Claude Code
 
 Claude Code reads `CLAUDE.md` first. All common workflows, the recipe pattern,
-the public contract surface, and enforcement details are documented there.
-The rules in this file (`AGENTS.md`) apply to all AI agents including Claude Code.
+the public contract surface, and enforcement details are documented there. The
+rules in this file (`AGENTS.md`) apply to all AI agents including Claude Code.
+
+## Codex
+
+Codex reads [`CODEX.md`](CODEX.md) after `CLAUDE.md` and this file. Codex serves
+as the release-readiness and production-safety partner while Claude Code remains
+the primary AI developer.
+
+Codex should keep changes scoped, watch for documentation and contract drift,
+run or report release validation, and leave final commit, tag, and publish
+authority with Bradley Potts.
 
 ## Standard Workflows
 

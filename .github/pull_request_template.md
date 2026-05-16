@@ -4,12 +4,22 @@
 - [ ] Summary of changes
 - [ ] Rationale/context
 
-## Testing
+## Type of Change
 
-- [ ] `npm test`
-- [ ] `npm run build`
-- [ ] Other (describe):
+- [ ] Bug fix / patch
+- [ ] New state, variant, or additive improvement
+- [ ] Breaking change
+- [ ] Documentation / config only
+- [ ] Refactor (no behavior change)
 
-## Screenshots (if UI)
+## Checklist
 
-## Notes for reviewers
+- [ ] `npm run build` passes
+- [ ] `npm test` passes
+- [ ] No hex values or raw pixel values introduced
+- [ ] Change is token-driven
+- [ ] `CHANGELOG.md` updated
+
+## Screenshots (if applicable)
+
+## Notes for Reviewers
