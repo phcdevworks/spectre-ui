@@ -92,6 +92,29 @@ class recipes without redefining the underlying design values.
 - Dependency declarations, lockfile metadata, and emitted artifacts are all part
   of package maintenance when dependency alignment changes.
 
+## Framework Boundary — Hard Prohibitions
+
+This package is framework-agnostic by design. The following are **never**
+acceptable in this repository, regardless of the task scope:
+
+| Prohibited pattern | Why |
+|---|---|
+| `.astro` files or Astro component syntax | Belongs in `@phcdevworks/spectre-ui-astro` |
+| Lit `LitElement` subclasses or `html\`\`` template literals | Belongs in a Lit adapter |
+| React JSX, `useState`, `useEffect`, or any React hooks | Belongs in a React adapter |
+| Vue `<template>`, `defineComponent`, or Vue composables | Belongs in a Vue adapter |
+| WordPress shortcode output, PHP template strings, or WP hooks | Belongs in a WordPress adapter |
+| Svelte `<script>` blocks or `.svelte` files | Belongs in a Svelte adapter |
+| Any import of a framework runtime (`react`, `vue`, `astro:*`, `lit`) | Adapters declare those, not this package |
+| Template rendering of any kind — JSX, tagged templates, string HTML | Recipes return class strings only, never markup |
+
+If a task requires any of the above, **stop and redirect to the appropriate
+adapter package**. Do not add it here as a convenience or shortcut.
+
+Recipe functions in this package accept plain option objects and return plain
+class strings. They have no lifecycle, no reactivity, no template syntax, and
+no DOM coupling. That is the contract.
+
 ## Change Discipline
 
 - Keep changes atomic and tightly scoped.
@@ -153,6 +176,20 @@ one recipe file) and Sync Developer (token synchronization against the latest
 published `@phcdevworks/spectre-tokens`). All rules in this file apply to Jules.
 Jules must run `npm run ci:verify` in full before every commit and must stop and
 report rather than committing when any gate fails.
+
+## File Classification
+
+| Classification | Files | Rule |
+|---|---|---|
+| **Source — edit freely** | `src/styles/`, `src/recipes/`, `src/tailwind/`, `src/tokens/`, `src/internal/`, `src/index.ts`, `src/css-constants.ts` | Primary authoring surface |
+| **Source — scripts** | `scripts/*.ts` | Edit when the contract or validation logic changes |
+| **Source — tests** | `tests/*.test.ts` | Edit to add or update contract coverage |
+| **Generated — never hand-edit** | `dist/` | Emitted by `npm run build`; always regenerate |
+| **Snapshots — update via script** | `scripts/export-snapshot.json`, `scripts/tailwind-export-snapshot.json` | Update via `validate:exports:update` / `validate:tailwind:update` |
+| **Contract manifest** | `ui-contract.manifest.json` | Update when public variants, states, or entry points change |
+| **Agent guidance** | `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `JULES.md`, `.github/copilot-instructions.md` | Update only when operating model or rules change |
+| **Public docs** | `README.md`, `CONTRIBUTING.md`, `CHANGELOG.md` | Update when public contract or setup guidance changes |
+| **Protected — infra** | `package.json`, `package-lock.json`, `.github/workflows/` | Change only when explicitly in scope; lockfile must stay in sync with `package.json` |
 
 ## Standard Workflows
 
