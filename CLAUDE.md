@@ -13,20 +13,22 @@ the authoritative working guide for all AI-assisted development in this repo.
 
 ## Agent Coordination
 
-This repo uses a three-agent setup. Read these files in order:
+This repo follows the Spectre AI factory model. Read these files in order:
 
 1. `CLAUDE.md` (this file) — primary working guide
-2. [`AGENTS.md`](AGENTS.md) — extended rules binding on **all** AI agents; contains 20 rules, working boundaries, change discipline, and the four standard workflows
-3. [`CODEX.md`](CODEX.md) — Codex-specific responsibilities (release readiness, review checklist, handoff format)
-4. [`JULES.md`](JULES.md) — Jules-specific responsibilities (autonomous task execution, commit authority, blast radius by task type)
+2. [`AGENTS.md`](AGENTS.md) — shared operating model binding on **all** AI agents; contains 20 rules, working boundaries, change discipline, and the four standard workflows
+3. [`CODEX.md`](CODEX.md) — Codex-specific responsibilities (documentation, releases, stabilization, repo hygiene, config cleanup, review checklist, handoff format)
+4. `.github/instructions/` — Copilot scoped support guidance
+5. [`JULES.md`](JULES.md) — Jules-specific responsibilities (automated maintenance, commit authority, blast radius by task type)
 
 | Agent | Role | Commits? |
 |---|---|---|
 | Claude Code | Primary AI developer — authors features, recipes, CSS | No — Brad commits |
-| Codex | Release-readiness partner — validates, reviews, checks contracts | No — Brad commits |
-| Jules | Autonomous scheduled executor — micro hardening and token sync passes | Yes — commits and pushes directly |
+| OpenAI Codex | Documentation, releases, production stabilization, repo hygiene, and config standardization | No — Brad commits |
+| GitHub Copilot | General development assistance | No — Brad commits unless explicitly asked |
+| Google Jules | Automated maintenance — small fixes, dependency updates, micro hardening, and token sync passes | Yes — commits and pushes completed maintenance work directly |
 
-All rules in `AGENTS.md` are binding for all three agents. The Standard Workflows section there (Micro Hardening, Weekly Synchronization, Package Contract Hardening, CI Governance) defines the named task scopes.
+All rules in `AGENTS.md` are binding for all agents. The Standard Workflows section there (Micro Hardening, Weekly Synchronization, Package Contract Hardening, CI Governance) defines the named task scopes.
 
 ## Commit Policy
 
