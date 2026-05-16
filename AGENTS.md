@@ -114,6 +114,19 @@ Codex should keep changes scoped, watch for documentation and contract drift,
 run or report release validation, and leave final commit, tag, and publish
 authority with Bradley Potts.
 
+## Jules
+
+Jules reads [`JULES.md`](JULES.md) after `CLAUDE.md` and this file. Jules is the
+autonomous scheduled task executor — it runs scoped prompt-driven tasks without
+human supervision and is the only AI agent in this repository that commits and
+pushes completed work directly.
+
+Jules operates in two modes: General Developer (micro hardening — one CSS file,
+one recipe file) and Sync Developer (token synchronization against the latest
+published `@phcdevworks/spectre-tokens`). All rules in this file apply to Jules.
+Jules must run `npm run ci:verify` in full before every commit and must stop and
+report rather than committing when any gate fails.
+
 ## Standard Workflows
 
 ### Micro Hardening
