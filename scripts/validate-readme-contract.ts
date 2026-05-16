@@ -12,6 +12,7 @@ interface UiContractManifest {
   tailwindExports: string[];
   rootExports: {
     constants: string[];
+    functions?: string[];
     [key: string]: unknown;
   };
   recipeFamilies: Record<string, RecipeFamily>;
@@ -49,6 +50,13 @@ const primaryRecipeFns = Object.values(manifest.recipeFamilies).map((f) => f.fn)
 for (const name of primaryRecipeFns) {
   if (!readme.includes(name)) {
     failures.push(`Primary recipe function not documented in README: ${name}`);
+  }
+}
+
+const allRootFunctions = manifest.rootExports.functions ?? [];
+for (const name of allRootFunctions) {
+  if (!readme.includes(name)) {
+    failures.push(`Root export function not documented in README: ${name}`);
   }
 }
 

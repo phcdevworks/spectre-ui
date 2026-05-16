@@ -20,6 +20,10 @@
       "getCardClasses",
       "getIconBoxClasses",
       "getInputClasses",
+      "getInputErrorMessageClasses",
+      "getInputHelperTextClasses",
+      "getInputLabelClasses",
+      "getInputWrapperClasses",
       "getPricingCardBadgeClasses",
       "getPricingCardClasses",
       "getPricingCardDescriptionClasses",
@@ -49,7 +53,7 @@
     },
     "badge": {
       "fn": "getBadgeClasses",
-      "variants": ["primary", "secondary", "success", "warning", "danger", "neutral", "info", "ghost", "accent"],
+      "variants": ["primary", "secondary", "success", "warning", "danger", "neutral", "info", "ghost", "accent", "cta"],
       "sizes": ["sm", "md", "lg"]
     },
     "card": {
@@ -63,7 +67,7 @@
     },
     "iconbox": {
       "fn": "getIconBoxClasses",
-      "variants": ["primary", "secondary", "success", "warning", "danger", "info", "neutral", "ghost", "accent"],
+      "variants": ["primary", "secondary", "success", "warning", "danger", "info", "neutral", "ghost", "accent", "cta"],
       "sizes": ["sm", "md", "lg"]
     },
     "pricingCard": {
