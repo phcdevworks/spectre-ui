@@ -91,9 +91,9 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
     disabled && "sp-iconbox--disabled",
     loading && "sp-iconbox--loading",
     interactive && "sp-iconbox--interactive",
-    hovered && "sp-iconbox--hover",
-    focused && "sp-iconbox--focus",
-    active && "sp-iconbox--active",
+    hovered && "sp-iconbox--hover is-hover",
+    focused && "sp-iconbox--focus is-focus",
+    active && "sp-iconbox--active is-active",
     pill && "sp-iconbox--pill",
     fullWidth && "sp-iconbox--full"
   );

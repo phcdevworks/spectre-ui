@@ -1074,7 +1074,8 @@
     cursor: not-allowed;
   }
 
-  .sp-iconbox--loading {
+  .sp-iconbox--loading,
+  .sp-iconbox[aria-busy="true"] {
     opacity: var(--sp-opacity-active);
     pointer-events: none;
   }
