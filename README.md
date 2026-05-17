@@ -352,6 +352,32 @@ Available examples include:
 - `showroom.html` for a richer marketing-style composition
 - `verification.html` and focused verification fixtures for regression checks
 
+## Validation
+
+Run the full validation gate before any pull request:
+
+```bash
+npm run check
+```
+
+This runs: runtime check → lint → export validation → README validation →
+token drift check → build → Tailwind contract → CSS contract → tests. All
+steps must pass.
+
+## AI and automation boundaries
+
+Claude Code (`claude-sonnet-4-6`) is the primary development agent for this
+repository. Codex handles releases and production stabilization. Jules handles
+small automated fixes and token sync passes. GitHub Copilot provides
+development support.
+
+No agent creates git commits. All changes are prepared and validated, then
+handed off to Bradley Potts for human review and commit.
+
+**Protected from automated change:** CSS contracts, recipe public API surface,
+and the zero-hex policy (no hardcoded color/spacing values). See
+[AGENTS.md](AGENTS.md) for full agent governance and boundary rules.
+
 ## Contributing
 
 PHCDevworks maintains this package as part of the Spectre suite.
@@ -361,7 +387,7 @@ When contributing:
 - keep styling token-driven
 - keep recipe APIs and CSS classes in sync
 - avoid local visual values unless clearly intentional
-- run npm run ci:verify before opening a pull request
+- run `npm run check` before opening a pull request
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the full workflow.
 
