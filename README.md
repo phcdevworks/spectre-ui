@@ -204,7 +204,7 @@ All options are optional and fall back to sensible defaults.
 | IconBox | `getIconBoxClasses` | `primary` `secondary` `success` `warning` `danger` `info` `neutral` `ghost` `accent` `cta` | `sm` `md` `lg` | `interactive` `disabled` `loading` `pill` `fullWidth` |
 | PricingCard | `getPricingCardClasses` | — | — | `featured` `interactive` `disabled` `loading` `fullHeight` |
 | Rating | `getRatingClasses` | — | `sm` `md` `lg` | `interactive` `disabled` `loading` `pill` `fullWidth` |
-| Testimonial | `getTestimonialClasses` | — | — | `interactive` `disabled` `loading` `fullHeight` |
+| Testimonial | `getTestimonialClasses` | `elevated` `flat` `outline` `ghost` | — | `interactive` `disabled` `loading` `fullHeight` |
 
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements). See the full list below.
