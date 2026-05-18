@@ -39,8 +39,11 @@ describe('getPricingCardClasses', () => {
     });
     expect(result).toContain('sp-pricing-card--interactive');
     expect(result).toContain('sp-pricing-card--hover');
+    expect(result).toContain('is-hover');
     expect(result).toContain('sp-pricing-card--focus');
+    expect(result).toContain('is-focus');
     expect(result).toContain('sp-pricing-card--active');
+    expect(result).toContain('is-active');
     expectTokenizedClassString(result);
   });
 
