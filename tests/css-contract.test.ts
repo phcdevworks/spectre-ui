@@ -284,6 +284,9 @@ const interactionStateContracts = [
       '.sp-pricing-card--featured.sp-pricing-card--interactive:hover',
       '.sp-pricing-card--featured.sp-pricing-card--interactive:focus-visible',
       '.sp-pricing-card--featured.sp-pricing-card--interactive:focus-within',
+      '.sp-pricing-card.is-hover',
+      '.sp-pricing-card.is-focus',
+      '.sp-pricing-card.is-active',
     ],
   },
   {
