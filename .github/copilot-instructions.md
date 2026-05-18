@@ -61,4 +61,5 @@ that cross this boundary belong in a downstream adapter package.
 - Shared boundaries: `AGENTS.md`
 - Lead implementation rules: `CLAUDE.md`
 - Release/readiness rules: `CODEX.md`
+- Copilot support context: `COPILOT.md`
 - Scoped task instructions: `.github/instructions/`

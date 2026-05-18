@@ -23,8 +23,8 @@ This repository follows the Spectre AI factory model:
 | ----- | ---- | --------- |
 | Claude Code | Lead developer responsible for primary implementation | `CLAUDE.md` |
 | OpenAI Codex | Documentation, releases, production stabilization, repo hygiene, and config standardization | `CODEX.md` |
-| GitHub Copilot | General development assistance | `.github/copilot-instructions.md`, `.github/instructions/`, and this file |
-| Google Jules | Automated maintenance for small fixes, dependency updates, and micro-updates | `JULES.md` and `.agents/jules.md` |
+| GitHub Copilot | General development assistance | `COPILOT.md`, `.github/copilot-instructions.md`, `.github/instructions/`, and this file |
+| Google Jules | Automated maintenance for small fixes, dependency updates, and micro-updates | `JULES.md` |
 
 Claude Code keeps implementation leadership. Codex keeps release and
 stabilization work clean. Copilot assists without owning decisions. Jules works
@@ -77,6 +77,8 @@ class recipes without redefining the underlying design values.
 
 - Design values and semantic meaning belong in `@phcdevworks/spectre-tokens`.
 - Token-driven CSS, utilities, Tailwind helpers, and class recipes belong here.
+- Framework-agnostic Lit web components belong in
+  `@phcdevworks/spectre-components`.
 - Framework-specific delivery belongs in adapter packages such as
   `@phcdevworks/spectre-ui-astro`.
 - Adapters and apps consume `@phcdevworks/spectre-ui`; they should not
@@ -160,7 +162,7 @@ targeted edits, refactors, documentation synchronization, GitHub workflow
 support, and validation awareness, but it does not own implementation
 direction, release decisions, or final handoff authority.
 
-Copilot uses `.github/copilot-instructions.md`, scoped files in
+Copilot uses `COPILOT.md`, `.github/copilot-instructions.md`, scoped files in
 `.github/instructions/`, and the role boundaries in this file.
 
 ## Jules
@@ -187,7 +189,7 @@ report rather than committing when any gate fails.
 | **Generated — never hand-edit** | `dist/` | Emitted by `npm run build`; always regenerate |
 | **Snapshots — update via script** | `scripts/export-snapshot.json`, `scripts/tailwind-export-snapshot.json` | Update via `validate:exports:update` / `validate:tailwind:update` |
 | **Contract manifest** | `ui-contract.manifest.json` | Update when public variants, states, or entry points change |
-| **Agent guidance** | `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `JULES.md`, `.github/copilot-instructions.md` | Update only when operating model or rules change |
+| **Agent guidance** | `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, `JULES.md`, `.github/copilot-instructions.md` | Update only when operating model or rules change |
 | **Public docs** | `README.md`, `CONTRIBUTING.md`, `CHANGELOG.md` | Update when public contract or setup guidance changes |
 | **Protected — infra** | `package.json`, `package-lock.json`, `.github/workflows/` | Change only when explicitly in scope; lockfile must stay in sync with `package.json` |
 

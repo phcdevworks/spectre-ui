@@ -37,9 +37,16 @@ belongs in adapter packages such as `@phcdevworks/spectre-ui-astro`).
                │ consumed by
                ▼
 ┌─────────────────────────────┐
-│  Adapters and apps          │  Layer 3 — framework-specific delivery
-│  spectre-ui-astro, React,   │  wraps CSS classes and recipes into
-│  Vue, WordPress, Lit, etc.  │  native components for each runtime
+│  @phcdevworks/spectre-      │  Layer 3 — canonical Lit web components
+│  components                 │  wraps CSS classes and recipes as
+│                             │  framework-agnostic custom elements
+└──────────────┬──────────────┘
+               │ alongside / consumed by
+               ▼
+┌─────────────────────────────┐
+│  Adapters and apps          │  Layer 4 — framework-specific delivery
+│  spectre-ui-astro, React,   │  binds Spectre contracts to native
+│  Vue, WordPress, etc.       │  framework ergonomics
 └─────────────────────────────┘
 ```
 
@@ -277,8 +284,10 @@ Spectre keeps responsibilities separate:
   defines design values and semantic meaning
 - `@phcdevworks/spectre-ui` turns those tokens into reusable CSS, Tailwind
   tooling, and type-safe class recipes
+- `@phcdevworks/spectre-components` turns those styling contracts into
+  framework-agnostic Lit web components
 - Adapters and apps consume `@phcdevworks/spectre-ui` instead of re-implementing
-  its styling layer
+  its styling layer, or wrap Spectre component contracts for a specific runtime
 
 That separation keeps recipe behavior consistent across frameworks and reduces
 implementation drift.
@@ -371,8 +380,10 @@ repository. Codex handles releases and production stabilization. Jules handles
 small automated fixes and token sync passes. GitHub Copilot provides
 development support.
 
-No agent creates git commits. All changes are prepared and validated, then
-handed off to Bradley Potts for human review and commit.
+Claude Code, Codex, and Copilot do not create git commits by default. Jules may
+commit only bounded automated maintenance when the `JULES.md` scope and
+validation gates pass. Release decisions, tags, and publishing remain with
+Bradley Potts.
 
 **Protected from automated change:** CSS contracts, recipe public API surface,
 and the zero-hex policy (no hardcoded color/spacing values). See

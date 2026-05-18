@@ -6,6 +6,19 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+### Changed
+
+- Clarified Spectre layer documentation so the UI package remains Layer 2,
+  `@phcdevworks/spectre-components` is the Layer 3 web-component package, and
+  framework adapters such as `@phcdevworks/spectre-ui-astro` remain downstream
+  delivery packages.
+- Added root Copilot support guidance to match the Spectre AI instruction
+  structure used by `@phcdevworks/spectre-tokens`.
+- Corrected README automation wording so Jules' bounded maintenance commit
+  authority matches `JULES.md`.
+- Removed a stale `.agents/jules.md` reference from shared agent guidance.
+- Updated shared agent guidance to reference the root Copilot support file.
+
 ## [1.5.0] - 2026-05-04
 
 Release Title: Token Alignment and Variant Parity
