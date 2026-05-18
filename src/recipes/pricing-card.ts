@@ -29,9 +29,9 @@ export function getPricingCardClasses(opts: PricingCardRecipeOptions = {}): stri
     disabled && "sp-pricing-card--disabled",
     loading && "sp-pricing-card--loading",
     interactive && "sp-pricing-card--interactive",
-    hovered && "sp-pricing-card--hover",
-    focused && "sp-pricing-card--focus",
-    active && "sp-pricing-card--active",
+    hovered && "sp-pricing-card--hover is-hover",
+    focused && "sp-pricing-card--focus is-focus",
+    active && "sp-pricing-card--active is-active",
     fullHeight && "sp-pricing-card--full"
   );
 }
