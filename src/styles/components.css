@@ -204,7 +204,7 @@
   :where(:root[data-spectre-theme="dark"]) {
     /* badge hover states remain manual as they are not currently exported as tokens */
     --sp-component-badge-success-bg-hover: var(--sp-color-success-700);
-    --sp-component-badge-warning-bg-hover: var(--sp-color-warning-800);
+    --sp-component-badge-warning-bg-hover: var(--sp-color-warning-700);
     --sp-component-badge-danger-bg-hover: var(--sp-color-error-700);
     --sp-component-badge-neutral-bg-hover: var(--sp-color-neutral-600);
     --sp-component-badge-info-bg-hover: var(--sp-color-info-700);

@@ -74,7 +74,8 @@
       "fn": "getPricingCardClasses"
     },
     "testimonial": {
-      "fn": "getTestimonialClasses"
+      "fn": "getTestimonialClasses",
+      "variants": ["elevated", "flat", "outline", "ghost"]
     },
     "rating": {
       "fn": "getRatingClasses",
