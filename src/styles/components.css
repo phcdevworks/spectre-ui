@@ -1249,7 +1249,7 @@
   .sp-pricing-card--interactive:hover,
   .sp-pricing-card--interactive:focus-within,
   .sp-pricing-card--interactive.sp-pricing-card--hover,
-  .sp-pricing-card--interactive.is-hover {
+  .sp-pricing-card.is-hover {
     transform: translateY(calc(var(--sp-component-border-width) * -1));
     box-shadow: var(--sp-shadow-lg);
     background-color: var(--sp-component-pricing-card-bg-hover);
@@ -1259,28 +1259,28 @@
   .sp-pricing-card--featured.sp-pricing-card--interactive:focus-visible,
   .sp-pricing-card--featured.sp-pricing-card--interactive:focus-within,
   .sp-pricing-card--featured.sp-pricing-card--interactive.sp-pricing-card--hover,
-  .sp-pricing-card--featured.sp-pricing-card--interactive.is-hover,
+  .sp-pricing-card--featured.is-hover,
   .sp-pricing-card--featured.sp-pricing-card--interactive.sp-pricing-card--focus,
-  .sp-pricing-card--featured.sp-pricing-card--interactive.is-focus {
+  .sp-pricing-card--featured.is-focus {
     transform: scale(1.05) translateY(calc(var(--sp-component-border-width) * -1));
   }
 
   .sp-pricing-card--interactive:active,
   .sp-pricing-card--interactive.sp-pricing-card--active,
-  .sp-pricing-card--interactive.is-active {
+  .sp-pricing-card.is-active {
     opacity: var(--sp-opacity-active);
     transform: translateY(0);
   }
 
   .sp-pricing-card--featured.sp-pricing-card--interactive:active,
   .sp-pricing-card--featured.sp-pricing-card--interactive.sp-pricing-card--active,
-  .sp-pricing-card--featured.sp-pricing-card--interactive.is-active {
+  .sp-pricing-card--featured.is-active {
     transform: scale(1.05) translateY(0);
   }
 
   .sp-pricing-card--interactive:focus-visible,
   .sp-pricing-card--interactive.sp-pricing-card--focus,
-  .sp-pricing-card--interactive.is-focus {
+  .sp-pricing-card.is-focus {
     outline: none;
     transform: translateY(calc(var(--sp-component-border-width) * -1));
     box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
