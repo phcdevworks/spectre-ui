@@ -763,8 +763,8 @@
   }
 
   .sp-badge--primary.sp-badge--interactive:hover,
-  .sp-badge--primary.sp-badge--interactive.sp-badge--hover,
-  .sp-badge--primary.sp-badge--interactive.is-hover {
+  .sp-badge--primary.sp-badge--hover,
+  .sp-badge--primary.is-hover {
     background-color: var(--sp-component-badge-primary-bg-hover);
   }
 
@@ -775,8 +775,8 @@
   }
 
   .sp-badge--secondary.sp-badge--interactive:hover,
-  .sp-badge--secondary.sp-badge--interactive.sp-badge--hover,
-  .sp-badge--secondary.sp-badge--interactive.is-hover {
+  .sp-badge--secondary.sp-badge--hover,
+  .sp-badge--secondary.is-hover {
     background-color: var(--sp-component-badge-secondary-bg-hover);
   }
 
@@ -786,8 +786,8 @@
   }
 
   .sp-badge--success.sp-badge--interactive:hover,
-  .sp-badge--success.sp-badge--interactive.sp-badge--hover,
-  .sp-badge--success.sp-badge--interactive.is-hover {
+  .sp-badge--success.sp-badge--hover,
+  .sp-badge--success.is-hover {
     background-color: var(--sp-component-badge-success-bg-hover);
   }
 
@@ -797,8 +797,8 @@
   }
 
   .sp-badge--warning.sp-badge--interactive:hover,
-  .sp-badge--warning.sp-badge--interactive.sp-badge--hover,
-  .sp-badge--warning.sp-badge--interactive.is-hover {
+  .sp-badge--warning.sp-badge--hover,
+  .sp-badge--warning.is-hover {
     background-color: var(--sp-component-badge-warning-bg-hover);
   }
 
@@ -808,8 +808,8 @@
   }
 
   .sp-badge--danger.sp-badge--interactive:hover,
-  .sp-badge--danger.sp-badge--interactive.sp-badge--hover,
-  .sp-badge--danger.sp-badge--interactive.is-hover {
+  .sp-badge--danger.sp-badge--hover,
+  .sp-badge--danger.is-hover {
     background-color: var(--sp-component-badge-danger-bg-hover);
   }
 
@@ -819,8 +819,8 @@
   }
 
   .sp-badge--neutral.sp-badge--interactive:hover,
-  .sp-badge--neutral.sp-badge--interactive.sp-badge--hover,
-  .sp-badge--neutral.sp-badge--interactive.is-hover {
+  .sp-badge--neutral.sp-badge--hover,
+  .sp-badge--neutral.is-hover {
     background-color: var(--sp-component-badge-neutral-bg-hover);
   }
 
@@ -830,8 +830,8 @@
   }
 
   .sp-badge--info.sp-badge--interactive:hover,
-  .sp-badge--info.sp-badge--interactive.sp-badge--hover,
-  .sp-badge--info.sp-badge--interactive.is-hover {
+  .sp-badge--info.sp-badge--hover,
+  .sp-badge--info.is-hover {
     background-color: var(--sp-component-badge-info-bg-hover);
   }
 
@@ -841,8 +841,8 @@
   }
 
   .sp-badge--ghost.sp-badge--interactive:hover,
-  .sp-badge--ghost.sp-badge--interactive.sp-badge--hover,
-  .sp-badge--ghost.sp-badge--interactive.is-hover {
+  .sp-badge--ghost.sp-badge--hover,
+  .sp-badge--ghost.is-hover {
     background-color: var(--sp-component-badge-ghost-bg-hover);
   }
 
@@ -852,8 +852,8 @@
   }
 
   .sp-badge--accent.sp-badge--interactive:hover,
-  .sp-badge--accent.sp-badge--interactive.sp-badge--hover,
-  .sp-badge--accent.sp-badge--interactive.is-hover {
+  .sp-badge--accent.sp-badge--hover,
+  .sp-badge--accent.is-hover {
     background-color: var(--sp-component-badge-accent-bg-hover);
   }
 
@@ -863,8 +863,8 @@
   }
 
   .sp-badge--cta.sp-badge--interactive:hover,
-  .sp-badge--cta.sp-badge--interactive.sp-badge--hover,
-  .sp-badge--cta.sp-badge--interactive.is-hover {
+  .sp-badge--cta.sp-badge--hover,
+  .sp-badge--cta.is-hover {
     background-color: var(--sp-component-badge-cta-bg-hover);
   }
 
@@ -879,14 +879,14 @@
   }
 
   .sp-badge--interactive:active,
-  .sp-badge--interactive.sp-badge--active,
-  .sp-badge--interactive.is-active {
+  .sp-badge--active,
+  .sp-badge.is-active {
     opacity: var(--sp-opacity-active);
   }
 
   .sp-badge--interactive:focus-visible,
-  .sp-badge--interactive.sp-badge--focus,
-  .sp-badge--interactive.is-focus {
+  .sp-badge--focus,
+  .sp-badge.is-focus {
     outline: none;
     box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
   }

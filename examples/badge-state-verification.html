@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Badge State Verification</title>
+  <link rel="stylesheet" href="../dist/components.css">
+  <link rel="stylesheet" href="../dist/index.css">
+  <style>
+    body {
+      padding: 2rem;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    h2 {
+      width: 100%;
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Badge State Verification</h1>
+
+  <section>
+    <h2>Primary Variant States</h2>
+    <span class="sp-badge sp-badge--primary sp-badge--md">Default</span>
+    <span class="sp-badge sp-badge--primary sp-badge--md sp-badge--hover">Hover (Forced)</span>
+    <span class="sp-badge sp-badge--primary sp-badge--md is-hover">is-hover (Forced)</span>
+    <span class="sp-badge sp-badge--primary sp-badge--md sp-badge--focus">Focus (Forced)</span>
+    <span class="sp-badge sp-badge--primary sp-badge--md is-focus">is-focus (Forced)</span>
+    <span class="sp-badge sp-badge--primary sp-badge--md sp-badge--active">Active (Forced)</span>
+    <span class="sp-badge sp-badge--primary sp-badge--md is-active">is-active (Forced)</span>
+  </section>
+
+  <section>
+    <h2>CTA Variant (New)</h2>
+    <span class="sp-badge sp-badge--cta sp-badge--md">Default</span>
+    <span class="sp-badge sp-badge--cta sp-badge--md sp-badge--hover">Hover (Forced)</span>
+    <span class="sp-badge sp-badge--cta sp-badge--md is-hover">is-hover (Forced)</span>
+  </section>
+
+  <section>
+    <h2>Secondary Variant States</h2>
+    <span class="sp-badge sp-badge--secondary sp-badge--md">Default</span>
+    <span class="sp-badge sp-badge--secondary sp-badge--md sp-badge--hover">Hover (Forced)</span>
+    <span class="sp-badge sp-badge--secondary sp-badge--md is-hover">is-hover (Forced)</span>
+  </section>
+
+  <section>
+    <h2>Ghost Variant States</h2>
+    <span class="sp-badge sp-badge--ghost sp-badge--md">Default</span>
+    <span class="sp-badge sp-badge--ghost sp-badge--md sp-badge--hover">Hover (Forced)</span>
+    <span class="sp-badge sp-badge--ghost sp-badge--md is-hover">is-hover (Forced)</span>
+  </section>
+
+</body>
+</html>
