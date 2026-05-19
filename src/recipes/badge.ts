@@ -87,9 +87,9 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
     variantClass,
     sizeClass,
     interactive && "sp-badge--interactive",
-    hovered && "sp-badge--hover",
-    focused && "sp-badge--focus",
-    active && "sp-badge--active",
+    hovered && "sp-badge--hover is-hover",
+    focused && "sp-badge--focus is-focus",
+    active && "sp-badge--active is-active",
     disabled && "sp-badge--disabled",
     loading && "sp-badge--loading",
     fullWidth && "sp-badge--full"

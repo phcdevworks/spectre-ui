@@ -28,6 +28,7 @@ describe('getBadgeClasses', () => {
       { variant: 'info' as const, className: 'sp-badge--info' },
       { variant: 'ghost' as const, className: 'sp-badge--ghost' },
       { variant: 'accent' as const, className: 'sp-badge--accent' },
+      { variant: 'cta' as const, className: 'sp-badge--cta' },
     ];
 
     variants.forEach(({ variant, className }) => {
@@ -58,9 +59,9 @@ describe('getBadgeClasses', () => {
   it('supports interactive, hovered, focused and active states', () => {
     const result = getBadgeClasses({ interactive: true, hovered: true, focused: true, active: true });
     expect(result).toContain('sp-badge--interactive');
-    expect(result).toContain('sp-badge--hover');
-    expect(result).toContain('sp-badge--focus');
-    expect(result).toContain('sp-badge--active');
+    expect(result).toContain('sp-badge--hover is-hover');
+    expect(result).toContain('sp-badge--focus is-focus');
+    expect(result).toContain('sp-badge--active is-active');
   });
 
   it('supports loading and disabled states', () => {
@@ -87,6 +88,7 @@ describe('getIconBoxClasses', () => {
       { variant: 'neutral' as const, className: 'sp-iconbox--neutral' },
       { variant: 'ghost' as const, className: 'sp-iconbox--ghost' },
       { variant: 'accent' as const, className: 'sp-iconbox--accent' },
+      { variant: 'cta' as const, className: 'sp-iconbox--cta' },
     ];
 
     variants.forEach(({ variant, className }) => {
