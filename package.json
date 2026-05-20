@@ -38,7 +38,7 @@
     "npm": ">=11.0.0"
   },
   "type": "module",
-  "packageManager": "npm@11.14.1",
+  "packageManager": "npm@11.15.0",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -98,25 +98,25 @@
     "typescript": "^5.9 || ^6.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^2.5.0"
+    "@phcdevworks/spectre-tokens": "^2.6.0"
   },
   "devDependencies": {
-    "@types/node": "^25.8.0",
-    "@typescript-eslint/eslint-plugin": "^8.59.3",
-    "@typescript-eslint/parser": "^8.59.3",
+    "@types/node": "^25.9.1",
+    "@typescript-eslint/eslint-plugin": "^8.59.4",
+    "@typescript-eslint/parser": "^8.59.4",
     "autoprefixer": "^10.5.0",
     "eslint": "^10.4.0",
     "jiti": "^2.7.0",
-    "postcss": "^8.5.14",
+    "postcss": "^8.5.15",
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.1",
     "prettier": "^3.8.3",
     "tailwindcss": "^4.3.0",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.3",
+    "typescript-eslint": "^8.59.4",
     "vite": "^8.0.13",
-    "vitest": "^4.1.6"
+    "vitest": "^4.1.7"
   },
   "cSpell.words": [
     "phcdevworks"
