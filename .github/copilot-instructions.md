@@ -42,6 +42,23 @@ Recipe functions accept plain TypeScript option objects and return plain class
 strings. They have no lifecycle, no reactivity, and no DOM coupling. Suggestions
 that cross this boundary belong in a downstream adapter package.
 
+## Pull Request Creation
+
+When opening a PR, populate every section of the repo's PR template
+(`.github/pull_request_template.md`):
+
+- **Linked issue** — issue number (`#N`) or `N/A`.
+- **Summary of changes** — one or two bullets describing what changed.
+- **Rationale/context** — the contract change type: exactly one of `additive`,
+  `semantic change`, `breaking`, or `N/A`. Must match the `CHANGELOG.md
+  [Unreleased]` classification line if one exists.
+- **Type of Change** — check every box that applies.
+- **Checklist** — check each completed item; leave blocked items unchecked
+  with a brief inline note.
+
+Never open a PR with an empty body or only the template headings left
+unfilled. CodeRabbit's description check blocks such PRs.
+
 ## Working Style
 
 - Prefer narrow, non-breaking changes aligned to existing patterns.
