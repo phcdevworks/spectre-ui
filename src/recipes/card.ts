@@ -58,8 +58,8 @@ export function getCardClasses(opts: CardRecipeOptions = {}): string {
     fullHeight && "sp-card--full",
     disabled && "sp-card--disabled",
     loading && "sp-card--loading",
-    hovered && "sp-card--hover",
-    focused && "sp-card--focus",
-    active && "sp-card--active",
+    hovered && "sp-card--hover is-hover",
+    focused && "sp-card--focus is-focus",
+    active && "sp-card--active is-active",
   );
 }
