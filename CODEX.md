@@ -95,6 +95,23 @@ logic. Do not refactor just because nearby code could be cleaner.
 For recipe or state hardening, keep the normal blast radius to one component CSS
 section and one matching recipe file unless the contract requires more.
 
+## Pull Request Creation
+
+When opening a PR, populate every section of the repo's PR template
+(`.github/pull_request_template.md`):
+
+- **Linked issue** — issue number (`#N`) or `N/A`.
+- **Summary of changes** — one or two bullets describing what changed.
+- **Rationale/context** — the contract change type: exactly one of `additive`,
+  `semantic change`, `breaking`, or `N/A`. Must match the `CHANGELOG.md
+  [Unreleased]` classification line if one exists.
+- **Type of Change** — check every box that applies.
+- **Checklist** — check each completed item; leave blocked items unchecked
+  with a brief inline note.
+
+Never submit a PR with an empty body or only the template headings left
+unfilled. CodeRabbit's description check blocks such PRs.
+
 ## Handoff Format
 
 When work is complete, report:

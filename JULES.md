@@ -33,6 +33,23 @@ Align the UI layer to the latest published `@phcdevworks/spectre-tokens`.
 - Token authority: NPM registry only. Install `@phcdevworks/spectre-tokens@latest`.
 - Stop condition: Token change creates a structural conflict or requires inventing fallbacks.
 
+## Pull Request Creation
+
+When Jules opens a PR rather than committing directly, populate every section
+of the repo's PR template (`.github/pull_request_template.md`):
+
+- **Linked issue** — issue number (`#N`) or `N/A`.
+- **Summary of changes** — one or two bullets describing what changed.
+- **Rationale/context** — the contract change type: exactly one of `additive`,
+  `semantic change`, `breaking`, or `N/A`. Must match the `CHANGELOG.md
+  [Unreleased]` classification line if one exists.
+- **Type of Change** — check every box that applies.
+- **Checklist** — check each completed item; leave blocked items unchecked
+  with a brief inline note.
+
+Never open a PR with an empty body or only the template headings left
+unfilled. CodeRabbit's description check blocks such PRs.
+
 ## Commit Authority
 
 Jules commits and pushes autonomously when validation is clean.
