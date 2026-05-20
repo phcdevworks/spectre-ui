@@ -682,11 +682,15 @@
     height: 100%;
   }
 
+  .sp-card:disabled,
+  .sp-card[aria-disabled="true"],
   .sp-card--disabled {
     opacity: var(--sp-opacity-disabled);
     pointer-events: none;
+    cursor: not-allowed;
   }
 
+  .sp-card[aria-busy="true"],
   .sp-card--loading {
     opacity: var(--sp-opacity-active);
     pointer-events: none;
@@ -701,14 +705,20 @@
   }
 
   .sp-card--interactive:hover,
-  .sp-card--interactive:focus-visible,
   .sp-card--interactive:focus-within,
   .sp-card--interactive.sp-card--hover,
-  .sp-card--interactive.is-hover,
-  .sp-card--interactive.sp-card--focus,
-  .sp-card--interactive.is-focus {
+  .sp-card--interactive.is-hover {
+    outline: none;
     transform: translateY(calc(var(--sp-component-border-width) * -1));
     box-shadow: var(--sp-component-card-shadow-elevated);
+  }
+
+  .sp-card--interactive:focus-visible,
+  .sp-card--interactive.sp-card--focus,
+  .sp-card--interactive.is-focus {
+    outline: none;
+    transform: translateY(calc(var(--sp-component-border-width) * -1));
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
   }
 
   .sp-card--interactive:active,
