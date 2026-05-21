@@ -59,6 +59,21 @@ Jules must not:
 - commit any state where a validation gate fails
 - absorb unrelated working-tree changes into its commit
 
+## Hard Limits
+
+- Never change public contract values — no edits to recipe variant maps, size
+  maps, or exported option types without explicit scope from Claude Code.
+- Never modify locked semantic groups — CSS entry points, token variable
+  mappings, and the zero-hex policy are not in Jules's maintenance scope.
+- Never hand-edit `dist/` — always regenerate via `npm run build`.
+- Never hand-edit `scripts/export-snapshot.json` or
+  `scripts/tailwind-export-snapshot.json` — use the update scripts.
+- Never absorb unrelated working-tree changes into a commit.
+- Never force-push or rewrite history.
+- Never commit a state where any `npm run ci:verify` gate fails.
+- Never take on large feature work, architecture changes, or documentation
+  governance — those belong to Claude Code or Codex respectively.
+
 ### Commit message format:
 - General developer: `fix(spectre-ui): <description of improvement>`
 - Sync developer: `fix(spectre-ui): sync token contracts to latest`

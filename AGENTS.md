@@ -193,6 +193,27 @@ report rather than committing when any gate fails.
 | **Public docs** | `README.md`, `CONTRIBUTING.md`, `CHANGELOG.md` | Update when public contract or setup guidance changes |
 | **Protected — infra** | `package.json`, `package-lock.json`, `.github/workflows/` | Change only when explicitly in scope; lockfile must stay in sync with `package.json` |
 
+## Validation
+
+Run the full validation gate before every PR and before any commit:
+
+```bash
+npm run ci:verify
+```
+
+This runs in order: runtime check → lint → export validation → README contract
+validation → token drift check → build → Tailwind contract → CSS contract →
+tests. All steps must pass.
+
+| Command | Purpose |
+|---|---|
+| `npm run ci:verify` | Full gate — use before every PR |
+| `npm test` | Build then run contract and regression tests |
+| `npm run build` | Emit TypeScript and CSS artifacts to `dist/` |
+| `npm run lint` | ESLint with TypeScript-aware config |
+| `npm run validate:exports` | Check root export surface against snapshot |
+| `npm run validate:tokens` | Check for token drift against latest published release |
+
 ## Pull Request Creation
 
 When opening a PR, populate every section of the repo's PR template
