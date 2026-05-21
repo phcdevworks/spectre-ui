@@ -371,16 +371,271 @@ Risk if skipped
 - Contributors may get noisy local failures unrelated to actual contract
   regressions
 
-## 3. Recommended Execution Order
+## 3. Recommended Execution Order (Phase 1 — Complete)
 
-1. Add the contract manifest
-2. Resolve `spectreIndexStylesPath` status
-3. Harden export validation for root and `./tailwind`
-4. Strengthen CSS entrypoint contract validation
-5. Add stable recipe-family parity checks
-6. Complete zero-hex enforcement coverage
-7. Add built-package downstream smoke tests
-8. Add README contract parity validation
-9. Add maintainer coverage mapping
-10. Tidy example-boundary docs
-11. Stabilize local verification behavior only if still needed
+1. ~~Add the contract manifest~~ ✓
+2. ~~Resolve `spectreIndexStylesPath` status~~ ✓
+3. ~~Harden export validation for root and `./tailwind`~~ ✓
+4. ~~Strengthen CSS entrypoint contract validation~~ ✓
+5. ~~Add stable recipe-family parity checks~~ ✓
+6. ~~Complete zero-hex enforcement coverage~~ ✓
+7. ~~Add built-package downstream smoke tests~~ ✓
+8. ~~Add README contract parity validation~~ ✓
+9. ~~Add maintainer coverage mapping~~ ✓
+10. ~~Tidy example-boundary docs~~ ✓
+11. ~~Stabilize local verification behavior~~ ✓
+
+---
+
+## Phase 2 — Post-1.5.x: Recipe Expansion and Quality
+
+### Current Status
+
+Phase 1 contract hardening is complete. The public contract surface is
+declared, validated, and enforced end-to-end. Phase 2 focuses on three tracks
+running in order: cut the current release, expand the recipe surface with
+community-facing primitives, then improve developer and CI tooling.
+
+### P0: Release Gate
+
+#### P0.1 Finalize the Current Release
+
+Objective Close the [Unreleased] changelog section, confirm token alignment,
+and cut the next version tag cleanly.
+
+Why it matters Phase 1 work has accumulated in [Unreleased]. The contract is
+ready; it needs a versioned anchor.
+
+Deliverables
+
+- Determine whether pending changes land as a `1.5.1` patch or roll into
+  `1.6.0` alongside new recipe work
+- Apply a release date and version heading; update `package.json`
+- Run `npm run check` on a clean checkout and confirm all tests pass
+- Brad tags and publishes; no dist artifacts are committed to source
+
+Dependency notes
+
+- Must complete before any Phase 2 recipe work merges
+
+Risk if skipped
+
+- Contract improvements ship without a stable version anchor; downstream
+  consumers cannot pin to a known-good release
+
+#### P0.2 Add Changelog Validation Script
+
+Objective Enforce Keep a Changelog format in CI so release-date drift and
+duplicate version headings are caught automatically.
+
+Why it matters The changelog is part of the public release contract. Manual
+maintenance has a history of introducing format drift across projects.
+
+Deliverables
+
+- `scripts/validate-changelog.ts`: assert `[Unreleased]` heading exists, all
+  released sections carry ISO dates, and no version heading is duplicated
+- `npm run validate:changelog` added and wired into `npm run check`
+
+Dependency notes
+
+- Can land before or after the release cut
+- Adds one step to `npm run check` — expected test count will increase
+
+Risk if skipped
+
+- Changelog format can drift silently; release automation becomes brittle
+
+### P1: Recipe Expansion Wave
+
+All four recipes follow the standard recipe pattern from `CLAUDE.md` without
+exception. Each lands as its own PR with a focused scope.
+
+#### P1.1 Alert Recipe
+
+Objective Add `getAlertClasses` as a new stable recipe family covering
+informational, warning, error, and success intent states.
+
+Why it matters Alert/notification patterns are one of the most commonly
+requested styling primitives downstream. Without a contract-backed recipe,
+adapters implement their own — breaking token authority.
+
+Deliverables
+
+- `src/recipes/alert.ts` — variants: `info`, `warning`, `error`, `success`;
+  states: `dismissible`
+- CSS selectors in `src/styles/components.css` backed by token roles only
+- Export from `src/recipes/index.ts` and `src/index.ts`
+- Manifest declaration in `ui-contract.manifest.json`
+- Export snapshot update via `validate:exports:update`
+- README parity entry
+
+Dependency notes
+
+- Release cut should happen before this merges
+
+Risk if skipped
+
+- Downstream adapters invent their own alert implementations, fragmenting
+  token authority for intent-color roles
+
+#### P1.2 Avatar Recipe
+
+Objective Add `getAvatarClasses` covering size and shape variants for profile
+and identity UI.
+
+Why it matters Avatar is a foundational identity primitive that downstream
+adapters use alongside Card and Badge. Without a recipe, shape and sizing rules
+diverge across adapters.
+
+Deliverables
+
+- `src/recipes/avatar.ts` — sizes: `xs`, `sm`, `md`, `lg`, `xl`; shapes:
+  `circle`, `square`; states: `placeholder` (no image src)
+- Token-backed surface and size roles only — no local rem values
+- Full coverage as per P1.1
+
+Dependency notes
+
+- Can land in parallel with or after the Alert recipe
+
+Risk if skipped
+
+- Avatar sizing and shape patterns proliferate outside the contract, creating
+  visual inconsistency across downstream adapters
+
+#### P1.3 Tag Recipe
+
+Objective Add `getTagClasses` as a lightweight semantic label distinct from
+Badge, covering categorization and filter UI patterns.
+
+Why it matters Badge is a status indicator. Tag is a categorical label. The
+distinction matters for semantic HTML and downstream adapter intent. Sharing
+the Badge recipe forces semantic misuse.
+
+Deliverables
+
+- `src/recipes/tag.ts` — variants: `default`, `outline`; states: `dismissible`,
+  `selected`
+- Full coverage as per P1.1
+
+Dependency notes
+
+- Can land after Alert or in parallel
+
+Risk if skipped
+
+- Downstream adapters misuse Badge for tag/label patterns, muddying the
+  semantic contract for both
+
+#### P1.4 Spinner Recipe
+
+Objective Add `getSpinnerClasses` for loading state UI across recipes.
+
+Why it matters Downstream adapters attach loading states to Button and other
+interactive recipes. Without a contract-backed spinner recipe, each adapter
+hard-codes motion and sizing.
+
+Deliverables
+
+- `src/recipes/spinner.ts` — sizes: `sm`, `md`, `lg`; structural sizing via
+  token-based scale only; motion via CSS animation (no JS)
+- Designed to compose with Button `loading` state downstream
+- Full coverage as per P1.1
+
+Dependency notes
+
+- Should land after Alert and Avatar so the pattern is well-established
+- No visual token changes required; structural scale tokens should be sufficient
+
+Risk if skipped
+
+- Loading state UI becomes an inconsistent free-for-all across adapters
+
+### P2: Quality and DX
+
+#### P2.1 Node 24 as Primary CI Matrix Target
+
+Objective Promote Node 24.x to first position in the CI matrix and schedule
+the removal of Node 22.x.
+
+Why it matters Node 22 enters security-maintenance-only mode in mid-2026.
+Node 24 is the active LTS. CI should track reality.
+
+Deliverables
+
+- Update `.github/workflows/` to list Node 24.x first, keep 22.x for one
+  more cycle
+- Set a target date to drop Node 22 from the matrix (suggested: after the
+  first major recipe expansion PR lands)
+
+Dependency notes
+
+- No source changes required — CI configuration only
+
+Risk if skipped
+
+- CI matrix drifts behind the active LTS, reducing confidence that the package
+  works on current Node
+
+#### P2.2 Dark Mode Fixture Coverage for New Recipes
+
+Objective Add dark mode visual verification fixtures alongside each new recipe
+as it lands.
+
+Why it matters `examples/` lacks systematic dark mode coverage. New recipes
+that ship without dark mode fixtures can regress silently before visual review.
+
+Deliverables
+
+- For each new recipe (Alert, Avatar, Tag, Spinner): add dark mode variant
+  fixtures to `examples/` at the time the recipe PR is opened
+- Keep fixture scope narrow — verification only, not a design showcase
+
+Dependency notes
+
+- Runs continuously as each recipe lands, not as a standalone PR
+
+Risk if skipped
+
+- Dark mode regressions are invisible locally until a downstream adapter
+  reports them
+
+#### P2.3 Recipe Composition Patterns in CONTRIBUTING.md
+
+Objective Document how downstream adapters should compose multiple recipe
+helpers and what contract guarantees apply to composed class strings.
+
+Why it matters As the recipe surface expands, downstream authors will
+increasingly combine helpers. Undocumented composition expectations become
+silent contract gaps.
+
+Deliverables
+
+- A short section in `CONTRIBUTING.md` covering:
+  - How to call multiple recipe helpers and merge class strings
+  - What the recipe contract guarantees (pure function, no side effects)
+  - What it does not guarantee (CSS specificity interactions, ordering)
+- No new API surface — documentation only
+
+Dependency notes
+
+- Best written after at least two new recipes are in place to have concrete
+  examples
+
+Risk if skipped
+
+- Adapters develop inconsistent composition patterns, leading to specificity
+  bugs that are hard to trace back to the contract layer
+
+## 4. Recommended Execution Order (Phase 2)
+
+1. Release gate: finalize changelog, confirm token alignment
+2. Add changelog validation script
+3. Alert recipe (P1.1)
+4. Avatar recipe (P1.2)
+5. Tag recipe (P1.3)
+6. Spinner recipe (P1.4)
+7. Node 24 CI promotion (P2.1)
+8. Dark mode fixtures — runs continuously with each recipe PR
+9. Recipe composition docs (P2.3) — after Tag and Spinner are in place
