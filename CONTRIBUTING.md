@@ -123,6 +123,56 @@ All of the above run in order via `npm run ci:verify`. If you add a new public
 surface, add a corresponding row here and a corresponding enforcer before
 merging.
 
+## Contract-Impacting and Breaking Changes
+
+Any change that touches a public API surface requires additional steps before
+opening a PR.
+
+**Public API surfaces in this repo:**
+
+- Recipe functions and their exported option types (`src/recipes/`)
+- CSS entry points (`index.css`, `base.css`, `components.css`, `utilities.css`)
+- Tailwind exports (`createSpectreTailwindPreset`, `createSpectreTailwindTheme`)
+- CSS path constants (`spectreStyles`, `spectreBaseStylesPath`, etc.)
+- The `ui-contract.manifest.json` variant and state declarations
+
+**Step-by-step checklist for contract-impacting changes:**
+
+1. Classify the change — pick exactly one:
+   - `additive` — new export, variant, state, or helper that does not break
+     existing consumers
+   - `semantic change` — existing behavior changes in a way that requires
+     consumer updates (e.g. class name rename, option default change)
+   - `breaking` — removes or renames a public export, changes a CSS class name
+     that adapters depend on, or changes the Tailwind preset shape
+2. Add a `CHANGELOG.md [Unreleased]` entry with that classification label.
+3. Update `ui-contract.manifest.json` to reflect any new or removed variants,
+   states, or CSS entry points.
+4. If the root export surface changed, run:
+   ```bash
+   npm run validate:exports:update
+   ```
+5. If the Tailwind export surface changed, run:
+   ```bash
+   npm run validate:tailwind:update
+   ```
+6. Confirm no hardcoded color, spacing, or shadow values were introduced
+   (zero-hex policy).
+7. Run the full validation gate:
+   ```bash
+   npm run ci:verify
+   ```
+8. For `breaking` changes: stop and get explicit approval from Bradley Potts
+   before opening the PR. Breaking changes require a major version bump and
+   must be documented in `CHANGELOG.md` with a migration note.
+
+**Protected values that require human approval before change:**
+
+- CSS class naming convention (`sp-*` prefix)
+- Recipe function names and their exported TypeScript interfaces
+- CSS entry point filenames and `package.json` export keys
+- The zero-hex policy itself
+
 ## Pull Request Checklist
 
 1. Keep the change focused.
