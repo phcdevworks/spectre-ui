@@ -6,18 +6,49 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-05-22
+
+Release Title: Contract Expansion and Governance Hardening
+
+### Added
+
+- **Component Variants**: Added `cta` variant support for `Badge` and
+  `IconBox`, `fullWidth` structural support for `IconBox`, and structural
+  `elevated`, `flat`, `outline`, and `ghost` variants for `Testimonial`.
+- **Input Recipes**: Added wrapper, label, helper-text, and error-message class
+  helpers so adapters can reuse the full input sub-element contract.
+- **Contract Governance**: Added Claude, Codex, Copilot, and Jules agent
+  guidance, PR template requirements, maintenance instructions, release
+  readiness prompts, and CodeRabbit configuration for review hygiene.
+- **Validation Shortcut**: Added `npm run check` as the canonical local and CI
+  validation gate.
+
 ### Changed
 
-- Clarified Spectre layer documentation so the UI package remains Layer 2,
-  `@phcdevworks/spectre-components` is the Layer 3 web-component package, and
-  framework adapters such as `@phcdevworks/spectre-ui-astro` remain downstream
-  delivery packages.
-- Added root Copilot support guidance to match the Spectre AI instruction
-  structure used by `@phcdevworks/spectre-tokens`.
-- Corrected README automation wording so Jules' bounded maintenance commit
-  authority matches `JULES.md`.
-- Removed a stale `.agents/jules.md` reference from shared agent guidance.
-- Updated shared agent guidance to reference the root Copilot support file.
+- **Token Alignment**: Updated the package to consume
+  `@phcdevworks/spectre-tokens` `^2.6.0` and refreshed dependency metadata.
+- **Runtime Contract**: Raised the Node.js requirement to `^22.13.0` or
+  `>=24.0.0`, documented npm `>=10.0.0`, and updated CI to validate on Node
+  22.x and 24.x.
+- **Validation Tooling**: Migrated build and validation scripts from `.mjs` to
+  TypeScript entry points executed with `node --experimental-strip-types`.
+- **Package Metadata**: Repositioned the package description and keywords
+  around Layer 2 CSS bundles, Tailwind tooling, and class recipes; included
+  `CHANGELOG.md` in the published package files.
+- **Documentation**: Expanded README, contributing, roadmap, TODO, and agent
+  guidance around the Spectre layer model, framework boundaries, contract
+  validation, package exports, and release-readiness workflows.
+
+### Fixed
+
+- **State Parity**: Improved Badge, Card, IconBox, PricingCard, and Testimonial
+  recipe/CSS parity for forced hover, focus, active, disabled, loading, and
+  structural state coverage.
+- **Selector Coverage**: Added testimonial attribute-selector support and
+  refreshed contract tests, export snapshots, and manifest entries for the new
+  public recipe helpers and variants.
+- **Docs Drift**: Corrected README badges, package links, Node/npm guidance,
+  Jules automation wording, and stale agent-reference paths.
 
 ## [1.5.0] - 2026-05-04
 
