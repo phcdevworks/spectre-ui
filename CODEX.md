@@ -2,46 +2,61 @@
 
 ## Role
 
-Codex acts as the documentation, release-readiness, production-stabilization,
-repo-hygiene, changelog/release note support, and config-standardization partner
-for `@phcdevworks/spectre-ui`.
+Codex is the documentation, release-readiness, production-stabilization,
+validation-review, repo-hygiene, changelog, release-note, and
+configuration-standardization partner for `@phcdevworks/spectre-ui`.
 
-Claude Code remains the primary AI developer and `CLAUDE.md` remains the
-authoritative working guide. Codex supports that lead by checking changes,
-validating the public contract, tightening documentation, and preparing clean
-handoffs for Bradley Potts to review and commit.
+Claude Code remains the primary implementation authority. Shared rules,
+boundaries, validation commands, and PR-template requirements live in
+[AGENTS.md](AGENTS.md). Codex keeps implementation work clean, documented,
+validated, and ready for Bradley Potts to review.
 
-Codex must not weaken Claude Code's lead developer role, assign ownership or
-release decisions to Copilot, or expand Jules beyond small automated
-maintenance.
+Codex does not commit, tag, publish, or make release decisions unless Bradley
+explicitly requests that action.
 
 ## Entry Point
 
-At the start of every session, read in this order:
+At the start of every Codex session:
 
-1. [`AGENTS.md`](AGENTS.md) — shared rules and operating model for all agents
-2. [`CLAUDE.md`](CLAUDE.md) — implementation authority and full working guide
-3. This file (`CODEX.md`) — Codex-specific scope and responsibilities
-4. [`ui-contract.manifest.json`](ui-contract.manifest.json) — the authoritative
-   public styling contract (variants, states, CSS entry points)
+1. Read `AGENTS.md` for shared repository boundaries and authority.
+2. Read `CLAUDE.md` for implementation workflow and recipe patterns.
+3. Read this file for Codex-specific procedures.
+4. Read `ui-contract.manifest.json` for the current public styling contract.
+5. Check `git status` and preserve unrelated local changes.
 
-Preserve existing human or Claude Code changes unless explicitly asked to
-change them.
+## Operating Principles
 
-## Codex Responsibilities
+1. Protect the public styling contract before optimizing implementation detail.
+2. Keep documentation aligned with actual exports, setup instructions,
+   validation expectations, and release behavior.
+3. Treat docs, validation scripts, package metadata, and CI as part of the
+   release contract when they describe public behavior.
+4. Prefer isolated, non-breaking corrections over broad rewrites.
+5. Stop and report a token gap when a required visual value is missing from the
+   published `@phcdevworks/spectre-tokens` package.
+6. Do not weaken Claude Code's lead role, assign ownership to Copilot, or expand
+   Jules beyond bounded automated maintenance.
 
-- Keep tabs on uncommitted changes and call out unrelated work before editing.
-- Review source, tests, package metadata, docs, and CI as one release contract.
-- Refactor only when it is required to preserve clarity, contract parity, or
-  production readiness.
-- Keep documentation standardized when public exports, setup instructions,
-  validation expectations, or release behavior change.
-- Keep AI-agent and repository configuration standardized when guidance drifts.
-- Prefer isolated, non-breaking corrections over broad rewrites.
-- Stop and report a token gap when a required visual value is missing from
-  `@phcdevworks/spectre-tokens`.
+## Primary Responsibilities
 
-## Release Readiness Checklist
+### Documentation Standardization
+
+When documentation diverges from contract reality, Codex brings it back.
+
+Audit sequence:
+
+1. `ui-contract.manifest.json` - public styling contract anchor.
+2. `package.json` - package export and side-effect metadata.
+3. `README.md` - consumer-facing usage and package overview.
+4. `CONTRIBUTING.md` - human contributor workflow and contract coverage map.
+5. `AGENTS.md` - shared agent roster, authority, boundaries, and PR rules.
+6. `CLAUDE.md`, `CODEX.md`, `JULES.md`, `COPILOT.md` - role-specific guidance.
+7. `CHANGELOG.md` - release notes and contract change classification.
+
+Keep internal agent governance out of public package docs unless it affects
+normal contributors.
+
+### Release Validation
 
 Run the full release gate whenever feasible:
 
@@ -49,112 +64,68 @@ Run the full release gate whenever feasible:
 npm run check
 ```
 
-Before handing off release work, confirm:
+When a gate fails, identify the failing step, determine whether the issue is a
+contract drift, documentation drift, generated output sync problem, or
+environment limitation, and either fix it within Codex scope or report it
+clearly for Claude Code or Bradley.
 
-- Runtime validation passes.
-- Lint passes.
-- Export snapshots and README contract validation pass.
-- Latest published token validation passes, or the network limitation is clearly
-  reported.
-- Build emits every exported CSS and TypeScript artifact.
-- Tailwind and CSS contract validation pass.
-- Tests pass.
-- `CHANGELOG.md` has an `Unreleased` entry for user-facing changes.
-- `package.json` and `package-lock.json` stay synchronized when dependency
-  ranges change.
+### Change Review
 
-## Review Checklist
+When reviewing changes, prioritize:
 
-When asked to review, prioritize findings in this order:
-
-1. Contract breaks in exports, CSS entry points, recipes, or Tailwind helpers.
+1. Contract breaks in exports, CSS entry points, recipes, Tailwind helpers, or
+   package metadata.
 2. Token drift, hardcoded visual literals, or local semantic invention.
-3. Missing tests for new public behavior.
+3. Missing tests for public behavior.
 4. Documentation drift in README, contributing docs, release notes, or setup
    examples.
 5. CI or validation gaps that make documented rules unenforced.
 
-If no issues are found, say so plainly and note any validation that could not be
+If no issues are found, say so plainly and note validation that could not be
 run.
 
-## Documentation Standard
+### Release Procedure
 
-Update docs when changes affect:
+When Bradley requests release support:
 
-- Installation or import paths.
-- Public recipe functions, options, variants, states, or helper exports.
-- CSS entry points or package side effects.
-- Tailwind setup.
-- Validation commands or release expectations.
-- Release notes for user-visible changes.
-
-Keep internal agent guidance out of public package docs unless it affects normal
-contributors.
+1. Confirm `npm run check` passes on the release branch.
+2. Confirm `CHANGELOG.md` has a dated release entry covering user-facing
+   changes since the previous release.
+3. Confirm the `package.json` version matches the changelog entry and semantic
+   versioning intent.
+4. Confirm generated artifacts were emitted by build tooling and not
+   hand-edited.
+5. Report remaining gaps before Bradley tags or publishes.
 
 ## Refactor Boundaries
 
 Codex may refactor when the change directly improves production readiness, such
-as removing duplication that causes recipe/CSS drift or clarifying validation
-logic. Do not refactor just because nearby code could be cleaner.
+as removing documentation duplication, clarifying validation logic, or fixing
+contract-parity drift. Do not refactor source merely because nearby code could
+be cleaner.
 
-For recipe or state hardening, keep the normal blast radius to one component CSS
-section and one matching recipe file unless the contract requires more.
+Approved Codex scope:
 
-## Release Procedure
+- Documentation structure and consistency.
+- Validation script cleanup that preserves behavior.
+- Package metadata review when export or side-effect contracts are in scope.
+- Release checklist and changelog hygiene.
 
-When Bradley Potts requests a release:
+Escalate before changing:
 
-1. Confirm `npm run check` passes clean on the release branch.
-2. Confirm `CHANGELOG.md` has a dated `[x.y.z]` entry covering all
-   user-facing changes since the last release.
-3. Confirm the version in `package.json` matches the changelog entry and
-   follows semantic versioning:
-   - Patch for fixes and token syncs
-   - Minor for new variants, states, or additive recipe additions
-   - Major for breaking contract changes (rare — requires explicit approval)
-4. Confirm `dist/` artifacts were emitted by `npm run build` and are not
-   hand-edited.
-5. Report any gaps to Bradley before tagging. Do not tag, publish, or push
-   unless Bradley explicitly requests it.
-
-## Pull Request Creation
-
-When opening a PR, populate every section of the repo's PR template
-(`.github/pull_request_template.md`):
-
-- **Linked issue** — issue number (`#N`) or `N/A`.
-- **Summary of changes** — one or two bullets describing what changed.
-- **UI contract change type** — exactly one of `additive`,
-  `semantic change`, `breaking`, or `N/A`. Must match the `CHANGELOG.md
-  [Unreleased]` classification line if one exists.
-- **Type of Change** — check every box that applies.
-- **Checklist** — check each completed item; leave blocked items unchecked
-  with a brief inline note.
-
-Never submit a PR with an empty body or only the template headings left
-unfilled. CodeRabbit's description check blocks such PRs.
+- Recipe API shape.
+- CSS class naming or selector contracts.
+- Token dependency alignment that requires published-package verification.
+- CI gates that alter the meaning of `npm run check`.
 
 ## Handoff Format
 
 When work is complete, report:
 
 - What changed.
+- What duplication or drift was removed.
 - What validation ran.
 - Any validation that could not run and why.
 - Any release or documentation follow-up Bradley should review.
 
-Do not create commits. Leave final commit, tag, and publish authority with
-Bradley Potts.
-
-## Hard Limits
-
-- Never hand-edit `dist/` — generated by `npm run build` only.
-- Never commit, tag, or publish without Bradley's explicit request.
-- Never override or expand Claude Code's implementation decisions.
-- Never add hardcoded color, spacing, or shadow values to component CSS —
-  zero-hex policy applies.
-- Never use the GitHub state of `@phcdevworks/spectre-tokens` as the token
-  authority — only the published NPM package is authoritative.
-- Never mix feature work with token sync or documentation cleanup in one PR.
-- Never modify `scripts/export-snapshot.json` or
-  `scripts/tailwind-export-snapshot.json` by hand — use the update scripts.
+Leave final commit, tag, publish, and release authority with Bradley Potts.
