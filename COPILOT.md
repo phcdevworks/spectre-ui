@@ -27,6 +27,17 @@ maintenance workflows.
 - Keep framework-specific delivery in adapter packages.
 - Use `npm run ci:verify` as the full validation gate for non-trivial changes.
 
+## Working Style
+
+- Prefer narrow, non-breaking changes aligned to existing patterns.
+- Keep docs, validation scripts, snapshots, and manifests in sync when
+  contract-relevant behavior changes.
+- Preserve unrelated local changes — do not wipe in-progress work.
+- Do not create commits, tags, or releases unless explicitly asked.
+- One PR, one concern: do not mix feature work with token sync or cleanup.
+- Follow the zero-hex policy — no hardcoded color, spacing, or shadow values.
+- When in doubt about scope, defer to Claude Code and flag the concern.
+
 ## Pull Request Creation
 
 When opening a PR, populate every section of the repo's PR template
