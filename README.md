@@ -1,9 +1,11 @@
 # @phcdevworks/spectre-ui
 
 [![npm version](https://img.shields.io/npm/v/@phcdevworks/spectre-ui)](https://www.npmjs.com/package/@phcdevworks/spectre-ui)
-[![CI](https://github.com/phcdevworks/spectre-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/phcdevworks/spectre-ui/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/phcdevworks/spectre-ui/ci.yml?branch=main&label=CI)](https://github.com/phcdevworks/spectre-ui/actions/workflows/ci.yml)
 [![GitHub issues](https://img.shields.io/github/issues/phcdevworks/spectre-ui)](https://github.com/phcdevworks/spectre-ui/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/phcdevworks/spectre-ui)](https://github.com/phcdevworks/spectre-ui/pulls)
 [![License](https://img.shields.io/github/license/phcdevworks/spectre-ui)](LICENSE)
+[![Node](https://img.shields.io/badge/node-%5E22.13.0%20%7C%7C%20%3E%3D24.0.0-brightgreen)](https://nodejs.org)
 
 `@phcdevworks/spectre-ui` is **Layer 2 of the Spectre design suite**. It turns
 [`@phcdevworks/spectre-tokens`](https://github.com/phcdevworks/spectre-tokens)
@@ -17,7 +19,8 @@ styling contract without re-implementing class logic themselves.
 `@phcdevworks/spectre-tokens`) or building framework-specific components (that
 belongs in adapter packages such as `@phcdevworks/spectre-ui-astro`).
 
-[Contributing](CONTRIBUTING.md) | [Changelog](CHANGELOG.md) |
+[Contributing](CONTRIBUTING.md) | [Code of Conduct](CODE_OF_CONDUCT.md) |
+[Changelog](CHANGELOG.md) | [Roadmap](ROADMAP.md) |
 [Security Policy](SECURITY.md)
 
 ## Source of truth
