@@ -426,7 +426,7 @@ npm install
 npm run ci:verify
 ```
 
-This project requires Node.js `^22.13.0 || >=24.0.0` and npm `>=11.0.0`.
+This project requires Node.js `^22.13.0 || >=24.0.0` and npm `>=10.0.0`.
 The checked-in package manager is `npm@11.15.0`.
 
 ### Common commands
@@ -458,7 +458,7 @@ automatically via the `pretest` hook. If you ran `vitest` directly, run
 `npm run build` first.
 
 **Lint fails locally but passes in CI** — confirm you are on the same Node
-version as CI (Node 22.13.0 or 24.x). ESLint plugin resolution can differ
+version as CI (Node 22.x or 24.x). ESLint plugin resolution can differ
 across runtimes.
 
 **Export snapshot out of date** — run `npm run validate:exports:update` after
