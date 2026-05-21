@@ -25,6 +25,7 @@ This repo follows the Spectre AI factory model. Read these files in order:
 |---|---|---|
 | Claude Code | Primary AI developer — authors features, recipes, CSS | No — Brad commits |
 | OpenAI Codex | Documentation, releases, production stabilization, repo hygiene, and config standardization | No — Brad commits |
+| ChatGPT | Strategy, coordination, prompt design, and external review — support layer only, no implementation ownership | No |
 | GitHub Copilot | General development assistance | No — Brad commits unless explicitly asked |
 | Google Jules | Automated maintenance — small fixes, dependency updates, micro hardening, and token sync passes | Yes — commits and pushes completed maintenance work directly |
 
@@ -43,7 +44,7 @@ When opening a PR, populate every section of the repo's PR template
 
 - **Linked issue** — issue number (`#N`) or `N/A`.
 - **Summary of changes** — one or two bullets describing what changed.
-- **Rationale/context** — the contract change type: exactly one of `additive`,
+- **UI contract change type** — exactly one of `additive`,
   `semantic change`, `breaking`, or `N/A`. Must match the `CHANGELOG.md
   [Unreleased]` classification line if one exists.
 - **Type of Change** — check every box that applies.
@@ -139,7 +140,7 @@ The following are the stable public surfaces this repo owns and must protect:
 
 ### Run the full validation suite
 ```bash
-npm run ci:verify
+npm run check
 ```
 This runs: runtime check → lint → export validation → README validation →
 token validation → build → Tailwind contract → CSS contract → tests.
@@ -213,7 +214,7 @@ export function getMyClasses(opts: MyRecipeOptions = {}): string {
 3. Export the updated type from `src/recipes/index.ts`.
 4. Update `scripts/export-snapshot.json` if a new type is exported (`validate:exports:update`).
 5. Update `ui-contract.manifest.json` to declare the new variant/state.
-6. Run `npm run ci:verify` — all 166+ tests must pass.
+6. Run `npm run check` — all 166+ tests must pass.
 
 ## Contract Enforcement Map
 
@@ -235,9 +236,9 @@ export function getMyClasses(opts: MyRecipeOptions = {}): string {
 ## CI
 
 GitHub Actions runs on every push to `main` and every PR against `main`.
-Matrix: Node 22.13.0 and Node 24.x. Both must pass.
+Matrix: Node 22.12.0 and Node 24.x. Both must pass.
 
-Buildkite also runs `npm run ci:verify` on the default queue.
+Buildkite also runs `npm run check` on the default queue.
 
 ## Code Style
 
@@ -260,7 +261,7 @@ Buildkite also runs `npm run ci:verify` on the default queue.
 - Do not combine a token sync with a feature addition in the same PR.
 - Do not use GitHub source of `@phcdevworks/spectre-tokens` as the token authority —
   only the published NPM package is authoritative.
-- Do not skip `npm run ci:verify` before handing off for review.
+- Do not skip `npm run check` before handing off for review.
 
 ## Versioning
 

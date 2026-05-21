@@ -1,6 +1,6 @@
 # Codex Instructions for @phcdevworks/spectre-ui
 
-## Role
+## Role Summary
 
 Codex is the documentation, release-readiness, production-stabilization,
 repo-hygiene, and config-standardization partner for this repository.
@@ -30,7 +30,7 @@ When opening a PR, populate every section of the repo's PR template
 
 - **Linked issue** — issue number (`#N`) or `N/A`.
 - **Summary of changes** — one or two bullets describing what changed.
-- **Rationale/context** — the contract change type: exactly one of `additive`,
+- **UI contract change type** — exactly one of `additive`,
   `semantic change`, `breaking`, or `N/A`. Must match the `CHANGELOG.md
   [Unreleased]` classification line if one exists.
 - **Type of Change** — check every box that applies.
@@ -54,7 +54,7 @@ When reviewing a PR, check in this order:
    `breaking`) for any user-facing change?
 4. **Generated output sync** — are `dist/` artifacts, export snapshots, and
    the contract manifest regenerated and committed if needed?
-5. **Validation gate** — does `npm run ci:verify` pass? If not, what fails?
+5. **Validation gate** — does `npm run check` pass? If not, what fails?
 6. **Namespace integrity** — are all new exports, CSS classes, and Tailwind
    helpers prefixed or scoped correctly (`sp-*` classes, `spectre*` exports)?
 
@@ -77,7 +77,8 @@ be run.
 
 | Command | Purpose |
 |---|---|
-| `npm run ci:verify` | Full gate — runtime → lint → exports → README → tokens → build → Tailwind → CSS → tests |
+| `npm run check` | Full gate — runtime → lint → exports → README → tokens → build → Tailwind → CSS → tests |
+| `npm run ci:verify` | Underlying full verification sequence |
 | `npm test` | Build then run contract and regression tests |
 | `npm run build` | Emit TypeScript and CSS artifacts to `dist/` |
 | `npm run lint` | ESLint with TypeScript-aware config |
