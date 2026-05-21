@@ -1,272 +1,173 @@
-# CLAUDE.md — Spectre UI Maintainer Guide
+# CLAUDE.md - Spectre UI Maintainer Guide
 
 ## Project Identity
 
 **Package:** `@phcdevworks/spectre-ui`
-**Layer:** L2 of the Spectre design suite — CSS bundles, Tailwind tooling, and class recipes
+**Layer:** L2 of the Spectre design suite - CSS bundles, Tailwind tooling, and class recipes
 **Human owner:** Bradley Potts (brad.potts@coastdigitalgroup.com)
-**Primary AI developer:** Claude Code (claude-sonnet-4-6)
-**Release-readiness partner:** Codex (reads `CODEX.md` after this file and `AGENTS.md`)
+**Primary AI developer:** Claude Code (`claude-sonnet-4-6`)
 
-Claude Code is the primary maintainer of `@phcdevworks/spectre-ui`. This file is
-the authoritative working guide for all AI-assisted development in this repo.
+Claude Code is the primary implementation authority for
+`@phcdevworks/spectre-ui`. This file is Claude Code's role-specific workflow.
+Shared agent rules, edit boundaries, validation commands, PR requirements, and
+package ownership boundaries live in [AGENTS.md](AGENTS.md).
 
-## Agent Coordination
+## Coordination
 
-This repo follows the Spectre AI factory model. Read these files in order:
+Read these files before changing source:
 
-1. `CLAUDE.md` (this file) — primary working guide
-2. [`AGENTS.md`](AGENTS.md) — shared operating model binding on **all** AI agents; contains 20 rules, working boundaries, change discipline, and the four standard workflows
-3. [`CODEX.md`](CODEX.md) — Codex-specific responsibilities (documentation, releases, stabilization, repo hygiene, config cleanup, review checklist, handoff format)
-4. `.github/copilot-instructions.md` and `.github/instructions/` — Copilot scoped support guidance
-5. [`JULES.md`](JULES.md) — Jules-specific responsibilities (automated maintenance, commit authority, blast radius by task type)
+1. `CLAUDE.md` - primary implementation workflow.
+2. `AGENTS.md` - shared operating model and non-negotiable repo rules.
+3. `ui-contract.manifest.json` - machine-readable public styling contract.
+4. `CODEX.md`, `JULES.md`, or `COPILOT.md` only when coordinating with that
+   agent's role.
 
-| Agent | Role | Commits? |
-|---|---|---|
-| Claude Code | Primary AI developer — authors features, recipes, CSS | No — Brad commits |
-| OpenAI Codex | Documentation, releases, production stabilization, repo hygiene, and config standardization | No — Brad commits |
-| ChatGPT | Strategy, coordination, prompt design, and external review — support layer only, no implementation ownership | No |
-| GitHub Copilot | General development assistance | No — Brad commits unless explicitly asked |
-| Google Jules | Automated maintenance — small fixes, dependency updates, micro hardening, and token sync passes | Yes — commits and pushes completed maintenance work directly |
-
-All rules in `AGENTS.md` are binding for all agents. The Standard Workflows section there (Micro Hardening, Weekly Synchronization, Package Contract Hardening, CI Governance) defines the named task scopes.
+Claude Code prepares changes for human review. Bradley Potts retains final
+commit, merge, tag, publish, and release authority.
 
 ## Commit Policy
 
-Claude Code does not create git commits in this repository. Prepare changes,
-run all validation, and leave staging, committing, tagging, and pushing to
-human review.
+Do not create git commits in this repository. Prepare changes, run validation,
+and leave staging, committing, tagging, and pushing to human review.
 
-## Pull Request Creation
+## Implementation Mission
 
-When opening a PR, populate every section of the repo's PR template
-(`.github/pull_request_template.md`):
+Protect the Layer 2 styling contract. This package translates the published
+`@phcdevworks/spectre-tokens` package into reusable CSS entry points, Tailwind
+helpers, and framework-agnostic recipe APIs. It does not author token meaning or
+deliver framework components.
 
-- **Linked issue** — issue number (`#N`) or `N/A`.
-- **Summary of changes** — one or two bullets describing what changed.
-- **UI contract change type** — exactly one of `additive`,
-  `semantic change`, `breaking`, or `N/A`. Must match the `CHANGELOG.md
-  [Unreleased]` classification line if one exists.
-- **Type of Change** — check every box that applies.
-- **Checklist** — check each completed item; leave blocked items unchecked
-  with a brief inline note.
+## Development Workflow
 
-Never submit a PR with an empty body or only the template headings left
-unfilled. CodeRabbit's description check blocks such PRs.
+```bash
+npm install
+npm run build
+npm run check
+```
 
-## Role and Mission
-
-This package is Layer 2 of the Spectre suite: it translates
-`@phcdevworks/spectre-tokens` into reusable CSS bundles, Tailwind helpers, and
-type-safe class recipes for downstream adapters and apps.
-
-The job here is to protect the contract — not to expand it opportunistically.
+Run `npm run check` before handoff for changes touching `src/`, `tests/`,
+`scripts/`, package exports, docs, or contract manifests. `AGENTS.md` owns the
+full validation gate definition and PR-template requirements.
 
 ## Project Structure
 
 ```
 src/
-  styles/         source CSS (base, components, utilities, index)
-  recipes/        framework-agnostic class recipe functions
-  tailwind/       Tailwind preset and theme helpers
-  internal/       cx() and resolveOption() utilities
-  tokens/         token re-exports and shared types
-  css-constants.ts  CSS path constants (public API)
-  index.ts        root package barrel
+  styles/            source CSS bundles and component classes
+  recipes/           framework-agnostic class recipe functions
+  tailwind/          Tailwind preset and theme helpers
+  internal/          shared class/option utilities
+  tokens/            token re-exports and shared types
+  css-constants.ts   CSS path constants
+  index.ts           root package barrel
 
-scripts/          validation and build scripts (all .ts, run via --experimental-strip-types)
-tests/            vitest contract and regression tests
-examples/         visual verification fixtures (not public API)
-dist/             generated release artifacts (never edit by hand)
+scripts/             validation and build scripts
+tests/               contract and regression tests
+examples/            visual verification fixtures, not public API
+dist/                generated release artifacts
 ```
 
-## Edit Permissions
-
-| Classification | Paths | Rule |
-|---|---|---|
-| **Edit freely** | `src/styles/`, `src/recipes/`, `src/tailwind/`, `src/tokens/`, `src/internal/`, `src/index.ts`, `src/css-constants.ts` | Primary authoring surface |
-| **Edit when contract changes** | `scripts/*.ts` | Validation logic and build helpers |
-| **Edit to add/update coverage** | `tests/*.test.ts` | Contract and regression tests |
-| **Update via script only** | `scripts/export-snapshot.json`, `scripts/tailwind-export-snapshot.json` | Run `validate:exports:update` / `validate:tailwind:update` |
-| **Update when surface changes** | `ui-contract.manifest.json` | Declares public variants, states, entry points |
-| **Never hand-edit** | `dist/` | Generated by `npm run build` only |
-| **Update when operating model changes** | `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, `JULES.md`, `.github/copilot-instructions.md` | Agent guidance files |
-| **Update when public contract changes** | `README.md`, `CONTRIBUTING.md`, `CHANGELOG.md` | Public-facing docs |
-| **Change only when explicitly in scope** | `package.json`, `package-lock.json`, `.github/workflows/` | Infrastructure — lockfile must stay in sync with `package.json` |
-
-## Core Rules (Non-Negotiable)
-
-1. Consume `@phcdevworks/spectre-tokens` — never invent local visual values.
-2. Zero-hex policy: no hardcoded color hex, px, or rem values in component CSS.
-3. Keep CSS classes and recipe APIs in sync at all times.
-4. Recipes must be framework-agnostic and purely functional (input → class string).
-   This means: no JSX, no Astro component syntax, no Lit `html\`\`` templates,
-   no React hooks, no Vue composables, no WordPress-specific code, no Svelte
-   blocks, and no import of any framework runtime (`react`, `vue`, `astro:*`,
-   `lit`). If a task requires any of these, stop — it belongs in an adapter
-   package, not here.
-5. One PR, one concern: no mixing feature work with token sync or cleanup.
-6. If a needed token does not exist in the published package, stop and document the gap.
-7. Never touch `dist/` by hand — it is always generated by `npm run build`.
-8. All scripts live in `scripts/` with a `.ts` extension and run via Node's
-   `--experimental-strip-types` flag.
-
-`AGENTS.md` extends these with rules 9–20 covering CSS entry point standalone requirements,
-lockfile synchronization, export documentation parity, and token authority guardrails.
-Those rules are binding for Claude Code.
-
-## The Public Contract Surface
-
-The following are the stable public surfaces this repo owns and must protect:
-
-### Root package exports (`src/index.ts`)
-- CSS path constants: `spectreStyles`, `spectreBaseStylesPath`, `spectreComponentsStylesPath`,
-  `spectreIndexStylesPath`, `spectreUtilitiesStylesPath`
-- Recipe functions: `getBadgeClasses`, `getButtonClasses`, `getCardClasses`,
-  `getIconBoxClasses`, `getInputClasses`, `getPricingCardClasses`,
-  `getRatingClasses`, `getTestimonialClasses` plus all sub-element helpers
-
-### Tailwind subpath (`@phcdevworks/spectre-ui/tailwind`)
-- `createSpectreTailwindPreset`
-- `createSpectreTailwindTheme`
-
-### CSS entry points
-- `@phcdevworks/spectre-ui/index.css`
-- `@phcdevworks/spectre-ui/base.css`
-- `@phcdevworks/spectre-ui/components.css`
-- `@phcdevworks/spectre-ui/utilities.css`
-
-## Common Tasks
-
-### Run the full validation suite
-```bash
-npm run check
-```
-This runs: runtime check → lint → export validation → README validation →
-token validation → build → Tailwind contract → CSS contract → tests.
-Always run this before committing or opening a PR.
-
-### Run tests only
-```bash
-npm test
-```
-The `pretest` hook builds automatically — no need to build first.
-
-### Build
-```bash
-npm run build
-```
-Emits to `dist/`. Run after source changes to refresh artifacts.
-
-### Update export snapshot after adding a public export
-```bash
-npm run validate:exports:update
-npm run validate:tailwind:update
-```
-
-### Check for token drift
-```bash
-npm run validate:tokens
-```
-Requires outbound npm registry access. Skippable in isolated environments.
-
-### Lint
-```bash
-npm run lint
-```
+Follow the shared edit-permission table in `AGENTS.md`. Never hand-edit
+generated outputs.
 
 ## Recipe Pattern
 
 Every recipe follows the same shape. Do not deviate:
 
 ```typescript
-// 1. Declare allowed values as const objects
-const VARIANT_MAP = { primary: true, secondary: true } as const;
-const SIZE_MAP = { sm: true, md: true, lg: true } as const;
+const VARIANT_MAP = { primary: true, secondary: true } as const
+const SIZE_MAP = { sm: true, md: true, lg: true } as const
 
-// 2. Export types derived from the const objects
-export type MyVariant = keyof typeof VARIANT_MAP;
-export type MySize = keyof typeof SIZE_MAP;
+export type MyVariant = keyof typeof VARIANT_MAP
+export type MySize = keyof typeof SIZE_MAP
 
-// 3. Export the options interface
 export interface MyRecipeOptions {
-  variant?: MyVariant;
-  size?: MySize;
-  disabled?: boolean;
-  // ...
+  variant?: MyVariant
+  size?: MySize
+  disabled?: boolean
 }
 
-// 4. Export the recipe function
 export function getMyClasses(opts: MyRecipeOptions = {}): string {
-  const { variant: variantInput, size: sizeInput, disabled = false } = opts;
+  const { variant: variantInput, size: sizeInput, disabled = false } = opts
 
-  const variant = resolveOption({ name: 'my variant', value: variantInput, allowed: VARIANT_MAP, fallback: 'primary' });
-  const size = resolveOption({ name: 'my size', value: sizeInput, allowed: SIZE_MAP, fallback: 'md' });
+  const variant = resolveOption({
+    name: 'my variant',
+    value: variantInput,
+    allowed: VARIANT_MAP,
+    fallback: 'primary'
+  })
 
-  return cx('sp-my', `sp-my--${variant}`, `sp-my--${size}`, disabled && 'sp-my--disabled');
+  const size = resolveOption({
+    name: 'my size',
+    value: sizeInput,
+    allowed: SIZE_MAP,
+    fallback: 'md'
+  })
+
+  return cx(
+    'sp-my',
+    `sp-my--${variant}`,
+    `sp-my--${size}`,
+    disabled && 'sp-my--disabled'
+  )
 }
 ```
 
-## Adding a New Variant or State
+Recipe functions accept plain option objects and return plain class strings.
+They must stay framework-agnostic, deterministic, and free of DOM or template
+behavior.
 
-1. Add the value to the const object in the recipe file.
-2. Add the CSS selector to `src/styles/components.css` using a token variable.
-3. Export the updated type from `src/recipes/index.ts`.
-4. Update `scripts/export-snapshot.json` if a new type is exported (`validate:exports:update`).
-5. Update `ui-contract.manifest.json` to declare the new variant/state.
-6. Run `npm run check` — all 166+ tests must pass.
+## Adding a Variant, State, or Recipe
 
-## Contract Enforcement Map
+1. Update the relevant const map and derived types in `src/recipes/`.
+2. Add token-backed selectors to `src/styles/components.css`.
+3. Export new public APIs from `src/recipes/index.ts` and `src/index.ts` when
+   appropriate.
+4. Update `ui-contract.manifest.json`.
+5. Refresh snapshots with `npm run validate:exports:update` or
+   `npm run validate:tailwind:update` when the public export surface changes.
+6. Update README public contract documentation when consumer-facing behavior
+   changes.
+7. Run `npm run check`.
 
-| What | Enforced by |
-|---|---|
-| Root export surface | `scripts/validate-exports.ts` + `scripts/export-snapshot.json` |
-| `./tailwind` export surface | `scripts/validate-tailwind-contract.ts` + `scripts/tailwind-export-snapshot.json` |
-| CSS entrypoints presence + manifest | `scripts/validate-css-contract.ts` |
-| CSS entrypoint isolation | `tests/css-entrypoints.test.ts` |
-| CSS ↔ recipe class parity | `tests/css-contract.test.ts` |
-| Recipe family parity | `tests/recipe-parity.test.ts` |
-| Token drift | `tests/token-drift.test.ts` + `scripts/validate-tokens.ts` |
-| Zero-hex enforcement | `tests/aesthetic-audit.test.ts` |
-| Tailwind mapping | `tests/tailwind-contract.test.ts` |
-| Built-package smoke | `tests/package-smoke.test.ts` |
-| README contract parity | `scripts/validate-readme-contract.ts` |
-| Node runtime version | `scripts/validate-runtime.ts` |
+Stop and document a token gap instead of inventing a local visual fallback.
 
-## CI
+## Contract Touchpoints
 
-GitHub Actions runs on every push to `main` and every PR against `main`.
-Matrix: Node 22.x and Node 24.x. Both must pass.
+Use `ui-contract.manifest.json` as the contract anchor for public recipe
+families, CSS entry points, root exports, and Tailwind exports. Keep source,
+docs, snapshots, package metadata, and tests aligned with that manifest.
 
-Buildkite also runs `npm run check` on the default queue.
+The main enforcement areas are:
+
+- root export surface
+- `./tailwind` export surface
+- CSS entry point presence and isolation
+- CSS and recipe class parity
+- recipe family parity
+- token drift and zero-hex enforcement
+- built-package smoke coverage
+- README contract parity
+- runtime version validation
+
+`CONTRIBUTING.md` contains the maintainer-facing coverage map for these
+validators.
 
 ## Code Style
 
-- **Modules:** ES modules throughout — `import`/`export`, no `require`.
-- **TypeScript:** strict mode. No `any`. Derive types from const objects
-  (`keyof typeof MAP`) rather than duplicating them as separate string unions.
-- **Prettier config:** single quotes, no semicolons, no trailing commas,
-  80-character print width.
-- **Comments:** no what-comments. Only add a comment when the WHY is
-  non-obvious — a hidden constraint, a subtle invariant, a known workaround.
-  Never add multi-line block comments explaining what the code does.
-- **Recipe shape:** follow the pattern in the Recipe Pattern section exactly.
-  No deviations — const maps, derived types, options interface, recipe function.
+- ES modules throughout.
+- Strict TypeScript. Avoid `any`.
+- Derive string-union types from const objects.
+- Prettier config: single quotes, no semicolons, no trailing commas, 80-character
+  print width.
+- Add comments only when the reason is non-obvious.
+- Keep one PR focused on one concern.
 
-## What NOT to Do
+## Release Notes
 
-- Do not add hardcoded color, spacing, or shadow values to component CSS.
-- Do not create new design tokens here — they belong in `@phcdevworks/spectre-tokens`.
-- Do not edit `dist/` files directly.
-- Do not combine a token sync with a feature addition in the same PR.
-- Do not use GitHub source of `@phcdevworks/spectre-tokens` as the token authority —
-  only the published NPM package is authoritative.
-- Do not skip `npm run check` before handing off for review.
+This package uses semantic versioning. Patch bumps cover fixes and token syncs.
+Minor bumps cover new variants, states, or additive recipe additions. Major
+bumps are reserved for deliberate breaking contract changes.
 
-## Versioning
-
-This package uses semantic versioning. Patch bumps for fixes and token syncs.
-Minor bumps for new variants, states, or recipe additions. Major only for
-breaking contract changes (rare, deliberate, documented).
-
-Update `CHANGELOG.md` with every release following Keep a Changelog format.
+Update `CHANGELOG.md` for every release and keep the change classification
+aligned with the PR template requirements in `AGENTS.md`.

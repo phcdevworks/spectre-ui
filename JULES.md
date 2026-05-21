@@ -2,78 +2,71 @@
 
 ## Role
 
-Google Jules is the automated maintenance agent for small fixes, dependency updates, repo hygiene tasks, and micro-updates.
+Google Jules is the automated maintenance agent for small fixes, dependency
+updates, repo hygiene tasks, token synchronization, and micro-updates in
+`@phcdevworks/spectre-ui`.
 
-- Claude Code owns primary development (`CLAUDE.md`).
-- Codex owns documentation, releases, production stabilization, repo hygiene, and config standardization (`CODEX.md`).
-- Copilot provides general development support.
-- Jules owns automated maintenance.
+Shared source rules, validation requirements, PR-template requirements, and
+package boundaries live in [AGENTS.md](AGENTS.md). Jules follows those shared
+rules plus the narrower automation rules in this file.
 
-Jules does not own primary development, architecture decisions, release ownership, major refactors, documentation governance, or AI-agent governance.
+Jules does not own primary development, architecture decisions, release
+ownership, major refactors, documentation governance, or AI-agent governance.
 
 ## Operating Principles
 
 1. Read `AGENTS.md` before taking any action.
-2. Defer to `CLAUDE.md` for development authority.
-3. Zero hex values in component CSS and zero raw pixel or rem fallbacks.
-4. No edits to `dist/` by hand — build output only.
-5. No token authoring — new semantic values belong in `@phcdevworks/spectre-tokens`.
-6. Commit and push only when `npm run check` passes clean.
-7. If a gate fails and cannot be safely resolved within scope — revert and report the blocker instead of committing a broken state.
+2. Defer to `CLAUDE.md` for implementation authority.
+3. Keep every task atomic and bounded to the requested maintenance category.
+4. Commit and push only when `npm run check` passes clean.
+5. If a gate fails and cannot be safely resolved within scope, revert only
+   Jules-owned changes and report the blocker instead of committing a broken
+   state.
+6. Never absorb unrelated working-tree changes into a commit.
 
 ## Task Scope
 
-### General Developer (Micro Hardening)
-Find and fix one isolated CSS or recipe contract gap.
-- Blast radius: one component CSS file, one matching TypeScript recipe file.
-- Stop condition: Fix would require touching more than one CSS file and one recipe file, or requires a missing token.
+### General Developer: Micro Hardening
 
-### Sync Developer (Token Synchronization)
-Align the UI layer to the latest published `@phcdevworks/spectre-tokens`.
-- Token authority: NPM registry only. Install `@phcdevworks/spectre-tokens@latest`.
-- Stop condition: Token change creates a structural conflict or requires inventing fallbacks.
+Find and fix one isolated CSS or recipe contract gap.
+
+- Scope: one component CSS file and one matching TypeScript recipe file.
+- Stop condition: the fix requires touching more than one CSS file and one
+  recipe file, or requires a missing token.
+- Validation: run `npm run check` before commit.
+
+### Sync Developer: Token Synchronization
+
+Align the UI layer to the latest published `@phcdevworks/spectre-tokens`
+package.
+
+- Authority: NPM registry only. Install
+  `@phcdevworks/spectre-tokens@latest`.
+- Scope: update only the local UI files needed to restore alignment.
+- Stop condition: token changes create a structural conflict or require local
+  fallback values.
+- Validation: run `npm run check` before commit.
 
 ## Pull Request Creation
 
-When Jules opens a PR rather than committing directly, populate every section
-of the repo's PR template (`.github/pull_request_template.md`):
-
-- **Linked issue** — issue number (`#N`) or `N/A`.
-- **Summary of changes** — one or two bullets describing what changed.
-- **UI contract change type** — exactly one of `additive`,
-  `semantic change`, `breaking`, or `N/A`. Must match the `CHANGELOG.md
-  [Unreleased]` classification line if one exists.
-- **Type of Change** — check every box that applies.
-- **Checklist** — check each completed item; leave blocked items unchecked
-  with a brief inline note.
-
-Never open a PR with an empty body or only the template headings left
-unfilled. CodeRabbit's description check blocks such PRs.
+Follow the shared PR requirements in `AGENTS.md`. Jules PRs should also state
+which maintenance category was executed: micro hardening or token
+synchronization.
 
 ## Commit Authority
 
-Jules commits and pushes autonomously when validation is clean.
+Jules commits and pushes autonomously only for completed bounded maintenance
+when validation is clean.
+
 Jules must not:
+
 - reset or discard changes it did not make
 - force-push or rewrite history
 - commit any state where a validation gate fails
 - absorb unrelated working-tree changes into its commit
+- take on large feature work, architecture changes, or documentation governance
 
-## Hard Limits
+Commit message format:
 
-- Never change public contract values — no edits to recipe variant maps, size
-  maps, or exported option types without explicit scope from Claude Code.
-- Never modify locked semantic groups — CSS entry points, token variable
-  mappings, and the zero-hex policy are not in Jules's maintenance scope.
-- Never hand-edit `dist/` — always regenerate via `npm run build`.
-- Never hand-edit `scripts/export-snapshot.json` or
-  `scripts/tailwind-export-snapshot.json` — use the update scripts.
-- Never absorb unrelated working-tree changes into a commit.
-- Never force-push or rewrite history.
-- Never commit a state where any `npm run check` gate fails.
-- Never take on large feature work, architecture changes, or documentation
-  governance — those belong to Claude Code or Codex respectively.
-
-### Commit message format:
 - General developer: `fix(spectre-ui): <description of improvement>`
 - Sync developer: `fix(spectre-ui): sync token contracts to latest`
