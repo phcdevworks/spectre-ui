@@ -1124,12 +1124,16 @@
     box-shadow: var(--sp-component-testimonial-shadow-ghost);
   }
 
+  .sp-testimonial:disabled,
+  .sp-testimonial[aria-disabled="true"],
   .sp-testimonial--disabled {
     opacity: var(--sp-opacity-disabled);
     pointer-events: none;
+    cursor: not-allowed;
   }
 
-  .sp-testimonial--loading {
+  .sp-testimonial--loading,
+  .sp-testimonial[aria-busy="true"] {
     opacity: var(--sp-opacity-active);
     pointer-events: none;
   }
@@ -1151,7 +1155,7 @@
   .sp-testimonial--interactive.sp-testimonial--hover,
   .sp-testimonial--interactive.is-hover {
     transform: translateY(calc(var(--sp-component-border-width) * -1));
-    box-shadow: var(--sp-shadow-lg);
+    box-shadow: var(--sp-component-testimonial-shadow-elevated);
     background-color: var(--sp-component-testimonial-bg-hover);
   }
 

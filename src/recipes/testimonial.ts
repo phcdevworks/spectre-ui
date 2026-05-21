@@ -54,9 +54,9 @@ export function getTestimonialClasses(opts: TestimonialRecipeOptions = {}): stri
     disabled && "sp-testimonial--disabled",
     loading && "sp-testimonial--loading",
     interactive && "sp-testimonial--interactive",
-    hovered && "sp-testimonial--hover",
-    focused && "sp-testimonial--focus",
-    active && "sp-testimonial--active",
+    hovered && "sp-testimonial--hover is-hover",
+    focused && "sp-testimonial--focus is-focus",
+    active && "sp-testimonial--active is-active",
     fullHeight && "sp-testimonial--full"
   );
 }
