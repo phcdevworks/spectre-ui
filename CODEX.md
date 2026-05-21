@@ -46,7 +46,7 @@ change them.
 Run the full release gate whenever feasible:
 
 ```bash
-npm run ci:verify
+npm run check
 ```
 
 Before handing off release work, confirm:
@@ -104,7 +104,7 @@ section and one matching recipe file unless the contract requires more.
 
 When Bradley Potts requests a release:
 
-1. Confirm `npm run ci:verify` passes clean on the release branch.
+1. Confirm `npm run check` passes clean on the release branch.
 2. Confirm `CHANGELOG.md` has a dated `[x.y.z]` entry covering all
    user-facing changes since the last release.
 3. Confirm the version in `package.json` matches the changelog entry and
@@ -124,7 +124,7 @@ When opening a PR, populate every section of the repo's PR template
 
 - **Linked issue** — issue number (`#N`) or `N/A`.
 - **Summary of changes** — one or two bullets describing what changed.
-- **Rationale/context** — the contract change type: exactly one of `additive`,
+- **UI contract change type** — exactly one of `additive`,
   `semantic change`, `breaking`, or `N/A`. Must match the `CHANGELOG.md
   [Unreleased]` classification line if one exists.
 - **Type of Change** — check every box that applies.

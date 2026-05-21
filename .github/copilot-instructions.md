@@ -49,7 +49,7 @@ When opening a PR, populate every section of the repo's PR template
 
 - **Linked issue** — issue number (`#N`) or `N/A`.
 - **Summary of changes** — one or two bullets describing what changed.
-- **Rationale/context** — the contract change type: exactly one of `additive`,
+- **UI contract change type** — exactly one of `additive`,
   `semantic change`, `breaking`, or `N/A`. Must match the `CHANGELOG.md
   [Unreleased]` classification line if one exists.
 - **Type of Change** — check every box that applies.
@@ -70,7 +70,7 @@ unfilled. CodeRabbit's description check blocks such PRs.
 ## Validation
 
 - Use focused checks first where useful.
-- Use `npm run ci:verify` for release-scoped or broad contract-impact changes.
+- Use `npm run check` for release-scoped or broad contract-impact changes.
 - Keep commands and expectations aligned with `package.json` scripts and CI.
 
 ## References

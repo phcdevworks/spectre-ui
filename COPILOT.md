@@ -25,7 +25,7 @@ maintenance workflows.
   `@phcdevworks/spectre-tokens`.
 - Preserve recipe, CSS, Tailwind, and package export parity.
 - Keep framework-specific delivery in adapter packages.
-- Use `npm run ci:verify` as the full validation gate for non-trivial changes.
+- Use `npm run check` as the full validation gate for non-trivial changes.
 
 ## Working Style
 
@@ -45,7 +45,7 @@ When opening a PR, populate every section of the repo's PR template
 
 - **Linked issue** — issue number (`#N`) or `N/A`.
 - **Summary of changes** — one or two bullets describing what changed.
-- **Rationale/context** — the contract change type: exactly one of `additive`,
+- **UI contract change type** — exactly one of `additive`,
   `semantic change`, `breaking`, or `N/A`. Must match the `CHANGELOG.md
   [Unreleased]` classification line if one exists.
 - **Type of Change** — check every box that applies.

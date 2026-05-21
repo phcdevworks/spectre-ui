@@ -23,12 +23,14 @@ This repository follows the Spectre AI factory model:
 | ----- | ---- | --------- |
 | Claude Code | Lead developer responsible for primary implementation | `CLAUDE.md` |
 | OpenAI Codex | Documentation, releases, production stabilization, repo hygiene, and config standardization | `CODEX.md` |
+| ChatGPT | Strategy, coordination, prompt design, and external review — support layer only, no implementation ownership | — |
 | GitHub Copilot | General development assistance | `COPILOT.md`, `.github/copilot-instructions.md`, `.github/instructions/`, and this file |
 | Google Jules | Automated maintenance for small fixes, dependency updates, and micro-updates | `JULES.md` |
 
 Claude Code keeps implementation leadership. Codex keeps release and
-stabilization work clean. Copilot assists without owning decisions. Jules works
-only on bounded automated maintenance and must not take on large feature work.
+stabilization work clean. ChatGPT provides strategy and coordination support
+only. Copilot assists without owning decisions. Jules works only on bounded
+automated maintenance and must not take on large feature work.
 
 ## Mission
 
@@ -176,7 +178,7 @@ and pushes completed maintenance work directly.
 Jules operates in two modes: General Developer (micro hardening — one CSS file,
 one recipe file) and Sync Developer (token synchronization against the latest
 published `@phcdevworks/spectre-tokens`). All rules in this file apply to Jules.
-Jules must run `npm run ci:verify` in full before every commit and must stop and
+Jules must run `npm run check` in full before every commit and must stop and
 report rather than committing when any gate fails.
 
 ## File Classification
@@ -198,7 +200,7 @@ report rather than committing when any gate fails.
 Run the full validation gate before every PR and before any commit:
 
 ```bash
-npm run ci:verify
+npm run check
 ```
 
 This runs in order: runtime check → lint → export validation → README contract
@@ -207,7 +209,8 @@ tests. All steps must pass.
 
 | Command | Purpose |
 |---|---|
-| `npm run ci:verify` | Full gate — use before every PR |
+| `npm run check` | Full gate — use before every PR |
+| `npm run ci:verify` | Underlying full verification sequence |
 | `npm test` | Build then run contract and regression tests |
 | `npm run build` | Emit TypeScript and CSS artifacts to `dist/` |
 | `npm run lint` | ESLint with TypeScript-aware config |
@@ -221,7 +224,7 @@ When opening a PR, populate every section of the repo's PR template
 
 - **Linked issue** — issue number (`#N`) or `N/A`.
 - **Summary of changes** — one or two bullets describing what changed.
-- **Rationale/context** — the contract change type: exactly one of `additive`,
+- **UI contract change type** — exactly one of `additive`,
   `semantic change`, `breaking`, or `N/A`. Must match the `CHANGELOG.md
   [Unreleased]` classification line if one exists.
 - **Type of Change** — check every box that applies.
@@ -230,6 +233,17 @@ When opening a PR, populate every section of the repo's PR template
 
 Never submit a PR with an empty body or only the template headings left
 unfilled. CodeRabbit's description check blocks such PRs.
+
+## Claude Code Maintenance Notes
+
+- Run `npm run check` before every handoff touching `src/`, `tests/`,
+  `scripts/`, package exports, docs, or contract manifests.
+- Never hand-edit `dist/`; regenerate via `npm run build`.
+- Update export and Tailwind snapshots with their update scripts rather than
+  manual edits.
+- Keep CSS, recipes, Tailwind helpers, and docs aligned with
+  `ui-contract.manifest.json` and the latest published
+  `@phcdevworks/spectre-tokens` contract.
 
 ## Standard Workflows
 
