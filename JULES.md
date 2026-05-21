@@ -18,7 +18,7 @@ Jules does not own primary development, architecture decisions, release ownershi
 3. Zero hex values in component CSS and zero raw pixel or rem fallbacks.
 4. No edits to `dist/` by hand — build output only.
 5. No token authoring — new semantic values belong in `@phcdevworks/spectre-tokens`.
-6. Commit and push only when `npm run ci:verify` passes clean.
+6. Commit and push only when `npm run check` passes clean.
 7. If a gate fails and cannot be safely resolved within scope — revert and report the blocker instead of committing a broken state.
 
 ## Task Scope
@@ -40,7 +40,7 @@ of the repo's PR template (`.github/pull_request_template.md`):
 
 - **Linked issue** — issue number (`#N`) or `N/A`.
 - **Summary of changes** — one or two bullets describing what changed.
-- **Rationale/context** — the contract change type: exactly one of `additive`,
+- **UI contract change type** — exactly one of `additive`,
   `semantic change`, `breaking`, or `N/A`. Must match the `CHANGELOG.md
   [Unreleased]` classification line if one exists.
 - **Type of Change** — check every box that applies.
@@ -70,7 +70,7 @@ Jules must not:
   `scripts/tailwind-export-snapshot.json` — use the update scripts.
 - Never absorb unrelated working-tree changes into a commit.
 - Never force-push or rewrite history.
-- Never commit a state where any `npm run ci:verify` gate fails.
+- Never commit a state where any `npm run check` gate fails.
 - Never take on large feature work, architecture changes, or documentation
   governance — those belong to Claude Code or Codex respectively.
 
