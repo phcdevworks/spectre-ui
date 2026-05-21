@@ -236,7 +236,7 @@ export function getMyClasses(opts: MyRecipeOptions = {}): string {
 ## CI
 
 GitHub Actions runs on every push to `main` and every PR against `main`.
-Matrix: Node 22.12.0 and Node 24.x. Both must pass.
+Matrix: Node 22.x and Node 24.x. Both must pass.
 
 Buildkite also runs `npm run check` on the default queue.
 
