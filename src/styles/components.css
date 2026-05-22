@@ -271,7 +271,8 @@
     pointer-events: none;
   }
 
-  .sp-btn--loading {
+  .sp-btn--loading,
+  .sp-btn[aria-busy="true"] {
     pointer-events: none;
     opacity: var(--sp-opacity-active);
   }
@@ -338,6 +339,7 @@
   }
 
   .sp-btn--primary.sp-btn--disabled,
+  .sp-btn--primary[aria-disabled="true"],
   .sp-btn--primary:disabled {
     background-color: var(--sp-component-button-primary-bg-disabled);
     color: var(--sp-component-button-primary-text-disabled);
@@ -364,6 +366,7 @@
   }
 
   .sp-btn--secondary.sp-btn--disabled,
+  .sp-btn--secondary[aria-disabled="true"],
   .sp-btn--secondary:disabled {
     background-color: var(--sp-component-button-secondary-bg-disabled);
     color: var(--sp-component-button-secondary-text-disabled);
@@ -389,6 +392,7 @@
   }
 
   .sp-btn--ghost.sp-btn--disabled,
+  .sp-btn--ghost[aria-disabled="true"],
   .sp-btn--ghost:disabled {
     color: var(--sp-component-button-ghost-text-disabled);
     background-color: var(--sp-component-button-ghost-bg-disabled);
@@ -413,6 +417,7 @@
   }
 
   .sp-btn--danger.sp-btn--disabled,
+  .sp-btn--danger[aria-disabled="true"],
   .sp-btn--danger:disabled {
     background-color: var(--sp-component-button-danger-bg-disabled);
     color: var(--sp-component-button-danger-text-disabled);
@@ -437,6 +442,7 @@
   }
 
   .sp-btn--success.sp-btn--disabled,
+  .sp-btn--success[aria-disabled="true"],
   .sp-btn--success:disabled {
     background-color: var(--sp-component-button-success-bg-disabled);
     color: var(--sp-component-button-success-text-disabled);
@@ -462,6 +468,7 @@
   }
 
   .sp-btn--cta.sp-btn--disabled,
+  .sp-btn--cta[aria-disabled="true"],
   .sp-btn--cta:disabled {
     background-color: var(--sp-component-button-cta-bg-disabled);
     color: var(--sp-component-button-cta-text-disabled);
@@ -487,6 +494,7 @@
   }
 
   .sp-btn--accent.sp-btn--disabled,
+  .sp-btn--accent[aria-disabled="true"],
   .sp-btn--accent:disabled {
     background-color: var(--sp-component-button-accent-bg-disabled);
     color: var(--sp-component-button-accent-text-disabled);
