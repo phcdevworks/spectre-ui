@@ -85,9 +85,9 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     fullWidth && "sp-btn--full",
     loading && "sp-btn--loading",
     disabled && "sp-btn--disabled",
-    hovered && "sp-btn--hover",
-    focused && "sp-btn--focus",
-    active && "sp-btn--active",
+    hovered && "sp-btn--hover is-hover",
+    focused && "sp-btn--focus is-focus",
+    active && "sp-btn--active is-active",
     iconOnly && "sp-btn--icon",
     pill && "sp-btn--pill",
   );
