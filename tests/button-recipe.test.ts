@@ -61,9 +61,9 @@ describe('getButtonClasses', () => {
     expect(result).toContain('sp-btn--full');
     expect(result).toContain('sp-btn--loading');
     expect(result).toContain('sp-btn--disabled');
-    expect(result).toContain('sp-btn--hover');
-    expect(result).toContain('sp-btn--focus');
-    expect(result).toContain('sp-btn--active');
+    expect(result).toContain('sp-btn--hover is-hover');
+    expect(result).toContain('sp-btn--focus is-focus');
+    expect(result).toContain('sp-btn--active is-active');
     expect(result).toContain('sp-btn--icon');
     expect(result).toContain('sp-btn--pill');
   });
