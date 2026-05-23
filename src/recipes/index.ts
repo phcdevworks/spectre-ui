@@ -55,3 +55,17 @@ export {
   type RatingRecipeOptions,
   type RatingSize
 } from "./rating";
+
+export {
+  getAlertClasses,
+  type AlertRecipeOptions,
+  type AlertSize,
+  type AlertVariant
+} from "./alert";
+
+export {
+  getAvatarClasses,
+  type AvatarRecipeOptions,
+  type AvatarShape,
+  type AvatarSize
+} from "./avatar";

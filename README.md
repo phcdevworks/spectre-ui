@@ -41,37 +41,15 @@ full UI contract.
 
 ## Architecture
 
-```
-┌─────────────────────────────┐
-│  @phcdevworks/spectre-tokens │  Layer 1 — design values, semantic tokens
-│  (design source of truth)   │
-└──────────────┬──────────────┘
-               │ consumed by
-               ▼
-┌─────────────────────────────┐
-│  @phcdevworks/spectre-ui    │  Layer 2 — THIS PACKAGE
-│  CSS bundles, recipes,      │  translates tokens into structure
-│  Tailwind helpers           │
-└──────────────┬──────────────┘
-               │ consumed by
-               ▼
-┌─────────────────────────────┐
-│  @phcdevworks/spectre-      │  Layer 3 — canonical Lit web components
-│  components                 │  wraps CSS classes and recipes as
-│                             │  framework-agnostic custom elements
-└──────────────┬──────────────┘
-               │ alongside / consumed by
-               ▼
-┌─────────────────────────────┐
-│  Adapters and apps          │  Layer 4 — framework-specific delivery
-│  spectre-ui-astro, React,   │  binds Spectre contracts to native
-│  Vue, WordPress, etc.       │  framework ergonomics
-└─────────────────────────────┘
-```
+| Layer | Package or consumer | Responsibility | Relationship to this package |
+|---|---|---|---|
+| 1 | `@phcdevworks/spectre-tokens` | Defines design values and semantic token meaning | Upstream source of truth |
+| 2 | `@phcdevworks/spectre-ui` | Translates tokens into CSS bundles, Tailwind helpers, and class recipes | This package |
+| 3 | Adapters and apps, such as `@phcdevworks/spectre-ui-astro` | Deliver Spectre through framework-native ergonomics | Downstream consumers |
 
-This package owns Layer 2 only. It does not deliver components and it does not
-define tokens. It translates tokens into a stable contract that adapters and
-apps consume.
+`@phcdevworks/spectre-components` is a separate component package that can wrap
+this styling contract in Lit web components. This package owns Layer 2 only: it
+does not deliver components and it does not define tokens.
 
 ## Key capabilities
 
@@ -252,6 +230,8 @@ All options are optional and fall back to sensible defaults.
 | PricingCard | `getPricingCardClasses` | — | — | `featured` `interactive` `disabled` `loading` `fullHeight` |
 | Rating | `getRatingClasses` | — | `sm` `md` `lg` | `interactive` `disabled` `loading` `pill` `fullWidth` |
 | Testimonial | `getTestimonialClasses` | `elevated` `flat` `outline` `ghost` | — | `interactive` `disabled` `loading` `fullHeight` |
+| Alert | `getAlertClasses` | `info` `success` `warning` `danger` `neutral` | `sm` `md` `lg` | `dismissed` |
+| Avatar | `getAvatarClasses` | — | `sm` `md` `lg` `xl` | shape: `circle` `square` |
 
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements). See the full list below.
@@ -271,6 +251,8 @@ Root constants:
 
 Root recipe functions:
 
+- `getAlertClasses`
+- `getAvatarClasses`
 - `getBadgeClasses`
 - `getButtonClasses`
 - `getCardClasses`
