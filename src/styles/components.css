@@ -198,6 +198,40 @@
     --sp-component-rating-size-sm: var(--sp-font-sm-size);
     --sp-component-rating-size-md: var(--sp-font-md-size);
     --sp-component-rating-size-lg: var(--sp-font-lg-size);
+
+    /* alert roles */
+    --sp-component-alert-radius: var(--sp-radius-lg);
+    --sp-component-alert-padding-x: var(--sp-space-16);
+    --sp-component-alert-padding-y-sm: var(--sp-space-8);
+    --sp-component-alert-padding-y-md: var(--sp-space-12);
+    --sp-component-alert-padding-y-lg: var(--sp-space-16);
+    --sp-component-alert-info-bg: var(--sp-badge-info-bg);
+    --sp-component-alert-info-text: var(--sp-badge-info-text);
+    --sp-component-alert-info-border: var(--sp-color-info-200);
+    --sp-component-alert-success-bg: var(--sp-badge-success-bg);
+    --sp-component-alert-success-text: var(--sp-badge-success-text);
+    --sp-component-alert-success-border: var(--sp-color-success-200);
+    --sp-component-alert-warning-bg: var(--sp-badge-warning-bg);
+    --sp-component-alert-warning-text: var(--sp-badge-warning-text);
+    --sp-component-alert-warning-border: var(--sp-color-warning-200);
+    --sp-component-alert-danger-bg: var(--sp-badge-danger-bg);
+    --sp-component-alert-danger-text: var(--sp-badge-danger-text);
+    --sp-component-alert-danger-border: var(--sp-color-error-200);
+    --sp-component-alert-neutral-bg: var(--sp-badge-neutral-bg);
+    --sp-component-alert-neutral-text: var(--sp-badge-neutral-text);
+    --sp-component-alert-neutral-border: var(--sp-color-neutral-200);
+
+    /* avatar roles */
+    --sp-component-avatar-size-sm: var(--sp-space-32);
+    --sp-component-avatar-size-md: var(--sp-space-48);
+    --sp-component-avatar-size-lg: var(--sp-space-64);
+    --sp-component-avatar-size-xl: var(--sp-space-80);
+    --sp-component-avatar-bg: var(--sp-surface-alternate);
+    --sp-component-avatar-text: var(--sp-text-on-surface-default);
+    --sp-component-avatar-radius-circle: var(--sp-radius-pill);
+    --sp-component-avatar-radius-square: var(--sp-radius-lg);
+    --sp-component-avatar-font: var(--sp-font-family-sans);
+    --sp-component-avatar-weight: var(--sp-font-md-weight);
   }
 
   /* dark mode overrides mapped from Spectre token mode definitions */
@@ -237,6 +271,22 @@
     --sp-component-rating-star-filled: var(--sp-color-warning-400);
     --sp-component-rating-star-empty: var(--sp-color-neutral-700);
     --sp-component-rating-text: var(--sp-color-neutral-400);
+
+    --sp-component-alert-info-bg: var(--sp-color-info-800);
+    --sp-component-alert-info-text: var(--sp-color-info-100);
+    --sp-component-alert-info-border: var(--sp-color-info-700);
+    --sp-component-alert-success-bg: var(--sp-color-success-800);
+    --sp-component-alert-success-text: var(--sp-color-success-100);
+    --sp-component-alert-success-border: var(--sp-color-success-700);
+    --sp-component-alert-warning-bg: var(--sp-color-warning-800);
+    --sp-component-alert-warning-text: var(--sp-color-warning-100);
+    --sp-component-alert-warning-border: var(--sp-color-warning-700);
+    --sp-component-alert-danger-bg: var(--sp-color-error-800);
+    --sp-component-alert-danger-text: var(--sp-color-error-100);
+    --sp-component-alert-danger-border: var(--sp-color-error-700);
+    --sp-component-alert-neutral-bg: var(--sp-color-neutral-700);
+    --sp-component-alert-neutral-text: var(--sp-color-neutral-100);
+    --sp-component-alert-neutral-border: var(--sp-color-neutral-600);
   }
 
   /* BUTTONS -------------------------------------------------------------- */
@@ -1434,5 +1484,119 @@
   .sp-rating-text {
     color: var(--sp-component-rating-text);
     font-size: var(--sp-font-sm-size);
+  }
+
+  /* ALERTS --------------------------------------------------------------- */
+  .sp-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--sp-space-12);
+    border-radius: var(--sp-component-alert-radius);
+    border: var(--sp-component-border-width) solid transparent;
+    padding: var(--sp-component-alert-padding-y-md) var(--sp-component-alert-padding-x);
+    font-family: var(--sp-font-family-sans);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-alert--dismissed {
+    display: none;
+  }
+
+  .sp-alert--sm {
+    padding: var(--sp-component-alert-padding-y-sm) var(--sp-component-alert-padding-x);
+    font-size: var(--sp-font-xs-size);
+    line-height: var(--sp-font-xs-line-height);
+  }
+
+  .sp-alert--md {
+    padding: var(--sp-component-alert-padding-y-md) var(--sp-component-alert-padding-x);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-alert--lg {
+    padding: var(--sp-component-alert-padding-y-lg) var(--sp-component-alert-padding-x);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
+  }
+
+  .sp-alert--info {
+    background-color: var(--sp-component-alert-info-bg);
+    color: var(--sp-component-alert-info-text);
+    border-color: var(--sp-component-alert-info-border);
+  }
+
+  .sp-alert--success {
+    background-color: var(--sp-component-alert-success-bg);
+    color: var(--sp-component-alert-success-text);
+    border-color: var(--sp-component-alert-success-border);
+  }
+
+  .sp-alert--warning {
+    background-color: var(--sp-component-alert-warning-bg);
+    color: var(--sp-component-alert-warning-text);
+    border-color: var(--sp-component-alert-warning-border);
+  }
+
+  .sp-alert--danger {
+    background-color: var(--sp-component-alert-danger-bg);
+    color: var(--sp-component-alert-danger-text);
+    border-color: var(--sp-component-alert-danger-border);
+  }
+
+  .sp-alert--neutral {
+    background-color: var(--sp-component-alert-neutral-bg);
+    color: var(--sp-component-alert-neutral-text);
+    border-color: var(--sp-component-alert-neutral-border);
+  }
+
+  /* AVATARS -------------------------------------------------------------- */
+  .sp-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: var(--sp-component-avatar-bg);
+    color: var(--sp-component-avatar-text);
+    font-family: var(--sp-component-avatar-font);
+    font-weight: var(--sp-component-avatar-weight);
+  }
+
+  .sp-avatar--sm {
+    width: var(--sp-component-avatar-size-sm);
+    height: var(--sp-component-avatar-size-sm);
+    font-size: var(--sp-font-xs-size);
+    line-height: var(--sp-font-xs-line-height);
+  }
+
+  .sp-avatar--md {
+    width: var(--sp-component-avatar-size-md);
+    height: var(--sp-component-avatar-size-md);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-avatar--lg {
+    width: var(--sp-component-avatar-size-lg);
+    height: var(--sp-component-avatar-size-lg);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
+  }
+
+  .sp-avatar--xl {
+    width: var(--sp-component-avatar-size-xl);
+    height: var(--sp-component-avatar-size-xl);
+    font-size: var(--sp-font-lg-size);
+    line-height: var(--sp-font-lg-line-height);
+  }
+
+  .sp-avatar--circle {
+    border-radius: var(--sp-component-avatar-radius-circle);
+  }
+
+  .sp-avatar--square {
+    border-radius: var(--sp-component-avatar-radius-square);
   }
 }
