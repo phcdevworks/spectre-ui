@@ -54,9 +54,9 @@ export function getRatingClasses(opts: RatingRecipeOptions = {}): string {
     disabled && "sp-rating--disabled",
     loading && "sp-rating--loading",
     interactive && "sp-rating--interactive",
-    hovered && "sp-rating--hover",
-    focused && "sp-rating--focus",
-    active && "sp-rating--active",
+    hovered && "sp-rating--hover is-hover",
+    focused && "sp-rating--focus is-focus",
+    active && "sp-rating--active is-active",
     pill && "sp-rating--pill",
     fullWidth && "sp-rating--full"
   );
