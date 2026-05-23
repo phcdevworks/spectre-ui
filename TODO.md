@@ -90,21 +90,21 @@ Layer 2.
   - If a new token minor is available, decide whether a dependency bump belongs
     in this release or a follow-up.
 
-- [ ] Add changelog validation
+- [x] Add changelog validation
   - Add `scripts/validate-changelog.ts` to enforce the `[Unreleased]` heading,
     ISO dates on released sections, and no duplicate version headings.
   - Add `npm run validate:changelog` and wire it into `npm run check`.
 
 ### P1: Recipe Expansion Wave
 
-- [ ] Add Alert recipe (`getAlertClasses`)
+- [x] Add Alert recipe (`getAlertClasses`)
   - Variants: `info`, `warning`, `error`, `success`.
   - State: `dismissible`.
   - Use token-backed roles only.
   - Include recipe source, CSS selectors, exports, manifest entry, snapshot
     update, README parity, and tests.
 
-- [ ] Add Avatar recipe (`getAvatarClasses`)
+- [x] Add Avatar recipe (`getAvatarClasses`)
   - Sizes: `xs`, `sm`, `md`, `lg`, `xl`.
   - Shapes: `circle`, `square`.
   - State: `placeholder`.

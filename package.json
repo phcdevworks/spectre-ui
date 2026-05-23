@@ -74,10 +74,10 @@
     "build": "tsup --config tsup.config.ts && npm run build:css",
     "build:css": "node --experimental-strip-types ./scripts/build-css.ts",
     "check": "npm run ci:verify",
-    "ci:verify": "npm run validate:runtime && npm run lint && npm run validate:exports && npm run validate:readme && npm run validate:tokens && npm run build && npm run validate:tailwind && npm run validate:css-contract && npm test",
+    "ci:verify": "npm run validate:runtime && npm run lint && npm run validate:changelog && npm run validate:exports && npm run validate:readme && npm run validate:tokens && npm run build && npm run validate:tailwind && npm run validate:css-contract && npm test",
     "dev": "tsup --config tsup.config.ts --watch",
     "clean": "rm -rf dist",
-    "release:propose": "node scripts/propose-version.js",
+    "release:propose": "node --experimental-strip-types ./scripts/propose-version.ts",
     "lint": "eslint .",
     "pretest": "npm run build",
     "format": "prettier --write .",
@@ -89,6 +89,7 @@
     "validate:tailwind": "node --experimental-strip-types ./scripts/validate-tailwind-contract.ts",
     "validate:tailwind:update": "node --experimental-strip-types ./scripts/validate-tailwind-contract.ts --update",
     "validate:readme": "node --experimental-strip-types ./scripts/validate-readme-contract.ts",
+    "validate:changelog": "node --experimental-strip-types ./scripts/validate-changelog.ts",
     "validate:tokens": "node --experimental-strip-types ./scripts/validate-tokens.ts"
   },
   "publishConfig": {
