@@ -22,10 +22,16 @@ export interface AlertRecipeOptions {
   variant?: AlertVariant
   size?: AlertSize
   dismissed?: boolean
+  fullWidth?: boolean
 }
 
 export function getAlertClasses(opts: AlertRecipeOptions = {}): string {
-  const { variant: variantInput, size: sizeInput, dismissed = false } = opts
+  const {
+    variant: variantInput,
+    size: sizeInput,
+    dismissed = false,
+    fullWidth = false,
+  } = opts
 
   const variant = resolveOption({
     name: 'alert variant',
@@ -45,6 +51,7 @@ export function getAlertClasses(opts: AlertRecipeOptions = {}): string {
     'sp-alert',
     `sp-alert--${variant}`,
     `sp-alert--${size}`,
-    dismissed && 'sp-alert--dismissed'
+    dismissed && 'sp-alert--dismissed',
+    fullWidth && 'sp-alert--full'
   )
 }
