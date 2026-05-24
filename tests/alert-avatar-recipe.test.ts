@@ -51,6 +51,12 @@ describe('getAlertClasses', () => {
     expectTokenizedClassString(result)
   })
 
+  it('supports fullWidth state', () => {
+    const result = getAlertClasses({ fullWidth: true })
+    expect(result).toContain('sp-alert--full')
+    expectTokenizedClassString(result)
+  })
+
   it('creates trimmed, space-delimited class strings for non-default alerts', () => {
     const result = getAlertClasses({ variant: 'danger', size: 'lg' })
     expectTokenizedClassString(result)
