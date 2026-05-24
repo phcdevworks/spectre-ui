@@ -1503,6 +1503,10 @@
     display: none;
   }
 
+  .sp-alert--full {
+    width: 100%;
+  }
+
   .sp-alert--sm {
     padding: var(--sp-component-alert-padding-y-sm) var(--sp-component-alert-padding-x);
     font-size: var(--sp-font-xs-size);
