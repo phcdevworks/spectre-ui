@@ -101,4 +101,33 @@ describe('getAvatarClasses', () => {
     const result = getAvatarClasses({ size: 'xl', shape: 'square' })
     expectTokenizedClassString(result)
   })
+
+  it('supports boolean state flags', () => {
+    const states = [
+      { key: 'disabled' as const, className: 'sp-avatar--disabled' },
+      { key: 'loading' as const, className: 'sp-avatar--loading' },
+      { key: 'interactive' as const, className: 'sp-avatar--interactive' },
+      { key: 'fullWidth' as const, className: 'sp-avatar--full' },
+    ]
+
+    states.forEach(({ key, className }) => {
+      const result = getAvatarClasses({ [key]: true })
+      expect(result).toContain(className)
+      expectTokenizedClassString(result)
+    })
+  })
+
+  it('supports forced-state flags', () => {
+    const states = [
+      { key: 'hovered' as const, className: 'sp-avatar--hover is-hover' },
+      { key: 'focused' as const, className: 'sp-avatar--focus is-focus' },
+      { key: 'active' as const, className: 'sp-avatar--active is-active' },
+    ]
+
+    states.forEach(({ key, className }) => {
+      const result = getAvatarClasses({ [key]: true })
+      expect(result).toContain(className)
+      expectTokenizedClassString(result)
+    })
+  })
 })
