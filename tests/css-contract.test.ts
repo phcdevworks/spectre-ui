@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import {
+  getAvatarClasses,
   getBadgeClasses,
   getButtonClasses,
   getCardClasses,
@@ -188,6 +189,17 @@ const ratingSelectors = collectSelectors([
   getRatingTextClasses(),
 ]);
 
+const avatarSelectors = collectSelectors(
+  buildRecipeOutputs({
+    axes: {
+      size: ['sm', 'md', 'lg', 'xl'],
+      shape: ['circle', 'square'],
+    },
+    booleans: ['disabled', 'loading', 'interactive', 'hovered', 'focused', 'active', 'fullWidth'],
+    getClasses: getAvatarClasses,
+  }),
+);
+
 const recipeSelectorContracts = [
   { name: 'button', selectors: buttonSelectors },
   { name: 'card', selectors: cardSelectors },
@@ -197,6 +209,7 @@ const recipeSelectorContracts = [
   { name: 'testimonial', selectors: testimonialSelectors },
   { name: 'pricing card', selectors: pricingCardSelectors },
   { name: 'rating', selectors: ratingSelectors },
+  { name: 'avatar', selectors: avatarSelectors },
 ] as const;
 
 const interactionStateContracts = [
@@ -337,6 +350,16 @@ const interactionStateContracts = [
       '.sp-rating--disabled',
     ],
   },
+  {
+    name: 'avatar states',
+    selectors: [
+      '.sp-avatar--interactive:hover',
+      '.sp-avatar--interactive:focus-visible',
+      '.sp-avatar:disabled',
+      '.sp-avatar[aria-disabled="true"]',
+      '.sp-avatar--disabled',
+    ],
+  },
 ] as const;
 
 const sizeVariantContracts = [
@@ -359,6 +382,10 @@ const sizeVariantContracts = [
   {
     name: 'rating sizes',
     selectors: ['.sp-rating--sm', '.sp-rating--md', '.sp-rating--lg'],
+  },
+  {
+    name: 'avatar sizes',
+    selectors: ['.sp-avatar--sm', '.sp-avatar--md', '.sp-avatar--lg', '.sp-avatar--xl'],
   },
 ] as const;
 
