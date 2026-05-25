@@ -19,10 +19,27 @@ export type AvatarShape = keyof typeof AVATAR_SHAPES
 export interface AvatarRecipeOptions {
   size?: AvatarSize
   shape?: AvatarShape
+  disabled?: boolean
+  loading?: boolean
+  interactive?: boolean
+  hovered?: boolean
+  focused?: boolean
+  active?: boolean
+  fullWidth?: boolean
 }
 
 export function getAvatarClasses(opts: AvatarRecipeOptions = {}): string {
-  const { size: sizeInput, shape: shapeInput } = opts
+  const {
+    size: sizeInput,
+    shape: shapeInput,
+    disabled = false,
+    loading = false,
+    interactive = false,
+    hovered = false,
+    focused = false,
+    active = false,
+    fullWidth = false,
+  } = opts
 
   const size = resolveOption({
     name: 'avatar size',
@@ -38,5 +55,16 @@ export function getAvatarClasses(opts: AvatarRecipeOptions = {}): string {
     fallback: 'circle',
   })
 
-  return cx('sp-avatar', `sp-avatar--${size}`, `sp-avatar--${shape}`)
+  return cx(
+    'sp-avatar',
+    `sp-avatar--${size}`,
+    `sp-avatar--${shape}`,
+    disabled && 'sp-avatar--disabled',
+    loading && 'sp-avatar--loading',
+    interactive && 'sp-avatar--interactive',
+    hovered && 'sp-avatar--hover is-hover',
+    focused && 'sp-avatar--focus is-focus',
+    active && 'sp-avatar--active is-active',
+    fullWidth && 'sp-avatar--full'
+  )
 }
