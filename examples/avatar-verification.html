@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spectre UI — Avatar State Verification</title>
+    <link rel="stylesheet" href="../dist/index.css" />
+    <style>
+      body {
+        background-color: var(--sp-surface-page);
+        color: var(--sp-text-on-page-default);
+        padding: var(--sp-space-48);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: var(--sp-space-32);
+      }
+      .section {
+        background: var(--sp-surface-card);
+        padding: var(--sp-space-24);
+        border: var(--sp-component-border-width) solid var(--sp-color-neutral-200);
+        border-radius: var(--sp-radius-lg);
+      }
+      .row {
+        display: flex;
+        gap: var(--sp-space-16);
+        align-items: center;
+        margin-top: var(--sp-space-16);
+      }
+      h2 { margin-bottom: var(--sp-space-8); }
+    </style>
+  </head>
+  <body>
+    <h1>Avatar State Verification</h1>
+    <div class="grid">
+      <div class="section">
+        <h2>Interactive & Hover</h2>
+        <div class="row">
+          <div class="sp-avatar sp-avatar--md sp-avatar--circle sp-avatar--interactive">JD</div>
+          <div class="sp-avatar sp-avatar--md sp-avatar--circle sp-avatar--interactive is-hover">HV</div>
+          <div class="sp-avatar sp-avatar--md sp-avatar--circle sp-avatar--interactive is-focus">FC</div>
+          <div class="sp-avatar sp-avatar--md sp-avatar--circle sp-avatar--interactive is-active">AC</div>
+        </div>
+      </div>
+      <div class="section">
+        <h2>Disabled & Loading</h2>
+        <div class="row">
+          <div class="sp-avatar sp-avatar--md sp-avatar--circle sp-avatar--disabled">DB</div>
+          <div class="sp-avatar sp-avatar--md sp-avatar--circle sp-avatar--loading">LD</div>
+        </div>
+      </div>
+      <div class="section">
+        <h2>Full Width</h2>
+        <div class="row">
+          <div class="sp-avatar sp-avatar--md sp-avatar--square sp-avatar--full">FULL WIDTH AVATAR</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
