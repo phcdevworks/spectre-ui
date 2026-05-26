@@ -23,6 +23,12 @@ export interface AlertRecipeOptions {
   size?: AlertSize
   dismissed?: boolean
   fullWidth?: boolean
+  interactive?: boolean
+  hovered?: boolean
+  focused?: boolean
+  active?: boolean
+  disabled?: boolean
+  loading?: boolean
 }
 
 export function getAlertClasses(opts: AlertRecipeOptions = {}): string {
@@ -31,6 +37,12 @@ export function getAlertClasses(opts: AlertRecipeOptions = {}): string {
     size: sizeInput,
     dismissed = false,
     fullWidth = false,
+    interactive = false,
+    hovered = false,
+    focused = false,
+    active = false,
+    disabled = false,
+    loading = false,
   } = opts
 
   const variant = resolveOption({
@@ -52,6 +64,12 @@ export function getAlertClasses(opts: AlertRecipeOptions = {}): string {
     `sp-alert--${variant}`,
     `sp-alert--${size}`,
     dismissed && 'sp-alert--dismissed',
-    fullWidth && 'sp-alert--full'
+    fullWidth && 'sp-alert--full',
+    interactive && 'sp-alert--interactive',
+    hovered && 'sp-alert--hover is-hover',
+    focused && 'sp-alert--focus is-focus',
+    active && 'sp-alert--active is-active',
+    disabled && 'sp-alert--disabled',
+    loading && 'sp-alert--loading'
   )
 }
