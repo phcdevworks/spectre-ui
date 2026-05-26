@@ -1497,6 +1497,12 @@
     font-family: var(--sp-font-family-sans);
     font-size: var(--sp-font-sm-size);
     line-height: var(--sp-font-sm-line-height);
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out),
+      border-color var(--sp-duration-fast) var(--sp-easing-out),
+      opacity var(--sp-duration-fast) var(--sp-easing-out);
   }
 
   .sp-alert--dismissed {
@@ -1553,6 +1559,43 @@
     background-color: var(--sp-component-alert-neutral-bg);
     color: var(--sp-component-alert-neutral-text);
     border-color: var(--sp-component-alert-neutral-border);
+  }
+
+  .sp-alert--interactive {
+    cursor: pointer;
+  }
+
+  .sp-alert--interactive:hover,
+  .sp-alert--hover,
+  .sp-alert.is-hover {
+    opacity: var(--sp-opacity-hover);
+  }
+
+  .sp-alert--interactive:active,
+  .sp-alert--active,
+  .sp-alert.is-active {
+    opacity: var(--sp-opacity-active);
+  }
+
+  .sp-alert--interactive:focus-visible,
+  .sp-alert--focus,
+  .sp-alert.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
+  }
+
+  .sp-alert:disabled,
+  .sp-alert[aria-disabled="true"],
+  .sp-alert--disabled {
+    opacity: var(--sp-opacity-disabled);
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  .sp-alert--loading,
+  .sp-alert[aria-busy="true"] {
+    opacity: var(--sp-opacity-active);
+    pointer-events: none;
   }
 
   /* AVATARS -------------------------------------------------------------- */
