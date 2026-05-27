@@ -73,6 +73,10 @@ export function getRatingStarClasses(isFilled: boolean = false): string {
   );
 }
 
-export function getRatingTextClasses(): string {
-  return cx("sp-rating-text");
+export function getRatingTextClasses(opts: { disabled?: boolean } = {}): string {
+  const { disabled = false } = opts;
+  return cx(
+    "sp-rating-text",
+    disabled && "sp-rating-text--disabled"
+  );
 }
