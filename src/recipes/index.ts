@@ -69,3 +69,9 @@ export {
   type AvatarShape,
   type AvatarSize
 } from "./avatar";
+
+export {
+  getTagClasses,
+  type TagRecipeOptions,
+  type TagVariant
+} from "./tag";

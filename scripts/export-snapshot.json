@@ -33,6 +33,7 @@
   "getRatingStarClasses",
   "getRatingStarsClasses",
   "getRatingTextClasses",
+  "getTagClasses",
   "getTestimonialAuthorClasses",
   "getTestimonialAuthorInfoClasses",
   "getTestimonialAuthorNameClasses",
@@ -53,5 +54,7 @@
   "spectreIndexStylesPath",
   "spectreStyles",
   "spectreUtilitiesStylesPath",
+  "TagRecipeOptions",
+  "TagVariant",
   "TestimonialRecipeOptions"
 ]
