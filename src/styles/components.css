@@ -232,6 +232,18 @@
     --sp-component-avatar-radius-square: var(--sp-radius-lg);
     --sp-component-avatar-font: var(--sp-font-family-sans);
     --sp-component-avatar-weight: var(--sp-font-md-weight);
+
+    /* tag roles */
+    --sp-component-tag-radius: var(--sp-radius-pill);
+    --sp-component-tag-font: var(--sp-font-family-sans);
+    --sp-component-tag-weight: var(--sp-font-sm-weight);
+    --sp-component-tag-default-bg: var(--sp-badge-neutral-bg);
+    --sp-component-tag-default-text: var(--sp-badge-neutral-text);
+    --sp-component-tag-outline-bg: transparent;
+    --sp-component-tag-outline-text: var(--sp-badge-neutral-text);
+    --sp-component-tag-outline-border: var(--sp-button-secondary-border);
+    --sp-component-tag-selected-bg: var(--sp-button-primary-bg);
+    --sp-component-tag-selected-text: var(--sp-button-primary-text);
   }
 
   /* dark mode overrides mapped from Spectre token mode definitions */
@@ -1698,6 +1710,85 @@
 
   .sp-avatar--loading,
   .sp-avatar[aria-busy="true"] {
+    opacity: var(--sp-opacity-active);
+    pointer-events: none;
+  }
+
+  /* TAGS ----------------------------------------------------------------- */
+  .sp-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-space-4);
+    border-radius: var(--sp-component-tag-radius);
+    font-family: var(--sp-component-tag-font);
+    font-weight: var(--sp-component-tag-weight);
+    padding: var(--sp-space-4) var(--sp-space-12);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+    border: var(--sp-component-border-width) solid transparent;
+    white-space: nowrap;
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out),
+      border-color var(--sp-duration-fast) var(--sp-easing-out),
+      opacity var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-tag--full {
+    width: 100%;
+  }
+
+  .sp-tag--default {
+    background-color: var(--sp-component-tag-default-bg);
+    color: var(--sp-component-tag-default-text);
+  }
+
+  .sp-tag--outline {
+    background-color: var(--sp-component-tag-outline-bg);
+    color: var(--sp-component-tag-outline-text);
+    border-color: var(--sp-component-tag-outline-border);
+  }
+
+  .sp-tag--selected {
+    background-color: var(--sp-component-tag-selected-bg);
+    color: var(--sp-component-tag-selected-text);
+    border-color: transparent;
+  }
+
+  .sp-tag--interactive {
+    cursor: pointer;
+  }
+
+  .sp-tag--interactive:hover,
+  .sp-tag--hover,
+  .sp-tag.is-hover {
+    opacity: var(--sp-opacity-hover);
+  }
+
+  .sp-tag--interactive:active,
+  .sp-tag--active,
+  .sp-tag.is-active {
+    opacity: var(--sp-opacity-active);
+  }
+
+  .sp-tag--interactive:focus-visible,
+  .sp-tag--focus,
+  .sp-tag.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
+  }
+
+  .sp-tag:disabled,
+  .sp-tag[aria-disabled="true"],
+  .sp-tag--disabled {
+    opacity: var(--sp-opacity-disabled);
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  .sp-tag--loading,
+  .sp-tag[aria-busy="true"] {
     opacity: var(--sp-opacity-active);
     pointer-events: none;
   }

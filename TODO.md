@@ -111,7 +111,7 @@ Layer 2.
   - Use token-backed surface and size roles only.
   - Include the same coverage path as Alert.
 
-- [ ] Add Tag recipe (`getTagClasses`)
+- [x] Add Tag recipe (`getTagClasses`)
   - Variants: `default`, `outline`.
   - States: `dismissible`, `selected`.
   - Keep Tag distinct from Badge so status and categorization semantics do not
