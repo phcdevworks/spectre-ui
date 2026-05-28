@@ -222,6 +222,7 @@
     --sp-component-alert-neutral-border: var(--sp-color-neutral-200);
 
     /* avatar roles */
+    --sp-component-avatar-size-xs: var(--sp-space-24);
     --sp-component-avatar-size-sm: var(--sp-space-32);
     --sp-component-avatar-size-md: var(--sp-space-48);
     --sp-component-avatar-size-lg: var(--sp-space-64);
@@ -1637,6 +1638,13 @@
       opacity var(--sp-duration-fast) var(--sp-easing-out);
   }
 
+  .sp-avatar--xs {
+    width: var(--sp-component-avatar-size-xs);
+    height: var(--sp-component-avatar-size-xs);
+    font-size: var(--sp-font-xs-size);
+    line-height: var(--sp-font-xs-line-height);
+  }
+
   .sp-avatar--sm {
     width: var(--sp-component-avatar-size-sm);
     height: var(--sp-component-avatar-size-sm);
@@ -1712,6 +1720,11 @@
   .sp-avatar[aria-busy="true"] {
     opacity: var(--sp-opacity-active);
     pointer-events: none;
+  }
+
+  .sp-avatar--placeholder {
+    background-color: var(--sp-surface-alternate);
+    color: var(--sp-text-on-surface-meta);
   }
 
   /* TAGS ----------------------------------------------------------------- */
