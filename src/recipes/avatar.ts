@@ -2,6 +2,7 @@ import { cx } from '../internal/cx'
 import { resolveOption } from '../internal/resolve-option'
 
 const AVATAR_SIZES = {
+  xs: true,
   sm: true,
   md: true,
   lg: true,
@@ -26,6 +27,7 @@ export interface AvatarRecipeOptions {
   focused?: boolean
   active?: boolean
   fullWidth?: boolean
+  placeholder?: boolean
 }
 
 export function getAvatarClasses(opts: AvatarRecipeOptions = {}): string {
@@ -39,6 +41,7 @@ export function getAvatarClasses(opts: AvatarRecipeOptions = {}): string {
     focused = false,
     active = false,
     fullWidth = false,
+    placeholder = false,
   } = opts
 
   const size = resolveOption({
@@ -65,6 +68,7 @@ export function getAvatarClasses(opts: AvatarRecipeOptions = {}): string {
     hovered && 'sp-avatar--hover is-hover',
     focused && 'sp-avatar--focus is-focus',
     active && 'sp-avatar--active is-active',
-    fullWidth && 'sp-avatar--full'
+    fullWidth && 'sp-avatar--full',
+    placeholder && 'sp-avatar--placeholder'
   )
 }
