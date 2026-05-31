@@ -51,19 +51,17 @@ export function getTagClasses(opts: TagRecipeOptions = {}): string {
     fallback: 'default',
   })
 
-  const size = sizeInput
-    ? resolveOption({
-        name: 'tag size',
-        value: sizeInput,
-        allowed: TAG_SIZES,
-        fallback: 'md',
-      })
-    : undefined
+  const size = resolveOption({
+    name: 'tag size',
+    value: sizeInput,
+    allowed: TAG_SIZES,
+    fallback: 'md',
+  })
 
   return cx(
     'sp-tag',
     `sp-tag--${variant}`,
-    size && `sp-tag--${size}`,
+    sizeInput && `sp-tag--${size}`,
     dismissible && 'sp-tag--dismissible',
     selected && 'sp-tag--selected',
     disabled && 'sp-tag--disabled',
