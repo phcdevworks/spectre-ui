@@ -72,6 +72,7 @@ describe('getAvatarClasses', () => {
 
   it('supports all avatar sizes', () => {
     const sizes = [
+      { size: 'xs' as const, className: 'sp-avatar--xs' },
       { size: 'sm' as const, className: 'sp-avatar--sm' },
       { size: 'md' as const, className: 'sp-avatar--md' },
       { size: 'lg' as const, className: 'sp-avatar--lg' },

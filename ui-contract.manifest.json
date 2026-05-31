@@ -91,11 +91,12 @@
     },
     "avatar": {
       "fn": "getAvatarClasses",
-      "sizes": ["sm", "md", "lg", "xl"]
+      "sizes": ["xs", "sm", "md", "lg", "xl"]
     },
     "tag": {
       "fn": "getTagClasses",
-      "variants": ["default", "outline"]
+      "variants": ["default", "outline"],
+      "sizes": ["sm", "md", "lg"]
     }
   }
 }
