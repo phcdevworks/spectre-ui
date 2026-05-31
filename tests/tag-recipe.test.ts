@@ -29,6 +29,21 @@ describe('getTagClasses', () => {
     })
   })
 
+  it('supports all tag sizes', () => {
+    const sizes = [
+      { size: 'sm' as const, className: 'sp-tag--sm' },
+      { size: 'md' as const, className: 'sp-tag--md' },
+      { size: 'lg' as const, className: 'sp-tag--lg' },
+    ]
+
+    sizes.forEach(({ size, className }) => {
+      const result = getTagClasses({ size })
+      expect(result).toContain(className)
+      expect(result).toContain('sp-tag')
+      expectTokenizedClassString(result)
+    })
+  })
+
   it('supports dismissible state', () => {
     const result = getTagClasses({ dismissible: true })
     expect(result).toContain('sp-tag--dismissible')

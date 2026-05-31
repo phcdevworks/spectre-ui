@@ -1,9 +1,15 @@
 {
   "permissions": {
+    "allow": ["Bash(*)"],
     "deny": [
       "Bash(git commit*)",
       "Bash(git push*)",
-      "Bash(git tag*)"
+      "Bash(git tag*)",
+      "Bash(git merge*)",
+      "Bash(git reset*)",
+      "Bash(git checkout*)",
+      "Bash(git clean*)",
+      "Bash(rm -rf*)"
     ]
   }
 }

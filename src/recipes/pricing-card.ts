@@ -1,14 +1,14 @@
-import { cx } from "../internal/cx";
+import { cx } from '../internal/cx'
 
 export interface PricingCardRecipeOptions {
-  featured?: boolean;
-  disabled?: boolean;
-  loading?: boolean;
-  interactive?: boolean;
-  hovered?: boolean;
-  focused?: boolean;
-  active?: boolean;
-  fullHeight?: boolean;
+  featured?: boolean
+  disabled?: boolean
+  loading?: boolean
+  interactive?: boolean
+  hovered?: boolean
+  focused?: boolean
+  active?: boolean
+  fullHeight?: boolean
 }
 
 export function getPricingCardClasses(opts: PricingCardRecipeOptions = {}): string {
@@ -21,33 +21,33 @@ export function getPricingCardClasses(opts: PricingCardRecipeOptions = {}): stri
     focused = false,
     active = false,
     fullHeight = false,
-  } = opts;
+  } = opts
 
   return cx(
-    "sp-pricing-card",
-    featured && "sp-pricing-card--featured",
-    disabled && "sp-pricing-card--disabled",
-    loading && "sp-pricing-card--loading",
-    interactive && "sp-pricing-card--interactive",
-    hovered && "sp-pricing-card--hover is-hover",
-    focused && "sp-pricing-card--focus is-focus",
-    active && "sp-pricing-card--active is-active",
-    fullHeight && "sp-pricing-card--full"
-  );
+    'sp-pricing-card',
+    featured && 'sp-pricing-card--featured',
+    disabled && 'sp-pricing-card--disabled',
+    loading && 'sp-pricing-card--loading',
+    interactive && 'sp-pricing-card--interactive',
+    hovered && 'sp-pricing-card--hover is-hover',
+    focused && 'sp-pricing-card--focus is-focus',
+    active && 'sp-pricing-card--active is-active',
+    fullHeight && 'sp-pricing-card--full'
+  )
 }
 
 export function getPricingCardBadgeClasses(): string {
-  return cx("sp-pricing-card-badge");
+  return cx('sp-pricing-card-badge')
 }
 
 export function getPricingCardPriceContainerClasses(): string {
-  return cx("sp-pricing-card-price-container");
+  return cx('sp-pricing-card-price-container')
 }
 
 export function getPricingCardPriceClasses(): string {
-  return cx("sp-pricing-card-price");
+  return cx('sp-pricing-card-price')
 }
 
 export function getPricingCardDescriptionClasses(): string {
-  return cx("sp-pricing-card-description");
+  return cx('sp-pricing-card-description')
 }
