@@ -1762,24 +1762,6 @@
     width: 100%;
   }
 
-  .sp-tag--sm {
-    padding-inline: var(--sp-component-tag-padding-x-sm);
-    font-size: var(--sp-font-xs-size);
-    line-height: var(--sp-font-xs-line-height);
-  }
-
-  .sp-tag--md {
-    padding-inline: var(--sp-component-tag-padding-x-md);
-    font-size: var(--sp-font-sm-size);
-    line-height: var(--sp-font-sm-line-height);
-  }
-
-  .sp-tag--lg {
-    padding-inline: var(--sp-component-tag-padding-x-lg);
-    font-size: var(--sp-font-md-size);
-    line-height: var(--sp-font-md-line-height);
-  }
-
   .sp-tag--default {
     background-color: var(--sp-component-tag-default-bg);
     color: var(--sp-component-tag-default-text);
