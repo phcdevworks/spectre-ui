@@ -6,10 +6,18 @@ const TAG_VARIANTS = {
   outline: true,
 } as const
 
+const TAG_SIZES = {
+  sm: true,
+  md: true,
+  lg: true,
+} as const
+
 export type TagVariant = keyof typeof TAG_VARIANTS
+export type TagSize = keyof typeof TAG_SIZES
 
 export interface TagRecipeOptions {
   variant?: TagVariant
+  size?: TagSize
   dismissible?: boolean
   selected?: boolean
   disabled?: boolean
@@ -24,6 +32,7 @@ export interface TagRecipeOptions {
 export function getTagClasses(opts: TagRecipeOptions = {}): string {
   const {
     variant: variantInput,
+    size: sizeInput,
     dismissible = false,
     selected = false,
     disabled = false,
@@ -42,9 +51,17 @@ export function getTagClasses(opts: TagRecipeOptions = {}): string {
     fallback: 'default',
   })
 
+  const size = resolveOption({
+    name: 'tag size',
+    value: sizeInput,
+    allowed: TAG_SIZES,
+    fallback: 'md',
+  })
+
   return cx(
     'sp-tag',
     `sp-tag--${variant}`,
+    sizeInput && `sp-tag--${size}`,
     dismissible && 'sp-tag--dismissible',
     selected && 'sp-tag--selected',
     disabled && 'sp-tag--disabled',
