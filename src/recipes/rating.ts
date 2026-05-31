@@ -1,24 +1,24 @@
-import { cx } from "../internal/cx";
-import { resolveOption } from "../internal/resolve-option";
+import { cx } from '../internal/cx'
+import { resolveOption } from '../internal/resolve-option'
 
 const RATING_SIZES = {
   sm: true,
   md: true,
   lg: true,
-} as const;
+} as const
 
-export type RatingSize = keyof typeof RATING_SIZES;
+export type RatingSize = keyof typeof RATING_SIZES
 
 export interface RatingRecipeOptions {
-  size?: RatingSize;
-  disabled?: boolean;
-  loading?: boolean;
-  interactive?: boolean;
-  hovered?: boolean;
-  focused?: boolean;
-  active?: boolean;
-  pill?: boolean;
-  fullWidth?: boolean;
+  size?: RatingSize
+  disabled?: boolean
+  loading?: boolean
+  interactive?: boolean
+  hovered?: boolean
+  focused?: boolean
+  active?: boolean
+  pill?: boolean
+  fullWidth?: boolean
 }
 
 export function getRatingClasses(opts: RatingRecipeOptions = {}): string {
@@ -32,51 +32,38 @@ export function getRatingClasses(opts: RatingRecipeOptions = {}): string {
     active = false,
     pill = false,
     fullWidth = false,
-  } = opts;
+  } = opts
 
   const size = resolveOption({
-    name: "rating size",
+    name: 'rating size',
     value: sizeInput,
     allowed: RATING_SIZES,
-    fallback: "md",
-  });
-
-  const sizeMap: Record<RatingSize, string> = {
-    sm: "sp-rating--sm",
-    md: "sp-rating--md",
-    lg: "sp-rating--lg",
-  };
-  const sizeClass = sizeMap[size];
+    fallback: 'md',
+  })
 
   return cx(
-    "sp-rating",
-    sizeClass,
-    disabled && "sp-rating--disabled",
-    loading && "sp-rating--loading",
-    interactive && "sp-rating--interactive",
-    hovered && "sp-rating--hover is-hover",
-    focused && "sp-rating--focus is-focus",
-    active && "sp-rating--active is-active",
-    pill && "sp-rating--pill",
-    fullWidth && "sp-rating--full"
-  );
+    'sp-rating',
+    `sp-rating--${size}`,
+    disabled && 'sp-rating--disabled',
+    loading && 'sp-rating--loading',
+    interactive && 'sp-rating--interactive',
+    hovered && 'sp-rating--hover is-hover',
+    focused && 'sp-rating--focus is-focus',
+    active && 'sp-rating--active is-active',
+    pill && 'sp-rating--pill',
+    fullWidth && 'sp-rating--full'
+  )
 }
 
 export function getRatingStarsClasses(): string {
-  return cx("sp-rating-stars");
+  return cx('sp-rating-stars')
 }
 
 export function getRatingStarClasses(isFilled: boolean = false): string {
-  return cx(
-    "sp-rating-star",
-    isFilled && "sp-rating-star--filled"
-  );
+  return cx('sp-rating-star', isFilled && 'sp-rating-star--filled')
 }
 
 export function getRatingTextClasses(opts: { disabled?: boolean } = {}): string {
-  const { disabled = false } = opts;
-  return cx(
-    "sp-rating-text",
-    disabled && "sp-rating-text--disabled"
-  );
+  const { disabled = false } = opts
+  return cx('sp-rating-text', disabled && 'sp-rating-text--disabled')
 }
