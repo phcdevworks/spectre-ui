@@ -238,6 +238,9 @@
     --sp-component-tag-radius: var(--sp-radius-pill);
     --sp-component-tag-font: var(--sp-font-family-sans);
     --sp-component-tag-weight: var(--sp-font-sm-weight);
+    --sp-component-tag-padding-x-sm: var(--sp-space-8);
+    --sp-component-tag-padding-x-md: var(--sp-space-12);
+    --sp-component-tag-padding-x-lg: var(--sp-space-16);
     --sp-component-tag-default-bg: var(--sp-badge-neutral-bg);
     --sp-component-tag-default-text: var(--sp-badge-neutral-text);
     --sp-component-tag-outline-bg: transparent;
