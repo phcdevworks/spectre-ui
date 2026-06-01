@@ -246,12 +246,11 @@
     --sp-component-tag-outline-bg: transparent;
     --sp-component-tag-outline-text: var(--sp-badge-neutral-text);
     --sp-component-tag-outline-border: var(--sp-button-secondary-border);
+    --sp-component-tag-ghost-bg: var(--sp-button-ghost-bg);
+    --sp-component-tag-ghost-text: var(--sp-button-ghost-text);
     --sp-component-tag-selected-bg: var(--sp-button-primary-bg);
     --sp-component-tag-selected-text: var(--sp-button-primary-text);
     --sp-component-tag-gap: var(--sp-space-4);
-    --sp-component-tag-padding-x-sm: var(--sp-space-8);
-    --sp-component-tag-padding-x-md: var(--sp-space-12);
-    --sp-component-tag-padding-x-lg: var(--sp-space-16);
     --sp-component-tag-padding-y-sm: var(--sp-space-4);
     --sp-component-tag-padding-y-md: var(--sp-space-4);
     --sp-component-tag-padding-y-lg: var(--sp-space-4);
@@ -1777,6 +1776,11 @@
     background-color: var(--sp-component-tag-selected-bg);
     color: var(--sp-component-tag-selected-text);
     border-color: transparent;
+  }
+
+  .sp-tag--ghost {
+    background-color: var(--sp-component-tag-ghost-bg);
+    color: var(--sp-component-tag-ghost-text);
   }
 
   .sp-tag--interactive {

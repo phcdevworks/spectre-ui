@@ -4,6 +4,7 @@ import { resolveOption } from '../internal/resolve-option'
 const TAG_VARIANTS = {
   default: true,
   outline: true,
+  ghost: true,
 } as const
 
 const TAG_SIZES = {
