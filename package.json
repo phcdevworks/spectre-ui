@@ -100,7 +100,7 @@
     "typescript": "^5.9 || ^6.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^2.6.0"
+    "@phcdevworks/spectre-tokens": "^2.7.0"
   },
   "devDependencies": {
     "@types/node": "^25.9.1",
