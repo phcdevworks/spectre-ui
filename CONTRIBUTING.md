@@ -99,6 +99,53 @@ version — ESLint plugin resolution can differ across runtimes.
 - Keep wording aligned with the rest of the Spectre suite and PHCDevworks
   ownership.
 
+## Recipe Composition
+
+### How adapters compose multiple recipes
+
+Downstream adapter packages (Layer 3) build framework components by calling
+one or more recipe helpers and combining the returned class strings with their
+own structural or state classes. Each recipe call is independent — pass
+separate option objects and merge the results:
+
+```typescript
+import { getAlertClasses } from '@phcdevworks/spectre-ui'
+import { getAvatarClasses } from '@phcdevworks/spectre-ui'
+
+// Compose two independent recipes for a compound element
+const alertClasses = getAlertClasses({ variant: 'info', size: 'md' })
+const avatarClasses = getAvatarClasses({ size: 'sm', shape: 'circle' })
+```
+
+Adapters are responsible for ordering, whitespace, and any framework-specific
+class merging. Recipe helpers return plain space-separated strings with no
+leading or trailing whitespace.
+
+### Recipe guarantees
+
+- **Pure functions.** Each recipe function is stateless. The same options
+  always produce the same class string.
+- **Deterministic output.** Class order within a single recipe call is stable
+  across calls and versions within a semver range. Do not rely on order across
+  different recipe calls — merge order is the adapter's concern.
+- **No side effects.** Recipe functions do not access the DOM, read
+  environment variables, or import CSS. They are safe to call in any JS
+  environment including SSR.
+- **Framework-agnostic.** All recipes accept plain objects and return plain
+  strings. No JSX, template literals, or reactive primitives.
+
+### Recipe non-guarantees
+
+- **CSS specificity.** Recipes emit BEM-style `sp-*` class names. How those
+  classes interact with adapter-supplied utility classes depends on stylesheet
+  load order, which this package does not control.
+- **Class ordering across recipes.** When composing multiple recipe results,
+  the order you concatenate them affects specificity. That ordering decision
+  belongs to the adapter, not to this package.
+- **Visual output without the Spectre stylesheet.** Recipe functions emit
+  class names backed by `@phcdevworks/spectre-tokens`. Without the token
+  stylesheet loaded, rendered output will be unstyled.
+
 ## Contract Coverage Map
 
 `ui-contract.manifest.json` is the single source of truth for the public styling
