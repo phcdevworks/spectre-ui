@@ -1,5 +1,5 @@
 {
-  "version": "1.6.0",
+  "version": "1.7.0",
   "cssEntrypoints": [
     "@phcdevworks/spectre-ui/index.css",
     "@phcdevworks/spectre-ui/base.css",
@@ -95,7 +95,7 @@
     },
     "tag": {
       "fn": "getTagClasses",
-      "variants": ["default", "outline"],
+      "variants": ["default", "primary", "secondary", "success", "warning", "danger", "info", "neutral", "accent", "cta", "outline", "ghost"],
       "sizes": ["sm", "md", "lg"]
     }
   }

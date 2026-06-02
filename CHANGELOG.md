@@ -6,6 +6,30 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-06-03
+
+Release Title: Tag Variant Expansion and Token Alignment
+
+### Added
+
+- **Tag Variants**: Expanded Tag recipe with `primary`, `secondary`, `success`,
+  `warning`, `danger`, `info`, `neutral`, `accent`, `cta`, and `ghost` variants
+  for full parity with Badge and Button components. CSS selectors backed by
+  token roles only.
+- **Dark Mode Fixtures**: Added dark mode verification fixtures under `examples/`
+  for Alert, Avatar, and Tag recipes.
+
+### Changed
+
+- **Token Alignment**: Updated `@phcdevworks/spectre-tokens` dependency to
+  `^2.7.0`.
+- **CI**: Promoted Node 24.x to the primary CI matrix target; Node 22.x
+  retained for one more cycle.
+- **Documentation**: Added Recipe Composition section to `CONTRIBUTING.md`
+  covering how adapters compose multiple recipe helpers, contract guarantees
+  (pure function, deterministic output, no side effects), and non-guarantees
+  (CSS specificity interactions, class ordering).
+
 ## [1.6.0] - 2026-05-22
 
 Release Title: Contract Expansion and Governance Hardening
