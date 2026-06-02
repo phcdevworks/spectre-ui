@@ -3,6 +3,15 @@ import { resolveOption } from '../internal/resolve-option'
 
 const TAG_VARIANTS = {
   default: true,
+  primary: true,
+  secondary: true,
+  success: true,
+  warning: true,
+  danger: true,
+  info: true,
+  neutral: true,
+  accent: true,
+  cta: true,
   outline: true,
   ghost: true,
 } as const

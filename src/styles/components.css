@@ -243,6 +243,24 @@
     --sp-component-tag-padding-x-lg: var(--sp-space-16);
     --sp-component-tag-default-bg: var(--sp-badge-neutral-bg);
     --sp-component-tag-default-text: var(--sp-badge-neutral-text);
+    --sp-component-tag-primary-bg: var(--sp-button-primary-bg);
+    --sp-component-tag-primary-text: var(--sp-button-text-on-primary);
+    --sp-component-tag-secondary-bg: var(--sp-button-secondary-bg);
+    --sp-component-tag-secondary-text: var(--sp-button-secondary-text);
+    --sp-component-tag-success-bg: var(--sp-badge-success-bg);
+    --sp-component-tag-success-text: var(--sp-badge-success-text);
+    --sp-component-tag-warning-bg: var(--sp-badge-warning-bg);
+    --sp-component-tag-warning-text: var(--sp-badge-warning-text);
+    --sp-component-tag-danger-bg: var(--sp-badge-danger-bg);
+    --sp-component-tag-danger-text: var(--sp-badge-danger-text);
+    --sp-component-tag-info-bg: var(--sp-badge-info-bg);
+    --sp-component-tag-info-text: var(--sp-badge-info-text);
+    --sp-component-tag-neutral-bg: var(--sp-badge-neutral-bg);
+    --sp-component-tag-neutral-text: var(--sp-badge-neutral-text);
+    --sp-component-tag-accent-bg: var(--sp-button-accent-bg);
+    --sp-component-tag-accent-text: var(--sp-button-accent-text);
+    --sp-component-tag-cta-bg: var(--sp-button-cta-bg);
+    --sp-component-tag-cta-text: var(--sp-button-cta-text);
     --sp-component-tag-outline-bg: transparent;
     --sp-component-tag-outline-text: var(--sp-badge-neutral-text);
     --sp-component-tag-outline-border: var(--sp-button-secondary-border);
@@ -1764,6 +1782,51 @@
   .sp-tag--default {
     background-color: var(--sp-component-tag-default-bg);
     color: var(--sp-component-tag-default-text);
+  }
+
+  .sp-tag--primary {
+    background-color: var(--sp-component-tag-primary-bg);
+    color: var(--sp-component-tag-primary-text);
+  }
+
+  .sp-tag--secondary {
+    background-color: var(--sp-component-tag-secondary-bg);
+    color: var(--sp-component-tag-secondary-text);
+  }
+
+  .sp-tag--success {
+    background-color: var(--sp-component-tag-success-bg);
+    color: var(--sp-component-tag-success-text);
+  }
+
+  .sp-tag--warning {
+    background-color: var(--sp-component-tag-warning-bg);
+    color: var(--sp-component-tag-warning-text);
+  }
+
+  .sp-tag--danger {
+    background-color: var(--sp-component-tag-danger-bg);
+    color: var(--sp-component-tag-danger-text);
+  }
+
+  .sp-tag--info {
+    background-color: var(--sp-component-tag-info-bg);
+    color: var(--sp-component-tag-info-text);
+  }
+
+  .sp-tag--neutral {
+    background-color: var(--sp-component-tag-neutral-bg);
+    color: var(--sp-component-tag-neutral-text);
+  }
+
+  .sp-tag--accent {
+    background-color: var(--sp-component-tag-accent-bg);
+    color: var(--sp-component-tag-accent-text);
+  }
+
+  .sp-tag--cta {
+    background-color: var(--sp-component-tag-cta-bg);
+    color: var(--sp-component-tag-cta-text);
   }
 
   .sp-tag--outline {
