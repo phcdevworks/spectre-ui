@@ -126,15 +126,15 @@ Layer 2.
 
 ### P2: Quality and DX
 
-- [ ] Promote Node 24 as the primary CI matrix target
+- [x] Promote Node 24 as the primary CI matrix target
   - List Node 24.x first in `.github/workflows/`.
   - Keep Node 22.x for one more cycle before removing it.
 
-- [ ] Add dark mode fixture coverage for new recipe families
+- [x] Add dark mode fixture coverage for new recipe families
   - Add focused dark mode fixtures in `examples/` as each new recipe lands.
   - Keep fixtures for verification, not as a parallel API surface.
 
-- [ ] Document recipe composition patterns in `CONTRIBUTING.md`
+- [x] Document recipe composition patterns in `CONTRIBUTING.md`
   - Explain how downstream adapters should compose multiple recipe helpers.
   - Clarify recipe guarantees: pure functions, deterministic class strings,
     no side effects.
