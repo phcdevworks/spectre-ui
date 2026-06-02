@@ -76,14 +76,14 @@ Layer 2.
 
 ### P0: Release Gate
 
-- [ ] Finalize the current release
+- [x] Finalize the current release
   - Confirm whether pending changes land as a `1.5.1` patch or roll into a
     `1.6.0` minor alongside new recipe work.
   - Apply a release date and version heading in `CHANGELOG.md`.
   - Update `package.json` version only when the release version is chosen.
   - Run `npm run check` on a clean checkout before Brad tags and publishes.
 
-- [ ] Confirm latest published token alignment for the release cut
+- [x] Confirm latest published token alignment for the release cut
   - Run `npm run validate:tokens`.
   - Resolve drift against the latest published `@phcdevworks/spectre-tokens`
     package before tagging.
