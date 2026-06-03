@@ -27,7 +27,7 @@ const ENTRYPOINT_CONTRACTS = [
     standaloneTokens: ['--sp-surface-page:', '--sp-button-primary-bg:'],
     bundleMarkers: ['@layer components', '.sp-btn {', '.sp-card {'],
     forbiddenMarkers: ['@layer base', '@layer utilities', 'body {', ':focus-visible {', '.sp-stack {', '@keyframes fade-in'],
-    maxBytes: 80000,
+    maxBytes: 84000,
   },
   {
     fileName: 'utilities.css',
@@ -40,6 +40,15 @@ const ENTRYPOINT_CONTRACTS = [
 
 const getEntryPointRules = (fileName: string) =>
   postcss.parse(readDistCss(fileName), { from: path.join(distDir, fileName) });
+
+const isKeyframeRule = (rule: postcss.Rule): boolean => {
+  let node: postcss.Node | undefined = rule.parent
+  while (node) {
+    if (node.type === 'atrule' && (node as postcss.AtRule).name === 'keyframes') return true
+    node = node.parent
+  }
+  return false
+}
 
 const getRuleContext = (rule: postcss.Rule): string => {
   const contexts: string[] = [];
@@ -121,6 +130,7 @@ describe('dist CSS entrypoints', () => {
       const selectorCounts = new Map<string, { count: number; selector: string }>();
 
       getEntryPointRules(fileName).walkRules((rule) => {
+        if (isKeyframeRule(rule)) return;
         const context = getRuleContext(rule);
 
         rule.selectors.forEach((selector) => {
@@ -152,6 +162,7 @@ describe('dist CSS entrypoints', () => {
 
     ENTRYPOINT_CONTRACTS.forEach(({ fileName }) => {
       getEntryPointRules(fileName).walkRules((rule) => {
+        if (isKeyframeRule(rule)) return;
         rule.selectors.forEach((selector) => {
           const normalizedSelector = selector.trim();
           if (ALLOWED_SHARED_SELECTORS.has(normalizedSelector)) return;

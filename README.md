@@ -232,7 +232,8 @@ All options are optional and fall back to sensible defaults.
 | Testimonial | `getTestimonialClasses` | `elevated` `flat` `outline` `ghost` | — | `interactive` `disabled` `loading` `fullHeight` |
 | Alert | `getAlertClasses` | `info` `success` `warning` `danger` `neutral` | `sm` `md` `lg` | `dismissed` |
 | Avatar | `getAvatarClasses` | — | `sm` `md` `lg` `xl` | shape: `circle` `square` |
-| Tag | `getTagClasses` | `default` `outline` | — | `dismissible` `selected` `disabled` `loading` `interactive` `fullWidth` |
+| Tag | `getTagClasses` | `default` `primary` `secondary` `success` `warning` `danger` `info` `neutral` `accent` `cta` `outline` `ghost` | `sm` `md` `lg` | `dismissible` `selected` `disabled` `loading` `interactive` `fullWidth` |
+| Spinner | `getSpinnerClasses` | — | `sm` `md` `lg` | — |
 
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements). See the full list below.
@@ -261,6 +262,7 @@ Root recipe functions:
 - `getInputClasses`
 - `getPricingCardClasses`
 - `getRatingClasses`
+- `getSpinnerClasses`
 - `getTagClasses`
 - `getTestimonialClasses`
 

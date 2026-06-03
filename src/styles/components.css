@@ -272,6 +272,16 @@
     --sp-component-tag-padding-y-sm: var(--sp-space-4);
     --sp-component-tag-padding-y-md: var(--sp-space-4);
     --sp-component-tag-padding-y-lg: var(--sp-space-4);
+
+    /* spinner roles */
+    --sp-component-spinner-size-sm: var(--sp-space-16);
+    --sp-component-spinner-size-md: var(--sp-space-24);
+    --sp-component-spinner-size-lg: var(--sp-space-32);
+    --sp-component-spinner-border-width: var(--sp-border-width-thick);
+    --sp-component-spinner-track-color: var(--sp-color-neutral-200);
+    --sp-component-spinner-arc-color: var(--sp-button-primary-bg);
+    --sp-component-spinner-duration: var(--sp-duration-long);
+    --sp-component-spinner-easing: var(--sp-easing-linear);
   }
 
   /* dark mode overrides mapped from Spectre token mode definitions */
@@ -327,6 +337,9 @@
     --sp-component-alert-neutral-bg: var(--sp-color-neutral-700);
     --sp-component-alert-neutral-text: var(--sp-color-neutral-100);
     --sp-component-alert-neutral-border: var(--sp-color-neutral-600);
+
+    --sp-component-spinner-track-color: var(--sp-color-neutral-700);
+    --sp-component-spinner-arc-color: var(--sp-color-brand-400);
   }
 
   /* BUTTONS -------------------------------------------------------------- */
@@ -1903,5 +1916,36 @@
 
   .sp-tag--dismissible {
     gap: var(--sp-space-8);
+  }
+
+  /* SPINNER -------------------------------------------------------------- */
+
+  @keyframes sp-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .sp-spinner {
+    display: inline-block;
+    border-radius: 50%;
+    border: var(--sp-component-spinner-border-width) solid var(--sp-component-spinner-track-color);
+    border-top-color: var(--sp-component-spinner-arc-color);
+    animation: sp-spin var(--sp-component-spinner-duration) var(--sp-component-spinner-easing) infinite;
+  }
+
+  .sp-spinner--sm {
+    width: var(--sp-component-spinner-size-sm);
+    height: var(--sp-component-spinner-size-sm);
+  }
+
+  .sp-spinner--md {
+    width: var(--sp-component-spinner-size-md);
+    height: var(--sp-component-spinner-size-md);
+  }
+
+  .sp-spinner--lg {
+    width: var(--sp-component-spinner-size-lg);
+    height: var(--sp-component-spinner-size-lg);
   }
 }

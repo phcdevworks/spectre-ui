@@ -84,3 +84,9 @@ export {
   type TagSize,
   type TagVariant,
 } from './tag'
+
+export {
+  getSpinnerClasses,
+  type SpinnerRecipeOptions,
+  type SpinnerSize,
+} from './spinner'
