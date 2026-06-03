@@ -118,7 +118,7 @@ Layer 2.
     blur.
   - Include the same coverage path as Alert.
 
-- [ ] Add Spinner recipe (`getSpinnerClasses`)
+- [x] Add Spinner recipe (`getSpinnerClasses`)
   - Sizes: `sm`, `md`, `lg`.
   - Motion via CSS only.
   - Designed to compose with downstream loading states.

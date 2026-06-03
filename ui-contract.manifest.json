@@ -35,6 +35,7 @@
       "getRatingStarClasses",
       "getRatingStarsClasses",
       "getRatingTextClasses",
+      "getSpinnerClasses",
       "getTagClasses",
       "getTestimonialAuthorClasses",
       "getTestimonialAuthorInfoClasses",
@@ -96,6 +97,10 @@
     "tag": {
       "fn": "getTagClasses",
       "variants": ["default", "primary", "secondary", "success", "warning", "danger", "info", "neutral", "accent", "cta", "outline", "ghost"],
+      "sizes": ["sm", "md", "lg"]
+    },
+    "spinner": {
+      "fn": "getSpinnerClasses",
       "sizes": ["sm", "md", "lg"]
     }
   }
