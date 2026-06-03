@@ -2,640 +2,236 @@
 
 # Spectre UI Roadmap
 
-This roadmap is grounded in the current repository shape and public contract of
-`@phcdevworks/spectre-ui` as it exists today.
+`@phcdevworks/spectre-ui` is the Layer 2 styling contract in the Spectre system.
+It consumes the published `@phcdevworks/spectre-tokens` package and turns those
+token contracts into reusable CSS entry points, Tailwind helpers, and
+framework-agnostic recipe APIs.
 
-`@phcdevworks/spectre-ui` is the authoritative styling contract layer in the
-Spectre system. It translates `@phcdevworks/spectre-tokens` into reusable CSS
-entrypoints, Tailwind helpers, and framework-agnostic recipe APIs for downstream
-adapters and apps.
+The foundation is solid as of the v1.7.0 release candidate. This roadmap now
+focuses on moving forward: consuming new upstream token capabilities, adding
+practical UI styling primitives, proving downstream integration, and keeping the
+package contract clean enough for adapter packages to build on confidently.
 
-The work below is focused on protecting that contract through stronger parity,
-validation, and downstream safety without expanding package responsibilities or
-introducing broad rewrites.
+## 1. Foundation Status - Delivered
 
-## 1. Current Repo Assessment
+All foundation work is complete. The package now has a declared, validated, and
+documented public styling contract.
 
-### Current strengths
+### What is in place
 
-- The package contract is already intentionally split across root exports,
-  `./tailwind`, and standalone CSS entrypoints.
-- Source ownership is already legible:
-  - `src/styles/` owns CSS contract surfaces
-  - `src/recipes/` owns framework-agnostic recipe APIs
-  - `src/tailwind/` owns Tailwind-facing helpers
-  - `scripts/` owns validation
-  - `tests/` owns regression and parity coverage
-- CI already runs on pull requests and `main`.
-- Existing validation and test coverage already protects meaningful parts of the
-  contract, including runtime validation, export checks, CSS contract checks,
-  token alignment, selector presence, zero-hex enforcement, Tailwind mapping,
-  and recipe output stability.
-- The repo already aligns against the published `@phcdevworks/spectre-tokens`
-  package, which is the correct upstream authority.
+- `ui-contract.manifest.json` declares root exports, Tailwind exports, CSS entry
+  points, and stable recipe families.
+- `npm run check` validates runtime support, lint, changelog format, root
+  exports, README parity, latest published token alignment, build output,
+  Tailwind subpath packaging, CSS contract integrity, and tests.
+- CSS entry points are independently emitted, token-backed, and protected by
+  contract tests.
+- Recipe families are framework-agnostic and validated against live output.
+- Built-package smoke tests exercise the emitted package instead of only source
+  files.
+- README and maintainer docs describe the public contract and validation path.
+- The package consumes published `@phcdevworks/spectre-tokens` as the upstream
+  authority and does not invent design values locally.
 
-### Current gaps to harden
+### What will not change
 
-- The repo validates several public surfaces, but it does not yet declare one
-  single machine-readable contract anchor for the package.
-- Root export validation is stronger than subpath validation for `./tailwind`.
-- Public export documentation in `README.md` is still manually maintained and
-  can drift from emitted reality.
-- CSS entrypoint validation exists, but it is still lighter than the public
-  claims made for standalone distributable CSS entrypoints.
-- There is internal/public ambiguity around `spectreIndexStylesPath`.
-- Recipe families are clearly owned by this repo, but public recipe parity is
-  not yet treated as an explicit protected contract surface.
-- There is no dedicated built-package smoke coverage for real downstream import
-  patterns across root exports, `./tailwind`, and CSS entrypoints.
+- Design values and semantic meaning remain in `@phcdevworks/spectre-tokens`.
+- This package does not own framework components, templates, hooks, or runtime
+  behavior.
+- Recipe functions continue to accept plain option objects and return class
+  strings only.
+- CSS, recipes, Tailwind helpers, docs, snapshots, and the manifest must remain
+  aligned before release.
+- Missing upstream token values are blockers, not invitations to add local
+  fallbacks.
 
-### Missing policy, docs, or tests that would improve downstream safety
+## 2. Roadmap - Post-1.7.0 Forward Motion
 
-- A small contract manifest that declares the public styling surface of the repo
-- Executable README contract parity validation
-- Explicit `./tailwind` subpath artifact and packaging validation
-- Built-package downstream import smoke tests
-- Explicit parity checks for stable public recipe families, including names,
-  variants, sizes, and states
-- A short maintainer-facing contract coverage map showing which script or test
-  enforces which rule
+The next phase is not another foundation pass. It is a controlled expansion
+phase that follows the upstream token roadmap and turns proven token contracts
+into practical Layer 2 styling primitives.
 
-## 2. Roadmap
+### P0: Release and Baseline Continuity
 
-## P0: Contract Integrity / Must-Do
+**Objective** Finish the v1.7.0 release cleanly and keep the baseline ready for
+new work.
 
-### P0.1 Add a Single Styling Contract Anchor
+**Why it matters** New recipe and token-consumption work should start from a
+known-good package version. A clean baseline keeps future diffs focused and
+prevents release hygiene from mixing with feature expansion.
 
-Objective Declare one machine-readable contract surface for the package and use
-it as the basis for parity and drift checks.
+**Deliverables**
 
-Why it matters This repo is a public styling contract, not just a source tree.
-Public exports, CSS entrypoints, Tailwind surfaces, and stable recipe families
-should be declared once and validated from that declaration instead of being
-inferred separately from source, docs, and emitted files.
+- Confirm v1.7.0 package metadata, changelog, lockfile, and manifest alignment.
+- Run `npm run check` before tag/publish handoff.
+- Confirm `npm pack --dry-run` includes the intended publish surface.
+- Keep `[Unreleased]` empty after the release cut until the next scoped change
+  begins.
+- Keep `dist/` generated only by `npm run build`.
 
-Suggested deliverables
+**Dependency notes**
 
-- Add a lightweight manifest such as `ui-contract.manifest.json`
-- Declare, at minimum:
-  - root public exports
-  - `./tailwind` public exports
-  - public CSS entrypoints
-  - stable public recipe families
-- Use the manifest as the anchor for export, docs, CSS, Tailwind, and recipe
-  parity checks
+- This must happen before starting the next contract expansion wave.
 
-Dependency notes
+**Risk if skipped**
 
-- This should happen before expanding any public surface
-- This should become the anchor for downstream parity validation work
+- Follow-up work can accidentally include release metadata cleanup or stale
+  generated output, making review and rollback harder.
 
-Risk if skipped
+### P1: Token-Gated Semantic Surface Expansion
 
-- Contract enforcement stays dispersed across multiple truth sources
-- Public-surface drift remains harder to detect cleanly
+**Objective** Add UI styling support only when the required semantic tokens are
+available in the latest published `@phcdevworks/spectre-tokens` package.
 
-### P0.2 Export Surface Parity
+**Why it matters** The tokens roadmap is adding the missing vocabulary that UI
+libraries hit quickly: links, interactive surfaces, dividers, and component
+groups for nav, modal, toast, tooltip, and dropdown. This package should be
+ready to consume those contracts without redefining their meaning.
 
-Objective Make the declared public API consistent across source exports, emitted
-artifacts, package metadata, the contract manifest, and README documentation.
+**Deliverables**
 
-Why it matters If the export surface is ambiguous or only partially validated,
-downstream adapters and apps can drift or break despite source code appearing
-healthy.
+- Add link styling only after a published `link` namespace exists upstream.
+- Add interactive surface states only after published `surface.hover`,
+  `surface.selected`, and `surface.active` tokens exist upstream.
+- Add divider styling only after a published semantic divider or border token
+  exists upstream.
+- For each consumed token addition:
+  - update CSS in the narrowest relevant entry point
+  - add or extend a matching recipe only when there is a stable class contract
+  - update `ui-contract.manifest.json`
+  - refresh export or Tailwind snapshots only when public exports change
+  - update README and tests for public behavior
+  - run `npm run check`
 
-Suggested deliverables
+**Dependency notes**
 
-- Decide whether `spectreIndexStylesPath` is part of the public root API or an
-  internal implementation detail
-- If public:
-  - export it from `src/index.ts`
-  - add it to the contract manifest
-  - add it to export snapshots and README documentation
-- If internal:
-  - remove the standalone constant from the root-facing public path
-  - keep `spectreStyles.index` as the supported access pattern
-- Extend validation so `./tailwind` is enforced as a first-class public
-  contract, not just the root package
+- Depends on published token releases, not GitHub-only token changes.
+- If tokens are planned upstream but not published, document the gap and wait.
 
-Dependency notes
+**Risk if skipped**
 
-- Depends on the contract manifest being defined first
-- README parity checks depend on the final export inventory decision
+- Downstream adapters may start inventing local link, divider, or interactive
+  state styles, fragmenting the Spectre contract.
 
-Risk if skipped
+### P2: Component Recipe Expansion
 
-- Consumers keep getting mixed signals about what is stable to import
-- Docs can drift from actual emitted behavior without immediate detection
+**Objective** Add the next recipe families that are broadly useful to adapters
+and are backed by explicit upstream token intent.
 
-### P0.3 CSS Entrypoint Contract Hardening
+**Why it matters** The current recipe set covers core controls and content
+surfaces. The next practical gap is application UI: navigation, overlays,
+notifications, and menus. These should enter the styling contract as small,
+auditable recipe families rather than large framework components.
 
-Objective Strengthen validation around standalone CSS entrypoints so emitted
-files match the declared package contract completely and predictably.
+**Candidate recipe families**
 
-Why it matters The package claims that exported CSS entrypoints are standalone,
-distributable, and token-backed. That needs stronger executable proof than basic
-presence checks.
+- `Link` or text-link classes after upstream link tokens publish.
+- `Divider` after upstream divider or border tokens publish.
+- `Nav` after upstream `component.nav` tokens publish.
+- `Modal` after upstream `component.modal` tokens publish.
+- `Toast` after upstream `component.toast` tokens publish.
+- `Tooltip` after upstream `component.tooltip` tokens publish.
+- `Dropdown` after upstream `component.dropdown` tokens publish.
 
-Suggested deliverables
+**Default deliverables per family**
 
-- Expand CSS contract validation to prove:
-  - every declared CSS entrypoint exists
-  - no undocumented CSS artifacts are emitted
-  - each declared CSS file remains token-backed
-  - entrypoint roles stay distinct over time
-- Expand CSS entrypoint tests so:
-  - `index.css` composes the intended contract surface
-  - `base.css`, `components.css`, and `utilities.css` remain independently
-    consumable
-  - entrypoint responsibilities do not silently blur
+- One recipe file in `src/recipes/`.
+- Token-backed selectors in `src/styles/components.css` or the narrowest
+  appropriate CSS surface.
+- Root export and recipe barrel export when public.
+- Manifest declaration.
+- README recipe table update.
+- Focused contract, recipe, and CSS tests.
+- Example fixture only when it helps visual verification.
 
-Dependency notes
+**Dependency notes**
 
-- Builds on the current CSS build contract
-- Should be settled before adding more docs or examples that rely on CSS
-  entrypoint guarantees
+- This follows P1 token availability.
+- Each recipe should land as its own scoped change unless the manifest requires
+  a paired primitive.
 
-Risk if skipped
+**Risk if skipped**
 
-- CSS entrypoint drift can ship while still passing lighter checks
-- Downstream consumers may import files that exist but no longer satisfy the
-  documented contract
+- Adapter packages will have to implement these patterns independently, which
+  weakens cross-framework consistency.
 
-### P0.4 Stable Recipe Family Parity
+### P3: Downstream Integration Feedback
 
-Objective Treat stable public recipe families as a first-class protected styling
+**Objective** Use real adapter and token integration feedback to decide which
+Layer 2 contracts should harden next.
+
+**Why it matters** The tokens roadmap now validates against a real `spectre-ui`
+integration fixture. This package should return the favor by keeping its own
+roadmap tied to real adapter usage instead of hypothetical component coverage.
+
+**Deliverables**
+
+- Track token integration findings that require CSS, recipe, Tailwind, or docs
+  changes here.
+- Add regression tests when downstream adapters expose a contract ambiguity.
+- Clarify README or CONTRIBUTING guidance when repeated adapter questions
+  appear.
+- Keep adapter-specific markup, lifecycle, slots, hooks, and templates out of
+  this package.
+
+**Dependency notes**
+
+- Can run continuously alongside P1 and P2.
+
+**Risk if skipped**
+
+- The package may grow recipe surface area without solving the real integration
+  constraints adapters are encountering.
+
+### P4: Contract Automation and Deprecation Readiness
+
+**Objective** Keep release and contract governance ahead of the growing public
 surface.
 
-Why it matters `src/recipes/` is core ownership for this repo. Public recipe
-names, variants, sizes, and states should not drift silently relative to
-exports, docs, or downstream expectations.
-
-Suggested deliverables
-
-- Declare stable public recipe families in the contract manifest
-- Add parity checks for:
-  - recipe family names
-  - public variants
-  - public sizes
-  - public states
-- Keep parity checks focused on stable documented families only
-- Ensure recipe expectations stay aligned with root exports and downstream
-  contract docs
-
-Dependency notes
-
-- Depends on the contract manifest
-- Should be completed before expanding recipe coverage
-
-Risk if skipped
-
-- Recipe contract drift can occur without obvious breakage until downstream
-  adapters or apps surface it
-
-### P0.5 Zero-Hex Enforcement Completion
-
-Objective Treat zero-hex and off-contract visual literal prevention as a
-complete contract rule for this package’s owned public styling surfaces.
-
-Why it matters This repo exists to translate token authority into
-implementation. Local visual values weaken the contract and make downstream
-behavior less trustworthy.
-
-Suggested deliverables
-
-- Keep source-style token drift checks in place
-- Add any narrowly scoped validation still needed so maintained public surfaces
-  cannot regress into raw visual literals unnoticed
-- Document any intentional exceptions explicitly if they exist
-
-Dependency notes
-
-- Must stay scoped to this package’s owned surfaces
-- Must not drift into token authoring concerns that belong upstream
-
-Risk if skipped
-
-- Off-contract values can re-enter through edges not fully covered by current
-  guardrails
-
-## P1: Downstream Safety
-
-### P1.1 Downstream Import Smoke Coverage
-
-Objective Validate the package as downstream consumers actually use it.
-
-Why it matters A contract package is only as reliable as its emitted import
-behavior. Source-level checks alone do not fully protect packaging and
-distribution behavior.
-
-Suggested deliverables
-
-- Add smoke tests that exercise:
-  - root imports from `@phcdevworks/spectre-ui`
-  - subpath imports from `@phcdevworks/spectre-ui/tailwind`
-  - CSS entrypoint imports for `index.css`, `base.css`, `components.css`, and
-    `utilities.css`
-- Assert that expected runtime and type entrypoints exist in the built package
-
-Dependency notes
-
-- Best added after P0 export decisions are complete
-
-Risk if skipped
-
-- Downstream breakage can slip through even when source-level checks stay green
-
-### P1.2 README Contract Parity
-
-Objective Keep public documentation aligned with the declared and emitted
-package contract.
-
-Why it matters For downstream consumers, README usage examples and export
-inventories are part of the public contract.
-
-Suggested deliverables
-
-- Add a script or test that validates README contract-facing inventories
-  against:
-  - the contract manifest
-  - `package.json`
-  - export snapshots
-  - the `./tailwind` subpath
-- Keep validation tightly focused on public import paths, declared exports, CSS
-  entrypoints, and stable recipe families, not general prose
-
-Dependency notes
-
-- Depends on P0 contract and export decisions being finalized
-
-Risk if skipped
-
-- Public docs can slowly diverge from reality while the package appears healthy
-
-### P1.3 Tailwind Subpath Packaging Assurance
-
-Objective Treat `./tailwind` as a fully enforced public subpath with explicit
-packaging guarantees.
-
-Why it matters Tailwind helpers are part of the repo’s public contract and
-should be protected with the same rigor as root exports and CSS entrypoints.
-
-Suggested deliverables
-
-- Validate emitted `dist/tailwind` JS, CJS, and DTS artifacts against the
-  contract manifest and `package.json`
-- Add built-package tests confirming documented Tailwind exports remain
-  available from the documented subpath
-
-Dependency notes
-
-- Pairs naturally with export-surface validation work
-
-Risk if skipped
-
-- The Tailwind contract can drift independently from the rest of the package and
-  go unnoticed until downstream integrations fail
-
-## P2: Later / Controlled Expansion
-
-### P2.1 Contract Coverage Map
-
-Objective Document which contract rule is enforced by which script or test so
-future maintenance stays surgical.
-
-Why it matters The repo already has meaningful validation. A simple coverage map
-prevents duplicate enforcement work and keeps future hardening focused.
-
-Suggested deliverables
-
-- Add a short maintainer-facing map covering:
-  - exports
-  - CSS entrypoints
-  - recipe parity
-  - token drift
-  - Tailwind contract
-  - token alignment
-  - CI enforcement
-
-Dependency notes
-
-- Easiest after P0 and P1 checks are settled
-
-Risk if skipped
-
-- Future maintainers may duplicate checks or miss existing blind spots
-
-### P2.2 Example Fixture Boundary Clarification
-
-Objective Keep example fixtures useful without turning them into accidental
-parallel API surfaces.
-
-Why it matters Examples are helpful for verification and demos, but this repo’s
-public contract is exports, CSS entrypoints, Tailwind helpers, and recipe APIs,
-not ad hoc example markup.
-
-Suggested deliverables
-
-- Clarify in docs that examples support verification and usage illustration
-- Keep examples out of contract authority decisions
-
-Dependency notes
-
-- Lower priority than contract and downstream safety work
-
-Risk if skipped
-
-- Examples can slowly become misleading or feel more authoritative than intended
-
-### P2.3 Local Verification Environment Hygiene
-
-Objective Keep local validation predictable enough that contract hardening does
-not become environment-fragile.
-
-Why it matters A strong contract repo should fail for real contract issues, not
-because local environment assumptions are unclear.
-
-Suggested deliverables
-
-- Document narrow local verification requirements
-- Add only the smallest tooling clarifications needed if local verification
-  remains environment-sensitive
-
-Dependency notes
-
-- Should not delay P0 or P1 work
-
-Risk if skipped
-
-- Contributors may get noisy local failures unrelated to actual contract
-  regressions
-
-## 3. Recommended Execution Order (Phase 1 — Complete)
-
-1. ~~Add the contract manifest~~ ✓
-2. ~~Resolve `spectreIndexStylesPath` status~~ ✓
-3. ~~Harden export validation for root and `./tailwind`~~ ✓
-4. ~~Strengthen CSS entrypoint contract validation~~ ✓
-5. ~~Add stable recipe-family parity checks~~ ✓
-6. ~~Complete zero-hex enforcement coverage~~ ✓
-7. ~~Add built-package downstream smoke tests~~ ✓
-8. ~~Add README contract parity validation~~ ✓
-9. ~~Add maintainer coverage mapping~~ ✓
-10. ~~Tidy example-boundary docs~~ ✓
-11. ~~Stabilize local verification behavior~~ ✓
-
----
-
-## Phase 2 — Post-1.5.x: Recipe Expansion and Quality
-
-### Current Status
-
-Phase 1 contract hardening is complete. The public contract surface is
-declared, validated, and enforced end-to-end. Phase 2 focuses on three tracks
-running in order: cut the current release, expand the recipe surface with
-community-facing primitives, then improve developer and CI tooling.
-
-### P0: Release Gate
-
-#### P0.1 Finalize the Current Release
-
-Objective Close the [Unreleased] changelog section, confirm token alignment,
-and cut the next version tag cleanly.
-
-Why it matters Phase 1 work has accumulated in [Unreleased]. The contract is
-ready; it needs a versioned anchor.
-
-Deliverables
-
-- Determine whether pending changes land as a `1.5.1` patch or roll into
-  `1.6.0` alongside new recipe work
-- Apply a release date and version heading; update `package.json`
-- Run `npm run check` on a clean checkout and confirm all tests pass
-- Brad tags and publishes; no dist artifacts are committed to source
-
-Dependency notes
-
-- Must complete before any Phase 2 recipe work merges
-
-Risk if skipped
-
-- Contract improvements ship without a stable version anchor; downstream
-  consumers cannot pin to a known-good release
-
-#### P0.2 Add Changelog Validation Script
-
-Objective Enforce Keep a Changelog format in CI so release-date drift and
-duplicate version headings are caught automatically.
-
-Why it matters The changelog is part of the public release contract. Manual
-maintenance has a history of introducing format drift across projects.
-
-Deliverables
-
-- `scripts/validate-changelog.ts`: assert `[Unreleased]` heading exists, all
-  released sections carry ISO dates, and no version heading is duplicated
-- `npm run validate:changelog` added and wired into `npm run check`
-
-Dependency notes
-
-- Can land before or after the release cut
-- Adds one step to `npm run check` — expected test count will increase
-
-Risk if skipped
-
-- Changelog format can drift silently; release automation becomes brittle
-
-### P1: Recipe Expansion Wave
-
-All four recipes follow the standard recipe pattern from `CLAUDE.md` without
-exception. Each lands as its own PR with a focused scope.
-
-#### P1.1 Alert Recipe
-
-Objective Add `getAlertClasses` as a new stable recipe family covering
-informational, warning, error, and success intent states.
-
-Why it matters Alert/notification patterns are one of the most commonly
-requested styling primitives downstream. Without a contract-backed recipe,
-adapters implement their own — breaking token authority.
-
-Deliverables
-
-- `src/recipes/alert.ts` — variants: `info`, `warning`, `error`, `success`;
-  states: `dismissible`
-- CSS selectors in `src/styles/components.css` backed by token roles only
-- Export from `src/recipes/index.ts` and `src/index.ts`
-- Manifest declaration in `ui-contract.manifest.json`
-- Export snapshot update via `validate:exports:update`
-- README parity entry
-
-Dependency notes
-
-- Release cut should happen before this merges
-
-Risk if skipped
-
-- Downstream adapters invent their own alert implementations, fragmenting
-  token authority for intent-color roles
-
-#### P1.2 Avatar Recipe
-
-Objective Add `getAvatarClasses` covering size and shape variants for profile
-and identity UI.
-
-Why it matters Avatar is a foundational identity primitive that downstream
-adapters use alongside Card and Badge. Without a recipe, shape and sizing rules
-diverge across adapters.
-
-Deliverables
-
-- `src/recipes/avatar.ts` — sizes: `xs`, `sm`, `md`, `lg`, `xl`; shapes:
-  `circle`, `square`; states: `placeholder` (no image src)
-- Token-backed surface and size roles only — no local rem values
-- Full coverage as per P1.1
-
-Dependency notes
-
-- Can land in parallel with or after the Alert recipe
-
-Risk if skipped
-
-- Avatar sizing and shape patterns proliferate outside the contract, creating
-  visual inconsistency across downstream adapters
-
-#### P1.3 Tag Recipe
-
-Objective Add `getTagClasses` as a lightweight semantic label distinct from
-Badge, covering categorization and filter UI patterns.
-
-Why it matters Badge is a status indicator. Tag is a categorical label. The
-distinction matters for semantic HTML and downstream adapter intent. Sharing
-the Badge recipe forces semantic misuse.
-
-Deliverables
-
-- `src/recipes/tag.ts` — variants: `default`, `outline`; states: `dismissible`,
-  `selected`
-- Full coverage as per P1.1
-
-Dependency notes
-
-- Can land after Alert or in parallel
-
-Risk if skipped
-
-- Downstream adapters misuse Badge for tag/label patterns, muddying the
-  semantic contract for both
-
-#### P1.4 Spinner Recipe
-
-Objective Add `getSpinnerClasses` for loading state UI across recipes.
-
-Why it matters Downstream adapters attach loading states to Button and other
-interactive recipes. Without a contract-backed spinner recipe, each adapter
-hard-codes motion and sizing.
-
-Deliverables
-
-- `src/recipes/spinner.ts` — sizes: `sm`, `md`, `lg`; structural sizing via
-  token-based scale only; motion via CSS animation (no JS)
-- Designed to compose with Button `loading` state downstream
-- Full coverage as per P1.1
-
-Dependency notes
-
-- Should land after Alert and Avatar so the pattern is well-established
-- No visual token changes required; structural scale tokens should be sufficient
-
-Risk if skipped
-
-- Loading state UI becomes an inconsistent free-for-all across adapters
-
-### P2: Quality and DX
-
-#### P2.1 Node 24 as Primary CI Matrix Target
-
-Objective Promote Node 24.x to first position in the CI matrix and schedule
-the removal of Node 22.x.
-
-Why it matters Node 22 enters security-maintenance-only mode in mid-2026.
-Node 24 is the active LTS. CI should track reality.
-
-Deliverables
-
-- Update `.github/workflows/` to list Node 24.x first, keep 22.x for one
-  more cycle
-- Set a target date to drop Node 22 from the matrix (suggested: after the
-  first major recipe expansion PR lands)
-
-Dependency notes
-
-- No source changes required — CI configuration only
-
-Risk if skipped
-
-- CI matrix drifts behind the active LTS, reducing confidence that the package
-  works on current Node
-
-#### P2.2 Dark Mode Fixture Coverage for New Recipes
-
-Objective Add dark mode visual verification fixtures alongside each new recipe
-as it lands.
-
-Why it matters `examples/` lacks systematic dark mode coverage. New recipes
-that ship without dark mode fixtures can regress silently before visual review.
-
-Deliverables
-
-- For each new recipe (Alert, Avatar, Tag, Spinner): add dark mode variant
-  fixtures to `examples/` at the time the recipe PR is opened
-- Keep fixture scope narrow — verification only, not a design showcase
-
-Dependency notes
-
-- Runs continuously as each recipe lands, not as a standalone PR
-
-Risk if skipped
-
-- Dark mode regressions are invisible locally until a downstream adapter
-  reports them
-
-#### P2.3 Recipe Composition Patterns in CONTRIBUTING.md
-
-Objective Document how downstream adapters should compose multiple recipe
-helpers and what contract guarantees apply to composed class strings.
-
-Why it matters As the recipe surface expands, downstream authors will
-increasingly combine helpers. Undocumented composition expectations become
-silent contract gaps.
-
-Deliverables
-
-- A short section in `CONTRIBUTING.md` covering:
-  - How to call multiple recipe helpers and merge class strings
-  - What the recipe contract guarantees (pure function, no side effects)
-  - What it does not guarantee (CSS specificity interactions, ordering)
-- No new API surface — documentation only
-
-Dependency notes
-
-- Best written after at least two new recipes are in place to have concrete
-  examples
-
-Risk if skipped
-
-- Adapters develop inconsistent composition patterns, leading to specificity
-  bugs that are hard to trace back to the contract layer
-
-## 4. Recommended Execution Order (Phase 2)
-
-1. Release gate: finalize changelog, confirm token alignment
-2. Add changelog validation script
-3. Alert recipe (P1.1)
-4. Avatar recipe (P1.2)
-5. Tag recipe (P1.3)
-6. Spinner recipe (P1.4)
-7. Node 24 CI promotion (P2.1)
-8. Dark mode fixtures — runs continuously with each recipe PR
-9. Recipe composition docs (P2.3) — after Tag and Spinner are in place
+**Why it matters** As the class and recipe contract grows, manual release and
+deprecation steps become easier to miss. The package already has strong checks;
+the next step is to keep those checks aligned with a larger, more mature public
+surface.
+
+**Deliverables**
+
+- Keep `release:propose` aligned with changelog classification conventions.
+- Add deprecation guidance for UI recipes, variants, states, and CSS classes
+  before the first public removal is needed.
+- Decide whether UI deprecations need machine-readable manifest metadata.
+- Keep README, CONTRIBUTING, agent guidance, and PR templates aligned with any
+  deprecation process.
+
+**Dependency notes**
+
+- Best implemented before the package needs to remove or rename a public class
+  or recipe option.
+
+**Risk if skipped**
+
+- Public removals become ad hoc and consumers lose a clear migration window.
+
+## 3. Recommended Execution Order
+
+1. Finish v1.7.0 release handoff from the current clean baseline.
+2. Watch for the next published `@phcdevworks/spectre-tokens` release that
+   includes token-surface completion work.
+3. Run a token synchronization pass against the published package.
+4. Add link, surface-state, and divider styling once their tokens are published.
+5. Add component recipe families in this order when their tokens exist: Nav,
+   Toast, Tooltip, Dropdown, Modal.
+6. Add downstream regression coverage whenever adapter usage reveals ambiguity.
+7. Define UI deprecation mechanics before any public class, recipe option, or
+   variant is retired.
+
+## 4. Explicitly Out of Scope
+
+- Do not author tokens or semantic visual meaning here.
+- Do not use GitHub-only token changes as synchronization authority.
+- Do not invent local link, divider, nav, modal, toast, tooltip, or dropdown
+  values while waiting for token support.
+- Do not add framework components, templates, hooks, slots, or runtime behavior.
+- Do not move adapter-package delivery concerns into this package.
+- Do not combine token synchronization, new recipe expansion, and unrelated
+  documentation cleanup in one change.
+- Do not hand-edit `dist/` or generated snapshots.
