@@ -19,13 +19,13 @@ This file documents rules and boundaries for any AI agent working in this repo.
 
 This repository follows the Spectre AI factory model:
 
-| Agent | Role | Authority |
-| ----- | ---- | --------- |
-| Claude Code | Lead developer responsible for primary implementation | `CLAUDE.md` |
-| OpenAI Codex | Documentation, releases, production stabilization, repo hygiene, and config standardization | `CODEX.md` |
-| ChatGPT | Strategy, coordination, prompt design, and external review — support layer only, no implementation ownership | — |
-| GitHub Copilot | General development assistance | `COPILOT.md`, `.github/copilot-instructions.md`, `.github/instructions/`, and this file |
-| Google Jules | Automated maintenance for small fixes, dependency updates, and micro-updates | `JULES.md` |
+| Agent          | Role                                                                                                         | Authority                                                                               |
+| -------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| Claude Code    | Lead developer responsible for primary implementation                                                        | `CLAUDE.md`                                                                             |
+| OpenAI Codex   | Documentation, releases, production stabilization, repo hygiene, and config standardization                  | `CODEX.md`                                                                              |
+| ChatGPT        | Strategy, coordination, prompt design, and external review — support layer only, no implementation ownership | —                                                                                       |
+| GitHub Copilot | General development assistance                                                                               | `COPILOT.md`, `.github/copilot-instructions.md`, `.github/instructions/`, and this file |
+| Google Jules   | Automated maintenance for small fixes, dependency updates, and micro-updates                                 | `JULES.md`                                                                              |
 
 Claude Code keeps implementation leadership. Codex keeps release and
 stabilization work clean. ChatGPT provides strategy and coordination support
@@ -101,23 +101,23 @@ class recipes without redefining the underlying design values.
 This package is framework-agnostic by design. The following are **never**
 acceptable in this repository, regardless of the task scope:
 
-| Prohibited pattern | Why |
-|---|---|
-| `.astro` files or Astro component syntax | Belongs in `@phcdevworks/spectre-ui-astro` |
-| Lit `LitElement` subclasses or `html\`\`` template literals | Belongs in a Lit adapter |
-| React JSX, `useState`, `useEffect`, or any React hooks | Belongs in a React adapter |
-| Vue `<template>`, `defineComponent`, or Vue composables | Belongs in a Vue adapter |
-| WordPress shortcode output, PHP template strings, or WP hooks | Belongs in a WordPress adapter |
-| Svelte `<script>` blocks or `.svelte` files | Belongs in a Svelte adapter |
-| Any import of a framework runtime (`react`, `vue`, `astro:*`, `lit`) | Adapters declare those, not this package |
-| Template rendering of any kind — JSX, tagged templates, string HTML | Recipes return class strings only, never markup |
+| Prohibited pattern                                                   | Why                                             |
+| -------------------------------------------------------------------- | ----------------------------------------------- |
+| `.astro` files or Astro component syntax                             | Belongs in `@phcdevworks/spectre-ui-astro`      |
+| Lit `LitElement` subclasses or `html\`\`` template literals          | Belongs in a Lit adapter                        |
+| React JSX, `useState`, `useEffect`, or any React hooks               | Belongs in a React adapter                      |
+| Vue `<template>`, `defineComponent`, or Vue composables              | Belongs in a Vue adapter                        |
+| WordPress shortcode output, PHP template strings, or WP hooks        | Belongs in a WordPress adapter                  |
+| Svelte `<script>` blocks or `.svelte` files                          | Belongs in a Svelte adapter                     |
+| Any import of a framework runtime (`react`, `vue`, `astro:*`, `lit`) | Adapters declare those, not this package        |
+| Template rendering of any kind — JSX, tagged templates, string HTML  | Recipes return class strings only, never markup |
 
 If a task requires any of the above, **stop and redirect to the appropriate
 adapter package**. Do not add it here as a convenience or shortcut.
 
 Recipe functions in this package accept plain option objects and return plain
-class strings. They have no lifecycle, no reactivity, no template syntax, and
-no DOM coupling. That is the contract.
+class strings. They have no lifecycle, no reactivity, no template syntax, and no
+DOM coupling. That is the contract.
 
 ## Change Discipline
 
@@ -161,8 +161,8 @@ authority with Bradley Potts.
 
 GitHub Copilot provides general development assistance. Copilot may help with
 targeted edits, refactors, documentation synchronization, GitHub workflow
-support, and validation awareness, but it does not own implementation
-direction, release decisions, or final handoff authority.
+support, and validation awareness, but it does not own implementation direction,
+release decisions, or final handoff authority.
 
 Copilot uses `COPILOT.md`, `.github/copilot-instructions.md`, scoped files in
 `.github/instructions/`, and the role boundaries in this file.
@@ -183,17 +183,17 @@ report rather than committing when any gate fails.
 
 ## File Classification
 
-| Classification | Files | Rule |
-|---|---|---|
-| **Source — edit freely** | `src/styles/`, `src/recipes/`, `src/tailwind/`, `src/tokens/`, `src/internal/`, `src/index.ts`, `src/css-constants.ts` | Primary authoring surface |
-| **Source — scripts** | `scripts/*.ts` | Edit when the contract or validation logic changes |
-| **Source — tests** | `tests/*.test.ts` | Edit to add or update contract coverage |
-| **Generated — never hand-edit** | `dist/` | Emitted by `npm run build`; always regenerate |
-| **Snapshots — update via script** | `scripts/export-snapshot.json`, `scripts/tailwind-export-snapshot.json` | Update via `validate:exports:update` / `validate:tailwind:update` |
-| **Contract manifest** | `ui-contract.manifest.json` | Update when public variants, states, or entry points change |
-| **Agent guidance** | `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, `JULES.md`, `.github/copilot-instructions.md` | Update only when operating model or rules change |
-| **Public docs** | `README.md`, `CONTRIBUTING.md`, `CHANGELOG.md` | Update when public contract or setup guidance changes |
-| **Protected — infra** | `package.json`, `package-lock.json`, `.github/workflows/` | Change only when explicitly in scope; lockfile must stay in sync with `package.json` |
+| Classification                    | Files                                                                                                                  | Rule                                                                                 |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **Source — edit freely**          | `src/styles/`, `src/recipes/`, `src/tailwind/`, `src/tokens/`, `src/internal/`, `src/index.ts`, `src/css-constants.ts` | Primary authoring surface                                                            |
+| **Source — scripts**              | `scripts/*.ts`                                                                                                         | Edit when the contract or validation logic changes                                   |
+| **Source — tests**                | `tests/*.test.ts`                                                                                                      | Edit to add or update contract coverage                                              |
+| **Generated — never hand-edit**   | `dist/`                                                                                                                | Emitted by `npm run build`; always regenerate                                        |
+| **Snapshots — update via script** | `scripts/export-snapshot.json`, `scripts/tailwind-export-snapshot.json`                                                | Update via `validate:exports:update` / `validate:tailwind:update`                    |
+| **Contract manifest**             | `ui-contract.manifest.json`                                                                                            | Update when public variants, states, or entry points change                          |
+| **Agent guidance**                | `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, `JULES.md`, `.github/copilot-instructions.md`                      | Update only when operating model or rules change                                     |
+| **Public docs**                   | `README.md`, `CONTRIBUTING.md`, `CHANGELOG.md`                                                                         | Update when public contract or setup guidance changes                                |
+| **Protected — infra**             | `package.json`, `package-lock.json`, `.github/workflows/`                                                              | Change only when explicitly in scope; lockfile must stay in sync with `package.json` |
 
 ## Validation
 
@@ -203,19 +203,19 @@ Run the full validation gate before every PR and before any commit:
 npm run check
 ```
 
-This runs in order: runtime check → lint → export validation → README contract
-validation → token drift check → build → Tailwind contract → CSS contract →
-tests. All steps must pass.
+This runs in order: runtime check → lint → changelog validation → export
+validation → README contract validation → token drift check → build → Tailwind
+contract → CSS contract → tests. All steps must pass.
 
-| Command | Purpose |
-|---|---|
-| `npm run check` | Full gate — use before every PR |
-| `npm run ci:verify` | Underlying full verification sequence |
-| `npm test` | Build then run contract and regression tests |
-| `npm run build` | Emit TypeScript and CSS artifacts to `dist/` |
-| `npm run lint` | ESLint with TypeScript-aware config |
-| `npm run validate:exports` | Check root export surface against snapshot |
-| `npm run validate:tokens` | Check for token drift against latest published release |
+| Command                    | Purpose                                                |
+| -------------------------- | ------------------------------------------------------ |
+| `npm run check`            | Full gate — use before every PR                        |
+| `npm run ci:verify`        | Underlying full verification sequence                  |
+| `npm test`                 | Build then run contract and regression tests           |
+| `npm run build`            | Emit TypeScript and CSS artifacts to `dist/`           |
+| `npm run lint`             | ESLint with TypeScript-aware config                    |
+| `npm run validate:exports` | Check root export surface against snapshot             |
+| `npm run validate:tokens`  | Check for token drift against latest published release |
 
 ## Pull Request Creation
 
@@ -224,12 +224,12 @@ When opening a PR, populate every section of the repo's PR template
 
 - **Linked issue** — issue number (`#N`) or `N/A`.
 - **Summary of changes** — one or two bullets describing what changed.
-- **UI contract change type** — exactly one of `additive`,
-  `semantic change`, `breaking`, or `N/A`. Must match the `CHANGELOG.md
-  [Unreleased]` classification line if one exists.
+- **UI contract change type** — exactly one of `additive`, `semantic change`,
+  `breaking`, or `N/A`. Must match the `CHANGELOG.md [Unreleased]`
+  classification line if one exists.
 - **Type of Change** — check every box that applies.
-- **Checklist** — check each completed item; leave blocked items unchecked
-  with a brief inline note.
+- **Checklist** — check each completed item; leave blocked items unchecked with
+  a brief inline note.
 
 Never submit a PR with an empty body or only the template headings left
 unfilled. CodeRabbit's description check blocks such PRs.
@@ -288,6 +288,31 @@ Guardrails:
   same unit of work
 - verify both local lockfile consistency and latest-published-token
   compatibility before calling synchronization complete
+
+### Token-Gated Surface Expansion
+
+Use this workflow when adding new semantic UI primitives or recipe families that
+depend on upstream token-surface completion work.
+
+Typical targets:
+
+- link styling after a published `link` namespace exists
+- interactive surface states after published `surface.hover`,
+  `surface.selected`, and `surface.active` tokens exist
+- divider styling after a published semantic divider or border token exists
+- Nav, Toast, Tooltip, Dropdown, or Modal recipes after their corresponding
+  `component.*` token groups publish
+
+Default expectations:
+
+- verify the required tokens exist in the latest published
+  `@phcdevworks/spectre-tokens` package before editing UI code
+- keep each primitive or recipe family as its own scoped change
+- update CSS, recipes, manifest, README, snapshots, and tests only as required
+  by the new public contract
+- stop and document a token gap instead of adding local fallbacks
+- do not combine token synchronization with recipe expansion unless the task is
+  explicitly scoped as a coordinated release alignment pass
 
 ### Package Contract Hardening
 
