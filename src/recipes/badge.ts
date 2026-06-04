@@ -10,6 +10,7 @@ const BADGE_VARIANTS = {
   neutral: true,
   info: true,
   ghost: true,
+  outline: true,
   accent: true,
   cta: true,
 } as const;
@@ -70,6 +71,7 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
     neutral: "sp-badge--neutral",
     info: "sp-badge--info",
     ghost: "sp-badge--ghost",
+    outline: "sp-badge--outline",
     accent: "sp-badge--accent",
     cta: "sp-badge--cta",
   };
