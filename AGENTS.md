@@ -10,6 +10,11 @@ guide. Human final review and commit authority rests with Bradley Potts.
 Claude Code does not create git commits. Changes are prepared and validated,
 then handed off for human review and commit.
 
+**Bradley Potts** holds final authority for all commits, merges, tags,
+publishing, and releases. No AI agent holds commit authority in this repository
+except Jules, which may commit bounded automated maintenance when all validation
+gates pass.
+
 See [`CLAUDE.md`](CLAUDE.md) for the full working guide.
 
 This file documents rules and boundaries for any AI agent working in this repo.
