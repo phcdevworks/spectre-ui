@@ -1,5 +1,3 @@
-# ROADMAP.md
-
 # Spectre UI Roadmap
 
 `@phcdevworks/spectre-ui` is the Layer 2 styling contract in the Spectre system.
@@ -7,14 +5,11 @@ It consumes the published `@phcdevworks/spectre-tokens` package and turns those
 token contracts into reusable CSS entry points, Tailwind helpers, and
 framework-agnostic recipe APIs.
 
-The foundation is solid as of the v1.7.0 release candidate. This roadmap now
-focuses on moving forward: consuming new upstream token capabilities, adding
-practical UI styling primitives, proving downstream integration, and keeping the
-package contract clean enough for adapter packages to build on confidently.
+---
 
-## 1. Foundation Status - Delivered
+## 1. Phase 1 — Foundation — Delivered
 
-All foundation work is complete. The package now has a declared, validated, and
+All foundation work is complete. The package has a declared, validated, and
 documented public styling contract.
 
 ### What is in place
@@ -45,22 +40,43 @@ documented public styling contract.
 - Missing upstream token values are blockers, not invitations to add local
   fallbacks.
 
-## 2. Roadmap - Post-1.7.0 Forward Motion
+---
 
-The next phase is not another foundation pass. It is a controlled expansion
-phase that follows the upstream token roadmap and turns proven token contracts
-into practical Layer 2 styling primitives.
+## 2. Phase 2 — Mature Operations — Delivered
 
-### P0: Release and Baseline Continuity
+Phase 2 delivered release discipline, additive recipe expansion, and quality
+improvements without expanding package ownership beyond Layer 2.
 
-**Objective** Finish the v1.7.0 release cleanly and keep the baseline ready for
-new work.
+### What was delivered
 
-**Why it matters** New recipe and token-consumption work should start from a
+- Full release gate via `npm run check` including changelog validation and
+  latest-token drift checks.
+- Recipe expansion: Alert, Avatar, Tag, and Spinner added with token-backed CSS
+  and full contract test coverage.
+- Dark mode verification fixtures for new recipe families.
+- Node 24 promoted as the primary CI target.
+- Recipe composition patterns documented in `CONTRIBUTING.md`.
+- Multi-agent governance (Claude Code, Codex, Copilot, Jules) with documented
+  authority boundaries, PR creation requirements, and CodeRabbit integration.
+
+---
+
+## 3. Phase 3 — Release Baseline and Token-Gated Expansion
+
+Phase 3 starts from the v1.7.0 release baseline and follows the upstream token
+roadmap. UI styling is added only after the required semantic tokens are
+published to NPM.
+
+### P0: v1.7.0 Release Baseline
+
+**Objective:** Finish the v1.7.0 release cleanly and keep the baseline ready
+for new work.
+
+**Why it matters:** New recipe and token-consumption work should start from a
 known-good package version. A clean baseline keeps future diffs focused and
 prevents release hygiene from mixing with feature expansion.
 
-**Deliverables**
+**Deliverables:**
 
 - Confirm v1.7.0 package metadata, changelog, lockfile, and manifest alignment.
 - Run `npm run check` before tag/publish handoff.
@@ -69,61 +85,80 @@ prevents release hygiene from mixing with feature expansion.
   begins.
 - Keep `dist/` generated only by `npm run build`.
 
-**Dependency notes**
+**Dependency notes:** Must complete before starting the next contract expansion
+wave.
 
-- This must happen before starting the next contract expansion wave.
+**Risk if skipped:** Follow-up work can accidentally include release metadata
+cleanup or stale generated output, making review and rollback harder.
 
-**Risk if skipped**
+---
 
-- Follow-up work can accidentally include release metadata cleanup or stale
-  generated output, making review and rollback harder.
+### P1: Token Synchronization Watch
 
-### P1: Token-Gated Semantic Surface Expansion
+**Objective:** Stay aligned to the latest published `@phcdevworks/spectre-tokens`
+after each upstream release.
 
-**Objective** Add UI styling support only when the required semantic tokens are
-available in the latest published `@phcdevworks/spectre-tokens` package.
+**Why it matters:** Token corrections and new semantic namespaces gate all
+downstream UI work in this package. Sync passes must happen against NPM
+releases, not GitHub-only changes.
 
-**Why it matters** The tokens roadmap is adding the missing vocabulary that UI
-libraries hit quickly: links, interactive surfaces, dividers, and component
-groups for nav, modal, toast, tooltip, and dropdown. This package should be
-ready to consume those contracts without redefining their meaning.
+**Deliverables:**
 
-**Deliverables**
+- Watch for the next published `@phcdevworks/spectre-tokens` release.
+- Consume upstream fixes for `colors.focus.*` when published.
+- Consume `focusVisible` support for danger and success button tokens when
+  published.
+- Run `npm run validate:tokens` before starting any sync work.
+- Document token gaps instead of adding local fallbacks.
 
-- Add link styling only after a published `link` namespace exists upstream.
-- Add interactive surface states only after published `surface.hover`,
-  `surface.selected`, and `surface.active` tokens exist upstream.
-- Add divider styling only after a published semantic divider or border token
-  exists upstream.
-- For each consumed token addition:
-  - update CSS in the narrowest relevant entry point
-  - add or extend a matching recipe only when there is a stable class contract
-  - update `ui-contract.manifest.json`
-  - refresh export or Tailwind snapshots only when public exports change
-  - update README and tests for public behavior
-  - run `npm run check`
+**Guardrails:**
 
-**Dependency notes**
+- Do not sync from GitHub branches or unpublished local token files.
+- Do not combine synchronization with unrelated cleanup or feature work.
+- If a token change creates structural conflicts, stop and report the drift.
 
-- Depends on published token releases, not GitHub-only token changes.
-- If tokens are planned upstream but not published, document the gap and wait.
+---
 
-**Risk if skipped**
+### P2: Semantic UI Primitives
 
-- Downstream adapters may start inventing local link, divider, or interactive
-  state styles, fragmenting the Spectre contract.
+**Objective:** Add link, interactive surface state, and divider styling once
+their upstream tokens are published.
 
-### P2: Component Recipe Expansion
+**Why it matters:** These are the first semantic gaps that every UI library
+hits. Without them, downstream adapters will invent local palette fallbacks and
+fragment the Spectre contract.
 
-**Objective** Add the next recipe families that are broadly useful to adapters
-and are backed by explicit upstream token intent.
+**Deliverables:**
 
-**Why it matters** The current recipe set covers core controls and content
-surfaces. The next practical gap is application UI: navigation, overlays,
+- Add link styling after a published `link` namespace exists upstream.
+  Expected token intent: `link.default`, `link.hover`, `link.active`,
+  `link.visited`.
+- Add interactive surface states after `surface.hover`, `surface.selected`, and
+  `surface.active` are published upstream.
+- Add divider styling after a published `surface.divider` or
+  `border.color.default` / `border.color.subtle` exists upstream.
+
+**Per-primitive standard:** Token-backed CSS in the narrowest relevant entry
+point; recipe or utility exposure only when the public class contract is stable;
+manifest declaration, README update, and focused contract tests; run
+`npm run check`.
+
+**Dependency notes:** Depends on published token releases. If tokens are planned
+upstream but not published, document the gap and wait.
+
+---
+
+## 4. Phase 4 — Component Recipe Expansion
+
+**Objective:** Add the next recipe families broadly useful to adapters, each
+backed by explicit upstream token intent.
+
+**Why it matters:** The current recipe set covers core controls and content
+surfaces. The practical gap is application UI: navigation, overlays,
 notifications, and menus. These should enter the styling contract as small,
 auditable recipe families rather than large framework components.
 
-**Candidate recipe families**
+### Candidate recipe families
 
 - `Link` or text-link classes after upstream link tokens publish.
 - `Divider` after upstream divider or border tokens publish.
@@ -133,7 +168,7 @@ auditable recipe families rather than large framework components.
 - `Tooltip` after upstream `component.tooltip` tokens publish.
 - `Dropdown` after upstream `component.dropdown` tokens publish.
 
-**Default deliverables per family**
+### Standard deliverables per family
 
 - One recipe file in `src/recipes/`.
 - Token-backed selectors in `src/styles/components.css` or the narrowest
@@ -144,56 +179,49 @@ auditable recipe families rather than large framework components.
 - Focused contract, recipe, and CSS tests.
 - Example fixture only when it helps visual verification.
 
-**Dependency notes**
+**Dependency notes:** Follows Phase 3 token availability. Each recipe lands as
+its own scoped change unless the manifest requires a paired primitive.
 
-- This follows P1 token availability.
-- Each recipe should land as its own scoped change unless the manifest requires
-  a paired primitive.
+**Risk if skipped:** Adapter packages will implement these patterns
+independently, which weakens cross-framework consistency.
 
-**Risk if skipped**
+---
 
-- Adapter packages will have to implement these patterns independently, which
-  weakens cross-framework consistency.
+## 5. Phase 5 — Integration Feedback and Deprecation Readiness
 
-### P3: Downstream Integration Feedback
+### P0: Downstream Integration Feedback
 
-**Objective** Use real adapter and token integration feedback to decide which
+**Objective:** Use real adapter and token integration feedback to decide which
 Layer 2 contracts should harden next.
 
-**Why it matters** The tokens roadmap now validates against a real `spectre-ui`
+**Why it matters:** The tokens roadmap validates against a real `spectre-ui`
 integration fixture. This package should return the favor by keeping its own
 roadmap tied to real adapter usage instead of hypothetical component coverage.
 
-**Deliverables**
+**Deliverables:**
 
 - Track token integration findings that require CSS, recipe, Tailwind, or docs
-  changes here.
+  changes.
 - Add regression tests when downstream adapters expose a contract ambiguity.
-- Clarify README or CONTRIBUTING guidance when repeated adapter questions
-  appear.
+- Clarify README or CONTRIBUTING guidance when repeated adapter questions appear.
 - Keep adapter-specific markup, lifecycle, slots, hooks, and templates out of
   this package.
 
-**Dependency notes**
+**Dependency notes:** Can run continuously alongside Phase 3 and Phase 4.
 
-- Can run continuously alongside P1 and P2.
+---
 
-**Risk if skipped**
+### P1: Contract Automation and Deprecation Readiness
 
-- The package may grow recipe surface area without solving the real integration
-  constraints adapters are encountering.
-
-### P4: Contract Automation and Deprecation Readiness
-
-**Objective** Keep release and contract governance ahead of the growing public
+**Objective:** Keep release and contract governance ahead of the growing public
 surface.
 
-**Why it matters** As the class and recipe contract grows, manual release and
+**Why it matters:** As the class and recipe contract grows, manual release and
 deprecation steps become easier to miss. The package already has strong checks;
 the next step is to keep those checks aligned with a larger, more mature public
 surface.
 
-**Deliverables**
+**Deliverables:**
 
 - Keep `release:propose` aligned with changelog classification conventions.
 - Add deprecation guidance for UI recipes, variants, states, and CSS classes
@@ -202,29 +230,15 @@ surface.
 - Keep README, CONTRIBUTING, agent guidance, and PR templates aligned with any
   deprecation process.
 
-**Dependency notes**
+**Dependency notes:** Best implemented before the package needs to remove or
+rename a public class or recipe option.
 
-- Best implemented before the package needs to remove or rename a public class
-  or recipe option.
+**Risk if skipped:** Public removals become ad hoc and consumers lose a clear
+migration window.
 
-**Risk if skipped**
+---
 
-- Public removals become ad hoc and consumers lose a clear migration window.
-
-## 3. Recommended Execution Order
-
-1. Finish v1.7.0 release handoff from the current clean baseline.
-2. Watch for the next published `@phcdevworks/spectre-tokens` release that
-   includes token-surface completion work.
-3. Run a token synchronization pass against the published package.
-4. Add link, surface-state, and divider styling once their tokens are published.
-5. Add component recipe families in this order when their tokens exist: Nav,
-   Toast, Tooltip, Dropdown, Modal.
-6. Add downstream regression coverage whenever adapter usage reveals ambiguity.
-7. Define UI deprecation mechanics before any public class, recipe option, or
-   variant is retired.
-
-## 4. Explicitly Out of Scope
+## 6. Explicitly Out of Scope
 
 - Do not author tokens or semantic visual meaning here.
 - Do not use GitHub-only token changes as synchronization authority.
@@ -235,3 +249,20 @@ surface.
 - Do not combine token synchronization, new recipe expansion, and unrelated
   documentation cleanup in one change.
 - Do not hand-edit `dist/` or generated snapshots.
+
+---
+
+## 7. Recommended Execution Order
+
+1. **Phase 1** — done.
+2. **Phase 2** — done.
+3. **Phase 3 P0** — complete the v1.7.0 release handoff.
+4. **Phase 3 P1** — watch for the next published token release; run a sync pass.
+5. **Phase 3 P2** — add semantic primitives once their tokens publish: Link,
+   interactive surface states, Divider.
+6. **Phase 4** — add component recipe families in this order when their tokens
+   exist: Nav, Toast, Tooltip, Dropdown, Modal.
+7. **Phase 5 P0** — add downstream regression coverage as adapter usage reveals
+   gaps (continuous).
+8. **Phase 5 P1** — define deprecation mechanics before any public class, recipe
+   option, or variant is retired.
