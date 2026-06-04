@@ -1,5 +1,3 @@
-# TODO.md
-
 # Spectre UI Execution Todo
 
 This todo list is aligned to the current repository and the roadmap in
@@ -7,7 +5,9 @@ This todo list is aligned to the current repository and the roadmap in
 downstream safety, token-gated recipe expansion, and release consistency for
 `@phcdevworks/spectre-ui`.
 
-## Phase 1 - Foundation: Completed
+---
+
+## Phase 1 — Foundation: Completed
 
 All Phase 1 items have been delivered. The package now has a declared,
 validated, and documented Layer 2 styling contract.
@@ -67,7 +67,7 @@ validated, and documented Layer 2 styling contract.
 
 ---
 
-## Phase 2 - Mature Operations: Completed
+## Phase 2 — Mature Operations: Completed
 
 Phase 2 delivered release discipline, additive recipe expansion, and quality
 improvements without expanding package ownership beyond Layer 2.
@@ -124,11 +124,11 @@ improvements without expanding package ownership beyond Layer 2.
 
 ---
 
-## Phase 3 - Token-Gated Semantic Surface Expansion
+## Phase 3 — Release Baseline and Token-Gated Expansion
 
-Phase 3 starts after the v1.7.0 release baseline. It follows the
-`@phcdevworks/spectre-tokens` roadmap and adds UI styling only after the
-required semantic tokens are published to NPM.
+Phase 3 starts after the v1.7.0 release baseline and follows the upstream token
+roadmap. UI styling is added only after the required semantic tokens are
+published to NPM.
 
 ### P0: v1.7.0 Release Baseline
 
@@ -140,7 +140,7 @@ required semantic tokens are published to NPM.
   - `npm run check` passes.
   - `npm pack --dry-run` confirms the publish surface.
 
-- [ ] Brad publishes `@phcdevworks/spectre-ui@1.7.0`
+- [ ] Bradley Potts publishes `@phcdevworks/spectre-ui@1.7.0`
   - Final tag, publish, and release authority remains with Bradley Potts.
 
 ### P1: Token Synchronization Watch
@@ -180,10 +180,12 @@ required semantic tokens are published to NPM.
     `border.color.default` / `border.color.subtle`.
   - Cover section separators, table borders, and horizontal rules.
 
-### P3: Component Recipe Expansion
+---
 
-Each family should land as a focused, token-backed change with CSS, recipe,
-manifest, docs, and tests kept in sync.
+## Phase 4 — Component Recipe Expansion
+
+Each family lands as a focused, token-backed change with CSS, recipe, manifest,
+docs, and tests kept in sync.
 
 - [ ] Add Nav recipe after upstream `component.nav` tokens publish
   - Expected roles: `bg`, `text`, `link`, `linkHover`, `linkActive`, `border`.
@@ -201,7 +203,11 @@ manifest, docs, and tests kept in sync.
 - [ ] Add Modal recipe after upstream `component.modal` tokens publish
   - Expected roles: `bg`, `shadow`, `border`, `overlay`.
 
-### P4: Downstream Integration Feedback
+---
+
+## Phase 5 — Integration Feedback and Deprecation Readiness
+
+### P0: Downstream Integration Feedback
 
 - [ ] Track adapter feedback from `@phcdevworks/spectre-ui-astro` and other
       consumers
@@ -215,7 +221,7 @@ manifest, docs, and tests kept in sync.
   - Add visual fixtures only when they support regression review for new public
     recipes or states.
 
-### P5: UI Deprecation Readiness
+### P1: UI Deprecation Readiness
 
 - [ ] Define a UI deprecation policy before removing public styling surface
   - Cover recipe functions, recipe options, variants, states, CSS classes, CSS
@@ -229,18 +235,23 @@ manifest, docs, and tests kept in sync.
   - Consumers should see what is deprecated, what replaces it, and when removal
     can happen.
 
+---
+
 ## Recommended Execution Order
 
-1. Publish v1.7.0.
-2. Wait for the next published token release that includes token-surface
-   completion work.
-3. Run a token synchronization pass against the published package.
-4. Add semantic primitives in this order: Link, interactive surface states,
-   Divider.
-5. Add component recipe families in this order: Nav, Toast, Tooltip, Dropdown,
-   Modal.
-6. Add downstream regression coverage as adapter usage reveals gaps.
-7. Define deprecation mechanics before retiring public UI contracts.
+1. Phase 1 — done.
+2. Phase 2 — done.
+3. Phase 3 P0 — publish v1.7.0.
+4. Phase 3 P1 — watch for the next published token release; run a sync pass.
+5. Phase 3 P2 — add semantic primitives in this order: Link, interactive surface
+   states, Divider.
+6. Phase 4 — add component recipe families in this order: Nav, Toast, Tooltip,
+   Dropdown, Modal.
+7. Phase 5 P0 — add downstream regression coverage as adapter usage reveals gaps
+   (continuous).
+8. Phase 5 P1 — define deprecation mechanics before retiring public UI contracts.
+
+---
 
 ## Explicitly Out of Scope
 
