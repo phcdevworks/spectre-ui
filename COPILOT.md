@@ -22,6 +22,7 @@ maintenance workflows.
 
 ## Practical Guardrails
 
+- Follow the shared source, validation, and PR rules in `AGENTS.md`.
 - Keep assistance scoped to targeted edits, suggestions, and local cleanup.
 - Preserve recipe, CSS, Tailwind, and package export parity.
 - Keep framework-specific delivery in adapter packages.
