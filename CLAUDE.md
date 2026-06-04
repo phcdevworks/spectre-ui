@@ -5,7 +5,7 @@
 **Package:** `@phcdevworks/spectre-ui`
 **Layer:** L2 of the Spectre design suite - CSS bundles, Tailwind tooling, and class recipes
 **Human owner:** Bradley Potts
-**Primary AI developer:** Claude Code (`claude-sonnet-4-6`)
+**Primary AI developer:** Claude Code (claude-sonnet-4-6)
 
 Claude Code is the primary implementation authority for
 `@phcdevworks/spectre-ui`. This file is Claude Code's role-specific workflow.
