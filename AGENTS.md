@@ -3,8 +3,7 @@
 ## Primary AI Developer
 
 **Claude Code** (`claude-sonnet-4-6`) is the designated primary AI developer for
-this repository, maintained on behalf of Bradley Potts
-(brad.potts@coastdigitalgroup.com) at PHCDevworks. All development is driven
+this repository, maintained on behalf of Bradley Potts at PHCDevworks. All development is driven
 through Claude Code operating from `CLAUDE.md` as the authoritative working
 guide. Human final review and commit authority rests with Bradley Potts.
 
