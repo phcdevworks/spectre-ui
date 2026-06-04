@@ -109,6 +109,9 @@
     --sp-component-badge-info-text: var(--sp-badge-info-text);
     --sp-component-badge-ghost-bg: var(--sp-button-ghost-bg);
     --sp-component-badge-ghost-text: var(--sp-button-ghost-text);
+    --sp-component-badge-outline-bg: transparent;
+    --sp-component-badge-outline-text: var(--sp-badge-neutral-text);
+    --sp-component-badge-outline-border: var(--sp-button-secondary-border);
     --sp-component-badge-accent-bg: var(--sp-button-accent-bg);
     --sp-component-badge-accent-text: var(--sp-button-accent-text);
     --sp-component-badge-cta-bg: var(--sp-button-cta-bg);
@@ -965,6 +968,12 @@
   .sp-badge--ghost.sp-badge--hover,
   .sp-badge--ghost.is-hover {
     background-color: var(--sp-component-badge-ghost-bg-hover);
+  }
+
+  .sp-badge--outline {
+    background-color: var(--sp-component-badge-outline-bg);
+    color: var(--sp-component-badge-outline-text);
+    border-color: var(--sp-component-badge-outline-border);
   }
 
   .sp-badge--accent {
