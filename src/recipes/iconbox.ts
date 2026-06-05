@@ -12,6 +12,7 @@ const ICONBOX_VARIANTS = {
   ghost: true,
   accent: true,
   cta: true,
+  outline: true,
 } as const;
 
 const ICONBOX_SIZES = {
@@ -74,6 +75,7 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
     ghost: "sp-iconbox--ghost",
     accent: "sp-iconbox--accent",
     cta: "sp-iconbox--cta",
+    outline: "sp-iconbox--outline",
   };
   const variantClass = variantMap[variant];
 
