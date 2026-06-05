@@ -162,6 +162,9 @@
     --sp-component-iconbox-accent-text: var(--sp-button-accent-text);
     --sp-component-iconbox-cta-bg: var(--sp-button-cta-bg);
     --sp-component-iconbox-cta-text: var(--sp-button-cta-text);
+    --sp-component-iconbox-outline-bg: transparent;
+    --sp-component-iconbox-outline-text: var(--sp-badge-neutral-text);
+    --sp-component-iconbox-outline-border: var(--sp-button-secondary-border);
 
     /* testimonial roles */
     --sp-component-testimonial-bg: var(--sp-surface-card);
@@ -1171,6 +1174,12 @@
   .sp-iconbox--cta {
     background-color: var(--sp-component-iconbox-cta-bg);
     color: var(--sp-component-iconbox-cta-text);
+  }
+
+  .sp-iconbox--outline {
+    background-color: var(--sp-component-iconbox-outline-bg);
+    color: var(--sp-component-iconbox-outline-text);
+    border-color: var(--sp-component-iconbox-outline-border);
   }
 
   .sp-iconbox--interactive {
