@@ -195,6 +195,7 @@ report rather than committing when any gate fails.
 | **Generated — never hand-edit**   | `dist/`                                                                                                                | Emitted by `npm run build`; always regenerate                                        |
 | **Snapshots — update via script** | `scripts/export-snapshot.json`, `scripts/tailwind-export-snapshot.json`                                                | Update via `validate:exports:update` / `validate:tailwind:update`                    |
 | **Contract manifest**             | `ui-contract.manifest.json`                                                                                            | Update when public variants, states, or entry points change                          |
+| **Ecosystem manifest**            | `spectre.manifest.json`                                                                                                | Update when exports, Spectre dependencies, or stability change                       |
 | **Agent guidance**                | `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, `JULES.md`, `.github/copilot-instructions.md`                      | Update only when operating model or rules change                                     |
 | **Public docs**                   | `README.md`, `CONTRIBUTING.md`, `CHANGELOG.md`                                                                         | Update when public contract or setup guidance changes                                |
 | **Protected — infra**             | `package.json`, `package-lock.json`, `.github/workflows/`                                                              | Change only when explicitly in scope; lockfile must stay in sync with `package.json` |
@@ -364,3 +365,18 @@ Governance rules:
   and keep the rule narrow and testable
 - Dependabot helps surface dependency movement but does not replace contract
   enforcement
+
+## Ecosystem Manifest
+
+`spectre.manifest.json` at the root is this package's declaration in the Spectre
+ecosystem contract, validated by `@phcdevworks/spectre-manifest`. It records role,
+layer, exports, and allowed Spectre dependency targets. `check:ecosystem` validates
+it as part of `npm run check`.
+
+Keep `spectre.manifest.json` in sync when:
+- Package exports in `package.json` are added or removed
+- A Spectre package dependency is added or removed
+- The package stability changes
+
+Do not add a `consumers` field — that belongs in the central
+`@phcdevworks/spectre-manifest` registry.
