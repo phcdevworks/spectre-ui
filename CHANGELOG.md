@@ -6,6 +6,12 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+### Added
+
+- Added `@phcdevworks/spectre-manifest` as a devDependency. `spectre.manifest.json`
+  at the repo root declares this package's ecosystem role, layer, exports, and
+  allowed dependency targets. `check:ecosystem` validates it in the check pipeline.
+
 ## [1.7.0] - 2026-06-03
 
 Release Title: Tag Variant Expansion and Token Alignment
