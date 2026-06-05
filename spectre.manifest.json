@@ -1,0 +1,118 @@
+{
+  "$schema": "./node_modules/@phcdevworks/spectre-manifest/schema/spectre.manifest.schema.json",
+  "$id": "urn:phcdevworks:spectre-ui:manifest",
+  "schemaVersion": "0.1",
+  "system": {
+    "name": "Spectre",
+    "version": "1.0.0",
+    "manifestVersion": "0.1",
+    "summary": "Ecosystem manifest for @phcdevworks/spectre-ui — the Layer 2 styling-contract package of the Spectre system.",
+    "packageManager": "npm",
+    "repository": "https://github.com/phcdevworks/spectre-ui"
+  },
+  "layers": {
+    "foundation": {
+      "title": "Foundation",
+      "description": "Base design-system packages that higher layers build on.",
+      "order": 10,
+      "dependsOn": [],
+      "notes": [
+        "Foundation packages must remain reusable, framework-light, and safe for broad consumption."
+      ]
+    }
+  },
+  "packages": {
+    "@phcdevworks/spectre-ui": {
+      "role": "styling-contract",
+      "layer": "foundation",
+      "stability": "stable",
+      "description": "Layer 2 styling contract between @phcdevworks/spectre-tokens and downstream adapters or apps. Provides CSS bundles, Tailwind preset, and class-recipe functions.",
+      "exports": [
+        ".",
+        "./tailwind",
+        "./index.css",
+        "./base.css",
+        "./components.css",
+        "./utilities.css"
+      ],
+      "dependencies": [
+        "@phcdevworks/spectre-tokens"
+      ],
+      "allowedTargets": [
+        "package:@phcdevworks/spectre-tokens",
+        "external"
+      ],
+      "notes": [
+        "Layer 2 of the Spectre system. May depend only on spectre-tokens and external libraries.",
+        "CSS bundles and class-recipe functions are the primary public surface.",
+        "Known consumers: spectre-components, spectre-shell, spectre-ui-astro (declared in the central spectre-manifest registry)."
+      ]
+    },
+    "@phcdevworks/spectre-tokens": {
+      "role": "design-tokens",
+      "layer": "foundation",
+      "stability": "stable",
+      "description": "Design-token source for the Spectre system.",
+      "exports": [
+        ".",
+        "./index.css"
+      ]
+    }
+  },
+  "rules": {
+    "dependencyDirection": [
+      {
+        "fromLayer": "foundation",
+        "allowedLayers": [
+          "foundation"
+        ],
+        "notes": [
+          "Foundation packages may depend only on other foundation packages or external libraries."
+        ]
+      }
+    ],
+    "forbiddenImports": [],
+    "boundaryConstraints": [
+      {
+        "scope": "package:@phcdevworks/spectre-ui",
+        "rule": "Runtime dependencies are limited to @phcdevworks/spectre-tokens and external libraries.",
+        "reason": "spectre-ui is a foundation-layer styling contract and must not import higher-layer or peer Spectre packages at runtime."
+      }
+    ]
+  },
+  "ai": {
+    "preferredEntrypoints": [
+      {
+        "task": "consume Spectre UI styles",
+        "kind": "package",
+        "entrypoint": "@phcdevworks/spectre-ui"
+      },
+      {
+        "task": "use Tailwind preset with Spectre tokens",
+        "kind": "package",
+        "entrypoint": "@phcdevworks/spectre-tokens"
+      },
+      {
+        "task": "run full validation gate",
+        "kind": "command",
+        "entrypoint": "npm run check"
+      }
+    ],
+    "generationRules": [
+      "Import CSS bundles from @phcdevworks/spectre-ui (index.css, base.css, components.css, utilities.css).",
+      "Use createSpectreTailwindPreset or createSpectreTailwindTheme from @phcdevworks/spectre-ui/tailwind for Tailwind integration.",
+      "Use class-recipe functions (e.g. getButtonClasses, getCardClasses) rather than writing raw Tailwind class strings.",
+      "Run npm run check before staging any commit — all checks must pass."
+    ],
+    "usageGuidance": [
+      "Include @phcdevworks/spectre-ui/index.css to get all Spectre base, component, and utility styles.",
+      "Use @phcdevworks/spectre-ui/tailwind to extend a Tailwind config with Spectre token values.",
+      "Class-recipe functions provide type-safe, variant-aware class strings for each component family."
+    ],
+    "safeDefaults": [
+      "Do not import from @phcdevworks/spectre-tokens directly when using spectre-ui — token values are already baked into the CSS bundles.",
+      "Do not hand-edit files in dist/ — they are generated on build.",
+      "Do not add runtime Spectre package dependencies beyond @phcdevworks/spectre-tokens."
+    ]
+  }
+}

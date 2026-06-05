@@ -73,7 +73,7 @@
   "scripts": {
     "build": "tsup --config tsup.config.ts && npm run build:css",
     "build:css": "node --experimental-strip-types ./scripts/build-css.ts",
-    "check": "npm run ci:verify",
+    "check": "npm run ci:verify && npm run check:ecosystem",
     "ci:verify": "npm run validate:runtime && npm run lint && npm run validate:changelog && npm run validate:exports && npm run validate:readme && npm run validate:tokens && npm run build && npm run validate:tailwind && npm run validate:css-contract && npm test",
     "dev": "tsup --config tsup.config.ts --watch",
     "clean": "rm -rf dist",
@@ -90,7 +90,8 @@
     "validate:tailwind:update": "node --experimental-strip-types ./scripts/validate-tailwind-contract.ts --update",
     "validate:readme": "node --experimental-strip-types ./scripts/validate-readme-contract.ts",
     "validate:changelog": "node --experimental-strip-types ./scripts/validate-changelog.ts",
-    "validate:tokens": "node --experimental-strip-types ./scripts/validate-tokens.ts"
+    "validate:tokens": "node --experimental-strip-types ./scripts/validate-tokens.ts",
+    "check:ecosystem": "spectre-manifest-validate spectre.manifest.json && spectre-manifest-check spectre.manifest.json ."
   },
   "publishConfig": {
     "access": "public"
@@ -103,6 +104,7 @@
     "@phcdevworks/spectre-tokens": "^2.7.0"
   },
   "devDependencies": {
+    "@phcdevworks/spectre-manifest": "^1.0.0",
     "@types/node": "^25.9.1",
     "@typescript-eslint/eslint-plugin": "^8.60.1",
     "@typescript-eslint/parser": "^8.60.1",
