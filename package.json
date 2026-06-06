@@ -101,7 +101,7 @@
     "typescript": "^5.9 || ^6.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^2.7.0"
+    "@phcdevworks/spectre-tokens": "^2.8.0"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.0.0",
