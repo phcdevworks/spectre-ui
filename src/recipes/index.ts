@@ -89,4 +89,5 @@ export {
   getSpinnerClasses,
   type SpinnerRecipeOptions,
   type SpinnerSize,
+  type SpinnerVariant,
 } from './spinner'
