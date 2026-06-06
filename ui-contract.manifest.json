@@ -101,6 +101,7 @@
     },
     "spinner": {
       "fn": "getSpinnerClasses",
+      "variants": ["primary", "secondary", "success", "warning", "danger", "info", "neutral", "accent", "cta"],
       "sizes": ["sm", "md", "lg"]
     }
   }
