@@ -6,8 +6,13 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: additive
+
 ### Added
 
+- **Spinner Component**: Added standard brand and status variants (`primary`,
+  `secondary`, `success`, `warning`, `danger`, `info`, `neutral`, `accent`,
+  `cta`) and states (`disabled`, `loading` with `[aria-busy="true"]` support).
 - Added `@phcdevworks/spectre-manifest` as a devDependency. `spectre.manifest.json`
   at the repo root declares this package's ecosystem role, layer, exports, and
   allowed dependency targets. `check:ecosystem` validates it in the check pipeline.
