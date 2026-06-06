@@ -286,6 +286,15 @@
     --sp-component-spinner-border-width: var(--sp-border-width-thick);
     --sp-component-spinner-track-color: var(--sp-color-neutral-200);
     --sp-component-spinner-arc-color: var(--sp-button-primary-bg);
+    --sp-component-spinner-primary-arc: var(--sp-button-primary-bg);
+    --sp-component-spinner-secondary-arc: var(--sp-button-secondary-border);
+    --sp-component-spinner-success-arc: var(--sp-color-success-500);
+    --sp-component-spinner-warning-arc: var(--sp-color-warning-500);
+    --sp-component-spinner-danger-arc: var(--sp-color-error-500);
+    --sp-component-spinner-info-arc: var(--sp-color-info-500);
+    --sp-component-spinner-neutral-arc: var(--sp-color-neutral-500);
+    --sp-component-spinner-accent-arc: var(--sp-button-accent-bg);
+    --sp-component-spinner-cta-arc: var(--sp-button-cta-bg);
     --sp-component-spinner-duration: var(--sp-duration-long);
     --sp-component-spinner-easing: var(--sp-easing-linear);
   }
@@ -346,6 +355,15 @@
 
     --sp-component-spinner-track-color: var(--sp-color-neutral-700);
     --sp-component-spinner-arc-color: var(--sp-color-brand-400);
+    --sp-component-spinner-primary-arc: var(--sp-color-brand-400);
+    --sp-component-spinner-secondary-arc: var(--sp-color-neutral-400);
+    --sp-component-spinner-success-arc: var(--sp-color-success-400);
+    --sp-component-spinner-warning-arc: var(--sp-color-warning-400);
+    --sp-component-spinner-danger-arc: var(--sp-color-error-400);
+    --sp-component-spinner-info-arc: var(--sp-color-info-400);
+    --sp-component-spinner-neutral-arc: var(--sp-color-neutral-400);
+    --sp-component-spinner-accent-arc: var(--sp-color-brand-400);
+    --sp-component-spinner-cta-arc: var(--sp-color-brand-400);
   }
 
   /* BUTTONS -------------------------------------------------------------- */
@@ -1950,6 +1968,52 @@
     border: var(--sp-component-spinner-border-width) solid var(--sp-component-spinner-track-color);
     border-top-color: var(--sp-component-spinner-arc-color);
     animation: sp-spin var(--sp-component-spinner-duration) var(--sp-component-spinner-easing) infinite;
+    transition: opacity var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-spinner--primary {
+    border-top-color: var(--sp-component-spinner-primary-arc);
+  }
+
+  .sp-spinner--secondary {
+    border-top-color: var(--sp-component-spinner-secondary-arc);
+  }
+
+  .sp-spinner--success {
+    border-top-color: var(--sp-component-spinner-success-arc);
+  }
+
+  .sp-spinner--warning {
+    border-top-color: var(--sp-component-spinner-warning-arc);
+  }
+
+  .sp-spinner--danger {
+    border-top-color: var(--sp-component-spinner-danger-arc);
+  }
+
+  .sp-spinner--info {
+    border-top-color: var(--sp-component-spinner-info-arc);
+  }
+
+  .sp-spinner--neutral {
+    border-top-color: var(--sp-component-spinner-neutral-arc);
+  }
+
+  .sp-spinner--accent {
+    border-top-color: var(--sp-component-spinner-accent-arc);
+  }
+
+  .sp-spinner--cta {
+    border-top-color: var(--sp-component-spinner-cta-arc);
+  }
+
+  .sp-spinner--disabled {
+    opacity: var(--sp-opacity-disabled);
+  }
+
+  .sp-spinner--loading,
+  .sp-spinner[aria-busy="true"] {
+    opacity: var(--sp-opacity-active);
   }
 
   .sp-spinner--sm {
