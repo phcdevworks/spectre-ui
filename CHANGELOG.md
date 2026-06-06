@@ -6,6 +6,8 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: additive
+
 ### Added
 
 - Added `@phcdevworks/spectre-manifest` as a devDependency. `spectre.manifest.json`

@@ -140,25 +140,35 @@ published to NPM.
   - `npm run check` passes.
   - `npm pack --dry-run` confirms the publish surface.
 
-- [ ] Bradley Potts publishes `@phcdevworks/spectre-ui@1.7.0`
+- [x] Bradley Potts publishes `@phcdevworks/spectre-ui@1.7.0`
   - Final tag, publish, and release authority remains with Bradley Potts.
 
 ### P1: Token Synchronization Watch
 
-- [ ] Watch for the next published `@phcdevworks/spectre-tokens` release
+- [x] Watch for the next published `@phcdevworks/spectre-tokens` release
       containing token-surface completion work
-  - Do not use GitHub-only token changes as synchronization authority.
-  - Run `npm view @phcdevworks/spectre-tokens version` or
-    `npm run validate:tokens` before starting sync work.
+  - Audited against `2.7.0` (current baseline). Gaps recorded below.
 
 - [ ] Sync focus and interactive token corrections when published
-  - Consume upstream fixes for `colors.focus.*`.
-  - Consume upstream `focusVisible` support for danger and success button tokens
-    if the published package exposes new roles relevant to UI CSS.
+  - `colors.focus.*` EXISTS in `2.7.0`: `primary`, `error`, `info` — but as
+    raw hex values. Verify CSS consumes these via CSS variables before closing.
+  - `focusVisible` GAP: `buttons.danger` and `buttons.success` have `focusRing`
+    but no `focusVisible`. `primary`, `secondary`, `ghost`, and `accent` all
+    have `focusVisible`. Consume when upstream adds parity.
 
-- [ ] Document token gaps instead of adding local fallbacks
-  - If a planned value is not available in the latest published package, stop
-    and record the gap in the task handoff.
+- [x] Document token gaps instead of adding local fallbacks
+  - Token gap audit completed against `@phcdevworks/spectre-tokens@2.7.0`.
+  - **Present:** `colors.focus.primary/error/info`, `surface.page/card/input/overlay`,
+    `border.width.*`, `border.style.*`, `buttons.*` (all variants with focusRing).
+  - **Absent (blockers for P2 and Phase 4):**
+    - `surface.hover`, `surface.selected`, `surface.active` — no interactive
+      surface state tokens exist.
+    - `link.*` namespace — entirely absent; no `link.default/hover/active/visited`.
+    - `border.color.*` — no `border.color.default` or `border.color.subtle`.
+    - `component.nav`, `component.toast`, `component.tooltip`,
+      `component.dropdown`, `component.modal` — none present.
+    - `buttons.danger.focusVisible`, `buttons.success.focusVisible` — missing;
+      all other button variants have this role.
 
 ### P2: Semantic UI Primitives
 
