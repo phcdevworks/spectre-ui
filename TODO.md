@@ -147,19 +147,22 @@ published to NPM.
 
 - [x] Watch for the next published `@phcdevworks/spectre-tokens` release
       containing token-surface completion work
-  - Audited against `2.7.0` (current baseline). Gaps recorded below.
+  - Audited against `2.8.0` (current baseline). Gaps recorded below.
 
-- [ ] Sync focus and interactive token corrections when published
-  - `colors.focus.*` EXISTS in `2.7.0`: `primary`, `error`, `info` — but as
-    raw hex values. Verify CSS consumes these via CSS variables before closing.
-  - `focusVisible` GAP: `buttons.danger` and `buttons.success` have `focusRing`
-    but no `focusVisible`. `primary`, `secondary`, `ghost`, and `accent` all
-    have `focusVisible`. Consume when upstream adds parity.
+- [x] Sync focus and interactive token corrections when published
+  - `colors.focus.*` EXISTS: `primary`, `error`, `info` — consumed via CSS
+    variables in the components layer.
+  - `focusVisible` parity resolved in `2.8.0`: `buttons.danger.focusVisible`
+    and `buttons.success.focusVisible` are now published. Per-variant
+    `focus-visible` rules added to `src/styles/components.css` consuming
+    `--sp-button-danger-focusvisible` and `--sp-button-success-focusvisible`.
 
 - [x] Document token gaps instead of adding local fallbacks
-  - Token gap audit completed against `@phcdevworks/spectre-tokens@2.7.0`.
+  - Token gap audit refreshed against `@phcdevworks/spectre-tokens@2.8.0`.
   - **Present:** `colors.focus.primary/error/info`, `surface.page/card/input/overlay`,
-    `border.width.*`, `border.style.*`, `buttons.*` (all variants with focusRing).
+    `border.width.*`, `border.style.*`, `buttons.*` (all variants with focusRing
+    and focusVisible), `forms.*` (default, hover, focus, focusVisible, valid,
+    invalid, disabled).
   - **Absent (blockers for P2 and Phase 4):**
     - `surface.hover`, `surface.selected`, `surface.active` — no interactive
       surface state tokens exist.
@@ -167,8 +170,6 @@ published to NPM.
     - `border.color.*` — no `border.color.default` or `border.color.subtle`.
     - `component.nav`, `component.toast`, `component.tooltip`,
       `component.dropdown`, `component.modal` — none present.
-    - `buttons.danger.focusVisible`, `buttons.success.focusVisible` — missing;
-      all other button variants have this role.
 
 ### P2: Semantic UI Primitives
 
