@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-06-07
+
+Release Title: Spinner Contract and Token Focus Alignment
+
 Contract change type: additive
 
 ### Added
@@ -16,6 +20,13 @@ Contract change type: additive
 - Added `@phcdevworks/spectre-manifest` as a devDependency. `spectre.manifest.json`
   at the repo root declares this package's ecosystem role, layer, exports, and
   allowed dependency targets. `check:ecosystem` validates it in the check pipeline.
+- **Token Alignment**: Updated `@phcdevworks/spectre-tokens` dependency to
+  `^2.8.0`.
+- **Button Focus Ring Parity**: Consumed `buttons.danger.focusVisible` and
+  `buttons.success.focusVisible` tokens newly published in `2.8.0`. Danger and
+  success button variants now render a semantically correct focus ring (red and
+  green alpha respectively) on `:focus-visible`, matching the parity already
+  present for primary, secondary, ghost, and accent variants.
 
 ## [1.7.0] - 2026-06-03
 

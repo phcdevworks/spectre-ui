@@ -33,12 +33,14 @@
     --sp-component-button-danger-bg-disabled: var(--sp-button-danger-bgdisabled);
     --sp-component-button-danger-text: var(--sp-button-danger-text);
     --sp-component-button-danger-text-disabled: var(--sp-button-danger-textdisabled);
+    --sp-component-button-danger-focus-visible: var(--sp-button-danger-focusvisible);
     --sp-component-button-success-bg: var(--sp-button-success-bg);
     --sp-component-button-success-bg-hover: var(--sp-button-success-bghover);
     --sp-component-button-success-bg-active: var(--sp-button-success-bgactive);
     --sp-component-button-success-bg-disabled: var(--sp-button-success-bgdisabled);
     --sp-component-button-success-text: var(--sp-button-success-text);
     --sp-component-button-success-text-disabled: var(--sp-button-success-textdisabled);
+    --sp-component-button-success-focus-visible: var(--sp-button-success-focusvisible);
     /* CTA button alignment restored to official tokens as they now use the brand palette (Blue). */
     --sp-component-button-cta-bg: var(--sp-button-cta-bg);
     --sp-component-button-cta-bg-hover: var(--sp-button-cta-bghover);
@@ -550,6 +552,12 @@
     color: var(--sp-component-button-danger-text-disabled);
   }
 
+  .sp-btn--danger:focus-visible,
+  .sp-btn--danger.sp-btn--focus,
+  .sp-btn--danger.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-danger-focus-visible);
+  }
+
   /* success */
   .sp-btn--success {
     background-color: var(--sp-component-button-success-bg);
@@ -573,6 +581,12 @@
   .sp-btn--success:disabled {
     background-color: var(--sp-component-button-success-bg-disabled);
     color: var(--sp-component-button-success-text-disabled);
+  }
+
+  .sp-btn--success:focus-visible,
+  .sp-btn--success.sp-btn--focus,
+  .sp-btn--success.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-success-focus-visible);
   }
 
   /* cta */
