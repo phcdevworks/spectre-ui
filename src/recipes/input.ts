@@ -71,9 +71,9 @@ export function getInputClasses(opts: InputRecipeOptions = {}): string {
     // Visual state only; actual disabled attribute is handled by adapters.
     (state === "disabled" || disabled) && "sp-input--disabled",
     (state === "loading" || loading) && "sp-input--loading",
-    focused && "sp-input--focus",
-    hovered && "sp-input--hover",
-    active && "sp-input--active",
+    focused && "sp-input--focus is-focus",
+    hovered && "sp-input--hover is-hover",
+    active && "sp-input--active is-active",
     fullWidth && "sp-input--full",
     pill && "sp-input--pill",
   );

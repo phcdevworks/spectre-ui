@@ -745,7 +745,8 @@
   }
 
   /* State styling should not force typed text to be red/green by default */
-  .sp-input--error {
+  .sp-input--error,
+  .sp-input[aria-invalid="true"] {
     border-color: var(--sp-component-input-role-border-error);
     background-color: var(--sp-component-input-role-bg-error);
     color: var(--sp-component-input-role-text);
@@ -1554,19 +1555,19 @@
 
   .sp-rating--interactive:hover,
   .sp-rating--hover,
-  .is-hover {
+  .sp-rating.is-hover {
     opacity: var(--sp-opacity-hover);
   }
 
   .sp-rating--interactive:active,
   .sp-rating--active,
-  .is-active {
+  .sp-rating.is-active {
     opacity: var(--sp-opacity-active);
   }
 
   .sp-rating--interactive:focus-visible,
   .sp-rating--focus,
-  .is-focus {
+  .sp-rating.is-focus {
     outline: none;
     box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
   }
