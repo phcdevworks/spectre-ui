@@ -44,6 +44,8 @@ const ASSERTED_TOKEN_PATHS = {
   'var(--sp-icon-box-icon-success)': ['component', 'iconBox', 'iconSuccess'],
   'var(--sp-icon-box-icon-warning)': ['component', 'iconBox', 'iconWarning'],
   'var(--sp-icon-box-icon-danger)': ['component', 'iconBox', 'iconDanger'],
+  'var(--sp-icon-box-bg)': ['component', 'iconBox', 'bg'],
+  'var(--sp-icon-box-border)': ['component', 'iconBox', 'border'],
   'var(--sp-color-brand-50)': ['colors', 'brand', '50'],
   'var(--sp-color-white)': ['colors', 'white'],
   'var(--sp-color-success-50)': ['colors', 'success', '50'],
@@ -138,8 +140,9 @@ const SEMANTIC_ROLE_ASSERTIONS: SemanticRoleAssertion[] = [
   { name: 'Badge Ghost Background', property: '--sp-component-badge-ghost-bg', expected: 'var(--sp-button-ghost-bg)' },
   { name: 'Badge Ghost Text', property: '--sp-component-badge-ghost-text', expected: 'var(--sp-button-ghost-text)' },
 
-  { name: 'Icon Box Primary Background', property: '--sp-component-iconbox-primary-bg', expected: 'var(--sp-color-brand-50)', requiresContrast: true },
+  { name: 'Icon Box Primary Background', property: '--sp-component-iconbox-primary-bg', expected: 'var(--sp-icon-box-bg)', requiresContrast: true },
   { name: 'Icon Box Primary Text', property: '--sp-component-iconbox-primary-text', expected: 'var(--sp-icon-box-icon-default)', requiresContrast: true },
+  { name: 'Icon Box Border Color', property: '--sp-component-iconbox-border-color', expected: 'var(--sp-icon-box-border)' },
   { name: 'Icon Box Success Background', property: '--sp-component-iconbox-success-bg', expected: 'var(--sp-color-success-50)', requiresContrast: true },
   { name: 'Icon Box Success Text', property: '--sp-component-iconbox-success-text', expected: 'var(--sp-icon-box-icon-success)', requiresContrast: true },
   { name: 'Icon Box Warning Background', property: '--sp-component-iconbox-warning-bg', expected: 'var(--sp-color-warning-50)', requiresContrast: true },
@@ -290,9 +293,11 @@ const SEMANTIC_ROLE_PAIR_RULES: SemanticRolePairRule[] = [
   {
     name: 'Icon Box Primary',
     backgroundProperty: '--sp-component-iconbox-primary-bg',
-    allowedBackgrounds: ['var(--sp-color-brand-50)', 'var(--sp-color-neutral-800)'],
+    allowedBackgrounds: ['var(--sp-icon-box-bg)'],
     textProperty: '--sp-component-iconbox-primary-text',
     allowedTexts: ['var(--sp-icon-box-icon-default)', 'var(--sp-color-brand-400)'],
+    borderProperty: '--sp-component-iconbox-border-color',
+    allowedBorders: ['var(--sp-icon-box-border)'],
   },
   {
     name: 'Icon Box Success',
