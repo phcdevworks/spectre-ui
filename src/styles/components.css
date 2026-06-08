@@ -316,7 +316,8 @@
     --sp-component-badge-neutral-bg-hover: var(--sp-color-neutral-600);
     --sp-component-badge-info-bg-hover: var(--sp-color-info-700);
 
-    --sp-component-iconbox-primary-bg: var(--sp-color-neutral-800);
+    --sp-component-iconbox-primary-bg: var(--sp-icon-box-bg);
+    --sp-component-iconbox-border-color: var(--sp-icon-box-border);
     --sp-component-iconbox-primary-text: var(--sp-color-brand-400);
     --sp-component-iconbox-success-bg: var(--sp-color-neutral-800);
     --sp-component-iconbox-success-text: var(--sp-color-success-400);
