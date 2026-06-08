@@ -140,6 +140,7 @@
 
     /* icon box roles */
     --sp-component-iconbox-radius: var(--sp-radius-lg);
+    --sp-component-iconbox-size-xs: var(--sp-space-24);
     --sp-component-iconbox-size-sm: var(--sp-space-32);
     --sp-component-iconbox-size-md: var(--sp-space-48);
     --sp-component-iconbox-size-lg: var(--sp-space-64);
@@ -1130,6 +1131,12 @@
   .sp-iconbox svg:not([fill="none"]) rect,
   .sp-iconbox svg:not([fill="none"]) polygon {
     fill: currentColor;
+  }
+
+  .sp-iconbox--xs {
+    width: var(--sp-component-iconbox-size-xs);
+    height: var(--sp-component-iconbox-size-xs);
+    font-size: var(--sp-font-xs-size);
   }
 
   .sp-iconbox--sm {
