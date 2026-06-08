@@ -16,6 +16,7 @@ const ICONBOX_VARIANTS = {
 } as const;
 
 const ICONBOX_SIZES = {
+  xs: true,
   sm: true,
   md: true,
   lg: true,
@@ -80,6 +81,7 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
   const variantClass = variantMap[variant];
 
   const sizeMap: Record<IconBoxSize, string> = {
+    xs: "sp-iconbox--xs",
     sm: "sp-iconbox--sm",
     md: "sp-iconbox--md",
     lg: "sp-iconbox--lg",
