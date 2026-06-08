@@ -13,6 +13,7 @@
     --sp-component-button-primary-bg-disabled: var(--sp-button-primary-bgdisabled);
     --sp-component-button-primary-text: var(--sp-button-primary-text);
     --sp-component-button-primary-text-disabled: var(--sp-button-primary-textdisabled);
+    --sp-component-button-primary-focus-visible: var(--sp-button-primary-focusvisible);
     --sp-component-button-secondary-bg: var(--sp-button-secondary-bg);
     --sp-component-button-secondary-bg-hover: var(--sp-button-secondary-bghover);
     --sp-component-button-secondary-bg-active: var(--sp-button-secondary-bgactive);
@@ -21,12 +22,14 @@
     --sp-component-button-secondary-text-disabled: var(--sp-button-secondary-textdisabled);
     --sp-component-button-secondary-border: var(--sp-button-secondary-border);
     --sp-component-button-secondary-border-disabled: var(--sp-button-secondary-borderdisabled);
+    --sp-component-button-secondary-focus-visible: var(--sp-button-secondary-focusvisible);
     --sp-component-button-ghost-bg: var(--sp-button-ghost-bg);
     --sp-component-button-ghost-bg-hover: var(--sp-button-ghost-bghover);
     --sp-component-button-ghost-bg-active: var(--sp-button-ghost-bgactive);
     --sp-component-button-ghost-bg-disabled: var(--sp-button-ghost-bgdisabled);
     --sp-component-button-ghost-text: var(--sp-button-ghost-text);
     --sp-component-button-ghost-text-disabled: var(--sp-button-ghost-textdisabled);
+    --sp-component-button-ghost-focus-visible: var(--sp-button-ghost-focusvisible);
     --sp-component-button-danger-bg: var(--sp-button-danger-bg);
     --sp-component-button-danger-bg-hover: var(--sp-button-danger-bghover);
     --sp-component-button-danger-bg-active: var(--sp-button-danger-bgactive);
@@ -49,12 +52,14 @@
     --sp-component-button-cta-text: var(--sp-button-cta-text);
     --sp-component-button-cta-text-disabled: var(--sp-button-cta-textdisabled);
     --sp-component-button-cta-shadow: var(--sp-button-cta-shadow);
+    --sp-component-button-cta-focus-visible: var(--sp-button-cta-focusring);
     --sp-component-button-accent-bg: var(--sp-button-accent-bg);
     --sp-component-button-accent-bg-hover: var(--sp-button-accent-bghover);
     --sp-component-button-accent-bg-active: var(--sp-button-accent-bgactive);
     --sp-component-button-accent-bg-disabled: var(--sp-button-accent-bgdisabled);
     --sp-component-button-accent-text: var(--sp-button-accent-text);
     --sp-component-button-accent-text-disabled: var(--sp-button-accent-textdisabled);
+    --sp-component-button-accent-focus-visible: var(--sp-button-accent-focusvisible);
 
     /* card roles */
     --sp-component-card-bg: var(--sp-surface-card);
@@ -143,7 +148,8 @@
     --sp-component-iconbox-size-sm: var(--sp-space-32);
     --sp-component-iconbox-size-md: var(--sp-space-48);
     --sp-component-iconbox-size-lg: var(--sp-space-64);
-    --sp-component-iconbox-primary-bg: var(--sp-color-brand-50);
+    --sp-component-iconbox-primary-bg: var(--sp-icon-box-bg);
+    --sp-component-iconbox-border-color: var(--sp-icon-box-border);
     --sp-component-iconbox-primary-text: var(--sp-icon-box-icon-default);
     --sp-component-iconbox-success-bg: var(--sp-color-success-50);
     --sp-component-iconbox-success-text: var(--sp-icon-box-icon-success);
@@ -310,7 +316,8 @@
     --sp-component-badge-neutral-bg-hover: var(--sp-color-neutral-600);
     --sp-component-badge-info-bg-hover: var(--sp-color-info-700);
 
-    --sp-component-iconbox-primary-bg: var(--sp-color-neutral-800);
+    --sp-component-iconbox-primary-bg: var(--sp-icon-box-bg);
+    --sp-component-iconbox-border-color: var(--sp-icon-box-border);
     --sp-component-iconbox-primary-text: var(--sp-color-brand-400);
     --sp-component-iconbox-success-bg: var(--sp-color-neutral-800);
     --sp-component-iconbox-success-text: var(--sp-color-success-400);
@@ -455,6 +462,12 @@
     box-shadow: var(--sp-component-button-shadow);
   }
 
+  .sp-btn--primary:focus-visible,
+  .sp-btn--primary.sp-btn--focus,
+  .sp-btn--primary.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-primary-focus-visible);
+  }
+
   .sp-btn--primary.sp-btn--hover,
   .sp-btn--primary.is-hover,
   .sp-btn--primary:hover {
@@ -482,6 +495,12 @@
     border-color: var(--sp-component-button-secondary-border);
   }
 
+  .sp-btn--secondary:focus-visible,
+  .sp-btn--secondary.sp-btn--focus,
+  .sp-btn--secondary.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-secondary-focus-visible);
+  }
+
   .sp-btn--secondary.sp-btn--hover,
   .sp-btn--secondary.is-hover,
   .sp-btn--secondary:hover {
@@ -506,6 +525,12 @@
   .sp-btn--ghost {
     background-color: var(--sp-component-button-ghost-bg);
     color: var(--sp-component-button-ghost-text);
+  }
+
+  .sp-btn--ghost:focus-visible,
+  .sp-btn--ghost.sp-btn--focus,
+  .sp-btn--ghost.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-ghost-focus-visible);
   }
 
   .sp-btn--ghost.sp-btn--hover,
@@ -596,6 +621,12 @@
     box-shadow: var(--sp-component-button-cta-shadow);
   }
 
+  .sp-btn--cta:focus-visible,
+  .sp-btn--cta.sp-btn--focus,
+  .sp-btn--cta.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-cta-focus-visible);
+  }
+
   .sp-btn--cta.sp-btn--hover,
   .sp-btn--cta.is-hover,
   .sp-btn--cta:hover {
@@ -620,6 +651,12 @@
   .sp-btn--accent {
     background-color: var(--sp-component-button-accent-bg);
     color: var(--sp-component-button-accent-text);
+  }
+
+  .sp-btn--accent:focus-visible,
+  .sp-btn--accent.sp-btn--focus,
+  .sp-btn--accent.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-accent-focus-visible);
   }
 
   .sp-btn--accent.sp-btn--hover,
@@ -1079,7 +1116,7 @@
     border-radius: var(--sp-component-iconbox-radius);
     color: var(--sp-component-iconbox-primary-text);
     background-color: var(--sp-component-iconbox-primary-bg);
-    border: var(--sp-component-border-width) solid transparent;
+    border: var(--sp-component-border-width) solid var(--sp-component-iconbox-border-color);
     font-family: var(--sp-font-family-sans);
     font-weight: var(--sp-font-md-weight);
     transition:
