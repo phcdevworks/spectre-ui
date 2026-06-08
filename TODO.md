@@ -198,6 +198,11 @@ published to NPM.
 Each family lands as a focused, token-backed change with CSS, recipe, manifest,
 docs, and tests kept in sync.
 
+`@phcdevworks/spectre-tokens` Phase 4 P2 (component token expansion) is now
+the active upstream work item targeting exactly the five `component.*` groups
+below. Watch for their publish and start the matching recipe the moment each
+group lands — do not wait for all five before starting the first.
+
 - [ ] Add Nav recipe after upstream `component.nav` tokens publish
   - Expected roles: `bg`, `text`, `link`, `linkHover`, `linkActive`, `border`.
 
