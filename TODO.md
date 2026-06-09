@@ -126,70 +126,50 @@ improvements without expanding package ownership beyond Layer 2.
 
 ## Phase 3 — Release Baseline and Token-Gated Expansion
 
-Phase 3 starts after the v1.7.0 release baseline and follows the upstream token
-roadmap. UI styling is added only after the required semantic tokens are
-published to NPM.
+Phase 3 covers the v1.7.0–v1.8.0 release cycle and the first wave of
+token-gated semantic styling. UI styling is added only after the required
+semantic tokens are published to NPM.
 
-### P0: v1.7.0 Release Baseline
+### P0: Release Baseline
 
-- [x] Confirm v1.7.0 release readiness
-  - `package.json`, `package-lock.json`, `CHANGELOG.md`, and
-    `ui-contract.manifest.json` are aligned to `1.7.0`.
-  - Latest published `@phcdevworks/spectre-tokens` is `2.7.0`, matching the
-    declared and locked dependency.
-  - `npm run check` passes.
-  - `npm pack --dry-run` confirms the publish surface.
-
-- [x] Bradley Potts publishes `@phcdevworks/spectre-ui@1.7.0`
-  - Final tag, publish, and release authority remains with Bradley Potts.
+- [x] v1.7.0 released — Tag, spinner contract, and token alignment baseline.
+- [x] v1.8.0 released — Spinner component, button focus-ring parity, token
+      alignment to `@phcdevworks/spectre-tokens@2.8.0`, ecosystem manifest.
 
 ### P1: Token Synchronization Watch
 
-- [x] Watch for the next published `@phcdevworks/spectre-tokens` release
-      containing token-surface completion work
-  - Audited against `2.8.0` (current baseline). Gaps recorded below.
+- [x] Sync against `@phcdevworks/spectre-tokens@2.8.0`
+  - `buttons.danger.focusVisible` and `buttons.success.focusVisible` consumed.
+  - `colors.focus.*` references confirmed.
 
-- [x] Sync focus and interactive token corrections when published
-  - `colors.focus.*` EXISTS: `primary`, `error`, `info` — consumed via CSS
-    variables in the components layer.
-  - `focusVisible` parity resolved in `2.8.0`: `buttons.danger.focusVisible`
-    and `buttons.success.focusVisible` are now published. Per-variant
-    `focus-visible` rules added to `src/styles/components.css` consuming
-    `--sp-button-danger-focusvisible` and `--sp-button-success-focusvisible`.
-
-- [x] Document token gaps instead of adding local fallbacks
-  - Token gap audit refreshed against `@phcdevworks/spectre-tokens@2.8.0`.
-  - **Present:** `colors.focus.primary/error/info`, `surface.page/card/input/overlay`,
-    `border.width.*`, `border.style.*`, `buttons.*` (all variants with focusRing
-    and focusVisible), `forms.*` (default, hover, focus, focusVisible, valid,
-    invalid, disabled).
-  - **Absent (blockers for P2 and Phase 4):**
-    - `surface.hover`, `surface.selected`, `surface.active` — no interactive
-      surface state tokens exist.
-    - `link.*` namespace — entirely absent; no `link.default/hover/active/visited`.
-    - `border.color.*` — no `border.color.default` or `border.color.subtle`.
+- [x] Token gap audit refreshed against `2.8.0`
+  - **Now present and unblocking P2:**
+    - `link.default/hover/active/visited` — published in `2.8.0`.
+    - `surface.hover/selected/active` — published in `2.8.0`.
+    - `surface.divider` — published in `2.8.0`.
+  - **Still absent (blockers for Phase 4 only):**
     - `component.nav`, `component.toast`, `component.tooltip`,
-      `component.dropdown`, `component.modal` — none present.
+      `component.dropdown`, `component.modal` — not yet in tokens.
 
-### P2: Semantic UI Primitives
+### P2: Semantic UI Primitives — Active (tokens available)
 
-- [ ] Add link styling once upstream `link` tokens are published
-  - Expected token intent: `link.default`, `link.hover`, `link.active`,
-    `link.visited`.
-  - Add CSS, recipe or utility exposure only if the public class contract is
-    stable.
+All three primitive token groups exist in `@phcdevworks/spectre-tokens@2.8.0`.
+This work is unblocked.
 
-- [ ] Add interactive surface state styling once upstream surface-state tokens
-      are published
-  - Expected token intent: `surface.hover`, `surface.selected`,
-    `surface.active`.
-  - Target clickable list items, menu items, table rows, and selectable surfaces
-    without inventing palette fallbacks.
+- [ ] Add link styling
+  - Tokens: `link.default`, `link.hover`, `link.active`, `link.visited`
+    (`--sp-link-*` CSS variables).
+  - CSS in narrowest relevant entry point; recipe or utility when class
+    contract is stable; manifest declaration, README update, contract tests.
 
-- [ ] Add divider styling once an upstream divider or border token is published
-  - Expected token intent: `surface.divider` or a semantic
-    `border.color.default` / `border.color.subtle`.
-  - Cover section separators, table borders, and horizontal rules.
+- [ ] Add interactive surface state styling
+  - Tokens: `surface.hover`, `surface.selected`, `surface.active`
+    (`--sp-surface-hover`, `--sp-surface-selected`, `--sp-surface-active`).
+  - Target clickable list items, menu items, table rows, selectable surfaces.
+
+- [ ] Add divider styling
+  - Tokens: `surface.divider` (`--sp-surface-divider`).
+  - Cover `<hr>`, section separators, table borders.
 
 ---
 
@@ -257,15 +237,16 @@ group lands — do not wait for all five before starting the first.
 
 1. Phase 1 — done.
 2. Phase 2 — done.
-3. Phase 3 P0 — publish v1.7.0.
-4. Phase 3 P1 — watch for the next published token release; run a sync pass.
-5. Phase 3 P2 — add semantic primitives in this order: Link, interactive surface
-   states, Divider.
-6. Phase 4 — add component recipe families in this order: Nav, Toast, Tooltip,
-   Dropdown, Modal.
-7. Phase 5 P0 — add downstream regression coverage as adapter usage reveals gaps
-   (continuous).
-8. Phase 5 P1 — define deprecation mechanics before retiring public UI contracts.
+3. Phase 3 P0 — done (v1.7.0 and v1.8.0 released).
+4. Phase 3 P1 — done (synced to `@phcdevworks/spectre-tokens@2.8.0`).
+5. **Phase 3 P2 — active.** Add Link, interactive surface states, Divider in
+   that order. Tokens are available; no upstream gate remains.
+6. Phase 4 — gated on upstream. Add Nav, Toast, Tooltip, Dropdown, Modal once
+   their `component.*` token groups publish in spectre-tokens.
+7. Phase 5 P0 — continuous; add regression coverage as adapter usage reveals
+   gaps.
+8. Phase 5 P1 — define deprecation mechanics before retiring any public
+   class, recipe option, or variant.
 
 ---
 
