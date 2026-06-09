@@ -61,90 +61,41 @@ improvements without expanding package ownership beyond Layer 2.
 
 ---
 
-## 3. Phase 3 — Release Baseline and Token-Gated Expansion
+## 3. Phase 3 — Semantic Primitive Expansion
 
-Phase 3 starts from the v1.7.0 release baseline and follows the upstream token
-roadmap. UI styling is added only after the required semantic tokens are
-published to NPM.
+### P0: Release Baseline — Delivered
 
-### P0: v1.7.0 Release Baseline
-
-**Objective:** Finish the v1.7.0 release cleanly and keep the baseline ready
-for new work.
-
-**Why it matters:** New recipe and token-consumption work should start from a
-known-good package version. A clean baseline keeps future diffs focused and
-prevents release hygiene from mixing with feature expansion.
-
-**Deliverables:**
-
-- Confirm v1.7.0 package metadata, changelog, lockfile, and manifest alignment.
-- Run `npm run check` before tag/publish handoff.
-- Confirm `npm pack --dry-run` includes the intended publish surface.
-- Keep `[Unreleased]` empty after the release cut until the next scoped change
-  begins.
-- Keep `dist/` generated only by `npm run build`.
-
-**Dependency notes:** Must complete before starting the next contract expansion
-wave.
-
-**Risk if skipped:** Follow-up work can accidentally include release metadata
-cleanup or stale generated output, making review and rollback harder.
+- v1.7.0 released: Tag variant expansion, token alignment to `spectre-tokens@2.7.0`.
+- v1.8.0 released: Spinner component, button focus-ring parity, token alignment
+  to `spectre-tokens@2.8.0`, ecosystem manifest.
 
 ---
 
-### P1: Token Synchronization Watch
+### P1: Token Synchronization — Delivered
 
-**Objective:** Stay aligned to the latest published `@phcdevworks/spectre-tokens`
-after each upstream release.
-
-**Why it matters:** Token corrections and new semantic namespaces gate all
-downstream UI work in this package. Sync passes must happen against NPM
-releases, not GitHub-only changes.
-
-**Deliverables:**
-
-- Watch for the next published `@phcdevworks/spectre-tokens` release.
-- Consume upstream fixes for `colors.focus.*` when published.
-- Consume `focusVisible` support for danger and success button tokens when
-  published.
-- Run `npm run validate:tokens` before starting any sync work.
-- Document token gaps instead of adding local fallbacks.
-
-**Guardrails:**
-
-- Do not sync from GitHub branches or unpublished local token files.
-- Do not combine synchronization with unrelated cleanup or feature work.
-- If a token change creates structural conflicts, stop and report the drift.
+- Aligned to `@phcdevworks/spectre-tokens@2.8.0`.
+- `buttons.danger.focusVisible` and `buttons.success.focusVisible` consumed.
+- Token gap audit complete: `link.*`, `surface.hover/selected/active`, and
+  `surface.divider` are now published upstream — no longer blockers.
 
 ---
 
-### P2: Semantic UI Primitives
+### P2: Semantic UI Primitives — Active
 
-**Objective:** Add link, interactive surface state, and divider styling once
-their upstream tokens are published.
+All three token groups exist in `@phcdevworks/spectre-tokens@2.8.0`. This
+work is unblocked and is the current priority.
 
-**Why it matters:** These are the first semantic gaps that every UI library
-hits. Without them, downstream adapters will invent local palette fallbacks and
-fragment the Spectre contract.
+Deliverables:
 
-**Deliverables:**
+- Add link styling: `link.default`, `link.hover`, `link.active`, `link.visited`.
+- Add interactive surface state styling: `surface.hover`, `surface.selected`,
+  `surface.active`.
+- Add divider styling: `surface.divider`.
 
-- Add link styling after a published `link` namespace exists upstream.
-  Expected token intent: `link.default`, `link.hover`, `link.active`,
-  `link.visited`.
-- Add interactive surface states after `surface.hover`, `surface.selected`, and
-  `surface.active` are published upstream.
-- Add divider styling after a published `surface.divider` or
-  `border.color.default` / `border.color.subtle` exists upstream.
-
-**Per-primitive standard:** Token-backed CSS in the narrowest relevant entry
-point; recipe or utility exposure only when the public class contract is stable;
-manifest declaration, README update, and focused contract tests; run
+Per-primitive standard: token-backed CSS in the narrowest relevant entry point;
+recipe or utility exposure only when the public class contract is stable;
+manifest declaration, README update, focused contract tests; run
 `npm run check`.
-
-**Dependency notes:** Depends on published token releases. If tokens are planned
-upstream but not published, document the gap and wait.
 
 ---
 
