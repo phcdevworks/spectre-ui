@@ -239,6 +239,7 @@ All options are optional and fall back to sensible defaults.
 | Spinner     | `getSpinnerClasses`     | —                                                                                                              | `sm` `md` `lg`      | —                                                                       |
 | Nav         | `getNavClasses`         | —                                                                                                              | —                   | `bordered` `sticky` `fullWidth`                                         |
 | Toast       | `getToastClasses`       | `info` `success` `warning` `danger`                                                                            | —                   | `dismissed` `fullWidth`                                                 |
+| Tooltip     | `getTooltipClasses`     | placement: `top` `bottom` `left` `right`                                                                       | —                   | `visible`                                                               |
 
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements). See the full list below.
@@ -272,6 +273,7 @@ Root recipe functions:
 - `getTagClasses`
 - `getTestimonialClasses`
 - `getToastClasses`
+- `getTooltipClasses`
 
 Root recipe helper functions:
 

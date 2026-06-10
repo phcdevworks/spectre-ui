@@ -46,6 +46,7 @@
   "getTestimonialQuoteClasses",
   "getToastClasses",
   "getToastIconClasses",
+  "getTooltipClasses",
   "IconBoxRecipeOptions",
   "IconBoxSize",
   "IconBoxVariant",
@@ -71,5 +72,7 @@
   "TestimonialRecipeOptions",
   "ToastIconRecipeOptions",
   "ToastRecipeOptions",
-  "ToastVariant"
+  "ToastVariant",
+  "TooltipPlacement",
+  "TooltipRecipeOptions"
 ]

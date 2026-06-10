@@ -107,3 +107,9 @@ export {
   type ToastIconRecipeOptions,
   type ToastVariant,
 } from './toast'
+
+export {
+  getTooltipClasses,
+  type TooltipRecipeOptions,
+  type TooltipPlacement,
+} from './tooltip'
