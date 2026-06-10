@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [1.9.0] - 2026-06-10
+
+Release Title: Component Recipe Expansion
+
 Contract change type: additive
 
 ### Added

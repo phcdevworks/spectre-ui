@@ -1,6 +1,6 @@
 {
   "name": "@phcdevworks/spectre-ui",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "@phcdevworks/spectre-ui is the Layer 2 styling contract between @phcdevworks/spectre-tokens and downstream adapters or apps.",
   "keywords": [
     "phcdevworks",
@@ -124,5 +124,8 @@
   },
   "cSpell.words": [
     "phcdevworks"
-  ]
+  ],
+  "allowScripts": {
+    "esbuild@0.27.7": true
+  }
 }
