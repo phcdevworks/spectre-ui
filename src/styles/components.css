@@ -314,6 +314,29 @@
     --sp-component-nav-link-hover: var(--sp-nav-link-hover);
     --sp-component-nav-link-active: var(--sp-nav-link-active);
     --sp-component-nav-border: var(--sp-nav-border);
+
+    /* toast roles */
+    --sp-component-toast-radius: var(--sp-radius-lg);
+    --sp-component-toast-padding-x: var(--sp-space-16);
+    --sp-component-toast-padding-y: var(--sp-space-12);
+    --sp-component-toast-gap: var(--sp-space-12);
+    --sp-component-toast-z-index: var(--sp-z-index-toast);
+    --sp-component-toast-info-bg: var(--sp-toast-info-bg);
+    --sp-component-toast-info-text: var(--sp-toast-info-text);
+    --sp-component-toast-info-border: var(--sp-toast-info-border);
+    --sp-component-toast-info-icon: var(--sp-toast-info-icon);
+    --sp-component-toast-success-bg: var(--sp-toast-success-bg);
+    --sp-component-toast-success-text: var(--sp-toast-success-text);
+    --sp-component-toast-success-border: var(--sp-toast-success-border);
+    --sp-component-toast-success-icon: var(--sp-toast-success-icon);
+    --sp-component-toast-warning-bg: var(--sp-toast-warning-bg);
+    --sp-component-toast-warning-text: var(--sp-toast-warning-text);
+    --sp-component-toast-warning-border: var(--sp-toast-warning-border);
+    --sp-component-toast-warning-icon: var(--sp-toast-warning-icon);
+    --sp-component-toast-danger-bg: var(--sp-toast-danger-bg);
+    --sp-component-toast-danger-text: var(--sp-toast-danger-text);
+    --sp-component-toast-danger-border: var(--sp-toast-danger-border);
+    --sp-component-toast-danger-icon: var(--sp-toast-danger-icon);
   }
 
   /* dark mode overrides mapped from Spectre token mode definitions */
@@ -2165,5 +2188,76 @@
   .sp-nav__link[aria-disabled="true"] {
     pointer-events: none;
     opacity: var(--sp-opacity-disabled);
+  }
+
+  /* TOASTS ----------------------------------------------------------------- */
+  .sp-toast {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--sp-component-toast-gap);
+    border-radius: var(--sp-component-toast-radius);
+    border: var(--sp-component-border-width) solid transparent;
+    padding: var(--sp-component-toast-padding-y) var(--sp-component-toast-padding-x);
+    font-family: var(--sp-font-family-sans);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+    z-index: var(--sp-component-toast-z-index);
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out),
+      border-color var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-toast--dismissed {
+    display: none;
+  }
+
+  .sp-toast--full {
+    width: 100%;
+  }
+
+  .sp-toast--info {
+    background-color: var(--sp-component-toast-info-bg);
+    color: var(--sp-component-toast-info-text);
+    border-color: var(--sp-component-toast-info-border);
+  }
+
+  .sp-toast--success {
+    background-color: var(--sp-component-toast-success-bg);
+    color: var(--sp-component-toast-success-text);
+    border-color: var(--sp-component-toast-success-border);
+  }
+
+  .sp-toast--warning {
+    background-color: var(--sp-component-toast-warning-bg);
+    color: var(--sp-component-toast-warning-text);
+    border-color: var(--sp-component-toast-warning-border);
+  }
+
+  .sp-toast--danger {
+    background-color: var(--sp-component-toast-danger-bg);
+    color: var(--sp-component-toast-danger-text);
+    border-color: var(--sp-component-toast-danger-border);
+  }
+
+  .sp-toast__icon {
+    flex-shrink: 0;
+    line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-toast__icon--info {
+    color: var(--sp-component-toast-info-icon);
+  }
+
+  .sp-toast__icon--success {
+    color: var(--sp-component-toast-success-icon);
+  }
+
+  .sp-toast__icon--warning {
+    color: var(--sp-component-toast-warning-icon);
+  }
+
+  .sp-toast__icon--danger {
+    color: var(--sp-component-toast-danger-icon);
   }
 }
