@@ -123,3 +123,10 @@ export {
   type DropdownItemRecipeOptions,
   type DropdownPlacement,
 } from './dropdown'
+
+export {
+  getModalClasses,
+  getModalOverlayClasses,
+  type ModalRecipeOptions,
+  type ModalOverlayRecipeOptions,
+} from './modal'

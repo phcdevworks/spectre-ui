@@ -29,6 +29,8 @@
       "getInputHelperTextClasses",
       "getInputLabelClasses",
       "getInputWrapperClasses",
+      "getModalClasses",
+      "getModalOverlayClasses",
       "getNavClasses",
       "getNavLinkClasses",
       "getNavLinksClasses",
@@ -125,6 +127,9 @@
     },
     "dropdown": {
       "fn": "getDropdownClasses"
+    },
+    "modal": {
+      "fn": "getModalClasses"
     }
   }
 }
