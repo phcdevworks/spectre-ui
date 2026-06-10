@@ -39,6 +39,20 @@ Contract change type: additive
   `bottom`, `left`, and `right` placements plus a `visible` flag. This is the
   third of the five Phase 4 component recipes in `TODO.md`.
 
+- **Dropdown Recipe**: Added `getDropdownClasses`, `getDropdownMenuClasses`,
+  and `getDropdownItemClasses` recipes plus `.sp-dropdown`,
+  `.sp-dropdown__menu`, and `.sp-dropdown__item` CSS in
+  `src/styles/components.css`. Consumes the new `component.dropdown` tokens
+  (`dropdown.bg`, `dropdown.border`, `dropdown.item.default`,
+  `dropdown.item.hover`, `dropdown.item.active`, `dropdown.item.text`)
+  published in `@phcdevworks/spectre-tokens@2.9.0`. `getDropdownClasses`
+  supports `fullWidth`; `getDropdownMenuClasses` supports `bottom-start`,
+  `bottom-end`, `top-start`, and `top-end` placements plus an `open` flag;
+  `getDropdownItemClasses` supports `active`, `disabled`, `hovered`, and
+  `focused`. This is the fourth of the five Phase 4 component recipes in
+  `TODO.md`. Raised the `components.css` size budget in
+  `tests/css-entrypoints.test.ts` from 100000 to 105000 bytes.
+
 ### Changed
 
 - **Token Alignment**: Updated `@phcdevworks/spectre-tokens` dependency to

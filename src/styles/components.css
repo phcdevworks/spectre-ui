@@ -348,6 +348,23 @@
     --sp-component-tooltip-offset: var(--sp-space-8);
     --sp-component-tooltip-opacity: var(--sp-opacity-tooltip);
     --sp-component-tooltip-z-index: var(--sp-z-index-tooltip);
+
+    /* dropdown roles */
+    --sp-component-dropdown-bg: var(--sp-dropdown-bg);
+    --sp-component-dropdown-border: var(--sp-dropdown-border);
+    --sp-component-dropdown-item-default: var(--sp-dropdown-item-default);
+    --sp-component-dropdown-item-hover: var(--sp-dropdown-item-hover);
+    --sp-component-dropdown-item-active: var(--sp-dropdown-item-active);
+    --sp-component-dropdown-item-text: var(--sp-dropdown-item-text);
+    --sp-component-dropdown-radius: var(--sp-radius-lg);
+    --sp-component-dropdown-item-radius: var(--sp-radius-sm);
+    --sp-component-dropdown-shadow: var(--sp-shadow-md);
+    --sp-component-dropdown-padding: var(--sp-space-4);
+    --sp-component-dropdown-offset: var(--sp-space-4);
+    --sp-component-dropdown-item-padding-x: var(--sp-space-12);
+    --sp-component-dropdown-item-padding-y: var(--sp-space-8);
+    --sp-component-dropdown-item-gap: var(--sp-space-8);
+    --sp-component-dropdown-z-index: var(--sp-z-index-dropdown);
   }
 
   /* dark mode overrides mapped from Spectre token mode definitions */
@@ -2322,5 +2339,100 @@
     left: 100%;
     top: 50%;
     transform: translate(var(--sp-component-tooltip-offset), -50%);
+  }
+
+  /* DROPDOWNS ---------------------------------------------------------------- */
+  .sp-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .sp-dropdown--full {
+    display: block;
+    width: 100%;
+  }
+
+  .sp-dropdown__menu {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    min-width: 100%;
+    padding: var(--sp-component-dropdown-padding);
+    background-color: var(--sp-component-dropdown-bg);
+    border: var(--sp-component-border-width) solid var(--sp-component-dropdown-border);
+    border-radius: var(--sp-component-dropdown-radius);
+    box-shadow: var(--sp-component-dropdown-shadow);
+    z-index: var(--sp-component-dropdown-z-index);
+    font-family: var(--sp-font-family-sans);
+  }
+
+  .sp-dropdown__menu--open {
+    display: flex;
+  }
+
+  .sp-dropdown__menu--bottom-start {
+    top: 100%;
+    left: 0;
+    margin-top: var(--sp-component-dropdown-offset);
+  }
+
+  .sp-dropdown__menu--bottom-end {
+    top: 100%;
+    right: 0;
+    margin-top: var(--sp-component-dropdown-offset);
+  }
+
+  .sp-dropdown__menu--top-start {
+    bottom: 100%;
+    left: 0;
+    margin-bottom: var(--sp-component-dropdown-offset);
+  }
+
+  .sp-dropdown__menu--top-end {
+    bottom: 100%;
+    right: 0;
+    margin-bottom: var(--sp-component-dropdown-offset);
+  }
+
+  .sp-dropdown__item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-component-dropdown-item-gap);
+    padding: var(--sp-component-dropdown-item-padding-y) var(--sp-component-dropdown-item-padding-x);
+    border-radius: var(--sp-component-dropdown-item-radius);
+    background-color: var(--sp-component-dropdown-item-default);
+    color: var(--sp-component-dropdown-item-text);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out),
+      opacity var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-dropdown__item:hover,
+  .sp-dropdown__item--hover,
+  .sp-dropdown__item.is-hover {
+    background-color: var(--sp-component-dropdown-item-hover);
+  }
+
+  .sp-dropdown__item:focus-visible,
+  .sp-dropdown__item--focus,
+  .sp-dropdown__item.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
+  }
+
+  .sp-dropdown__item--active,
+  .sp-dropdown__item.is-active {
+    background-color: var(--sp-component-dropdown-item-active);
+  }
+
+  .sp-dropdown__item--disabled,
+  .sp-dropdown__item[aria-disabled="true"] {
+    pointer-events: none;
+    opacity: var(--sp-opacity-disabled);
   }
 }

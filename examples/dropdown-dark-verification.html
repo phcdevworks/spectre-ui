@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" data-spectre-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spectre UI — Dropdown Dark Mode Verification</title>
+    <link rel="stylesheet" href="../dist/index.css" />
+    <style>
+      body {
+        background-color: var(--sp-surface-page);
+        color: var(--sp-text-on-page-default);
+        padding: var(--sp-space-48);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: var(--sp-space-64);
+      }
+      .section {
+        display: flex;
+        align-items: flex-start;
+        background: var(--sp-surface-card);
+        padding: var(--sp-space-48);
+        border: var(--sp-component-border-width) solid var(--sp-color-neutral-200);
+        border-radius: var(--sp-radius-lg);
+      }
+      h2 { margin-bottom: var(--sp-space-8); }
+    </style>
+  </head>
+  <body>
+    <h1>Dropdown — Dark Mode Verification</h1>
+    <p>All surfaces below use <code>data-spectre-theme="dark"</code> on the root element.</p>
+
+    <div class="grid">
+      <div class="section">
+        <div class="sp-dropdown">
+          <span>Bottom start</span>
+          <div class="sp-dropdown__menu sp-dropdown__menu--bottom-start sp-dropdown__menu--open">
+            <a class="sp-dropdown__item" href="#">Default</a>
+            <a class="sp-dropdown__item sp-dropdown__item--active" href="#">Active</a>
+            <a class="sp-dropdown__item sp-dropdown__item--hover is-hover" href="#">Hover</a>
+            <a class="sp-dropdown__item sp-dropdown__item--disabled" aria-disabled="true" href="#">Disabled</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="sp-dropdown sp-dropdown--full">
+          <span>Full width, bottom end</span>
+          <div class="sp-dropdown__menu sp-dropdown__menu--bottom-end sp-dropdown__menu--open">
+            <a class="sp-dropdown__item" href="#">Profile</a>
+            <a class="sp-dropdown__item" href="#">Settings</a>
+            <a class="sp-dropdown__item sp-dropdown__item--focus is-focus" href="#">Focused</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
