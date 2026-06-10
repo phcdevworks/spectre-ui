@@ -197,8 +197,10 @@ next.
   - Expected roles: `bg`, `text`, `border`.
   - Delivered as `getTooltipClasses`.
 
-- [ ] Add Dropdown recipe after upstream `component.dropdown` tokens publish
+- [x] Add Dropdown recipe after upstream `component.dropdown` tokens publish
   - Expected roles: `bg`, `border`, item states, and item text.
+  - Delivered as `getDropdownClasses`, `getDropdownMenuClasses`,
+    `getDropdownItemClasses`.
 
 - [ ] Add Modal recipe after upstream `component.modal` tokens publish
   - Expected roles: `bg`, `shadow`, `border`, `overlay`.

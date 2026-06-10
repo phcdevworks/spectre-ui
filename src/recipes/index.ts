@@ -113,3 +113,13 @@ export {
   type TooltipRecipeOptions,
   type TooltipPlacement,
 } from './tooltip'
+
+export {
+  getDropdownClasses,
+  getDropdownMenuClasses,
+  getDropdownItemClasses,
+  type DropdownRecipeOptions,
+  type DropdownMenuRecipeOptions,
+  type DropdownItemRecipeOptions,
+  type DropdownPlacement,
+} from './dropdown'
