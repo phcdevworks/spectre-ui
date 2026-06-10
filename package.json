@@ -101,24 +101,24 @@
     "typescript": "^5.9 || ^6.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^2.8.0"
+    "@phcdevworks/spectre-tokens": "^2.9.0"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.0.0",
     "@types/node": "^25.9.2",
-    "@typescript-eslint/eslint-plugin": "^8.60.1",
-    "@typescript-eslint/parser": "^8.60.1",
+    "@typescript-eslint/eslint-plugin": "^8.61.0",
+    "@typescript-eslint/parser": "^8.61.0",
     "autoprefixer": "^10.5.0",
     "eslint": "^10.4.1",
     "jiti": "^2.7.0",
     "postcss": "^8.5.15",
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.1",
-    "prettier": "^3.8.3",
+    "prettier": "^3.8.4",
     "tailwindcss": "^4.3.0",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.60.1",
+    "typescript-eslint": "^8.61.0",
     "vite": "^8.0.16",
     "vitest": "^4.1.8"
   },

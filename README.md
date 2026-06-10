@@ -237,6 +237,7 @@ All options are optional and fall back to sensible defaults.
 | Avatar      | `getAvatarClasses`      | —                                                                                                              | `sm` `md` `lg` `xl` | shape: `circle` `square`                                                |
 | Tag         | `getTagClasses`         | `default` `primary` `secondary` `success` `warning` `danger` `info` `neutral` `accent` `cta` `outline` `ghost` | `sm` `md` `lg`      | `dismissible` `selected` `disabled` `loading` `interactive` `fullWidth` |
 | Spinner     | `getSpinnerClasses`     | —                                                                                                              | `sm` `md` `lg`      | —                                                                       |
+| Nav         | `getNavClasses`         | —                                                                                                              | —                   | `bordered` `sticky` `fullWidth`                                         |
 
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements). See the full list below.
@@ -263,6 +264,7 @@ Root recipe functions:
 - `getCardClasses`
 - `getIconBoxClasses`
 - `getInputClasses`
+- `getNavClasses`
 - `getPricingCardClasses`
 - `getRatingClasses`
 - `getSpinnerClasses`
@@ -275,6 +277,8 @@ Root recipe helper functions:
 - `getInputHelperTextClasses`
 - `getInputLabelClasses`
 - `getInputWrapperClasses`
+- `getNavLinkClasses`
+- `getNavLinksClasses`
 - `getPricingCardBadgeClasses`
 - `getPricingCardDescriptionClasses`
 - `getPricingCardPriceClasses`

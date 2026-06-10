@@ -306,6 +306,14 @@
     --sp-component-spinner-cta-arc: var(--sp-button-cta-bg);
     --sp-component-spinner-duration: var(--sp-duration-long);
     --sp-component-spinner-easing: var(--sp-easing-linear);
+
+    /* nav roles */
+    --sp-component-nav-bg: var(--sp-nav-bg);
+    --sp-component-nav-text: var(--sp-nav-text);
+    --sp-component-nav-link: var(--sp-nav-link);
+    --sp-component-nav-link-hover: var(--sp-nav-link-hover);
+    --sp-component-nav-link-active: var(--sp-nav-link-active);
+    --sp-component-nav-border: var(--sp-nav-border);
   }
 
   /* dark mode overrides mapped from Spectre token mode definitions */
@@ -2088,5 +2096,74 @@
   .sp-spinner--lg {
     width: var(--sp-component-spinner-size-lg);
     height: var(--sp-component-spinner-size-lg);
+  }
+
+  /* nav */
+  .sp-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-space-16);
+    padding: var(--sp-space-12) var(--sp-space-16);
+    background-color: var(--sp-component-nav-bg);
+    color: var(--sp-component-nav-text);
+    font-family: var(--sp-font-family-sans);
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out),
+      border-color var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-nav--bordered {
+    border-bottom: var(--sp-component-border-width) solid var(--sp-component-nav-border);
+  }
+
+  .sp-nav--sticky {
+    position: sticky;
+    top: 0;
+    z-index: var(--sp-z-index-sticky);
+  }
+
+  .sp-nav--full {
+    width: 100%;
+  }
+
+  .sp-nav__links {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-space-16);
+  }
+
+  .sp-nav__link {
+    color: var(--sp-component-nav-link);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+    font-weight: var(--sp-font-sm-weight);
+    text-decoration: none;
+    transition: color var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-nav__link:hover,
+  .sp-nav__link--hover,
+  .sp-nav__link.is-hover {
+    color: var(--sp-component-nav-link-hover);
+  }
+
+  .sp-nav__link:focus-visible,
+  .sp-nav__link--focus,
+  .sp-nav__link.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
+  }
+
+  .sp-nav__link--active,
+  .sp-nav__link.is-active {
+    color: var(--sp-component-nav-link-active);
+  }
+
+  .sp-nav__link--disabled,
+  .sp-nav__link[aria-disabled="true"] {
+    pointer-events: none;
+    opacity: var(--sp-opacity-disabled);
   }
 }

@@ -178,13 +178,15 @@ This work is unblocked.
 Each family lands as a focused, token-backed change with CSS, recipe, manifest,
 docs, and tests kept in sync.
 
-`@phcdevworks/spectre-tokens` Phase 4 P2 (component token expansion) is now
-the active upstream work item targeting exactly the five `component.*` groups
-below. Watch for their publish and start the matching recipe the moment each
-group lands — do not wait for all five before starting the first.
+`@phcdevworks/spectre-tokens@2.9.0` published all five Phase 4 P2 `component.*`
+groups (`nav`, `toast`, `tooltip`, `dropdown`, `modal`) for light and dark
+modes. The token dependency has been synced to `^2.9.0`. Each recipe still
+lands as its own scoped change — do not wait for all five before starting the
+next.
 
-- [ ] Add Nav recipe after upstream `component.nav` tokens publish
+- [x] Add Nav recipe after upstream `component.nav` tokens publish
   - Expected roles: `bg`, `text`, `link`, `linkHover`, `linkActive`, `border`.
+  - Delivered as `getNavClasses`, `getNavLinksClasses`, `getNavLinkClasses`.
 
 - [ ] Add Toast recipe after upstream `component.toast` tokens publish
   - Expected roles: success, warning, danger, and info variants with `bg`,
