@@ -193,8 +193,9 @@ next.
     `text`, `border`, and `icon`.
   - Delivered as `getToastClasses`, `getToastIconClasses`.
 
-- [ ] Add Tooltip recipe after upstream `component.tooltip` tokens publish
+- [x] Add Tooltip recipe after upstream `component.tooltip` tokens publish
   - Expected roles: `bg`, `text`, `border`.
+  - Delivered as `getTooltipClasses`.
 
 - [ ] Add Dropdown recipe after upstream `component.dropdown` tokens publish
   - Expected roles: `bg`, `border`, item states, and item text.
