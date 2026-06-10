@@ -188,9 +188,10 @@ next.
   - Expected roles: `bg`, `text`, `link`, `linkHover`, `linkActive`, `border`.
   - Delivered as `getNavClasses`, `getNavLinksClasses`, `getNavLinkClasses`.
 
-- [ ] Add Toast recipe after upstream `component.toast` tokens publish
+- [x] Add Toast recipe after upstream `component.toast` tokens publish
   - Expected roles: success, warning, danger, and info variants with `bg`,
     `text`, `border`, and `icon`.
+  - Delivered as `getToastClasses`, `getToastIconClasses`.
 
 - [ ] Add Tooltip recipe after upstream `component.tooltip` tokens publish
   - Expected roles: `bg`, `text`, `border`.
