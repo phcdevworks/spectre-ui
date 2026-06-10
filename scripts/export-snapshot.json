@@ -44,6 +44,8 @@
   "getTestimonialAuthorTitleClasses",
   "getTestimonialClasses",
   "getTestimonialQuoteClasses",
+  "getToastClasses",
+  "getToastIconClasses",
   "IconBoxRecipeOptions",
   "IconBoxSize",
   "IconBoxVariant",
@@ -66,5 +68,8 @@
   "TagRecipeOptions",
   "TagSize",
   "TagVariant",
-  "TestimonialRecipeOptions"
+  "TestimonialRecipeOptions",
+  "ToastIconRecipeOptions",
+  "ToastRecipeOptions",
+  "ToastVariant"
 ]

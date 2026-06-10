@@ -238,6 +238,7 @@ All options are optional and fall back to sensible defaults.
 | Tag         | `getTagClasses`         | `default` `primary` `secondary` `success` `warning` `danger` `info` `neutral` `accent` `cta` `outline` `ghost` | `sm` `md` `lg`      | `dismissible` `selected` `disabled` `loading` `interactive` `fullWidth` |
 | Spinner     | `getSpinnerClasses`     | —                                                                                                              | `sm` `md` `lg`      | —                                                                       |
 | Nav         | `getNavClasses`         | —                                                                                                              | —                   | `bordered` `sticky` `fullWidth`                                         |
+| Toast       | `getToastClasses`       | `info` `success` `warning` `danger`                                                                            | —                   | `dismissed` `fullWidth`                                                 |
 
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements). See the full list below.
@@ -270,6 +271,7 @@ Root recipe functions:
 - `getSpinnerClasses`
 - `getTagClasses`
 - `getTestimonialClasses`
+- `getToastClasses`
 
 Root recipe helper functions:
 
@@ -291,6 +293,7 @@ Root recipe helper functions:
 - `getTestimonialAuthorNameClasses`
 - `getTestimonialAuthorTitleClasses`
 - `getTestimonialQuoteClasses`
+- `getToastIconClasses`
 
 The root package also re-exports the related recipe option, variant, size, and
 state TypeScript types defined by those recipes.

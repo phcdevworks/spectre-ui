@@ -21,6 +21,16 @@ Contract change type: additive
   recipes in `TODO.md`. Raised the `components.css` size budget in
   `tests/css-entrypoints.test.ts` from 92000 to 96000 bytes.
 
+- **Toast Recipe**: Added `getToastClasses` and `getToastIconClasses` recipes
+  plus `.sp-toast` and `.sp-toast__icon` CSS in `src/styles/components.css`.
+  Consumes the new `component.toast` tokens (`toast.{success,warning,danger,info}.{bg,text,border,icon}`)
+  published in `@phcdevworks/spectre-tokens@2.9.0`. `getToastClasses` supports
+  `info`, `success`, `warning`, and `danger` variants plus `dismissed` and
+  `fullWidth`; `getToastIconClasses` mirrors the same variants for icon color.
+  This is the second of the five Phase 4 component recipes in `TODO.md`.
+  Raised the `components.css` size budget in `tests/css-entrypoints.test.ts`
+  from 96000 to 100000 bytes.
+
 ### Changed
 
 - **Token Alignment**: Updated `@phcdevworks/spectre-tokens` dependency to
