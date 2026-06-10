@@ -20,6 +20,9 @@
       "getBadgeClasses",
       "getButtonClasses",
       "getCardClasses",
+      "getDropdownClasses",
+      "getDropdownItemClasses",
+      "getDropdownMenuClasses",
       "getIconBoxClasses",
       "getInputClasses",
       "getInputErrorMessageClasses",
@@ -119,6 +122,9 @@
     },
     "tooltip": {
       "fn": "getTooltipClasses"
+    },
+    "dropdown": {
+      "fn": "getDropdownClasses"
     }
   }
 }
