@@ -53,6 +53,15 @@ Contract change type: additive
   `TODO.md`. Raised the `components.css` size budget in
   `tests/css-entrypoints.test.ts` from 100000 to 105000 bytes.
 
+- **Modal Recipe**: Added `getModalClasses` and `getModalOverlayClasses`
+  recipes plus `.sp-modal` and `.sp-modal-overlay` CSS in
+  `src/styles/components.css`. Consumes the new `component.modal` tokens
+  (`modal.bg`, `modal.shadow`, `modal.border`, `modal.overlay`) along with the
+  existing `--sp-z-index-modal` primitive published in
+  `@phcdevworks/spectre-tokens@2.9.0`. `getModalClasses` supports `open` and
+  `fullWidth`; `getModalOverlayClasses` supports `open`. This is the fifth and
+  final of the five Phase 4 component recipes in `TODO.md`.
+
 ### Changed
 
 - **Token Alignment**: Updated `@phcdevworks/spectre-tokens` dependency to

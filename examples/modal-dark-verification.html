@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" data-spectre-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spectre UI — Modal Dark Mode Verification</title>
+    <link rel="stylesheet" href="../dist/index.css" />
+    <style>
+      body {
+        background-color: var(--sp-surface-page);
+        color: var(--sp-text-on-page-default);
+        padding: var(--sp-space-48);
+      }
+      .section {
+        position: relative;
+        height: 320px;
+        background: var(--sp-surface-card);
+        border: var(--sp-component-border-width) solid var(--sp-color-neutral-200);
+        border-radius: var(--sp-radius-lg);
+        overflow: hidden;
+      }
+      .sp-modal-overlay {
+        position: absolute;
+      }
+      .sp-modal {
+        max-width: 360px;
+      }
+      h2 { margin-bottom: var(--sp-space-8); }
+    </style>
+  </head>
+  <body>
+    <h1>Modal — Dark Mode Verification</h1>
+    <p>All surfaces below use <code>data-spectre-theme="dark"</code> on the root element.</p>
+
+    <div class="section">
+      <div class="sp-modal-overlay sp-modal-overlay--open">
+        <div class="sp-modal sp-modal--open">
+          <h2>Modal title</h2>
+          <p>This is the modal body content, shown over a dimmed overlay.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

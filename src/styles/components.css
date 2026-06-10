@@ -365,6 +365,16 @@
     --sp-component-dropdown-item-padding-y: var(--sp-space-8);
     --sp-component-dropdown-item-gap: var(--sp-space-8);
     --sp-component-dropdown-z-index: var(--sp-z-index-dropdown);
+
+    /* modal roles */
+    --sp-component-modal-bg: var(--sp-modal-bg);
+    --sp-component-modal-border: var(--sp-modal-border);
+    --sp-component-modal-shadow: var(--sp-modal-shadow);
+    --sp-component-modal-overlay: var(--sp-modal-overlay);
+    --sp-component-modal-radius: var(--sp-radius-lg);
+    --sp-component-modal-padding: var(--sp-space-24);
+    --sp-component-modal-gap: var(--sp-space-16);
+    --sp-component-modal-z-index: var(--sp-z-index-modal);
   }
 
   /* dark mode overrides mapped from Spectre token mode definitions */
@@ -2434,5 +2444,49 @@
   .sp-dropdown__item[aria-disabled="true"] {
     pointer-events: none;
     opacity: var(--sp-opacity-disabled);
+  }
+
+  /* MODALS ------------------------------------------------------------------- */
+  .sp-modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--sp-component-modal-overlay);
+    z-index: var(--sp-component-modal-z-index);
+  }
+
+  .sp-modal-overlay--open {
+    display: flex;
+  }
+
+  .sp-modal {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-component-modal-gap);
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    padding: var(--sp-component-modal-padding);
+    background-color: var(--sp-component-modal-bg);
+    border: var(--sp-component-border-width) solid var(--sp-component-modal-border);
+    border-radius: var(--sp-component-modal-radius);
+    box-shadow: var(--sp-component-modal-shadow);
+    font-family: var(--sp-font-family-sans);
+    opacity: 0;
+    transform: scale(0.95);
+    transition:
+      opacity var(--sp-duration-fast) var(--sp-easing-out),
+      transform var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-modal--open {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .sp-modal--full {
+    width: 100%;
   }
 }

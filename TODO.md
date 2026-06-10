@@ -202,8 +202,9 @@ next.
   - Delivered as `getDropdownClasses`, `getDropdownMenuClasses`,
     `getDropdownItemClasses`.
 
-- [ ] Add Modal recipe after upstream `component.modal` tokens publish
+- [x] Add Modal recipe after upstream `component.modal` tokens publish
   - Expected roles: `bg`, `shadow`, `border`, `overlay`.
+  - Delivered as `getModalClasses`, `getModalOverlayClasses`.
 
 ---
 
