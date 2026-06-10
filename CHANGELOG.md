@@ -6,6 +6,30 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: additive
+
+### Added
+
+- **Nav Recipe**: Added `getNavClasses`, `getNavLinksClasses`, and
+  `getNavLinkClasses` recipes plus `.sp-nav`, `.sp-nav__links`, and
+  `.sp-nav__link` CSS in `src/styles/components.css`. Consumes the new
+  `component.nav` tokens (`nav.bg`, `nav.text`, `nav.link`, `nav.linkHover`,
+  `nav.linkActive`, `nav.border`) published in
+  `@phcdevworks/spectre-tokens@2.9.0`. `getNavClasses` supports `bordered`,
+  `sticky`, and `fullWidth`; `getNavLinkClasses` supports `active`, `disabled`,
+  `hovered`, and `focused`. This is the first of the five Phase 4 component
+  recipes in `TODO.md`. Raised the `components.css` size budget in
+  `tests/css-entrypoints.test.ts` from 92000 to 96000 bytes.
+
+### Changed
+
+- **Token Alignment**: Updated `@phcdevworks/spectre-tokens` dependency to
+  `^2.9.0`. The published bundle now carries the five Phase 4 `component.*`
+  token groups (`nav`, `toast`, `tooltip`, `dropdown`, `modal`) for light and
+  dark modes, unblocking the matching recipe work in `TODO.md`. Raised the
+  `components.css` size budget in `tests/css-entrypoints.test.ts` from 88000 to
+  92000 bytes to account for the additional bundled token variables.
+
 ## [1.8.0] - 2026-06-07
 
 Release Title: Spinner Contract and Token Focus Alignment
