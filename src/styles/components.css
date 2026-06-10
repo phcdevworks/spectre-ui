@@ -337,6 +337,17 @@
     --sp-component-toast-danger-text: var(--sp-toast-danger-text);
     --sp-component-toast-danger-border: var(--sp-toast-danger-border);
     --sp-component-toast-danger-icon: var(--sp-toast-danger-icon);
+
+    /* tooltip roles */
+    --sp-component-tooltip-bg: var(--sp-tooltip-bg);
+    --sp-component-tooltip-text: var(--sp-tooltip-text);
+    --sp-component-tooltip-border: var(--sp-tooltip-border);
+    --sp-component-tooltip-radius: var(--sp-radius-md);
+    --sp-component-tooltip-padding-x: var(--sp-space-8);
+    --sp-component-tooltip-padding-y: var(--sp-space-4);
+    --sp-component-tooltip-offset: var(--sp-space-8);
+    --sp-component-tooltip-opacity: var(--sp-opacity-tooltip);
+    --sp-component-tooltip-z-index: var(--sp-z-index-tooltip);
   }
 
   /* dark mode overrides mapped from Spectre token mode definitions */
@@ -2259,5 +2270,57 @@
 
   .sp-toast__icon--danger {
     color: var(--sp-component-toast-danger-icon);
+  }
+
+  /* TOOLTIPS --------------------------------------------------------------- */
+  .sp-tooltip {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--sp-component-tooltip-radius);
+    border: var(--sp-component-border-width) solid var(--sp-component-tooltip-border);
+    background-color: var(--sp-component-tooltip-bg);
+    color: var(--sp-component-tooltip-text);
+    padding: var(--sp-component-tooltip-padding-y) var(--sp-component-tooltip-padding-x);
+    font-family: var(--sp-font-family-sans);
+    font-size: var(--sp-font-xs-size);
+    line-height: var(--sp-font-xs-line-height);
+    white-space: nowrap;
+    opacity: var(--sp-component-tooltip-opacity);
+    z-index: var(--sp-component-tooltip-z-index);
+    pointer-events: none;
+    visibility: hidden;
+    transition:
+      opacity var(--sp-duration-fast) var(--sp-easing-out),
+      visibility var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-tooltip--visible {
+    visibility: visible;
+  }
+
+  .sp-tooltip--top {
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%, calc(-1 * var(--sp-component-tooltip-offset)));
+  }
+
+  .sp-tooltip--bottom {
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, var(--sp-component-tooltip-offset));
+  }
+
+  .sp-tooltip--left {
+    right: 100%;
+    top: 50%;
+    transform: translate(calc(-1 * var(--sp-component-tooltip-offset)), -50%);
+  }
+
+  .sp-tooltip--right {
+    left: 100%;
+    top: 50%;
+    transform: translate(var(--sp-component-tooltip-offset), -50%);
   }
 }

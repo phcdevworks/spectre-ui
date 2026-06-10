@@ -31,6 +31,14 @@ Contract change type: additive
   Raised the `components.css` size budget in `tests/css-entrypoints.test.ts`
   from 96000 to 100000 bytes.
 
+- **Tooltip Recipe**: Added `getTooltipClasses` recipe plus `.sp-tooltip` CSS
+  in `src/styles/components.css`. Consumes the new `component.tooltip` tokens
+  (`tooltip.bg`, `tooltip.text`, `tooltip.border`) along with the existing
+  `--sp-opacity-tooltip` and `--sp-z-index-tooltip` primitives published in
+  `@phcdevworks/spectre-tokens@2.9.0`. `getTooltipClasses` supports `top`,
+  `bottom`, `left`, and `right` placements plus a `visible` flag. This is the
+  third of the five Phase 4 component recipes in `TODO.md`.
+
 ### Changed
 
 - **Token Alignment**: Updated `@phcdevworks/spectre-tokens` dependency to

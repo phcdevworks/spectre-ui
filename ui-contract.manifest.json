@@ -47,7 +47,8 @@
       "getTestimonialClasses",
       "getTestimonialQuoteClasses",
       "getToastClasses",
-      "getToastIconClasses"
+      "getToastIconClasses",
+      "getTooltipClasses"
     ]
   },
   "tailwindExports": [
@@ -115,6 +116,9 @@
     "toast": {
       "fn": "getToastClasses",
       "variants": ["info", "success", "warning", "danger"]
+    },
+    "tooltip": {
+      "fn": "getTooltipClasses"
     }
   }
 }
