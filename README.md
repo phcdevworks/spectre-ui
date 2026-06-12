@@ -1,5 +1,37 @@
 # @phcdevworks/spectre-ui
 
+## Repository Snapshot
+
+| Field | Value |
+|-------|-------|
+| Project team | `project-design` |
+| Repository role | Spectre L2 CSS, Tailwind, and recipe contract |
+| Package/artifact | `@phcdevworks/spectre-ui` |
+| Current version/status | 1.9.0 |
+
+## Standard Workflow
+
+1. Read [AGENTS.md](AGENTS.md), then the agent-specific guide for the task.
+2. Check [TODO.md](TODO.md) and [ROADMAP.md](ROADMAP.md) for current scope.
+3. Make the smallest repo-local change that satisfies the task.
+4. Run `npm run check` when validation is required or practical.
+5. Update docs and [CHANGELOG.md](CHANGELOG.md) only when behavior, public
+   contracts, or release-relevant metadata changed.
+
+## Documentation Map
+
+| Guide | Path |
+|-------|------|
+| Agent rules | [AGENTS.md](AGENTS.md) |
+| Claude Code | [CLAUDE.md](CLAUDE.md) |
+| Codex | [CODEX.md](CODEX.md) |
+| Copilot | [COPILOT.md](COPILOT.md) |
+| Jules | [JULES.md](JULES.md) |
+| Roadmap | [ROADMAP.md](ROADMAP.md) |
+| Todo | [TODO.md](TODO.md) |
+| Changelog | [CHANGELOG.md](CHANGELOG.md) |
+| Security | [SECURITY.md](SECURITY.md) |
+
 [![npm version](https://img.shields.io/npm/v/@phcdevworks/spectre-ui)](https://www.npmjs.com/package/@phcdevworks/spectre-ui)
 [![CI](https://github.com/phcdevworks/spectre-ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/phcdevworks/spectre-ui/actions/workflows/ci.yml)
 [![License](https://img.shields.io/npm/l/@phcdevworks/spectre-ui)](LICENSE)

@@ -1,5 +1,34 @@
 # Spectre UI Agent Guide
 
+## Repository Snapshot
+
+| Field | Value |
+|-------|-------|
+| Project team | `project-design` |
+| Repository role | Spectre L2 CSS, Tailwind, and recipe contract |
+| Package/artifact | `@phcdevworks/spectre-ui` |
+| Validation gate | `npm run check` |
+
+## Standard Authority Model
+
+| Agent | Role | Authority |
+|-------|------|-----------|
+| Claude Code | Lead implementation and validation | [CLAUDE.md](CLAUDE.md) |
+| OpenAI Codex | Documentation, release readiness, stabilization, and repo hygiene | [CODEX.md](CODEX.md) |
+| ChatGPT | Strategy, coordination, prompt design, and external review | Support only |
+| GitHub Copilot | Development assistance | [COPILOT.md](COPILOT.md) |
+| Google Jules | Bounded automated maintenance | [JULES.md](JULES.md) |
+
+Bradley Potts holds final authority for commits, merges, tags, publishing, and
+releases.
+
+## Standard Handoff
+
+Every AI-prepared change should report files changed, validation performed,
+public behavior or contract impact, and unresolved risks. Do not edit generated
+outputs directly. Do not update [CHANGELOG.md](CHANGELOG.md) unless the change
+is release-relevant.
+
 ## Primary AI Developer
 
 **Claude Code** (`claude-sonnet-4-6`) is the designated primary AI developer for
