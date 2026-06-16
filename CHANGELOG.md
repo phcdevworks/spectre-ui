@@ -6,6 +6,29 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-06-17
+
+Release Title: Token 3 Alignment
+
+Contract change type: breaking
+
+### Changed
+
+- **Token Alignment**: Updated `@phcdevworks/spectre-tokens` dependency to
+  `^3.0.0` and refreshed lockfile metadata against the latest published token
+  package. This is a major release because the upstream token package moved to
+  a breaking `3.0.0` contract.
+- **Avatar Surface Role**: Updated Avatar background role mappings from the
+  removed upstream `--sp-surface-alternate` token to
+  `--sp-surface-subtle`, preserving the existing Avatar class and recipe
+  contract while matching the v3 token surface.
+- **Release Readiness**: Updated package manager and development dependency
+  metadata, including the `esbuild` override and allowed script entry required
+  by the refreshed build stack.
+- **Roadmap Accuracy**: Corrected the token-gap notes in `TODO.md` after
+  verifying the published `@phcdevworks/spectre-tokens@3.0.0` package: link,
+  interactive surface state, and divider tokens remain blocked.
+
 ## [1.9.0] - 2026-06-10
 
 Release Title: Component Recipe Expansion
