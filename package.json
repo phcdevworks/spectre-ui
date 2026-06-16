@@ -101,13 +101,13 @@
     "typescript": "^5.9 || ^6.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^2.9.0"
+    "@phcdevworks/spectre-tokens": "^3.0.0"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.0.0",
     "@types/node": "^25.9.3",
-    "@typescript-eslint/eslint-plugin": "^8.61.0",
-    "@typescript-eslint/parser": "^8.61.0",
+    "@typescript-eslint/eslint-plugin": "^8.61.1",
+    "@typescript-eslint/parser": "^8.61.1",
     "autoprefixer": "^10.5.0",
     "eslint": "^10.5.0",
     "jiti": "^2.7.0",
@@ -118,14 +118,17 @@
     "tailwindcss": "^4.3.1",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.61.0",
+    "typescript-eslint": "^8.61.1",
     "vite": "^8.0.16",
-    "vitest": "^4.1.8"
+    "vitest": "^4.1.9"
   },
   "cSpell.words": [
     "phcdevworks"
   ],
+  "overrides": {
+    "esbuild": "^0.28.1"
+  },
   "allowScripts": {
-    "esbuild@0.27.7": true
+    "esbuild@0.28.1": true
   }
 }
