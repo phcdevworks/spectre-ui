@@ -142,19 +142,41 @@ semantic tokens are published to NPM.
   - `buttons.danger.focusVisible` and `buttons.success.focusVisible` consumed.
   - `colors.focus.*` references confirmed.
 
-- [x] Token gap audit refreshed against `2.8.0`
-  - **Now present and unblocking P2:**
-    - `link.default/hover/active/visited` — published in `2.8.0`.
-    - `surface.hover/selected/active` — published in `2.8.0`.
-    - `surface.divider` — published in `2.8.0`.
-  - **Still absent (blockers for Phase 4 only):**
-    - `component.nav`, `component.toast`, `component.tooltip`,
-      `component.dropdown`, `component.modal` — not yet in tokens.
+- [x] Sync against `@phcdevworks/spectre-tokens@3.0.0`
+  - `npm run validate:tokens` confirms the installed package matches the
+    declared `^3.0.0` range and is current.
+  - `--sp-surface-alternate` was renamed to `--sp-surface-subtle` upstream;
+    `src/styles/components.css` avatar roles updated to match
+    (`--sp-component-avatar-bg` and `.sp-avatar--placeholder`).
+  - `tests/token-drift.test.ts` passes against the `3.0.0` token set.
 
-### P2: Semantic UI Primitives — Active (tokens available)
+- [x] Token gap audit refreshed against `3.0.0`
+  - Programmatic sweep of every `--sp-*` reference across `src/styles/*.css`
+    against the published `node_modules/@phcdevworks/spectre-tokens/dist/index.css`:
+    589 token references in source, 0 unknown (excluding
+    `--sp-component-*`, which are locally-scoped role variables by design).
+  - **Confirmed present and already consumed correctly (Phase 4 groups):**
+    `--sp-nav-*`, `--sp-toast-*`, `--sp-tooltip-*`, `--sp-dropdown-*`,
+    `--sp-modal-*` all exist in `3.0.0` and match what the delivered Nav,
+    Toast, Tooltip, Dropdown, and Modal recipes reference.
+  - **Still absent (blockers for P2 below):**
+    - `link.default/hover/active/visited` (`--sp-link-*`) — not present in
+      `2.9.0` or `3.0.0`. The prior note claiming these published in `2.8.0`
+      was inaccurate.
+    - `surface.hover/selected/active` (`--sp-surface-hover`,
+      `--sp-surface-selected`, `--sp-surface-active`) — not present in `2.9.0`
+      or `3.0.0`. Same correction as above.
+    - `surface.divider` (`--sp-surface-divider`) — not present in `2.9.0` or
+      `3.0.0`. Same correction as above.
+  - Re-run this sweep against the live published package (not against notes
+    in this file) the next time `@phcdevworks/spectre-tokens` bumps.
 
-All three primitive token groups exist in `@phcdevworks/spectre-tokens@2.8.0`.
-This work is unblocked.
+### P2: Semantic UI Primitives — Blocked (tokens not yet published)
+
+None of the three primitive token groups below exist in
+`@phcdevworks/spectre-tokens@3.0.0` (verified by reading the published
+`dist/index.css` directly, not by trusting changelog notes). Do not start this
+work until the tokens are confirmed published.
 
 - [ ] Add link styling
   - Tokens: `link.default`, `link.hover`, `link.active`, `link.visited`
@@ -246,8 +268,10 @@ next.
 2. Phase 2 — done.
 3. Phase 3 P0 — done (v1.7.0 and v1.8.0 released).
 4. Phase 3 P1 — done (synced to `@phcdevworks/spectre-tokens@2.8.0`).
-5. **Phase 3 P2 — active.** Add Link, interactive surface states, Divider in
-   that order. Tokens are available; no upstream gate remains.
+5. **Phase 3 P2 — blocked.** Add Link, interactive surface states, Divider in
+   that order, once `link.*`, `surface.hover/selected/active`, and
+   `surface.divider` are confirmed present in a published
+   `@phcdevworks/spectre-tokens` release. Not present as of `3.0.0`.
 6. Phase 4 — gated on upstream. Add Nav, Toast, Tooltip, Dropdown, Modal once
    their `component.*` token groups publish in spectre-tokens.
 7. Phase 5 P0 — continuous; add regression coverage as adapter usage reveals

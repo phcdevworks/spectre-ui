@@ -242,7 +242,7 @@
     --sp-component-avatar-size-md: var(--sp-space-48);
     --sp-component-avatar-size-lg: var(--sp-space-64);
     --sp-component-avatar-size-xl: var(--sp-space-80);
-    --sp-component-avatar-bg: var(--sp-surface-alternate);
+    --sp-component-avatar-bg: var(--sp-surface-subtle);
     --sp-component-avatar-text: var(--sp-text-on-surface-default);
     --sp-component-avatar-radius-circle: var(--sp-radius-pill);
     --sp-component-avatar-radius-square: var(--sp-radius-lg);
@@ -1927,7 +1927,7 @@
   }
 
   .sp-avatar--placeholder {
-    background-color: var(--sp-surface-alternate);
+    background-color: var(--sp-surface-subtle);
     color: var(--sp-text-on-surface-meta);
   }
 
