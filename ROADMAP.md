@@ -118,6 +118,12 @@ auditable recipe families rather than large framework components.
 - `Toast` after upstream `component.toast` tokens publish.
 - `Tooltip` after upstream `component.tooltip` tokens publish.
 - `Dropdown` after upstream `component.dropdown` tokens publish.
+- `Container`, `Stack`, `Section` — layout primitives. `layout.*` tokens are
+  already published (`@phcdevworks/spectre-tokens@2.9.0`) and the underlying
+  `.sp-container`/`.sp-stack`/`.sp-hstack`/`.sp-section` utility classes
+  already exist in `src/styles/utilities.css`. No token blocker — only
+  missing the recipe wrapper that every other family has. See TODO.md
+  "Phase 4b — Layout Recipe Expansion" for the scoped breakdown.
 
 ### Standard deliverables per family
 
