@@ -130,3 +130,13 @@ export {
   type ModalRecipeOptions,
   type ModalOverlayRecipeOptions,
 } from './modal'
+
+export { getContainerClasses, type ContainerRecipeOptions } from './container'
+
+export {
+  getStackClasses,
+  type StackRecipeOptions,
+  type StackDirection,
+} from './stack'
+
+export { getSectionClasses, type SectionRecipeOptions } from './section'
