@@ -118,12 +118,16 @@ auditable recipe families rather than large framework components.
 - `Toast` after upstream `component.toast` tokens publish.
 - `Tooltip` after upstream `component.tooltip` tokens publish.
 - `Dropdown` after upstream `component.dropdown` tokens publish.
-- `Container`, `Stack`, `Section` — layout primitives. `layout.*` tokens are
-  already published (`@phcdevworks/spectre-tokens@2.9.0`) and the underlying
-  `.sp-container`/`.sp-stack`/`.sp-hstack`/`.sp-section` utility classes
-  already exist in `src/styles/utilities.css`. No token blocker — only
-  missing the recipe wrapper that every other family has. See TODO.md
-  "Phase 4b — Layout Recipe Expansion" for the scoped breakdown.
+- `Container`, `Stack`, `Section` — layout primitives. Delivered. See TODO.md
+  "Phase 4b — Layout Recipe Expansion".
+- `Grid` (v1) — responsive multi-column layout. `breakpoints.*` and
+  `layout.stack.gap.*` tokens are already published, no token blocker. First
+  recipe family requiring `@media`-based responsive behavior. Scope is fixed
+  equal-width column counts (`1/2/3/4/6/12`) with a baked-in responsive
+  step-down convention — no spans, offsets, or custom track sizing in v1. See
+  TODO.md "Phase 4c — Grid Recipe (v1)" for the scoped breakdown and "Phase
+  4c — Grid Recipe (v2, deferred)" for what's intentionally cut until a real
+  downstream need justifies it.
 
 ### Standard deliverables per family
 
@@ -219,7 +223,11 @@ migration window.
    interactive surface states, Divider.
 6. **Phase 4** — add component recipe families in this order when their tokens
    exist: Nav, Toast, Tooltip, Dropdown, Modal.
-7. **Phase 5 P0** — add downstream regression coverage as adapter usage reveals
-   gaps (continuous).
-8. **Phase 5 P1** — define deprecation mechanics before any public class, recipe
-   option, or variant is retired.
+7. **Phase 4b** — done. Container, Stack, Section delivered.
+8. **Phase 4c (v1)** — unblocked, not started. Add Grid recipe; no token gap.
+9. **Phase 4c (v2)** — deferred until a real downstream need surfaces:
+   column span, offsets, custom track sizing, per-breakpoint override.
+10. **Phase 5 P0** — add downstream regression coverage as adapter usage
+    reveals gaps (continuous).
+11. **Phase 5 P1** — define deprecation mechanics before any public class,
+    recipe option, or variant is retired.
