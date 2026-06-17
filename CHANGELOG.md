@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-06-17
+
+Release Title: Layout Recipe Expansion
+
 Contract change type: additive
 
 ### Added
