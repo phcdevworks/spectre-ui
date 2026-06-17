@@ -256,8 +256,64 @@ reaching for the raw classes or, worse, hand-rolled CSS.
       focused contract/recipe tests for the new family, following the same
       pattern as Alert/Avatar/Tag/Spinner.
 
+- [x] Coordinate with `@phcdevworks/spectre-ui-astro` once published — adapter
+      added `SpContainer`/`SpStack`/`SpSection` Astro components on top.
+
+---
+
+## Phase 4c — Grid Recipe (v1)
+
+Container/Stack/Section cover single-axis layout but not multi-column grids.
+Downstream consumers (`docs-phcdevworks-com`) need a responsive card/content
+grid and currently have no token-backed option, only raw CSS Grid or a
+third-party utility framework — neither consistent with the rest of the
+styling contract. This is the first recipe family in `spectre-ui` that needs
+responsive (breakpoint-aware) behavior; no prior recipe uses `@media`.
+
+Required tokens are already published — no `spectre-tokens` work needed:
+
+- `breakpoints.*` (`sm` 640px, `md` 768px, `lg` 1024px, `xl` 1280px, `2xl`
+  1536px) — confirmed present in the published package.
+- `layout.stack.gap.*` — already consumed by the Stack recipe, reused here.
+
+v1 scope is intentionally narrow: fixed equal-width column counts with a
+baked-in responsive step-down convention, no spans, no offsets, no custom
+track sizing. See Phase 4c-v2 below for what's deliberately deferred.
+
+- [ ] Add Grid recipe (`getGridClasses`)
+  - Options: `columns` (`1 | 2 | 3 | 4 | 6 | 12`, fixed set — no arbitrary
+    numbers), `gap` (`sm | md | lg`, reuses `layout.stack.gap` scale).
+  - Each `columns` value maps to a static class (e.g. `sp-grid-cols-3`) with
+    the responsive step-down baked into the CSS itself via `@media` rules at
+    `breakpoints.md` / `breakpoints.lg`: 1 column below `md`, half the target
+    column count at `md`, full target count at `lg`+. No per-breakpoint prop
+    — convention over configuration, consistent with how every other recipe
+    in this package exposes a fixed, auditable variant set.
+  - CSS in `src/styles/utilities.css`: `.sp-grid` (`display: grid`, gap from
+    `--sp-layout-stack-gap-*`) plus `.sp-grid-cols-{1,2,3,4,6,12}` variants.
+  - Follow `src/internal/resolve-option.ts` for option validation, matching
+    the pattern in `src/recipes/stack.ts`.
+
+- [ ] Update `ui-contract.manifest.json`, README recipe table, and add
+      focused contract/recipe/CSS tests, including a dedicated test for the
+      responsive `@media` breakpoints (first recipe family that needs this
+      kind of coverage — establish the pattern here for future responsive
+      recipes).
+
 - [ ] Coordinate with `@phcdevworks/spectre-ui-astro` once published — adapter
-      may add `SpContainer`/`SpStack`/`SpSection` Astro components on top.
+      should add an `SpGrid` Astro component on top.
+
+### Phase 4c — Grid Recipe (v2, deferred)
+
+Deliberately cut from v1 to avoid this becoming a parallel implementation of
+a general-purpose grid framework. Only take these on if a real downstream
+need (not a hypothetical) shows up after v1 ships.
+
+- [ ] Column span support (e.g. an item spanning 2 of 3 columns)
+- [ ] Column/row offsets
+- [ ] Custom track sizing (non-equal-width columns)
+- [ ] Per-breakpoint column override prop, if the baked-in convention from v1
+      proves too rigid for a real adapter use case
 
 ---
 
@@ -307,10 +363,15 @@ reaching for the raw classes or, worse, hand-rolled CSS.
    their `component.*` token groups publish in spectre-tokens.
 7. **Phase 4b — done.** Added Container, Stack, Section recipes
    (`getContainerClasses`, `getStackClasses`, `getSectionClasses`).
-8. Phase 5 P0 — continuous; add regression coverage as adapter usage reveals
-   gaps.
-9. Phase 5 P1 — define deprecation mechanics before retiring any public
-   class, recipe option, or variant.
+8. **Phase 4c (v1) — unblocked, not started.** Add Grid recipe
+   (`getGridClasses`) — `breakpoints.*` and `layout.stack.gap.*` tokens
+   already published, no token gap. First recipe needing `@media` coverage.
+9. Phase 4c (v2) — deferred until a real downstream need surfaces after v1
+   ships: column span, offsets, custom track sizing, per-breakpoint override.
+10. Phase 5 P0 — continuous; add regression coverage as adapter usage reveals
+    gaps.
+11. Phase 5 P1 — define deprecation mechanics before retiring any public
+    class, recipe option, or variant.
 
 ---
 
