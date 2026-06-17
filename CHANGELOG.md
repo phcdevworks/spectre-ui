@@ -6,6 +6,20 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: additive
+
+### Added
+
+- **Layout Recipes**: Added `getContainerClasses`, `getStackClasses`, and
+  `getSectionClasses` recipes wrapping the existing token-backed
+  `.sp-container`, `.sp-stack` / `.sp-hstack`, and `.sp-section` utility
+  classes in `src/styles/utilities.css`. These classes already consumed the
+  published `layout.*` token group (`@phcdevworks/spectre-tokens@2.9.0`) with
+  no token gap; this adds the missing recipe wrapper to match every other
+  component family. `getStackClasses` supports a `direction` option
+  (`vertical` | `horizontal`) mapping to `.sp-stack` / `.sp-hstack`. This is
+  Phase 4b in `TODO.md`.
+
 ## [2.0.0] - 2026-06-17
 
 Release Title: Token 3 Alignment
