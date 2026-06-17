@@ -29,6 +29,7 @@
       "getInputHelperTextClasses",
       "getInputLabelClasses",
       "getInputWrapperClasses",
+      "getContainerClasses",
       "getModalClasses",
       "getModalOverlayClasses",
       "getNavClasses",
@@ -43,7 +44,9 @@
       "getRatingStarClasses",
       "getRatingStarsClasses",
       "getRatingTextClasses",
+      "getSectionClasses",
       "getSpinnerClasses",
+      "getStackClasses",
       "getTagClasses",
       "getTestimonialAuthorClasses",
       "getTestimonialAuthorInfoClasses",
@@ -130,6 +133,15 @@
     },
     "modal": {
       "fn": "getModalClasses"
+    },
+    "container": {
+      "fn": "getContainerClasses"
+    },
+    "stack": {
+      "fn": "getStackClasses"
+    },
+    "section": {
+      "fn": "getSectionClasses"
     }
   }
 }

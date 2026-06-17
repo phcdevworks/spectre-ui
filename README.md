@@ -274,6 +274,9 @@ All options are optional and fall back to sensible defaults.
 | Tooltip     | `getTooltipClasses`     | placement: `top` `bottom` `left` `right`                                                                       | —                   | `visible`                                                               |
 | Dropdown    | `getDropdownClasses`    | menu placement: `bottom-start` `bottom-end` `top-start` `top-end`                                              | —                   | `fullWidth`, item: `active` `disabled`                                  |
 | Modal       | `getModalClasses`       | —                                                                                                              | —                   | `open` `fullWidth`                                                      |
+| Container   | `getContainerClasses`   | —                                                                                                              | —                   | —                                                                       |
+| Stack       | `getStackClasses`       | direction: `vertical` `horizontal`                                                                             | —                   | —                                                                       |
+| Section     | `getSectionClasses`     | —                                                                                                              | —                   | —                                                                       |
 
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements). See the full list below.
@@ -298,6 +301,7 @@ Root recipe functions:
 - `getBadgeClasses`
 - `getButtonClasses`
 - `getCardClasses`
+- `getContainerClasses`
 - `getDropdownClasses`
 - `getIconBoxClasses`
 - `getInputClasses`
@@ -305,7 +309,9 @@ Root recipe functions:
 - `getNavClasses`
 - `getPricingCardClasses`
 - `getRatingClasses`
+- `getSectionClasses`
 - `getSpinnerClasses`
+- `getStackClasses`
 - `getTagClasses`
 - `getTestimonialClasses`
 - `getToastClasses`

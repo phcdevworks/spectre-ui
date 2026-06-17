@@ -241,18 +241,18 @@ Modal). Downstream consumers (`docs-phcdevworks-com`, `www-phcdevworks-com`)
 need a consistent, type-safe way to apply layout structure instead of
 reaching for the raw classes or, worse, hand-rolled CSS.
 
-- [ ] Add Container recipe (`getContainerClasses`)
+- [x] Add Container recipe (`getContainerClasses`)
   - Wraps `.sp-container`. Options: none required initially; revisit if a
     `maxWidth` override variant is needed once adapters report a real case.
 
-- [ ] Add Stack recipe (`getStackClasses`)
+- [x] Add Stack recipe (`getStackClasses`)
   - Wraps `.sp-stack` / `.sp-hstack`. Option: `direction` (`vertical` |
     `horizontal`), mapping to the existing two classes.
 
-- [ ] Add Section recipe (`getSectionClasses`)
+- [x] Add Section recipe (`getSectionClasses`)
   - Wraps `.sp-section`.
 
-- [ ] Update `ui-contract.manifest.json`, README recipe table, and add
+- [x] Update `ui-contract.manifest.json`, README recipe table, and add
       focused contract/recipe tests for the new family, following the same
       pattern as Alert/Avatar/Tag/Spinner.
 
@@ -305,8 +305,8 @@ reaching for the raw classes or, worse, hand-rolled CSS.
    `@phcdevworks/spectre-tokens` release. Not present as of `3.0.0`.
 6. Phase 4 — gated on upstream. Add Nav, Toast, Tooltip, Dropdown, Modal once
    their `component.*` token groups publish in spectre-tokens.
-7. **Phase 4b — unblocked, not started.** Add Container, Stack, Section
-   recipes — `layout.*` tokens already published, no token gap.
+7. **Phase 4b — done.** Added Container, Stack, Section recipes
+   (`getContainerClasses`, `getStackClasses`, `getSectionClasses`).
 8. Phase 5 P0 — continuous; add regression coverage as adapter usage reveals
    gaps.
 9. Phase 5 P1 — define deprecation mechanics before retiring any public
