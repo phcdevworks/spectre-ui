@@ -2,14 +2,28 @@
   "permissions": {
     "allow": ["Bash(*)"],
     "deny": [
+      "Bash(rm -rf*)",
+      "Bash(rm -fr*)",
       "Bash(git commit*)",
-      "Bash(git push*)",
-      "Bash(git tag*)",
-      "Bash(git merge*)",
-      "Bash(git reset*)",
-      "Bash(git checkout*)",
-      "Bash(git clean*)",
-      "Bash(rm -rf*)"
+      "Bash(gh repo delete*)",
+      "Bash(gh repo archive*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean -f*)",
+      "Bash(git clean -d*)",
+      "Bash(git clean -x*)",
+      "Bash(git branch -D*)",
+      "Bash(git branch -d*)",
+      "Bash(git tag -d*)",
+      "Bash(git filter-branch*)",
+      "Bash(git filter-repo*)",
+      "Bash(git gc --prune*)",
+      "Bash(git rebase*)",
+      "Bash(npm unpublish*)",
+      "Bash(npm deprecate*)",
+      "Bash(dd *)",
+      "Bash(mkfs*)"
     ]
   }
 }
