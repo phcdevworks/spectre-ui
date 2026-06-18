@@ -306,8 +306,8 @@ track sizing. See Phase 4c-v2 below for what's deliberately deferred.
       kind of coverage — establish the pattern here for future responsive
       recipes).
 
-- [ ] Coordinate with `@phcdevworks/spectre-ui-astro` once published — adapter
-      should add an `SpGrid` Astro component on top.
+- [x] Coordinate with `@phcdevworks/spectre-ui-astro` once published — adapter
+      added an `SpGrid` Astro component on top (`spectre-ui-astro@2.9.0`).
 
 ### Phase 4c — Grid Recipe (v2, deferred)
 
@@ -320,6 +320,125 @@ need (not a hypothetical) shows up after v1 ships.
 - [ ] Custom track sizing (non-equal-width columns)
 - [ ] Per-breakpoint column override prop, if the baked-in convention from v1
       proves too rigid for a real adapter use case
+
+---
+
+## Phase 4d — App Shell Layout: Stack/Container Options, Sidebar, Footer
+
+Real downstream need surfaced in `docs-phcdevworks-com`'s app shell (top bar
++ sidebar + main content, no bottom bar yet). `SpNav` already covers the top
+bar as a token-backed primitive, but sidebar and footer/bottom-bar have no
+equivalent — every consumer would otherwise hand-roll them, the same
+inconsistency that caused the original Container/Stack/Section gap. This
+phase closes both the narrow option gap (Stack/Container) and the missing
+layout-pattern tier (Sidebar/Footer) in one coordinated change, since they
+solve the same underlying problem for the same consumer.
+
+Today, `getStackClasses` has no way to give a flex child a fixed or bounded
+width — sidebar width is just "however wide its content forces it," and
+`getContainerClasses` has no way to bound prose to a readable line length —
+content runs full-bleed edge to edge. Both `Stack` and `Container` currently
+return a single fixed class with no options beyond `direction`
+(`ContainerRecipeOptions` is empty today). This is not solvable by composing
+existing recipes; it needs new options on both. Do not patch around this
+downstream with arbitrary pixel/rem values in consuming repos — that
+violates the zero-raw-value rule this package exists to enforce.
+
+Sidebar and Footer are a new tier above plain recipes: they are layout
+*patterns* (fixed width + collapse/responsive behavior for Sidebar; a simple
+token-backed bottom region for Footer), not single CSS-class wrappers like
+Container/Stack/Section. Treat them with the same rigor as `SpNav` (the
+existing top-bar pattern) rather than inventing a new convention.
+
+### Stack and Container option additions
+
+Token audit complete (checked the published `@phcdevworks/spectre-tokens`
+object directly, not assumptions): there is **no existing width or sizing
+scale** anywhere in the published `3.0.0` package. `layout` only has
+`section`, `stack` (`gap` only), and `container` (`paddingInline` + a single
+fixed `maxWidth`). Unlike Grid (`breakpoints.*`/`layout.stack.gap.*` already
+existed) and unlike the Container/Stack/Section recipes (consumed existing
+`layout.*` values), this phase genuinely needed new token work first.
+
+**Status: implemented upstream, not yet published.** `spectre-tokens` has
+committed the fix (commit `f8f6f95` area, working-tree changes as of this
+writing) but has not version-bumped or published to npm. Do not start this
+package's work until the new `spectre-tokens` version is actually published
+and the dependency range here is bumped to cover it — committed-but-unpublished
+is not consumable.
+
+Confirmed token shape once published:
+
+- `layout.sidebar.width` = `16rem`, emits CSS variable
+  `--sp-layout-sidebar-width`, exposed in the Tailwind theme export as
+  `width.sidebar`.
+- `layout.container.maxWidthProse` = `65ch` — a **sibling key**, not nested
+  under `maxWidth` (i.e. `layout.container.maxWidthProse`, not
+  `layout.container.maxWidth.prose`) — emits CSS variable
+  `--sp-layout-container-max-width-prose`, exposed in the Tailwind theme
+  export as `maxWidth.prose`. Use this exact path; do not assume the nested
+  shape from earlier planning notes.
+
+- [ ] Confirm `@phcdevworks/spectre-tokens` has actually published (check npm,
+      not just the source repo) before starting the two items below.
+
+- [ ] Add a `Stack` width/basis option — e.g. `getStackClasses({ basis:
+      'sidebar' })` mapping to `--sp-layout-sidebar-width`, distinct from the
+      default `flex: 1` auto-sizing behavior children get today.
+
+- [ ] Add a `Container` `maxWidth` option — e.g. `getContainerClasses({
+      maxWidth: 'prose' })` mapping to `--sp-layout-container-max-width-prose`,
+      distinct from the existing default `--sp-layout-container-max-width`
+      used for page-level width.
+
+### Sidebar recipe (new layout pattern)
+
+- [ ] Audit `component.nav` tokens (used by `SpNav`) for a reusable pattern
+      before inventing new token names — Sidebar is conceptually the
+      vertical counterpart to the existing top-bar Nav, so token roles
+      (`bg`, `text`, `border`, link states) should very likely come from the
+      same or a parallel `component.*` group, not a new ad hoc one.
+
+- [ ] Add `getSidebarClasses` (or fold into `getNavClasses` with an
+      `orientation` option — decide based on the token audit above, do not
+      assume a separate recipe is correct by default).
+  - Fixed width sourced from the same width token as the Stack `basis`
+    option above (do not duplicate the value under a second token name).
+  - **Mobile behavior decided: slide-out drawer**, not a CSS-only reflow to
+    stacked content. Below `breakpoints.md`, the sidebar is off-canvas by
+    default (e.g. `transform: translateX(-100%)`) with a transition, plus an
+    overlay/backdrop element, toggled via a `data-sidebar-open` (or similar)
+    attribute on a wrapper element.
+  - This package owns the **CSS contract only**: the off-canvas position,
+    transition, backdrop styling, and the data-attribute selector contract
+    (e.g. `[data-sidebar-open="true"] .sp-sidebar { transform: translateX(0) }`).
+    It does not own the toggle behavior itself — no JS, no click handlers,
+    no state management here. That lives in the adapter (see
+    `spectre-ui-astro` Phase 7), which owns the hamburger button, click
+    handler, and SSR-safe initial closed state, and flips the data-attribute
+    this package's CSS reacts to. This is the first recipe with an
+    interactive-state contract; document the data-attribute name and
+    expected values in the README as part of the public contract, since
+    adapters depend on it.
+
+### Footer recipe (new layout pattern)
+
+- [ ] Add `getFooterClasses` — token-backed bottom bar/region, modeled on
+      `SpNav`'s existing `bordered`/`sticky`/`fullWidth` option shape for
+      consistency, minus `sticky` unless a real downstream need asks for a
+      sticky footer specifically.
+
+### Delivery
+
+- [ ] Update `ui-contract.manifest.json`, README recipe tables, and add
+      focused contract/recipe/CSS tests for all additions in this phase,
+      following the same audit pattern established for Grid's `@media`
+      literal check.
+
+- [ ] Coordinate with `@phcdevworks/spectre-ui-astro` once published —
+      adapter should add the new props to `SpStack`/`SpContainer` and new
+      `SpSidebar`/`SpFooter` components, following the `SpNav` pattern for
+      the latter two.
 
 ---
 
@@ -369,14 +488,15 @@ need (not a hypothetical) shows up after v1 ships.
    their `component.*` token groups publish in spectre-tokens.
 7. **Phase 4b — done.** Added Container, Stack, Section recipes
    (`getContainerClasses`, `getStackClasses`, `getSectionClasses`).
-8. **Phase 4c (v1) — unblocked, not started.** Add Grid recipe
-   (`getGridClasses`) — `breakpoints.*` and `layout.stack.gap.*` tokens
-   already published, no token gap. First recipe needing `@media` coverage.
+8. **Phase 4c (v1) — done.** Added Grid recipe (`getGridClasses`).
 9. Phase 4c (v2) — deferred until a real downstream need surfaces after v1
    ships: column span, offsets, custom track sizing, per-breakpoint override.
-10. Phase 5 P0 — continuous; add regression coverage as adapter usage reveals
+10. **Phase 4d — not started, real downstream need confirmed.** Add Stack
+    width/basis option and Container `maxWidth` option — audit
+    `spectre-tokens` for an existing width scale before assuming a token gap.
+11. Phase 5 P0 — continuous; add regression coverage as adapter usage reveals
     gaps.
-11. Phase 5 P1 — define deprecation mechanics before retiring any public
+12. Phase 5 P1 — define deprecation mechanics before retiring any public
     class, recipe option, or variant.
 
 ---
