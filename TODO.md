@@ -280,7 +280,7 @@ v1 scope is intentionally narrow: fixed equal-width column counts with a
 baked-in responsive step-down convention, no spans, no offsets, no custom
 track sizing. See Phase 4c-v2 below for what's deliberately deferred.
 
-- [ ] Add Grid recipe (`getGridClasses`)
+- [x] Add Grid recipe (`getGridClasses`)
   - Options: `columns` (`1 | 2 | 3 | 4 | 6 | 12`, fixed set — no arbitrary
     numbers), `gap` (`sm | md | lg`, reuses `layout.stack.gap` scale).
   - Each `columns` value maps to a static class (e.g. `sp-grid-cols-3`) with
@@ -293,8 +293,14 @@ track sizing. See Phase 4c-v2 below for what's deliberately deferred.
     `--sp-layout-stack-gap-*`) plus `.sp-grid-cols-{1,2,3,4,6,12}` variants.
   - Follow `src/internal/resolve-option.ts` for option validation, matching
     the pattern in `src/recipes/stack.ts`.
+  - CSS cannot reference `var()` inside `@media` feature queries, so the
+    `768px` / `1024px` breakpoint values are written as literals in
+    `utilities.css`. `tests/token-drift.test.ts` was extended with a
+    dedicated check that any `@media (...)` literal must match a published
+    `--sp-breakpoint-*` token value, so this stays auditable instead of
+    becoming a silent escape hatch from the zero-raw-value rule.
 
-- [ ] Update `ui-contract.manifest.json`, README recipe table, and add
+- [x] Update `ui-contract.manifest.json`, README recipe table, and add
       focused contract/recipe/CSS tests, including a dedicated test for the
       responsive `@media` breakpoints (first recipe family that needs this
       kind of coverage — establish the pattern here for future responsive

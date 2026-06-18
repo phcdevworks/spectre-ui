@@ -30,6 +30,7 @@
       "getInputLabelClasses",
       "getInputWrapperClasses",
       "getContainerClasses",
+      "getGridClasses",
       "getModalClasses",
       "getModalOverlayClasses",
       "getNavClasses",
@@ -142,6 +143,9 @@
     },
     "section": {
       "fn": "getSectionClasses"
+    },
+    "grid": {
+      "fn": "getGridClasses"
     }
   }
 }

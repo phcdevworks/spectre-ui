@@ -26,6 +26,70 @@
     padding-bottom: var(--sp-layout-section-padding-md);
   }
 
+  .sp-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .sp-grid--gap-sm {
+    gap: var(--sp-layout-stack-gap-sm);
+  }
+
+  .sp-grid--gap-md {
+    gap: var(--sp-layout-stack-gap-md);
+  }
+
+  .sp-grid--gap-lg {
+    gap: var(--sp-layout-stack-gap-lg);
+  }
+
+  .sp-grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  /* min-width values match the published --sp-breakpoint-md / --sp-breakpoint-lg
+     token values; CSS does not allow var() inside @media feature queries. */
+  @media (min-width: 768px) {
+    .sp-grid-cols-2 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .sp-grid-cols-3,
+    .sp-grid-cols-4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sp-grid-cols-6 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .sp-grid-cols-12 {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .sp-grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sp-grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .sp-grid-cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .sp-grid-cols-6 {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .sp-grid-cols-12 {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+  }
+
   .sp-shadow-soft {
     box-shadow: var(--sp-shadow-md);
   }

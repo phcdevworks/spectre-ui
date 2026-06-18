@@ -277,6 +277,7 @@ All options are optional and fall back to sensible defaults.
 | Container   | `getContainerClasses`   | —                                                                                                              | —                   | —                                                                       |
 | Stack       | `getStackClasses`       | direction: `vertical` `horizontal`                                                                             | —                   | —                                                                       |
 | Section     | `getSectionClasses`     | —                                                                                                              | —                   | —                                                                       |
+| Grid        | `getGridClasses`        | columns: `1` `2` `3` `4` `6` `12`                                                                              | gap: `sm` `md` `lg` | —                                                                       |
 
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements). See the full list below.
@@ -303,6 +304,7 @@ Root recipe functions:
 - `getCardClasses`
 - `getContainerClasses`
 - `getDropdownClasses`
+- `getGridClasses`
 - `getIconBoxClasses`
 - `getInputClasses`
 - `getModalClasses`
