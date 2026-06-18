@@ -6,6 +6,22 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: additive
+
+### Added
+
+- **Grid Recipe**: Added `getGridClasses` recipe wrapping new token-backed
+  `.sp-grid` / `.sp-grid-cols-{1,2,3,4,6,12}` utility classes in
+  `src/styles/utilities.css`. Options: `columns` (`1 | 2 | 3 | 4 | 6 | 12`)
+  and `gap` (`sm | md | lg`, reusing the `layout.stack.gap` scale). Each
+  column count is responsive by convention: 1 column below `breakpoints.md`,
+  half the target count at `md`, full target count at `breakpoints.lg`+. This
+  is the first recipe family in the package to use `@media`; the breakpoint
+  values are written as literals (CSS forbids `var()` inside media feature
+  queries) and `tests/token-drift.test.ts` now asserts any `@media (...)`
+  literal must match a published `--sp-breakpoint-*` token value. This is
+  Phase 4c (v1) in `TODO.md`.
+
 ## [2.1.0] - 2026-06-17
 
 Release Title: Layout Recipe Expansion
