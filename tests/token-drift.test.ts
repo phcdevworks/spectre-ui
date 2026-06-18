@@ -75,11 +75,17 @@ describe('token drift guard', () => {
     // Regex to strip custom-property definitions (--sp-*: <value>;)
     // These are token/role declarations, not raw usage in properties.
     const customPropDefRegex = /--sp-[a-z0-9-]+\s*:[^;]+;/g;
+    // CSS forbids var() inside @media feature queries, so breakpoint values
+    // must appear as literals there. Allowed only when they match a published
+    // --sp-breakpoint-* token value (checked in the test below).
+    const mediaFeatureQueryRegex = /@media\s*\([^)]*\)/g;
 
     styleContents
       .filter(({ filePath }) => !filePath.endsWith('base.css'))
       .forEach(({ filePath, content }) => {
-        const stripped = content.replace(customPropDefRegex, '');
+        const stripped = content
+          .replace(customPropDefRegex, '')
+          .replace(mediaFeatureQueryRegex, '');
         const matches = stripped.match(rawMeasurementRegex);
         if (matches) {
           offenders.push(`${path.basename(filePath)}: ${matches.join(', ')}`);
@@ -87,6 +93,34 @@ describe('token drift guard', () => {
       });
 
     expect(offenders, `Literal measurements found:\n- ${offenders.join('\n- ')}`).toHaveLength(0);
+  });
+
+  it('only uses published --sp-breakpoint-* values as literals in @media feature queries', () => {
+    const breakpointTokenRegex = /--sp-breakpoint-[a-z0-9-]+:\s*([0-9]+px)/g;
+    const publishedBreakpointValues = new Set(
+      Array.from(tokensCss.matchAll(breakpointTokenRegex), (match) => match[1]),
+    );
+
+    const mediaFeatureQueryRegex = /@media\s*\(([^)]*)\)/g;
+    const offenders: string[] = [];
+
+    styleContents
+      .filter(({ filePath }) => !filePath.endsWith('base.css'))
+      .forEach(({ filePath, content }) => {
+        for (const match of content.matchAll(mediaFeatureQueryRegex)) {
+          const params = match[1];
+          for (const valueMatch of params.matchAll(/([0-9]+px)/g)) {
+            if (!publishedBreakpointValues.has(valueMatch[1])) {
+              offenders.push(`${path.basename(filePath)}: @media (${params}) -> ${valueMatch[1]}`);
+            }
+          }
+        }
+      });
+
+    expect(
+      offenders,
+      `@media literals not matching a published breakpoint token:\n- ${offenders.join('\n- ')}`,
+    ).toHaveLength(0);
   });
 
   it('does not include raw typography values in source styles', () => {

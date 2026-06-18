@@ -140,3 +140,10 @@ export {
 } from './stack'
 
 export { getSectionClasses, type SectionRecipeOptions } from './section'
+
+export {
+  getGridClasses,
+  type GridRecipeOptions,
+  type GridColumns,
+  type GridGap,
+} from './grid'
