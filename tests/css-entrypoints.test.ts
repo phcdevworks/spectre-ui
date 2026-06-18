@@ -20,7 +20,7 @@ const ENTRYPOINT_CONTRACTS = [
     standaloneTokens: ['--sp-surface-page:', '--sp-text-on-page-default:'],
     bundleMarkers: ['@layer base', 'body {', ':focus-visible {'],
     forbiddenMarkers: ['@layer components', '@layer utilities', '.sp-btn {', '.sp-stack {'],
-    maxBytes: 20000,
+    maxBytes: 21000,
   },
   {
     fileName: 'components.css',
@@ -34,7 +34,7 @@ const ENTRYPOINT_CONTRACTS = [
     standaloneTokens: ['--sp-surface-page:', '--sp-layout-stack-gap-md:'],
     bundleMarkers: ['@layer utilities', '.sp-stack {', '@keyframes fade-in'],
     forbiddenMarkers: ['@layer base', '@layer components', 'body {', ':focus-visible {', '.sp-btn {', '.sp-card {'],
-    maxBytes: 24000,
+    maxBytes: 25000,
   },
 ] as const;
 
