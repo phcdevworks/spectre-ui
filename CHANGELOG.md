@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-06-18
+
+Release Title: Grid Recipe Expansion
+
 Contract change type: additive
 
 ### Added
