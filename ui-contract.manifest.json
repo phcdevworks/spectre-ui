@@ -30,6 +30,7 @@
       "getInputLabelClasses",
       "getInputWrapperClasses",
       "getContainerClasses",
+      "getFooterClasses",
       "getGridClasses",
       "getModalClasses",
       "getModalOverlayClasses",
@@ -46,6 +47,9 @@
       "getRatingStarsClasses",
       "getRatingTextClasses",
       "getSectionClasses",
+      "getSidebarBackdropClasses",
+      "getSidebarClasses",
+      "getSidebarLinkClasses",
       "getSpinnerClasses",
       "getStackClasses",
       "getTagClasses",
@@ -146,6 +150,12 @@
     },
     "grid": {
       "fn": "getGridClasses"
+    },
+    "sidebar": {
+      "fn": "getSidebarClasses"
+    },
+    "footer": {
+      "fn": "getFooterClasses"
     }
   }
 }

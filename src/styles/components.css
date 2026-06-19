@@ -315,6 +315,23 @@
     --sp-component-nav-link-active: var(--sp-nav-link-active);
     --sp-component-nav-border: var(--sp-nav-border);
 
+    /* sidebar roles (reuses nav roles - vertical counterpart to the top-bar nav) */
+    --sp-component-sidebar-bg: var(--sp-nav-bg);
+    --sp-component-sidebar-text: var(--sp-nav-text);
+    --sp-component-sidebar-link: var(--sp-nav-link);
+    --sp-component-sidebar-link-hover: var(--sp-nav-link-hover);
+    --sp-component-sidebar-link-active: var(--sp-nav-link-active);
+    --sp-component-sidebar-border: var(--sp-nav-border);
+    --sp-component-sidebar-width: var(--sp-layout-sidebar-width);
+    --sp-component-sidebar-z-index: var(--sp-z-index-fixed);
+    --sp-component-sidebar-backdrop: var(--sp-surface-overlay);
+    --sp-component-sidebar-backdrop-z-index: var(--sp-z-index-overlay);
+
+    /* footer roles (reuses nav roles - bottom-bar counterpart to the top-bar nav) */
+    --sp-component-footer-bg: var(--sp-nav-bg);
+    --sp-component-footer-text: var(--sp-nav-text);
+    --sp-component-footer-border: var(--sp-nav-border);
+
     /* toast roles */
     --sp-component-toast-radius: var(--sp-radius-lg);
     --sp-component-toast-padding-x: var(--sp-space-16);
@@ -2226,6 +2243,120 @@
   .sp-nav__link[aria-disabled="true"] {
     pointer-events: none;
     opacity: var(--sp-opacity-disabled);
+  }
+
+  /* SIDEBAR -------------------------------------------------------------- */
+  .sp-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-space-16);
+    width: var(--sp-component-sidebar-width);
+    padding: var(--sp-space-16);
+    background-color: var(--sp-component-sidebar-bg);
+    color: var(--sp-component-sidebar-text);
+    font-family: var(--sp-font-family-sans);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translateX(-100%);
+    z-index: var(--sp-component-sidebar-z-index);
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out),
+      border-color var(--sp-duration-fast) var(--sp-easing-out),
+      transform var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-sidebar--bordered {
+    border-right: var(--sp-component-border-width) solid var(--sp-component-sidebar-border);
+  }
+
+  .sp-sidebar__link {
+    color: var(--sp-component-sidebar-link);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+    font-weight: var(--sp-font-sm-weight);
+    text-decoration: none;
+    transition: color var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-sidebar__link:hover,
+  .sp-sidebar__link--hover,
+  .sp-sidebar__link.is-hover {
+    color: var(--sp-component-sidebar-link-hover);
+  }
+
+  .sp-sidebar__link:focus-visible,
+  .sp-sidebar__link--focus,
+  .sp-sidebar__link.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
+  }
+
+  .sp-sidebar__link--active,
+  .sp-sidebar__link.is-active {
+    color: var(--sp-component-sidebar-link-active);
+  }
+
+  .sp-sidebar__link--disabled,
+  .sp-sidebar__link[aria-disabled="true"] {
+    pointer-events: none;
+    opacity: var(--sp-opacity-disabled);
+  }
+
+  .sp-sidebar-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: var(--sp-component-sidebar-backdrop);
+    z-index: var(--sp-component-sidebar-backdrop-z-index);
+  }
+
+  [data-sidebar-open="true"] .sp-sidebar {
+    transform: translateX(0);
+  }
+
+  [data-sidebar-open="true"] .sp-sidebar-backdrop {
+    display: block;
+  }
+
+  /* Above breakpoints.md, the sidebar docks inline instead of as an off-canvas
+     drawer - see Grid's @media literal convention for why this is a literal. */
+  @media (min-width: 768px) {
+    .sp-sidebar {
+      position: static;
+      height: auto;
+      transform: none;
+    }
+
+    .sp-sidebar-backdrop {
+      display: none;
+    }
+  }
+
+  /* FOOTER ----------------------------------------------------------------- */
+  .sp-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-space-16);
+    padding: var(--sp-space-12) var(--sp-space-16);
+    background-color: var(--sp-component-footer-bg);
+    color: var(--sp-component-footer-text);
+    font-family: var(--sp-font-family-sans);
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out),
+      border-color var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-footer--bordered {
+    border-top: var(--sp-component-border-width) solid var(--sp-component-footer-border);
+  }
+
+  .sp-footer--full {
+    width: 100%;
   }
 
   /* TOASTS ----------------------------------------------------------------- */

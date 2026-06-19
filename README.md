@@ -274,10 +274,12 @@ All options are optional and fall back to sensible defaults.
 | Tooltip     | `getTooltipClasses`     | placement: `top` `bottom` `left` `right`                                                                       | —                   | `visible`                                                               |
 | Dropdown    | `getDropdownClasses`    | menu placement: `bottom-start` `bottom-end` `top-start` `top-end`                                              | —                   | `fullWidth`, item: `active` `disabled`                                  |
 | Modal       | `getModalClasses`       | —                                                                                                              | —                   | `open` `fullWidth`                                                      |
-| Container   | `getContainerClasses`   | —                                                                                                              | —                   | —                                                                       |
-| Stack       | `getStackClasses`       | direction: `vertical` `horizontal`                                                                             | —                   | —                                                                       |
+| Container   | `getContainerClasses`   | maxWidth: `prose`                                                                                              | —                   | —                                                                       |
+| Stack       | `getStackClasses`       | direction: `vertical` `horizontal`, basis: `sidebar`                                                           | —                   | —                                                                       |
 | Section     | `getSectionClasses`     | —                                                                                                              | —                   | —                                                                       |
 | Grid        | `getGridClasses`        | columns: `1` `2` `3` `4` `6` `12`                                                                              | gap: `sm` `md` `lg` | —                                                                       |
+| Sidebar     | `getSidebarClasses`     | —                                                                                                              | —                   | `bordered`                                                              |
+| Footer      | `getFooterClasses`      | —                                                                                                              | —                   | `bordered` `fullWidth`                                                  |
 
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements). See the full list below.
@@ -304,6 +306,7 @@ Root recipe functions:
 - `getCardClasses`
 - `getContainerClasses`
 - `getDropdownClasses`
+- `getFooterClasses`
 - `getGridClasses`
 - `getIconBoxClasses`
 - `getInputClasses`
@@ -312,6 +315,7 @@ Root recipe functions:
 - `getPricingCardClasses`
 - `getRatingClasses`
 - `getSectionClasses`
+- `getSidebarClasses`
 - `getSpinnerClasses`
 - `getStackClasses`
 - `getTagClasses`
@@ -337,6 +341,8 @@ Root recipe helper functions:
 - `getRatingStarClasses`
 - `getRatingStarsClasses`
 - `getRatingTextClasses`
+- `getSidebarBackdropClasses`
+- `getSidebarLinkClasses`
 - `getTestimonialAuthorClasses`
 - `getTestimonialAuthorInfoClasses`
 - `getTestimonialAuthorNameClasses`
@@ -377,6 +383,28 @@ Every contract-facing surface must match that manifest. Validation fails when
 README documentation omits manifest-declared exports, when export snapshots
 drift, when Tailwind artifacts drift, or when CSS contract coverage no longer
 matches the declared surface.
+
+### Sidebar interactive-state contract
+
+`getSidebarClasses` is the first recipe family with an interactive-state CSS
+contract. Below `breakpoints.md` (768px), `.sp-sidebar` renders off-canvas
+(`transform: translateX(-100%)`). This package owns only the CSS reaction to
+that state — it does not own toggle behavior, click handlers, or open/closed
+state management.
+
+Consumers (typically a framework adapter) toggle the sidebar by setting a
+`data-sidebar-open="true"` attribute on an ancestor element wrapping
+`.sp-sidebar` and `.sp-sidebar-backdrop` (from `getSidebarBackdropClasses`):
+
+- `[data-sidebar-open="true"] .sp-sidebar` slides the sidebar into view
+  (`transform: translateX(0)`).
+- `[data-sidebar-open="true"] .sp-sidebar-backdrop` shows the backdrop
+  overlay (`display: block`).
+- Above `breakpoints.md`, the sidebar docks inline and the backdrop is
+  always hidden, regardless of the `data-sidebar-open` value.
+
+Adapters own the hamburger/toggle control, click handling, and SSR-safe
+initial closed state.
 
 ## Downstream boundaries
 

@@ -379,58 +379,57 @@ Confirmed token shape once published:
   export as `maxWidth.prose`. Use this exact path; do not assume the nested
   shape from earlier planning notes.
 
-- [ ] Confirm `@phcdevworks/spectre-tokens` has actually published (check npm,
+- [x] Confirm `@phcdevworks/spectre-tokens` has actually published (check npm,
       not just the source repo) before starting the two items below.
+      Confirmed: `3.1.0` published to npm with both `--sp-layout-sidebar-width`
+      and `--sp-layout-container-max-width-prose`.
 
-- [ ] Add a `Stack` width/basis option — e.g. `getStackClasses({ basis:
+- [x] Add a `Stack` width/basis option — `getStackClasses({ basis:
       'sidebar' })` mapping to `--sp-layout-sidebar-width`, distinct from the
       default `flex: 1` auto-sizing behavior children get today.
 
-- [ ] Add a `Container` `maxWidth` option — e.g. `getContainerClasses({
+- [x] Add a `Container` `maxWidth` option — `getContainerClasses({
       maxWidth: 'prose' })` mapping to `--sp-layout-container-max-width-prose`,
       distinct from the existing default `--sp-layout-container-max-width`
       used for page-level width.
 
 ### Sidebar recipe (new layout pattern)
 
-- [ ] Audit `component.nav` tokens (used by `SpNav`) for a reusable pattern
-      before inventing new token names — Sidebar is conceptually the
-      vertical counterpart to the existing top-bar Nav, so token roles
-      (`bg`, `text`, `border`, link states) should very likely come from the
-      same or a parallel `component.*` group, not a new ad hoc one.
+- [x] Audit `component.nav` tokens (used by `SpNav`) for a reusable pattern
+      before inventing new token names. Confirmed `component.nav` is a flat
+      group (`bg`, `text`, `link`, `linkHover`, `linkActive`, `border`) with
+      no existing sidebar-specific group. Decided on a separate
+      `getSidebarClasses` recipe (not folded into `getNavClasses`) since
+      Sidebar's vertical layout, fixed width, and off-canvas drawer behavior
+      are structurally distinct from Nav's horizontal top-bar contract —
+      but it reuses the same `--sp-nav-*` token roles via new
+      `--sp-component-sidebar-*` aliases, no new token group invented.
 
-- [ ] Add `getSidebarClasses` (or fold into `getNavClasses` with an
-      `orientation` option — decide based on the token audit above, do not
-      assume a separate recipe is correct by default).
-  - Fixed width sourced from the same width token as the Stack `basis`
-    option above (do not duplicate the value under a second token name).
-  - **Mobile behavior decided: slide-out drawer**, not a CSS-only reflow to
-    stacked content. Below `breakpoints.md`, the sidebar is off-canvas by
-    default (e.g. `transform: translateX(-100%)`) with a transition, plus an
-    overlay/backdrop element, toggled via a `data-sidebar-open` (or similar)
-    attribute on a wrapper element.
+- [x] Add `getSidebarClasses`, `getSidebarLinkClasses`, and
+      `getSidebarBackdropClasses`.
+  - Fixed width sourced from `--sp-layout-sidebar-width`, the same token as
+    the Stack `basis` option above (no duplicated value under a second name).
+  - **Mobile behavior: slide-out drawer.** Below `breakpoints.md`, `.sp-sidebar`
+    is off-canvas by default (`transform: translateX(-100%)`) with a
+    transition, plus `.sp-sidebar-backdrop`, toggled via a
+    `data-sidebar-open="true"` attribute on an ancestor wrapper.
   - This package owns the **CSS contract only**: the off-canvas position,
     transition, backdrop styling, and the data-attribute selector contract
-    (e.g. `[data-sidebar-open="true"] .sp-sidebar { transform: translateX(0) }`).
-    It does not own the toggle behavior itself — no JS, no click handlers,
-    no state management here. That lives in the adapter (see
-    `spectre-ui-astro` Phase 7), which owns the hamburger button, click
-    handler, and SSR-safe initial closed state, and flips the data-attribute
-    this package's CSS reacts to. This is the first recipe with an
-    interactive-state contract; document the data-attribute name and
-    expected values in the README as part of the public contract, since
-    adapters depend on it.
+    (`[data-sidebar-open="true"] .sp-sidebar { transform: translateX(0) }`).
+    No JS, no click handlers, no state management here — that lives in the
+    adapter (see `spectre-ui-astro` Phase 7). Documented as the first
+    interactive-state contract in the README's "Public contract guarantees"
+    section.
 
 ### Footer recipe (new layout pattern)
 
-- [ ] Add `getFooterClasses` — token-backed bottom bar/region, modeled on
-      `SpNav`'s existing `bordered`/`sticky`/`fullWidth` option shape for
-      consistency, minus `sticky` unless a real downstream need asks for a
-      sticky footer specifically.
+- [x] Add `getFooterClasses` — token-backed bottom bar/region, modeled on
+      `SpNav`'s `bordered`/`fullWidth` option shape, minus `sticky` (no real
+      downstream need for a sticky footer surfaced).
 
 ### Delivery
 
-- [ ] Update `ui-contract.manifest.json`, README recipe tables, and add
+- [x] Update `ui-contract.manifest.json`, README recipe tables, and add
       focused contract/recipe/CSS tests for all additions in this phase,
       following the same audit pattern established for Grid's `@media`
       literal check.
@@ -491,9 +490,10 @@ Confirmed token shape once published:
 8. **Phase 4c (v1) — done.** Added Grid recipe (`getGridClasses`).
 9. Phase 4c (v2) — deferred until a real downstream need surfaces after v1
    ships: column span, offsets, custom track sizing, per-breakpoint override.
-10. **Phase 4d — not started, real downstream need confirmed.** Add Stack
-    width/basis option and Container `maxWidth` option — audit
-    `spectre-tokens` for an existing width scale before assuming a token gap.
+10. **Phase 4d — done.** Added Stack `basis` option, Container `maxWidth`
+    option, and new Sidebar/Footer layout-pattern recipes
+    (`getSidebarClasses`, `getFooterClasses`). Astro adapter coordination
+    still open.
 11. Phase 5 P0 — continuous; add regression coverage as adapter usage reveals
     gaps.
 12. Phase 5 P1 — define deprecation mechanics before retiring any public
