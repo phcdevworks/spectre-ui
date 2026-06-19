@@ -12,6 +12,10 @@
     gap: var(--sp-layout-stack-gap-md);
   }
 
+  .sp-stack--basis-sidebar {
+    flex: 0 0 var(--sp-layout-sidebar-width);
+  }
+
   .sp-container {
     width: 100%;
     margin-left: auto;
@@ -19,6 +23,10 @@
     padding-left: var(--sp-layout-container-padding-inline-md);
     padding-right: var(--sp-layout-container-padding-inline-md);
     max-width: var(--sp-layout-container-max-width);
+  }
+
+  .sp-container--max-width-prose {
+    max-width: var(--sp-layout-container-max-width-prose);
   }
 
   .sp-section {
