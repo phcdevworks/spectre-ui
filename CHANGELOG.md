@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [2.3.0] - 2026-06-19
+
+Release Title: App Shell Recipe Expansion
+
 Contract change type: additive
 
 ### Added
