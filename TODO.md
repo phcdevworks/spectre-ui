@@ -323,7 +323,7 @@ need (not a hypothetical) shows up after v1 ships.
 
 ---
 
-## Phase 4d — App Shell Layout: Stack/Container Options, Sidebar, Footer
+## Phase 4d — App Shell Layout: Stack/Container Options, Sidebar, Footer (done, v2.3.0)
 
 Real downstream need surfaced in `docs-phcdevworks-com`'s app shell (top bar
 + sidebar + main content, no bottom bar yet). `SpNav` already covers the top
@@ -434,7 +434,7 @@ Confirmed token shape once published:
       following the same audit pattern established for Grid's `@media`
       literal check.
 
-- [ ] Coordinate with `@phcdevworks/spectre-ui-astro` once published —
+- [x] Coordinate with `@phcdevworks/spectre-ui-astro` once published —
       adapter should add the new props to `SpStack`/`SpContainer` and new
       `SpSidebar`/`SpFooter` components, following the `SpNav` pattern for
       the latter two.
