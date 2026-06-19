@@ -4,8 +4,12 @@ import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 import {
   getContainerClasses,
+  getFooterClasses,
   getGridClasses,
   getSectionClasses,
+  getSidebarBackdropClasses,
+  getSidebarClasses,
+  getSidebarLinkClasses,
   getStackClasses,
 } from '@phcdevworks/spectre-ui'
 
@@ -15,6 +19,12 @@ const __dirname = path.dirname(__filename)
 describe('getContainerClasses', () => {
   it('returns the default container class', () => {
     expect(getContainerClasses()).toBe('sp-container')
+  })
+
+  it('returns the prose max-width modifier class', () => {
+    expect(getContainerClasses({ maxWidth: 'prose' })).toBe(
+      'sp-container sp-container--max-width-prose'
+    )
   })
 })
 
@@ -29,6 +39,18 @@ describe('getStackClasses', () => {
 
   it('returns the vertical stack class explicitly', () => {
     expect(getStackClasses({ direction: 'vertical' })).toBe('sp-stack')
+  })
+
+  it('returns the sidebar basis modifier class', () => {
+    expect(getStackClasses({ basis: 'sidebar' })).toBe(
+      'sp-stack sp-stack--basis-sidebar'
+    )
+  })
+
+  it('combines direction and basis', () => {
+    expect(getStackClasses({ direction: 'horizontal', basis: 'sidebar' })).toBe(
+      'sp-hstack sp-stack--basis-sidebar'
+    )
   })
 })
 
@@ -64,5 +86,56 @@ describe('getGridClasses', () => {
     ;[1, 2, 3, 4, 6, 12].forEach((columns) => {
       expect(css).toContain(`.sp-grid-cols-${columns}`)
     })
+  })
+})
+
+describe('getSidebarClasses', () => {
+  it('returns the default sidebar class', () => {
+    expect(getSidebarClasses()).toBe('sp-sidebar')
+  })
+
+  it('returns the bordered modifier class', () => {
+    expect(getSidebarClasses({ bordered: true })).toBe(
+      'sp-sidebar sp-sidebar--bordered'
+    )
+  })
+
+  it('ships the data-sidebar-open interactive-state contract in components.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'components.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+
+    expect(css).toContain('@media (min-width: 768px)')
+    expect(css).toContain('[data-sidebar-open="true"] .sp-sidebar')
+    expect(css).toContain('[data-sidebar-open="true"] .sp-sidebar-backdrop')
+  })
+})
+
+describe('getSidebarLinkClasses', () => {
+  it('returns the default sidebar link class', () => {
+    expect(getSidebarLinkClasses()).toBe('sp-sidebar__link')
+  })
+
+  it('returns the active modifier class', () => {
+    expect(getSidebarLinkClasses({ active: true })).toBe(
+      'sp-sidebar__link sp-sidebar__link--active'
+    )
+  })
+})
+
+describe('getSidebarBackdropClasses', () => {
+  it('returns the backdrop class', () => {
+    expect(getSidebarBackdropClasses()).toBe('sp-sidebar-backdrop')
+  })
+})
+
+describe('getFooterClasses', () => {
+  it('returns the default footer class', () => {
+    expect(getFooterClasses()).toBe('sp-footer')
+  })
+
+  it('returns the bordered and fullWidth modifier classes', () => {
+    expect(getFooterClasses({ bordered: true, fullWidth: true })).toBe(
+      'sp-footer sp-footer--bordered sp-footer--full'
+    )
   })
 })

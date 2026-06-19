@@ -101,6 +101,19 @@ export {
 } from './nav'
 
 export {
+  getSidebarClasses,
+  getSidebarLinkClasses,
+  getSidebarBackdropClasses,
+  type SidebarRecipeOptions,
+  type SidebarLinkRecipeOptions,
+} from './sidebar'
+
+export {
+  getFooterClasses,
+  type FooterRecipeOptions,
+} from './footer'
+
+export {
   getToastClasses,
   getToastIconClasses,
   type ToastRecipeOptions,
@@ -131,12 +144,17 @@ export {
   type ModalOverlayRecipeOptions,
 } from './modal'
 
-export { getContainerClasses, type ContainerRecipeOptions } from './container'
+export {
+  getContainerClasses,
+  type ContainerRecipeOptions,
+  type ContainerMaxWidth,
+} from './container'
 
 export {
   getStackClasses,
   type StackRecipeOptions,
   type StackDirection,
+  type StackBasis,
 } from './stack'
 
 export { getSectionClasses, type SectionRecipeOptions } from './section'

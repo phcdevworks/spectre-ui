@@ -6,6 +6,38 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: additive
+
+### Added
+
+- **Stack `basis` option**: Added a `basis` option (`sidebar`) to
+  `getStackClasses`, mapping a flex child to a fixed width via the new
+  `--sp-layout-sidebar-width` token (`@phcdevworks/spectre-tokens@3.1.0`),
+  distinct from the default `flex: 1` auto-sizing behavior.
+- **Container `maxWidth` option**: Added a `maxWidth` option (`prose`) to
+  `getContainerClasses`, mapping to the new
+  `--sp-layout-container-max-width-prose` token, distinct from the existing
+  page-level `--sp-layout-container-max-width`.
+- **Sidebar recipe**: Added `getSidebarClasses`, `getSidebarLinkClasses`, and
+  `getSidebarBackdropClasses`, wrapping new `.sp-sidebar` / `.sp-sidebar__link`
+  / `.sp-sidebar-backdrop` component classes in `src/styles/components.css`.
+  Reuses the existing `component.nav` token roles (bg/text/link/border) as
+  the vertical counterpart to `SpNav`'s top-bar pattern; sidebar width comes
+  from the same `--sp-layout-sidebar-width` token used by Stack's `basis`
+  option. Below `breakpoints.md`, the sidebar is an off-canvas drawer
+  (`transform: translateX(-100%)`) with a backdrop, toggled via a
+  `data-sidebar-open="true"` attribute contract — this is the first recipe
+  family with an interactive-state CSS contract. This package owns the CSS
+  reaction only; toggle behavior, click handling, and state management
+  belong to the consuming adapter.
+- **Footer recipe**: Added `getFooterClasses`, wrapping a new `.sp-footer`
+  component class in `src/styles/components.css`, modeled on `SpNav`'s
+  `bordered`/`fullWidth` option shape (no `sticky`, per the deferred-unless-
+  needed decision in `TODO.md`).
+
+This is Phase 4d in `TODO.md` — real downstream need surfaced in
+`docs-phcdevworks-com`'s app shell (top bar + sidebar + main content).
+
 ## [2.2.0] - 2026-06-18
 
 Release Title: Grid Recipe Expansion
