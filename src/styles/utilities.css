@@ -16,6 +16,10 @@
     flex: 0 0 var(--sp-layout-sidebar-width);
   }
 
+  .sp-stack--align-stretch {
+    align-items: stretch;
+  }
+
   .sp-container {
     width: 100%;
     margin-left: auto;

@@ -450,7 +450,7 @@ Confirmed token shape once published:
   - Add tests or docs when real usage exposes ambiguous class or recipe
     contracts.
 
-- [ ] `.sp-hstack` needs a way to stretch children to the row's full height
+- [x] `.sp-hstack` needs a way to stretch children to the row's full height
   - Found in `docs-phcdevworks-com`'s app shell (Phase 4d sidebar + main
     content row): `.sp-hstack` hardcodes `align-items: center`, so when
     `SpSidebar` (fixed `height: 100%` only while off-canvas/`position: fixed`
@@ -466,7 +466,7 @@ Confirmed token shape once published:
   - Do not patch around this downstream with inline styles or one-off CSS —
     it belongs in this package's recipe contract.
 
-- [ ] `.sp-sidebar-toggle` has no `z-index`, so the backdrop covers it once
+- [x] `.sp-sidebar-toggle` has no `z-index`, so the backdrop covers it once
       open — hamburger can open the sidebar but cannot close it
   - Found in `docs-phcdevworks-com`'s app shell. `.sp-sidebar-backdrop` uses
     `--sp-component-sidebar-backdrop-z-index` (`--sp-z-index-overlay` =
