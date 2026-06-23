@@ -450,6 +450,39 @@ Confirmed token shape once published:
   - Add tests or docs when real usage exposes ambiguous class or recipe
     contracts.
 
+- [ ] `.sp-hstack` needs a way to stretch children to the row's full height
+  - Found in `docs-phcdevworks-com`'s app shell (Phase 4d sidebar + main
+    content row): `.sp-hstack` hardcodes `align-items: center`, so when
+    `SpSidebar` (fixed `height: 100%` only while off-canvas/`position: fixed`
+    below `breakpoints.md`) docks inline at `position: static` above
+    `breakpoints.md`, it no longer has a `height: 100%` reference and shrinks
+    to its own content height instead of stretching to match a taller main
+    content column. `Stack`'s `basis: 'sidebar'` option (Phase 4d) does not
+    address this — it only sets `flex-basis` on a child's width, not the
+    row's cross-axis sizing.
+  - Needs an `align` option on `getStackClasses` (e.g. `align: 'stretch' |
+    'center'`, defaulting to today's `center` to avoid a breaking change),
+    mapping to `align-items` on `.sp-stack`/`.sp-hstack`.
+  - Do not patch around this downstream with inline styles or one-off CSS —
+    it belongs in this package's recipe contract.
+
+- [ ] `.sp-sidebar-toggle` has no `z-index`, so the backdrop covers it once
+      open — hamburger can open the sidebar but cannot close it
+  - Found in `docs-phcdevworks-com`'s app shell. `.sp-sidebar-backdrop` uses
+    `--sp-component-sidebar-backdrop-z-index` (`--sp-z-index-overlay` =
+    `1300`), which is higher than `--sp-component-sidebar-z-index`
+    (`--sp-z-index-fixed` = `1200`) that the toggle button implicitly
+    inherits by sitting inside `.sp-sidebar-shell` with no z-index of its own.
+    Once `data-sidebar-open="true"`, the backdrop renders above the toggle
+    button and intercepts the click meant to close it.
+  - Fix: give `.sp-sidebar-toggle` an explicit `z-index` above
+    `--sp-component-sidebar-backdrop-z-index` (or reuse a token already above
+    `--sp-z-index-overlay`) in `src/styles/components.css`. Verify the click
+    still reaches the button when the backdrop is visible.
+  - Add a regression test/fixture covering open-then-close via the toggle
+    button specifically, not just the backdrop-click-to-close path that
+    already passes.
+
 - [ ] Add regression coverage for downstream integration issues
   - Prefer focused contract tests over broad fixture expansion.
 
