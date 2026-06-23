@@ -7,7 +7,7 @@
 | Project team | `project-design` |
 | Repository role | Spectre L2 CSS, Tailwind, and recipe contract |
 | Package/artifact | `@phcdevworks/spectre-ui` |
-| Current version/status | 2.0.0 |
+| Current version/status | 2.4.0 |
 
 ## Standard Workflow
 
@@ -508,7 +508,7 @@ npm run ci:verify
 ```
 
 This project requires Node.js `^22.13.0 || >=24.0.0` and npm `>=10.0.0`. The
-checked-in package manager is `npm@11.16.0`.
+checked-in package manager is `npm@11.17.0`.
 
 ### Common commands
 
