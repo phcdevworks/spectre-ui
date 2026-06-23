@@ -6,6 +6,22 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: additive
+
+### Added
+
+- **Stack `align` option**: Added an `align` option (`center` `stretch`) to
+  `getStackClasses`, mapping to `align-items` via the new
+  `.sp-stack--align-stretch` modifier class. Defaults to `center` to preserve
+  `.sp-hstack`'s existing hardcoded behavior. Fixes a downstream gap where
+  `.sp-hstack` could not stretch a docked `SpSidebar` to match a taller main
+  content column.
+- **Sidebar toggle recipe**: Added `getSidebarToggleClasses`, wrapping a new
+  `.sp-sidebar-toggle` component class with an explicit
+  `--sp-component-sidebar-toggle-z-index` (`--sp-z-index-modal`) above
+  `--sp-component-sidebar-backdrop-z-index`, so a consumer-rendered toggle
+  button stays clickable above the backdrop once the sidebar is open.
+
 ## [2.3.0] - 2026-06-19
 
 Release Title: App Shell Recipe Expansion

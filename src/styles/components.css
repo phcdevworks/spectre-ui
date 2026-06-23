@@ -326,6 +326,7 @@
     --sp-component-sidebar-z-index: var(--sp-z-index-fixed);
     --sp-component-sidebar-backdrop: var(--sp-surface-overlay);
     --sp-component-sidebar-backdrop-z-index: var(--sp-z-index-overlay);
+    --sp-component-sidebar-toggle-z-index: var(--sp-z-index-modal);
 
     /* footer roles (reuses nav roles - bottom-bar counterpart to the top-bar nav) */
     --sp-component-footer-bg: var(--sp-nav-bg);
@@ -2311,6 +2312,11 @@
     inset: 0;
     background-color: var(--sp-component-sidebar-backdrop);
     z-index: var(--sp-component-sidebar-backdrop-z-index);
+  }
+
+  .sp-sidebar-toggle {
+    position: relative;
+    z-index: var(--sp-component-sidebar-toggle-z-index);
   }
 
   [data-sidebar-open="true"] .sp-sidebar {

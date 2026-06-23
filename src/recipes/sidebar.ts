@@ -37,3 +37,7 @@ export function getSidebarLinkClasses(opts: SidebarLinkRecipeOptions = {}): stri
 export function getSidebarBackdropClasses(): string {
   return cx('sp-sidebar-backdrop')
 }
+
+export function getSidebarToggleClasses(): string {
+  return cx('sp-sidebar-toggle')
+}

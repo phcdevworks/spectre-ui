@@ -104,6 +104,7 @@ export {
   getSidebarClasses,
   getSidebarLinkClasses,
   getSidebarBackdropClasses,
+  getSidebarToggleClasses,
   type SidebarRecipeOptions,
   type SidebarLinkRecipeOptions,
 } from './sidebar'
@@ -155,6 +156,7 @@ export {
   type StackRecipeOptions,
   type StackDirection,
   type StackBasis,
+  type StackAlign,
 } from './stack'
 
 export { getSectionClasses, type SectionRecipeOptions } from './section'

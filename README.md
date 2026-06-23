@@ -275,7 +275,7 @@ All options are optional and fall back to sensible defaults.
 | Dropdown    | `getDropdownClasses`    | menu placement: `bottom-start` `bottom-end` `top-start` `top-end`                                              | —                   | `fullWidth`, item: `active` `disabled`                                  |
 | Modal       | `getModalClasses`       | —                                                                                                              | —                   | `open` `fullWidth`                                                      |
 | Container   | `getContainerClasses`   | maxWidth: `prose`                                                                                              | —                   | —                                                                       |
-| Stack       | `getStackClasses`       | direction: `vertical` `horizontal`, basis: `sidebar`                                                           | —                   | —                                                                       |
+| Stack       | `getStackClasses`       | direction: `vertical` `horizontal`, basis: `sidebar`, align: `center` `stretch`                                | —                   | —                                                                       |
 | Section     | `getSectionClasses`     | —                                                                                                              | —                   | —                                                                       |
 | Grid        | `getGridClasses`        | columns: `1` `2` `3` `4` `6` `12`                                                                              | gap: `sm` `md` `lg` | —                                                                       |
 | Sidebar     | `getSidebarClasses`     | —                                                                                                              | —                   | `bordered`                                                              |
@@ -343,6 +343,7 @@ Root recipe helper functions:
 - `getRatingTextClasses`
 - `getSidebarBackdropClasses`
 - `getSidebarLinkClasses`
+- `getSidebarToggleClasses`
 - `getTestimonialAuthorClasses`
 - `getTestimonialAuthorInfoClasses`
 - `getTestimonialAuthorNameClasses`
@@ -402,6 +403,12 @@ Consumers (typically a framework adapter) toggle the sidebar by setting a
   overlay (`display: block`).
 - Above `breakpoints.md`, the sidebar docks inline and the backdrop is
   always hidden, regardless of the `data-sidebar-open` value.
+
+A consumer-rendered toggle button that opens/closes the sidebar must carry
+`getSidebarToggleClasses()`. `.sp-sidebar-toggle` stacks above
+`.sp-sidebar-backdrop` (`--sp-component-sidebar-toggle-z-index`, above
+`--sp-component-sidebar-backdrop-z-index`) so the backdrop never intercepts
+clicks meant for the toggle once the sidebar is open.
 
 Adapters own the hamburger/toggle control, click handling, and SSR-safe
 initial closed state.

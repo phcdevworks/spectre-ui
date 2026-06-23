@@ -10,6 +10,7 @@ import {
   getSidebarBackdropClasses,
   getSidebarClasses,
   getSidebarLinkClasses,
+  getSidebarToggleClasses,
   getStackClasses,
 } from '@phcdevworks/spectre-ui'
 
@@ -51,6 +52,22 @@ describe('getStackClasses', () => {
     expect(getStackClasses({ direction: 'horizontal', basis: 'sidebar' })).toBe(
       'sp-hstack sp-stack--basis-sidebar'
     )
+  })
+
+  it('returns center align by default with no modifier class', () => {
+    expect(getStackClasses({ align: 'center' })).toBe('sp-stack')
+  })
+
+  it('returns the stretch align modifier class', () => {
+    expect(getStackClasses({ align: 'stretch' })).toBe(
+      'sp-stack sp-stack--align-stretch'
+    )
+  })
+
+  it('combines direction and align', () => {
+    expect(
+      getStackClasses({ direction: 'horizontal', align: 'stretch' })
+    ).toBe('sp-hstack sp-stack--align-stretch')
   })
 })
 
@@ -125,6 +142,20 @@ describe('getSidebarLinkClasses', () => {
 describe('getSidebarBackdropClasses', () => {
   it('returns the backdrop class', () => {
     expect(getSidebarBackdropClasses()).toBe('sp-sidebar-backdrop')
+  })
+})
+
+describe('getSidebarToggleClasses', () => {
+  it('returns the toggle class', () => {
+    expect(getSidebarToggleClasses()).toBe('sp-sidebar-toggle')
+  })
+
+  it('stacks above the sidebar backdrop z-index in components.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'components.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+
+    expect(css).toContain('--sp-component-sidebar-toggle-z-index: var(--sp-z-index-modal)')
+    expect(css).toContain('z-index: var(--sp-component-sidebar-toggle-z-index)')
   })
 })
 
