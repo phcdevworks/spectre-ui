@@ -106,9 +106,9 @@
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.0.0",
     "@types/node": "^26.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.61.1",
-    "@typescript-eslint/parser": "^8.61.1",
-    "autoprefixer": "^10.5.0",
+    "@typescript-eslint/eslint-plugin": "^8.62.0",
+    "@typescript-eslint/parser": "^8.62.0",
+    "autoprefixer": "^10.5.1",
     "eslint": "^10.5.0",
     "jiti": "^2.7.0",
     "postcss": "^8.5.15",
@@ -118,8 +118,8 @@
     "tailwindcss": "^4.3.1",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.61.1",
-    "vite": "^8.0.16",
+    "typescript-eslint": "^8.62.0",
+    "vite": "^8.1.0",
     "vitest": "^4.1.9"
   },
   "cSpell.words": [
