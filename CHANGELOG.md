@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [2.4.0] - 2026-06-23
+
+Release Title: App Shell Hardening
+
 Contract change type: additive
 
 ### Added
