@@ -7,7 +7,7 @@
 | Project team | `project-design` |
 | Repository role | Spectre L2 CSS, Tailwind, and recipe contract |
 | Package/artifact | `@phcdevworks/spectre-ui` |
-| Current version/status | 2.4.0 |
+| Current version/status | 2.5.0 |
 
 ## Standard Workflow
 
