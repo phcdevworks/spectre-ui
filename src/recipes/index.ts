@@ -103,10 +103,12 @@ export {
 export {
   getSidebarClasses,
   getSidebarLinkClasses,
+  getSidebarHeaderClasses,
   getSidebarBackdropClasses,
   getSidebarToggleClasses,
   type SidebarRecipeOptions,
   type SidebarLinkRecipeOptions,
+  type SidebarLinkLevel,
 } from './sidebar'
 
 export {

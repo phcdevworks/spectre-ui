@@ -9,6 +9,7 @@ import {
   getSectionClasses,
   getSidebarBackdropClasses,
   getSidebarClasses,
+  getSidebarHeaderClasses,
   getSidebarLinkClasses,
   getSidebarToggleClasses,
   getStackClasses,
@@ -125,6 +126,18 @@ describe('getSidebarClasses', () => {
     expect(css).toContain('[data-sidebar-open="true"] .sp-sidebar')
     expect(css).toContain('[data-sidebar-open="true"] .sp-sidebar-backdrop')
   })
+
+  it('stretches to full height once docked inline above breakpoints.md', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'components.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+
+    const dockedBlock = css.slice(
+      css.indexOf('@media (min-width: 768px)', css.indexOf('.sp-sidebar {'))
+    )
+
+    expect(dockedBlock).toContain('position: static')
+    expect(dockedBlock).toContain('height: 100%')
+  })
 })
 
 describe('getSidebarLinkClasses', () => {
@@ -136,6 +149,35 @@ describe('getSidebarLinkClasses', () => {
     expect(getSidebarLinkClasses({ active: true })).toBe(
       'sp-sidebar__link sp-sidebar__link--active'
     )
+  })
+
+  it('returns no child modifier class for the default parent level', () => {
+    expect(getSidebarLinkClasses({ level: 'parent' })).toBe('sp-sidebar__link')
+  })
+
+  it('returns the child modifier class for nested links', () => {
+    expect(getSidebarLinkClasses({ level: 'child' })).toBe(
+      'sp-sidebar__link sp-sidebar__link--child'
+    )
+  })
+
+  it('combines level with other modifiers', () => {
+    expect(getSidebarLinkClasses({ level: 'child', active: true })).toBe(
+      'sp-sidebar__link sp-sidebar__link--active sp-sidebar__link--child'
+    )
+  })
+})
+
+describe('getSidebarHeaderClasses', () => {
+  it('returns the sidebar header class', () => {
+    expect(getSidebarHeaderClasses()).toBe('sp-sidebar__header')
+  })
+
+  it('ships the sidebar header class in components.css, distinct from sidebar link', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'components.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+
+    expect(css).toContain('.sp-sidebar__header')
   })
 })
 

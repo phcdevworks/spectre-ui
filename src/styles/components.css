@@ -2306,6 +2306,19 @@
     opacity: var(--sp-opacity-disabled);
   }
 
+  .sp-sidebar__link--child {
+    padding-left: calc(var(--sp-space-24) + var(--sp-space-16));
+  }
+
+  .sp-sidebar__header {
+    font-size: var(--sp-font-xs-size);
+    line-height: var(--sp-font-xs-line-height);
+    font-weight: var(--sp-font-xs-weight);
+    letter-spacing: var(--sp-font-xs-letter-spacing);
+    color: var(--sp-text-on-surface-muted);
+    text-transform: uppercase;
+  }
+
   .sp-sidebar-backdrop {
     display: none;
     position: fixed;
@@ -2332,7 +2345,7 @@
   @media (min-width: 768px) {
     .sp-sidebar {
       position: static;
-      height: auto;
+      height: 100%;
       transform: none;
     }
 

@@ -342,6 +342,7 @@ Root recipe helper functions:
 - `getRatingStarsClasses`
 - `getRatingTextClasses`
 - `getSidebarBackdropClasses`
+- `getSidebarHeaderClasses`
 - `getSidebarLinkClasses`
 - `getSidebarToggleClasses`
 - `getTestimonialAuthorClasses`
@@ -412,6 +413,16 @@ clicks meant for the toggle once the sidebar is open.
 
 Adapters own the hamburger/toggle control, click handling, and SSR-safe
 initial closed state.
+
+Above `breakpoints.md`, `.sp-sidebar` stretches to `height: 100%` so a short
+link list matches the height of a taller sibling content column when docked
+inline in a `Stack` row (see `align: 'stretch'` on `getStackClasses`).
+
+`getSidebarLinkClasses` accepts a `level` option (`'parent' | 'child'`,
+default `'parent'`) for nested link indentation — e.g. a package name with
+"Overview" / "Reference" links beneath it. `getSidebarHeaderClasses` styles a
+section label (e.g. "Tokens", "UI", "Guides") as a muted eyebrow, visually
+distinct from `.sp-sidebar__link`.
 
 ## Downstream boundaries
 
