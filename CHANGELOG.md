@@ -6,6 +6,22 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: additive
+
+### Added
+
+- **Sidebar docked full height**: `.sp-sidebar` now stretches to
+  `height: 100%` once docked inline above `breakpoints.md`, so a short link
+  list matches the height of a taller sibling content column instead of
+  leaving a gap below it.
+- **Sidebar link `level` option**: Added a `level` option (`parent` `child`)
+  to `getSidebarLinkClasses`, mapping to a new `.sp-sidebar__link--child`
+  modifier that indents nested links. Defaults to `parent` to preserve
+  existing call sites.
+- **Sidebar header recipe**: Added `getSidebarHeaderClasses`, wrapping a new
+  `.sp-sidebar__header` class styled as a muted eyebrow/section label,
+  visually distinct from `.sp-sidebar__link`.
+
 ## [2.4.0] - 2026-06-23
 
 Release Title: App Shell Hardening
