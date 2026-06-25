@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [2.5.0] - 2026-06-25
+
+Release Title: Sidebar Navigation Hardening
+
 Contract change type: additive
 
 ### Added
