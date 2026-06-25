@@ -105,10 +105,10 @@
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.0.0",
-    "@types/node": "^26.0.0",
+    "@types/node": "^26.0.1",
     "@typescript-eslint/eslint-plugin": "^8.62.0",
     "@typescript-eslint/parser": "^8.62.0",
-    "autoprefixer": "^10.5.1",
+    "autoprefixer": "^10.5.2",
     "eslint": "^10.5.0",
     "jiti": "^2.7.0",
     "postcss": "^8.5.15",

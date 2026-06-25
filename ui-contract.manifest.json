@@ -49,6 +49,7 @@
       "getSectionClasses",
       "getSidebarBackdropClasses",
       "getSidebarClasses",
+      "getSidebarHeaderClasses",
       "getSidebarLinkClasses",
       "getSpinnerClasses",
       "getStackClasses",

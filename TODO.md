@@ -483,10 +483,47 @@ Confirmed token shape once published:
     button specifically, not just the backdrop-click-to-close path that
     already passes.
 
-- [ ] Add regression coverage for downstream integration issues
+- [x] `.sp-sidebar` does not stretch to full height once docked inline
+      (above `breakpoints.md`) — leaves visible gap below a short nav list
+  - Found in `docs-phcdevworks-com`'s app shell. Once docked
+    (`position: static; height: auto;` per the `@media (min-width: 768px)`
+    override in `src/styles/components.css`), the sidebar's height is driven
+    by its own content instead of stretching to match the row. The Stack
+    `align: 'stretch'` option (already shipped) stretches the *flex child*
+    height correctly, but `.sp-sidebar` itself still needs `height: 100%` (or
+    equivalent) at the docked breakpoint so a short link list doesn't leave a
+    gap below it relative to a taller main content column.
+  - Fix: add `height: 100%` to `.sp-sidebar` inside the existing
+    `@media (min-width: 768px)` block in `src/styles/components.css`. Do not
+    change the off-canvas (below `md`) sizing.
+
+- [x] No way to visually distinguish a sidebar section header from a sidebar
+      link, and no indentation contract for nested links (e.g. "Overview" /
+      "Reference" under a package name)
+  - Found in `docs-phcdevworks-com`'s app shell: section labels ("Tokens",
+    "UI", "Guides", etc.) are currently plain `<span>` text with no recipe
+    backing, and child links ("Overview", "Reference") render at the same
+    indent level as their parent label — no visual nesting.
+  - Add `getSidebarHeaderClasses()` — wraps a new `.sp-sidebar__header` class
+    in `src/styles/components.css`, styled off existing typography tokens
+    (e.g. `--sp-font-xs-weight`, letter-spacing, muted text color) to read as
+    an eyebrow/section-label, distinct from `.sp-sidebar__link`. No new
+    tokens required — reuse `component.sidebar.*` / `text.*` roles already
+    published.
+  - Add a `level` option (`'parent' | 'child'`, default `'parent'`) to
+    `SidebarLinkRecipeOptions` / `getSidebarLinkClasses`, mapping to a new
+    `.sp-sidebar__link--child` modifier that applies left padding from an
+    existing `--sp-space-*` token (e.g. `--sp-space-24` or `--sp-space-32`)
+    on top of the link's base padding. Keep `parent` the default so existing
+    callers are unaffected (additive change).
+  - This is the same precedent as `SidebarLinkRecipeOptions`'s existing
+    `active`/`disabled`/`hovered`/`focused` flags — add `level` alongside
+    them, do not create a parallel options shape.
+
+- [x] Add regression coverage for downstream integration issues
   - Prefer focused contract tests over broad fixture expansion.
 
-- [ ] Keep examples as verification fixtures
+- [x] Keep examples as verification fixtures
   - Add visual fixtures only when they support regression review for new public
     recipes or states.
 
