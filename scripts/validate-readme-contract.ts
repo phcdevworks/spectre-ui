@@ -22,11 +22,22 @@ interface UiContractManifest {
 const projectRoot = path.resolve(import.meta.dirname, '..');
 const manifestPath = path.join(projectRoot, 'ui-contract.manifest.json');
 const readmePath = path.join(projectRoot, 'README.md');
+const packageJsonPath = path.join(projectRoot, 'package.json');
 
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8')) as UiContractManifest;
 const readme = fs.readFileSync(readmePath, 'utf8');
+const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8')) as { version: string };
 
 const failures: string[] = [];
+
+const versionMatch = readme.match(/\|\s*Current version\/status\s*\|\s*([^\s|]+)\s*\|/i);
+if (!versionMatch) {
+  failures.push('README is missing the "Current version/status" row in the Repository Snapshot table.');
+} else if (versionMatch[1] !== packageJson.version) {
+  failures.push(
+    `README "Current version/status" is "${versionMatch[1]}" but package.json version is "${packageJson.version}".`,
+  );
+}
 
 for (const entry of manifest.cssEntrypoints) {
   if (!readme.includes(entry)) {

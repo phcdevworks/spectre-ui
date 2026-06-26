@@ -441,6 +441,35 @@ Confirmed token shape once published:
 
 ---
 
+## Phase 4e — Form-Field Recipe Expansion (Blocked on Tokens)
+
+Cross-repo audit (`spectre-components` vs. `spectre-ui-astro`) found
+`sp-checkbox`, `sp-fieldset`, `sp-label`, `sp-radio`, `sp-select`, and
+`sp-textarea` shipped in `spectre-components` since its Phase 1 with no
+backing recipe here, unlike every other component family. Gated on
+`@phcdevworks/spectre-tokens` Phase 7 (`component.checkbox`,
+`component.radio`, `component.select`, `component.textarea`,
+`component.fieldset`, `component.label`) publishing first.
+
+### P0: Add Recipes After Upstream Tokens Publish
+
+- [ ] Add `getCheckboxClasses` after `component.checkbox` tokens publish.
+
+- [ ] Add `getRadioClasses` after `component.radio` tokens publish.
+
+- [ ] Add `getSelectClasses` after `component.select` tokens publish.
+
+- [ ] Add `getTextareaClasses` after `component.textarea` tokens publish.
+
+- [ ] Add `getFieldsetClasses` after `component.fieldset` tokens publish.
+
+- [ ] Add `getLabelClasses` after `component.label` tokens publish.
+
+Each recipe needs `ui-contract.manifest.json` update, README recipe table
+entry, and focused contract/recipe tests, following the Phase 4 pattern.
+
+---
+
 ## Phase 5 — Integration Feedback and Deprecation Readiness
 
 ### P0: Downstream Integration Feedback
