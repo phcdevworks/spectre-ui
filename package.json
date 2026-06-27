@@ -89,6 +89,7 @@
     "validate:tailwind": "node --experimental-strip-types ./scripts/validate-tailwind-contract.ts",
     "validate:tailwind:update": "node --experimental-strip-types ./scripts/validate-tailwind-contract.ts --update",
     "validate:readme": "node --experimental-strip-types ./scripts/validate-readme-contract.ts",
+    "check:version-sync": "npm run validate:readme",
     "validate:changelog": "node --experimental-strip-types ./scripts/validate-changelog.ts",
     "validate:tokens": "node --experimental-strip-types ./scripts/validate-tokens.ts",
     "check:ecosystem": "spectre-manifest-validate spectre.manifest.json && spectre-manifest-check spectre.manifest.json ."
@@ -101,7 +102,7 @@
     "typescript": "^5.9 || ^6.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^3.1.0"
+    "@phcdevworks/spectre-tokens": "^3.2.0"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.0.0",
@@ -109,12 +110,12 @@
     "@typescript-eslint/eslint-plugin": "^8.62.0",
     "@typescript-eslint/parser": "^8.62.0",
     "autoprefixer": "^10.5.2",
-    "eslint": "^10.5.0",
+    "eslint": "^10.6.0",
     "jiti": "^2.7.0",
     "postcss": "^8.5.15",
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.1",
-    "prettier": "^3.8.4",
+    "prettier": "^3.9.0",
     "tailwindcss": "^4.3.1",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
