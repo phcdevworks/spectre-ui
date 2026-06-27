@@ -71,6 +71,8 @@ class recipes without redefining the underlying design values.
 20. Never use the GitHub state of `@phcdevworks/spectre-tokens` as proof of the
     latest consumable token contract when synchronization scope is defined
     against the published package.
+21. All `scripts/` tooling is TypeScript (`.ts`), run via
+    `node --experimental-strip-types`; never add a new `.js`/`.mjs` script.
 
 ## Working Boundaries
 
@@ -177,6 +179,29 @@ one recipe file) and Sync Developer (token synchronization against the latest
 published `@phcdevworks/spectre-tokens`). All rules in this file apply to Jules.
 Jules must run `npm run check` in full before every commit and must stop and
 report rather than committing when any gate fails.
+
+## Upstream Requests and Roadmap Self-Expansion
+
+Full directive: project-team [AGENTS.md](../AGENTS.md) "Upstream Requests and
+Roadmap Self-Expansion." Applied to this repo:
+
+- This repo is L2 — its upstream is `spectre-tokens`. If a needed visual value
+  or token gap is found here, append the request to `spectre-tokens/TODO.md`
+  under `## Requested by Downstream`, dated, with the reason and a link back
+  to this repo's own TODO.md/ROADMAP.md. Never invent a local fallback value
+  instead.
+- Downstream repos (`spectre-components`, `spectre-ui-astro`, and
+  transitively `spectre-base`) may append recipe or CSS-contract requests to
+  this repo's own `TODO.md` under `## Requested by Downstream`. Keep that
+  section visible and separate from this repo's self-planned work.
+- This repo's own [ROADMAP.md](ROADMAP.md) may be proactively expanded with new
+  or reordered phases by the agent's own analysis — but never mark a phase
+  delivered without `npm run check` passing, and never open a Token-Gated
+  Surface Expansion phase against tokens that have not actually published in
+  `spectre-tokens` yet (see Token-Gated Surface Expansion above).
+- Surface any new TODO request or roadmap expansion in the handoff for Bradley
+  Potts in the same change it was made, and reflect cross-repo-relevant
+  changes in the project-team's own ROADMAP.md/TODO.md.
 
 ## File Classification
 
