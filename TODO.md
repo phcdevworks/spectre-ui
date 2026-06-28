@@ -184,22 +184,28 @@ even though the values existed in the runtime JS/TS export since
 emission and `package.json` here already declares `^3.2.0`. Start this work
 next.
 
-- [ ] Add link styling
+- [x] Add link styling
   - Tokens: `link.default`, `link.hover`, `link.active`, `link.visited`
     (`--sp-link-default`, `--sp-link-hover`, `--sp-link-active`,
     `--sp-link-visited` — confirmed present).
-  - CSS in narrowest relevant entry point; recipe or utility when class
-    contract is stable; manifest declaration, README update, contract tests.
+  - Delivered as a plain `.sp-link` utility class in
+    `src/styles/utilities.css` — no recipe wrapper, no variant/size axis to
+    validate, consistent with how other zero-variant primitives stay
+    recipe-less until a real call-site needs typed options.
 
-- [ ] Add interactive surface state styling
+- [x] Add interactive surface state styling
   - Tokens: `surface.hover`, `surface.selected`, `surface.active`
     (`--sp-surface-hover`, `--sp-surface-selected`, `--sp-surface-active` —
     confirmed present).
-  - Target clickable list items, menu items, table rows, selectable surfaces.
+  - Delivered as `.sp-surface--hover`, `.sp-surface--selected`,
+    `.sp-surface--active` modifier utility classes in
+    `src/styles/utilities.css` for clickable list items, menu items, table
+    rows, and selectable surfaces.
 
-- [ ] Add divider styling
+- [x] Add divider styling
   - Tokens: `surface.divider` (`--sp-surface-divider` — confirmed present).
-  - Cover `<hr>`, section separators, table borders.
+  - Delivered as a `.sp-divider` utility class in `src/styles/utilities.css`
+    covering `<hr>`, section separators, and table borders.
 
 ---
 
@@ -465,20 +471,39 @@ next, alongside Phase 3 P2 above.
 
 ### P0: Add Recipes Now That Upstream Tokens Are Published
 
-- [ ] Add `getCheckboxClasses` after `component.checkbox` tokens publish.
+- [x] Add `getCheckboxClasses` after `component.checkbox` tokens publish.
+  - Delivered as `.sp-checkbox-indicator` (`--sp-checkbox-*`), with
+    `checked`/`disabled` boolean options.
 
-- [ ] Add `getRadioClasses` after `component.radio` tokens publish.
+- [x] Add `getRadioClasses` after `component.radio` tokens publish.
+  - Delivered as `.sp-radio-indicator` (`--sp-radio-*`), with
+    `checked`/`disabled` boolean options.
 
-- [ ] Add `getSelectClasses` after `component.select` tokens publish.
+- [x] Add `getSelectClasses` after `component.select` tokens publish.
+  - Delivered as `.sp-select` (`--sp-select-*`, including `focusBorder`),
+    with `disabled`/`focused` boolean options. Distinct from the existing
+    `.sp-input`/`getInputClasses`, which remains backed by the separate
+    `component.input` token group.
 
-- [ ] Add `getTextareaClasses` after `component.textarea` tokens publish.
+- [x] Add `getTextareaClasses` after `component.textarea` tokens publish.
+  - Delivered as `.sp-textarea` (`--sp-textarea-*`, including
+    `focusBorder`), with `disabled`/`focused` boolean options.
 
-- [ ] Add `getFieldsetClasses` after `component.fieldset` tokens publish.
+- [x] Add `getFieldsetClasses` after `component.fieldset` tokens publish.
+  - Delivered as `getFieldsetClasses` (`.sp-fieldset`, `--sp-fieldset-*`)
+    plus `getFieldsetLegendClasses` (`.sp-fieldset__legend`).
 
-- [ ] Add `getLabelClasses` after `component.label` tokens publish.
+- [x] Add `getLabelClasses` after `component.label` tokens publish.
+  - Delivered as `.sp-form-label` (`--sp-label-*`), with
+    `disabled`/`required` boolean options. Named `.sp-form-label` (not
+    `.sp-label`) to avoid colliding with the pre-existing
+    `getInputLabelClasses`/`.sp-label`, which is backed by the separate
+    `component.input` token group and remains unchanged.
 
 Each recipe needs `ui-contract.manifest.json` update, README recipe table
 entry, and focused contract/recipe tests, following the Phase 4 pattern.
+All six landed together with CSS, recipes, manifest, README, changelog, and
+`tests/form-field-recipe.test.ts` coverage; `npm run check` passes.
 
 ---
 
@@ -590,10 +615,10 @@ entry, and focused contract/recipe tests, following the Phase 4 pattern.
 2. Phase 2 — done.
 3. Phase 3 P0 — done (v1.7.0 and v1.8.0 released).
 4. Phase 3 P1 — done (synced to `@phcdevworks/spectre-tokens@2.8.0`).
-5. **Phase 3 P2 — unblocked, do next.** Add Link, interactive surface states,
-   Divider in that order. `link.*`, `surface.hover/selected/active`, and
-   `surface.divider` are confirmed present (`@phcdevworks/spectre-tokens@3.2.0`,
-   the CSS-emission bug that hid them as of `3.0.0` was fixed in `3.1.0`).
+5. **Phase 3 P2 — done.** Added `.sp-link`, `.sp-surface--hover` /
+   `.sp-surface--selected` / `.sp-surface--active`, and `.sp-divider` as
+   plain token-backed utility classes in `src/styles/utilities.css` (no
+   recipe wrapper — no variant/size axis to validate).
 6. Phase 4 — done. Nav, Toast, Tooltip, Dropdown, Modal all delivered once
    their `component.*` token groups published in spectre-tokens.
 7. **Phase 4b — done.** Added Container, Stack, Section recipes
@@ -605,11 +630,12 @@ entry, and focused contract/recipe tests, following the Phase 4 pattern.
     option, and new Sidebar/Footer layout-pattern recipes
     (`getSidebarClasses`, `getFooterClasses`). Astro adapter coordination
     still open.
-11. **Phase 4e — unblocked, do next alongside Phase 3 P2.** Add
-    `getCheckboxClasses`, `getRadioClasses`, `getSelectClasses`,
-    `getTextareaClasses`, `getFieldsetClasses`, `getLabelClasses`. Their
-    `component.*` token groups are confirmed published in
-    `@phcdevworks/spectre-tokens@3.2.0`.
+11. **Phase 4e — done.** Added `getCheckboxClasses`, `getRadioClasses`,
+    `getSelectClasses`, `getTextareaClasses`, `getFieldsetClasses` (plus
+    `getFieldsetLegendClasses`), and `getLabelClasses`, backing the
+    previously recipe-less `sp-checkbox`/`sp-radio`/`sp-select`/
+    `sp-textarea`/`sp-fieldset`/`sp-label` components in
+    `spectre-components`.
 12. Phase 5 P0 — continuous; add regression coverage as adapter usage reveals
     gaps.
 13. Phase 5 P1 — define deprecation mechanics before retiring any public

@@ -20,9 +20,12 @@
       "getBadgeClasses",
       "getButtonClasses",
       "getCardClasses",
+      "getCheckboxClasses",
       "getDropdownClasses",
       "getDropdownItemClasses",
       "getDropdownMenuClasses",
+      "getFieldsetClasses",
+      "getFieldsetLegendClasses",
       "getIconBoxClasses",
       "getInputClasses",
       "getInputErrorMessageClasses",
@@ -32,6 +35,7 @@
       "getContainerClasses",
       "getFooterClasses",
       "getGridClasses",
+      "getLabelClasses",
       "getModalClasses",
       "getModalOverlayClasses",
       "getNavClasses",
@@ -42,11 +46,13 @@
       "getPricingCardDescriptionClasses",
       "getPricingCardPriceClasses",
       "getPricingCardPriceContainerClasses",
+      "getRadioClasses",
       "getRatingClasses",
       "getRatingStarClasses",
       "getRatingStarsClasses",
       "getRatingTextClasses",
       "getSectionClasses",
+      "getSelectClasses",
       "getSidebarBackdropClasses",
       "getSidebarClasses",
       "getSidebarHeaderClasses",
@@ -54,6 +60,7 @@
       "getSpinnerClasses",
       "getStackClasses",
       "getTagClasses",
+      "getTextareaClasses",
       "getTestimonialAuthorClasses",
       "getTestimonialAuthorInfoClasses",
       "getTestimonialAuthorNameClasses",
@@ -157,6 +164,24 @@
     },
     "footer": {
       "fn": "getFooterClasses"
+    },
+    "checkbox": {
+      "fn": "getCheckboxClasses"
+    },
+    "radio": {
+      "fn": "getRadioClasses"
+    },
+    "select": {
+      "fn": "getSelectClasses"
+    },
+    "textarea": {
+      "fn": "getTextareaClasses"
+    },
+    "fieldset": {
+      "fn": "getFieldsetClasses"
+    },
+    "label": {
+      "fn": "getLabelClasses"
     }
   }
 }
