@@ -455,7 +455,7 @@ Confirmed token shape once published:
 
 ---
 
-## Phase 4e — Form-Field Recipe Expansion (Unblocked — tokens published in 3.2.0)
+## Phase 4e — Form-Field Recipe Expansion (done, v2.6.0)
 
 Cross-repo audit (`spectre-components` vs. `spectre-ui-astro`) found
 `sp-checkbox`, `sp-fieldset`, `sp-label`, `sp-radio`, `sp-select`, and
@@ -466,8 +466,8 @@ backing recipe here, unlike every other component family. Was gated on
 `component.fieldset`, `component.label`) publishing. Confirmed published in
 `@phcdevworks/spectre-tokens@3.2.0` (`--sp-checkbox-*`, `--sp-radio-*`,
 `--sp-select-*` etc. present in installed `node_modules` dist CSS, checked
-2026-06-28); `package.json` here already declares `^3.2.0`. Start this work
-next, alongside Phase 3 P2 above.
+2026-06-28); `package.json` here already declares `^3.2.0`. Delivered in
+`@phcdevworks/spectre-ui@2.6.0` alongside Phase 3 P2.
 
 ### P0: Add Recipes Now That Upstream Tokens Are Published
 
