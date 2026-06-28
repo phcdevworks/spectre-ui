@@ -171,26 +171,34 @@ semantic tokens are published to NPM.
   - Re-run this sweep against the live published package (not against notes
     in this file) the next time `@phcdevworks/spectre-tokens` bumps.
 
-### P2: Semantic UI Primitives — Blocked (tokens not yet published)
+### P2: Semantic UI Primitives — Unblocked (tokens published in 3.1.0)
 
-None of the three primitive token groups below exist in
-`@phcdevworks/spectre-tokens@3.0.0` (verified by reading the published
-`dist/index.css` directly, not by trusting changelog notes). Do not start this
-work until the tokens are confirmed published.
+All three primitive token groups below are now confirmed present in the
+installed `@phcdevworks/spectre-tokens@3.2.0`
+(`node_modules/@phcdevworks/spectre-tokens/dist/index.css`, checked directly,
+2026-06-28). `3.1.0`'s changelog records the actual root cause behind the
+`3.0.0` absence noted above: `generateCssVariables` was silently dropping
+`link.*` and `surface.hover/selected/active/divider` from the generated CSS
+even though the values existed in the runtime JS/TS export since
+`2.9.0`/`3.0.0` — a CSS-emission bug, not a missing token. `3.1.0` fixed the
+emission and `package.json` here already declares `^3.2.0`. Start this work
+next.
 
 - [ ] Add link styling
   - Tokens: `link.default`, `link.hover`, `link.active`, `link.visited`
-    (`--sp-link-*` CSS variables).
+    (`--sp-link-default`, `--sp-link-hover`, `--sp-link-active`,
+    `--sp-link-visited` — confirmed present).
   - CSS in narrowest relevant entry point; recipe or utility when class
     contract is stable; manifest declaration, README update, contract tests.
 
 - [ ] Add interactive surface state styling
   - Tokens: `surface.hover`, `surface.selected`, `surface.active`
-    (`--sp-surface-hover`, `--sp-surface-selected`, `--sp-surface-active`).
+    (`--sp-surface-hover`, `--sp-surface-selected`, `--sp-surface-active` —
+    confirmed present).
   - Target clickable list items, menu items, table rows, selectable surfaces.
 
 - [ ] Add divider styling
-  - Tokens: `surface.divider` (`--sp-surface-divider`).
+  - Tokens: `surface.divider` (`--sp-surface-divider` — confirmed present).
   - Cover `<hr>`, section separators, table borders.
 
 ---
@@ -441,17 +449,21 @@ Confirmed token shape once published:
 
 ---
 
-## Phase 4e — Form-Field Recipe Expansion (Blocked on Tokens)
+## Phase 4e — Form-Field Recipe Expansion (Unblocked — tokens published in 3.2.0)
 
 Cross-repo audit (`spectre-components` vs. `spectre-ui-astro`) found
 `sp-checkbox`, `sp-fieldset`, `sp-label`, `sp-radio`, `sp-select`, and
 `sp-textarea` shipped in `spectre-components` since its Phase 1 with no
-backing recipe here, unlike every other component family. Gated on
+backing recipe here, unlike every other component family. Was gated on
 `@phcdevworks/spectre-tokens` Phase 7 (`component.checkbox`,
 `component.radio`, `component.select`, `component.textarea`,
-`component.fieldset`, `component.label`) publishing first.
+`component.fieldset`, `component.label`) publishing. Confirmed published in
+`@phcdevworks/spectre-tokens@3.2.0` (`--sp-checkbox-*`, `--sp-radio-*`,
+`--sp-select-*` etc. present in installed `node_modules` dist CSS, checked
+2026-06-28); `package.json` here already declares `^3.2.0`. Start this work
+next, alongside Phase 3 P2 above.
 
-### P0: Add Recipes After Upstream Tokens Publish
+### P0: Add Recipes Now That Upstream Tokens Are Published
 
 - [ ] Add `getCheckboxClasses` after `component.checkbox` tokens publish.
 
@@ -578,12 +590,12 @@ entry, and focused contract/recipe tests, following the Phase 4 pattern.
 2. Phase 2 — done.
 3. Phase 3 P0 — done (v1.7.0 and v1.8.0 released).
 4. Phase 3 P1 — done (synced to `@phcdevworks/spectre-tokens@2.8.0`).
-5. **Phase 3 P2 — blocked.** Add Link, interactive surface states, Divider in
-   that order, once `link.*`, `surface.hover/selected/active`, and
-   `surface.divider` are confirmed present in a published
-   `@phcdevworks/spectre-tokens` release. Not present as of `3.0.0`.
-6. Phase 4 — gated on upstream. Add Nav, Toast, Tooltip, Dropdown, Modal once
-   their `component.*` token groups publish in spectre-tokens.
+5. **Phase 3 P2 — unblocked, do next.** Add Link, interactive surface states,
+   Divider in that order. `link.*`, `surface.hover/selected/active`, and
+   `surface.divider` are confirmed present (`@phcdevworks/spectre-tokens@3.2.0`,
+   the CSS-emission bug that hid them as of `3.0.0` was fixed in `3.1.0`).
+6. Phase 4 — done. Nav, Toast, Tooltip, Dropdown, Modal all delivered once
+   their `component.*` token groups published in spectre-tokens.
 7. **Phase 4b — done.** Added Container, Stack, Section recipes
    (`getContainerClasses`, `getStackClasses`, `getSectionClasses`).
 8. **Phase 4c (v1) — done.** Added Grid recipe (`getGridClasses`).
@@ -593,9 +605,14 @@ entry, and focused contract/recipe tests, following the Phase 4 pattern.
     option, and new Sidebar/Footer layout-pattern recipes
     (`getSidebarClasses`, `getFooterClasses`). Astro adapter coordination
     still open.
-11. Phase 5 P0 — continuous; add regression coverage as adapter usage reveals
+11. **Phase 4e — unblocked, do next alongside Phase 3 P2.** Add
+    `getCheckboxClasses`, `getRadioClasses`, `getSelectClasses`,
+    `getTextareaClasses`, `getFieldsetClasses`, `getLabelClasses`. Their
+    `component.*` token groups are confirmed published in
+    `@phcdevworks/spectre-tokens@3.2.0`.
+12. Phase 5 P0 — continuous; add regression coverage as adapter usage reveals
     gaps.
-12. Phase 5 P1 — define deprecation mechanics before retiring any public
+13. Phase 5 P1 — define deprecation mechanics before retiring any public
     class, recipe option, or variant.
 
 ---
