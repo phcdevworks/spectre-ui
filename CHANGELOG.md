@@ -6,6 +6,32 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: additive
+
+### Added
+
+- **Link utility**: Added a token-backed `.sp-link` class
+  (`--sp-link-default` `--sp-link-hover` `--sp-link-active`
+  `--sp-link-visited`) for inline text links. Plain CSS, no recipe wrapper —
+  there is no variant or size axis to validate.
+- **Interactive surface state utilities**: Added `.sp-surface--hover`,
+  `.sp-surface--selected`, and `.sp-surface--active` modifier classes backed
+  by `--sp-surface-hover`, `--sp-surface-selected`, and `--sp-surface-active`
+  for clickable list items, menu items, table rows, and selectable surfaces.
+- **Divider utility**: Added a token-backed `.sp-divider` class
+  (`--sp-surface-divider`) for `<hr>`, section separators, and table borders.
+- **Form-field recipes**: Added `getCheckboxClasses` (`.sp-checkbox-indicator`,
+  `--sp-checkbox-*`), `getRadioClasses` (`.sp-radio-indicator`,
+  `--sp-radio-*`), `getSelectClasses` (`.sp-select`, `--sp-select-*`),
+  `getTextareaClasses` (`.sp-textarea`, `--sp-textarea-*`),
+  `getFieldsetClasses`/`getFieldsetLegendClasses` (`.sp-fieldset`,
+  `.sp-fieldset__legend`, `--sp-fieldset-*`), and `getLabelClasses`
+  (`.sp-form-label`, `--sp-label-*`). These back the previously
+  recipe-less `sp-checkbox`, `sp-radio`, `sp-select`, `sp-textarea`,
+  `sp-fieldset`, and `sp-label` Lit components in `spectre-components`. New
+  class names are distinct from the pre-existing `.sp-label` (input-scoped,
+  via `getInputLabelClasses`) to avoid colliding with that existing contract.
+
 ## [2.5.0] - 2026-06-25
 
 Release Title: Sidebar Navigation Hardening
