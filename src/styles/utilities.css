@@ -102,6 +102,43 @@
     }
   }
 
+  .sp-link {
+    color: var(--sp-link-default);
+    text-decoration-line: underline;
+    transition: color var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-link:hover {
+    color: var(--sp-link-hover);
+  }
+
+  .sp-link:active {
+    color: var(--sp-link-active);
+  }
+
+  .sp-link:visited {
+    color: var(--sp-link-visited);
+  }
+
+  .sp-surface--hover:hover,
+  .sp-surface--hover.is-hover {
+    background-color: var(--sp-surface-hover);
+  }
+
+  .sp-surface--selected {
+    background-color: var(--sp-surface-selected);
+  }
+
+  .sp-surface--active:active,
+  .sp-surface--active.is-active {
+    background-color: var(--sp-surface-active);
+  }
+
+  .sp-divider {
+    border: none;
+    border-top: var(--sp-component-border-width) solid var(--sp-surface-divider);
+  }
+
   .sp-shadow-soft {
     box-shadow: var(--sp-shadow-md);
   }

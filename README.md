@@ -280,9 +280,30 @@ All options are optional and fall back to sensible defaults.
 | Grid        | `getGridClasses`        | columns: `1` `2` `3` `4` `6` `12`                                                                              | gap: `sm` `md` `lg` | —                                                                       |
 | Sidebar     | `getSidebarClasses`     | —                                                                                                              | —                   | `bordered`                                                              |
 | Footer      | `getFooterClasses`      | —                                                                                                              | —                   | `bordered` `fullWidth`                                                  |
+| Checkbox    | `getCheckboxClasses`    | —                                                                                                              | —                   | `checked` `disabled`                                                    |
+| Radio       | `getRadioClasses`       | —                                                                                                              | —                   | `checked` `disabled`                                                    |
+| Select      | `getSelectClasses`      | —                                                                                                              | —                   | `disabled` `focused`                                                    |
+| Textarea    | `getTextareaClasses`    | —                                                                                                              | —                   | `disabled` `focused`                                                    |
+| Fieldset    | `getFieldsetClasses`    | —                                                                                                              | —                   | `disabled`                                                              |
+| Label       | `getLabelClasses`       | —                                                                                                              | —                   | `disabled` `required`                                                   |
 
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements). See the full list below.
+
+### Semantic utility classes (no recipe wrapper)
+
+These primitives are intentionally plain CSS classes in
+`src/styles/utilities.css` with no recipe function — there is no variant or
+size axis to validate, so a recipe wrapper would add indirection without a
+type-safety benefit. Apply the class name directly.
+
+| Class                   | Tokens                                                                       | Usage                                                   |
+| ----------------------- | ----------------------------------------------------------------------------- | -------------------------------------------------------- |
+| `.sp-link`              | `--sp-link-default` `--sp-link-hover` `--sp-link-active` `--sp-link-visited` | Inline text links (`<a>`).                              |
+| `.sp-surface--hover`    | `--sp-surface-hover`                                                         | Clickable list items, menu items, table rows on hover.  |
+| `.sp-surface--selected` | `--sp-surface-selected`                                                     | Selected list items, menu items, table rows.            |
+| `.sp-surface--active`   | `--sp-surface-active`                                                       | Pressed/active state for clickable surfaces.            |
+| `.sp-divider`           | `--sp-surface-divider`                                                      | `<hr>`, section separators, table borders.               |
 
 ### Root package
 
@@ -304,22 +325,28 @@ Root recipe functions:
 - `getBadgeClasses`
 - `getButtonClasses`
 - `getCardClasses`
+- `getCheckboxClasses`
 - `getContainerClasses`
 - `getDropdownClasses`
+- `getFieldsetClasses`
 - `getFooterClasses`
 - `getGridClasses`
 - `getIconBoxClasses`
 - `getInputClasses`
+- `getLabelClasses`
 - `getModalClasses`
 - `getNavClasses`
 - `getPricingCardClasses`
+- `getRadioClasses`
 - `getRatingClasses`
 - `getSectionClasses`
+- `getSelectClasses`
 - `getSidebarClasses`
 - `getSpinnerClasses`
 - `getStackClasses`
 - `getTagClasses`
 - `getTestimonialClasses`
+- `getTextareaClasses`
 - `getToastClasses`
 - `getTooltipClasses`
 
@@ -327,6 +354,7 @@ Root recipe helper functions:
 
 - `getDropdownItemClasses`
 - `getDropdownMenuClasses`
+- `getFieldsetLegendClasses`
 - `getInputErrorMessageClasses`
 - `getInputHelperTextClasses`
 - `getInputLabelClasses`
