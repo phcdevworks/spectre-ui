@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [2.6.0] - 2026-06-28
+
+Release Title: Semantic Primitives and Form-Field Recipes
+
 Contract change type: additive
 
 ### Added
