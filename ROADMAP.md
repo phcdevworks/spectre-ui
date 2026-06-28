@@ -80,17 +80,18 @@ improvements without expanding package ownership beyond Layer 2.
 
 ---
 
-### P2: Semantic UI Primitives — Active
+### P2: Semantic UI Primitives — Delivered
 
-All three token groups exist in `@phcdevworks/spectre-tokens@2.8.0`. This
-work is unblocked and is the current priority.
+All three token groups exist in `@phcdevworks/spectre-tokens@3.2.0` and were
+delivered in `@phcdevworks/spectre-ui@2.6.0`.
 
-Deliverables:
+Delivered:
 
-- Add link styling: `link.default`, `link.hover`, `link.active`, `link.visited`.
-- Add interactive surface state styling: `surface.hover`, `surface.selected`,
+- Link styling: `link.default`, `link.hover`, `link.active`, `link.visited`
+  via `.sp-link`.
+- Interactive surface state styling: `surface.hover`, `surface.selected`,
   `surface.active`.
-- Add divider styling: `surface.divider`.
+- Divider styling: `surface.divider` via `.sp-divider`.
 
 Per-primitive standard: token-backed CSS in the narrowest relevant entry point;
 recipe or utility exposure only when the public class contract is stable;
@@ -138,15 +139,13 @@ auditable recipe families rather than large framework components.
   the scoped breakdown. **Token audit confirmed a real gap, now resolved
   upstream**: unlike every recipe added since Phase 4b (Container/Stack/
   Section/Grid all consumed tokens that already existed), there was no
-  width/sizing scale in `spectre-tokens` at all. `spectre-tokens` has since
-  implemented `layout.sidebar.width` (`16rem`) and
-  `layout.container.maxWidthProse` (`65ch`) in source, but has not yet
-  published — confirm the new version is live on npm before starting this
-  phase's recipe work. Sidebar's mobile behavior is decided:
-  a slide-out drawer below `breakpoints.md`, with this package owning the
-  off-canvas CSS contract (position, transition, backdrop, data-attribute
-  selector) and the adapter (`spectre-ui-astro`) owning the toggle
-  interaction — first recipe with an interactive-state contract.
+  width/sizing scale in `spectre-tokens` at all. The token gap was resolved,
+  and this work shipped by `spectre-ui@2.5.0`: Stack `basis`,
+  Container `maxWidth`, Sidebar, and Footer recipes are delivered. Sidebar's
+  mobile behavior is a slide-out drawer below `breakpoints.md`, with this
+  package owning the off-canvas CSS contract (position, transition, backdrop,
+  data-attribute selector) and the adapter (`spectre-ui-astro`) owning toggle
+  interaction.
 
 ### Standard deliverables per family
 
@@ -238,18 +237,18 @@ migration window.
 2. **Phase 2** — done.
 3. **Phase 3 P0** — complete the v1.7.0 release handoff.
 4. **Phase 3 P1** — watch for the next published token release; run a sync pass.
-5. **Phase 3 P2** — add semantic primitives once their tokens publish: Link,
-   interactive surface states, Divider.
-6. **Phase 4** — add component recipe families in this order when their tokens
-   exist: Nav, Toast, Tooltip, Dropdown, Modal.
+5. **Phase 3 P2** — done. Link, interactive surface states, and Divider
+   shipped in `spectre-ui@2.6.0`.
+6. **Phase 4** — done. Nav, Toast, Tooltip, Dropdown, Modal delivered.
 7. **Phase 4b** — done. Container, Stack, Section delivered.
 8. **Phase 4c (v1)** — done. Grid recipe delivered.
 9. **Phase 4c (v2)** — deferred until a real downstream need surfaces:
    column span, offsets, custom track sizing, per-breakpoint override.
-10. **Phase 4d** — not started, real downstream need confirmed. Add Stack
-    width/basis option, Container `maxWidth` option, and new Sidebar/Footer
-    layout-pattern recipes (modeled on the existing `SpNav` top-bar pattern).
-11. **Phase 5 P0** — add downstream regression coverage as adapter usage
+10. **Phase 4d** — done. Stack `basis`, Container `maxWidth`, Sidebar, and
+    Footer layout-pattern recipes delivered.
+11. **Phase 4e** — done. Checkbox, Radio, Select, Textarea, Fieldset, and
+    Label recipes shipped in `spectre-ui@2.6.0`.
+12. **Phase 5 P0** — add downstream regression coverage as adapter usage
     reveals gaps (continuous).
-12. **Phase 5 P1** — define deprecation mechanics before any public class,
+13. **Phase 5 P1** — define deprecation mechanics before any public class,
     recipe option, or variant is retired.
