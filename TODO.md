@@ -598,27 +598,38 @@ All six landed together with CSS, recipes, manifest, README, changelog, and
     same `resolveOption`/const-map pattern `getInputClasses` establishes
     (`SELECT_SIZES`/`TEXTAREA_SIZES`). These are pure layout/shape options —
     no color tokens needed — so they were safe to add immediately.
-  - **`invalid`/`success`/`loading` state deliberately deferred — new token
-    gap, not a local fallback.** Checked the published
-    `@phcdevworks/spectre-tokens@3.2.0` dist CSS directly:
-    `component.select`/`component.textarea` only emit
-    `bg`/`border`/`text`/`placeholder`/`disabled`/`focusBorder` roles. There
-    is no `--sp-select-border-invalid` / `--sp-select-bg-success` equivalent
-    of `component.input`'s `--sp-component-input-role-border-error` /
-    `-bg-error` / `-border-success` / `-bg-success` group. Reusing input's
-    role tokens for select/textarea would blur the per-component token
-    namespace boundary `CLAUDE.md` requires staying distinct; inventing
-    local color values would violate the zero-raw-value rule. Filed as a new
-    ask for `project-design/spectre-tokens`: publish
-    `component.select.border.invalid` / `.bg.invalid` /
-    `.border.success`/`.bg.success` (and the `component.textarea`
-    equivalents) before this package adds `invalid`/`success`/`loading`
-    options to either recipe.
+  - **`invalid`/`success`/`loading` state — resolved 2026-06-30, once
+    `spectre-tokens` published the missing token gap.** Originally deferred:
+    checked `@phcdevworks/spectre-tokens@3.2.0` dist CSS directly and found
+    `component.select`/`component.textarea` only emitted
+    `bg`/`border`/`text`/`placeholder`/`disabled`/`focusBorder` roles, no
+    `--sp-select-border-invalid` / `--sp-select-bg-success` equivalent of
+    `component.input`'s `--sp-component-input-role-*` group. Filed as a new
+    ask for `project-design/spectre-tokens`, which published
+    `component.select.border.invalid` / `.bg.invalid` / `.border.success` /
+    `.bg.success` (and `component.textarea` equivalents) in `3.3.0` — though
+    a CSS-generation bug initially dropped them from published output;
+    fixed in `3.3.1`.
+  - Bumped the declared `@phcdevworks/spectre-tokens` range to `^3.3.1`.
+    Added a `state` option (`default` | `invalid` | `success`) and a
+    `loading` flag to `getSelectClasses`/`getTextareaClasses`, following
+    the same `resolveOption`/const-map pattern as `getInputClasses`'s
+    `INPUT_STATES`. Added `.sp-select--invalid`/`--success`/`--loading` and
+    `.sp-textarea--invalid`/`--success`/`--loading` to
+    `src/styles/components.css`, backed by the new token variables.
+    `loading` stays structural-only (opacity/pointer-events), matching
+    `getInputClasses`'s `sp-input--loading` precedent — no new color token.
+  - Bumped `base.css`/`components.css`/`utilities.css` size budgets in
+    `tests/css-entrypoints.test.ts` to account for the larger token CSS
+    block from `spectre-tokens@3.3.1` (badge hover variables plus the new
+    `testimonial`/`pricingCard`/`rating` groups) and the new select/textarea
+    state selectors — not a regression, an expected budget adjustment as the
+    token surface grows, consistent with prior bumps to this same test.
+  - Full `npm run check` passes clean (356/356 tests).
   - `spectre-components`'s `sp-select`/`sp-textarea` can now adopt the new
-    `size`/`fullWidth`/`pill` options from these recipes, but must keep
-    using `getInputClasses()` (or an equivalent local mapping) for
-    `invalid`/`success`/`loading` visuals until the token gap above is
-    closed — see `project-design/spectre-components/TODO.md` Phase 6 P0.
+    `size`/`fullWidth`/`pill`/`state`/`loading` options from these recipes
+    and drop the `getInputClasses()` workaround — see
+    `project-design/spectre-components/TODO.md` Phase 6 P0.
 
 - [x] Add regression coverage for downstream integration issues
   - Prefer focused contract tests over broad fixture expansion.
