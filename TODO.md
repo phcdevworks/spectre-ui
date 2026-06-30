@@ -586,6 +586,40 @@ All six landed together with CSS, recipes, manifest, README, changelog, and
     `active`/`disabled`/`hovered`/`focused` flags — add `level` alongside
     them, do not create a parallel options shape.
 
+- [x] `getSelectClasses`/`getTextareaClasses` only supported `{disabled,
+      focused}` — missing `size`, `fullWidth`, `pill`, and `invalid`/
+      `success`/`loading` state, unlike `getInputClasses`'s full option set
+      **Requested by Downstream**: `project-design/spectre-components`
+      (added 2026-06-29), found while wiring `sp-select`/`sp-textarea` to
+      these new Phase 4e recipes — see
+      `project-design/spectre-components/TODO.md` Phase 6 P0.
+  - **Decision: partial parity, resolved 2026-06-30.** Added `size` (`sm` |
+    `md` | `lg`), `fullWidth`, and `pill` to both recipes, following the
+    same `resolveOption`/const-map pattern `getInputClasses` establishes
+    (`SELECT_SIZES`/`TEXTAREA_SIZES`). These are pure layout/shape options —
+    no color tokens needed — so they were safe to add immediately.
+  - **`invalid`/`success`/`loading` state deliberately deferred — new token
+    gap, not a local fallback.** Checked the published
+    `@phcdevworks/spectre-tokens@3.2.0` dist CSS directly:
+    `component.select`/`component.textarea` only emit
+    `bg`/`border`/`text`/`placeholder`/`disabled`/`focusBorder` roles. There
+    is no `--sp-select-border-invalid` / `--sp-select-bg-success` equivalent
+    of `component.input`'s `--sp-component-input-role-border-error` /
+    `-bg-error` / `-border-success` / `-bg-success` group. Reusing input's
+    role tokens for select/textarea would blur the per-component token
+    namespace boundary `CLAUDE.md` requires staying distinct; inventing
+    local color values would violate the zero-raw-value rule. Filed as a new
+    ask for `project-design/spectre-tokens`: publish
+    `component.select.border.invalid` / `.bg.invalid` /
+    `.border.success`/`.bg.success` (and the `component.textarea`
+    equivalents) before this package adds `invalid`/`success`/`loading`
+    options to either recipe.
+  - `spectre-components`'s `sp-select`/`sp-textarea` can now adopt the new
+    `size`/`fullWidth`/`pill` options from these recipes, but must keep
+    using `getInputClasses()` (or an equivalent local mapping) for
+    `invalid`/`success`/`loading` visuals until the token gap above is
+    closed — see `project-design/spectre-components/TODO.md` Phase 6 P0.
+
 - [x] Add regression coverage for downstream integration issues
   - Prefer focused contract tests over broad fixture expansion.
 

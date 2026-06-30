@@ -2688,14 +2688,11 @@
     width: 100%;
     display: block;
     appearance: none;
-    padding: var(--sp-space-4) var(--sp-space-16);
     border-radius: var(--sp-radius-md);
     border: var(--sp-component-border-width) solid var(--sp-select-border);
     background-color: var(--sp-select-bg);
     color: var(--sp-select-text);
     font-family: var(--sp-font-family-sans);
-    font-size: var(--sp-font-md-size);
-    line-height: var(--sp-font-md-line-height);
     transition:
       border-color var(--sp-duration-fast) var(--sp-easing-out),
       background-color var(--sp-duration-fast) var(--sp-easing-out);
@@ -2703,6 +2700,32 @@
 
   .sp-select::placeholder {
     color: var(--sp-select-placeholder-text);
+  }
+
+  .sp-select--sm {
+    padding: var(--sp-space-4) var(--sp-space-12);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-select--md {
+    padding: var(--sp-space-4) var(--sp-space-16);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
+  }
+
+  .sp-select--lg {
+    padding: var(--sp-space-8) var(--sp-space-24);
+    font-size: var(--sp-font-lg-size);
+    line-height: var(--sp-font-lg-line-height);
+  }
+
+  .sp-select--full {
+    width: 100%;
+  }
+
+  .sp-select--pill {
+    border-radius: var(--sp-radius-pill);
   }
 
   .sp-select:focus,
@@ -2721,14 +2744,11 @@
     width: 100%;
     display: block;
     appearance: none;
-    padding: var(--sp-space-4) var(--sp-space-16);
     border-radius: var(--sp-radius-md);
     border: var(--sp-component-border-width) solid var(--sp-textarea-border);
     background-color: var(--sp-textarea-bg);
     color: var(--sp-textarea-text);
     font-family: var(--sp-font-family-sans);
-    font-size: var(--sp-font-md-size);
-    line-height: var(--sp-font-md-line-height);
     transition:
       border-color var(--sp-duration-fast) var(--sp-easing-out),
       background-color var(--sp-duration-fast) var(--sp-easing-out);
@@ -2736,6 +2756,32 @@
 
   .sp-textarea::placeholder {
     color: var(--sp-textarea-placeholder);
+  }
+
+  .sp-textarea--sm {
+    padding: var(--sp-space-4) var(--sp-space-12);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-textarea--md {
+    padding: var(--sp-space-4) var(--sp-space-16);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
+  }
+
+  .sp-textarea--lg {
+    padding: var(--sp-space-8) var(--sp-space-24);
+    font-size: var(--sp-font-lg-size);
+    line-height: var(--sp-font-lg-line-height);
+  }
+
+  .sp-textarea--full {
+    width: 100%;
+  }
+
+  .sp-textarea--pill {
+    border-radius: var(--sp-radius-pill);
   }
 
   .sp-textarea:focus,

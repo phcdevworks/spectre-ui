@@ -53,36 +53,70 @@ describe('getRadioClasses', () => {
 
 describe('getSelectClasses', () => {
   it('returns the default select class', () => {
-    expect(getSelectClasses()).toBe('sp-select')
+    expect(getSelectClasses()).toBe('sp-select sp-select--md')
+  })
+
+  it('returns the size modifier class', () => {
+    expect(getSelectClasses({ size: 'lg' })).toBe('sp-select sp-select--lg')
+  })
+
+  it('returns the fullWidth modifier class', () => {
+    expect(getSelectClasses({ fullWidth: true })).toBe(
+      'sp-select sp-select--md sp-select--full'
+    )
+  })
+
+  it('returns the pill modifier class', () => {
+    expect(getSelectClasses({ pill: true })).toBe(
+      'sp-select sp-select--md sp-select--pill'
+    )
   })
 
   it('returns the disabled modifier class', () => {
     expect(getSelectClasses({ disabled: true })).toBe(
-      'sp-select sp-select--disabled'
+      'sp-select sp-select--md sp-select--disabled'
     )
   })
 
   it('returns the focused modifier classes', () => {
     expect(getSelectClasses({ focused: true })).toBe(
-      'sp-select sp-select--focus is-focus'
+      'sp-select sp-select--md sp-select--focus is-focus'
     )
   })
 })
 
 describe('getTextareaClasses', () => {
   it('returns the default textarea class', () => {
-    expect(getTextareaClasses()).toBe('sp-textarea')
+    expect(getTextareaClasses()).toBe('sp-textarea sp-textarea--md')
+  })
+
+  it('returns the size modifier class', () => {
+    expect(getTextareaClasses({ size: 'sm' })).toBe(
+      'sp-textarea sp-textarea--sm'
+    )
+  })
+
+  it('returns the fullWidth modifier class', () => {
+    expect(getTextareaClasses({ fullWidth: true })).toBe(
+      'sp-textarea sp-textarea--md sp-textarea--full'
+    )
+  })
+
+  it('returns the pill modifier class', () => {
+    expect(getTextareaClasses({ pill: true })).toBe(
+      'sp-textarea sp-textarea--md sp-textarea--pill'
+    )
   })
 
   it('returns the disabled modifier class', () => {
     expect(getTextareaClasses({ disabled: true })).toBe(
-      'sp-textarea sp-textarea--disabled'
+      'sp-textarea sp-textarea--md sp-textarea--disabled'
     )
   })
 
   it('returns the focused modifier classes', () => {
     expect(getTextareaClasses({ focused: true })).toBe(
-      'sp-textarea sp-textarea--focus is-focus'
+      'sp-textarea sp-textarea--md sp-textarea--focus is-focus'
     )
   })
 })
