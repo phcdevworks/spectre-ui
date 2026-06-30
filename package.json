@@ -38,7 +38,7 @@
     "npm": ">=10.0.0"
   },
   "type": "module",
-  "packageManager": "npm@11.17.0",
+  "packageManager": "npm@11.18.0",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -102,24 +102,24 @@
     "typescript": "^5.9 || ^6.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^3.2.0"
+    "@phcdevworks/spectre-tokens": "^3.3.0"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.0.0",
     "@types/node": "^26.0.1",
-    "@typescript-eslint/eslint-plugin": "^8.62.0",
-    "@typescript-eslint/parser": "^8.62.0",
+    "@typescript-eslint/eslint-plugin": "^8.62.1",
+    "@typescript-eslint/parser": "^8.62.1",
     "autoprefixer": "^10.5.2",
     "eslint": "^10.6.0",
     "jiti": "^2.7.0",
-    "postcss": "^8.5.15",
+    "postcss": "^8.5.16",
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.1",
-    "prettier": "^3.9.1",
-    "tailwindcss": "^4.3.1",
+    "prettier": "^3.9.4",
+    "tailwindcss": "^4.3.2",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.62.0",
+    "typescript-eslint": "^8.62.1",
     "vite": "^8.1.0",
     "vitest": "^4.1.9"
   },
