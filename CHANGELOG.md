@@ -6,6 +6,22 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: additive
+
+### Added
+
+- **Select/Textarea size and shape options**: `getSelectClasses` and
+  `getTextareaClasses` gained `size` (`sm` `md` `lg`), `fullWidth`, and
+  `pill` options, matching `getInputClasses`'s structural option shape.
+  Resolves the Phase 5 P0 downstream ask from `spectre-components` for
+  partial option parity. `invalid`/`success`/`loading` state colors remain
+  out of scope — `component.select`/`component.textarea` have no color
+  roles for those states in the published tokens (only
+  `bg`/`border`/`text`/`placeholder`/`disabled`/`focusBorder`), unlike
+  `component.input`'s `--sp-component-input-role-*` group. Filed as a new
+  token gap rather than reusing input's role tokens or inventing local
+  values.
+
 ## [2.6.0] - 2026-06-28
 
 Release Title: Semantic Primitives and Form-Field Recipes
