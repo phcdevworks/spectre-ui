@@ -14,13 +14,19 @@ Contract change type: additive
   `getTextareaClasses` gained `size` (`sm` `md` `lg`), `fullWidth`, and
   `pill` options, matching `getInputClasses`'s structural option shape.
   Resolves the Phase 5 P0 downstream ask from `spectre-components` for
-  partial option parity. `invalid`/`success`/`loading` state colors remain
-  out of scope — `component.select`/`component.textarea` have no color
-  roles for those states in the published tokens (only
-  `bg`/`border`/`text`/`placeholder`/`disabled`/`focusBorder`), unlike
-  `component.input`'s `--sp-component-input-role-*` group. Filed as a new
-  token gap rather than reusing input's role tokens or inventing local
-  values.
+  partial option parity.
+- **Select/Textarea invalid/success/loading states**: `getSelectClasses`
+  and `getTextareaClasses` gained a `state` option (`default` | `invalid` |
+  `success`) and a `loading` flag, completing the Phase 5 P0 option-parity
+  ask. Bumped the declared `@phcdevworks/spectre-tokens` dependency to
+  `^3.3.1`, which fixed a CSS-generation bug that had silently dropped the
+  `component.select`/`component.textarea` `borderInvalid`/`bgInvalid`/
+  `borderSuccess`/`bgSuccess` token variables from `3.3.0`'s published CSS.
+  `loading` stays structural-only (opacity/pointer-events via
+  `.sp-select--loading`/`.sp-textarea--loading`), matching
+  `getInputClasses`'s existing `sp-input--loading` precedent — no new color
+  token needed. `spectre-components`'s `sp-select`/`sp-textarea` can now
+  drop their `getInputClasses()` workaround for these states.
 
 ## [2.6.0] - 2026-06-28
 

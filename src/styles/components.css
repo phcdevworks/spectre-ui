@@ -2740,6 +2740,23 @@
     border-color: var(--sp-select-disabled-border);
   }
 
+  .sp-select--invalid,
+  .sp-select[aria-invalid="true"] {
+    border-color: var(--sp-select-border-invalid);
+    background-color: var(--sp-select-bg-invalid);
+  }
+
+  .sp-select--success {
+    border-color: var(--sp-select-border-success);
+    background-color: var(--sp-select-bg-success);
+  }
+
+  .sp-select--loading,
+  .sp-select[aria-busy="true"] {
+    pointer-events: none;
+    opacity: var(--sp-opacity-active);
+  }
+
   .sp-textarea {
     width: 100%;
     display: block;
@@ -2794,6 +2811,23 @@
   .sp-textarea:disabled {
     background-color: var(--sp-textarea-disabled-bg);
     border-color: var(--sp-textarea-disabled-border);
+  }
+
+  .sp-textarea--invalid,
+  .sp-textarea[aria-invalid="true"] {
+    border-color: var(--sp-textarea-border-invalid);
+    background-color: var(--sp-textarea-bg-invalid);
+  }
+
+  .sp-textarea--success {
+    border-color: var(--sp-textarea-border-success);
+    background-color: var(--sp-textarea-bg-success);
+  }
+
+  .sp-textarea--loading,
+  .sp-textarea[aria-busy="true"] {
+    pointer-events: none;
+    opacity: var(--sp-opacity-active);
   }
 
   .sp-fieldset {
