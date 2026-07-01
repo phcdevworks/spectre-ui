@@ -8,7 +8,7 @@ reflects package releases published to npm.
 
 ## [2.7.0] - 2026-06-30
 
-Release Title: Select and Textarea State Parity
+**Release Title:** Phase 5 P0 - Select and Textarea State Parity
 
 Contract change type: additive
 
@@ -28,13 +28,13 @@ Contract change type: additive
   `borderSuccess`/`bgSuccess` token variables from `3.3.0`'s published CSS.
   `loading` stays structural-only (opacity/pointer-events via
   `.sp-select--loading`/`.sp-textarea--loading`), matching
-  `getInputClasses`'s existing `sp-input--loading` precedent — no new color
+  `getInputClasses`'s existing `sp-input--loading` precedent - no new color
   token needed. `spectre-components`'s `sp-select`/`sp-textarea` can now
   drop their `getInputClasses()` workaround for these states.
 
 ## [2.6.0] - 2026-06-28
 
-Release Title: Semantic Primitives and Form-Field Recipes
+**Release Title:** Phase 4e/3 - Semantic Primitives and Form-Field Recipes
 
 Contract change type: additive
 
@@ -42,7 +42,7 @@ Contract change type: additive
 
 - **Link utility**: Added a token-backed `.sp-link` class
   (`--sp-link-default` `--sp-link-hover` `--sp-link-active`
-  `--sp-link-visited`) for inline text links. Plain CSS, no recipe wrapper —
+  `--sp-link-visited`) for inline text links. Plain CSS, no recipe wrapper -
   there is no variant or size axis to validate.
 - **Interactive surface state utilities**: Added `.sp-surface--hover`,
   `.sp-surface--selected`, and `.sp-surface--active` modifier classes backed
@@ -64,7 +64,7 @@ Contract change type: additive
 
 ## [2.5.0] - 2026-06-25
 
-Release Title: Sidebar Navigation Hardening
+**Release Title:** Phase 4d - Sidebar Navigation Hardening
 
 Contract change type: additive
 
@@ -84,7 +84,7 @@ Contract change type: additive
 
 ## [2.4.0] - 2026-06-23
 
-Release Title: App Shell Hardening
+**Release Title:** Phase 4d - App Shell Hardening
 
 Contract change type: additive
 
@@ -104,7 +104,7 @@ Contract change type: additive
 
 ## [2.3.0] - 2026-06-19
 
-Release Title: App Shell Recipe Expansion
+**Release Title:** Phase 4d - App Shell Recipe Expansion
 
 Contract change type: additive
 
@@ -126,7 +126,7 @@ Contract change type: additive
   from the same `--sp-layout-sidebar-width` token used by Stack's `basis`
   option. Below `breakpoints.md`, the sidebar is an off-canvas drawer
   (`transform: translateX(-100%)`) with a backdrop, toggled via a
-  `data-sidebar-open="true"` attribute contract — this is the first recipe
+  `data-sidebar-open="true"` attribute contract - this is the first recipe
   family with an interactive-state CSS contract. This package owns the CSS
   reaction only; toggle behavior, click handling, and state management
   belong to the consuming adapter.
@@ -135,12 +135,12 @@ Contract change type: additive
   `bordered`/`fullWidth` option shape (no `sticky`, per the deferred-unless-
   needed decision in `TODO.md`).
 
-This is Phase 4d in `TODO.md` — real downstream need surfaced in
+This is Phase 4d in `TODO.md` - real downstream need surfaced in
 `docs-phcdevworks-com`'s app shell (top bar + sidebar + main content).
 
 ## [2.2.0] - 2026-06-18
 
-Release Title: Grid Recipe Expansion
+**Release Title:** Phase 4c - Grid Recipe Expansion
 
 Contract change type: additive
 
@@ -160,7 +160,7 @@ Contract change type: additive
 
 ## [2.1.0] - 2026-06-17
 
-Release Title: Layout Recipe Expansion
+**Release Title:** Phase 4b - Layout Recipe Expansion
 
 Contract change type: additive
 
@@ -178,7 +178,7 @@ Contract change type: additive
 
 ## [2.0.0] - 2026-06-17
 
-Release Title: Token 3 Alignment
+**Release Title:** Phase 4 - Token 3 Alignment
 
 Contract change type: breaking
 
@@ -201,7 +201,7 @@ Contract change type: breaking
 
 ## [1.9.0] - 2026-06-10
 
-Release Title: Component Recipe Expansion
+**Release Title:** Phase 4 - Component Recipe Expansion
 
 Contract change type: additive
 
@@ -270,7 +270,7 @@ Contract change type: additive
 
 ## [1.8.0] - 2026-06-07
 
-Release Title: Spinner Contract and Token Focus Alignment
+**Release Title:** Phase 3 P1 - Spinner Contract and Token Focus Alignment
 
 Contract change type: additive
 
@@ -292,7 +292,7 @@ Contract change type: additive
 
 ## [1.7.0] - 2026-06-03
 
-Release Title: Tag Variant Expansion and Token Alignment
+**Release Title:** Phase 3 - Tag Variant Expansion and Token Alignment
 
 ### Added
 
@@ -316,7 +316,7 @@ Release Title: Tag Variant Expansion and Token Alignment
 
 ## [1.6.0] - 2026-05-22
 
-Release Title: Contract Expansion and Governance Hardening
+**Release Title:** Phase 2 - Contract Expansion and Governance Hardening
 
 ### Added
 
@@ -360,7 +360,7 @@ Release Title: Contract Expansion and Governance Hardening
 
 ## [1.5.0] - 2026-05-04
 
-Release Title: Token Alignment and Variant Parity
+**Release Title:** Phase 2 - Token Alignment and Variant Parity
 
 ### Added
 
@@ -393,7 +393,7 @@ Release Title: Token Alignment and Variant Parity
 
 ## [1.4.0] - 2026-04-25
 
-Release Title: Contract Manifest and Variant Parity
+**Release Title:** Phase 2 - Contract Manifest and Variant Parity
 
 ### Added
 
@@ -435,7 +435,7 @@ Release Title: Contract Manifest and Variant Parity
 
 ## [1.3.0] - 2026-04-18
 
-Release Title: Contract Coverage Expansion and Interaction Parity
+**Release Title:** Phase 2 - Contract Coverage Expansion and Interaction Parity
 
 ### Added
 
@@ -472,7 +472,7 @@ Release Title: Contract Coverage Expansion and Interaction Parity
 
 ## [1.2.0] - 2026-04-11
 
-Release Title: Interactive State Parity and Validation Governance
+**Release Title:** Phase 2 - Interactive State Parity and Validation Governance
 
 ### Added
 
@@ -494,7 +494,7 @@ Release Title: Interactive State Parity and Validation Governance
 
 ## [1.1.2] - 2026-04-05
 
-Release Title: State Parity and Package Contract Hardening
+**Release Title:** Phase 2 - State Parity and Package Contract Hardening
 
 ### Added
 
@@ -533,7 +533,7 @@ Release Title: State Parity and Package Contract Hardening
 
 ## [1.1.1] - 2026-03-29
 
-Release Title: Loading States and Package Refinement
+**Release Title:** Phase 2 - Loading States and Package Refinement
 
 ### Added
 
@@ -557,7 +557,7 @@ Release Title: Loading States and Package Refinement
 
 ## [1.1.0] - 2026-03-22
 
-Release Title: Disabled States and Layer Alignment
+**Release Title:** Phase 1 - Disabled States and Layer Alignment
 
 ### Added
 
@@ -585,7 +585,7 @@ Release Title: Disabled States and Layer Alignment
 
 ## [1.0.0] - 2026-03-16
 
-Release Title: Blueprint Foundation Release
+**Release Title:** Phase 1 - Blueprint Foundation Release
 
 ### Added
 
@@ -604,7 +604,7 @@ Release Title: Blueprint Foundation Release
 
 ## [0.4.1] - 2026-01-14
 
-Release Title: Input Tokens and Utility Cleanup
+**Release Title:** Phase 0 - Input Tokens and Utility Cleanup
 
 ### Changed
 
@@ -621,7 +621,7 @@ Release Title: Input Tokens and Utility Cleanup
 
 ## [0.4.0] - 2026-01-03
 
-Release Title: Semantic CSS System Refresh
+**Release Title:** Phase 0 - Semantic CSS System Refresh
 
 ### Changed
 
@@ -640,7 +640,7 @@ Release Title: Semantic CSS System Refresh
 
 ## [0.3.0] - 2025-12-24
 
-Release Title: Bundled CSS Distribution
+**Release Title:** Phase 0 - Bundled CSS Distribution
 
 ### Changed
 
@@ -656,7 +656,7 @@ Release Title: Bundled CSS Distribution
 
 ## [0.2.2] - 2025-12-23
 
-Release Title: Public API Tightening
+**Release Title:** Phase 0 - Public API Tightening
 
 ### Changed
 
@@ -665,7 +665,7 @@ Release Title: Public API Tightening
 
 ## [0.2.1] - 2025-12-23
 
-Release Title: Tailwind Export Refinement
+**Release Title:** Phase 0 - Tailwind Export Refinement
 
 ### Changed
 
@@ -674,7 +674,7 @@ Release Title: Tailwind Export Refinement
 
 ## [0.2.0] - 2025-12-20
 
-Release Title: Primitive Expansion and Tailwind Control
+**Release Title:** Phase 0 - Primitive Expansion and Tailwind Control
 
 ### Added
 
@@ -691,7 +691,7 @@ Release Title: Primitive Expansion and Tailwind Control
 
 ## [0.1.0] - 2025-12-13
 
-Release Title: Community Standards and Variant Growth
+**Release Title:** Phase 0 - Community Standards and Variant Growth
 
 ### Added
 
@@ -708,7 +708,7 @@ Release Title: Community Standards and Variant Growth
 
 ## [0.0.5] - 2025-12-08
 
-Release Title: Canonical CSS Bundle
+**Release Title:** Phase 0 - Canonical CSS Bundle
 
 ### Added
 
@@ -716,7 +716,7 @@ Release Title: Canonical CSS Bundle
 
 ## [0.0.4] - 2025-12-07
 
-Release Title: Contract Testing and Utility Growth
+**Release Title:** Phase 0 - Contract Testing and Utility Growth
 
 ### Added
 
@@ -731,7 +731,7 @@ Release Title: Contract Testing and Utility Growth
 
 ## [0.0.3] - 2025-12-06
 
-Release Title: Surface Roles and Package Metadata
+**Release Title:** Phase 0 - Surface Roles and Package Metadata
 
 ### Added
 
@@ -741,7 +741,7 @@ Release Title: Surface Roles and Package Metadata
 
 ## [0.0.2] - 2025-12-04
 
-Release Title: Recipe API Alignment and Token Decoupling
+**Release Title:** Phase 0 - Recipe API Alignment and Token Decoupling
 
 ### Changed
 
@@ -752,7 +752,7 @@ Release Title: Recipe API Alignment and Token Decoupling
 
 ## [0.0.1] - 2025-11-27
 
-Release Title: Initial Blueprint Release
+**Release Title:** Phase 0 - Initial Blueprint Release
 
 ### Added
 
