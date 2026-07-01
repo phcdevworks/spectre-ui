@@ -631,6 +631,15 @@ All six landed together with CSS, recipes, manifest, README, changelog, and
     and drop the `getInputClasses()` workaround — see
     `project-design/spectre-components/TODO.md` Phase 6 P0.
 
+- [x] `.sp-sidebar-toggle` stays visible on desktop, overlapping the docked
+      sidebar
+  - The `@media (min-width: 768px)` block in `src/styles/components.css`
+    reset `.sp-sidebar` and `.sp-sidebar-backdrop` for the docked layout but
+    never hid `.sp-sidebar-toggle`, so the off-canvas hamburger button
+    rendered on top of the docked sidebar at all viewport widths.
+  - Fix: added `.sp-sidebar-toggle { display: none; }` to the same media
+    query.
+
 - [x] Add regression coverage for downstream integration issues
   - Prefer focused contract tests over broad fixture expansion.
 
@@ -638,19 +647,31 @@ All six landed together with CSS, recipes, manifest, README, changelog, and
   - Add visual fixtures only when they support regression review for new public
     recipes or states.
 
-### P1: UI Deprecation Readiness
+### P1: UI Deprecation Readiness (done)
 
-- [ ] Define a UI deprecation policy before removing public styling surface
-  - Cover recipe functions, recipe options, variants, states, CSS classes, CSS
-    entry points, and Tailwind exports.
+- [x] Define a UI deprecation policy before removing public styling surface
+  - Added a "Deprecation Policy" section to `CONTRIBUTING.md`, covering
+    recipe functions, recipe options, variants, states, CSS classes, CSS
+    entry points, and Tailwind exports: keep the surface working, add a
+    `CHANGELOG.md` `### Deprecated` entry naming the replacement and
+    earliest removal version, note it at the source/README call site, and
+    require a separate later `breaking`-classified change (with Bradley
+    Potts's approval) to actually remove it.
 
-- [ ] Decide whether `ui-contract.manifest.json` needs deprecation metadata
-  - Add metadata only if it can be validated and kept narrow.
+- [x] Decide whether `ui-contract.manifest.json` needs deprecation metadata
+  - Decision: no. The manifest's job is validating the current live
+    contract, not tracking removal history — `CHANGELOG.md` is already the
+    source of truth for classification and timeline, and adding parallel
+    deprecation state to the manifest would need its own validator for a
+    policy with zero deprecations to track yet. Revisit only if a real
+    deprecation needs machine-readable tracking beyond the changelog.
 
-- [ ] Document deprecation notices in `CHANGELOG.md` and `CONTRIBUTING.md`
+- [x] Document deprecation notices in `CHANGELOG.md` and `CONTRIBUTING.md`
       before the first removal or rename
-  - Consumers should see what is deprecated, what replaces it, and when removal
-    can happen.
+  - Covered by the same `CONTRIBUTING.md` section: every deprecation gets a
+    `CHANGELOG.md [Unreleased]` entry plus an in-repo docstring/README note,
+    so consumers reading source, docs, or changelog all see the same notice
+    before anything is removed.
 
 ---
 
@@ -681,10 +702,12 @@ All six landed together with CSS, recipes, manifest, README, changelog, and
     previously recipe-less `sp-checkbox`/`sp-radio`/`sp-select`/
     `sp-textarea`/`sp-fieldset`/`sp-label` components in
     `spectre-components`.
-12. Phase 5 P0 — continuous; add regression coverage as adapter usage reveals
-    gaps.
-13. Phase 5 P1 — define deprecation mechanics before retiring any public
-    class, recipe option, or variant.
+12. Phase 5 P0 — all known gaps closed; the "track adapter feedback" line
+    stays open on a standing basis, add regression coverage as new usage
+    reveals gaps.
+13. **Phase 5 P1 — done.** Deprecation policy documented in
+    `CONTRIBUTING.md`; manifest deprecation metadata deliberately skipped
+    (see rationale above).
 
 ---
 

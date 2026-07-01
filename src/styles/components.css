@@ -2352,6 +2352,10 @@
     .sp-sidebar-backdrop {
       display: none;
     }
+
+    .sp-sidebar-toggle {
+      display: none;
+    }
   }
 
   /* FOOTER ----------------------------------------------------------------- */
