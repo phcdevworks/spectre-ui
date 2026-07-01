@@ -220,6 +220,37 @@ opening a PR.
 - CSS entry point filenames and `package.json` export keys
 - The zero-hex policy itself
 
+## Deprecation Policy
+
+Before removing or renaming any public styling surface — a recipe function,
+a recipe option, a variant, a state, a CSS class, a CSS entry point, or a
+Tailwind export — it must go through a deprecation cycle. Silent removal is
+a `breaking` change with no migration window and is not acceptable for any
+surface listed under "Public API surfaces" above.
+
+**Step-by-step checklist for deprecating a public surface:**
+
+1. Keep the surface fully functional. A deprecated recipe, option, variant,
+   state, or class must keep working exactly as before — deprecation is a
+   notice, not a behavior change.
+2. Add a `CHANGELOG.md [Unreleased]` entry under a `### Deprecated` heading
+   naming the exact surface (function name, option name, variant/state
+   value, or class name), what replaces it, and the earliest major version
+   in which it may be removed.
+3. Note the deprecation in the relevant docstring or inline comment at the
+   call site in `src/`, and in the README wherever that surface is
+   documented, so consumers reading source or docs see it without needing
+   the changelog.
+4. Do not remove the surface in the same release that deprecates it. A
+   removal requires its own later `breaking`-classified change following
+   the existing breaking-change checklist, including Bradley Potts's
+   explicit approval.
+5. `ui-contract.manifest.json` continues to declare only the current,
+   supported contract — do not add deprecation metadata to the manifest.
+   The manifest's job is validating what's live today, not tracking
+   removal history; that history lives in `CHANGELOG.md`, which is already
+   the source of truth for classification and timeline.
+
 ## Pull Request Checklist
 
 1. Keep the change focused.
