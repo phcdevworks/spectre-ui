@@ -1,6 +1,6 @@
 {
   "name": "@phcdevworks/spectre-ui",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "description": "@phcdevworks/spectre-ui is the Layer 2 styling contract between @phcdevworks/spectre-tokens and downstream adapters or apps.",
   "keywords": [
     "phcdevworks",
@@ -106,7 +106,7 @@
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.0.0",
-    "@types/node": "^26.0.1",
+    "@types/node": "^26.1.0",
     "@typescript-eslint/eslint-plugin": "^8.62.1",
     "@typescript-eslint/parser": "^8.62.1",
     "autoprefixer": "^10.5.2",

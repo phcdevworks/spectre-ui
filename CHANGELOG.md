@@ -6,6 +6,21 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [2.7.1] - 2026-07-02
+
+**Release Title:** Phase 5 P0 - Sidebar Toggle Desktop Visibility Fix
+
+Contract change type: additive
+
+### Fixed
+
+- **Sidebar toggle button no longer stays visible on desktop**: the
+  `@media (min-width: 768px)` block in `components.css` reset `.sp-sidebar`
+  and `.sp-sidebar-backdrop` for the docked layout but never hid
+  `.sp-sidebar-toggle`, so the off-canvas hamburger button rendered on top
+  of the docked sidebar at all viewport widths. Added
+  `.sp-sidebar-toggle { display: none; }` to the same media query.
+
 ## [2.7.0] - 2026-06-30
 
 **Release Title:** Phase 5 P0 - Select and Textarea State Parity
