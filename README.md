@@ -282,8 +282,8 @@ All options are optional and fall back to sensible defaults.
 | Footer      | `getFooterClasses`      | —                                                                                                              | —                   | `bordered` `fullWidth`                                                  |
 | Checkbox    | `getCheckboxClasses`    | —                                                                                                              | —                   | `checked` `disabled`                                                    |
 | Radio       | `getRadioClasses`       | —                                                                                                              | —                   | `checked` `disabled`                                                    |
-| Select      | `getSelectClasses`      | size: `sm` `md` `lg`                                                                                           | —                   | `fullWidth` `pill` `disabled` `focused`                                 |
-| Textarea    | `getTextareaClasses`    | size: `sm` `md` `lg`                                                                                           | —                   | `fullWidth` `pill` `disabled` `focused`                                 |
+| Select      | `getSelectClasses`      | size: `sm` `md` `lg`, state: `default` `invalid` `success`                                                     | —                   | `fullWidth` `pill` `disabled` `focused` `loading`                       |
+| Textarea    | `getTextareaClasses`    | size: `sm` `md` `lg`, state: `default` `invalid` `success`                                                     | —                   | `fullWidth` `pill` `disabled` `focused` `loading`                       |
 | Fieldset    | `getFieldsetClasses`    | —                                                                                                              | —                   | `disabled`                                                              |
 | Label       | `getLabelClasses`       | —                                                                                                              | —                   | `disabled` `required`                                                   |
 
@@ -595,12 +595,13 @@ adding a public export, then commit the updated `scripts/export-snapshot.json`.
 Planning artifacts for contract hardening live in [ROADMAP.md](ROADMAP.md) and
 [TODO.md](TODO.md).
 
-The current roadmap focus is post-v1.7.0 expansion: consume newly published
-Spectre token contracts for links, interactive surfaces, dividers, and common
-application UI patterns before adding matching Layer 2 classes or recipes.
-Planned upstream token work is tracked in
-[`@phcdevworks/spectre-tokens`](https://github.com/phcdevworks/spectre-tokens),
-but this package synchronizes only against published npm releases.
+All scoped roadmap phases through Phase 5 are delivered — there is no open
+implementation phase right now. New recipe or CSS work opens only when a
+downstream adapter surfaces a real integration gap, or when
+[`@phcdevworks/spectre-tokens`](https://github.com/phcdevworks/spectre-tokens)
+publishes a new token group this package should consume. This package
+synchronizes only against published npm releases, not in-progress upstream
+work.
 
 ## Examples
 
