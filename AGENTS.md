@@ -139,46 +139,13 @@ DOM coupling. That is the contract.
 - If a task changes a dependency range, refresh the lockfile so root metadata,
   resolved packages, and install behavior all agree.
 
-## Claude Code
+## Agent-Specific Guides
 
-Claude Code reads `CLAUDE.md` first. All common workflows, the recipe pattern,
-the public contract surface, and enforcement details are documented there. The
-rules in this file (`AGENTS.md`) apply to all AI agents including Claude Code.
-
-## Codex
-
-Codex reads [`CODEX.md`](CODEX.md) after `CLAUDE.md` and this file. Codex serves
-as the documentation, release-readiness, production-stabilization, repo-hygiene,
-and config-standardization partner while Claude Code remains the primary AI
-developer.
-
-Codex should keep changes scoped, watch for documentation and contract drift,
-run or report release validation, and leave final commit, tag, and publish
-authority with Bradley Potts.
-
-## GitHub Copilot
-
-GitHub Copilot provides general development assistance. Copilot may help with
-targeted edits, refactors, documentation synchronization, GitHub workflow
-support, and validation awareness, but it does not own implementation direction,
-release decisions, or final handoff authority.
-
-Copilot uses `COPILOT.md`, `.github/copilot-instructions.md`, scoped files in
-`.github/instructions/`, and the role boundaries in this file.
-
-## Jules
-
-Jules reads [`JULES.md`](JULES.md) after `CLAUDE.md` and this file. Jules is the
-autonomous scheduled task executor — it runs scoped prompt-driven tasks without
-human supervision for small fixes, dependency updates, token synchronization,
-and micro-updates. Jules is the only AI agent in this repository that commits
-and pushes completed maintenance work directly.
-
-Jules operates in two modes: General Developer (micro hardening — one CSS file,
-one recipe file) and Sync Developer (token synchronization against the latest
-published `@phcdevworks/spectre-tokens`). All rules in this file apply to Jules.
-Jules must run `npm run check` in full before every commit and must stop and
-report rather than committing when any gate fails.
+- `CLAUDE.md` - primary development authority and implementation workflow.
+- `CODEX.md` - documentation, release, stabilization, and repo hygiene workflow.
+- `JULES.md` - bounded automated maintenance and commit workflow.
+- `COPILOT.md` and `.github/copilot-instructions.md` - support-assistant
+  workflow.
 
 ## Upstream Requests and Roadmap Self-Expansion
 
