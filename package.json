@@ -1,7 +1,7 @@
 {
   "name": "@phcdevworks/spectre-ui",
   "version": "2.7.1",
-  "description": "@phcdevworks/spectre-ui is the Layer 2 styling contract between @phcdevworks/spectre-tokens and downstream adapters or apps.",
+  "description": "@phcdevworks/spectre-ui is the styling contract package of the Spectre system. It translates Spectre design tokens into CSS bundles, Tailwind theme configuration, and class recipe functions for downstream adapters and apps.",
   "keywords": [
     "phcdevworks",
     "spectre",
@@ -38,7 +38,7 @@
     "npm": ">=10.0.0"
   },
   "type": "module",
-  "packageManager": "npm@11.18.0",
+  "packageManager": "npm@12.0.1",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -105,22 +105,22 @@
     "@phcdevworks/spectre-tokens": "^3.3.1"
   },
   "devDependencies": {
-    "@phcdevworks/spectre-manifest": "^1.0.0",
-    "@types/node": "^26.1.0",
+    "@phcdevworks/spectre-manifest": "^1.1.0",
+    "@types/node": "^26.1.1",
     "@typescript-eslint/eslint-plugin": "^8.63.0",
     "@typescript-eslint/parser": "^8.63.0",
     "autoprefixer": "^10.5.2",
-    "eslint": "^10.6.0",
+    "eslint": "^10.7.0",
     "jiti": "^2.7.0",
-    "postcss": "^8.5.16",
+    "postcss": "^8.5.18",
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.1",
-    "prettier": "^3.9.4",
+    "prettier": "^3.9.5",
     "tailwindcss": "^4.3.2",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.63.0",
-    "vite": "^8.1.3",
+    "vite": "^8.1.4",
     "vitest": "^4.1.10"
   },
   "cSpell.words": [

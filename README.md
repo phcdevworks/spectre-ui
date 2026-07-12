@@ -1,5 +1,14 @@
 # @phcdevworks/spectre-ui
 
+`@phcdevworks/spectre-ui` is the styling contract package of the Spectre
+system. It translates Spectre design tokens into CSS bundles, Tailwind theme
+configuration, and class recipe functions for downstream adapters and apps.
+
+Maintained by [PHCDevworks](https://go.phcdev.co). It sits between
+`@phcdevworks/spectre-tokens` and the framework-specific adapter and
+component packages, so no downstream repo needs to hand-roll CSS, Tailwind
+config, or hardcode design values to consume Spectre's visual language.
+
 ## Repository Snapshot
 
 | Field | Value |
