@@ -13,7 +13,19 @@
   }
 
   .sp-stack--basis-sidebar {
-    flex: 0 0 var(--sp-layout-sidebar-width);
+    flex: 0 0 0;
+    width: 0;
+  }
+
+  /* min-width value matches the published --sp-breakpoint-md token value;
+     CSS does not allow var() inside @media feature queries. Below md, the
+     sidebar itself renders as an off-canvas drawer (see sp-sidebar in
+     components.css), so its flex parent must not reserve layout width. */
+  @media (min-width: 768px) {
+    .sp-stack--basis-sidebar {
+      flex: 0 0 var(--sp-layout-sidebar-width);
+      width: auto;
+    }
   }
 
   .sp-stack--align-stretch {
