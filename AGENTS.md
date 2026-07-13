@@ -22,6 +22,50 @@
 Bradley Potts holds final authority for commits, merges, tags, publishing, and
 releases.
 
+## Cross-Repo Access
+
+This repo may be worked on standalone or alongside any combination of other
+PHCDevworks repos — do not assume the company root or sibling project areas
+are present. The following rules are self-contained and apply whether or not
+that broader context is available.
+
+**File access.** An agent working in this repo has full read/write access to
+every file in this repo. When this repo is present alongside other
+PHCDevworks repos (company root or sibling `project-*` areas), the same full
+read/write access extends to those repos too — there is no per-repo access
+restriction anywhere in this workspace. What differs repo-to-repo is not
+*access*, it's *editorial ownership*: each repo's own `CLAUDE.md`/`AGENTS.md`
+still governs what changes make sense there (design-token authority, layer
+boundaries, etc.) — being able to open and edit a file is not the same as it
+being this repo's job to change it.
+
+**Cross-repo changelog sync.** When a change in this repo has direct
+downstream or upstream impact on another present repo (e.g. a breaking token
+rename, an API contract change), an agent may append a `CHANGELOG.md
+[Unreleased]` entry directly into that other repo's own changelog — not just
+leave a note asking its owner to add it. Rules:
+
+1. Only append new `[Unreleased]` entries — never edit, reorder, or remove
+   another repo's existing changelog entries, version headers, or release
+   history.
+2. Every cross-repo entry must be self-contained and attributed: which repo
+   caused it and why, what changed from the affected repo's perspective, and
+   the date added.
+3. Add it in the same change that produced the impact, not a later session.
+4. This never grants release authority — cutting a release, bumping a version
+   header, or publishing a package stays gated by that repo's own release
+   process and the human owner's final sign-off.
+
+**TODO/roadmap requests.** When work here surfaces a need that belongs to
+another repo, an agent may append the request directly to that repo's own
+`TODO.md` under a clearly labeled "Requested by Downstream" section (create
+it if absent), stating which repo is requesting it, why, the date, and a
+link back if the other repo's `TODO.md`/`ROADMAP.md` is reachable.
+
+No AI agent creates commits, tags, publishes packages, or merges changes in
+this repo or any other unless that repo's own agent guide explicitly grants
+that authority or the human owner has explicitly requested the action.
+
 ## Standard Handoff
 
 Every AI-prepared change should report files changed, validation performed,

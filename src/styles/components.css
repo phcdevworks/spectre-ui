@@ -327,6 +327,11 @@
     --sp-component-sidebar-backdrop: var(--sp-surface-overlay);
     --sp-component-sidebar-backdrop-z-index: var(--sp-z-index-overlay);
     --sp-component-sidebar-toggle-z-index: var(--sp-z-index-modal);
+    --sp-component-sidebar-toggle-text: var(--sp-nav-link);
+    --sp-component-sidebar-toggle-hover: var(--sp-nav-link-hover);
+    --sp-component-sidebar-toggle-hover-bg: var(--sp-nav-bg);
+    --sp-component-sidebar-toggle-radius: var(--sp-radius-md);
+    --sp-component-sidebar-toggle-padding: var(--sp-space-8);
 
     /* footer roles (reuses nav roles - bottom-bar counterpart to the top-bar nav) */
     --sp-component-footer-bg: var(--sp-nav-bg);
@@ -2330,6 +2335,32 @@
   .sp-sidebar-toggle {
     position: relative;
     z-index: var(--sp-component-sidebar-toggle-z-index);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--sp-component-sidebar-toggle-padding);
+    border: none;
+    border-radius: var(--sp-component-sidebar-toggle-radius);
+    background-color: transparent;
+    color: var(--sp-component-sidebar-toggle-text);
+    font-size: var(--sp-font-lg-size);
+    line-height: 1;
+    cursor: pointer;
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-sidebar-toggle:hover,
+  .sp-sidebar-toggle.is-hover {
+    color: var(--sp-component-sidebar-toggle-hover);
+    background-color: var(--sp-component-sidebar-toggle-hover-bg);
+  }
+
+  .sp-sidebar-toggle:focus-visible,
+  .sp-sidebar-toggle.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
   }
 
   [data-sidebar-open="true"] .sp-sidebar {
