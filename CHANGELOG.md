@@ -6,6 +6,28 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [2.7.2] - 2026-07-13
+
+**Release Title:** Phase 5 P0 - Sidebar Basis Mobile Layout Fix
+
+Contract change type: additive
+
+### Fixed
+
+- **Sidebar basis no longer reserves mobile layout width**: changed
+  `.sp-stack--basis-sidebar` to use a zero basis and width below the published
+  `breakpoints.md` value, then restore `--sp-layout-sidebar-width` at
+  `min-width: 768px`. This keeps the off-canvas sidebar from consuming flex
+  layout space on small screens while preserving the existing docked desktop
+  layout and recipe API.
+
+### Changed
+
+- **Documentation and tooling maintenance**: documented the complete
+  Select/Textarea state recipe surface, refreshed the package description and
+  roadmap status, moved the declared package manager to npm 12.0.1, and updated
+  development dependencies and their lockfile resolutions.
+
 ## [2.7.1] - 2026-07-02
 
 **Release Title:** Phase 5 P0 - Sidebar Toggle Desktop Visibility Fix
@@ -776,7 +798,9 @@ Contract change type: additive
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe
   helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/2.7.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/2.7.2...HEAD
+[2.7.2]: https://github.com/phcdevworks/spectre-ui/compare/2.7.1...2.7.2
+[2.7.1]: https://github.com/phcdevworks/spectre-ui/compare/2.7.0...2.7.1
 [2.7.0]: https://github.com/phcdevworks/spectre-ui/compare/2.6.0...2.7.0
 [2.6.0]: https://github.com/phcdevworks/spectre-ui/compare/2.5.0...2.6.0
 [2.5.0]: https://github.com/phcdevworks/spectre-ui/compare/2.4.0...2.5.0

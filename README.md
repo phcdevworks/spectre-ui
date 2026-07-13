@@ -16,7 +16,7 @@ config, or hardcode design values to consume Spectre's visual language.
 | Project team | `project-design` |
 | Repository role | Spectre L2 CSS, Tailwind, and recipe contract |
 | Package/artifact | `@phcdevworks/spectre-ui` |
-| Current version/status | 2.7.1 |
+| Current version/status | 2.7.2 |
 
 ## Standard Workflow
 
