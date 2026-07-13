@@ -55,6 +55,25 @@ describe('getStackClasses', () => {
     )
   })
 
+  it('reserves sidebar width only at breakpoints.md and above', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    const sidebarBasisStart = css.indexOf('.sp-stack--basis-sidebar')
+    const responsiveStart = css.indexOf(
+      '@media (min-width: 768px)',
+      sidebarBasisStart
+    )
+    const mobileBlock = css.slice(sidebarBasisStart, responsiveStart)
+    const responsiveBlock = css.slice(responsiveStart)
+
+    expect(mobileBlock).toContain('flex: 0 0 0')
+    expect(mobileBlock).toContain('width: 0')
+    expect(responsiveBlock).toContain(
+      'flex: 0 0 var(--sp-layout-sidebar-width)'
+    )
+    expect(responsiveBlock).toContain('width: auto')
+  })
+
   it('returns center align by default with no modifier class', () => {
     expect(getStackClasses({ align: 'center' })).toBe('sp-stack')
   })
