@@ -2400,7 +2400,7 @@
     background-color: transparent;
     color: var(--sp-component-sidebar-toggle-text);
     font-size: var(--sp-font-lg-size);
-    line-height: 1;
+    line-height: var(--sp-font-lg-line-height);
     cursor: pointer;
     transition:
       background-color var(--sp-duration-fast) var(--sp-easing-out),

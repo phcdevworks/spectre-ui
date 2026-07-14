@@ -62,6 +62,8 @@
   "getSelectClasses",
   "getSidebarBackdropClasses",
   "getSidebarClasses",
+  "getSidebarGroupClasses",
+  "getSidebarGroupSummaryClasses",
   "getSidebarHeaderClasses",
   "getSidebarLinkClasses",
   "getSidebarToggleClasses",

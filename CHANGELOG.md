@@ -6,6 +6,35 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [2.8.0] - 2026-07-14
+
+**Release Title:** Collapsible Sidebar Groups and Toggle Hardening
+
+Contract change type: additive
+
+### Added
+
+- **Collapsible sidebar group helpers**: added `getSidebarGroupClasses()` and
+  `getSidebarGroupSummaryClasses()` with matching token-backed CSS for native
+  `details`/`summary` navigation groups, including hover, focus-visible, open
+  icon rotation, separators, and content spacing.
+- **Complete sidebar toggle styling**: `.sp-sidebar-toggle` now supplies its
+  token-backed layout, spacing, color, hover, and focus-visible treatment while
+  adapters continue to own markup and interaction behavior.
+
+### Fixed
+
+- **Sidebar drawer stacking**: corrected the sidebar and backdrop z-index token
+  assignments so the open drawer renders above its backdrop while the toggle
+  remains available above both layers.
+
+### Changed
+
+- **Development dependency maintenance**: updated the TypeScript ESLint
+  packages to 8.64.0 and PostCSS to 8.5.19 with synchronized lockfile metadata.
+- **CSS contract budget**: raised the `components.css` regression ceiling from
+  121,000 to 124,000 bytes for the intentional sidebar group and toggle styles.
+
 ## [2.7.2] - 2026-07-13
 
 **Release Title:** Phase 5 P0 - Sidebar Basis Mobile Layout Fix
@@ -798,7 +827,8 @@ Contract change type: additive
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe
   helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/2.7.2...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/2.8.0...HEAD
+[2.8.0]: https://github.com/phcdevworks/spectre-ui/compare/2.7.2...2.8.0
 [2.7.2]: https://github.com/phcdevworks/spectre-ui/compare/2.7.1...2.7.2
 [2.7.1]: https://github.com/phcdevworks/spectre-ui/compare/2.7.0...2.7.1
 [2.7.0]: https://github.com/phcdevworks/spectre-ui/compare/2.6.0...2.7.0

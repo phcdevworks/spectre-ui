@@ -9,6 +9,8 @@ import {
   getSectionClasses,
   getSidebarBackdropClasses,
   getSidebarClasses,
+  getSidebarGroupClasses,
+  getSidebarGroupSummaryClasses,
   getSidebarHeaderClasses,
   getSidebarLinkClasses,
   getSidebarToggleClasses,
@@ -200,6 +202,24 @@ describe('getSidebarHeaderClasses', () => {
   })
 })
 
+describe('sidebar group helpers', () => {
+  it('returns the collapsible group classes', () => {
+    expect(getSidebarGroupClasses()).toBe('sp-sidebar__group')
+    expect(getSidebarGroupSummaryClasses()).toBe('sp-sidebar__group-summary')
+  })
+
+  it('ships the native details open-state contract in components.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'components.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+
+    expect(css).toContain('.sp-sidebar__group-summary')
+    expect(css).toContain(
+      '.sp-sidebar__group[open] > .sp-sidebar__group-summary .sp-sidebar__group-icon'
+    )
+    expect(css).toContain('.sp-sidebar__group-content')
+  })
+})
+
 describe('getSidebarBackdropClasses', () => {
   it('returns the backdrop class', () => {
     expect(getSidebarBackdropClasses()).toBe('sp-sidebar-backdrop')
@@ -217,6 +237,20 @@ describe('getSidebarToggleClasses', () => {
 
     expect(css).toContain('--sp-component-sidebar-toggle-z-index: var(--sp-z-index-modal)')
     expect(css).toContain('z-index: var(--sp-component-sidebar-toggle-z-index)')
+  })
+
+  it('keeps the drawer above the backdrop and styles the toggle states', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'components.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+
+    expect(css).toContain(
+      '--sp-component-sidebar-z-index: var(--sp-z-index-overlay)'
+    )
+    expect(css).toContain(
+      '--sp-component-sidebar-backdrop-z-index: var(--sp-z-index-fixed)'
+    )
+    expect(css).toContain('.sp-sidebar-toggle:hover')
+    expect(css).toContain('.sp-sidebar-toggle:focus-visible')
   })
 })
 

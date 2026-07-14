@@ -16,7 +16,7 @@ config, or hardcode design values to consume Spectre's visual language.
 | Project team | `project-design` |
 | Repository role | Spectre L2 CSS, Tailwind, and recipe contract |
 | Package/artifact | `@phcdevworks/spectre-ui` |
-| Current version/status | 2.7.2 |
+| Current version/status | 2.8.0 |
 
 ## Standard Workflow
 
@@ -379,6 +379,8 @@ Root recipe helper functions:
 - `getRatingStarsClasses`
 - `getRatingTextClasses`
 - `getSidebarBackdropClasses`
+- `getSidebarGroupClasses`
+- `getSidebarGroupSummaryClasses`
 - `getSidebarHeaderClasses`
 - `getSidebarLinkClasses`
 - `getSidebarToggleClasses`
@@ -446,7 +448,9 @@ A consumer-rendered toggle button that opens/closes the sidebar must carry
 `getSidebarToggleClasses()`. `.sp-sidebar-toggle` stacks above
 `.sp-sidebar-backdrop` (`--sp-component-sidebar-toggle-z-index`, above
 `--sp-component-sidebar-backdrop-z-index`) so the backdrop never intercepts
-clicks meant for the toggle once the sidebar is open.
+clicks meant for the toggle once the sidebar is open. The class also supplies
+the token-backed button layout, color, hover, and focus-visible treatment;
+adapters only supply the control markup and behavior.
 
 Adapters own the hamburger/toggle control, click handling, and SSR-safe
 initial closed state.
@@ -460,6 +464,14 @@ default `'parent'`) for nested link indentation — e.g. a package name with
 "Overview" / "Reference" links beneath it. `getSidebarHeaderClasses` styles a
 section label (e.g. "Tokens", "UI", "Guides") as a muted eyebrow, visually
 distinct from `.sp-sidebar__link`.
+
+For collapsible navigation sections, apply `getSidebarGroupClasses()` to a
+native `details` element and `getSidebarGroupSummaryClasses()` to its `summary`.
+The CSS removes the browser marker, styles the summary as an interactive
+section label, and rotates a consumer-provided `.sp-sidebar__group-icon` when
+the group is open. Wrap the nested links in `.sp-sidebar__group-content` for
+the standard bottom spacing. Open/closed behavior remains native to `details`;
+this package returns class strings and does not render markup.
 
 ## Downstream boundaries
 
