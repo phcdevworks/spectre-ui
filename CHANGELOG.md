@@ -8,7 +8,7 @@ reflects package releases published to npm.
 
 ## [2.8.0] - 2026-07-14
 
-**Release Title:** Collapsible Sidebar Groups and Toggle Hardening
+**Release Title:** Phase 5 P0 - Collapsible Sidebar Groups and Toggle Hardening
 
 Contract change type: additive
 
