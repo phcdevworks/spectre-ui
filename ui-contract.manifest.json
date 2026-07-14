@@ -1,5 +1,5 @@
 {
-  "version": "2.7.2",
+  "version": "2.8.0",
   "cssEntrypoints": [
     "@phcdevworks/spectre-ui/index.css",
     "@phcdevworks/spectre-ui/base.css",
@@ -55,6 +55,8 @@
       "getSelectClasses",
       "getSidebarBackdropClasses",
       "getSidebarClasses",
+      "getSidebarGroupClasses",
+      "getSidebarGroupSummaryClasses",
       "getSidebarHeaderClasses",
       "getSidebarLinkClasses",
       "getSpinnerClasses",
