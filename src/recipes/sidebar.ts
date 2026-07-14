@@ -56,6 +56,14 @@ export function getSidebarHeaderClasses(): string {
   return cx('sp-sidebar__header')
 }
 
+export function getSidebarGroupClasses(): string {
+  return cx('sp-sidebar__group')
+}
+
+export function getSidebarGroupSummaryClasses(): string {
+  return cx('sp-sidebar__group-summary')
+}
+
 export function getSidebarBackdropClasses(): string {
   return cx('sp-sidebar-backdrop')
 }

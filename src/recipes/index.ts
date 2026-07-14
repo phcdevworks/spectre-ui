@@ -104,6 +104,8 @@ export {
   getSidebarClasses,
   getSidebarLinkClasses,
   getSidebarHeaderClasses,
+  getSidebarGroupClasses,
+  getSidebarGroupSummaryClasses,
   getSidebarBackdropClasses,
   getSidebarToggleClasses,
   type SidebarRecipeOptions,
