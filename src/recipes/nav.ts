@@ -1,19 +1,40 @@
 import { cx } from '../internal/cx'
+import { resolveOption } from '../internal/resolve-option'
+
+const ALIGN_MAP = { start: true, center: true, end: true } as const
+
+export type NavAlign = keyof typeof ALIGN_MAP
 
 export interface NavRecipeOptions {
   bordered?: boolean
   sticky?: boolean
   fullWidth?: boolean
+  align?: NavAlign
 }
 
 export function getNavClasses(opts: NavRecipeOptions = {}): string {
-  const { bordered = false, sticky = false, fullWidth = false } = opts
+  const {
+    bordered = false,
+    sticky = false,
+    fullWidth = false,
+    align: alignInput,
+  } = opts
+
+  const align = alignInput
+    ? resolveOption({
+        name: 'nav align',
+        value: alignInput,
+        allowed: ALIGN_MAP,
+        fallback: 'start'
+      })
+    : undefined
 
   return cx(
     'sp-nav',
     bordered && 'sp-nav--bordered',
     sticky && 'sp-nav--sticky',
-    fullWidth && 'sp-nav--full'
+    fullWidth && 'sp-nav--full',
+    align && `sp-nav--align-${align}`
   )
 }
 

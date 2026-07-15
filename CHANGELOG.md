@@ -6,6 +6,24 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [2.9.0] - 2026-07-15
+
+**Release Title:** Nav Alignment and Readability Polish
+
+Contract change type: semantic change
+
+### Added
+
+- **Nav alignment option**: added `align` (`start`, `center`, or `end`) to
+  `getNavClasses()`, with matching token-free structural CSS classes and the
+  exported `NavAlign` type for downstream adapters.
+
+### Changed
+
+- **Nav link readability and spacing**: increased nav link weight using the
+  existing medium typography token and added token-backed inline-start spacing
+  between nav identity content and its links.
+
 ## [2.8.0] - 2026-07-14
 
 **Release Title:** Phase 5 P0 - Collapsible Sidebar Groups and Toggle Hardening
@@ -827,7 +845,8 @@ Contract change type: additive
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe
   helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/2.8.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/2.9.0...HEAD
+[2.9.0]: https://github.com/phcdevworks/spectre-ui/compare/2.8.0...2.9.0
 [2.8.0]: https://github.com/phcdevworks/spectre-ui/compare/2.7.2...2.8.0
 [2.7.2]: https://github.com/phcdevworks/spectre-ui/compare/2.7.1...2.7.2
 [2.7.1]: https://github.com/phcdevworks/spectre-ui/compare/2.7.0...2.7.1

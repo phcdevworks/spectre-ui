@@ -26,8 +26,20 @@ describe('getNavClasses', () => {
     expect(getNavClasses({ fullWidth: true })).toContain('sp-nav--full')
   })
 
+  it.each(['start', 'center', 'end'] as const)(
+    'supports %s alignment',
+    (align) => {
+      expect(getNavClasses({ align })).toContain(`sp-nav--align-${align}`)
+    }
+  )
+
   it('creates trimmed, space-delimited class strings for combined options', () => {
-    const result = getNavClasses({ bordered: true, sticky: true, fullWidth: true })
+    const result = getNavClasses({
+      bordered: true,
+      sticky: true,
+      fullWidth: true,
+      align: 'center',
+    })
     expectTokenizedClassString(result)
   })
 })

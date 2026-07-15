@@ -96,6 +96,7 @@ export {
   getNavClasses,
   getNavLinksClasses,
   getNavLinkClasses,
+  type NavAlign,
   type NavRecipeOptions,
   type NavLinkRecipeOptions,
 } from './nav'
