@@ -16,7 +16,7 @@ config, or hardcode design values to consume Spectre's visual language.
 | Project team | `project-design` |
 | Repository role | Spectre L2 CSS, Tailwind, and recipe contract |
 | Package/artifact | `@phcdevworks/spectre-ui` |
-| Current version/status | 2.8.0 |
+| Current version/status | 2.9.0 |
 
 ## Standard Workflow
 
@@ -278,7 +278,7 @@ All options are optional and fall back to sensible defaults.
 | Avatar      | `getAvatarClasses`      | —                                                                                                              | `sm` `md` `lg` `xl` | shape: `circle` `square`                                                |
 | Tag         | `getTagClasses`         | `default` `primary` `secondary` `success` `warning` `danger` `info` `neutral` `accent` `cta` `outline` `ghost` | `sm` `md` `lg`      | `dismissible` `selected` `disabled` `loading` `interactive` `fullWidth` |
 | Spinner     | `getSpinnerClasses`     | —                                                                                                              | `sm` `md` `lg`      | —                                                                       |
-| Nav         | `getNavClasses`         | —                                                                                                              | —                   | `bordered` `sticky` `fullWidth`                                         |
+| Nav         | `getNavClasses`         | —                                                                                                              | —                   | `bordered` `sticky` `fullWidth` `align: start\|center\|end`             |
 | Toast       | `getToastClasses`       | `info` `success` `warning` `danger`                                                                            | —                   | `dismissed` `fullWidth`                                                 |
 | Tooltip     | `getTooltipClasses`     | placement: `top` `bottom` `left` `right`                                                                       | —                   | `visible`                                                               |
 | Dropdown    | `getDropdownClasses`    | menu placement: `bottom-start` `bottom-end` `top-start` `top-end`                                              | —                   | `fullWidth`, item: `active` `disabled`                                  |
