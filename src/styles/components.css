@@ -2212,17 +2212,30 @@
     width: 100%;
   }
 
+  .sp-nav--align-start {
+    justify-content: flex-start;
+  }
+
+  .sp-nav--align-center {
+    justify-content: center;
+  }
+
+  .sp-nav--align-end {
+    justify-content: flex-end;
+  }
+
   .sp-nav__links {
     display: flex;
     align-items: center;
     gap: var(--sp-space-16);
+    margin-inline-start: var(--sp-space-16);
   }
 
   .sp-nav__link {
     color: var(--sp-component-nav-link);
     font-size: var(--sp-font-sm-size);
     line-height: var(--sp-font-sm-line-height);
-    font-weight: var(--sp-font-sm-weight);
+    font-weight: var(--sp-font-md-weight);
     text-decoration: none;
     transition: color var(--sp-duration-fast) var(--sp-easing-out);
   }
