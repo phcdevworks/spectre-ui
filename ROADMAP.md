@@ -217,7 +217,60 @@ migration window.
 
 ---
 
-## 6. Explicitly Out of Scope
+## 6. Phase 6 — Ecosystem Contract Hardening
+
+**Objective:** Harden the Layer 2 contract against real ecosystem usage and
+remove documentation or manifest drift before expanding the public recipe
+surface again.
+
+**Why it matters:** The package has reached broad recipe coverage and strong
+internal validation. The next source of meaningful work is evidence from
+`spectre-ui-astro`, `spectre-components`, `spectre-shell`, and application
+consumers. Keeping machine-readable guidance, human documentation, and actual
+consumer behavior aligned protects the package from speculative expansion and
+prevents downstream packages from compensating for ambiguous contracts.
+
+### P0: Contract Guidance Consistency
+
+- Correct ecosystem manifest guidance so Tailwind preset consumers are directed
+  to `@phcdevworks/spectre-ui/tailwind`.
+- Reconcile token-import guidance with the documented
+  `createSpectreTailwindPreset` and `createSpectreTailwindTheme` APIs.
+- Remove stale execution-order language for phases and releases already
+  delivered.
+- Add validation where practical so README guidance, ecosystem manifest
+  entrypoints, package exports, and the UI contract manifest cannot drift
+  independently.
+
+### P1: Cross-Package Consumer Validation
+
+- Maintain focused integration fixtures for `spectre-ui-astro`,
+  `spectre-components`, and `spectre-shell` against the published package.
+- Validate CSS entry points, recipe exports, Tailwind helpers, and type
+  declarations through consumer-facing imports rather than source-relative
+  imports.
+- Convert confirmed downstream failures or ambiguities into the smallest
+  repository-level regression test.
+- Record which consumer exposed each new contract requirement before expanding
+  the public API.
+
+### P2: Evidence-Gated Contract Refinement
+
+- Keep Grid v2 features, new recipe axes, and additional layout behavior
+  deferred until a real downstream use case demonstrates the limitation.
+- Prefer additive fixes and composition guidance over widening existing recipe
+  option surfaces.
+- Require upstream token intent before introducing new visual semantics.
+- Review deprecation metadata only when the first concrete deprecation cannot
+  be represented clearly through the existing policy and changelog.
+
+**Exit criteria:** Machine-readable and human-facing guidance agree; published
+consumer fixtures validate the supported entry points; every new public
+contract addition is tied to a documented downstream requirement.
+
+---
+
+## 7. Explicitly Out of Scope
 
 - Do not author tokens or semantic visual meaning here.
 - Do not use GitHub-only token changes as synchronization authority.
@@ -231,7 +284,7 @@ migration window.
 
 ---
 
-## 7. Recommended Execution Order
+## 8. Recommended Execution Order
 
 1. **Phase 1** — done.
 2. **Phase 2** — done.
@@ -252,3 +305,7 @@ migration window.
     reveals gaps (continuous).
 13. **Phase 5 P1** — define deprecation mechanics before any public class,
     recipe option, or variant is retired.
+14. **Phase 6 P0** — align manifest, README, exports, and roadmap guidance.
+15. **Phase 6 P1** — validate the published contract through real downstream
+    consumer fixtures.
+16. **Phase 6 P2** — refine the contract only from documented consumer evidence.
