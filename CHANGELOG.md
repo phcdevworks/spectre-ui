@@ -8,7 +8,7 @@ reflects package releases published to npm.
 
 ## [2.9.0] - 2026-07-15
 
-**Release Title:** Nav Alignment and Readability Polish
+**Release Title:** Phase 5 P0 - Nav Alignment and Readability Polish
 
 Contract change type: semantic change
 
