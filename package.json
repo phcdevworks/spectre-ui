@@ -102,25 +102,25 @@
     "typescript": "^5.9 || ^6.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^3.3.1"
+    "@phcdevworks/spectre-tokens": "^3.4.0"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.1.0",
     "@types/node": "^26.1.1",
     "@typescript-eslint/eslint-plugin": "^8.64.0",
     "@typescript-eslint/parser": "^8.64.0",
-    "autoprefixer": "^10.5.3",
+    "autoprefixer": "^10.5.4",
     "eslint": "^10.7.0",
     "jiti": "^2.7.0",
     "postcss": "^8.5.19",
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.1",
     "prettier": "^3.9.5",
-    "tailwindcss": "^4.3.2",
+    "tailwindcss": "^4.3.3",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.64.0",
-    "vite": "^8.1.4",
+    "vite": "^8.1.5",
     "vitest": "^4.1.10"
   },
   "cSpell.words": [

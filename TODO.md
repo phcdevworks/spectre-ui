@@ -509,12 +509,13 @@ All six landed together with CSS, recipes, manifest, README, changelog, and
 
 ## Phase 5 — Integration Feedback and Deprecation Readiness
 
-### P0: Downstream Integration Feedback
+Downstream integration feedback (from `@phcdevworks/spectre-ui-astro` and other
+consumers) is handled as it arrives: each real gap gets filed as its own
+concrete item below, with tests or docs added once usage exposes an ambiguous
+class or recipe contract. There is no standing item for this — it is the
+mechanism by which the items below get created.
 
-- [ ] Track adapter feedback from `@phcdevworks/spectre-ui-astro` and other
-      consumers
-  - Add tests or docs when real usage exposes ambiguous class or recipe
-    contracts.
+### P0: Downstream Integration Feedback
 
 - [x] `.sp-hstack` needs a way to stretch children to the row's full height
   - Found in `docs-phcdevworks-com`'s app shell (Phase 4d sidebar + main
@@ -702,9 +703,8 @@ All six landed together with CSS, recipes, manifest, README, changelog, and
     previously recipe-less `sp-checkbox`/`sp-radio`/`sp-select`/
     `sp-textarea`/`sp-fieldset`/`sp-label` components in
     `spectre-components`.
-12. Phase 5 P0 — all known gaps closed; the "track adapter feedback" line
-    stays open on a standing basis, add regression coverage as new usage
-    reveals gaps.
+12. Phase 5 P0 — all known gaps closed; new downstream feedback gets filed as
+    its own item here as it surfaces.
 13. **Phase 5 P1 — done.** Deprecation policy documented in
     `CONTRIBUTING.md`; manifest deprecation metadata deliberately skipped
     (see rationale above).
