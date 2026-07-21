@@ -100,7 +100,7 @@ manifest declaration, README update, focused contract tests; run
 
 ---
 
-## 4. Phase 4 — Component Recipe Expansion
+## 4. Phase 4 — Component Recipe Expansion — Delivered
 
 **Objective:** Add the next recipe families broadly useful to adapters, each
 backed by explicit upstream token intent.
@@ -185,6 +185,11 @@ roadmap tied to real adapter usage instead of hypothetical component coverage.
 - Clarify README or CONTRIBUTING guidance when repeated adapter questions appear.
 - Keep adapter-specific markup, lifecycle, slots, hooks, and templates out of
   this package.
+- Run a periodic downstream drift audit rather than relying solely on
+  consumers reporting back: grep sibling repos for hand-rolled CSS that
+  duplicates a published `spectre-tokens` group with no `spectre-ui` recipe
+  backing it. Triggered by each new upstream `component.*`/primitive token
+  publish, or at minimum once per minor release. See TODO.md Phase 5 P0.
 
 **Dependency notes:** Can run continuously alongside Phase 3 and Phase 4.
 
@@ -258,6 +263,13 @@ prevents downstream packages from compensating for ambiguous contracts.
 
 - Keep Grid v2 features, new recipe axes, and additional layout behavior
   deferred until a real downstream use case demonstrates the limitation.
+- `@phcdevworks/spectre-tokens@3.4.0` fixed a CSS-emission gap and now
+  publishes `--sp-icon-*` and `--sp-aspect-ratio-*` variables (plus
+  `--sp-forced-colors`) for the first time — tokens exist, but no downstream
+  consumer has asked for an `Icon`/`IconBox` or `AspectRatio` recipe yet.
+  Treat as a watched candidate, same as Grid v2: do not build ahead of a real
+  request from `spectre-components`, `spectre-ui-astro`, or an application
+  consumer.
 - Prefer additive fixes and composition guidance over widening existing recipe
   option surfaces.
 - Require upstream token intent before introducing new visual semantics.
