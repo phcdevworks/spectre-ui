@@ -337,6 +337,22 @@ need (not a hypothetical) shows up after v1 ships.
 
 ---
 
+## Phase 4f — Icon/AspectRatio Recipes (watched, not started)
+
+`@phcdevworks/spectre-tokens@3.4.0` fixed a CSS-emission bug and now publishes
+`--sp-icon-*` and `--sp-aspect-ratio-*` variables for the first time (along
+with `--sp-forced-colors`, not recipe-relevant). Tokens are confirmed present
+in the installed `3.4.0` dist CSS. No downstream consumer has confirmed a need
+for an `Icon`/`IconBox` or `AspectRatio` recipe yet — do not start this work
+until one does, consistent with how Grid v2 (Phase 4c v2) and ROADMAP.md
+Phase 6 P2's evidence-gated policy are handled.
+
+- [ ] Confirm a real downstream ask (`spectre-components`, `spectre-ui-astro`,
+      or an application consumer) before scoping an `IconBox` recipe.
+- [ ] Confirm a real downstream ask before scoping an `AspectRatio` recipe.
+
+---
+
 ## Phase 4d — App Shell Layout: Stack/Container Options, Sidebar, Footer (done, v2.3.0)
 
 Real downstream need surfaced in `docs-phcdevworks-com`'s app shell (top bar
@@ -515,7 +531,27 @@ concrete item below, with tests or docs added once usage exposes an ambiguous
 class or recipe contract. There is no standing item for this — it is the
 mechanism by which the items below get created.
 
+Reactive reporting alone has a gap: a consumer can silently hand-roll styling
+locally instead of filing a request back here, and nothing would surface that
+drift. The periodic audit below is the active counterpart — it doesn't wait to
+be told.
+
 ### P0: Downstream Integration Feedback
+
+- [ ] Periodic downstream drift audit (standing, recurring)
+  - Trigger: run this each time `@phcdevworks/spectre-tokens` publishes a new
+    `component.*` group or primitive namespace (e.g. the `3.4.0` `icons` /
+    `aspectRatios` emission fix), or at minimum once per `spectre-ui` minor
+    release if no token publish happened in between.
+  - Procedure: grep `project-design/spectre-components`,
+    `project-design/spectre-ui-astro`, `project-web/docs-phcdevworks-com`, and
+    `project-web/www-phcdevworks-com` for raw CSS, inline styles, or scoped
+    `<style>` blocks that duplicate a published `spectre-tokens` group with no
+    matching `spectre-ui` recipe or utility class backing it.
+  - Outcome: confirmed drift converts this watch item into its own scoped
+    TODO.md phase with a named consumer, the same way Phase 4d's Sidebar/
+    Footer work started from a real `docs-phcdevworks-com` gap. No drift found
+    means no action — re-check at the next trigger.
 
 - [x] `.sp-hstack` needs a way to stretch children to the row's full height
   - Found in `docs-phcdevworks-com`'s app shell (Phase 4d sidebar + main
