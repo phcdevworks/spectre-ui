@@ -282,7 +282,112 @@ contract addition is tied to a documented downstream requirement.
 
 ---
 
-## 7. Explicitly Out of Scope
+## 7. Phase 7 — First-Party Utility-Class Engine
+
+Phase 6 closed evidence-gated: new public surface waits for a demonstrated
+downstream need. This phase is a deliberate, stated exception to that
+policy — expanding `src/styles/utilities.css`'s existing, hand-authored,
+token-backed utility-class coverage from a small curated set into
+full-coverage, generated output. The pattern is not new: Phase 4c (Grid)
+was already built specifically so downstream consumers wouldn't have to
+reach for a third-party utility framework for layout. This phase continues
+that same trajectory at full-coverage scale.
+
+Recipes (`src/recipes/*.ts`, `components.css`, `base.css`) are unaffected —
+they solve component-level styling and stay exactly as they are. This phase
+covers the general-purpose utility layer for consumers (one-off spacing,
+color, layout access, responsive variants), the same role the existing
+hand-authored `src/styles/utilities.css` already partially fills.
+
+**Escape-hatch decision (locked before this phase started):** utilities are
+token-only, with no arbitrary-value support. A design need that doesn't fit
+an existing token step requires a token proposal to `spectre-tokens`, not a
+raw value in markup. This matches Spectre's existing precedent exactly —
+Grid, Container/Stack/Section, and the current `utilities.css` have never
+offered arbitrary values — and keeps the "L1 is the only source of design
+values, no raw hex/px/rem downstream" rule intact rather than carving an
+exception into it.
+
+### P0: Engine Design
+
+- Naming: no new convention needed. Extend the existing, already-in-use
+  `sp-{property}-{step}` (direct property/step classes, e.g.
+  `sp-grid-cols-2`, `sp-z-modal`) and `sp-{block}--{modifier}` (modifiers on
+  a base class, e.g. `sp-grid--gap-md`) patterns from `utilities.css`
+  directly.
+- Shape: a build-time generator (`scripts/build-utilities.ts`), not a
+  runtime/JIT scanner. The token tree is finite (space ~25 steps, the new
+  `colors.palette` ~286 color steps, radii/shadows/etc. single-digit
+  counts), so the right model is generating the whole token-bounded scale
+  up front — closer to Tailwind's pre-JIT model than its JIT/purge model,
+  and a natural fit since the scale is bounded rather than combinatorially
+  open. Mirrors the recursive-walker pattern `spectre-tokens/src/css.ts`
+  already uses.
+- Existing `utilities.css` classes that are flat property-to-token-step
+  mappings fold into the generator; classes encoding real layout logic
+  beyond one CSS property (e.g. `sp-grid`'s `repeat(n, minmax(0,1fr))`)
+  stay hand-authored — the same split `spectre-tokens` uses between its
+  generic walker and its documented `outputParity.css.exceptions`.
+- Responsive variants: the existing `@media (min-width: ...)` literal-value
+  constraint (CSS custom properties can't be used inside `@media` feature
+  queries) is unchanged at scale. The generator reads `breakpoints.*` from
+  the published token JSON at generation time and bakes the pixel value
+  into the generated block, automating what is hand-copied today. Needs one
+  syntax decision before implementation: the variant separator in
+  generated class names (Tailwind uses `md:p-4`; needs an ASCII-safe
+  equivalent that doesn't complicate `cx()`/`resolveOption()`). Pick once —
+  this can't be cheaply changed post-publish without a breaking rename.
+- Container-query variants: only build if a `containerQueries` token
+  namespace is added upstream in `spectre-tokens`, which itself waits for a
+  confirmed real need. No speculative build in either repo.
+
+### P1: Generator Implementation & Contract Wiring
+
+- `scripts/build-utilities.ts` wired into `npm run build`/`npm run check`,
+  staleness-checked the same way `check:dist` catches stale `dist/` output.
+- `ui-contract.manifest.json` gets a declared utility-class surface
+  (parity-style, matching `spectre-tokens`' `outputParity` pattern) so the
+  generated class list is a checked contract, not an undeclared side
+  effect.
+- Tests: byte-stability across regenerations (the same idempotency
+  guarantee `spectre-tokens` Phase 9 P0 validated for its CSS walker), plus
+  coverage that every eligible token leaf actually produces a utility class
+  — applied proactively via a parity-style check, rather than discovered
+  after release the way the `3.3.0`/`3.3.1` field-mapping gaps were in
+  `spectre-tokens`' history.
+- README gets a new "Utility Classes" section, matching the existing
+  Recipe table's documentation convention.
+
+### P2: Tailwind Export Deprecation
+
+- Deprecate `createSpectreTailwindPreset`/`createSpectreTailwindTheme` and
+  the `tailwindExports` entry in `ui-contract.manifest.json`, paired with
+  the equivalent deprecation of `tailwindTheme`/`tailwindPreset` in
+  `spectre-tokens`. Same `since`/`replacedBy`/`removeIn` lifecycle already
+  documented in `spectre-tokens/TOKEN_CONTRACT.md`; `replacedBy` points at
+  the new generated utility entry point.
+- `src/tailwind/` and its check gate stay fully functional through this
+  phase — deprecation is a migration signal, not a functional change.
+  `removeIn` stays open/TBD until downstream migration (P3) is confirmed
+  complete across every consuming repo.
+
+### P3: Downstream Migration Scoping
+
+Research only, not implementation. A short scoping pass per repo —
+`spectre-ui-astro`, `spectre-base`, `spectre-components`, `spectre-shell`,
+`www-phcdevworks-com`, `docs-phcdevworks-com` — documenting actual Tailwind
+coupling depth in each. Output is a note per repo, not a migration plan;
+migration steps get written later, per repo, once each has actually been
+explored rather than assumed.
+
+**Exit criteria:** Generated utility CSS is published, contract-checked,
+and documented; both repos' Tailwind exports are marked deprecated with a
+clear replacement path; every downstream repo's Tailwind coupling is
+documented rather than assumed.
+
+---
+
+## 8. Explicitly Out of Scope
 
 - Do not author tokens or semantic visual meaning here.
 - Do not use GitHub-only token changes as synchronization authority.
@@ -296,7 +401,7 @@ contract addition is tied to a documented downstream requirement.
 
 ---
 
-## 8. Recommended Execution Order
+## 9. Recommended Execution Order
 
 1. **Phase 1** — done.
 2. **Phase 2** — done.
@@ -321,3 +426,13 @@ contract addition is tied to a documented downstream requirement.
 15. **Phase 6 P1** — validate the published contract through real downstream
     consumer fixtures.
 16. **Phase 6 P2** — refine the contract only from documented consumer evidence.
+17. **Phase 7 P0** — engine design: naming (no new convention needed),
+    build-time generator shape, responsive-variant separator syntax.
+    Depends on `spectre-tokens` Phase 10's token-side prerequisites being
+    published.
+18. **Phase 7 P1** — generator implementation and contract wiring.
+19. **Phase 7 P2** — deprecate `createSpectreTailwindPreset`/
+    `createSpectreTailwindTheme`, paired with `spectre-tokens` Phase 10 P2.
+20. **Phase 7 P3** — downstream Tailwind-coupling scoping pass across
+    `spectre-ui-astro`, `spectre-base`, `spectre-components`,
+    `spectre-shell`, `www-phcdevworks-com`, `docs-phcdevworks-com`.

@@ -7,6 +7,7 @@ import {
   getRadioClasses,
   getSelectClasses,
   getTextareaClasses,
+  getTextClasses,
 } from '@phcdevworks/spectre-ui'
 
 describe('getCheckboxClasses', () => {
@@ -160,5 +161,35 @@ describe('getLabelClasses', () => {
     expect(getLabelClasses({ disabled: true, required: true })).toBe(
       'sp-form-label sp-form-label--disabled sp-form-label--required'
     )
+  })
+})
+
+describe('getTextClasses', () => {
+  it('returns the default text classes', () => {
+    expect(getTextClasses()).toBe('sp-text sp-text--md sp-text--default')
+  })
+
+  it('returns the size modifier class', () => {
+    expect(getTextClasses({ size: '3xl' })).toBe(
+      'sp-text sp-text--3xl sp-text--default'
+    )
+  })
+
+  it('returns the variant modifier class', () => {
+    expect(getTextClasses({ variant: 'muted' })).toBe(
+      'sp-text sp-text--md sp-text--muted'
+    )
+  })
+
+  it('returns the family modifier class', () => {
+    expect(getTextClasses({ family: 'serif' })).toBe(
+      'sp-text sp-text--md sp-text--default sp-text--serif'
+    )
+  })
+
+  it('combines size, variant, and family', () => {
+    expect(
+      getTextClasses({ size: 'xs', variant: 'brand', family: 'mono' })
+    ).toBe('sp-text sp-text--xs sp-text--brand sp-text--mono')
   })
 })

@@ -6,6 +6,18 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: additive
+
+### Added
+
+- Added `getTextClasses` typography recipe (Phase 4g), requested by
+  `spectre-base` while converting WordPress theme templates off hand-rolled
+  CSS. Covers the `xs`–`6xl` `--sp-font-*` size scale, the
+  `default`/`muted`/`subtle`/`meta`/`brand` `--sp-text-on-page-*` color
+  roles, and `sans`/`serif`/`mono` `--sp-font-family-*` selection. Adds
+  `.sp-text` and its `--{scale}`/`--{color}`/`--{family}` modifier classes to
+  `src/styles/components.css`.
+
 ## [2.10.0] - 2026-07-21
 
 **Release Title:** Phase 5 - TypeScript 7 Compatibility

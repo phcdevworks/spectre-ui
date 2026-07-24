@@ -63,6 +63,7 @@
       "getStackClasses",
       "getTagClasses",
       "getTextareaClasses",
+      "getTextClasses",
       "getTestimonialAuthorClasses",
       "getTestimonialAuthorInfoClasses",
       "getTestimonialAuthorNameClasses",
@@ -184,6 +185,11 @@
     },
     "label": {
       "fn": "getLabelClasses"
+    },
+    "text": {
+      "fn": "getTextClasses",
+      "variants": ["default", "muted", "subtle", "meta", "brand"],
+      "sizes": ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl", "6xl"]
     }
   }
 }

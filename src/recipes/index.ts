@@ -188,3 +188,11 @@ export {
 } from './fieldset'
 
 export { getLabelClasses, type LabelRecipeOptions } from './label'
+
+export {
+  getTextClasses,
+  type TextRecipeOptions,
+  type TextSize,
+  type TextVariant,
+  type TextFamily,
+} from './text'
