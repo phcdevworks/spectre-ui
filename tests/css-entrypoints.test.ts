@@ -27,7 +27,7 @@ const ENTRYPOINT_CONTRACTS = [
     standaloneTokens: ['--sp-surface-page:', '--sp-button-primary-bg:'],
     bundleMarkers: ['@layer components', '.sp-btn {', '.sp-card {'],
     forbiddenMarkers: ['@layer base', '@layer utilities', 'body {', ':focus-visible {', '.sp-stack {', '@keyframes fade-in'],
-    maxBytes: 124000,
+    maxBytes: 127000,
   },
   {
     fileName: 'utilities.css',

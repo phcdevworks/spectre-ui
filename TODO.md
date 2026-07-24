@@ -523,6 +523,78 @@ All six landed together with CSS, recipes, manifest, README, changelog, and
 
 ---
 
+## Phase 4g — Typography Recipe (requested by downstream, done)
+
+**Requested by Downstream**: `project-design/spectre-base` (2026-07-23),
+found while converting `spectre-theme/` WordPress PHP templates off
+hand-rolled CSS onto `sp-*` components. Every structural element (`sp-card`,
+`sp-nav`, `sp-footer`, `sp-container`, `sp-section`, `sp-stack`, `sp-grid`,
+`sp-button`, `sp-input`) already has a recipe + component pair, but headings,
+eyebrow/label text, and muted/meta text have neither — `spectre-base` had to
+leave them as unstyled semantic HTML (`<h1>`, `<p>`) rather than reintroduce
+local CSS or reach for bare Tailwind utilities (not wired to Spectre's
+`--sp-font-*` tokens in that repo, and a drift violation either way). See
+`project-design/spectre-components/TODO.md` "Requested by Downstream" for the
+matching `sp-heading`/`sp-text` component request, which is blocked on this
+recipe existing first.
+
+Token audit (checked the installed `node_modules/@phcdevworks/spectre-tokens`
+dist CSS directly against the declared `^3.5.0` range, 2026-07-23): **not
+token-gated** — the full `--sp-font-*` scale is already published:
+`xs`/`sm`/`md`/`lg`/`xl`/`2xl`/`3xl`/`4xl`, each with `size`, `line-height`,
+`weight`, and `letter-spacing` roles, plus `--sp-font-family-sans/serif/mono`
+and `--sp-text-on-page-default/muted/subtle/brand` (already consumed
+elsewhere, e.g. by Card). Unlike Phase 4d (which needed new tokens before
+recipe work could start), this can be scoped immediately.
+
+- [x] **Decided, implemented 2026-07-23.** Single `getTextClasses({ size,
+      variant, family? })` covering both headings and body text — one
+      recipe, many options, consistent with `getButtonClasses`/
+      `getBadgeClasses`'s `variant`+`size` convention. Option keys are
+      `size` (not `scale`) and `variant` (not `color`) specifically to match
+      that existing convention, since `tests/recipe-parity.test.ts` calls
+      every manifest-declared recipe with `{ variant }`/`{ size }`
+      generically. A single `sp-text` element with a `level`/`as` prop
+      (rendered tag) is how `spectre-components` will consume this — no
+      separate heading/body split needed at the CSS layer.
+  - Covers the full published `xs`–`6xl` `--sp-font-*` size scale (wider
+    than the `xs`–`4xl` originally scoped here — `spectre-tokens@3.5.0`
+    publishes up to `6xl`), `--sp-font-family-*` selection via an optional
+    `family` option (`sans`/`serif`/`mono`), and the
+    `default`/`muted`/`subtle`/`meta`/`brand` `--sp-text-on-page-*` color
+    roles as the `variant` option — the first recipe to make that
+    color-role selection a first-class option instead of leaving it to
+    caller-supplied utility classes.
+  - No independent `weight` option: `spectre-tokens` has no standalone
+    `--sp-font-weight-*` scale (weight is baked into each
+    `--sp-font-{size}-weight` token), so a separate weight override would
+    have needed a local fallback value — out of scope per this package's
+    zero-invented-values rule. Revisit if `spectre-tokens` publishes one.
+  - Follows the existing `resolveOption`/const-map pattern
+    (`src/internal/resolve-option.ts`) used by every other recipe. Adds
+    `.sp-text` and its `--{size}`/`--{variant}`/`--{family}` modifier
+    classes to `src/styles/components.css`, consuming `--sp-font-*` and
+    `--sp-text-on-page-*` tokens directly (no `--sp-component-text-*`
+    indirection layer — same direct-token pattern already used by
+    `.sp-fieldset__legend`/`.sp-form-label`).
+
+- [x] Updated `ui-contract.manifest.json` (new `text` recipe family),
+      README recipe table and root export list, and added focused
+      contract/recipe tests in `tests/form-field-recipe.test.ts`, following
+      the Phase 4/4b pattern. Bumped the `components.css` size budget in
+      `tests/css-entrypoints.test.ts` (124000 → 127000 bytes) to account for
+      the new CSS block — not a regression, an expected budget adjustment,
+      consistent with prior bumps to this same test. Added a `CHANGELOG.md`
+      `[Unreleased]` entry (additive). Full `npm run check` passes clean
+      (384/384 tests).
+
+- [ ] Coordinate with `@phcdevworks/spectre-ui-astro` once published — adapter
+      should add a matching `SpText`/`SpHeading` Astro component, and
+      `spectre-components` should add the matching `sp-text`/`sp-heading`
+      Lit component (tracked in that repo's own `TODO.md`).
+
+---
+
 ## Phase 5 — Integration Feedback and Deprecation Readiness
 
 Downstream integration feedback (from `@phcdevworks/spectre-ui-astro` and other
@@ -744,6 +816,9 @@ be told.
 13. **Phase 5 P1 — done.** Deprecation policy documented in
     `CONTRIBUTING.md`; manifest deprecation metadata deliberately skipped
     (see rationale above).
+14. **Phase 4g — done.** Added `getTextClasses` typography recipe, requested
+    by `spectre-base`. Astro adapter and `spectre-components` coordination
+    still open (tracked in those repos' own `TODO.md`).
 
 ---
 

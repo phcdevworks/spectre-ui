@@ -1,22 +1,22 @@
 # @phcdevworks/spectre-ui
 
-`@phcdevworks/spectre-ui` is the styling contract package of the Spectre
-system. It translates Spectre design tokens into CSS bundles, Tailwind theme
+`@phcdevworks/spectre-ui` is the styling contract package of the Spectre system.
+It translates Spectre design tokens into CSS bundles, Tailwind theme
 configuration, and class recipe functions for downstream adapters and apps.
 
 Maintained by [PHCDevworks](https://go.phcdev.co). It sits between
-`@phcdevworks/spectre-tokens` and the framework-specific adapter and
-component packages, so no downstream repo needs to hand-roll CSS, Tailwind
-config, or hardcode design values to consume Spectre's visual language.
+`@phcdevworks/spectre-tokens` and the framework-specific adapter and component
+packages, so no downstream repo needs to hand-roll CSS, Tailwind config, or
+hardcode design values to consume Spectre's visual language.
 
 ## Repository Snapshot
 
-| Field | Value |
-|-------|-------|
-| Project team | `project-design` |
-| Repository role | Spectre L2 CSS, Tailwind, and recipe contract |
-| Package/artifact | `@phcdevworks/spectre-ui` |
-| Current version/status | 2.10.0 |
+| Field                  | Value                                         |
+| ---------------------- | --------------------------------------------- |
+| Project team           | `project-design`                              |
+| Repository role        | Spectre L2 CSS, Tailwind, and recipe contract |
+| Package/artifact       | `@phcdevworks/spectre-ui`                     |
+| Current version/status | 2.10.0                                        |
 
 ## Standard Workflow
 
@@ -29,17 +29,17 @@ config, or hardcode design values to consume Spectre's visual language.
 
 ## Documentation Map
 
-| Guide | Path |
-|-------|------|
-| Agent rules | [AGENTS.md](AGENTS.md) |
-| Claude Code | [CLAUDE.md](CLAUDE.md) |
-| Codex | [CODEX.md](CODEX.md) |
-| Copilot | [COPILOT.md](COPILOT.md) |
-| Jules | [JULES.md](JULES.md) |
-| Roadmap | [ROADMAP.md](ROADMAP.md) |
-| Todo | [TODO.md](TODO.md) |
-| Changelog | [CHANGELOG.md](CHANGELOG.md) |
-| Security | [SECURITY.md](SECURITY.md) |
+| Guide       | Path                         |
+| ----------- | ---------------------------- |
+| Agent rules | [AGENTS.md](AGENTS.md)       |
+| Claude Code | [CLAUDE.md](CLAUDE.md)       |
+| Codex       | [CODEX.md](CODEX.md)         |
+| Copilot     | [COPILOT.md](COPILOT.md)     |
+| Jules       | [JULES.md](JULES.md)         |
+| Roadmap     | [ROADMAP.md](ROADMAP.md)     |
+| Todo        | [TODO.md](TODO.md)           |
+| Changelog   | [CHANGELOG.md](CHANGELOG.md) |
+| Security    | [SECURITY.md](SECURITY.md)   |
 
 [![npm version](https://img.shields.io/npm/v/@phcdevworks/spectre-ui)](https://www.npmjs.com/package/@phcdevworks/spectre-ui)
 [![CI](https://github.com/phcdevworks/spectre-ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/phcdevworks/spectre-ui/actions/workflows/ci.yml)
@@ -295,6 +295,7 @@ All options are optional and fall back to sensible defaults.
 | Textarea    | `getTextareaClasses`    | size: `sm` `md` `lg`, state: `default` `invalid` `success`                                                     | —                   | `fullWidth` `pill` `disabled` `focused` `loading`                       |
 | Fieldset    | `getFieldsetClasses`    | —                                                                                                              | —                   | `disabled`                                                              |
 | Label       | `getLabelClasses`       | —                                                                                                              | —                   | `disabled` `required`                                                   |
+| Text        | `getTextClasses`        | color: `default` `muted` `subtle` `meta` `brand`, family: `sans` `serif` `mono`                                | `xs`–`6xl`          | —                                                                       |
 
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements). See the full list below.
@@ -302,17 +303,17 @@ Each recipe family also exports sub-element helpers for its structural parts
 ### Semantic utility classes (no recipe wrapper)
 
 These primitives are intentionally plain CSS classes in
-`src/styles/utilities.css` with no recipe function — there is no variant or
-size axis to validate, so a recipe wrapper would add indirection without a
+`src/styles/utilities.css` with no recipe function — there is no variant or size
+axis to validate, so a recipe wrapper would add indirection without a
 type-safety benefit. Apply the class name directly.
 
-| Class                   | Tokens                                                                       | Usage                                                   |
-| ----------------------- | ----------------------------------------------------------------------------- | -------------------------------------------------------- |
-| `.sp-link`              | `--sp-link-default` `--sp-link-hover` `--sp-link-active` `--sp-link-visited` | Inline text links (`<a>`).                              |
-| `.sp-surface--hover`    | `--sp-surface-hover`                                                         | Clickable list items, menu items, table rows on hover.  |
-| `.sp-surface--selected` | `--sp-surface-selected`                                                     | Selected list items, menu items, table rows.            |
-| `.sp-surface--active`   | `--sp-surface-active`                                                       | Pressed/active state for clickable surfaces.            |
-| `.sp-divider`           | `--sp-surface-divider`                                                      | `<hr>`, section separators, table borders.               |
+| Class                   | Tokens                                                                       | Usage                                                  |
+| ----------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------ |
+| `.sp-link`              | `--sp-link-default` `--sp-link-hover` `--sp-link-active` `--sp-link-visited` | Inline text links (`<a>`).                             |
+| `.sp-surface--hover`    | `--sp-surface-hover`                                                         | Clickable list items, menu items, table rows on hover. |
+| `.sp-surface--selected` | `--sp-surface-selected`                                                      | Selected list items, menu items, table rows.           |
+| `.sp-surface--active`   | `--sp-surface-active`                                                        | Pressed/active state for clickable surfaces.           |
+| `.sp-divider`           | `--sp-surface-divider`                                                       | `<hr>`, section separators, table borders.             |
 
 ### Root package
 
@@ -356,6 +357,7 @@ Root recipe functions:
 - `getTagClasses`
 - `getTestimonialClasses`
 - `getTextareaClasses`
+- `getTextClasses`
 - `getToastClasses`
 - `getTooltipClasses`
 
@@ -439,10 +441,10 @@ Consumers (typically a framework adapter) toggle the sidebar by setting a
 
 - `[data-sidebar-open="true"] .sp-sidebar` slides the sidebar into view
   (`transform: translateX(0)`).
-- `[data-sidebar-open="true"] .sp-sidebar-backdrop` shows the backdrop
-  overlay (`display: block`).
-- Above `breakpoints.md`, the sidebar docks inline and the backdrop is
-  always hidden, regardless of the `data-sidebar-open` value.
+- `[data-sidebar-open="true"] .sp-sidebar-backdrop` shows the backdrop overlay
+  (`display: block`).
+- Above `breakpoints.md`, the sidebar docks inline and the backdrop is always
+  hidden, regardless of the `data-sidebar-open` value.
 
 A consumer-rendered toggle button that opens/closes the sidebar must carry
 `getSidebarToggleClasses()`. `.sp-sidebar-toggle` stacks above
@@ -452,26 +454,26 @@ clicks meant for the toggle once the sidebar is open. The class also supplies
 the token-backed button layout, color, hover, and focus-visible treatment;
 adapters only supply the control markup and behavior.
 
-Adapters own the hamburger/toggle control, click handling, and SSR-safe
-initial closed state.
+Adapters own the hamburger/toggle control, click handling, and SSR-safe initial
+closed state.
 
 Above `breakpoints.md`, `.sp-sidebar` stretches to `height: 100%` so a short
 link list matches the height of a taller sibling content column when docked
 inline in a `Stack` row (see `align: 'stretch'` on `getStackClasses`).
 
-`getSidebarLinkClasses` accepts a `level` option (`'parent' | 'child'`,
-default `'parent'`) for nested link indentation — e.g. a package name with
-"Overview" / "Reference" links beneath it. `getSidebarHeaderClasses` styles a
-section label (e.g. "Tokens", "UI", "Guides") as a muted eyebrow, visually
-distinct from `.sp-sidebar__link`.
+`getSidebarLinkClasses` accepts a `level` option (`'parent' | 'child'`, default
+`'parent'`) for nested link indentation — e.g. a package name with "Overview" /
+"Reference" links beneath it. `getSidebarHeaderClasses` styles a section label
+(e.g. "Tokens", "UI", "Guides") as a muted eyebrow, visually distinct from
+`.sp-sidebar__link`.
 
 For collapsible navigation sections, apply `getSidebarGroupClasses()` to a
 native `details` element and `getSidebarGroupSummaryClasses()` to its `summary`.
-The CSS removes the browser marker, styles the summary as an interactive
-section label, and rotates a consumer-provided `.sp-sidebar__group-icon` when
-the group is open. Wrap the nested links in `.sp-sidebar__group-content` for
-the standard bottom spacing. Open/closed behavior remains native to `details`;
-this package returns class strings and does not render markup.
+The CSS removes the browser marker, styles the summary as an interactive section
+label, and rotates a consumer-provided `.sp-sidebar__group-icon` when the group
+is open. Wrap the nested links in `.sp-sidebar__group-content` for the standard
+bottom spacing. Open/closed behavior remains native to `details`; this package
+returns class strings and does not render markup.
 
 ## Downstream boundaries
 
@@ -621,8 +623,7 @@ implementation phase right now. New recipe or CSS work opens only when a
 downstream adapter surfaces a real integration gap, or when
 [`@phcdevworks/spectre-tokens`](https://github.com/phcdevworks/spectre-tokens)
 publishes a new token group this package should consume. This package
-synchronizes only against published npm releases, not in-progress upstream
-work.
+synchronizes only against published npm releases, not in-progress upstream work.
 
 ## Examples
 
