@@ -88,7 +88,8 @@ run.
 
 ### Release Procedure
 
-When Bradley requests release support:
+When `CHANGELOG.md [Unreleased]` is release-ready, Codex cuts the release —
+no per-release request from Bradley required:
 
 1. Confirm `npm run check` passes on the release branch.
 2. Confirm `CHANGELOG.md` has a dated release entry covering user-facing
@@ -134,7 +135,7 @@ Leave final commit, tag, publish, and release authority with Bradley Potts.
 
 ## Release Review Checklist
 
-Use this checklist before every release handoff to Bradley Potts.
+Use this checklist before cutting every release (tag + GitHub Release).
 
 ### Pre-Release Validation
 
@@ -166,12 +167,23 @@ Use this checklist before every release handoff to Bradley Potts.
 
 ### Release Mechanics
 
-- [ ] `package.json` version is bumped to the intended release version.
-- [ ] `CHANGELOG.md [Unreleased]` notes are moved to a new versioned entry with
-      a **Release Title** and date.
-- [ ] `npm run check` passes clean on the release-ready state.
-- [ ] All changes are staged but not committed; handoff summary prepared for
-      Bradley Potts.
+1. `package.json` version is bumped to the intended release version.
+2. `CHANGELOG.md [Unreleased]` notes are moved to a new versioned entry:
+   `## [<version>] - <YYYY-MM-DD>`, with a release title line in the format
+   `**Release Title:** Phase <N> - <short title>`, where `Phase <N>` is the
+   active phase name from this repo's own `ROADMAP.md` and `<short title>`
+   is a concise summary of what shipped. If the release spans no single
+   ROADMAP phase, state that explicitly instead of inventing one.
+3. `npm run check` passes clean on the release-ready state.
+4. Stage and commit the version bump and changelog update.
+5. Create the git tag: `git tag v<version>` (matching `package.json`
+   exactly), then push the commit and tag.
+6. Publish the GitHub Release from that tag: `gh release create v<version>
+   --title "v<version>: Phase <N> - <short title>" --notes-file` (extract the
+   new version's changelog section, or `--notes` inline for a short release).
+7. `npm publish` is **not** run by Codex — that stays with Bradley Potts.
+8. Handoff summary prepared for Bradley Potts, including the npm publish
+   step still pending his action.
 
 ## Refactor Decision Framework
 
