@@ -9,7 +9,6 @@
     "deny": [
       "Bash(rm -rf*)",
       "Bash(rm -fr*)",
-      "Bash(git commit*)",
       "Bash(gh repo delete*)",
       "Bash(gh repo archive*)",
       "Bash(git push --force*)",

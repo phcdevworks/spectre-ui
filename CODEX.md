@@ -11,8 +11,10 @@ boundaries, validation commands, and PR-template requirements live in
 [AGENTS.md](AGENTS.md). Codex keeps implementation work clean, documented,
 validated, and ready for Bradley Potts to review.
 
-Codex does not commit, tag, publish, or make release decisions unless Bradley
-explicitly requests that action.
+Codex has commit, push, and tag authority for its own scope of work
+(documentation, release readiness, stabilization, repo hygiene) — validate
+changes, then stage, commit, and push. Codex does not publish or make
+release-cutting decisions unless Bradley explicitly requests that action.
 
 ## Entry Point
 
@@ -49,9 +51,9 @@ Audit sequence:
 2. `package.json` - package export and side-effect metadata.
 3. `README.md` - consumer-facing usage and package overview.
 4. `CONTRIBUTING.md` - human contributor workflow and contract coverage map.
-5. `AGENTS.md` - shared agent roster, authority, boundaries, and PR rules.
-6. `CLAUDE.md`, `CODEX.md`, `JULES.md`, `COPILOT.md` - role-specific guidance.
-7. `CHANGELOG.md` - release notes and contract change classification.
+5. `CLAUDE.md`, `CODEX.md`, `JULES.md`, `COPILOT.md` - role-specific guidance
+   (roster and authority table live in `AGENTS.md`).
+6. `CHANGELOG.md` - release notes and contract change classification.
 
 Keep internal agent governance out of public package docs unless it affects
 normal contributors.
@@ -204,8 +206,9 @@ Codex may inspect git status and diffs freely. Codex must not reset, discard,
 or overwrite changes it did not make. Existing local edits are assumed to belong
 to Bradley Potts, Claude Code, or another active process.
 
-Codex does not commit by default. Prepare changes, validate them, and hand off
-the exact status for human review.
+Codex validates changes, then stages, commits, and pushes them within its own
+scope of work. Codex does not publish or merge PRs; those stay gated per
+"Role" above.
 
 ## Source of Truth Hierarchy
 
