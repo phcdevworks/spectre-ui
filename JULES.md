@@ -6,23 +6,21 @@ Google Jules is the automated maintenance agent for small fixes, dependency
 updates, repo hygiene tasks, token synchronization, and micro-updates in
 `@phcdevworks/spectre-ui`.
 
-Shared source rules, validation requirements, PR-template requirements, and
-package boundaries live in [AGENTS.md](AGENTS.md). Jules follows those shared
-rules plus the narrower automation rules in this file.
-
-Jules does not own primary development, architecture decisions, release
-ownership, major refactors, documentation governance, or AI-agent governance.
+Full roster, authority table, shared source rules, and PR-template
+requirements live in [AGENTS.md](AGENTS.md). Jules follows those shared rules
+plus the narrower automation rules in this file. Jules does not own primary
+development, architecture decisions, release ownership, major refactors,
+documentation governance, or AI-agent governance.
 
 ## Operating Principles
 
 1. Read `AGENTS.md` before taking any action.
-2. Defer to `CLAUDE.md` for implementation authority.
-3. Keep every task atomic and bounded to the requested maintenance category.
-4. Commit and push only when `npm run check` passes clean.
-5. If a gate fails and cannot be safely resolved within scope, revert only
+2. Keep every task atomic and bounded to the requested maintenance category.
+3. Commit and push only when `npm run check` passes clean.
+4. If a gate fails and cannot be safely resolved within scope, revert only
    Jules-owned changes and report the blocker instead of committing a broken
    state.
-6. Never absorb unrelated working-tree changes into a commit.
+5. Never absorb unrelated working-tree changes into a commit.
 
 ## Task Scope
 

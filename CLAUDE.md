@@ -22,13 +22,11 @@ Read these files before changing source:
 4. `CODEX.md`, `JULES.md`, or `COPILOT.md` only when coordinating with that
    agent's role.
 
-Claude Code prepares changes for human review. Bradley Potts retains final
-commit, merge, tag, publish, and release authority.
-
 ## Commit Policy
 
-Do not create git commits in this repository. Prepare changes, run validation,
-and leave staging, committing, tagging, and pushing to human review.
+See [AGENTS.md](AGENTS.md) for the full grant of authority. Claude Code
+applies it here: run all validation before committing, then stage, commit,
+tag, and push without per-action confirmation.
 
 ## Implementation Mission
 

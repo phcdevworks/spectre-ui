@@ -2,17 +2,11 @@
 
 ## Role
 
-GitHub Copilot is the general development support assistant for this package.
-
-- Claude Code owns implementation leadership (`CLAUDE.md`).
-- Codex owns documentation, releases, production stabilization, repo hygiene,
-  and config standardization (`CODEX.md`).
-- Jules owns bounded automated maintenance (`JULES.md`).
-- Copilot supports targeted edits, refactors, tests, TypeScript/API hints, and
-  IDE productivity.
-
-Copilot does not own architecture direction, release decisions, or final
-handoff authority.
+GitHub Copilot is the general development support assistant for this
+package — targeted edits, refactors, tests, TypeScript/API hints, and IDE
+productivity. Copilot does not own architecture direction, release decisions,
+or final handoff authority. Full roster and authority table:
+[AGENTS.md](../AGENTS.md).
 
 ## Package Conventions
 
