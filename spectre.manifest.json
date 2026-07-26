@@ -26,10 +26,9 @@
       "role": "styling-contract",
       "layer": "foundation",
       "stability": "stable",
-      "description": "Layer 2 styling contract between @phcdevworks/spectre-tokens and downstream adapters or apps. Provides CSS bundles, Tailwind preset, and class-recipe functions.",
+      "description": "Layer 2 styling contract between @phcdevworks/spectre-tokens and downstream adapters or apps. Provides CSS bundles and class-recipe functions.",
       "exports": [
         ".",
-        "./tailwind",
         "./index.css",
         "./base.css",
         "./components.css",
@@ -88,11 +87,6 @@
         "entrypoint": "@phcdevworks/spectre-ui"
       },
       {
-        "task": "use Tailwind preset with Spectre tokens",
-        "kind": "package",
-        "entrypoint": "@phcdevworks/spectre-tokens"
-      },
-      {
         "task": "run full validation gate",
         "kind": "command",
         "entrypoint": "npm run check"
@@ -100,13 +94,11 @@
     ],
     "generationRules": [
       "Import CSS bundles from @phcdevworks/spectre-ui (index.css, base.css, components.css, utilities.css).",
-      "Use createSpectreTailwindPreset or createSpectreTailwindTheme from @phcdevworks/spectre-ui/tailwind for Tailwind integration.",
       "Use class-recipe functions (e.g. getButtonClasses, getCardClasses) rather than writing raw Tailwind class strings.",
       "Run npm run check before staging any commit — all checks must pass."
     ],
     "usageGuidance": [
       "Include @phcdevworks/spectre-ui/index.css to get all Spectre base, component, and utility styles.",
-      "Use @phcdevworks/spectre-ui/tailwind to extend a Tailwind config with Spectre token values.",
       "Class-recipe functions provide type-safe, variant-aware class strings for each component family."
     ],
     "safeDefaults": [

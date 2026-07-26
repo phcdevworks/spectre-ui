@@ -9,7 +9,6 @@ interface RecipeFamily {
 
 interface UiContractManifest {
   cssEntrypoints: string[];
-  tailwindExports: string[];
   rootExports: {
     constants: string[];
     functions?: string[];
@@ -42,12 +41,6 @@ if (!versionMatch) {
 for (const entry of manifest.cssEntrypoints) {
   if (!readme.includes(entry)) {
     failures.push(`CSS entrypoint not documented in README: ${entry}`);
-  }
-}
-
-for (const name of manifest.tailwindExports) {
-  if (!readme.includes(name)) {
-    failures.push(`Tailwind export not documented in README: ${name}`);
   }
 }
 

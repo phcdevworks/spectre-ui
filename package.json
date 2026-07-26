@@ -1,7 +1,7 @@
 {
   "name": "@phcdevworks/spectre-ui",
-  "version": "2.10.0",
-  "description": "@phcdevworks/spectre-ui is the styling contract package of the Spectre system. It translates Spectre design tokens into CSS bundles, Tailwind theme configuration, and class recipe functions for downstream adapters and apps.",
+  "version": "3.0.0",
+  "description": "@phcdevworks/spectre-ui is the styling contract package of the Spectre system. It translates Spectre design tokens into CSS bundles and class recipe functions for downstream adapters and apps.",
   "keywords": [
     "phcdevworks",
     "spectre",
@@ -12,8 +12,6 @@
     "css-bundles",
     "css-utilities",
     "css-framework",
-    "tailwindcss",
-    "tailwind-preset",
     "tokens",
     "utilities"
   ],
@@ -48,11 +46,6 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./tailwind": {
-      "types": "./dist/tailwind/index.d.ts",
-      "import": "./dist/tailwind/index.js",
-      "require": "./dist/tailwind/index.cjs"
-    },
     "./index.css": "./dist/index.css",
     "./base.css": "./dist/base.css",
     "./components.css": "./dist/components.css",
@@ -74,7 +67,7 @@
     "build": "tsup --config tsup.config.ts && npm run build:css",
     "build:css": "node --experimental-strip-types ./scripts/build-css.ts",
     "check": "npm run ci:verify && npm run check:ecosystem",
-    "ci:verify": "npm run validate:runtime && npm run lint && npm run validate:changelog && npm run validate:exports && npm run validate:readme && npm run validate:tokens && npm run build && npm run validate:tailwind && npm run validate:css-contract && npm test",
+    "ci:verify": "npm run validate:runtime && npm run lint && npm run validate:changelog && npm run validate:exports && npm run validate:readme && npm run validate:tokens && npm run build && npm run validate:css-contract && npm test",
     "dev": "tsup --config tsup.config.ts --watch",
     "clean": "rm -rf dist",
     "release:propose": "node --experimental-strip-types ./scripts/propose-version.ts",
@@ -86,8 +79,6 @@
     "validate:exports": "node --experimental-strip-types ./scripts/validate-exports.ts",
     "validate:exports:update": "node --experimental-strip-types ./scripts/validate-exports.ts --update",
     "validate:runtime": "node --experimental-strip-types ./scripts/validate-runtime.ts",
-    "validate:tailwind": "node --experimental-strip-types ./scripts/validate-tailwind-contract.ts",
-    "validate:tailwind:update": "node --experimental-strip-types ./scripts/validate-tailwind-contract.ts --update",
     "validate:readme": "node --experimental-strip-types ./scripts/validate-readme-contract.ts",
     "check:version-sync": "npm run validate:readme",
     "validate:changelog": "node --experimental-strip-types ./scripts/validate-changelog.ts",
@@ -98,11 +89,10 @@
     "access": "public"
   },
   "peerDependencies": {
-    "tailwindcss": "^3.4.0 || ^4.0.0",
     "typescript": "^5.0 || ^6.0 || ^7.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^3.5.0"
+    "@phcdevworks/spectre-tokens": "^4.0.0"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.1.0",
@@ -111,13 +101,12 @@
     "@typescript-eslint/parser": "^8.65.0",
     "@typescript/native": "npm:typescript@^7.0.2",
     "autoprefixer": "^10.5.4",
-    "eslint": "^10.7.0",
+    "eslint": "^10.8.0",
     "jiti": "^2.7.0",
-    "postcss": "^8.5.20",
+    "postcss": "^8.5.23",
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.1",
-    "prettier": "^3.9.5",
-    "tailwindcss": "^4.3.3",
+    "prettier": "^3.9.6",
     "tsup": "^8.5.1",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-eslint": "^8.65.0",

@@ -2,62 +2,61 @@
 
 ## Repository Snapshot
 
-| Field | Value |
-|-------|-------|
-| Project team | `project-design` |
-| Repository role | Spectre L2 CSS, Tailwind, and recipe contract |
-| Package/artifact | `@phcdevworks/spectre-ui` |
-| Validation gate | `npm run check` |
+| Field            | Value                              |
+| ---------------- | ---------------------------------- |
+| Project team     | `project-design`                   |
+| Repository role  | Spectre L2 CSS and recipe contract |
+| Package/artifact | `@phcdevworks/spectre-ui`          |
+| Validation gate  | `npm run check`                    |
 
 ## Standard Authority Model
 
-| Agent | Role | Authority |
-|-------|------|-----------|
-| Claude Code | Lead implementation and validation | [CLAUDE.md](CLAUDE.md) |
-| OpenAI Codex | Documentation, release readiness, stabilization, and repo hygiene | [CODEX.md](CODEX.md) |
-| ChatGPT | Strategy, coordination, prompt design, and external review | Support only |
-| GitHub Copilot | Development assistance | [COPILOT.md](COPILOT.md) |
-| Google Jules | Bounded automated maintenance | [JULES.md](JULES.md) |
+| Agent          | Role                                                              | Authority                |
+| -------------- | ----------------------------------------------------------------- | ------------------------ |
+| Claude Code    | Lead implementation and validation                                | [CLAUDE.md](CLAUDE.md)   |
+| OpenAI Codex   | Documentation, release readiness, stabilization, and repo hygiene | [CODEX.md](CODEX.md)     |
+| ChatGPT        | Strategy, coordination, prompt design, and external review        | Support only             |
+| GitHub Copilot | Development assistance                                            | [COPILOT.md](COPILOT.md) |
+| Google Jules   | Bounded automated maintenance                                     | [JULES.md](JULES.md)     |
 
 **All AI agents in this roster** — Claude Code, OpenAI Codex, GitHub Copilot,
-and Google Jules — have full commit, push, and tag authority in this
-repository, effective 2026-07-25 by explicit direction from Bradley Potts —
-see the Commit Policy section in each agent's own guide
-([CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), [COPILOT.md](COPILOT.md),
-[JULES.md](JULES.md)). **OpenAI Codex** additionally has release authority:
-Codex cuts releases autonomously — version bump, changelog versioning,
-`v<version>` git tag, and GitHub Release publish via `gh` — for every
-release-ready `CHANGELOG.md [Unreleased]` section, without waiting for
-per-release approval; see `CODEX.md` "Release Mechanics" for the full
-procedure. **npm publishing remains Bradley Potts's sole authority** — no
-agent runs `npm publish`. Bradley Potts retains ultimate ownership and can
+and Google Jules — have full commit, push, and tag authority in this repository,
+effective 2026-07-25 by explicit direction from Bradley Potts — see the Commit
+Policy section in each agent's own guide ([CLAUDE.md](CLAUDE.md),
+[CODEX.md](CODEX.md), [COPILOT.md](COPILOT.md), [JULES.md](JULES.md)). **OpenAI
+Codex** additionally has release authority: Codex cuts releases autonomously —
+version bump, changelog versioning, `v<version>` git tag, and GitHub Release
+publish via `gh` — for every release-ready `CHANGELOG.md [Unreleased]` section,
+without waiting for per-release approval; see `CODEX.md` "Release Mechanics" for
+the full procedure. **npm publishing remains Bradley Potts's sole authority** —
+no agent runs `npm publish`. Bradley Potts retains ultimate ownership and can
 revoke or narrow any of this at any time. This grant covers git and release
-operations within each agent's own scope of work as defined above — it does
-not expand what any agent is authorized to decide otherwise. ChatGPT has no
+operations within each agent's own scope of work as defined above — it does not
+expand what any agent is authorized to decide otherwise. ChatGPT has no
 repository access and is excluded.
 
 ## Cross-Repo Access
 
 This repo may be worked on standalone or alongside any combination of other
-PHCDevworks repos — do not assume the company root or sibling project areas
-are present. The following rules are self-contained and apply whether or not
-that broader context is available.
+PHCDevworks repos — do not assume the company root or sibling project areas are
+present. The following rules are self-contained and apply whether or not that
+broader context is available.
 
 **File access.** An agent working in this repo has full read/write access to
-every file in this repo. When this repo is present alongside other
-PHCDevworks repos (company root or sibling `project-*` areas), the same full
-read/write access extends to those repos too — there is no per-repo access
-restriction anywhere in this workspace. What differs repo-to-repo is not
-*access*, it's *editorial ownership*: each repo's own `CLAUDE.md`/`AGENTS.md`
-still governs what changes make sense there (design-token authority, layer
-boundaries, etc.) — being able to open and edit a file is not the same as it
-being this repo's job to change it.
+every file in this repo. When this repo is present alongside other PHCDevworks
+repos (company root or sibling `project-*` areas), the same full read/write
+access extends to those repos too — there is no per-repo access restriction
+anywhere in this workspace. What differs repo-to-repo is not _access_, it's
+_editorial ownership_: each repo's own `CLAUDE.md`/`AGENTS.md` still governs
+what changes make sense there (design-token authority, layer boundaries, etc.) —
+being able to open and edit a file is not the same as it being this repo's job
+to change it.
 
 **Cross-repo changelog and TODO/roadmap requests.** Full rules: company root
 [AGENTS.md](../../AGENTS.md) § "Cross-Repo Changelog Sync" and § "Upstream
-Requests and Roadmap Self-Expansion." Applied here without exception — this
-repo may append `[Unreleased]` changelog entries and downstream TODO requests
-to other present repos per those rules, and no AI agent creates commits, tags,
+Requests and Roadmap Self-Expansion." Applied here without exception — this repo
+may append `[Unreleased]` changelog entries and downstream TODO requests to
+other present repos per those rules, and no AI agent creates commits, tags,
 publishes packages, or merges changes in this repo or any other unless that
 repo's own agent guide explicitly grants that authority.
 
@@ -70,8 +69,8 @@ is release-relevant.
 
 ## Mission
 
-Turn Spectre tokens into reusable CSS bundles, Tailwind tooling, and type-safe
-class recipes without redefining the underlying design values.
+Turn Spectre tokens into reusable CSS bundles and type-safe class recipes
+without redefining the underlying design values.
 
 ## Core Rules
 
@@ -116,7 +115,7 @@ class recipes without redefining the underlying design values.
 ## Working Boundaries
 
 - Design values and semantic meaning belong in `@phcdevworks/spectre-tokens`.
-- Token-driven CSS, utilities, Tailwind helpers, and class recipes belong here.
+- Token-driven CSS, utilities, and class recipes belong here.
 - Framework-agnostic Lit web components belong in
   `@phcdevworks/spectre-components`.
 - Framework-specific delivery belongs in adapter packages such as
@@ -193,36 +192,36 @@ Roadmap Self-Expansion." Applied to this repo:
 
 - This repo is L2 — its upstream is `spectre-tokens`. If a needed visual value
   or token gap is found here, append the request to `spectre-tokens/TODO.md`
-  under `## Requested by Downstream`, dated, with the reason and a link back
-  to this repo's own TODO.md/ROADMAP.md. Never invent a local fallback value
+  under `## Requested by Downstream`, dated, with the reason and a link back to
+  this repo's own TODO.md/ROADMAP.md. Never invent a local fallback value
   instead.
-- Downstream repos (`spectre-components`, `spectre-ui-astro`, and
-  transitively `spectre-base`) may append recipe or CSS-contract requests to
-  this repo's own `TODO.md` under `## Requested by Downstream`. Keep that
-  section visible and separate from this repo's self-planned work.
+- Downstream repos (`spectre-components`, `spectre-ui-astro`, and transitively
+  `spectre-base`) may append recipe or CSS-contract requests to this repo's own
+  `TODO.md` under `## Requested by Downstream`. Keep that section visible and
+  separate from this repo's self-planned work.
 - This repo's own [ROADMAP.md](ROADMAP.md) may be proactively expanded with new
   or reordered phases by the agent's own analysis — but never mark a phase
   delivered without `npm run check` passing, and never open a Token-Gated
   Surface Expansion phase against tokens that have not actually published in
   `spectre-tokens` yet (see Token-Gated Surface Expansion above).
 - Surface any new TODO request or roadmap expansion in the handoff for Bradley
-  Potts in the same change it was made, and reflect cross-repo-relevant
-  changes in the project-team's own ROADMAP.md/TODO.md.
+  Potts in the same change it was made, and reflect cross-repo-relevant changes
+  in the project-team's own ROADMAP.md/TODO.md.
 
 ## File Classification
 
-| Classification                    | Files                                                                                                                  | Rule                                                                                 |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| **Source — edit freely**          | `src/styles/`, `src/recipes/`, `src/tailwind/`, `src/tokens/`, `src/internal/`, `src/index.ts`, `src/css-constants.ts` | Primary authoring surface                                                            |
-| **Source — scripts**              | `scripts/*.ts`                                                                                                         | Edit when the contract or validation logic changes                                   |
-| **Source — tests**                | `tests/*.test.ts`                                                                                                      | Edit to add or update contract coverage                                              |
-| **Generated — never hand-edit**   | `dist/`                                                                                                                | Emitted by `npm run build`; always regenerate                                        |
-| **Snapshots — update via script** | `scripts/export-snapshot.json`, `scripts/tailwind-export-snapshot.json`                                                | Update via `validate:exports:update` / `validate:tailwind:update`                    |
-| **Contract manifest**             | `ui-contract.manifest.json`                                                                                            | Update when public variants, states, or entry points change                          |
-| **Ecosystem manifest**            | `spectre.manifest.json`                                                                                                | Update when exports, Spectre dependencies, or stability change                       |
-| **Agent guidance**                | `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, `JULES.md`, `.github/copilot-instructions.md`                      | Update only when operating model or rules change                                     |
-| **Public docs**                   | `README.md`, `CONTRIBUTING.md`, `CHANGELOG.md`                                                                         | Update when public contract or setup guidance changes                                |
-| **Protected — infra**             | `package.json`, `package-lock.json`, `.github/workflows/`                                                              | Change only when explicitly in scope; lockfile must stay in sync with `package.json` |
+| Classification                    | Files                                                                                                 | Rule                                                                                 |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **Source — edit freely**          | `src/styles/`, `src/recipes/`, `src/tokens/`, `src/internal/`, `src/index.ts`, `src/css-constants.ts` | Primary authoring surface                                                            |
+| **Source — scripts**              | `scripts/*.ts`                                                                                        | Edit when the contract or validation logic changes                                   |
+| **Source — tests**                | `tests/*.test.ts`                                                                                     | Edit to add or update contract coverage                                              |
+| **Generated — never hand-edit**   | `dist/`                                                                                               | Emitted by `npm run build`; always regenerate                                        |
+| **Snapshots — update via script** | `scripts/export-snapshot.json`                                                                        | Update via `validate:exports:update`                                                 |
+| **Contract manifest**             | `ui-contract.manifest.json`                                                                           | Update when public variants, states, or entry points change                          |
+| **Ecosystem manifest**            | `spectre.manifest.json`                                                                               | Update when exports, Spectre dependencies, or stability change                       |
+| **Agent guidance**                | `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, `JULES.md`, `.github/copilot-instructions.md`     | Update only when operating model or rules change                                     |
+| **Public docs**                   | `README.md`, `CONTRIBUTING.md`, `CHANGELOG.md`                                                        | Update when public contract or setup guidance changes                                |
+| **Protected — infra**             | `package.json`, `package-lock.json`, `.github/workflows/`                                             | Change only when explicitly in scope; lockfile must stay in sync with `package.json` |
 
 ## Validation
 
@@ -233,8 +232,8 @@ npm run check
 ```
 
 This runs in order: runtime check → lint → changelog validation → export
-validation → README contract validation → token drift check → build → Tailwind
-contract → CSS contract → tests. All steps must pass.
+validation → README contract validation → token drift check → build → CSS
+contract → tests. All steps must pass.
 
 | Command                    | Purpose                                                |
 | -------------------------- | ------------------------------------------------------ |
@@ -268,11 +267,9 @@ unfilled. CodeRabbit's description check blocks such PRs.
 - Run `npm run check` before every handoff touching `src/`, `tests/`,
   `scripts/`, package exports, docs, or contract manifests.
 - Never hand-edit `dist/`; regenerate via `npm run build`.
-- Update export and Tailwind snapshots with their update scripts rather than
-  manual edits.
-- Keep CSS, recipes, Tailwind helpers, and docs aligned with
-  `ui-contract.manifest.json` and the latest published
-  `@phcdevworks/spectre-tokens` contract.
+- Update the export snapshot with its update script rather than manual edits.
+- Keep CSS, recipes, and docs aligned with `ui-contract.manifest.json` and the
+  latest published `@phcdevworks/spectre-tokens` contract.
 
 ## Standard Workflows
 
@@ -393,11 +390,12 @@ Governance rules:
 ## Ecosystem Manifest
 
 `spectre.manifest.json` at the root is this package's declaration in the Spectre
-ecosystem contract, validated by `@phcdevworks/spectre-manifest`. It records role,
-layer, exports, and allowed Spectre dependency targets. `check:ecosystem` validates
-it as part of `npm run check`.
+ecosystem contract, validated by `@phcdevworks/spectre-manifest`. It records
+role, layer, exports, and allowed Spectre dependency targets. `check:ecosystem`
+validates it as part of `npm run check`.
 
 Keep `spectre.manifest.json` in sync when:
+
 - Package exports in `package.json` are added or removed
 - A Spectre package dependency is added or removed
 - The package stability changes
