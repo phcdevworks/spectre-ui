@@ -62,7 +62,7 @@ belongs in adapter packages such as `@phcdevworks/spectre-ui-astro`).
 [Changelog](CHANGELOG.md) | [Roadmap](ROADMAP.md) |
 [Security Policy](SECURITY.md)
 
-## Source of truth
+## Source Of Truth
 
 `@phcdevworks/spectre-tokens` is the source of truth for visual values and
 semantic meaning. `ui-contract.manifest.json` is the machine-readable contract
@@ -92,7 +92,7 @@ full UI contract.
 this styling contract in Lit web components. This package owns Layer 2 only: it
 does not deliver components and it does not define tokens.
 
-## Key capabilities
+## Key Capabilities
 
 - Ships precompiled CSS: `index.css`, `base.css`, `components.css`, and
   `utilities.css`
@@ -104,7 +104,7 @@ does not deliver components and it does not define tokens.
 - Enforces a zero-hex approach so visual values stay tied to
   `@phcdevworks/spectre-tokens`
 
-## What this package owns
+## What This Package Owns
 
 - Token-backed CSS class contracts in `src/styles/`
 - Precompiled CSS bundles for root, base, components, and utilities
@@ -115,7 +115,7 @@ does not deliver components and it does not define tokens.
 This package is the correct place to define reusable styling structure on top of
 Spectre tokens.
 
-## What this package does not own
+## What This Package Does Not Own
 
 - Design token values or semantic visual meaning. Those belong in
   [`@phcdevworks/spectre-tokens`](https://github.com/phcdevworks/spectre-tokens).
@@ -125,13 +125,38 @@ Spectre tokens.
 - Local redefinition of token meaning. Downstream consumers should consume the
   token contract rather than recreate it.
 
+## When To Use This Package
+
+Use `@phcdevworks/spectre-ui` when you need:
+
+- precompiled, token-backed CSS ready to drop into any framework
+- a Tailwind preset or theme helper built from Spectre tokens
+- stable, type-safe class recipes for shared UI patterns (buttons, badges,
+  cards, inputs, etc.) that you want to remain consistent across frameworks
+- a styling contract that is enforced through tests and CI rather than
+  conventions alone
+
+## When Not To Use This Package
+
+Do not use `@phcdevworks/spectre-ui` when you need to:
+
+- **Define new design values** — add them to
+  [`@phcdevworks/spectre-tokens`](https://github.com/phcdevworks/spectre-tokens)
+  instead.
+- **Deliver framework components** — use an adapter package such as
+  `@phcdevworks/spectre-ui-astro` that wraps this package in framework-native
+  components.
+- **Use raw Tailwind utilities without a shared recipe contract** — import
+  Tailwind directly and use the Spectre preset; you do not need this package's
+  recipe layer if you are building one-off UI with utility classes.
+
 ## Installation
 
 ```bash
 npm install @phcdevworks/spectre-ui
 ```
 
-## Quick start
+## Quick Start
 
 ### Vanilla HTML — CSS classes only
 
@@ -214,32 +239,7 @@ const badge = getBadgeClasses({ variant: 'success', size: 'sm' })
 const pricingCard = getPricingCardClasses({ featured: true })
 ```
 
-## When to use this package
-
-Use `@phcdevworks/spectre-ui` when you need:
-
-- precompiled, token-backed CSS ready to drop into any framework
-- a Tailwind preset or theme helper built from Spectre tokens
-- stable, type-safe class recipes for shared UI patterns (buttons, badges,
-  cards, inputs, etc.) that you want to remain consistent across frameworks
-- a styling contract that is enforced through tests and CI rather than
-  conventions alone
-
-## When not to use this package
-
-Do not use `@phcdevworks/spectre-ui` when you need to:
-
-- **Define new design values** — add them to
-  [`@phcdevworks/spectre-tokens`](https://github.com/phcdevworks/spectre-tokens)
-  instead.
-- **Deliver framework components** — use an adapter package such as
-  `@phcdevworks/spectre-ui-astro` that wraps this package in framework-native
-  components.
-- **Use raw Tailwind utilities without a shared recipe contract** — import
-  Tailwind directly and use the Spectre preset; you do not need this package's
-  recipe layer if you are building one-off UI with utility classes.
-
-## What belongs here vs elsewhere
+## What Belongs Here Vs Elsewhere
 
 | What                                             | Where it lives                             |
 | ------------------------------------------------ | ------------------------------------------ |
@@ -256,7 +256,7 @@ Do not use `@phcdevworks/spectre-ui` when you need to:
 Golden rule: this package consumes tokens and exposes class contracts. It does
 not define tokens and it does not deliver framework components.
 
-## Package exports / API surface
+## Package Exports / API Surface
 
 ### Recipe quick reference
 
@@ -410,7 +410,7 @@ state TypeScript types defined by those recipes.
 - `@phcdevworks/spectre-ui/components.css`
 - `@phcdevworks/spectre-ui/utilities.css`
 
-## Public contract guarantees
+## Public Contract Guarantees
 
 `ui-contract.manifest.json` defines the public styling contract for this
 package.
@@ -475,7 +475,7 @@ is open. Wrap the nested links in `.sp-sidebar__group-content` for the standard
 bottom spacing. Open/closed behavior remains native to `details`; this package
 returns class strings and does not render markup.
 
-## Downstream boundaries
+## Downstream Boundaries
 
 Downstream packages should never redefine locally:
 
@@ -492,7 +492,7 @@ Downstream packages may:
 - import CSS entry points directly in applications or adapter packages
 - extend app-specific layout around Spectre contracts
 
-## Upgrade expectations for consumers
+## Upgrade Expectations For Consumers
 
 Consumers should treat this package as a SemVer-governed styling contract.
 
@@ -527,7 +527,7 @@ before release.
 
 Renames and removals are always breaking regardless of perceived scope.
 
-## Relationship to the rest of Spectre
+## Relationship To The Rest Of Spectre
 
 Spectre keeps responsibilities separate:
 
@@ -543,7 +543,7 @@ Spectre keeps responsibilities separate:
 That separation keeps recipe behavior consistent across frameworks and reduces
 implementation drift.
 
-## Consumer checklist
+## Consumer Checklist
 
 For downstream packages and compatible apps:
 
@@ -648,17 +648,17 @@ This runs: runtime check → lint → changelog validation → export validation
 README validation → token drift check → build → Tailwind contract → CSS contract
 → tests. All steps must pass.
 
-## AI and automation boundaries
+## AI And Automation Boundaries
 
 Claude Code (`claude-sonnet-4-6`) is the primary development agent for this
-repository. Codex handles releases and production stabilization. Jules handles
-small automated fixes and token sync passes. GitHub Copilot provides development
-support.
+repository. Codex handles releases, including cutting tagged releases and
+GitHub Releases, and production stabilization. Jules handles small automated
+fixes and token sync passes. GitHub Copilot provides development support.
 
-Claude Code, Codex, and Copilot do not create git commits by default. Jules may
-commit only bounded automated maintenance when the `JULES.md` scope and
-validation gates pass. Release decisions, tags, and publishing remain with
-Bradley Potts.
+All AI agents with repository access (Claude Code, Codex, Copilot, Jules)
+have commit, push, and tag authority in this repository. Publishing to npm
+remains Bradley Potts's sole authority. See [AGENTS.md](AGENTS.md) for the
+full commit-policy and release-authority grant.
 
 **Protected from automated change:** CSS contracts, recipe public API surface,
 and the zero-hex policy (no hardcoded color/spacing values). See
