@@ -119,6 +119,11 @@
         "label": "test",
         "command": "npm test",
         "type": "shell"
+      },
+      {
+        "label": "check",
+        "command": "npm run check",
+        "type": "shell"
       }
     ]
   }
