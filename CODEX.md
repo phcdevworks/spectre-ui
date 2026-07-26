@@ -75,8 +75,7 @@ clearly for Claude Code or Bradley.
 
 When reviewing changes, prioritize:
 
-1. Contract breaks in exports, CSS entry points, recipes, Tailwind helpers, or
-   package metadata.
+1. Contract breaks in exports, CSS entry points, recipes, or package metadata.
 2. Token drift, hardcoded visual literals, or local semantic invention.
 3. Missing tests for public behavior.
 4. Documentation drift in README, contributing docs, release notes, or setup
@@ -88,12 +87,12 @@ run.
 
 ### Release Procedure
 
-When `CHANGELOG.md [Unreleased]` is release-ready, Codex cuts the release —
-no per-release request from Bradley required:
+When `CHANGELOG.md [Unreleased]` is release-ready, Codex cuts the release — no
+per-release request from Bradley required:
 
 1. Confirm `npm run check` passes on the release branch.
-2. Confirm `CHANGELOG.md` has a dated release entry covering user-facing
-   changes since the previous release.
+2. Confirm `CHANGELOG.md` has a dated release entry covering user-facing changes
+   since the previous release.
 3. Confirm the `package.json` version matches the changelog entry and semantic
    versioning intent.
 4. Confirm generated artifacts were emitted by build tooling and not
@@ -144,13 +143,13 @@ Use this checklist before cutting every release (tag + GitHub Release).
 - [ ] `validate:tokens` passed — no drift against latest published
       `@phcdevworks/spectre-tokens`.
 - [ ] `validate:exports` passed — root export surface matches snapshot.
-- [ ] `validate:tailwind` passed — Tailwind subpath artifacts are in sync.
-- [ ] CSS contract tests passed — all entry points are independently distributable.
+- [ ] CSS contract tests passed — all entry points are independently
+      distributable.
 
 ### Contract Integrity
 
-- [ ] CSS classes, recipe APIs, Tailwind helpers, snapshots, and
-      `ui-contract.manifest.json` all describe the same public styling surface.
+- [ ] CSS classes, recipe APIs, snapshots, and `ui-contract.manifest.json` all
+      describe the same public styling surface.
 - [ ] No recipe option, CSS class, or export was renamed or removed without a
       major-version bump.
 - [ ] No hardcoded color, spacing, or shadow values were introduced (zero-hex
@@ -171,32 +170,33 @@ Use this checklist before cutting every release (tag + GitHub Release).
 2. `CHANGELOG.md [Unreleased]` notes are moved to a new versioned entry:
    `## [<version>] - <YYYY-MM-DD>`, with a release title line in the format
    `**Release Title:** Phase <N> - <short title>`, where `Phase <N>` is the
-   active phase name from this repo's own `ROADMAP.md` and `<short title>`
-   is a concise summary of what shipped. If the release spans no single
-   ROADMAP phase, state that explicitly instead of inventing one.
+   active phase name from this repo's own `ROADMAP.md` and `<short title>` is a
+   concise summary of what shipped. If the release spans no single ROADMAP
+   phase, state that explicitly instead of inventing one.
 3. `npm run check` passes clean on the release-ready state.
 4. Stage and commit the version bump and changelog update.
-5. Create the git tag: `git tag v<version>` (matching `package.json`
-   exactly), then push the commit and tag.
-6. Publish the GitHub Release from that tag: `gh release create v<version>
-   --title "v<version>: Phase <N> - <short title>" --notes-file` (extract the
-   new version's changelog section, or `--notes` inline for a short release).
+5. Create the git tag: `git tag v<version>` (matching `package.json` exactly),
+   then push the commit and tag.
+6. Publish the GitHub Release from that tag:
+   `gh release create v<version> --title "v<version>: Phase <N> - <short title>" --notes-file`
+   (extract the new version's changelog section, or `--notes` inline for a short
+   release).
 7. `npm publish` is **not** run by Codex — that stays with Bradley Potts.
-8. Handoff summary prepared for Bradley Potts, including the npm publish
-   step still pending his action.
+8. Handoff summary prepared for Bradley Potts, including the npm publish step
+   still pending his action.
 
 ## Refactor Decision Framework
 
 Before recommending a refactor, answer:
 
-1. **Does a shared utility already exist for this?**
-   Check `src/internal/` for existing class and option utilities first.
-2. **Is the duplication actually causing drift or bugs?**
-   If no, leave it. Three similar lines is better than a premature abstraction.
+1. **Does a shared utility already exist for this?** Check `src/internal/` for
+   existing class and option utilities first.
+2. **Is the duplication actually causing drift or bugs?** If no, leave it. Three
+   similar lines is better than a premature abstraction.
 3. **Does the refactor touch a public recipe API, CSS class name, or export?**
    If yes, classify the change and add a `CHANGELOG.md [Unreleased]` entry.
-4. **Does the refactor touch CSS class naming convention or the zero-hex policy?**
-   If yes, stop and confirm with Bradley Potts before proceeding.
+4. **Does the refactor touch CSS class naming convention or the zero-hex
+   policy?** If yes, stop and confirm with Bradley Potts before proceeding.
 
 Approved refactor scope for Codex:
 
@@ -214,13 +214,13 @@ Not approved without Claude Code or human confirmation:
 
 ## Git Boundaries
 
-Codex may inspect git status and diffs freely. Codex must not reset, discard,
-or overwrite changes it did not make. Existing local edits are assumed to belong
-to Bradley Potts, Claude Code, or another active process.
+Codex may inspect git status and diffs freely. Codex must not reset, discard, or
+overwrite changes it did not make. Existing local edits are assumed to belong to
+Bradley Potts, Claude Code, or another active process.
 
 Codex validates changes, then stages, commits, and pushes them within its own
-scope of work. Codex does not publish or merge PRs; those stay gated per
-"Role" above.
+scope of work. Codex does not publish or merge PRs; those stay gated per "Role"
+above.
 
 ## Source of Truth Hierarchy
 

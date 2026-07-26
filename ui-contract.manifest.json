@@ -1,5 +1,5 @@
 {
-  "version": "2.10.0",
+  "version": "3.0.0",
   "cssEntrypoints": [
     "@phcdevworks/spectre-ui/index.css",
     "@phcdevworks/spectre-ui/base.css",
@@ -75,10 +75,6 @@
       "getTooltipClasses"
     ]
   },
-  "tailwindExports": [
-    "createSpectreTailwindPreset",
-    "createSpectreTailwindTheme"
-  ],
   "recipeFamilies": {
     "button": {
       "fn": "getButtonClasses",

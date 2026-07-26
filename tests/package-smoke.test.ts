@@ -20,9 +20,6 @@ describe('dist artifact presence', () => {
     'base.css',
     'components.css',
     'utilities.css',
-    'tailwind/index.js',
-    'tailwind/index.cjs',
-    'tailwind/index.d.ts',
   ];
 
   for (const file of requiredFiles) {
@@ -94,25 +91,5 @@ describe('dist/index.js — root export smoke', () => {
     expect(typeof getBadgeClasses()).toBe('string');
     expect(typeof getCardClasses()).toBe('string');
     expect(typeof getInputClasses()).toBe('string');
-  });
-});
-
-describe('dist/tailwind/index.js — tailwind subpath smoke', () => {
-  it('exports createSpectreTailwindTheme and createSpectreTailwindPreset', async () => {
-    const mod = await import(fileUrl('tailwind', 'index.js'));
-
-    expect(typeof mod.createSpectreTailwindTheme, 'createSpectreTailwindTheme should be a function').toBe('function');
-    expect(typeof mod.createSpectreTailwindPreset, 'createSpectreTailwindPreset should be a function').toBe('function');
-  });
-
-  it('createSpectreTailwindPreset returns a usable preset object', async () => {
-    const { createSpectreTailwindPreset } = await import(fileUrl('tailwind', 'index.js'));
-    const spectreTokens = (await import('@phcdevworks/spectre-tokens')).default;
-
-    const preset = createSpectreTailwindPreset({ tokens: spectreTokens });
-
-    expect(preset).toBeDefined();
-    expect(typeof preset).toBe('object');
-    expect(preset.theme).toBeDefined();
   });
 });

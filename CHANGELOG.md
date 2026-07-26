@@ -6,17 +6,41 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
-Contract change type: additive
+## [3.0.0] - 2026-07-26
+
+**Release Title:** Phase 7 P2 - Tailwind Export Removal and Typography Recipe
+
+Contract change type: breaking
 
 ### Added
 
 - Added `getTextClasses` typography recipe (Phase 4g), requested by
-  `spectre-base` while converting WordPress theme templates off hand-rolled
-  CSS. Covers the `xs`–`6xl` `--sp-font-*` size scale, the
-  `default`/`muted`/`subtle`/`meta`/`brand` `--sp-text-on-page-*` color
-  roles, and `sans`/`serif`/`mono` `--sp-font-family-*` selection. Adds
-  `.sp-text` and its `--{scale}`/`--{color}`/`--{family}` modifier classes to
+  `spectre-base` while converting WordPress theme templates off hand-rolled CSS.
+  Covers the `xs`–`6xl` `--sp-font-*` size scale, the
+  `default`/`muted`/`subtle`/`meta`/`brand` `--sp-text-on-page-*` color roles,
+  and `sans`/`serif`/`mono` `--sp-font-family-*` selection. Adds `.sp-text` and
+  its `--{scale}`/`--{color}`/`--{family}` modifier classes to
   `src/styles/components.css`.
+
+### Removed
+
+- **Removed the Tailwind integration surface**: `createSpectreTailwindPreset`,
+  `createSpectreTailwindTheme`, the `./tailwind` subpath export, `src/tailwind/`,
+  and the `tailwindcss` peerDependency and devDependency are gone. This was
+  removed directly at Bradley Potts's explicit direction rather than through
+  the deprecate-first cycle `CONTRIBUTING.md`'s Deprecation Policy normally
+  requires — there were no consumers of this export anywhere in the workspace.
+  Consumers who imported `@phcdevworks/spectre-ui/tailwind` must remove that
+  import; there is no direct replacement in this package today. Precompiled
+  CSS (`index.css`/`base.css`/`components.css`/`utilities.css`) and the class
+  recipe functions are unaffected and remain the supported styling contract.
+
+### Changed
+
+- Upgraded `@phcdevworks/spectre-tokens` dependency: `^3.5.0` → `^4.0.0`. Raised
+  the `base.css`/`components.css`/`utilities.css` size budgets in
+  `tests/css-entrypoints.test.ts` to account for the larger token CSS output
+  bundled into each entry point.
 
 ## [2.10.0] - 2026-07-21
 
@@ -886,7 +910,9 @@ Contract change type: additive
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe
   helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/2.9.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/phcdevworks/spectre-ui/compare/2.10.0...3.0.0
+[2.10.0]: https://github.com/phcdevworks/spectre-ui/compare/2.9.0...2.10.0
 [2.9.0]: https://github.com/phcdevworks/spectre-ui/compare/2.8.0...2.9.0
 [2.8.0]: https://github.com/phcdevworks/spectre-ui/compare/2.7.2...2.8.0
 [2.7.2]: https://github.com/phcdevworks/spectre-ui/compare/2.7.1...2.7.2

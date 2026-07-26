@@ -3,7 +3,7 @@
 ## Project Identity
 
 **Package:** `@phcdevworks/spectre-ui`
-**Layer:** L2 of the Spectre design suite - CSS bundles, Tailwind tooling, and class recipes
+**Layer:** L2 of the Spectre design suite - CSS bundles and class recipes
 **Human owner:** Bradley Potts
 **Primary AI developer:** Claude Code (claude-sonnet-4-6)
 
@@ -31,9 +31,9 @@ tag, and push without per-action confirmation.
 ## Implementation Mission
 
 Protect the Layer 2 styling contract. This package translates the published
-`@phcdevworks/spectre-tokens` package into reusable CSS entry points, Tailwind
-helpers, and framework-agnostic recipe APIs. It does not author token meaning or
-deliver framework components.
+`@phcdevworks/spectre-tokens` package into reusable CSS entry points and
+framework-agnostic recipe APIs. It does not author token meaning or deliver
+framework components.
 
 ## Development Workflow
 
@@ -53,7 +53,6 @@ full validation gate definition and PR-template requirements.
 src/
   styles/            source CSS bundles and component classes
   recipes/           framework-agnostic class recipe functions
-  tailwind/          Tailwind preset and theme helpers
   internal/          shared class/option utilities
   tokens/            token re-exports and shared types
   css-constants.ts   CSS path constants
@@ -122,8 +121,8 @@ behavior.
 3. Export new public APIs from `src/recipes/index.ts` and `src/index.ts` when
    appropriate.
 4. Update `ui-contract.manifest.json`.
-5. Refresh snapshots with `npm run validate:exports:update` or
-   `npm run validate:tailwind:update` when the public export surface changes.
+5. Refresh snapshots with `npm run validate:exports:update` when the public
+   export surface changes.
 6. Update README public contract documentation when consumer-facing behavior
    changes.
 7. Run `npm run check`.
@@ -133,13 +132,12 @@ Stop and document a token gap instead of inventing a local visual fallback.
 ## Contract Touchpoints
 
 Use `ui-contract.manifest.json` as the contract anchor for public recipe
-families, CSS entry points, root exports, and Tailwind exports. Keep source,
-docs, snapshots, package metadata, and tests aligned with that manifest.
+families, CSS entry points, and root exports. Keep source, docs, snapshots,
+package metadata, and tests aligned with that manifest.
 
 The main enforcement areas are:
 
 - root export surface
-- `./tailwind` export surface
 - CSS entry point presence and isolation
 - CSS and recipe class parity
 - recipe family parity
