@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [3.1.0] - 2026-07-28
+
+**Release Title:** Phase 7 P0/P1 - First-Party Utility Engine
+
 Contract change type: additive
 
 ### Added
@@ -941,7 +945,8 @@ Contract change type: additive
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe
   helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/3.0.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/3.1.0...HEAD
+[3.1.0]: https://github.com/phcdevworks/spectre-ui/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/phcdevworks/spectre-ui/compare/2.10.0...3.0.0
 [2.10.0]: https://github.com/phcdevworks/spectre-ui/compare/2.9.0...2.10.0
 [2.9.0]: https://github.com/phcdevworks/spectre-ui/compare/2.8.0...2.9.0
