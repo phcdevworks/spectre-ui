@@ -1,3 +1,5 @@
+@import "./utilities.generated.css";
+
 @layer utilities {
   .sp-stack {
     display: flex;
@@ -157,38 +159,6 @@
 
   .sp-shadow-strong {
     box-shadow: var(--sp-shadow-lg);
-  }
-
-  .sp-z-base {
-    z-index: var(--sp-z-index-base);
-  }
-
-  .sp-z-dropdown {
-    z-index: var(--sp-z-index-dropdown);
-  }
-
-  .sp-z-sticky {
-    z-index: var(--sp-z-index-sticky);
-  }
-
-  .sp-z-fixed {
-    z-index: var(--sp-z-index-fixed);
-  }
-
-  .sp-z-overlay {
-    z-index: var(--sp-z-index-overlay);
-  }
-
-  .sp-z-modal {
-    z-index: var(--sp-z-index-modal);
-  }
-
-  .sp-z-popover {
-    z-index: var(--sp-z-index-popover);
-  }
-
-  .sp-z-tooltip {
-    z-index: var(--sp-z-index-tooltip);
   }
 
   .sp-animate-fade-in {

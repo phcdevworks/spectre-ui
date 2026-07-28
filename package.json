@@ -64,10 +64,11 @@
     "./dist/utilities.css"
   ],
   "scripts": {
-    "build": "tsup --config tsup.config.ts && npm run build:css",
+    "build": "tsup --config tsup.config.ts && npm run build:utilities && npm run build:css",
     "build:css": "node --experimental-strip-types ./scripts/build-css.ts",
+    "build:utilities": "node --experimental-strip-types ./scripts/build-utilities.ts",
     "check": "npm run ci:verify && npm run check:ecosystem",
-    "ci:verify": "npm run validate:runtime && npm run lint && npm run validate:changelog && npm run validate:exports && npm run validate:readme && npm run validate:tokens && npm run build && npm run validate:css-contract && npm test",
+    "ci:verify": "npm run validate:runtime && npm run lint && npm run validate:changelog && npm run validate:exports && npm run validate:readme && npm run validate:tokens && npm run build && npm run validate:css-contract && npm run validate:utilities && npm test",
     "dev": "tsup --config tsup.config.ts --watch",
     "clean": "rm -rf dist",
     "release:propose": "node --experimental-strip-types ./scripts/propose-version.ts",
@@ -76,6 +77,7 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "validate:css-contract": "node --experimental-strip-types ./scripts/validate-css-contract.ts",
+    "validate:utilities": "node --experimental-strip-types ./scripts/validate-utilities.ts",
     "validate:exports": "node --experimental-strip-types ./scripts/validate-exports.ts",
     "validate:exports:update": "node --experimental-strip-types ./scripts/validate-exports.ts --update",
     "validate:runtime": "node --experimental-strip-types ./scripts/validate-runtime.ts",
@@ -96,7 +98,7 @@
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.1.0",
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.1.2",
     "@typescript-eslint/eslint-plugin": "^8.65.0",
     "@typescript-eslint/parser": "^8.65.0",
     "@typescript/native": "npm:typescript@^7.0.2",

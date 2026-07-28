@@ -6,6 +6,37 @@
     "@phcdevworks/spectre-ui/components.css",
     "@phcdevworks/spectre-ui/utilities.css"
   ],
+  "generatedUtilityClasses": {
+    "source": "scripts/build-utilities.ts",
+    "output": "src/styles/utilities.generated.css",
+    "families": {
+      "spacing": {
+        "axes": ["p", "px", "py", "pt", "pr", "pb", "pl", "m", "mx", "my", "mt", "mr", "mb", "ml", "gap", "gap-x", "gap-y"],
+        "tokenGroup": "--sp-space-*",
+        "responsiveBreakpoints": ["md", "lg"]
+      },
+      "palette": {
+        "axes": ["text", "bg", "border"],
+        "tokenGroup": "--sp-color-palette-*"
+      },
+      "radius": {
+        "axes": ["rounded"],
+        "tokenGroup": "--sp-radius-*"
+      },
+      "shadow": {
+        "axes": ["shadow"],
+        "tokenGroup": "--sp-shadow-*"
+      },
+      "opacity": {
+        "axes": ["opacity"],
+        "tokenGroup": "--sp-opacity-*"
+      },
+      "zIndex": {
+        "axes": ["z"],
+        "tokenGroup": "--sp-z-index-*"
+      }
+    }
+  },
   "rootExports": {
     "constants": [
       "spectreStyles",
