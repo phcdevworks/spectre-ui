@@ -6,6 +6,37 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: additive
+
+### Added
+
+- Added a first-party generated utility-class engine (Phase 7 P0/P1):
+  `scripts/build-utilities.ts` generates `src/styles/utilities.generated.css`
+  at build time from the published `@phcdevworks/spectre-tokens` CSS variable
+  surface, covering spacing (`sp-{p,px,py,pt,pr,pb,pl,m,mx,my,mt,mr,mb,ml,gap,gap-x,gap-y}-{step}`),
+  the full `colors.palette` scale (`sp-{text,bg,border}-{hue}-{step}`, 286
+  steps across 26 hues), `sp-rounded-{step}`, `sp-shadow-{step}`,
+  `sp-opacity-{role}`, and `sp-z-{role}` utility classes, plus `md`/`lg`
+  responsive spacing variants using the locked `sp-{breakpoint}-{property}-{step}`
+  prefix syntax (e.g. `sp-md-p-4`). Token-only, no arbitrary-value support.
+  Wired into `npm run build` (`build:utilities`) and `npm run check`
+  (`validate:utilities`, staleness-checked). Folded the pre-existing
+  hand-authored `sp-z-*` classes into the generated output (exact duplicates);
+  `sp-shadow-soft`/`sp-shadow-strong` semantic aliases are unchanged and
+  additive alongside the new full `sp-shadow-{step}` scale.
+- Added a `generatedUtilityClasses` section to `ui-contract.manifest.json`
+  declaring the generated family/axis/token-group contract.
+- Added `tests/generated-utilities.test.ts`: byte-stability across
+  regenerations, full token-leaf coverage for every generated family, and
+  `@media` breakpoint literal validation.
+
+### Changed
+
+- Bumped the `utilities.css` size budget in `tests/css-entrypoints.test.ts`
+  (45000 → 195000 bytes) to account for the generated utility-class engine —
+  a deliberate, scoped size increase (see `TODO.md` Phase 7), not a
+  regression.
+
 ## [3.0.0] - 2026-07-26
 
 **Release Title:** Phase 7 P2 - Tailwind Export Removal and Typography Recipe

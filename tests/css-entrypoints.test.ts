@@ -32,9 +32,13 @@ const ENTRYPOINT_CONTRACTS = [
   {
     fileName: 'utilities.css',
     standaloneTokens: ['--sp-surface-page:', '--sp-layout-stack-gap-md:'],
-    bundleMarkers: ['@layer utilities', '.sp-stack {', '@keyframes fade-in'],
+    bundleMarkers: ['@layer utilities', '.sp-stack {', '@keyframes fade-in', '.sp-p-4 {'],
     forbiddenMarkers: ['@layer base', '@layer components', 'body {', ':focus-visible {', '.sp-btn {', '.sp-card {'],
-    maxBytes: 45000,
+    // Phase 7 P1: generated utility-class engine adds full palette (286
+    // steps), spacing, radius, shadow, opacity, and z-index coverage plus
+    // md/lg responsive variants — a deliberate, scoped size increase, not a
+    // regression. See TODO.md Phase 7 P0/P1.
+    maxBytes: 195000,
   },
 ] as const;
 

@@ -289,6 +289,31 @@ type-safety benefit. Apply the class name directly.
 | `.sp-surface--active`   | `--sp-surface-active`                                                        | Pressed/active state for clickable surfaces.           |
 | `.sp-divider`           | `--sp-surface-divider`                                                       | `<hr>`, section separators, table borders.             |
 
+### Generated utility classes
+
+`src/styles/utilities.generated.css` is a build-time generated file
+(`npm run build:utilities`, wired into `npm run build`) that expands every
+finite token scale into a flat, token-only utility class per step. It is not
+hand-edited; regenerate it after a `@phcdevworks/spectre-tokens` bump and commit
+the result (`npm run validate:utilities` fails CI if it drifts). No arbitrary
+values are supported — a design need that doesn't fit an existing token step
+needs a token proposal to `spectre-tokens`, not a raw value in markup.
+
+| Family  | Class pattern                                                                          | Token source           |
+| ------- | -------------------------------------------------------------------------------------- | ---------------------- |
+| Spacing | `.sp-{p\|px\|py\|pt\|pr\|pb\|pl\|m\|mx\|my\|mt\|mr\|mb\|ml\|gap\|gap-x\|gap-y}-{step}` | `--sp-space-*`         |
+| Palette | `.sp-{text\|bg\|border}-{hue}-{step}`                                                  | `--sp-color-palette-*` |
+| Radius  | `.sp-rounded-{step}`                                                                   | `--sp-radius-*`        |
+| Shadow  | `.sp-shadow-{step}`                                                                    | `--sp-shadow-*`        |
+| Opacity | `.sp-opacity-{role}`                                                                   | `--sp-opacity-*`       |
+| Z-index | `.sp-z-{role}`                                                                         | `--sp-z-index-*`       |
+
+Responsive variants use the `sp-{breakpoint}-{property}-{step}` prefix form
+(e.g. `sp-md-p-4`, `sp-lg-gap-8`) — spacing utilities only, at the `md` and `lg`
+breakpoints, matching the step-down convention Grid already established. This
+prefix syntax is a locked decision (see `TODO.md` Phase 7 P0); it will not
+change without a major-version breaking release.
+
 ### Root package
 
 The root package exports CSS path constants plus the recipe functions
