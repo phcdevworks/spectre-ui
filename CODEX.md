@@ -130,7 +130,9 @@ When work is complete, report:
 - Any validation that could not run and why.
 - Any release or documentation follow-up Bradley should review.
 
-Leave final commit, tag, publish, and release authority with Bradley Potts.
+Codex has release authority per the "Release Mechanics" section below
+(version bump, `CHANGELOG.md` versioning, tag, GitHub Release). `npm publish`
+is not run by Codex — that stays with Bradley Potts.
 
 ## Release Review Checklist
 
