@@ -55,12 +55,6 @@ and nothing surfaces that drift without this check.
 Not this package's work to perform — listed here only so the handoff isn't
 lost. Tracking and completion belong in each named repo's own `TODO.md`.
 
-- `spectre-ui-astro` — add `SpText`/`SpHeading` Astro component wrapping
-  `getTextClasses` (Phase 4g). Tracked in that repo's TODO.md Phase 12.
-- `spectre-components` — add matching `sp-text`/`sp-heading` Lit component.
-  Tracked in that repo's own TODO.md.
-- `spectre-ui-astro` — Sidebar toggle interaction (click handler, state
-  management) on top of this package's off-canvas CSS contract (Phase 4d).
 - `docs-phcdevworks-com` — `src/content/docs/packages/spectre-ui.md` and
   `src/content/docs/design/ui.md` still document the Tailwind
   preset/theme export removed in `spectre-ui@3.0.0`
