@@ -35,6 +35,20 @@ operations within each agent's own scope of work as defined above — it does no
 expand what any agent is authorized to decide otherwise. ChatGPT has no
 repository access and is excluded.
 
+**A commit is not finished until it is pushed.** Every agent in this roster
+must push immediately after committing (`git push`, including any needed
+`-u`/tags) as part of the same action — never leave a commit sitting local
+only. This closes a recurring gap where an agent commits and stops short of
+pushing, leaving work stranded on the machine.
+
+**Commit authorship is human-only.** No agent adds itself (or any other AI)
+as a commit author or co-author — no `Co-Authored-By: Claude`/`Codex`/
+`Copilot`/`Jules` trailer, no author-field changes, in this repository. The
+git author/committer stays Bradley Potts (or the configured human git user)
+on every commit, regardless of which agent performed the work. Push and tag
+authority above does not extend to authorship attribution.
+
+
 ## Cross-Repo Access
 
 This repo may be worked on standalone or alongside any combination of other
