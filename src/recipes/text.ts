@@ -28,18 +28,32 @@ const TEXT_FAMILIES = {
   mono: true,
 } as const
 
+const TEXT_TRANSFORMS = {
+  none: true,
+  uppercase: true,
+  lowercase: true,
+  capitalize: true,
+} as const
+
 export type TextSize = keyof typeof TEXT_SIZES
 export type TextVariant = keyof typeof TEXT_VARIANTS
 export type TextFamily = keyof typeof TEXT_FAMILIES
+export type TextTransform = keyof typeof TEXT_TRANSFORMS
 
 export interface TextRecipeOptions {
   size?: TextSize
   variant?: TextVariant
   family?: TextFamily
+  transform?: TextTransform
 }
 
 export function getTextClasses(opts: TextRecipeOptions = {}): string {
-  const { size: sizeInput, variant: variantInput, family: familyInput } = opts
+  const {
+    size: sizeInput,
+    variant: variantInput,
+    family: familyInput,
+    transform: transformInput,
+  } = opts
 
   const size = resolveOption({
     name: 'text size',
@@ -64,10 +78,21 @@ export function getTextClasses(opts: TextRecipeOptions = {}): string {
       })
     : undefined
 
+  const transform =
+    transformInput && transformInput !== 'none'
+      ? resolveOption({
+          name: 'text transform',
+          value: transformInput,
+          allowed: TEXT_TRANSFORMS,
+          fallback: 'none',
+        })
+      : undefined
+
   return cx(
     'sp-text',
     `sp-text--${size}`,
     `sp-text--${variant}`,
-    family && `sp-text--${family}`
+    family && `sp-text--${family}`,
+    transform && `sp-text--${transform}`
   )
 }

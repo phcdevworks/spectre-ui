@@ -3040,6 +3040,18 @@
     font-family: var(--sp-font-family-mono);
   }
 
+  .sp-text--uppercase {
+    text-transform: uppercase;
+  }
+
+  .sp-text--lowercase {
+    text-transform: lowercase;
+  }
+
+  .sp-text--capitalize {
+    text-transform: capitalize;
+  }
+
   .sp-fieldset {
     border: var(--sp-component-border-width) solid var(--sp-fieldset-border);
     border-radius: var(--sp-radius-md);

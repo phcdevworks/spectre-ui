@@ -216,7 +216,9 @@
     "text": {
       "fn": "getTextClasses",
       "variants": ["default", "muted", "subtle", "meta", "brand"],
-      "sizes": ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl", "6xl"]
+      "sizes": ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl", "6xl"],
+      "families": ["sans", "serif", "mono"],
+      "transforms": ["none", "uppercase", "lowercase", "capitalize"]
     }
   }
 }
