@@ -195,4 +195,5 @@ export {
   type TextSize,
   type TextVariant,
   type TextFamily,
+  type TextTransform,
 } from './text'

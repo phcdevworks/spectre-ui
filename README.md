@@ -270,6 +270,7 @@ All options are optional and fall back to sensible defaults.
 | Fieldset    | `getFieldsetClasses`    | —                                                                                                              | —                   | `disabled`                                                              |
 | Label       | `getLabelClasses`       | —                                                                                                              | —                   | `disabled` `required`                                                   |
 | Text        | `getTextClasses`        | color: `default` `muted` `subtle` `meta` `brand`, family: `sans` `serif` `mono`                                | `xs`–`6xl`          | —                                                                       |
+| Text state  | `getTextClasses`        | `transform`: `none` `uppercase` `lowercase` `capitalize`                                                       | —                   | —                                                                       |
 
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements). See the full list below.

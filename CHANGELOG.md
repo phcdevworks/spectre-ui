@@ -6,6 +6,15 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: additive
+
+### Added
+
+- Added a `transform` option (`none` `uppercase` `lowercase` `capitalize`) to
+  `getTextClasses`, with matching `sp-text--uppercase`, `sp-text--lowercase`,
+  and `sp-text--capitalize` modifier classes in `components.css`. Exported
+  the new `TextTransform` type from the recipe barrel.
+
 ## [3.1.0] - 2026-07-28
 
 **Release Title:** Phase 7 P0/P1 - First-Party Utility Engine

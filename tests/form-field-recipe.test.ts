@@ -192,4 +192,29 @@ describe('getTextClasses', () => {
       getTextClasses({ size: 'xs', variant: 'brand', family: 'mono' })
     ).toBe('sp-text sp-text--xs sp-text--brand sp-text--mono')
   })
+
+  it('returns the transform modifier class', () => {
+    expect(getTextClasses({ transform: 'uppercase' })).toBe(
+      'sp-text sp-text--md sp-text--default sp-text--uppercase'
+    )
+  })
+
+  it('omits the transform class when transform is none', () => {
+    expect(getTextClasses({ transform: 'none' })).toBe(
+      'sp-text sp-text--md sp-text--default'
+    )
+  })
+
+  it('combines size, variant, family, and transform', () => {
+    expect(
+      getTextClasses({
+        size: 'xs',
+        variant: 'brand',
+        family: 'mono',
+        transform: 'capitalize',
+      })
+    ).toBe(
+      'sp-text sp-text--xs sp-text--brand sp-text--mono sp-text--capitalize'
+    )
+  })
 })
