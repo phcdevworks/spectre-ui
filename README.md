@@ -16,7 +16,7 @@ to consume Spectre's visual language.
 | Project team           | `project-design`                   |
 | Repository role        | Spectre L2 CSS and recipe contract |
 | Package/artifact       | `@phcdevworks/spectre-ui`          |
-| Current version/status | 3.1.0                              |
+| Current version/status | 3.2.0                              |
 
 ## Standard Workflow
 
@@ -260,7 +260,7 @@ All options are optional and fall back to sensible defaults.
 | Container   | `getContainerClasses`   | maxWidth: `prose`                                                                                              | —                   | —                                                                       |
 | Stack       | `getStackClasses`       | direction: `vertical` `horizontal`, basis: `sidebar`, align: `center` `stretch`                                | —                   | —                                                                       |
 | Section     | `getSectionClasses`     | —                                                                                                              | —                   | —                                                                       |
-| Grid        | `getGridClasses`        | columns: `1` `2` `3` `4` `6` `12`                                                                              | gap: `sm` `md` `lg` | —                                                                       |
+| Grid        | `getGridClasses`        | columns: `1` `2` `3` `4` `6` `12`                                                                              | gap: `sm` `md` `lg` | `span`: `1`–`12` `full`, per-breakpoint via `{ base, md, lg }`          |
 | Sidebar     | `getSidebarClasses`     | —                                                                                                              | —                   | `bordered`                                                              |
 | Footer      | `getFooterClasses`      | —                                                                                                              | —                   | `bordered` `fullWidth`                                                  |
 | Checkbox    | `getCheckboxClasses`    | —                                                                                                              | —                   | `checked` `disabled`                                                    |

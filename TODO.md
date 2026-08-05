@@ -16,11 +16,13 @@ Deliberately cut from Phase 4c v1 to avoid building a parallel general-purpose
 grid framework. Only take these on if a real downstream need (not a
 hypothetical) surfaces after v1:
 
-- [ ] Column span support (e.g. an item spanning 2 of 3 columns)
+Column span and a per-breakpoint span override shipped in `[Unreleased]`
+(`span` option on `getGridClasses`, `sp-col-span-*` /
+`sp-{md,lg}-col-span-*` classes) — scoped against a confirmed enterprise
+client need for irregular/dashboard-style layouts. Still open:
+
 - [ ] Column/row offsets
 - [ ] Custom track sizing (non-equal-width columns)
-- [ ] Per-breakpoint column override prop, if the v1 baked-in step-down
-      convention proves too rigid for a real adapter use case
 
 ## Evidence-Gated: Icon/AspectRatio Recipes
 

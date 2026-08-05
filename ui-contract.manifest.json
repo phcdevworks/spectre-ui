@@ -1,5 +1,5 @@
 {
-  "version": "3.1.0",
+  "version": "3.2.0",
   "cssEntrypoints": [
     "@phcdevworks/spectre-ui/index.css",
     "@phcdevworks/spectre-ui/base.css",
@@ -187,7 +187,11 @@
       "fn": "getSectionClasses"
     },
     "grid": {
-      "fn": "getGridClasses"
+      "fn": "getGridClasses",
+      "columns": [1, 2, 3, 4, 6, 12],
+      "gaps": ["sm", "md", "lg"],
+      "spans": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "full"],
+      "spanBreakpoints": ["base", "md", "lg"]
     },
     "sidebar": {
       "fn": "getSidebarClasses"

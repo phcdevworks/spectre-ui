@@ -171,6 +171,8 @@ export {
   type GridRecipeOptions,
   type GridColumns,
   type GridGap,
+  type GridSpan,
+  type GridSpanOptions,
 } from './grid'
 
 export { getCheckboxClasses, type CheckboxRecipeOptions } from './checkbox'
