@@ -84,6 +84,8 @@
   "GridColumns",
   "GridGap",
   "GridRecipeOptions",
+  "GridSpan",
+  "GridSpanOptions",
   "IconBoxRecipeOptions",
   "IconBoxSize",
   "IconBoxVariant",

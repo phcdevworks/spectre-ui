@@ -126,6 +126,42 @@ describe('getGridClasses', () => {
       expect(css).toContain(`.sp-grid-cols-${columns}`)
     })
   })
+
+  it('returns a base column span class', () => {
+    expect(getGridClasses({ span: 2 })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1 sp-col-span-2'
+    )
+  })
+
+  it('returns the full-width span class', () => {
+    expect(getGridClasses({ span: 'full' })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1 sp-col-span-full'
+    )
+  })
+
+  it('returns per-breakpoint span classes', () => {
+    expect(
+      getGridClasses({ columns: 12, span: { base: 12, md: 6, lg: 4 } })
+    ).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-12 sp-col-span-12 sp-md-col-span-6 sp-lg-col-span-4'
+    )
+  })
+
+  it('omits span classes when span is not provided', () => {
+    expect(getGridClasses({ columns: 3 })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-3'
+    )
+  })
+
+  it('ships sp-col-span-* and responsive sp-{bp}-col-span-* rules in utilities.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    ;[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 'full'].forEach((span) => {
+      expect(css).toContain(`.sp-col-span-${span}`)
+      expect(css).toContain(`.sp-md-col-span-${span}`)
+      expect(css).toContain(`.sp-lg-col-span-${span}`)
+    })
+  })
 })
 
 describe('getSidebarClasses', () => {

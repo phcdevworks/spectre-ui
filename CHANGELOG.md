@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [3.2.0] - 2026-08-05
+
+**Release Title:** No Single Roadmap Phase - Text Transform and Grid Span Contracts
+
 Contract change type: additive
 
 ### Added
@@ -14,6 +18,27 @@ Contract change type: additive
   `getTextClasses`, with matching `sp-text--uppercase`, `sp-text--lowercase`,
   and `sp-text--capitalize` modifier classes in `components.css`. Exported
   the new `TextTransform` type from the recipe barrel.
+- Added a `span` option to `getGridClasses` (Grid v2, scoped against a
+  confirmed enterprise client need for irregular/dashboard-style layouts):
+  accepts a single column-span value (`1`-`12` or `full`) or a per-breakpoint
+  object (`{ base, md, lg }`). Adds `sp-col-span-{1-12,full}` and responsive
+  `sp-md-col-span-*` / `sp-lg-col-span-*` modifier classes in
+  `utilities.css`, following Grid's existing `md`/`lg` step-down convention.
+  Exported the new `GridSpan` and `GridSpanOptions` types from the recipe
+  barrel. Column/row offsets and custom track sizing remain evidence-gated
+  in `TODO.md`.
+
+### Changed
+
+- Updated the published token dependency from
+  `@phcdevworks/spectre-tokens@^4.0.0` to `^4.1.0`, refreshed TypeScript ESLint
+  packages to 8.66.0, and aligned the build toolchain on npm 12.0.2,
+  PostCSS 8.5.25, and Vite 8.2.0.
+
+### Fixed
+
+- Restored the underline affordance for keyboard-focused links by pairing
+  `a:focus-visible` with the existing `a:hover` underline behavior.
 
 ## [3.1.0] - 2026-07-28
 
