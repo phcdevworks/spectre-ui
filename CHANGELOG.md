@@ -8,7 +8,7 @@ reflects package releases published to npm.
 
 ## [3.2.0] - 2026-08-05
 
-**Release Title:** No Single Roadmap Phase - Text Transform and Grid Span Contracts
+**Release Title:** Text Transform and Grid Span Contracts
 
 Contract change type: additive
 
@@ -42,7 +42,7 @@ Contract change type: additive
 
 ## [3.1.0] - 2026-07-28
 
-**Release Title:** Phase 7 P0/P1 - First-Party Utility Engine
+**Release Title:** First-Party Utility Engine
 
 Contract change type: additive
 
@@ -77,7 +77,7 @@ Contract change type: additive
 
 ## [3.0.0] - 2026-07-26
 
-**Release Title:** Phase 7 P2 - Tailwind Export Removal and Typography Recipe
+**Release Title:** Tailwind Export Removal and Typography Recipe
 
 Contract change type: breaking
 
@@ -113,7 +113,7 @@ Contract change type: breaking
 
 ## [2.10.0] - 2026-07-21
 
-**Release Title:** Phase 5 - TypeScript 7 Compatibility
+**Release Title:** TypeScript 7 Compatibility
 
 Contract change type: additive
 
@@ -128,7 +128,7 @@ Contract change type: additive
 
 ## [2.9.0] - 2026-07-15
 
-**Release Title:** Phase 5 P0 - Nav Alignment and Readability Polish
+**Release Title:** Nav Alignment and Readability Polish
 
 Contract change type: semantic change
 
@@ -146,7 +146,7 @@ Contract change type: semantic change
 
 ## [2.8.0] - 2026-07-14
 
-**Release Title:** Phase 5 P0 - Collapsible Sidebar Groups and Toggle Hardening
+**Release Title:** Collapsible Sidebar Groups and Toggle Hardening
 
 Contract change type: additive
 
@@ -175,7 +175,7 @@ Contract change type: additive
 
 ## [2.7.2] - 2026-07-13
 
-**Release Title:** Phase 5 P0 - Sidebar Basis Mobile Layout Fix
+**Release Title:** Sidebar Basis Mobile Layout Fix
 
 Contract change type: additive
 
@@ -197,7 +197,7 @@ Contract change type: additive
 
 ## [2.7.1] - 2026-07-02
 
-**Release Title:** Phase 5 P0 - Sidebar Toggle Desktop Visibility Fix
+**Release Title:** Sidebar Toggle Desktop Visibility Fix
 
 Contract change type: additive
 
@@ -212,7 +212,7 @@ Contract change type: additive
 
 ## [2.7.0] - 2026-06-30
 
-**Release Title:** Phase 5 P0 - Select and Textarea State Parity
+**Release Title:** Select and Textarea State Parity
 
 Contract change type: additive
 
@@ -237,7 +237,7 @@ Contract change type: additive
 
 ## [2.6.0] - 2026-06-28
 
-**Release Title:** Phase 4e/3 - Semantic Primitives and Form-Field Recipes
+**Release Title:** Semantic Primitives and Form-Field Recipes
 
 Contract change type: additive
 
@@ -267,7 +267,7 @@ Contract change type: additive
 
 ## [2.5.0] - 2026-06-25
 
-**Release Title:** Phase 4d - Sidebar Navigation Hardening
+**Release Title:** Sidebar Navigation Hardening
 
 Contract change type: additive
 
@@ -286,7 +286,7 @@ Contract change type: additive
 
 ## [2.4.0] - 2026-06-23
 
-**Release Title:** Phase 4d - App Shell Hardening
+**Release Title:** App Shell Hardening
 
 Contract change type: additive
 
@@ -306,7 +306,7 @@ Contract change type: additive
 
 ## [2.3.0] - 2026-06-19
 
-**Release Title:** Phase 4d - App Shell Recipe Expansion
+**Release Title:** App Shell Recipe Expansion
 
 Contract change type: additive
 
@@ -342,7 +342,7 @@ This is Phase 4d in `TODO.md` - real downstream need surfaced in
 
 ## [2.2.0] - 2026-06-18
 
-**Release Title:** Phase 4c - Grid Recipe Expansion
+**Release Title:** Grid Recipe Expansion
 
 Contract change type: additive
 
@@ -362,7 +362,7 @@ Contract change type: additive
 
 ## [2.1.0] - 2026-06-17
 
-**Release Title:** Phase 4b - Layout Recipe Expansion
+**Release Title:** Layout Recipe Expansion
 
 Contract change type: additive
 
@@ -380,7 +380,7 @@ Contract change type: additive
 
 ## [2.0.0] - 2026-06-17
 
-**Release Title:** Phase 4 - Token 3 Alignment
+**Release Title:** Token 3 Alignment
 
 Contract change type: breaking
 
@@ -403,7 +403,7 @@ Contract change type: breaking
 
 ## [1.9.0] - 2026-06-10
 
-**Release Title:** Phase 4 - Component Recipe Expansion
+**Release Title:** Component Recipe Expansion
 
 Contract change type: additive
 
@@ -472,7 +472,7 @@ Contract change type: additive
 
 ## [1.8.0] - 2026-06-07
 
-**Release Title:** Phase 3 P1 - Spinner Contract and Token Focus Alignment
+**Release Title:** Spinner Contract and Token Focus Alignment
 
 Contract change type: additive
 
@@ -495,7 +495,7 @@ Contract change type: additive
 
 ## [1.7.0] - 2026-06-03
 
-**Release Title:** Phase 3 - Tag Variant Expansion and Token Alignment
+**Release Title:** Tag Variant Expansion and Token Alignment
 
 ### Added
 
@@ -519,7 +519,7 @@ Contract change type: additive
 
 ## [1.6.0] - 2026-05-22
 
-**Release Title:** Phase 2 - Contract Expansion and Governance Hardening
+**Release Title:** Contract Expansion and Governance Hardening
 
 ### Added
 
@@ -563,7 +563,7 @@ Contract change type: additive
 
 ## [1.5.0] - 2026-05-04
 
-**Release Title:** Phase 2 - Token Alignment and Variant Parity
+**Release Title:** Token Alignment and Variant Parity
 
 ### Added
 
@@ -596,7 +596,7 @@ Contract change type: additive
 
 ## [1.4.0] - 2026-04-25
 
-**Release Title:** Phase 2 - Contract Manifest and Variant Parity
+**Release Title:** Contract Manifest and Variant Parity
 
 ### Added
 
@@ -638,7 +638,7 @@ Contract change type: additive
 
 ## [1.3.0] - 2026-04-18
 
-**Release Title:** Phase 2 - Contract Coverage Expansion and Interaction Parity
+**Release Title:** Contract Coverage Expansion and Interaction Parity
 
 ### Added
 
@@ -674,7 +674,7 @@ Contract change type: additive
 
 ## [1.2.0] - 2026-04-11
 
-**Release Title:** Phase 2 - Interactive State Parity and Validation Governance
+**Release Title:** Interactive State Parity and Validation Governance
 
 ### Added
 
@@ -713,7 +713,7 @@ Contract change type: additive
 
 ## [1.1.2] - 2026-04-05
 
-**Release Title:** Phase 2 - State Parity and Package Contract Hardening
+**Release Title:** State Parity and Package Contract Hardening
 
 ### Added
 
@@ -751,7 +751,7 @@ Contract change type: additive
 
 ## [1.1.1] - 2026-03-29
 
-**Release Title:** Phase 2 - Loading States and Package Refinement
+**Release Title:** Loading States and Package Refinement
 
 ### Added
 
@@ -775,7 +775,7 @@ Contract change type: additive
 
 ## [1.1.0] - 2026-03-22
 
-**Release Title:** Phase 1 - Disabled States and Layer Alignment
+**Release Title:** Disabled States and Layer Alignment
 
 ### Added
 
@@ -803,7 +803,7 @@ Contract change type: additive
 
 ## [1.0.0] - 2026-03-16
 
-**Release Title:** Phase 1 - Blueprint Foundation Release
+**Release Title:** Blueprint Foundation Release
 
 ### Added
 
@@ -822,7 +822,7 @@ Contract change type: additive
 
 ## [0.4.1] - 2026-01-14
 
-**Release Title:** Phase 0 - Input Tokens and Utility Cleanup
+**Release Title:** Input Tokens and Utility Cleanup
 
 ### Changed
 
@@ -839,7 +839,7 @@ Contract change type: additive
 
 ## [0.4.0] - 2026-01-03
 
-**Release Title:** Phase 0 - Semantic CSS System Refresh
+**Release Title:** Semantic CSS System Refresh
 
 ### Changed
 
@@ -858,7 +858,7 @@ Contract change type: additive
 
 ## [0.3.0] - 2025-12-24
 
-**Release Title:** Phase 0 - Bundled CSS Distribution
+**Release Title:** Bundled CSS Distribution
 
 ### Changed
 
@@ -874,7 +874,7 @@ Contract change type: additive
 
 ## [0.2.2] - 2025-12-23
 
-**Release Title:** Phase 0 - Public API Tightening
+**Release Title:** Public API Tightening
 
 ### Changed
 
@@ -883,7 +883,7 @@ Contract change type: additive
 
 ## [0.2.1] - 2025-12-23
 
-**Release Title:** Phase 0 - Tailwind Export Refinement
+**Release Title:** Tailwind Export Refinement
 
 ### Changed
 
@@ -892,7 +892,7 @@ Contract change type: additive
 
 ## [0.2.0] - 2025-12-20
 
-**Release Title:** Phase 0 - Primitive Expansion and Tailwind Control
+**Release Title:** Primitive Expansion and Tailwind Control
 
 ### Added
 
@@ -909,7 +909,7 @@ Contract change type: additive
 
 ## [0.1.0] - 2025-12-13
 
-**Release Title:** Phase 0 - Community Standards and Variant Growth
+**Release Title:** Community Standards and Variant Growth
 
 ### Added
 
@@ -926,7 +926,7 @@ Contract change type: additive
 
 ## [0.0.5] - 2025-12-08
 
-**Release Title:** Phase 0 - Canonical CSS Bundle
+**Release Title:** Canonical CSS Bundle
 
 ### Added
 
@@ -934,7 +934,7 @@ Contract change type: additive
 
 ## [0.0.4] - 2025-12-07
 
-**Release Title:** Phase 0 - Contract Testing and Utility Growth
+**Release Title:** Contract Testing and Utility Growth
 
 ### Added
 
@@ -949,7 +949,7 @@ Contract change type: additive
 
 ## [0.0.3] - 2025-12-06
 
-**Release Title:** Phase 0 - Surface Roles and Package Metadata
+**Release Title:** Surface Roles and Package Metadata
 
 ### Added
 
@@ -959,7 +959,7 @@ Contract change type: additive
 
 ## [0.0.2] - 2025-12-04
 
-**Release Title:** Phase 0 - Recipe API Alignment and Token Decoupling
+**Release Title:** Recipe API Alignment and Token Decoupling
 
 ### Changed
 
@@ -970,7 +970,7 @@ Contract change type: additive
 
 ## [0.0.1] - 2025-11-27
 
-**Release Title:** Phase 0 - Initial Blueprint Release
+**Release Title:** Initial Blueprint Release
 
 ### Added
 
