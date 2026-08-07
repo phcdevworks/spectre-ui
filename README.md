@@ -275,6 +275,15 @@ All options are optional and fall back to sensible defaults.
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements). See the full list below.
 
+Grid also accepts two independent track-sizing options for layouts equal
+columns cannot express: `fixedTracks: { count: 1-4 }` sizes every column from
+`--sp-space-96` (the largest published space step) and replaces `columns` at
+every breakpoint; `leadingTracks: { weight: 1.5 | 1.6 | 2 | 2.5 | 3 }` sizes
+one leading column at `weight`fr against the rest of `columns` as equal 1fr
+tracks, applied at the `lg` breakpoint only. Both emit deterministic classes
+(`sp-grid-fixed-tracks-*`, `sp-lg-grid-leading-{weight}-of-{columns}`) — no
+arbitrary widths, no inline styles.
+
 ### Semantic utility classes (no recipe wrapper)
 
 These primitives are intentionally plain CSS classes in

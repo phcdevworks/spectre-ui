@@ -173,6 +173,12 @@ export {
   type GridGap,
   type GridSpan,
   type GridSpanOptions,
+  type GridOffset,
+  type GridOffsetOptions,
+  type GridLeadingWeight,
+  type GridFixedTrackCount,
+  type GridLeadingTracksOptions,
+  type GridFixedTracksOptions,
 } from './grid'
 
 export { getCheckboxClasses, type CheckboxRecipeOptions } from './checkbox'

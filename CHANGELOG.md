@@ -17,6 +17,17 @@ Contract change type: additive
   irregular/dashboard-style layouts requiring gapped column starts. Row offsets
   remain out of scope: this grid contract has no row-count axis to offset
   against.
+- Added custom grid track sizing to `getGridClasses`: `fixedTracks: { count }`
+  (`sp-grid-fixed-tracks-1..4`) sizes every column from `--sp-space-96`,
+  covering fixed-width repeated tracks (e.g. mega-menu panel columns) that
+  equal-column Grid v1/v2 cannot express; `leadingTracks: { weight }`
+  (`sp-lg-grid-leading-{weight}-of-{columns}`, `lg` breakpoint only) sizes one
+  wider leading column against the rest of `columns` as equal tracks, covering
+  unequal footer-style columns. Evidence: the production child-theme
+  stylesheet supplied during the Phase 8 downstream drift audit. `fixedTracks`
+  uses `--sp-space-96` (6rem) as its fixed width because no published token
+  step reaches the evidence's 15rem column — a real token gap, tracked as a
+  follow-up in `TODO.md` rather than an invented local value.
 
 ## [3.3.0] - 2026-08-07
 
