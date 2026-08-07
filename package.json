@@ -94,7 +94,7 @@
     "typescript": "^5.0 || ^6.0 || ^7.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^4.1.0"
+    "@phcdevworks/spectre-tokens": "^4.2.0"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.1.0",
@@ -105,14 +105,14 @@
     "autoprefixer": "^10.5.4",
     "eslint": "^10.8.0",
     "jiti": "^2.7.0",
-    "postcss": "^8.5.25",
+    "postcss": "^8.5.26",
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.1",
     "prettier": "^3.9.6",
     "tsup": "^8.5.1",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-eslint": "^8.66.0",
-    "vite": "^8.2.0",
+    "vite": "^8.2.1",
     "vitest": "^4.1.10"
   },
   "cSpell.words": [
