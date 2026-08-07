@@ -10,21 +10,15 @@ The items below are the only things still open. Each is either evidence-gated
 (waits for a real downstream need before scoping further work) or a standing
 recurring check — neither is meant to be checked off on a timeline.
 
-## Evidence-Gated: Grid v2
+## Closed: Grid v2
 
 Deliberately cut from Phase 4c v1 to avoid building a parallel general-purpose
-grid framework. Only take these on if a real downstream need (not a
-hypothetical) surfaces after v1:
-
-Column span and a per-breakpoint span override shipped in `3.2.0`
-(`span` option on `getGridClasses`, `sp-col-span-*` /
-`sp-{md,lg}-col-span-*` classes) — scoped against a confirmed enterprise
-client need for irregular/dashboard-style layouts. Column offset and a
-per-breakpoint offset override shipped in `[Unreleased]` (`offset` option on
-`getGridClasses`, `sp-col-offset-*` / `sp-{md,lg}-col-offset-*` classes,
-using `grid-column-start`) — scoped against a confirmed downstream need for
-gapped column starts in irregular/dashboard-style layouts. Row offsets are
-out of scope: this grid contract has no row-count axis to offset against.
+grid framework; scoped incrementally as real downstream needs surfaced. Column
+span shipped in `3.2.0`; column offset shipped in `[Unreleased]` (`offset`
+option on `getGridClasses`, `sp-col-offset-*` / `sp-{md,lg}-col-offset-*`
+classes, using `grid-column-start`). Row offsets are permanently out of scope:
+this grid contract has no row-count axis to offset against. No further Grid v2
+items open.
 
 ## Requested by Downstream
 
