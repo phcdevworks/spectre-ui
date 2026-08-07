@@ -1,5 +1,5 @@
 {
-  "version": "3.2.0",
+  "version": "3.3.0",
   "cssEntrypoints": [
     "@phcdevworks/spectre-ui/index.css",
     "@phcdevworks/spectre-ui/base.css",
@@ -13,6 +13,10 @@
       "spacing": {
         "axes": ["p", "px", "py", "pt", "pr", "pb", "pl", "m", "mx", "my", "mt", "mr", "mb", "ml", "gap", "gap-x", "gap-y"],
         "tokenGroup": "--sp-space-*",
+        "responsiveBreakpoints": ["md", "lg"]
+      },
+      "layout": {
+        "axes": ["display", "flexDirection", "flexWrap", "flexSizing", "justifyContent", "alignItems", "alignSelf", "position", "inset", "width", "height", "overflow", "whiteSpace", "textAlign", "autoMargin"],
         "responsiveBreakpoints": ["md", "lg"]
       },
       "palette": {

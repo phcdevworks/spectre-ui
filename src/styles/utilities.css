@@ -52,11 +52,6 @@
     padding-bottom: var(--sp-layout-section-padding-md);
   }
 
-  .sp-grid {
-    display: grid;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-
   .sp-grid--gap-sm {
     gap: var(--sp-layout-stack-gap-sm);
   }

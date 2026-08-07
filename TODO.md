@@ -16,13 +16,21 @@ Deliberately cut from Phase 4c v1 to avoid building a parallel general-purpose
 grid framework. Only take these on if a real downstream need (not a
 hypothetical) surfaces after v1:
 
-Column span and a per-breakpoint span override shipped in `[Unreleased]`
+Column span and a per-breakpoint span override shipped in `3.2.0`
 (`span` option on `getGridClasses`, `sp-col-span-*` /
 `sp-{md,lg}-col-span-*` classes) — scoped against a confirmed enterprise
 client need for irregular/dashboard-style layouts. Still open:
 
 - [ ] Column/row offsets
-- [ ] Custom track sizing (non-equal-width columns)
+
+## Requested by Downstream
+
+- [ ] **Downstream production — custom grid track sizing** (2026-08-07): define a
+      token-safe utility contract for fixed-width/repeated mega-menu tracks and
+      unequal footer columns. The production child theme currently owns
+      `grid-template-columns` because equal-column Grid v1/v2 cannot express
+      either layout. Evidence: the production child-theme stylesheet supplied
+      during the Phase 8 downstream drift audit.
 
 ## Evidence-Gated: Icon/AspectRatio Recipes
 

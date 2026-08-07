@@ -1,5 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import {
+  AUTO_MARGIN_UTILITIES,
+  LAYOUT_UTILITIES,
+  type UtilityDefinition,
+} from './layout-utilities.ts';
 
 const projectRoot = path.resolve(import.meta.dirname, '..');
 const tokensCssPath = path.join(
@@ -108,6 +113,17 @@ const buildResponsiveSpacingBlock = (breakpoint: string): string => {
   return `  @media (min-width: ${value}) {\n${rules.join('\n\n')}\n  }`;
 };
 
+const utilityRule = (utility: UtilityDefinition, prefix = ''): string =>
+  rule(`.sp-${prefix}${utility.className}`, utility.declarations);
+
+const buildResponsiveLayoutBlock = (breakpoint: string): string => {
+  const value = breakpoints[breakpoint];
+  const rules = [...LAYOUT_UTILITIES, ...AUTO_MARGIN_UTILITIES].map((utility) =>
+    utilityRule(utility, `${breakpoint}-`),
+  );
+  return `  @media (min-width: ${value}) {\n${rules.join('\n\n')}\n  }`;
+};
+
 const buildPaletteRules = (): string[] => {
   const rules: string[] = [];
   for (const [hue, steps] of paletteHues) {
@@ -138,6 +154,8 @@ const buildZIndexRules = (): string[] =>
 
 const sections: string[] = [];
 
+sections.push(LAYOUT_UTILITIES.map((utility) => utilityRule(utility)).join('\n\n'));
+sections.push(AUTO_MARGIN_UTILITIES.map((utility) => utilityRule(utility)).join('\n\n'));
 sections.push(buildBaseSpacingRules().join('\n\n'));
 sections.push(buildPaletteRules().join('\n\n'));
 sections.push(buildRadiusRules().join('\n\n'));
@@ -147,6 +165,7 @@ sections.push(buildZIndexRules().join('\n\n'));
 
 for (const breakpoint of RESPONSIVE_BREAKPOINT_ORDER) {
   sections.push(buildResponsiveSpacingBlock(breakpoint));
+  sections.push(buildResponsiveLayoutBlock(breakpoint));
 }
 
 const banner = [
@@ -154,7 +173,7 @@ const banner = [
   '/* Regenerate with `npm run build:utilities` after a spectre-tokens bump. */',
 ].join('\n');
 
-const output = `${banner}\n\n@layer utilities {\n${sections.join('\n\n')}\n}\n`;
+const output = `${banner}\n\n@layer base, components, utilities;\n\n@layer utilities {\n${sections.join('\n\n')}\n}\n`;
 
 fs.writeFileSync(outputPath, output, 'utf8');
 
@@ -163,5 +182,6 @@ console.log(
     `${spaceSteps.length} space steps, ${paletteHues.size} palette hues, ` +
     `${radiusSteps.length} radius steps, ${shadowSteps.length} shadow steps, ` +
     `${opacitySteps.length} opacity roles, ${zIndexSteps.length} z-index roles, ` +
+    `${LAYOUT_UTILITIES.length + AUTO_MARGIN_UTILITIES.length} layout utilities, ` +
     `${RESPONSIVE_BREAKPOINT_ORDER.length} responsive breakpoints.`,
 );
