@@ -6,6 +6,18 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: additive
+
+### Added
+
+- Added column offset support to `getGridClasses` (`offset` option, `sp-col-offset-*`
+  / `sp-{md,lg}-col-offset-*` classes) using `grid-column-start`, matching the
+  per-breakpoint shape already established by `span`. Closes the "Column/row
+  offsets" Grid v2 item — scoped against a confirmed downstream need for
+  irregular/dashboard-style layouts requiring gapped column starts. Row offsets
+  remain out of scope: this grid contract has no row-count axis to offset
+  against.
+
 ## [3.3.0] - 2026-08-07
 
 **Release Title:** Phase 8 - Layout Composition Utilities
