@@ -25,12 +25,36 @@ client need for irregular/dashboard-style layouts. Still open:
 
 ## Requested by Downstream
 
-- [ ] **Downstream production — custom grid track sizing** (2026-08-07): define a
+- [ ] **Custom grid track sizing** (2026-08-07): define a
       token-safe utility contract for fixed-width/repeated mega-menu tracks and
       unequal footer columns. The production child theme currently owns
       `grid-template-columns` because equal-column Grid v1/v2 cannot express
       either layout. Evidence: the production child-theme stylesheet supplied
       during the Phase 8 downstream drift audit.
+- [ ] **Wide mega-menu geometry** (2026-08-07): add a reusable
+      Nav/Dropdown contract that can anchor a menu to the nav row rather than
+      its trigger, size a multi-column panel within the container, and constrain
+      panel height/overflow. Completion means the child theme no longer needs
+      to reset `.sp-dropdown` positioning or strip and rebuild
+      `.sp-dropdown__menu` geometry.
+- [ ] **Compact secondary action decision** (2026-08-07): the
+      utility bar currently overrides `--sp-min-touch-target` behavior to make
+      a roughly 38px action. Decide and document an accessible system pattern:
+      preserve the 44px target through invisible hit area/spacing, or add an
+      explicitly approved compact variant with equivalent pointer target. Do
+      not normalize an accessibility regression into a generic size utility.
+
+## Phase 9: Footer Semantic Alignment
+
+Gated on publication of `spectre-tokens` Phase 11.
+
+- [ ] Replace Footer's Nav aliases with the published independent
+      `--sp-footer-*` token contract.
+- [ ] Add token-backed Footer anatomy classes for heading, muted/tagline text,
+      links and hover state, divider, and social/icon chip surfaces so themes do
+      not rebuild the same footer vocabulary.
+- [ ] Update recipe/CSS parity, manifest, README, contract tests, and
+      `CHANGELOG.md`; run `npm run check` and release the additive contract.
 
 ## Evidence-Gated: Icon/AspectRatio Recipes
 

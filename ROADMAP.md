@@ -37,9 +37,18 @@ below): Phase 4c v2 (Grid column span/offsets/custom tracks), Phase 4f
 
 ## What's Next
 
-No phase is fully open right now. Remaining work is either evidence-gated (waits
-for a real downstream need before scoping) or a standing recurring check — both
-tracked in [TODO.md](TODO.md) rather than as a numbered phase here:
+Evidence from a downstream production integration has opened the following
+work, tracked with acceptance criteria in [TODO.md](TODO.md):
+
+- **Phase 9 — Footer semantic alignment** — consume the independent Footer
+  token family after `spectre-tokens` Phase 11 publishes, then expose reusable
+  Footer anatomy classes.
+- **Wide mega-menu geometry** — add container-anchored, multi-column dropdown
+  panel composition so a theme does not rebuild dropdown positioning.
+- **Custom grid tracks** — define the fixed/repeated and unequal track escape
+  hatch demonstrated by the downstream theme's mega menu and footer.
+- **Compact secondary actions** — resolve the utility-bar density need without
+  weakening the minimum pointer-target contract.
 
 - **Grid v2** — column span, offsets, custom track sizing, per-breakpoint
   override. Column span shipped in 3.2.0. Downstream production use has now
