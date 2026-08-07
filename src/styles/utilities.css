@@ -273,6 +273,144 @@
     }
   }
 
+  .sp-col-offset-1 {
+    grid-column-start: 2;
+  }
+
+  .sp-col-offset-2 {
+    grid-column-start: 3;
+  }
+
+  .sp-col-offset-3 {
+    grid-column-start: 4;
+  }
+
+  .sp-col-offset-4 {
+    grid-column-start: 5;
+  }
+
+  .sp-col-offset-5 {
+    grid-column-start: 6;
+  }
+
+  .sp-col-offset-6 {
+    grid-column-start: 7;
+  }
+
+  .sp-col-offset-7 {
+    grid-column-start: 8;
+  }
+
+  .sp-col-offset-8 {
+    grid-column-start: 9;
+  }
+
+  .sp-col-offset-9 {
+    grid-column-start: 10;
+  }
+
+  .sp-col-offset-10 {
+    grid-column-start: 11;
+  }
+
+  .sp-col-offset-11 {
+    grid-column-start: 12;
+  }
+
+  /* min-width values match the published --sp-breakpoint-md / --sp-breakpoint-lg
+     token values; CSS does not allow var() inside @media feature queries. */
+  @media (min-width: 768px) {
+    .sp-md-col-offset-1 {
+      grid-column-start: 2;
+    }
+
+    .sp-md-col-offset-2 {
+      grid-column-start: 3;
+    }
+
+    .sp-md-col-offset-3 {
+      grid-column-start: 4;
+    }
+
+    .sp-md-col-offset-4 {
+      grid-column-start: 5;
+    }
+
+    .sp-md-col-offset-5 {
+      grid-column-start: 6;
+    }
+
+    .sp-md-col-offset-6 {
+      grid-column-start: 7;
+    }
+
+    .sp-md-col-offset-7 {
+      grid-column-start: 8;
+    }
+
+    .sp-md-col-offset-8 {
+      grid-column-start: 9;
+    }
+
+    .sp-md-col-offset-9 {
+      grid-column-start: 10;
+    }
+
+    .sp-md-col-offset-10 {
+      grid-column-start: 11;
+    }
+
+    .sp-md-col-offset-11 {
+      grid-column-start: 12;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .sp-lg-col-offset-1 {
+      grid-column-start: 2;
+    }
+
+    .sp-lg-col-offset-2 {
+      grid-column-start: 3;
+    }
+
+    .sp-lg-col-offset-3 {
+      grid-column-start: 4;
+    }
+
+    .sp-lg-col-offset-4 {
+      grid-column-start: 5;
+    }
+
+    .sp-lg-col-offset-5 {
+      grid-column-start: 6;
+    }
+
+    .sp-lg-col-offset-6 {
+      grid-column-start: 7;
+    }
+
+    .sp-lg-col-offset-7 {
+      grid-column-start: 8;
+    }
+
+    .sp-lg-col-offset-8 {
+      grid-column-start: 9;
+    }
+
+    .sp-lg-col-offset-9 {
+      grid-column-start: 10;
+    }
+
+    .sp-lg-col-offset-10 {
+      grid-column-start: 11;
+    }
+
+    .sp-lg-col-offset-11 {
+      grid-column-start: 12;
+    }
+  }
+
   .sp-link {
     color: var(--sp-link-default);
     text-decoration-line: underline;

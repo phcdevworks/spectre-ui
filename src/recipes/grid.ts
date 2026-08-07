@@ -32,9 +32,25 @@ const GRID_SPANS = {
   full: true,
 } as const
 
+const GRID_OFFSETS = {
+  '0': true,
+  '1': true,
+  '2': true,
+  '3': true,
+  '4': true,
+  '5': true,
+  '6': true,
+  '7': true,
+  '8': true,
+  '9': true,
+  '10': true,
+  '11': true,
+} as const
+
 export type GridColumns = 1 | 2 | 3 | 4 | 6 | 12
 export type GridGap = keyof typeof GRID_GAPS
 export type GridSpan = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 'full'
+export type GridOffset = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11
 
 export interface GridSpanOptions {
   base?: GridSpan
@@ -42,10 +58,17 @@ export interface GridSpanOptions {
   lg?: GridSpan
 }
 
+export interface GridOffsetOptions {
+  base?: GridOffset
+  md?: GridOffset
+  lg?: GridOffset
+}
+
 export interface GridRecipeOptions {
   columns?: GridColumns
   gap?: GridGap
   span?: GridSpan | GridSpanOptions
+  offset?: GridOffset | GridOffsetOptions
 }
 
 function resolveSpan(value: GridSpan | undefined, name: string): string | undefined {
@@ -58,8 +81,23 @@ function resolveSpan(value: GridSpan | undefined, name: string): string | undefi
   })
 }
 
+function resolveOffset(value: GridOffset | undefined, name: string): string | undefined {
+  if (value === undefined) return undefined
+  return resolveOption({
+    name,
+    value: String(value),
+    allowed: GRID_OFFSETS,
+    fallback: '0',
+  })
+}
+
 export function getGridClasses(opts: GridRecipeOptions = {}): string {
-  const { columns: columnsInput, gap: gapInput, span: spanInput } = opts
+  const {
+    columns: columnsInput,
+    gap: gapInput,
+    span: spanInput,
+    offset: offsetInput,
+  } = opts
 
   const columns = resolveOption({
     name: 'grid columns',
@@ -90,12 +128,30 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
     'grid column span (lg)'
   )
 
+  const isOffsetOptions = typeof offsetInput === 'object'
+
+  const baseOffset = resolveOffset(
+    isOffsetOptions ? offsetInput.base : offsetInput,
+    'grid column offset'
+  )
+  const mdOffset = resolveOffset(
+    isOffsetOptions ? offsetInput.md : undefined,
+    'grid column offset (md)'
+  )
+  const lgOffset = resolveOffset(
+    isOffsetOptions ? offsetInput.lg : undefined,
+    'grid column offset (lg)'
+  )
+
   return cx(
     'sp-grid',
     `sp-grid--gap-${gap}`,
     `sp-grid-cols-${columns}`,
     baseSpan && `sp-col-span-${baseSpan}`,
     mdSpan && `sp-md-col-span-${mdSpan}`,
-    lgSpan && `sp-lg-col-span-${lgSpan}`
+    lgSpan && `sp-lg-col-span-${lgSpan}`,
+    baseOffset && baseOffset !== '0' && `sp-col-offset-${baseOffset}`,
+    mdOffset && mdOffset !== '0' && `sp-md-col-offset-${mdOffset}`,
+    lgOffset && lgOffset !== '0' && `sp-lg-col-offset-${lgOffset}`
   )
 }

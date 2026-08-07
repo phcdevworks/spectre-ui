@@ -162,6 +162,48 @@ describe('getGridClasses', () => {
       expect(css).toContain(`.sp-lg-col-span-${span}`)
     })
   })
+
+  it('returns a base column offset class', () => {
+    expect(getGridClasses({ offset: 2 })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1 sp-col-offset-2'
+    )
+  })
+
+  it('omits the offset class when offset is 0', () => {
+    expect(getGridClasses({ offset: 0 })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1'
+    )
+  })
+
+  it('returns per-breakpoint offset classes', () => {
+    expect(
+      getGridClasses({ columns: 12, offset: { base: 0, md: 2, lg: 4 } })
+    ).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-12 sp-md-col-offset-2 sp-lg-col-offset-4'
+    )
+  })
+
+  it('combines span and offset classes', () => {
+    expect(getGridClasses({ columns: 12, span: 6, offset: 3 })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-12 sp-col-span-6 sp-col-offset-3'
+    )
+  })
+
+  it('omits offset classes when offset is not provided', () => {
+    expect(getGridClasses({ columns: 3 })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-3'
+    )
+  })
+
+  it('ships sp-col-offset-* and responsive sp-{bp}-col-offset-* rules in utilities.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    ;[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].forEach((offset) => {
+      expect(css).toContain(`.sp-col-offset-${offset}`)
+      expect(css).toContain(`.sp-md-col-offset-${offset}`)
+      expect(css).toContain(`.sp-lg-col-offset-${offset}`)
+    })
+  })
 })
 
 describe('getSidebarClasses', () => {

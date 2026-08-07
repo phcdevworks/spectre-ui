@@ -19,9 +19,12 @@ hypothetical) surfaces after v1:
 Column span and a per-breakpoint span override shipped in `3.2.0`
 (`span` option on `getGridClasses`, `sp-col-span-*` /
 `sp-{md,lg}-col-span-*` classes) — scoped against a confirmed enterprise
-client need for irregular/dashboard-style layouts. Still open:
-
-- [ ] Column/row offsets
+client need for irregular/dashboard-style layouts. Column offset and a
+per-breakpoint offset override shipped in `[Unreleased]` (`offset` option on
+`getGridClasses`, `sp-col-offset-*` / `sp-{md,lg}-col-offset-*` classes,
+using `grid-column-start`) — scoped against a confirmed downstream need for
+gapped column starts in irregular/dashboard-style layouts. Row offsets are
+out of scope: this grid contract has no row-count axis to offset against.
 
 ## Requested by Downstream
 
