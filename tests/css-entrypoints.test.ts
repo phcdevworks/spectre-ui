@@ -20,7 +20,11 @@ const ENTRYPOINT_CONTRACTS = [
     standaloneTokens: ['--sp-surface-page:', '--sp-text-on-page-default:'],
     bundleMarkers: ['@layer base', 'body {', ':focus-visible {'],
     forbiddenMarkers: ['@layer components {', '@layer utilities {', '.sp-btn {', '.sp-stack {'],
-    maxBytes: 39000,
+    // spectre-tokens Phase 11: independent component.footer semantic group
+    // adds new CSS variables in default and dark modes — a deliberate,
+    // scoped size increase, not a regression. See spectre-tokens TODO.md
+    // Phase 11 P0/P1.
+    maxBytes: 40000,
   },
   {
     fileName: 'components.css',
