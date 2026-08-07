@@ -94,6 +94,58 @@ describe('generated utility-class engine (Phase 7)', () => {
     expect(generatedCss).toMatch(/\.sp-md-gap-8\s*\{/);
   });
 
+  it('generates the evidence-backed layout, sizing, positioning, and overflow families', () => {
+    const expectedClasses = [
+      'block',
+      'flex',
+      'grid',
+      'hidden',
+      'flex-row',
+      'flex-col',
+      'flex-wrap',
+      'flex-1',
+      'justify-between',
+      'justify-center',
+      'items-center',
+      'self-start',
+      'relative',
+      'absolute',
+      'inset-0',
+      'w-auto',
+      'w-full',
+      'w-fit',
+      'max-w-full',
+      'h-auto',
+      'h-full',
+      'overflow-hidden',
+      'overflow-y-auto',
+      'whitespace-nowrap',
+      'text-center',
+      'mx-auto',
+      'mt-auto',
+    ];
+
+    for (const className of expectedClasses) {
+      expect(generatedCss).toMatch(new RegExp(`\\.sp-${className}\\s*\\{`));
+    }
+  });
+
+  it('generates md/lg responsive layout variants using the established prefix syntax', () => {
+    expect(generatedCss).toMatch(/\.sp-md-flex\s*\{/);
+    expect(generatedCss).toMatch(/\.sp-lg-grid\s*\{/);
+    expect(generatedCss).toMatch(/\.sp-md-justify-between\s*\{/);
+    expect(generatedCss).toMatch(/\.sp-lg-w-full\s*\{/);
+    expect(generatedCss).toMatch(/\.sp-lg-mx-auto\s*\{/);
+  });
+
+  it('declares deterministic cascade-layer precedence before utility rules', () => {
+    const orderIndex = generatedCss.indexOf('@layer base, components, utilities;');
+    const utilitiesIndex = generatedCss.indexOf('@layer utilities {');
+
+    expect(orderIndex).toBeGreaterThanOrEqual(0);
+    expect(utilitiesIndex).toBeGreaterThan(orderIndex);
+  });
+
   it('bakes only published --sp-breakpoint-* literal values into generated @media blocks', () => {
     const breakpointTokenRegex = /--sp-breakpoint-([a-z0-9]+):\s*([0-9]+px)/g;
     const publishedBreakpoints = new Map(

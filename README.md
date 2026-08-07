@@ -16,7 +16,7 @@ to consume Spectre's visual language.
 | Project team           | `project-design`                   |
 | Repository role        | Spectre L2 CSS and recipe contract |
 | Package/artifact       | `@phcdevworks/spectre-ui`          |
-| Current version/status | 3.2.0                              |
+| Current version/status | 3.3.0                              |
 
 ## Standard Workflow
 
@@ -293,27 +293,37 @@ type-safety benefit. Apply the class name directly.
 ### Generated utility classes
 
 `src/styles/utilities.generated.css` is a build-time generated file
-(`npm run build:utilities`, wired into `npm run build`) that expands every
-finite token scale into a flat, token-only utility class per step. It is not
+(`npm run build:utilities`, wired into `npm run build`) that expands finite
+token scales and the fixed layout contract into flat utility classes. It is not
 hand-edited; regenerate it after a `@phcdevworks/spectre-tokens` bump and commit
 the result (`npm run validate:utilities` fails CI if it drifts). No arbitrary
-values are supported — a design need that doesn't fit an existing token step
-needs a token proposal to `spectre-tokens`, not a raw value in markup.
+visual values are supported — a design need that doesn't fit an existing token
+step needs a token proposal to `spectre-tokens`, not a raw value in markup.
 
-| Family  | Class pattern                                                                          | Token source           |
-| ------- | -------------------------------------------------------------------------------------- | ---------------------- |
-| Spacing | `.sp-{p\|px\|py\|pt\|pr\|pb\|pl\|m\|mx\|my\|mt\|mr\|mb\|ml\|gap\|gap-x\|gap-y}-{step}` | `--sp-space-*`         |
-| Palette | `.sp-{text\|bg\|border}-{hue}-{step}`                                                  | `--sp-color-palette-*` |
-| Radius  | `.sp-rounded-{step}`                                                                   | `--sp-radius-*`        |
-| Shadow  | `.sp-shadow-{step}`                                                                    | `--sp-shadow-*`        |
-| Opacity | `.sp-opacity-{role}`                                                                   | `--sp-opacity-*`       |
-| Z-index | `.sp-z-{role}`                                                                         | `--sp-z-index-*`       |
+| Family   | Class pattern                                                                          | Token/value source                            |
+| -------- | -------------------------------------------------------------------------------------- | --------------------------------------------- |
+| Layout   | `.sp-{block\|flex\|grid\|hidden\|relative\|...}`                                     | CSS layout keywords and `--sp-space-0`        |
+| Flexbox  | `.sp-{flex-row\|flex-wrap\|justify-between\|items-center\|self-start\|...}`           | CSS layout keywords                           |
+| Sizing   | `.sp-{w\|min-w\|max-w\|h\|min-h\|max-h}-{auto\|0\|full\|fit\|none}`               | CSS intrinsic and percentage sizing           |
+| Overflow | `.sp-overflow-{auto\|hidden\|clip\|visible\|scroll}` with `-x-` and `-y-` variants     | CSS overflow keywords                         |
+| Spacing  | `.sp-{p\|px\|py\|pt\|pr\|pb\|pl\|m\|mx\|my\|mt\|mr\|mb\|ml\|gap\|gap-x\|gap-y}-{step}` | `--sp-space-*`; auto-margin variants are added |
+| Palette  | `.sp-{text\|bg\|border}-{hue}-{step}`                                                  | `--sp-color-palette-*`                        |
+| Radius   | `.sp-rounded-{step}`                                                                   | `--sp-radius-*`                               |
+| Shadow   | `.sp-shadow-{step}`                                                                    | `--sp-shadow-*`                               |
+| Opacity  | `.sp-opacity-{role}`                                                                   | `--sp-opacity-*`                              |
+| Z-index  | `.sp-z-{role}`                                                                         | `--sp-z-index-*`                              |
 
-Responsive variants use the `sp-{breakpoint}-{property}-{step}` prefix form
-(e.g. `sp-md-p-4`, `sp-lg-gap-8`) — spacing utilities only, at the `md` and `lg`
-breakpoints, matching the step-down convention Grid already established. This
-prefix syntax is a locked decision (see `TODO.md` Phase 7 P0); it will not
-change without a major-version breaking release.
+Responsive variants use the `sp-{breakpoint}-{utility}` prefix form (for
+example, `sp-md-p-4`, `sp-lg-gap-8`, `sp-md-flex`, and
+`sp-lg-justify-between`) at the `md` and `lg` breakpoints, matching the
+step-down convention Grid already established. This prefix syntax is a locked
+decision (see `TODO.md` Phase 7 P0); it will not change without a major-version
+breaking release.
+
+All exported stylesheets declare the cascade order `base`, `components`, then
+`utilities`. Utilities therefore override component defaults regardless of
+whether consumers load the standalone component and utility bundles in the
+opposite order. Unlayered application CSS still overrides all Spectre layers.
 
 ### Root package
 

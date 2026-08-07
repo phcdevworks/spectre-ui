@@ -6,6 +6,28 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [3.3.0] - 2026-08-07
+
+**Release Title:** Phase 8 - Layout Composition Utilities
+
+Contract change type: additive
+
+### Added
+
+- Expanded the generated utility engine with general layout composition:
+  display, flex direction/wrapping/sizing, alignment, positioning and zero
+  insets, intrinsic/percentage sizing, overflow, white-space, text alignment,
+  and auto margins. Every utility also ships `md` and `lg` responsive variants
+  using the established `sp-{breakpoint}-{utility}` prefix contract. This work
+  is backed by the first production child-theme integration, where layout
+  declarations accounted for more than half of the theme stylesheet.
+
+### Fixed
+
+- Declared the global `base, components, utilities` cascade-layer order in all
+  standalone CSS bundles so utility precedence no longer depends on consumer
+  import order.
+
 ## [3.2.0] - 2026-08-05
 
 **Release Title:** Text Transform and Grid Span Contracts

@@ -19,26 +19,26 @@ const ENTRYPOINT_CONTRACTS = [
     fileName: 'base.css',
     standaloneTokens: ['--sp-surface-page:', '--sp-text-on-page-default:'],
     bundleMarkers: ['@layer base', 'body {', ':focus-visible {'],
-    forbiddenMarkers: ['@layer components', '@layer utilities', '.sp-btn {', '.sp-stack {'],
+    forbiddenMarkers: ['@layer components {', '@layer utilities {', '.sp-btn {', '.sp-stack {'],
     maxBytes: 39000,
   },
   {
     fileName: 'components.css',
     standaloneTokens: ['--sp-surface-page:', '--sp-button-primary-bg:'],
     bundleMarkers: ['@layer components', '.sp-btn {', '.sp-card {'],
-    forbiddenMarkers: ['@layer base', '@layer utilities', 'body {', ':focus-visible {', '.sp-stack {', '@keyframes fade-in'],
+    forbiddenMarkers: ['@layer base {', '@layer utilities {', 'body {', ':focus-visible {', '.sp-stack {', '@keyframes fade-in'],
     maxBytes: 141000,
   },
   {
     fileName: 'utilities.css',
     standaloneTokens: ['--sp-surface-page:', '--sp-layout-stack-gap-md:'],
-    bundleMarkers: ['@layer utilities', '.sp-stack {', '@keyframes fade-in', '.sp-p-4 {'],
-    forbiddenMarkers: ['@layer base', '@layer components', 'body {', ':focus-visible {', '.sp-btn {', '.sp-card {'],
+    bundleMarkers: ['@layer base, components, utilities;', '@layer utilities', '.sp-stack {', '@keyframes fade-in', '.sp-p-4 {', '.sp-flex {'],
+    forbiddenMarkers: ['@layer base {', '@layer components {', 'body {', ':focus-visible {', '.sp-btn {', '.sp-card {'],
     // Phase 7 P1: generated utility-class engine adds full palette (286
     // steps), spacing, radius, shadow, opacity, and z-index coverage plus
     // md/lg responsive variants — a deliberate, scoped size increase, not a
     // regression. See TODO.md Phase 7 P0/P1.
-    maxBytes: 195000,
+    maxBytes: 240000,
   },
 ] as const;
 

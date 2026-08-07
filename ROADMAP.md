@@ -27,6 +27,7 @@ file does not restate delivered work.
 | 5     | Downstream integration fixes (sidebar stretch/z-index/header nesting, select/textarea state parity); deprecation policy defined                             | continuous                        |
 | 6     | Contract guidance consistency; cross-package consumer validation                                                                                            | continuous                        |
 | 7     | First-party generated utility-class engine (`sp-*` spacing/palette/radius/shadow/opacity/z-index, `md`/`lg` responsive variants); Tailwind export removal   | 3.0.0 (P2), 3.1.0 (P0/P1)         |
+| 8     | Production-driven layout utility expansion (display/flex/alignment/position/sizing/overflow/auto margins), responsive variants, deterministic cascade layers | 3.3.0                              |
 
 Deferred-not-abandoned sub-scopes from delivered phases (see "What's Next"
 below): Phase 4c v2 (Grid column span/offsets/custom tracks), Phase 4f
@@ -41,9 +42,9 @@ for a real downstream need before scoping) or a standing recurring check — bot
 tracked in [TODO.md](TODO.md) rather than as a numbered phase here:
 
 - **Grid v2** — column span, offsets, custom track sizing, per-breakpoint
-  override. Deliberately deferred since Phase 4c v1 shipped; only take on if a
-  real downstream need (not a hypothetical) demonstrates the v1 convention is
-  too rigid.
+  override. Column span shipped in 3.2.0. Downstream production use has now
+  demonstrated a real custom-track need for fixed-width mega-menu columns;
+  that remaining contract is open in `TODO.md`. Offsets remain evidence-gated.
 - **Icon/AspectRatio recipes** — `@phcdevworks/spectre-tokens@3.4.0` publishes
   `--sp-icon-*`/`--sp-aspect-ratio-*`, but no downstream consumer
   (`spectre-components`, `spectre-ui-astro`, or an application) has asked for a

@@ -1,3 +1,5 @@
+@layer base, components, utilities;
+
 @layer components {
 
   :where(:root) {
