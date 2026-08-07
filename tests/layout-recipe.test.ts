@@ -204,6 +204,43 @@ describe('getGridClasses', () => {
       expect(css).toContain(`.sp-lg-col-offset-${offset}`)
     })
   })
+
+  it('returns a fixed-track class and omits sp-grid-cols-* when fixedTracks is set', () => {
+    expect(getGridClasses({ columns: 4, fixedTracks: { count: 2 } })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-fixed-tracks-2'
+    )
+  })
+
+  it('ships sp-grid-fixed-tracks-* rules in utilities.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    ;[1, 2, 3, 4].forEach((count) => {
+      expect(css).toContain(`.sp-grid-fixed-tracks-${count}`)
+    })
+    expect(css).toContain('var(--sp-space-96)')
+  })
+
+  it('returns a leading-track class alongside sp-grid-cols-*', () => {
+    expect(
+      getGridClasses({ columns: 6, leadingTracks: { weight: 1.6 } })
+    ).toBe('sp-grid sp-grid--gap-md sp-grid-cols-6 sp-lg-grid-leading-1_6-of-6')
+  })
+
+  it('ships sp-lg-grid-leading-{weight}-of-{columns} rules in utilities.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    ;[1, 2, 3, 4, 6, 12].forEach((columns) => {
+      ;['1_5', '1_6', '2', '2_5', '3'].forEach((weight) => {
+        expect(css).toContain(`.sp-lg-grid-leading-${weight}-of-${columns}`)
+      })
+    })
+  })
+
+  it('omits fixed-track and leading-track classes when not provided', () => {
+    expect(getGridClasses({ columns: 3 })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-3'
+    )
+  })
 })
 
 describe('getSidebarClasses', () => {

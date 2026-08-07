@@ -22,12 +22,19 @@ items open.
 
 ## Requested by Downstream
 
-- [ ] **Custom grid track sizing** (2026-08-07): define a
-      token-safe utility contract for fixed-width/repeated mega-menu tracks and
-      unequal footer columns. The production child theme currently owns
-      `grid-template-columns` because equal-column Grid v1/v2 cannot express
-      either layout. Evidence: the production child-theme stylesheet supplied
-      during the Phase 8 downstream drift audit.
+Custom grid track sizing shipped in `[Unreleased]`: `fixedTracks: { count: 1-4 }`
+(`sp-grid-fixed-tracks-*`, sized from `--sp-space-96`) covers the mega-menu's
+fixed-width repeated columns; `leadingTracks: { weight: 1.5 | 1.6 | 2 | 2.5 | 3 }`
+(`sp-lg-grid-leading-{weight}-of-{columns}`) covers the footer's unequal
+leading-column layout. Evidence: the production child-theme stylesheet
+supplied during the Phase 8 downstream drift audit.
+
+- [ ] **Token gap: fixed track width** — `fixedTracks` sizes columns from
+      `--sp-space-96` (6rem/96px), the largest published space step. The
+      evidence's actual mega-menu column (`--cr-mega-col-width: 15rem`) is
+      well past that. No `--sp-track-*` or larger `--sp-space-*` step exists
+      to size it correctly. Needs a `spectre-tokens` proposal, not a local
+      fallback value, before `fixedTracks` can match production geometry.
 - [ ] **Wide mega-menu geometry** (2026-08-07): add a reusable
       Nav/Dropdown contract that can anchor a menu to the nav row rather than
       its trigger, size a multi-column panel within the container, and constrain
