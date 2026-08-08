@@ -199,6 +199,23 @@ DOM coupling. That is the contract.
 - `COPILOT.md` and `.github/copilot-instructions.md` - support-assistant
   workflow.
 
+## Confidential External Identities
+
+Never record external customer, vendor, user, client-site, or private-project
+identities in tracked files, git metadata, reviews, releases, issues, or
+handoffs. Use anonymous role-based wording such as "a downstream integration"
+or "a production consumer." Public package and platform names are allowed
+only when technically required to identify a dependency or supported
+integration.
+
+**Zero tolerance, no exceptions.** This is not a case-by-case judgment call.
+Every upstream vendor, customer, client, or third-party identity — regardless
+of how well-known, already public, or seemingly harmless — is forbidden from
+appearing in any file, commit, tag, branch name, PR, issue, roadmap, TODO, or
+agent output anywhere in this repo. If a vendor name is already present
+anywhere in tracked files, it must be anonymized on sight, not left in place
+because it predates this rule.
+
 ## Upstream Requests and Roadmap Self-Expansion
 
 Full directive: project-team [AGENTS.md](../AGENTS.md) "Upstream Requests and
