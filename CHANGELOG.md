@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [3.4.0] - 2026-08-08
+
+**Release Title:** Grid Offsets and Custom Track Sizing
+
 Contract change type: additive
 
 ### Added
@@ -1024,7 +1028,10 @@ Contract change type: additive
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe
   helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/3.1.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/3.4.0...HEAD
+[3.4.0]: https://github.com/phcdevworks/spectre-ui/compare/3.3.0...3.4.0
+[3.3.0]: https://github.com/phcdevworks/spectre-ui/compare/3.2.0...3.3.0
+[3.2.0]: https://github.com/phcdevworks/spectre-ui/compare/3.1.0...3.2.0
 [3.1.0]: https://github.com/phcdevworks/spectre-ui/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/phcdevworks/spectre-ui/compare/2.10.0...3.0.0
 [2.10.0]: https://github.com/phcdevworks/spectre-ui/compare/2.9.0...2.10.0
