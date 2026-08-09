@@ -412,19 +412,19 @@
   }
 
   .sp-grid-fixed-tracks-1 {
-    grid-template-columns: minmax(0, var(--sp-space-96));
+    grid-template-columns: minmax(0, var(--sp-space-240));
   }
 
   .sp-grid-fixed-tracks-2 {
-    grid-template-columns: repeat(2, minmax(0, var(--sp-space-96)));
+    grid-template-columns: repeat(2, minmax(0, var(--sp-space-240)));
   }
 
   .sp-grid-fixed-tracks-3 {
-    grid-template-columns: repeat(3, minmax(0, var(--sp-space-96)));
+    grid-template-columns: repeat(3, minmax(0, var(--sp-space-240)));
   }
 
   .sp-grid-fixed-tracks-4 {
-    grid-template-columns: repeat(4, minmax(0, var(--sp-space-96)));
+    grid-template-columns: repeat(4, minmax(0, var(--sp-space-240)));
   }
 
   /* min-width value matches the published --sp-breakpoint-lg token value;

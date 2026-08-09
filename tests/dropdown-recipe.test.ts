@@ -23,6 +23,10 @@ describe('getDropdownClasses', () => {
   it('supports the fullWidth flag', () => {
     expect(getDropdownClasses({ fullWidth: true })).toContain('sp-dropdown--full')
   })
+
+  it('supports the mega flag', () => {
+    expect(getDropdownClasses({ mega: true })).toContain('sp-dropdown--mega')
+  })
 })
 
 describe('getDropdownMenuClasses', () => {
@@ -42,8 +46,12 @@ describe('getDropdownMenuClasses', () => {
     expect(getDropdownMenuClasses({ open: true })).toContain('sp-dropdown__menu--open')
   })
 
+  it('supports the mega flag', () => {
+    expect(getDropdownMenuClasses({ mega: true })).toContain('sp-dropdown__menu--mega')
+  })
+
   it('creates trimmed, space-delimited class strings for combined options', () => {
-    const result = getDropdownMenuClasses({ placement: 'top-end', open: true })
+    const result = getDropdownMenuClasses({ placement: 'top-end', open: true, mega: true })
     expectTokenizedClassString(result)
   })
 })

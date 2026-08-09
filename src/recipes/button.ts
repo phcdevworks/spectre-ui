@@ -31,6 +31,13 @@ export interface ButtonRecipeOptions {
   active?: boolean;
   iconOnly?: boolean;
   pill?: boolean;
+  /**
+   * Shrinks the visible box below --sp-min-touch-target while an invisible
+   * ::after pseudo-element still guarantees the full accessible hit area —
+   * use for dense secondary actions (e.g. a utility bar) instead of
+   * silently dropping the touch target.
+   */
+  compact?: boolean;
 }
 
 export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
@@ -45,6 +52,7 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     active = false,
     iconOnly = false,
     pill = false,
+    compact = false,
   } = opts;
 
   const variant = resolveOption({
@@ -90,5 +98,6 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     active && "sp-btn--active is-active",
     iconOnly && "sp-btn--icon",
     pill && "sp-btn--pill",
+    compact && "sp-btn--compact",
   );
 }

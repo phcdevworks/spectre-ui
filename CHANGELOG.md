@@ -6,6 +6,36 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: semantic change
+
+### Added
+
+- Added a `compact` flag to `getButtonClasses` (`sp-btn--compact`): the
+  visible box may shrink below `--sp-min-touch-target`, while an invisible
+  `::after` pseudo-element sized from that same token keeps the full
+  accessible hit area. Closes the "Compact secondary action decision" item
+  in `TODO.md` — decided in favor of the invisible-hit-area-padding pattern
+  over a size variant that silently drops the touch target.
+- Added a `mega` flag to `getDropdownClasses` (`sp-dropdown--mega`) and
+  `getDropdownMenuClasses` (`sp-dropdown__menu--mega`) for mega-menu panels
+  that anchor to the nearest positioned ancestor (typically `sp-nav`, now a
+  positioning context by default) instead of the trigger wrapper, spanning
+  that ancestor's full width. Menu height is capped and scrollable
+  (`max-height: 70vh; overflow-y: auto`). Pair with a `getGridClasses` panel
+  inside the menu for the multi-column layout. Closes the "Wide mega-menu
+  geometry" item in `TODO.md` — evidence: the production child-theme
+  stylesheet supplied during the Phase 8 downstream drift audit.
+
+### Changed
+
+- `fixedTracks` on `getGridClasses` now sizes every column from
+  `--sp-space-240` (15rem) instead of `--sp-space-96` (6rem), matching the
+  Phase 8 mega-menu evidence exactly. Closes the "Token gap: fixed track
+  width" item in `TODO.md`, unblocked by `@phcdevworks/spectre-tokens@4.3.0`
+  publishing the `space.240` primitive step. Visible breaking change for any
+  consumer of `.sp-grid-fixed-tracks-*` or `fixedTracks` — fixed-track column
+  width goes from 6rem to 15rem.
+
 ## [3.4.0] - 2026-08-08
 
 **Release Title:** Grid Offsets and Custom Track Sizing

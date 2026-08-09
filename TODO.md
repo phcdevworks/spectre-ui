@@ -20,33 +20,37 @@ classes, using `grid-column-start`). Row offsets are permanently out of scope:
 this grid contract has no row-count axis to offset against. No further Grid v2
 items open.
 
-## Requested by Downstream
+## Closed: Requested by Downstream
 
-Custom grid track sizing shipped in `[Unreleased]`: `fixedTracks: { count: 1-4 }`
-(`sp-grid-fixed-tracks-*`, sized from `--sp-space-96`) covers the mega-menu's
-fixed-width repeated columns; `leadingTracks: { weight: 1.5 | 1.6 | 2 | 2.5 | 3 }`
+Custom grid track sizing shipped in `3.4.0`: `fixedTracks: { count: 1-4 }`
+(`sp-grid-fixed-tracks-*`) covers the mega-menu's fixed-width repeated
+columns; `leadingTracks: { weight: 1.5 | 1.6 | 2 | 2.5 | 3 }`
 (`sp-lg-grid-leading-{weight}-of-{columns}`) covers the footer's unequal
 leading-column layout. Evidence: the production child-theme stylesheet
-supplied during the Phase 8 downstream drift audit.
+supplied during the Phase 8 downstream drift audit. Fixed track width now
+sizes from `--sp-space-240` (15rem), matching the evidence's
+`--cr-mega-col-width` exactly — shipped in `[Unreleased]`, unblocked by
+`spectre-tokens@4.3.0` publishing the `space.240` primitive step. No further
+token gap open.
 
-- [ ] **Token gap: fixed track width** — `fixedTracks` sizes columns from
-      `--sp-space-96` (6rem/96px), the largest published space step. The
-      evidence's actual mega-menu column (`--cr-mega-col-width: 15rem`) is
-      well past that. No `--sp-track-*` or larger `--sp-space-*` step exists
-      to size it correctly. Needs a `spectre-tokens` proposal, not a local
-      fallback value, before `fixedTracks` can match production geometry.
-- [ ] **Wide mega-menu geometry** (2026-08-07): add a reusable
-      Nav/Dropdown contract that can anchor a menu to the nav row rather than
-      its trigger, size a multi-column panel within the container, and constrain
-      panel height/overflow. Completion means the child theme no longer needs
-      to reset `.sp-dropdown` positioning or strip and rebuild
-      `.sp-dropdown__menu` geometry.
-- [ ] **Compact secondary action decision** (2026-08-07): the
-      utility bar currently overrides `--sp-min-touch-target` behavior to make
-      a roughly 38px action. Decide and document an accessible system pattern:
-      preserve the 44px target through invisible hit area/spacing, or add an
-      explicitly approved compact variant with equivalent pointer target. Do
-      not normalize an accessibility regression into a generic size utility.
+Wide mega-menu geometry shipped in `[Unreleased]`: `mega` flag on
+`getDropdownClasses`/`getDropdownMenuClasses` (`sp-dropdown--mega`,
+`sp-dropdown__menu--mega`) anchors the menu to the nearest positioned
+ancestor (`sp-nav`, now `position: relative` by default) instead of the
+trigger, spanning that ancestor's full width with a capped, scrollable
+height (`max-height: 70vh`). Pairs with `getGridClasses`
+(`fixedTracks`/`leadingTracks`) inside the menu for the multi-column panel.
+Completion means the child theme no longer needs to reset `.sp-dropdown`
+positioning or strip and rebuild `.sp-dropdown__menu` geometry. No further
+mega-menu geometry item open.
+
+Compact secondary action decision shipped in `[Unreleased]`: decided in
+favor of preserving the 44px target through invisible hit-area padding, not
+a size variant that drops it. `compact` flag on `getButtonClasses`
+(`sp-btn--compact`) lets the visible box shrink below
+`--sp-min-touch-target` while an `::after` pseudo-element sized from that
+same token keeps the full accessible hit area. No further compact-action
+item open.
 
 ## Phase 9: Footer Semantic Alignment
 

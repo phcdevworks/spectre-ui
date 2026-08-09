@@ -12,23 +12,35 @@ export type DropdownPlacement = keyof typeof DROPDOWN_PLACEMENTS
 
 export interface DropdownRecipeOptions {
   fullWidth?: boolean
+  /**
+   * Anchors the menu to the nearest positioned ancestor (e.g. `sp-nav`)
+   * instead of this trigger wrapper, for mega-menu panels that span the
+   * nav row rather than tracking trigger width.
+   */
+  mega?: boolean
 }
 
 export function getDropdownClasses(opts: DropdownRecipeOptions = {}): string {
-  const { fullWidth = false } = opts
+  const { fullWidth = false, mega = false } = opts
 
-  return cx('sp-dropdown', fullWidth && 'sp-dropdown--full')
+  return cx(
+    'sp-dropdown',
+    fullWidth && 'sp-dropdown--full',
+    mega && 'sp-dropdown--mega'
+  )
 }
 
 export interface DropdownMenuRecipeOptions {
   placement?: DropdownPlacement
   open?: boolean
+  /** Pairs with `mega` on `getDropdownClasses` — spans the positioned ancestor's full width instead of the trigger's. */
+  mega?: boolean
 }
 
 export function getDropdownMenuClasses(
   opts: DropdownMenuRecipeOptions = {}
 ): string {
-  const { placement: placementInput, open = false } = opts
+  const { placement: placementInput, open = false, mega = false } = opts
 
   const placement = resolveOption({
     name: 'dropdown menu placement',
@@ -40,7 +52,8 @@ export function getDropdownMenuClasses(
   return cx(
     'sp-dropdown__menu',
     `sp-dropdown__menu--${placement}`,
-    open && 'sp-dropdown__menu--open'
+    open && 'sp-dropdown__menu--open',
+    mega && 'sp-dropdown__menu--mega'
   )
 }
 

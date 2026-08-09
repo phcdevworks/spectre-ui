@@ -217,7 +217,7 @@ describe('getGridClasses', () => {
     ;[1, 2, 3, 4].forEach((count) => {
       expect(css).toContain(`.sp-grid-fixed-tracks-${count}`)
     })
-    expect(css).toContain('var(--sp-space-96)')
+    expect(css).toContain('var(--sp-space-240)')
   })
 
   it('returns a leading-track class alongside sp-grid-cols-*', () => {

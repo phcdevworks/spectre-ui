@@ -92,10 +92,9 @@ export interface GridLeadingTracksOptions {
 }
 
 /**
- * Fixed-width repeated tracks, sized from --sp-space-96 (the largest step
- * on the published space scale). There is no larger token step today, so
- * this is a token gap for wider fixed tracks (e.g. mega-menu columns) —
- * see TODO.md.
+ * Fixed-width repeated tracks, sized from --sp-space-240 (15rem), matching
+ * the mega-menu column width evidence from the Phase 8 downstream drift
+ * audit.
  */
 export interface GridFixedTracksOptions {
   count: GridFixedTrackCount

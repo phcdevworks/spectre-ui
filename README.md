@@ -239,7 +239,7 @@ All options are optional and fall back to sensible defaults.
 
 | Recipe      | Function                | Variants                                                                                                       | Sizes               | Common boolean flags                                                    |
 | ----------- | ----------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------- | ----------------------------------------------------------------------- |
-| Button      | `getButtonClasses`      | `primary` `secondary` `ghost` `danger` `success` `cta` `accent`                                                | `sm` `md` `lg`      | `disabled` `loading` `fullWidth` `pill` `iconOnly`                      |
+| Button      | `getButtonClasses`      | `primary` `secondary` `ghost` `danger` `success` `cta` `accent`                                                | `sm` `md` `lg`      | `disabled` `loading` `fullWidth` `pill` `iconOnly` `compact`            |
 | Badge       | `getBadgeClasses`       | `primary` `secondary` `success` `warning` `danger` `neutral` `info` `ghost` `accent` `cta`                     | `sm` `md` `lg`      | `interactive` `disabled` `loading` `fullWidth`                          |
 | Card        | `getCardClasses`        | `elevated` `flat` `outline` `ghost`                                                                            | —                   | `interactive` `padded` `fullHeight` `disabled` `loading`                |
 | Input       | `getInputClasses`       | —                                                                                                              | `sm` `md` `lg`      | `disabled` `loading` `fullWidth` `pill`                                 |
@@ -255,7 +255,7 @@ All options are optional and fall back to sensible defaults.
 | Nav         | `getNavClasses`         | —                                                                                                              | —                   | `bordered` `sticky` `fullWidth` `align: start\|center\|end`             |
 | Toast       | `getToastClasses`       | `info` `success` `warning` `danger`                                                                            | —                   | `dismissed` `fullWidth`                                                 |
 | Tooltip     | `getTooltipClasses`     | placement: `top` `bottom` `left` `right`                                                                       | —                   | `visible`                                                               |
-| Dropdown    | `getDropdownClasses`    | menu placement: `bottom-start` `bottom-end` `top-start` `top-end`                                              | —                   | `fullWidth`, item: `active` `disabled`                                  |
+| Dropdown    | `getDropdownClasses`    | menu placement: `bottom-start` `bottom-end` `top-start` `top-end`                                              | —                   | `fullWidth` `mega`, item: `active` `disabled`                           |
 | Modal       | `getModalClasses`       | —                                                                                                              | —                   | `open` `fullWidth`                                                      |
 | Container   | `getContainerClasses`   | maxWidth: `prose`                                                                                              | —                   | —                                                                       |
 | Stack       | `getStackClasses`       | direction: `vertical` `horizontal`, basis: `sidebar`, align: `center` `stretch`                                | —                   | —                                                                       |
@@ -277,12 +277,22 @@ Each recipe family also exports sub-element helpers for its structural parts
 
 Grid also accepts two independent track-sizing options for layouts equal
 columns cannot express: `fixedTracks: { count: 1-4 }` sizes every column from
-`--sp-space-96` (the largest published space step) and replaces `columns` at
+`--sp-space-240` (15rem) and replaces `columns` at
 every breakpoint; `leadingTracks: { weight: 1.5 | 1.6 | 2 | 2.5 | 3 }` sizes
 one leading column at `weight`fr against the rest of `columns` as equal 1fr
 tracks, applied at the `lg` breakpoint only. Both emit deterministic classes
 (`sp-grid-fixed-tracks-*`, `sp-lg-grid-leading-{weight}-of-{columns}`) — no
 arbitrary widths, no inline styles.
+
+Dropdown also accepts a `mega` flag (`getDropdownClasses({ mega: true })`
+paired with `getDropdownMenuClasses({ mega: true })`) for mega-menu panels:
+the trigger wrapper (`sp-dropdown--mega`) cedes its positioning context to
+the nearest positioned ancestor — typically `sp-nav`, which is a positioning
+context by default — so the menu (`sp-dropdown__menu--mega`) spans that
+ancestor's full width instead of tracking trigger width. Combine with a
+`getGridClasses` panel inside the menu for a multi-column layout. Menu
+height is capped and scrollable (`max-height: 70vh; overflow-y: auto`) so
+tall panels never overflow the viewport.
 
 ### Semantic utility classes (no recipe wrapper)
 
