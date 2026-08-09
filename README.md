@@ -395,6 +395,13 @@ Root recipe helper functions:
 - `getDropdownItemClasses`
 - `getDropdownMenuClasses`
 - `getFieldsetLegendClasses`
+- `getFooterChipClasses`
+- `getFooterDividerClasses`
+- `getFooterHeadingClasses`
+- `getFooterLinkClasses`
+- `getFooterLinksClasses`
+- `getFooterMutedClasses`
+- `getFooterTextClasses`
 - `getInputErrorMessageClasses`
 - `getInputHelperTextClasses`
 - `getInputLabelClasses`

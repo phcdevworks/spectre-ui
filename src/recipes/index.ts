@@ -116,7 +116,16 @@ export {
 
 export {
   getFooterClasses,
+  getFooterHeadingClasses,
+  getFooterTextClasses,
+  getFooterMutedClasses,
+  getFooterLinksClasses,
+  getFooterLinkClasses,
+  getFooterDividerClasses,
+  getFooterChipClasses,
   type FooterRecipeOptions,
+  type FooterLinkRecipeOptions,
+  type FooterChipRecipeOptions,
 } from './footer'
 
 export {

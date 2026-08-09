@@ -28,45 +28,34 @@ file does not restate delivered work.
 | 6     | Contract guidance consistency; cross-package consumer validation                                                                                            | continuous                        |
 | 7     | First-party generated utility-class engine (`sp-*` spacing/palette/radius/shadow/opacity/z-index, `md`/`lg` responsive variants); Tailwind export removal   | 3.0.0 (P2), 3.1.0 (P0/P1)         |
 | 8     | Production-driven layout utility expansion (display/flex/alignment/position/sizing/overflow/auto margins), responsive variants, deterministic cascade layers | 3.3.0                              |
+| 4c v2 | Grid column span, offset, and custom track sizing (`fixedTracks`/`leadingTracks`); fixed track width sized from `--sp-space-240` | 3.2.0–3.4.0, [Unreleased] |
+| —     | Dropdown `mega` flag — container-anchored, multi-column panel composition                                                                                   | [Unreleased]                       |
+| —     | Button `compact` flag — invisible hit-area padding preserving `--sp-min-touch-target` | [Unreleased]                       |
+| 9     | Footer semantic alignment — independent `--sp-footer-*` token contract, Footer anatomy recipes                                                              | [Unreleased]                       |
 
-Deferred-not-abandoned sub-scopes from delivered phases (see "What's Next"
-below): Phase 4c v2 (Grid column span/offsets/custom tracks), Phase 4f
-(Icon/AspectRatio recipes).
+Deferred-not-abandoned sub-scope from delivered phases (see "What's Next"
+below): Phase 4f (Icon/AspectRatio recipes).
 
 ---
 
 ## What's Next
 
-Evidence from a downstream production integration has opened the following
-work, tracked with acceptance criteria in [TODO.md](TODO.md):
+Tracked with acceptance criteria in [TODO.md](TODO.md):
 
-- **Phase 9 — Footer semantic alignment** — consume the independent Footer
-  token family after `spectre-tokens` Phase 11 publishes, then expose reusable
-  Footer anatomy classes.
-- **Wide mega-menu geometry** — add container-anchored, multi-column dropdown
-  panel composition so a theme does not rebuild dropdown positioning.
-- **Custom grid tracks** — define the fixed/repeated and unequal track escape
-  hatch demonstrated by the downstream theme's mega menu and footer.
-- **Compact secondary actions** — resolve the utility-bar density need without
-  weakening the minimum pointer-target contract.
-
-- **Grid v2** — column span, offsets, custom track sizing, per-breakpoint
-  override. Column span shipped in 3.2.0. Downstream production use has now
-  demonstrated a real custom-track need for fixed-width mega-menu columns;
-  that remaining contract is open in `TODO.md`. Offsets remain evidence-gated.
 - **Icon/AspectRatio recipes** — `@phcdevworks/spectre-tokens@3.4.0` publishes
   `--sp-icon-*`/`--sp-aspect-ratio-*`, but no downstream consumer
   (`spectre-components`, `spectre-ui-astro`, or an application) has asked for a
-  recipe yet. Watched candidate, same policy as Grid v2.
-- **Periodic downstream drift audit** — standing, recurring: grep
-  `spectre-components`, `spectre-ui-astro`, and the `project-web` sites for
-  hand-rolled CSS duplicating a published `spectre-tokens` group with no
-  `spectre-ui` backing. Triggered by each new upstream `component.*`/primitive
-  token publish, or at minimum once per minor release.
+  recipe yet. Watched candidate, evidence-gated.
 - **`docs-phcdevworks-com`'s stale Tailwind documentation** — that repo's
   published docs still describe the Tailwind preset/theme export `spectre-ui`
   removed in `3.0.0`. Tracking the fix belongs in that repo's own `TODO.md`, not
   here.
+
+Periodic downstream drift audits (grepping `spectre-components`,
+`spectre-ui-astro`, and the `project-web` sites for hand-rolled CSS
+duplicating a published `spectre-tokens` group with no `spectre-ui` backing)
+are ongoing practice, triggered by each new upstream token publish or at
+minimum once per minor release — not a tracked backlog item.
 
 New namespace, recipe-family, or contract work beyond the above opens only when
 a concrete downstream requirement surfaces — this package does not build ahead

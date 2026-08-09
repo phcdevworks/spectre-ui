@@ -10,6 +10,16 @@ Contract change type: semantic change
 
 ### Added
 
+- Closed Phase 9 (Footer Semantic Alignment): `--sp-component-footer-*`
+  roles now size from the independent `--sp-footer-*` contract published by
+  `spectre-tokens` Phase 11 (`spectre-tokens@4.3.0`), replacing the Nav-role
+  reuse. Added Footer anatomy recipes — `getFooterHeadingClasses`,
+  `getFooterTextClasses`, `getFooterMutedClasses`, `getFooterLinksClasses`,
+  `getFooterLinkClasses` (`active`/`disabled`/`hovered`/`focused`),
+  `getFooterDividerClasses`, and `getFooterChipClasses` — so downstream
+  themes no longer rebuild the same footer vocabulary. The icon chip's hit
+  area is sized from `--sp-min-touch-target` for accessible social/icon
+  links regardless of visual size.
 - Added a `compact` flag to `getButtonClasses` (`sp-btn--compact`): the
   visible box may shrink below `--sp-min-touch-target`, while an invisible
   `::after` pseudo-element sized from that same token keeps the full

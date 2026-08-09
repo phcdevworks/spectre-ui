@@ -4,7 +4,14 @@ import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 import {
   getContainerClasses,
+  getFooterChipClasses,
   getFooterClasses,
+  getFooterDividerClasses,
+  getFooterHeadingClasses,
+  getFooterLinkClasses,
+  getFooterLinksClasses,
+  getFooterMutedClasses,
+  getFooterTextClasses,
   getGridClasses,
   getSectionClasses,
   getSidebarBackdropClasses,
@@ -378,5 +385,97 @@ describe('getFooterClasses', () => {
     expect(getFooterClasses({ bordered: true, fullWidth: true })).toBe(
       'sp-footer sp-footer--bordered sp-footer--full'
     )
+  })
+
+  it('sizes component-footer roles from the independent --sp-footer-* contract, not Nav aliases', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'components.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+
+    expect(css).toContain('--sp-component-footer-bg: var(--sp-footer-bg)')
+    expect(css).toContain('--sp-component-footer-text: var(--sp-footer-text)')
+    expect(css).toContain('--sp-component-footer-heading: var(--sp-footer-heading)')
+    expect(css).toContain('--sp-component-footer-muted: var(--sp-footer-muted)')
+    expect(css).toContain('--sp-component-footer-link: var(--sp-footer-link)')
+    expect(css).toContain('--sp-component-footer-link-hover: var(--sp-footer-link-hover)')
+    expect(css).toContain('--sp-component-footer-border: var(--sp-footer-border)')
+    expect(css).toContain('--sp-component-footer-divider: var(--sp-footer-divider)')
+    expect(css).toContain('--sp-component-footer-chip-bg: var(--sp-footer-chip-bg)')
+    expect(css).not.toContain('--sp-component-footer-bg: var(--sp-nav-bg)')
+  })
+})
+
+describe('getFooterHeadingClasses', () => {
+  it('returns the heading class', () => {
+    expect(getFooterHeadingClasses()).toBe('sp-footer__heading')
+  })
+})
+
+describe('getFooterTextClasses', () => {
+  it('returns the text class', () => {
+    expect(getFooterTextClasses()).toBe('sp-footer__text')
+  })
+})
+
+describe('getFooterMutedClasses', () => {
+  it('returns the muted class', () => {
+    expect(getFooterMutedClasses()).toBe('sp-footer__muted')
+  })
+})
+
+describe('getFooterLinksClasses', () => {
+  it('returns the links wrapper class', () => {
+    expect(getFooterLinksClasses()).toBe('sp-footer__links')
+  })
+})
+
+describe('getFooterLinkClasses', () => {
+  it('returns the default link class', () => {
+    expect(getFooterLinkClasses()).toBe('sp-footer__link')
+  })
+
+  it('applies boolean flag modifiers', () => {
+    const result = getFooterLinkClasses({
+      active: true,
+      disabled: true,
+      hovered: true,
+      focused: true,
+    })
+
+    expect(result).toContain('sp-footer__link--active')
+    expect(result).toContain('sp-footer__link--disabled')
+    expect(result).toContain('sp-footer__link--hover is-hover')
+    expect(result).toContain('sp-footer__link--focus is-focus')
+  })
+})
+
+describe('getFooterDividerClasses', () => {
+  it('returns the divider class', () => {
+    expect(getFooterDividerClasses()).toBe('sp-footer__divider')
+  })
+})
+
+describe('getFooterChipClasses', () => {
+  it('returns the default chip class', () => {
+    expect(getFooterChipClasses()).toBe('sp-footer__chip')
+  })
+
+  it('applies boolean flag modifiers', () => {
+    const result = getFooterChipClasses({
+      disabled: true,
+      hovered: true,
+      focused: true,
+    })
+
+    expect(result).toContain('sp-footer__chip--disabled')
+    expect(result).toContain('sp-footer__chip--hover is-hover')
+    expect(result).toContain('sp-footer__chip--focus is-focus')
+  })
+
+  it('sizes the chip hit area from --sp-min-touch-target', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'components.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+
+    expect(css).toContain('.sp-footer__chip {')
+    expect(css).toContain('width: var(--sp-min-touch-target)')
   })
 })

@@ -31,7 +31,11 @@ const ENTRYPOINT_CONTRACTS = [
     standaloneTokens: ['--sp-surface-page:', '--sp-button-primary-bg:'],
     bundleMarkers: ['@layer components', '.sp-btn {', '.sp-card {'],
     forbiddenMarkers: ['@layer base {', '@layer utilities {', 'body {', ':focus-visible {', '.sp-stack {', '@keyframes fade-in'],
-    maxBytes: 141000,
+    // Phase 9: independent component.footer semantic contract adds Footer
+    // anatomy classes (heading, muted text, links, divider, icon chip) and
+    // drops the Nav-alias token reuse — a deliberate, scoped size increase,
+    // not a regression. See TODO.md Phase 9.
+    maxBytes: 144500,
   },
   {
     fileName: 'utilities.css',
