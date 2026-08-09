@@ -10,6 +10,17 @@ Contract change type: semantic change
 
 ### Added
 
+- Expanded `getGridClasses` with row placement and per-axis gap control:
+  `rowSpan`/`rowOffset` (same shape as `span`/`offset` — a single value or a
+  per-breakpoint `{ base, md, lg }` object) emit `sp-row-span-*` /
+  `sp-row-offset-*` and responsive `sp-{bp}-row-span-*` /
+  `sp-{bp}-row-offset-*` classes via `grid-row`/`grid-row-start`, working
+  against CSS Grid's auto-generated implicit rows with no explicit row
+  template required. `columnGap`/`rowGap` independently override the
+  combined `gap` on a single axis. `leadingTracks.weight` now also accepts
+  a per-breakpoint `{ base, md, lg }` object in addition to the existing
+  plain-value (`lg`-only) form, which is unchanged and fully
+  backward-compatible.
 - Closed Phase 9 (Footer Semantic Alignment): `--sp-component-footer-*`
   roles now size from the independent `--sp-footer-*` contract published by
   `spectre-tokens` Phase 11 (`spectre-tokens@4.3.0`), replacing the Nav-role

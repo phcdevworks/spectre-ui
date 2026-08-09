@@ -81,14 +81,23 @@ export interface GridOffsetOptions {
   lg?: GridOffset
 }
 
+export interface GridLeadingWeightOptions {
+  base?: GridLeadingWeight
+  md?: GridLeadingWeight
+  lg?: GridLeadingWeight
+}
+
 /**
  * Leading-weight tracks: one wider leading column sized by `weight` fr,
  * followed by `columns - 1` equal 1fr columns. Matches an unequal-column
  * layout (e.g. a footer brand column beside equal-width link columns)
- * without a downstream consumer hand-rolling grid-template-columns.
+ * without a downstream consumer hand-rolling grid-template-columns. A
+ * plain `weight` applies at the `lg` breakpoint only, matching the
+ * original mega-menu/footer evidence; pass `{ base, md, lg }` for
+ * per-breakpoint control.
  */
 export interface GridLeadingTracksOptions {
-  weight: GridLeadingWeight
+  weight: GridLeadingWeight | GridLeadingWeightOptions
 }
 
 /**
@@ -103,8 +112,12 @@ export interface GridFixedTracksOptions {
 export interface GridRecipeOptions {
   columns?: GridColumns
   gap?: GridGap
+  columnGap?: GridGap
+  rowGap?: GridGap
   span?: GridSpan | GridSpanOptions
   offset?: GridOffset | GridOffsetOptions
+  rowSpan?: GridSpan | GridSpanOptions
+  rowOffset?: GridOffset | GridOffsetOptions
   leadingTracks?: GridLeadingTracksOptions
   fixedTracks?: GridFixedTracksOptions
 }
@@ -134,11 +147,12 @@ function weightToToken(weight: GridLeadingWeight): string {
 }
 
 function resolveLeadingWeight(
-  value: GridLeadingWeight | undefined
+  value: GridLeadingWeight | undefined,
+  name: string
 ): string | undefined {
   if (value === undefined) return undefined
   return resolveOption({
-    name: 'grid leading track weight',
+    name,
     value: weightToToken(value),
     allowed: GRID_LEADING_WEIGHTS,
     fallback: '1_5',
@@ -161,8 +175,12 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
   const {
     columns: columnsInput,
     gap: gapInput,
+    columnGap: columnGapInput,
+    rowGap: rowGapInput,
     span: spanInput,
     offset: offsetInput,
+    rowSpan: rowSpanInput,
+    rowOffset: rowOffsetInput,
     leadingTracks,
     fixedTracks,
   } = opts
@@ -180,6 +198,24 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
     allowed: GRID_GAPS,
     fallback: 'md',
   })
+
+  const columnGap = columnGapInput
+    ? resolveOption({
+        name: 'grid column gap',
+        value: columnGapInput,
+        allowed: GRID_GAPS,
+        fallback: 'md',
+      })
+    : undefined
+
+  const rowGap = rowGapInput
+    ? resolveOption({
+        name: 'grid row gap',
+        value: rowGapInput,
+        allowed: GRID_GAPS,
+        fallback: 'md',
+      })
+    : undefined
 
   const isSpanOptions = typeof spanInput === 'object'
 
@@ -211,20 +247,80 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
     'grid column offset (lg)'
   )
 
-  const leadingWeight = resolveLeadingWeight(leadingTracks?.weight)
+  const isRowSpanOptions = typeof rowSpanInput === 'object'
+
+  const baseRowSpan = resolveSpan(
+    isRowSpanOptions ? rowSpanInput.base : rowSpanInput,
+    'grid row span'
+  )
+  const mdRowSpan = resolveSpan(
+    isRowSpanOptions ? rowSpanInput.md : undefined,
+    'grid row span (md)'
+  )
+  const lgRowSpan = resolveSpan(
+    isRowSpanOptions ? rowSpanInput.lg : undefined,
+    'grid row span (lg)'
+  )
+
+  const isRowOffsetOptions = typeof rowOffsetInput === 'object'
+
+  const baseRowOffset = resolveOffset(
+    isRowOffsetOptions ? rowOffsetInput.base : rowOffsetInput,
+    'grid row offset'
+  )
+  const mdRowOffset = resolveOffset(
+    isRowOffsetOptions ? rowOffsetInput.md : undefined,
+    'grid row offset (md)'
+  )
+  const lgRowOffset = resolveOffset(
+    isRowOffsetOptions ? rowOffsetInput.lg : undefined,
+    'grid row offset (lg)'
+  )
+
+  const isLeadingWeightOptions = typeof leadingTracks?.weight === 'object'
+
+  const lgLeadingWeight = resolveLeadingWeight(
+    isLeadingWeightOptions
+      ? (leadingTracks?.weight as GridLeadingWeightOptions).lg
+      : (leadingTracks?.weight as GridLeadingWeight | undefined),
+    'grid leading track weight (lg)'
+  )
+  const baseLeadingWeight = isLeadingWeightOptions
+    ? resolveLeadingWeight(
+        (leadingTracks?.weight as GridLeadingWeightOptions).base,
+        'grid leading track weight'
+      )
+    : undefined
+  const mdLeadingWeight = isLeadingWeightOptions
+    ? resolveLeadingWeight(
+        (leadingTracks?.weight as GridLeadingWeightOptions).md,
+        'grid leading track weight (md)'
+      )
+    : undefined
+
   const fixedTrackCount = resolveFixedTrackCount(fixedTracks?.count)
 
   return cx(
     'sp-grid',
     `sp-grid--gap-${gap}`,
+    columnGap && `sp-grid--column-gap-${columnGap}`,
+    rowGap && `sp-grid--row-gap-${rowGap}`,
     !fixedTrackCount && `sp-grid-cols-${columns}`,
     fixedTrackCount && `sp-grid-fixed-tracks-${fixedTrackCount}`,
-    leadingWeight && `sp-lg-grid-leading-${leadingWeight}-of-${columns}`,
+    baseLeadingWeight && `sp-grid-leading-${baseLeadingWeight}-of-${columns}`,
+    mdLeadingWeight && `sp-md-grid-leading-${mdLeadingWeight}-of-${columns}`,
+    lgLeadingWeight && `sp-lg-grid-leading-${lgLeadingWeight}-of-${columns}`,
     baseSpan && `sp-col-span-${baseSpan}`,
     mdSpan && `sp-md-col-span-${mdSpan}`,
     lgSpan && `sp-lg-col-span-${lgSpan}`,
     baseOffset && baseOffset !== '0' && `sp-col-offset-${baseOffset}`,
     mdOffset && mdOffset !== '0' && `sp-md-col-offset-${mdOffset}`,
-    lgOffset && lgOffset !== '0' && `sp-lg-col-offset-${lgOffset}`
+    lgOffset && lgOffset !== '0' && `sp-lg-col-offset-${lgOffset}`,
+    baseRowSpan && `sp-row-span-${baseRowSpan}`,
+    mdRowSpan && `sp-md-row-span-${mdRowSpan}`,
+    lgRowSpan && `sp-lg-row-span-${lgRowSpan}`,
+    baseRowOffset && baseRowOffset !== '0' && `sp-row-offset-${baseRowOffset}`,
+    mdRowOffset && mdRowOffset !== '0' && `sp-md-row-offset-${mdRowOffset}`,
+    lgRowOffset && lgRowOffset !== '0' && `sp-lg-row-offset-${lgRowOffset}`
   )
 }

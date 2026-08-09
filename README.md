@@ -260,7 +260,7 @@ All options are optional and fall back to sensible defaults.
 | Container   | `getContainerClasses`   | maxWidth: `prose`                                                                                              | —                   | —                                                                       |
 | Stack       | `getStackClasses`       | direction: `vertical` `horizontal`, basis: `sidebar`, align: `center` `stretch`                                | —                   | —                                                                       |
 | Section     | `getSectionClasses`     | —                                                                                                              | —                   | —                                                                       |
-| Grid        | `getGridClasses`        | columns: `1` `2` `3` `4` `6` `12`                                                                              | gap: `sm` `md` `lg` | `span`/`offset`: `1`–`12`/`0`–`11`, per-breakpoint `{ base, md, lg }`   |
+| Grid        | `getGridClasses`        | columns: `1` `2` `3` `4` `6` `12`                                                                              | gap/columnGap/rowGap: `sm` `md` `lg` | `span`/`offset`/`rowSpan`/`rowOffset`: `1`–`12`/`0`–`11`, per-breakpoint `{ base, md, lg }` |
 | Sidebar     | `getSidebarClasses`     | —                                                                                                              | —                   | `bordered`                                                              |
 | Footer      | `getFooterClasses`      | —                                                                                                              | —                   | `bordered` `fullWidth`                                                  |
 | Checkbox    | `getCheckboxClasses`    | —                                                                                                              | —                   | `checked` `disabled`                                                    |
@@ -280,9 +280,19 @@ columns cannot express: `fixedTracks: { count: 1-4 }` sizes every column from
 `--sp-space-240` (15rem) and replaces `columns` at
 every breakpoint; `leadingTracks: { weight: 1.5 | 1.6 | 2 | 2.5 | 3 }` sizes
 one leading column at `weight`fr against the rest of `columns` as equal 1fr
-tracks, applied at the `lg` breakpoint only. Both emit deterministic classes
-(`sp-grid-fixed-tracks-*`, `sp-lg-grid-leading-{weight}-of-{columns}`) — no
+tracks. A plain `weight` applies at the `lg` breakpoint only (matching the
+original mega-menu/footer evidence); pass `{ base, md, lg }` for
+per-breakpoint control. Both emit deterministic classes
+(`sp-grid-fixed-tracks-*`, `sp-{bp-}grid-leading-{weight}-of-{columns}`) — no
 arbitrary widths, no inline styles.
+
+Grid also accepts `rowSpan`/`rowOffset` (same shape as `span`/`offset`: a
+single value or a per-breakpoint `{ base, md, lg }` object) for dashboard-style
+layouts that need explicit row placement, via `grid-row`/`grid-row-start` —
+no explicit row-track template required, since these apply against CSS
+Grid's auto-generated implicit rows. Independent `columnGap`/`rowGap`
+options override the combined `gap` on a single axis when a layout needs
+tighter rows than columns (or vice versa).
 
 Dropdown also accepts a `mega` flag (`getDropdownClasses({ mega: true })`
 paired with `getDropdownMenuClasses({ mega: true })`) for mega-menu panels:

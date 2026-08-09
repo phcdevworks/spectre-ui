@@ -201,12 +201,19 @@
       "fn": "getGridClasses",
       "columns": [1, 2, 3, 4, 6, 12],
       "gaps": ["sm", "md", "lg"],
+      "columnGaps": ["sm", "md", "lg"],
+      "rowGaps": ["sm", "md", "lg"],
       "spans": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "full"],
       "spanBreakpoints": ["base", "md", "lg"],
       "offsets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       "offsetBreakpoints": ["base", "md", "lg"],
+      "rowSpans": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "full"],
+      "rowSpanBreakpoints": ["base", "md", "lg"],
+      "rowOffsets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "rowOffsetBreakpoints": ["base", "md", "lg"],
       "fixedTrackCounts": [1, 2, 3, 4],
-      "leadingTrackWeights": [1.5, 1.6, 2, 2.5, 3]
+      "leadingTrackWeights": [1.5, 1.6, 2, 2.5, 3],
+      "leadingTrackWeightBreakpoints": ["base", "md", "lg"]
     },
     "sidebar": {
       "fn": "getSidebarClasses"

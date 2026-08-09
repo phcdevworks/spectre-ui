@@ -248,6 +248,91 @@ describe('getGridClasses', () => {
       'sp-grid sp-grid--gap-md sp-grid-cols-3'
     )
   })
+
+  it('returns per-breakpoint leading-track classes', () => {
+    expect(
+      getGridClasses({
+        columns: 4,
+        leadingTracks: { weight: { base: 2, md: 2.5, lg: 3 } },
+      })
+    ).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-4 sp-grid-leading-2-of-4 sp-md-grid-leading-2_5-of-4 sp-lg-grid-leading-3-of-4'
+    )
+  })
+
+  it('ships base and md sp-grid-leading-{weight}-of-{columns} rules in utilities.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    ;[1, 2, 3, 4, 6, 12].forEach((columns) => {
+      ;['1_5', '1_6', '2', '2_5', '3'].forEach((weight) => {
+        expect(css).toContain(`.sp-grid-leading-${weight}-of-${columns}`)
+        expect(css).toContain(`.sp-md-grid-leading-${weight}-of-${columns}`)
+      })
+    })
+  })
+
+  it('returns independent columnGap and rowGap classes', () => {
+    expect(
+      getGridClasses({ columns: 3, columnGap: 'lg', rowGap: 'sm' })
+    ).toBe(
+      'sp-grid sp-grid--gap-md sp-grid--column-gap-lg sp-grid--row-gap-sm sp-grid-cols-3'
+    )
+  })
+
+  it('ships sp-grid--column-gap-* and sp-grid--row-gap-* rules in utilities.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    ;['sm', 'md', 'lg'].forEach((gap) => {
+      expect(css).toContain(`.sp-grid--column-gap-${gap}`)
+      expect(css).toContain(`.sp-grid--row-gap-${gap}`)
+    })
+  })
+
+  it('returns a base row span class', () => {
+    expect(getGridClasses({ rowSpan: 2 })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1 sp-row-span-2'
+    )
+  })
+
+  it('returns per-breakpoint row span classes', () => {
+    expect(
+      getGridClasses({ rowSpan: { base: 1, md: 2, lg: 3 } })
+    ).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1 sp-row-span-1 sp-md-row-span-2 sp-lg-row-span-3'
+    )
+  })
+
+  it('returns a base row offset class and omits it when 0', () => {
+    expect(getGridClasses({ rowOffset: 3 })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1 sp-row-offset-3'
+    )
+    expect(getGridClasses({ rowOffset: 0 })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1'
+    )
+  })
+
+  it('returns per-breakpoint row offset classes', () => {
+    expect(
+      getGridClasses({ rowOffset: { base: 0, md: 1, lg: 2 } })
+    ).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1 sp-md-row-offset-1 sp-lg-row-offset-2'
+    )
+  })
+
+  it('ships sp-row-span-*, sp-row-offset-*, and responsive sp-{bp}-row-* rules in utilities.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    ;[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 'full'].forEach((span) => {
+      expect(css).toContain(`.sp-row-span-${span}`)
+      expect(css).toContain(`.sp-md-row-span-${span}`)
+      expect(css).toContain(`.sp-lg-row-span-${span}`)
+    })
+    ;[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].forEach((offset) => {
+      expect(css).toContain(`.sp-row-offset-${offset}`)
+      expect(css).toContain(`.sp-md-row-offset-${offset}`)
+      expect(css).toContain(`.sp-lg-row-offset-${offset}`)
+    })
+  })
 })
 
 describe('getSidebarClasses', () => {

@@ -185,6 +185,7 @@ export {
   type GridOffset,
   type GridOffsetOptions,
   type GridLeadingWeight,
+  type GridLeadingWeightOptions,
   type GridFixedTrackCount,
   type GridLeadingTracksOptions,
   type GridFixedTracksOptions,
