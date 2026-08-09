@@ -260,7 +260,7 @@ All options are optional and fall back to sensible defaults.
 | Container   | `getContainerClasses`   | maxWidth: `prose`                                                                                              | —                   | —                                                                       |
 | Stack       | `getStackClasses`       | direction: `vertical` `horizontal`, basis: `sidebar`, align: `center` `stretch`                                | —                   | —                                                                       |
 | Section     | `getSectionClasses`     | —                                                                                                              | —                   | —                                                                       |
-| Grid        | `getGridClasses`        | columns: `1` `2` `3` `4` `6` `12`                                                                              | gap/columnGap/rowGap: `sm` `md` `lg` | `span`/`offset`/`rowSpan`/`rowOffset`: `1`–`12`/`0`–`11`, per-breakpoint `{ base, md, lg }` |
+| Grid        | `getGridClasses`        | columns: `1` `2` `3` `4` `6` `12` `auto`                                                                       | gap/columnGap/rowGap: `sm` `md` `lg` | `span`/`offset`/`rowSpan`/`rowOffset`/`order`: `1`–`12`/`0`–`11`/`first`\|`last`\|`none`\|`1`–`12`, per-breakpoint `{ base, md, lg }` |
 | Sidebar     | `getSidebarClasses`     | —                                                                                                              | —                   | `bordered`                                                              |
 | Footer      | `getFooterClasses`      | —                                                                                                              | —                   | `bordered` `fullWidth`                                                  |
 | Checkbox    | `getCheckboxClasses`    | —                                                                                                              | —                   | `checked` `disabled`                                                    |
@@ -293,6 +293,14 @@ no explicit row-track template required, since these apply against CSS
 Grid's auto-generated implicit rows. Independent `columnGap`/`rowGap`
 options override the combined `gap` on a single axis when a layout needs
 tighter rows than columns (or vice versa).
+
+`columns: 'auto'` (`sp-grid-cols-auto`) distributes any number of children
+evenly across a single row with no explicit column count — matching
+Bootstrap's bare `.col` / `row-cols-auto` — via
+`grid-template-columns: repeat(auto-fit, minmax(0, 1fr))`. `order`/`order:
+{ base, md, lg }` (`sp-order-*`, responsive `sp-{bp}-order-*`) reorders a
+grid item independent of source order, accepting `first`, `last`, `none`,
+or `1`–`12`.
 
 Dropdown also accepts a `mega` flag (`getDropdownClasses({ mega: true })`
 paired with `getDropdownMenuClasses({ mega: true })`) for mega-menu panels:

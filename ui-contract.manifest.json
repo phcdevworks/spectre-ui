@@ -199,7 +199,7 @@
     },
     "grid": {
       "fn": "getGridClasses",
-      "columns": [1, 2, 3, 4, 6, 12],
+      "columns": [1, 2, 3, 4, 6, 12, "auto"],
       "gaps": ["sm", "md", "lg"],
       "columnGaps": ["sm", "md", "lg"],
       "rowGaps": ["sm", "md", "lg"],
@@ -211,6 +211,8 @@
       "rowSpanBreakpoints": ["base", "md", "lg"],
       "rowOffsets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       "rowOffsetBreakpoints": ["base", "md", "lg"],
+      "orders": ["first", "last", "none", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "orderBreakpoints": ["base", "md", "lg"],
       "fixedTrackCounts": [1, 2, 3, 4],
       "leadingTrackWeights": [1.5, 1.6, 2, 2.5, 3],
       "leadingTrackWeightBreakpoints": ["base", "md", "lg"]

@@ -111,6 +111,20 @@ describe('getGridClasses', () => {
     expect(getGridClasses()).toBe('sp-grid sp-grid--gap-md sp-grid-cols-1')
   })
 
+  it('returns the auto equal-width column class', () => {
+    expect(getGridClasses({ columns: 'auto' })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-auto'
+    )
+  })
+
+  it('ships .sp-grid-cols-auto in utilities.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+
+    expect(css).toContain('.sp-grid-cols-auto {')
+    expect(css).toContain('grid-template-columns: repeat(auto-fit, minmax(0, 1fr));')
+  })
+
   it('returns the requested column count class', () => {
     expect(getGridClasses({ columns: 3 })).toBe(
       'sp-grid sp-grid--gap-md sp-grid-cols-3'
@@ -331,6 +345,39 @@ describe('getGridClasses', () => {
       expect(css).toContain(`.sp-row-offset-${offset}`)
       expect(css).toContain(`.sp-md-row-offset-${offset}`)
       expect(css).toContain(`.sp-lg-row-offset-${offset}`)
+    })
+  })
+
+  it('returns a base order class', () => {
+    expect(getGridClasses({ order: 'first' })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1 sp-order-first'
+    )
+    expect(getGridClasses({ order: 3 })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1 sp-order-3'
+    )
+  })
+
+  it('omits the order class when order is none', () => {
+    expect(getGridClasses({ order: 'none' })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1'
+    )
+  })
+
+  it('returns per-breakpoint order classes', () => {
+    expect(
+      getGridClasses({ order: { base: 'last', md: 2, lg: 'first' } })
+    ).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1 sp-order-last sp-md-order-2 sp-lg-order-first'
+    )
+  })
+
+  it('ships sp-order-*, responsive sp-{bp}-order-*, first/last/none rules in utilities.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    ;['first', 'last', 'none', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].forEach((order) => {
+      expect(css).toContain(`.sp-order-${order}`)
+      expect(css).toContain(`.sp-md-order-${order}`)
+      expect(css).toContain(`.sp-lg-order-${order}`)
     })
   })
 })

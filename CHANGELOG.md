@@ -10,6 +10,14 @@ Contract change type: semantic change
 
 ### Added
 
+- Added `columns: 'auto'` (`sp-grid-cols-auto`) to `getGridClasses`:
+  distributes any number of children evenly across a single row with no
+  explicit column count, via `grid-template-columns: repeat(auto-fit,
+  minmax(0, 1fr))` — matching Bootstrap's bare `.col` / `row-cols-auto`.
+  Added `order`/`order: { base, md, lg }` (`sp-order-*`, responsive
+  `sp-{bp}-order-*`, accepting `first`/`last`/`none`/`1`-`12`) to reorder a
+  grid item independent of source order, matching Bootstrap's and
+  Tailwind's `order` utilities.
 - Expanded `getGridClasses` with row placement and per-axis gap control:
   `rowSpan`/`rowOffset` (same shape as `span`/`offset` — a single value or a
   per-breakpoint `{ base, md, lg }` object) emit `sp-row-span-*` /

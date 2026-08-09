@@ -189,6 +189,8 @@ export {
   type GridFixedTrackCount,
   type GridLeadingTracksOptions,
   type GridFixedTracksOptions,
+  type GridOrder,
+  type GridOrderOptions,
 } from './grid'
 
 export { getCheckboxClasses, type CheckboxRecipeOptions } from './checkbox'

@@ -92,6 +92,14 @@
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 
+  /* equal-width auto-layout columns: every direct child shares the row
+     evenly with no explicit column count, matching Bootstrap's bare .col /
+     row-cols-auto. minmax(0, 1fr) has no minimum width, so auto-fit never
+     wraps — it always keeps all children on one row. */
+  .sp-grid-cols-auto {
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  }
+
   /* min-width values match the published --sp-breakpoint-md / --sp-breakpoint-lg
      token values; CSS does not allow var() inside @media feature queries. */
   @media (min-width: 768px) {
@@ -732,6 +740,192 @@
 
     .sp-lg-row-offset-11 {
       grid-row-start: 12;
+    }
+  }
+
+  .sp-order-first {
+    order: -9999;
+  }
+
+  .sp-order-last {
+    order: 9999;
+  }
+
+  .sp-order-none {
+    order: 0;
+  }
+
+  .sp-order-1 {
+    order: 1;
+  }
+
+  .sp-order-2 {
+    order: 2;
+  }
+
+  .sp-order-3 {
+    order: 3;
+  }
+
+  .sp-order-4 {
+    order: 4;
+  }
+
+  .sp-order-5 {
+    order: 5;
+  }
+
+  .sp-order-6 {
+    order: 6;
+  }
+
+  .sp-order-7 {
+    order: 7;
+  }
+
+  .sp-order-8 {
+    order: 8;
+  }
+
+  .sp-order-9 {
+    order: 9;
+  }
+
+  .sp-order-10 {
+    order: 10;
+  }
+
+  .sp-order-11 {
+    order: 11;
+  }
+
+  .sp-order-12 {
+    order: 12;
+  }
+
+  /* min-width values match the published --sp-breakpoint-md / --sp-breakpoint-lg
+     token values; CSS does not allow var() inside @media feature queries. */
+  @media (min-width: 768px) {
+    .sp-md-order-first {
+      order: -9999;
+    }
+
+    .sp-md-order-last {
+      order: 9999;
+    }
+
+    .sp-md-order-none {
+      order: 0;
+    }
+
+    .sp-md-order-1 {
+      order: 1;
+    }
+
+    .sp-md-order-2 {
+      order: 2;
+    }
+
+    .sp-md-order-3 {
+      order: 3;
+    }
+
+    .sp-md-order-4 {
+      order: 4;
+    }
+
+    .sp-md-order-5 {
+      order: 5;
+    }
+
+    .sp-md-order-6 {
+      order: 6;
+    }
+
+    .sp-md-order-7 {
+      order: 7;
+    }
+
+    .sp-md-order-8 {
+      order: 8;
+    }
+
+    .sp-md-order-9 {
+      order: 9;
+    }
+
+    .sp-md-order-10 {
+      order: 10;
+    }
+
+    .sp-md-order-11 {
+      order: 11;
+    }
+
+    .sp-md-order-12 {
+      order: 12;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .sp-lg-order-first {
+      order: -9999;
+    }
+
+    .sp-lg-order-last {
+      order: 9999;
+    }
+
+    .sp-lg-order-none {
+      order: 0;
+    }
+
+    .sp-lg-order-1 {
+      order: 1;
+    }
+
+    .sp-lg-order-2 {
+      order: 2;
+    }
+
+    .sp-lg-order-3 {
+      order: 3;
+    }
+
+    .sp-lg-order-4 {
+      order: 4;
+    }
+
+    .sp-lg-order-5 {
+      order: 5;
+    }
+
+    .sp-lg-order-6 {
+      order: 6;
+    }
+
+    .sp-lg-order-7 {
+      order: 7;
+    }
+
+    .sp-lg-order-8 {
+      order: 8;
+    }
+
+    .sp-lg-order-9 {
+      order: 9;
+    }
+
+    .sp-lg-order-10 {
+      order: 10;
+    }
+
+    .sp-lg-order-11 {
+      order: 11;
+    }
+
+    .sp-lg-order-12 {
+      order: 12;
     }
   }
 

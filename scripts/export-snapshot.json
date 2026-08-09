@@ -99,6 +99,8 @@
   "GridLeadingWeightOptions",
   "GridOffset",
   "GridOffsetOptions",
+  "GridOrder",
+  "GridOrderOptions",
   "GridRecipeOptions",
   "GridSpan",
   "GridSpanOptions",

@@ -8,6 +8,7 @@ const GRID_COLUMNS = {
   '4': true,
   '6': true,
   '12': true,
+  auto: true,
 } as const
 
 const GRID_GAPS = {
@@ -62,12 +63,46 @@ const GRID_FIXED_TRACK_COUNTS = {
   '4': true,
 } as const
 
-export type GridColumns = 1 | 2 | 3 | 4 | 6 | 12
+const GRID_ORDERS = {
+  first: true,
+  last: true,
+  none: true,
+  '1': true,
+  '2': true,
+  '3': true,
+  '4': true,
+  '5': true,
+  '6': true,
+  '7': true,
+  '8': true,
+  '9': true,
+  '10': true,
+  '11': true,
+  '12': true,
+} as const
+
+export type GridColumns = 1 | 2 | 3 | 4 | 6 | 12 | 'auto'
 export type GridGap = keyof typeof GRID_GAPS
 export type GridSpan = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 'full'
 export type GridOffset = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11
 export type GridLeadingWeight = 1.5 | 1.6 | 2 | 2.5 | 3
 export type GridFixedTrackCount = 1 | 2 | 3 | 4
+export type GridOrder =
+  | 'first'
+  | 'last'
+  | 'none'
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
 
 export interface GridSpanOptions {
   base?: GridSpan
@@ -79,6 +114,12 @@ export interface GridOffsetOptions {
   base?: GridOffset
   md?: GridOffset
   lg?: GridOffset
+}
+
+export interface GridOrderOptions {
+  base?: GridOrder
+  md?: GridOrder
+  lg?: GridOrder
 }
 
 export interface GridLeadingWeightOptions {
@@ -118,6 +159,7 @@ export interface GridRecipeOptions {
   offset?: GridOffset | GridOffsetOptions
   rowSpan?: GridSpan | GridSpanOptions
   rowOffset?: GridOffset | GridOffsetOptions
+  order?: GridOrder | GridOrderOptions
   leadingTracks?: GridLeadingTracksOptions
   fixedTracks?: GridFixedTracksOptions
 }
@@ -159,6 +201,16 @@ function resolveLeadingWeight(
   })
 }
 
+function resolveOrder(value: GridOrder | undefined, name: string): string | undefined {
+  if (value === undefined) return undefined
+  return resolveOption({
+    name,
+    value: String(value),
+    allowed: GRID_ORDERS,
+    fallback: 'none',
+  })
+}
+
 function resolveFixedTrackCount(
   value: GridFixedTrackCount | undefined
 ): string | undefined {
@@ -181,6 +233,7 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
     offset: offsetInput,
     rowSpan: rowSpanInput,
     rowOffset: rowOffsetInput,
+    order: orderInput,
     leadingTracks,
     fixedTracks,
   } = opts
@@ -277,6 +330,21 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
     'grid row offset (lg)'
   )
 
+  const isOrderOptions = typeof orderInput === 'object'
+
+  const baseOrder = resolveOrder(
+    isOrderOptions ? orderInput.base : orderInput,
+    'grid order'
+  )
+  const mdOrder = resolveOrder(
+    isOrderOptions ? orderInput.md : undefined,
+    'grid order (md)'
+  )
+  const lgOrder = resolveOrder(
+    isOrderOptions ? orderInput.lg : undefined,
+    'grid order (lg)'
+  )
+
   const isLeadingWeightOptions = typeof leadingTracks?.weight === 'object'
 
   const lgLeadingWeight = resolveLeadingWeight(
@@ -321,6 +389,9 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
     lgRowSpan && `sp-lg-row-span-${lgRowSpan}`,
     baseRowOffset && baseRowOffset !== '0' && `sp-row-offset-${baseRowOffset}`,
     mdRowOffset && mdRowOffset !== '0' && `sp-md-row-offset-${mdRowOffset}`,
-    lgRowOffset && lgRowOffset !== '0' && `sp-lg-row-offset-${lgRowOffset}`
+    lgRowOffset && lgRowOffset !== '0' && `sp-lg-row-offset-${lgRowOffset}`,
+    baseOrder && baseOrder !== 'none' && `sp-order-${baseOrder}`,
+    mdOrder && mdOrder !== 'none' && `sp-md-order-${mdOrder}`,
+    lgOrder && lgOrder !== 'none' && `sp-lg-order-${lgOrder}`
   )
 }
