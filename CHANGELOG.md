@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [4.0.0] - 2026-08-09
+
+**Release Title:** Grid Layout and Footer Semantics
+
 Contract change type: semantic change
 
 ### Added
