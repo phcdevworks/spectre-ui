@@ -28,10 +28,10 @@ file does not restate delivered work.
 | 6     | Contract guidance consistency; cross-package consumer validation                                                                                            | continuous                        |
 | 7     | First-party generated utility-class engine (`sp-*` spacing/palette/radius/shadow/opacity/z-index, `md`/`lg` responsive variants); Tailwind export removal   | 3.0.0 (P2), 3.1.0 (P0/P1)         |
 | 8     | Production-driven layout utility expansion (display/flex/alignment/position/sizing/overflow/auto margins), responsive variants, deterministic cascade layers | 3.3.0                              |
-| 4c v2 | Grid column span, offset, and custom track sizing (`fixedTracks`/`leadingTracks`); fixed track width sized from `--sp-space-240` | 3.2.0–3.4.0, [Unreleased] |
-| —     | Dropdown `mega` flag — container-anchored, multi-column panel composition                                                                                   | [Unreleased]                       |
-| —     | Button `compact` flag — invisible hit-area padding preserving `--sp-min-touch-target` | [Unreleased]                       |
-| 9     | Footer semantic alignment — independent `--sp-footer-*` token contract, Footer anatomy recipes                                                              | [Unreleased]                       |
+| 4c v2 | Grid column span, offset, and custom track sizing (`fixedTracks`/`leadingTracks`); fixed track width sized from `--sp-space-240` | 3.2.0–4.0.0 |
+| —     | Dropdown `mega` flag — container-anchored, multi-column panel composition                                                                                   | 4.0.0                               |
+| —     | Button `compact` flag — invisible hit-area padding preserving `--sp-min-touch-target` | 4.0.0                               |
+| 9     | Footer semantic alignment — independent `--sp-footer-*` token contract, Footer anatomy recipes                                                              | 4.0.0                               |
 
 Deferred-not-abandoned sub-scope from delivered phases (see "What's Next"
 below): Phase 4f (Icon/AspectRatio recipes).
