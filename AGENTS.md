@@ -13,36 +13,51 @@
 
 | Agent          | Role                                                              | Authority                |
 | -------------- | ----------------------------------------------------------------- | ------------------------ |
-| Claude Code    | Lead implementation and validation                                | [CLAUDE.md](CLAUDE.md)   |
+| Claude Code    | Lead implementation and validation; **no git access**             | [CLAUDE.md](CLAUDE.md)   |
 | OpenAI Codex   | Documentation, release readiness, stabilization, and repo hygiene | [CODEX.md](CODEX.md)     |
 | ChatGPT        | Strategy, coordination, prompt design, and external review        | Support only             |
 | GitHub Copilot | Development assistance                                            | [COPILOT.md](COPILOT.md) |
 | Google Jules   | Bounded automated maintenance                                     | [JULES.md](JULES.md)     |
 
-**All AI agents in this roster** — Claude Code, OpenAI Codex, GitHub Copilot,
-and Google Jules — have full commit, push, and tag authority in this repository,
-effective 2026-07-25 by explicit direction from Bradley Potts — see the Commit
-Policy section in each agent's own guide ([CLAUDE.md](CLAUDE.md),
-[CODEX.md](CODEX.md), [COPILOT.md](COPILOT.md), [JULES.md](JULES.md)). **OpenAI
-Codex** additionally has release authority: Codex cuts releases autonomously —
-version bump, changelog versioning, `v<version>` git tag, and GitHub Release
-publish via `gh` — for every release-ready `CHANGELOG.md [Unreleased]` section,
-without waiting for per-release approval; see `CODEX.md` "Release Mechanics" for
-the full procedure. **npm publishing remains Bradley Potts's sole authority** —
-no agent runs `npm publish`. Bradley Potts retains ultimate ownership and can
-revoke or narrow any of this at any time. This grant covers git and release
-operations within each agent's own scope of work as defined above — it does not
-expand what any agent is authorized to decide otherwise. ChatGPT has no
-repository access and is excluded.
+**Claude Code has zero git access in this repository, effective 2026-08-13 by
+explicit direction from Bradley Potts.** Claude Code must not run any git
+command — not `git commit`, `git push`, `git tag`, nor any read-only command
+such as `git status`, `git diff`, or `git log`. This revokes and replaces the
+commit/push/tag grant Claude Code previously held here; see
+[CLAUDE.md](CLAUDE.md) "Git Access — Denied." Claude Code's authority to edit
+files, implement, and validate is unchanged — only git execution moves off
+Claude Code.
 
-**A commit is not finished until it is pushed.** Every agent in this roster
-must push immediately after committing (`git push`, including any needed
-`-u`/tags) as part of the same action — never leave a commit sitting local
-only. This closes a recurring gap where an agent commits and stops short of
-pushing, leaving work stranded on the machine.
+**OpenAI Codex, GitHub Copilot, and Google Jules retain full commit, push,
+and tag authority** in this repository, effective 2026-07-25 by explicit
+direction from Bradley Potts — see the Commit Policy section in each agent's
+own guide ([CODEX.md](CODEX.md), [COPILOT.md](COPILOT.md),
+[JULES.md](JULES.md)). **OpenAI Codex** additionally has release authority:
+Codex cuts releases autonomously — version bump, changelog versioning,
+`v<version>` git tag, and GitHub Release publish via `gh` — for every
+release-ready `CHANGELOG.md [Unreleased]` section, without waiting for
+per-release approval; see `CODEX.md` "Release Mechanics" for the full
+procedure. **OpenAI Codex additionally executes git operations on Claude
+Code's behalf**: when Claude Code hands off validated work, Codex is
+responsible for staging, committing, tagging, and pushing it, not only
+Codex's own documentation/hygiene/release commits. **npm publishing remains
+Bradley Potts's sole authority** — no agent runs `npm publish`. Bradley
+Potts retains ultimate ownership and can revoke or narrow any of this at any
+time. This grant covers git and release operations within each agent's own
+scope of work as defined above — it does not expand what any agent is
+authorized to decide otherwise. ChatGPT has no repository access and is
+excluded.
 
-**Commit authorship is human-only.** No agent adds itself (or any other AI)
-as a commit author or co-author — no `Co-Authored-By: Claude`/`Codex`/
+**A commit is not finished until it is pushed.** Every agent that still holds
+git authority under this roster — Codex, Copilot, Jules — must push
+immediately after committing (`git push`, including any needed `-u`/tags) as
+part of the same action — never leave a commit sitting local only. This
+closes a recurring gap where an agent commits and stops short of pushing,
+leaving work stranded on the machine.
+
+**Commit authorship is human-only.** No agent with git authority under this
+roster — Codex, Copilot, or Jules — adds itself (or any other AI) as a
+commit author or co-author — no `Co-Authored-By: Claude`/`Codex`/
 `Copilot`/`Jules` trailer, no author-field changes, in this repository. The
 git author/committer stays Bradley Potts (or the configured human git user)
 on every commit, regardless of which agent performed the work. Push and tag

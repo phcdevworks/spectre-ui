@@ -16,6 +16,12 @@ Codex has commit, push, and tag authority for its own scope of work
 changes, then stage, commit, and push. Codex does not publish or make
 release-cutting decisions unless Bradley explicitly requests that action.
 
+Codex is also responsible for executing git operations on Claude Code's
+behalf in this repo, now that Claude Code has zero git access: when Claude
+Code hands off validated work, Codex — not Claude Code — stages, commits,
+tags, and pushes it, in addition to Codex's own documentation and hygiene
+commits.
+
 ## Entry Point
 
 At the start of every Codex session:
