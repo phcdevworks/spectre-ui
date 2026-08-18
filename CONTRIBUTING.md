@@ -150,18 +150,19 @@ leading or trailing whitespace.
 `ui-contract.manifest.json` is the single source of truth for the public styling
 surface. Each area of the contract has a dedicated enforcer:
 
-| Contract area                                      | Enforced by                                                    |
-| -------------------------------------------------- | -------------------------------------------------------------- |
-| Root export surface                                | `scripts/validate-exports.ts` + `scripts/export-snapshot.json` |
-| CSS entrypoints (presence + manifest parity)       | `scripts/validate-css-contract.ts`                             |
-| CSS entrypoint isolation (no cross-bundle leakage) | `tests/css-entrypoints.test.ts`                                |
-| CSS ↔ recipe class parity                          | `tests/css-contract.test.ts`                                   |
-| Recipe family parity (manifest → live output)      | `tests/recipe-parity.test.ts`                                  |
-| Token drift (CSS vars backed by published tokens)  | `tests/token-drift.test.ts` + `scripts/validate-tokens.ts`     |
-| Zero-hex enforcement                               | `tests/aesthetic-audit.test.ts`                                |
-| Built-package smoke (dist artifacts + import)      | `tests/package-smoke.test.ts`                                  |
-| README contract parity                             | `scripts/validate-readme-contract.ts`                          |
-| Node.js runtime version                            | `scripts/validate-runtime.ts`                                  |
+| Contract area                                        | Enforced by                                                    |
+| ---------------------------------------------------- | -------------------------------------------------------------- |
+| Root export surface                                  | `scripts/validate-exports.ts` + `scripts/export-snapshot.json` |
+| CSS entrypoints (presence + manifest parity)         | `scripts/validate-css-contract.ts`                             |
+| CSS entrypoint isolation (no cross-bundle leakage)   | `tests/css-entrypoints.test.ts`                                |
+| CSS ↔ recipe class parity                            | `tests/css-contract.test.ts`                                   |
+| Recipe family parity (manifest → live output)        | `tests/recipe-parity.test.ts`                                  |
+| Token drift (CSS vars backed by published tokens)    | `tests/token-drift.test.ts` + `scripts/validate-tokens.ts`     |
+| Zero-hex enforcement (asserted component roles)      | `tests/aesthetic-audit.test.ts`                                |
+| Zero-hex/px/rem enforcement (all source stylesheets) | `scripts/validate-token-usage.ts`                              |
+| Built-package smoke (dist artifacts + import)        | `tests/package-smoke.test.ts`                                  |
+| README contract parity                               | `scripts/validate-readme-contract.ts`                          |
+| Node.js runtime version                              | `scripts/validate-runtime.ts`                                  |
 
 All of the above run in order via `npm run ci:verify`. If you add a new public
 surface, add a corresponding row here and a corresponding enforcer before

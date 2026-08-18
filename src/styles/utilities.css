@@ -1359,6 +1359,34 @@
     box-shadow: var(--sp-shadow-lg);
   }
 
+  .sp-transition {
+    transition-property: color, background-color, border-color, box-shadow, opacity, transform;
+    transition-duration: var(--sp-duration-fast);
+    transition-timing-function: var(--sp-easing-out);
+  }
+
+  .sp-transition-colors {
+    transition-property: color, background-color, border-color;
+    transition-duration: var(--sp-duration-fast);
+    transition-timing-function: var(--sp-easing-out);
+  }
+
+  .sp-transition-opacity {
+    transition-property: opacity;
+    transition-duration: var(--sp-duration-fast);
+    transition-timing-function: var(--sp-easing-out);
+  }
+
+  .sp-transition-transform {
+    transition-property: transform;
+    transition-duration: var(--sp-duration-fast);
+    transition-timing-function: var(--sp-easing-out);
+  }
+
+  .sp-transition-none {
+    transition: none;
+  }
+
   .sp-animate-fade-in {
     animation: var(--sp-animation-fadein-keyframes) var(--sp-animation-fadein-duration) var(--sp-animation-fadein-easing);
   }

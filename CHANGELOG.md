@@ -6,6 +6,83 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: semantic change
+
+### Added
+
+- Added a general `ul, ol { margin: 0; padding: 0; list-style: none; }` reset
+  to `base.css`. Previously only one component in `components.css` scoped
+  `list-style: none` to itself; any consumer using a bare `<ul>`/`<ol>` for
+  general content got default browser bullets/indentation with no documented
+  opt-out. This is a visible behavior change for any consumer currently
+  relying on default browser list styling for a bare `<ul>`/`<ol>` — bullets
+  and indentation now need to be opted back in explicitly. Confirmed
+  downstream need from a production consumer (see `TODO.md`).
+- Added `sp-content-*` (`align-content`) utilities matching the existing
+  `sp-justify-*`/`sp-items-*` value set (`start`/`end`/`center`/`between`/
+  `around`/`evenly`/`stretch`), for multi-line wrapped flex rows. Added a
+  `sp-basis-{step}` flex-basis scale tied to `--sp-space-*`, following the
+  same generation pattern as `sp-gap-*`. Both ship with the existing `md`/`lg`
+  responsive variants automatically. `sp-order-*` (`first`/`last`/`none`/
+  `1`-`12`, also with `md`/`lg` variants) already existed in
+  `src/styles/utilities.css` from the Grid v2 work and needed no change — it
+  applies to flex items the same as grid items. Responsive coverage beyond
+  `md`/`lg` remains a separate, deferred decision. See `TODO.md`.
+- Added standalone `sp-font-{weight}` utilities to the generated utility
+  engine, independent of `getTextClasses`'s `size` preset (which still
+  bundles size/line-height/weight/letter-spacing as one fixed step; utilities
+  layer precedence already lets `sp-font-*` override the weight from any
+  `SpText`/`getTextClasses` size). One class per distinct weight value already
+  published across `--sp-font-{step}-weight` and `--sp-heading-h{n}-weight`
+  tokens (currently `400`/`500`/`600`/`700`/`800`/`900`) — no new weight
+  values invented locally. Confirmed downstream need from
+  a production consumer (see `TODO.md`). Standalone letter-spacing/tracking
+  utilities remain blocked: `spectre-tokens` has no dedicated tracking scale
+  to derive from (only `0em`/`0.02em` bundled per size step), so adding
+  `sp-tracking-*` here would mean inventing brand-specific tracking values
+  locally, which this package does not do — filed as a token-gap ask instead
+  of implemented.
+- Added `scripts/validate-token-usage.ts` (wired into `ci:verify` as
+  `validate:token-usage`), a blanket lint over every file in `src/styles/`
+  that fails the build on any raw hex color or bare `px`/`rem` length outside
+  a `var(--sp-*)` reference — closing the gap where the token/utility-only
+  rule had no enforcement beyond a fixed set of asserted component roles in
+  `tests/aesthetic-audit.test.ts`. Media-query breakpoints (`@media
+  (min-width: ...)`) are exempted since the token scale has no way to express
+  a value there. See `CONTRIBUTING.md` Contract Coverage Map and `TODO.md`.
+- Added `sp-object-{contain,cover,fill,none,scale-down}` (`object-fit`) and a
+  token-driven `sp-aspect-{ratio}` family (one class per published
+  `--sp-aspect-ratio-*` step, plus a static `sp-aspect-auto`) to the generated
+  utility engine, so full-bleed media crops no longer need hand-rolled
+  `object-fit`/`aspect-ratio` declarations downstream. Added
+  `sp-border`/`sp-border-{t,r,b,l}` (width from `--sp-component-border-width`,
+  color from `--sp-surface-divider`, matching the existing standalone
+  `sp-divider` rule's token pair) and `sp-border-none`, giving a reusable
+  divider border for content that isn't a full-width `<hr>` — the previous
+  `sp-divider` utility unconditionally clears the other three sides via
+  `border: none` first, so it can't be used as a top/bottom rule on a box that
+  needs its other borders left alone. Added `sp-transition` (color,
+  background-color, border-color, box-shadow, opacity, transform) plus the
+  narrower `sp-transition-colors`/`sp-transition-opacity`/
+  `sp-transition-transform`/`sp-transition-none`, all on the same
+  `--sp-duration-fast`/`--sp-easing-out` pair `sp-link`'s hover transition
+  already uses, so a hover/motion effect no longer has to restate that pair
+  locally. None of the four families take a stance on
+  `prefers-reduced-motion` — same as `sp-link` and `sp-animate-*` today —
+  consumers still opt out explicitly. Confirmed downstream need from a
+  production consumer's hand-rolled theme CSS (see `TODO.md`).
+
+### Fixed
+
+- Scoped the `@phcdevworks/spectre-tokens` import into a `tokens` cascade
+  layer (declared before `base`/`components`/`utilities`) in all four
+  exported CSS bundles. Previously the tokens import — including the
+  package's own `:root[data-spectre-theme="dark"]` overrides — compiled
+  unlayered, so it always won over any layered override a consumer declared,
+  even a correctly scoped one, silently defeating dark-theme customization
+  without `!important`. Confirmed via computed-style inspection in
+  a production consumer (see `TODO.md`).
+
 ## [4.0.0] - 2026-08-09
 
 **Release Title:** Grid Layout and Footer Semantics
@@ -450,7 +527,8 @@ Contract change type: additive
   needed decision in `TODO.md`).
 
 This is Phase 4d in `TODO.md` - real downstream need surfaced in
-`docs-phcdevworks-com`'s app shell (top bar + sidebar + main content).
+a downstream documentation consumer's app shell (top bar + sidebar + main
+content).
 
 ## [2.2.0] - 2026-06-18
 

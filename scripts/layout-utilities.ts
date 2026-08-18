@@ -43,6 +43,13 @@ export const LAYOUT_UTILITIES: UtilityDefinition[] = [
   { className: 'items-center', declarations: ['align-items: center;'] },
   { className: 'items-baseline', declarations: ['align-items: baseline;'] },
   { className: 'items-stretch', declarations: ['align-items: stretch;'] },
+  { className: 'content-start', declarations: ['align-content: flex-start;'] },
+  { className: 'content-end', declarations: ['align-content: flex-end;'] },
+  { className: 'content-center', declarations: ['align-content: center;'] },
+  { className: 'content-between', declarations: ['align-content: space-between;'] },
+  { className: 'content-around', declarations: ['align-content: space-around;'] },
+  { className: 'content-evenly', declarations: ['align-content: space-evenly;'] },
+  { className: 'content-stretch', declarations: ['align-content: stretch;'] },
   { className: 'self-auto', declarations: ['align-self: auto;'] },
   { className: 'self-start', declarations: ['align-self: flex-start;'] },
   { className: 'self-end', declarations: ['align-self: flex-end;'] },
@@ -97,6 +104,53 @@ export const LAYOUT_UTILITIES: UtilityDefinition[] = [
   { className: 'text-left', declarations: ['text-align: left;'] },
   { className: 'text-center', declarations: ['text-align: center;'] },
   { className: 'text-right', declarations: ['text-align: right;'] },
+  { className: 'object-contain', declarations: ['object-fit: contain;'] },
+  { className: 'object-cover', declarations: ['object-fit: cover;'] },
+  { className: 'object-fill', declarations: ['object-fit: fill;'] },
+  { className: 'object-none', declarations: ['object-fit: none;'] },
+  { className: 'object-scale-down', declarations: ['object-fit: scale-down;'] },
+  { className: 'aspect-auto', declarations: ['aspect-ratio: auto;'] },
+  {
+    className: 'border',
+    declarations: [
+      'border-width: var(--sp-component-border-width);',
+      'border-style: solid;',
+      'border-color: var(--sp-surface-divider);',
+    ],
+  },
+  {
+    className: 'border-t',
+    declarations: [
+      'border-top-width: var(--sp-component-border-width);',
+      'border-top-style: solid;',
+      'border-top-color: var(--sp-surface-divider);',
+    ],
+  },
+  {
+    className: 'border-r',
+    declarations: [
+      'border-right-width: var(--sp-component-border-width);',
+      'border-right-style: solid;',
+      'border-right-color: var(--sp-surface-divider);',
+    ],
+  },
+  {
+    className: 'border-b',
+    declarations: [
+      'border-bottom-width: var(--sp-component-border-width);',
+      'border-bottom-style: solid;',
+      'border-bottom-color: var(--sp-surface-divider);',
+    ],
+  },
+  {
+    className: 'border-l',
+    declarations: [
+      'border-left-width: var(--sp-component-border-width);',
+      'border-left-style: solid;',
+      'border-left-color: var(--sp-surface-divider);',
+    ],
+  },
+  { className: 'border-none', declarations: ['border: none;'] },
 ];
 
 export const AUTO_MARGIN_UTILITIES: UtilityDefinition[] = [

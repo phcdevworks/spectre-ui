@@ -19,17 +19,17 @@ const processor = postcss([
 const entries: Record<string, string> = {
   'index.css': '@import "./src/styles/index.css";\n',
   'base.css': [
-    '@import "@phcdevworks/spectre-tokens/index.css";',
+    '@import "@phcdevworks/spectre-tokens/index.css" layer(tokens);',
     '@import "./src/styles/base.css";',
     '',
   ].join('\n'),
   'components.css': [
-    '@import "@phcdevworks/spectre-tokens/index.css";',
+    '@import "@phcdevworks/spectre-tokens/index.css" layer(tokens);',
     '@import "./src/styles/components.css";',
     '',
   ].join('\n'),
   'utilities.css': [
-    '@import "@phcdevworks/spectre-tokens/index.css";',
+    '@import "@phcdevworks/spectre-tokens/index.css" layer(tokens);',
     '@import "./src/styles/utilities.css";',
     '',
   ].join('\n'),

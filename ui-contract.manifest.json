@@ -16,8 +16,12 @@
         "responsiveBreakpoints": ["md", "lg"]
       },
       "layout": {
-        "axes": ["display", "flexDirection", "flexWrap", "flexSizing", "justifyContent", "alignItems", "alignSelf", "position", "inset", "width", "height", "overflow", "whiteSpace", "textAlign", "autoMargin"],
+        "axes": ["display", "flexDirection", "flexWrap", "flexSizing", "justifyContent", "alignItems", "alignSelf", "position", "inset", "width", "height", "overflow", "whiteSpace", "textAlign", "objectFit", "border", "autoMargin"],
         "responsiveBreakpoints": ["md", "lg"]
+      },
+      "aspectRatio": {
+        "axes": ["aspect"],
+        "tokenGroup": "--sp-aspect-ratio-*"
       },
       "palette": {
         "axes": ["text", "bg", "border"],

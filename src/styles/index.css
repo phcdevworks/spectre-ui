@@ -1,8 +1,10 @@
 /* Spectre UI canonical bundle:
-   - Tokens first (defines --sp-* vars)
+   - Tokens first (defines --sp-* vars), scoped to the `tokens` cascade
+     layer so a consumer's own layered override always wins over the
+     package's default (including dark-theme) values.
    - Then UI base, components, utilities
 */
-@import "@phcdevworks/spectre-tokens/index.css";
+@import "@phcdevworks/spectre-tokens/index.css" layer(tokens);
 @import "./base.css";
 @import "./components.css";
 @import "./utilities.css";

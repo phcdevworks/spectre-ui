@@ -237,80 +237,80 @@ not define tokens and it does not deliver framework components.
 All recipe functions accept a plain options object and return a class string.
 All options are optional and fall back to sensible defaults.
 
-| Recipe      | Function                | Variants                                                                                                       | Sizes               | Common boolean flags                                                    |
-| ----------- | ----------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------- | ----------------------------------------------------------------------- |
-| Button      | `getButtonClasses`      | `primary` `secondary` `ghost` `danger` `success` `cta` `accent`                                                | `sm` `md` `lg`      | `disabled` `loading` `fullWidth` `pill` `iconOnly` `compact`            |
-| Badge       | `getBadgeClasses`       | `primary` `secondary` `success` `warning` `danger` `neutral` `info` `ghost` `accent` `cta`                     | `sm` `md` `lg`      | `interactive` `disabled` `loading` `fullWidth`                          |
-| Card        | `getCardClasses`        | `elevated` `flat` `outline` `ghost`                                                                            | —                   | `interactive` `padded` `fullHeight` `disabled` `loading`                |
-| Input       | `getInputClasses`       | —                                                                                                              | `sm` `md` `lg`      | `disabled` `loading` `fullWidth` `pill`                                 |
-| Input state | `getInputClasses`       | `state`: `default` `error` `success` `disabled` `loading`                                                      | —                   | —                                                                       |
-| IconBox     | `getIconBoxClasses`     | `primary` `secondary` `success` `warning` `danger` `info` `neutral` `ghost` `accent` `cta`                     | `sm` `md` `lg`      | `interactive` `disabled` `loading` `pill` `fullWidth`                   |
-| PricingCard | `getPricingCardClasses` | —                                                                                                              | —                   | `featured` `interactive` `disabled` `loading` `fullHeight`              |
-| Rating      | `getRatingClasses`      | —                                                                                                              | `sm` `md` `lg`      | `interactive` `disabled` `loading` `pill` `fullWidth`                   |
-| Testimonial | `getTestimonialClasses` | `elevated` `flat` `outline` `ghost`                                                                            | —                   | `interactive` `disabled` `loading` `fullHeight`                         |
-| Alert       | `getAlertClasses`       | `info` `success` `warning` `danger` `neutral`                                                                  | `sm` `md` `lg`      | `dismissed`                                                             |
-| Avatar      | `getAvatarClasses`      | —                                                                                                              | `sm` `md` `lg` `xl` | shape: `circle` `square`                                                |
-| Tag         | `getTagClasses`         | `default` `primary` `secondary` `success` `warning` `danger` `info` `neutral` `accent` `cta` `outline` `ghost` | `sm` `md` `lg`      | `dismissible` `selected` `disabled` `loading` `interactive` `fullWidth` |
-| Spinner     | `getSpinnerClasses`     | —                                                                                                              | `sm` `md` `lg`      | —                                                                       |
-| Nav         | `getNavClasses`         | —                                                                                                              | —                   | `bordered` `sticky` `fullWidth` `align: start\|center\|end`             |
-| Toast       | `getToastClasses`       | `info` `success` `warning` `danger`                                                                            | —                   | `dismissed` `fullWidth`                                                 |
-| Tooltip     | `getTooltipClasses`     | placement: `top` `bottom` `left` `right`                                                                       | —                   | `visible`                                                               |
-| Dropdown    | `getDropdownClasses`    | menu placement: `bottom-start` `bottom-end` `top-start` `top-end`                                              | —                   | `fullWidth` `mega`, item: `active` `disabled`                           |
-| Modal       | `getModalClasses`       | —                                                                                                              | —                   | `open` `fullWidth`                                                      |
-| Container   | `getContainerClasses`   | maxWidth: `prose`                                                                                              | —                   | —                                                                       |
-| Stack       | `getStackClasses`       | direction: `vertical` `horizontal`, basis: `sidebar`, align: `center` `stretch`                                | —                   | —                                                                       |
-| Section     | `getSectionClasses`     | —                                                                                                              | —                   | —                                                                       |
+| Recipe      | Function                | Variants                                                                                                       | Sizes                                | Common boolean flags                                                                                                                  |
+| ----------- | ----------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Button      | `getButtonClasses`      | `primary` `secondary` `ghost` `danger` `success` `cta` `accent`                                                | `sm` `md` `lg`                       | `disabled` `loading` `fullWidth` `pill` `iconOnly` `compact`                                                                          |
+| Badge       | `getBadgeClasses`       | `primary` `secondary` `success` `warning` `danger` `neutral` `info` `ghost` `accent` `cta`                     | `sm` `md` `lg`                       | `interactive` `disabled` `loading` `fullWidth`                                                                                        |
+| Card        | `getCardClasses`        | `elevated` `flat` `outline` `ghost`                                                                            | —                                    | `interactive` `padded` `fullHeight` `disabled` `loading`                                                                              |
+| Input       | `getInputClasses`       | —                                                                                                              | `sm` `md` `lg`                       | `disabled` `loading` `fullWidth` `pill`                                                                                               |
+| Input state | `getInputClasses`       | `state`: `default` `error` `success` `disabled` `loading`                                                      | —                                    | —                                                                                                                                     |
+| IconBox     | `getIconBoxClasses`     | `primary` `secondary` `success` `warning` `danger` `info` `neutral` `ghost` `accent` `cta`                     | `sm` `md` `lg`                       | `interactive` `disabled` `loading` `pill` `fullWidth`                                                                                 |
+| PricingCard | `getPricingCardClasses` | —                                                                                                              | —                                    | `featured` `interactive` `disabled` `loading` `fullHeight`                                                                            |
+| Rating      | `getRatingClasses`      | —                                                                                                              | `sm` `md` `lg`                       | `interactive` `disabled` `loading` `pill` `fullWidth`                                                                                 |
+| Testimonial | `getTestimonialClasses` | `elevated` `flat` `outline` `ghost`                                                                            | —                                    | `interactive` `disabled` `loading` `fullHeight`                                                                                       |
+| Alert       | `getAlertClasses`       | `info` `success` `warning` `danger` `neutral`                                                                  | `sm` `md` `lg`                       | `dismissed`                                                                                                                           |
+| Avatar      | `getAvatarClasses`      | —                                                                                                              | `sm` `md` `lg` `xl`                  | shape: `circle` `square`                                                                                                              |
+| Tag         | `getTagClasses`         | `default` `primary` `secondary` `success` `warning` `danger` `info` `neutral` `accent` `cta` `outline` `ghost` | `sm` `md` `lg`                       | `dismissible` `selected` `disabled` `loading` `interactive` `fullWidth`                                                               |
+| Spinner     | `getSpinnerClasses`     | —                                                                                                              | `sm` `md` `lg`                       | —                                                                                                                                     |
+| Nav         | `getNavClasses`         | —                                                                                                              | —                                    | `bordered` `sticky` `fullWidth` `align: start\|center\|end`                                                                           |
+| Toast       | `getToastClasses`       | `info` `success` `warning` `danger`                                                                            | —                                    | `dismissed` `fullWidth`                                                                                                               |
+| Tooltip     | `getTooltipClasses`     | placement: `top` `bottom` `left` `right`                                                                       | —                                    | `visible`                                                                                                                             |
+| Dropdown    | `getDropdownClasses`    | menu placement: `bottom-start` `bottom-end` `top-start` `top-end`                                              | —                                    | `fullWidth` `mega`, item: `active` `disabled`                                                                                         |
+| Modal       | `getModalClasses`       | —                                                                                                              | —                                    | `open` `fullWidth`                                                                                                                    |
+| Container   | `getContainerClasses`   | maxWidth: `prose`                                                                                              | —                                    | —                                                                                                                                     |
+| Stack       | `getStackClasses`       | direction: `vertical` `horizontal`, basis: `sidebar`, align: `center` `stretch`                                | —                                    | —                                                                                                                                     |
+| Section     | `getSectionClasses`     | —                                                                                                              | —                                    | —                                                                                                                                     |
 | Grid        | `getGridClasses`        | columns: `1` `2` `3` `4` `6` `12` `auto`                                                                       | gap/columnGap/rowGap: `sm` `md` `lg` | `span`/`offset`/`rowSpan`/`rowOffset`/`order`: `1`–`12`/`0`–`11`/`first`\|`last`\|`none`\|`1`–`12`, per-breakpoint `{ base, md, lg }` |
-| Sidebar     | `getSidebarClasses`     | —                                                                                                              | —                   | `bordered`                                                              |
-| Footer      | `getFooterClasses`      | —                                                                                                              | —                   | `bordered` `fullWidth`                                                  |
-| Checkbox    | `getCheckboxClasses`    | —                                                                                                              | —                   | `checked` `disabled`                                                    |
-| Radio       | `getRadioClasses`       | —                                                                                                              | —                   | `checked` `disabled`                                                    |
-| Select      | `getSelectClasses`      | size: `sm` `md` `lg`, state: `default` `invalid` `success`                                                     | —                   | `fullWidth` `pill` `disabled` `focused` `loading`                       |
-| Textarea    | `getTextareaClasses`    | size: `sm` `md` `lg`, state: `default` `invalid` `success`                                                     | —                   | `fullWidth` `pill` `disabled` `focused` `loading`                       |
-| Fieldset    | `getFieldsetClasses`    | —                                                                                                              | —                   | `disabled`                                                              |
-| Label       | `getLabelClasses`       | —                                                                                                              | —                   | `disabled` `required`                                                   |
-| Text        | `getTextClasses`        | color: `default` `muted` `subtle` `meta` `brand`, family: `sans` `serif` `mono`                                | `xs`–`6xl`          | —                                                                       |
-| Text state  | `getTextClasses`        | `transform`: `none` `uppercase` `lowercase` `capitalize`                                                       | —                   | —                                                                       |
+| Sidebar     | `getSidebarClasses`     | —                                                                                                              | —                                    | `bordered`                                                                                                                            |
+| Footer      | `getFooterClasses`      | —                                                                                                              | —                                    | `bordered` `fullWidth`                                                                                                                |
+| Checkbox    | `getCheckboxClasses`    | —                                                                                                              | —                                    | `checked` `disabled`                                                                                                                  |
+| Radio       | `getRadioClasses`       | —                                                                                                              | —                                    | `checked` `disabled`                                                                                                                  |
+| Select      | `getSelectClasses`      | size: `sm` `md` `lg`, state: `default` `invalid` `success`                                                     | —                                    | `fullWidth` `pill` `disabled` `focused` `loading`                                                                                     |
+| Textarea    | `getTextareaClasses`    | size: `sm` `md` `lg`, state: `default` `invalid` `success`                                                     | —                                    | `fullWidth` `pill` `disabled` `focused` `loading`                                                                                     |
+| Fieldset    | `getFieldsetClasses`    | —                                                                                                              | —                                    | `disabled`                                                                                                                            |
+| Label       | `getLabelClasses`       | —                                                                                                              | —                                    | `disabled` `required`                                                                                                                 |
+| Text        | `getTextClasses`        | color: `default` `muted` `subtle` `meta` `brand`, family: `sans` `serif` `mono`                                | `xs`–`6xl`                           | —                                                                                                                                     |
+| Text state  | `getTextClasses`        | `transform`: `none` `uppercase` `lowercase` `capitalize`                                                       | —                                    | —                                                                                                                                     |
 
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements). See the full list below.
 
-Grid also accepts two independent track-sizing options for layouts equal
-columns cannot express: `fixedTracks: { count: 1-4 }` sizes every column from
-`--sp-space-240` (15rem) and replaces `columns` at
-every breakpoint; `leadingTracks: { weight: 1.5 | 1.6 | 2 | 2.5 | 3 }` sizes
-one leading column at `weight`fr against the rest of `columns` as equal 1fr
-tracks. A plain `weight` applies at the `lg` breakpoint only (matching the
-original mega-menu/footer evidence); pass `{ base, md, lg }` for
-per-breakpoint control. Both emit deterministic classes
-(`sp-grid-fixed-tracks-*`, `sp-{bp-}grid-leading-{weight}-of-{columns}`) — no
-arbitrary widths, no inline styles.
+Grid also accepts two independent track-sizing options for layouts equal columns
+cannot express: `fixedTracks: { count: 1-4 }` sizes every column from
+`--sp-space-240` (15rem) and replaces `columns` at every breakpoint;
+`leadingTracks: { weight: 1.5 | 1.6 | 2 | 2.5 | 3 }` sizes one leading column at
+`weight`fr against the rest of `columns` as equal 1fr tracks. A plain `weight`
+applies at the `lg` breakpoint only (matching the original mega-menu/footer
+evidence); pass `{ base, md, lg }` for per-breakpoint control. Both emit
+deterministic classes (`sp-grid-fixed-tracks-*`,
+`sp-{bp-}grid-leading-{weight}-of-{columns}`) — no arbitrary widths, no inline
+styles.
 
-Grid also accepts `rowSpan`/`rowOffset` (same shape as `span`/`offset`: a
-single value or a per-breakpoint `{ base, md, lg }` object) for dashboard-style
-layouts that need explicit row placement, via `grid-row`/`grid-row-start` —
-no explicit row-track template required, since these apply against CSS
-Grid's auto-generated implicit rows. Independent `columnGap`/`rowGap`
-options override the combined `gap` on a single axis when a layout needs
-tighter rows than columns (or vice versa).
+Grid also accepts `rowSpan`/`rowOffset` (same shape as `span`/`offset`: a single
+value or a per-breakpoint `{ base, md, lg }` object) for dashboard-style layouts
+that need explicit row placement, via `grid-row`/`grid-row-start` — no explicit
+row-track template required, since these apply against CSS Grid's auto-generated
+implicit rows. Independent `columnGap`/`rowGap` options override the combined
+`gap` on a single axis when a layout needs tighter rows than columns (or vice
+versa).
 
 `columns: 'auto'` (`sp-grid-cols-auto`) distributes any number of children
-evenly across a single row with no explicit column count — matching
-Bootstrap's bare `.col` / `row-cols-auto` — via
-`grid-template-columns: repeat(auto-fit, minmax(0, 1fr))`. `order`/`order:
-{ base, md, lg }` (`sp-order-*`, responsive `sp-{bp}-order-*`) reorders a
-grid item independent of source order, accepting `first`, `last`, `none`,
-or `1`–`12`.
+evenly across a single row with no explicit column count — matching Bootstrap's
+bare `.col` / `row-cols-auto` — via
+`grid-template-columns: repeat(auto-fit, minmax(0, 1fr))`.
+`order`/`order: { base, md, lg }` (`sp-order-*`, responsive `sp-{bp}-order-*`)
+reorders a grid item independent of source order, accepting `first`, `last`,
+`none`, or `1`–`12`.
 
-Dropdown also accepts a `mega` flag (`getDropdownClasses({ mega: true })`
-paired with `getDropdownMenuClasses({ mega: true })`) for mega-menu panels:
-the trigger wrapper (`sp-dropdown--mega`) cedes its positioning context to
-the nearest positioned ancestor — typically `sp-nav`, which is a positioning
-context by default — so the menu (`sp-dropdown__menu--mega`) spans that
-ancestor's full width instead of tracking trigger width. Combine with a
-`getGridClasses` panel inside the menu for a multi-column layout. Menu
-height is capped and scrollable (`max-height: 70vh; overflow-y: auto`) so
-tall panels never overflow the viewport.
+Dropdown also accepts a `mega` flag (`getDropdownClasses({ mega: true })` paired
+with `getDropdownMenuClasses({ mega: true })`) for mega-menu panels: the trigger
+wrapper (`sp-dropdown--mega`) cedes its positioning context to the nearest
+positioned ancestor — typically `sp-nav`, which is a positioning context by
+default — so the menu (`sp-dropdown__menu--mega`) spans that ancestor's full
+width instead of tracking trigger width. Combine with a `getGridClasses` panel
+inside the menu for a multi-column layout. Menu height is capped and scrollable
+(`max-height: 70vh; overflow-y: auto`) so tall panels never overflow the
+viewport.
 
 ### Semantic utility classes (no recipe wrapper)
 
@@ -337,30 +337,35 @@ the result (`npm run validate:utilities` fails CI if it drifts). No arbitrary
 visual values are supported — a design need that doesn't fit an existing token
 step needs a token proposal to `spectre-tokens`, not a raw value in markup.
 
-| Family   | Class pattern                                                                          | Token/value source                            |
-| -------- | -------------------------------------------------------------------------------------- | --------------------------------------------- |
-| Layout   | `.sp-{block\|flex\|grid\|hidden\|relative\|...}`                                     | CSS layout keywords and `--sp-space-0`        |
-| Flexbox  | `.sp-{flex-row\|flex-wrap\|justify-between\|items-center\|self-start\|...}`           | CSS layout keywords                           |
-| Sizing   | `.sp-{w\|min-w\|max-w\|h\|min-h\|max-h}-{auto\|0\|full\|fit\|none}`               | CSS intrinsic and percentage sizing           |
-| Overflow | `.sp-overflow-{auto\|hidden\|clip\|visible\|scroll}` with `-x-` and `-y-` variants     | CSS overflow keywords                         |
-| Spacing  | `.sp-{p\|px\|py\|pt\|pr\|pb\|pl\|m\|mx\|my\|mt\|mr\|mb\|ml\|gap\|gap-x\|gap-y}-{step}` | `--sp-space-*`; auto-margin variants are added |
-| Palette  | `.sp-{text\|bg\|border}-{hue}-{step}`                                                  | `--sp-color-palette-*`                        |
-| Radius   | `.sp-rounded-{step}`                                                                   | `--sp-radius-*`                               |
-| Shadow   | `.sp-shadow-{step}`                                                                    | `--sp-shadow-*`                               |
-| Opacity  | `.sp-opacity-{role}`                                                                   | `--sp-opacity-*`                              |
-| Z-index  | `.sp-z-{role}`                                                                         | `--sp-z-index-*`                              |
+| Family      | Class pattern                                                                                                           | Token/value source                                                                              |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Layout      | `.sp-{block\|flex\|grid\|hidden\|relative\|...}`                                                                        | CSS layout keywords and `--sp-space-0`                                                          |
+| Flexbox     | `.sp-{flex-row\|flex-wrap\|justify-between\|items-center\|self-start\|content-between\|order-first\|order-{1-12}\|...}` | CSS layout keywords                                                                             |
+| Sizing      | `.sp-{w\|min-w\|max-w\|h\|min-h\|max-h}-{auto\|0\|full\|fit\|none}`                                                     | CSS intrinsic and percentage sizing                                                             |
+| Overflow    | `.sp-overflow-{auto\|hidden\|clip\|visible\|scroll}` with `-x-` and `-y-` variants                                      | CSS overflow keywords                                                                           |
+| Spacing     | `.sp-{p\|px\|py\|pt\|pr\|pb\|pl\|m\|mx\|my\|mt\|mr\|mb\|ml\|gap\|gap-x\|gap-y\|basis}-{step}`                           | `--sp-space-*`; auto-margin variants are added                                                  |
+| Palette     | `.sp-{text\|bg\|border}-{hue}-{step}`                                                                                   | `--sp-color-palette-*`                                                                          |
+| Radius      | `.sp-rounded-{step}`                                                                                                    | `--sp-radius-*`                                                                                 |
+| Shadow      | `.sp-shadow-{step}`                                                                                                     | `--sp-shadow-*`                                                                                 |
+| Opacity     | `.sp-opacity-{role}`                                                                                                    | `--sp-opacity-*`                                                                                |
+| Z-index     | `.sp-z-{role}`                                                                                                          | `--sp-z-index-*`                                                                                |
+| Font weight | `.sp-font-{weight}`                                                                                                     | distinct values already published across `--sp-font-{step}-weight` / `--sp-heading-h{n}-weight` |
 
 Responsive variants use the `sp-{breakpoint}-{utility}` prefix form (for
-example, `sp-md-p-4`, `sp-lg-gap-8`, `sp-md-flex`, and
-`sp-lg-justify-between`) at the `md` and `lg` breakpoints, matching the
-step-down convention Grid already established. This prefix syntax is a locked
-decision (see `TODO.md` Phase 7 P0); it will not change without a major-version
-breaking release.
+example, `sp-md-p-4`, `sp-lg-gap-8`, `sp-md-flex`, and `sp-lg-justify-between`)
+at the `md` and `lg` breakpoints, matching the step-down convention Grid already
+established. This prefix syntax is a locked decision (see `TODO.md` Phase 7 P0);
+it will not change without a major-version breaking release.
 
-All exported stylesheets declare the cascade order `base`, `components`, then
-`utilities`. Utilities therefore override component defaults regardless of
-whether consumers load the standalone component and utility bundles in the
-opposite order. Unlayered application CSS still overrides all Spectre layers.
+All exported stylesheets declare the cascade order `tokens`, `base`,
+`components`, then `utilities`. Utilities therefore override component defaults
+regardless of whether consumers load the standalone component and utility
+bundles in the opposite order, and every Spectre layer — including the package's
+own `:root[data-spectre-theme="dark"]` token defaults — overrides only within
+that order. Unlayered application CSS still overrides all Spectre layers, and
+any layered override a consumer declares (including a scoped
+`:root[data-spectre-theme="dark"]` block in the app's own CSS) wins over the
+package's `tokens` layer without needing `!important`.
 
 ### Root package
 

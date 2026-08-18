@@ -88,10 +88,40 @@ describe('generated utility-class engine (Phase 7)', () => {
     }
   });
 
+  it('produces exactly one sp-font-{weight} utility per distinct published weight value', () => {
+    const weights = new Set(
+      Array.from(
+        tokensCss.matchAll(/--sp-(?:font-[a-z0-9]+|heading-h[1-6])-weight:\s*([0-9]+);/g),
+        (m) => m[1],
+      ),
+    );
+
+    expect(weights.size).toBeGreaterThan(0);
+
+    for (const weight of weights) {
+      const count = countMatches(generatedCss, new RegExp(`\\.sp-font-${weight} \\{`, 'g'));
+      expect(count, `.sp-font-${weight} should be generated exactly once`).toBe(1);
+    }
+  });
+
   it('generates md/lg responsive spacing variants using the sp-{breakpoint}-{property}-{step} separator', () => {
     expect(generatedCss).toMatch(/\.sp-md-p-4\s*\{/);
     expect(generatedCss).toMatch(/\.sp-lg-p-4\s*\{/);
     expect(generatedCss).toMatch(/\.sp-md-gap-8\s*\{/);
+  });
+
+  it('generates a sp-basis-{step} flex-basis scale tied to --sp-space-*, following the sp-gap-* pattern', () => {
+    const spaceSteps = new Set(
+      Array.from(tokensCss.matchAll(/--sp-space-([a-z0-9]+):/g), (m) => m[1]),
+    );
+
+    for (const step of spaceSteps) {
+      const count = countMatches(generatedCss, new RegExp(`\\.sp-basis-${step} \\{`, 'g'));
+      expect(count, `.sp-basis-${step} should be generated exactly once`).toBe(1);
+    }
+
+    expect(generatedCss).toMatch(/\.sp-basis-16\s*\{\s*flex-basis: var\(--sp-space-16\);/);
+    expect(generatedCss).toMatch(/\.sp-md-basis-16\s*\{/);
   });
 
   it('generates the evidence-backed layout, sizing, positioning, and overflow families', () => {
@@ -108,6 +138,8 @@ describe('generated utility-class engine (Phase 7)', () => {
       'justify-center',
       'items-center',
       'self-start',
+      'content-between',
+      'content-stretch',
       'relative',
       'absolute',
       'inset-0',

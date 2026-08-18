@@ -48,13 +48,29 @@ const collectPaletteHues = (): Map<string, string[]> => {
   return hues;
 };
 
+// Standalone font-weight utilities, independent of the getTextClasses `size`
+// preset. There is no dedicated --sp-font-weight-* scale published yet, so
+// this derives the distinct weight values already published across the
+// per-size (--sp-font-{step}-weight) and per-heading (--sp-heading-h{n}-weight)
+// token groups, rather than inventing new weight values locally.
+const collectFontWeights = (): string[] => {
+  const regex = /--sp-(?:font-[a-z0-9]+|heading-h[1-6])-weight:\s*([0-9]+);/g;
+  const weights = new Set<string>();
+  for (const match of tokensCss.matchAll(regex)) {
+    weights.add(match[1]);
+  }
+  return [...weights].sort((a, b) => Number(a) - Number(b));
+};
+
 const spaceSteps = collectVarSteps('space');
+const aspectRatioSteps = collectVarSteps('aspect-ratio');
 const radiusSteps = collectVarSteps('radius');
 const shadowSteps = collectVarSteps('shadow');
 const opacitySteps = collectVarSteps('opacity');
 const zIndexSteps = collectVarSteps('z-index');
 const paletteHues = collectPaletteHues();
 const breakpoints = collectBreakpoints();
+const fontWeights = collectFontWeights();
 
 // Responsive variants land at md/lg only, matching Grid's existing step-down
 // convention (Phase 4c) — sm/xl/2xl are not used by any generated utility
@@ -86,6 +102,7 @@ const SPACING_AXES: SpacingAxis[] = [
   { className: 'gap', properties: ['gap'] },
   { className: 'gap-x', properties: ['column-gap'] },
   { className: 'gap-y', properties: ['row-gap'] },
+  { className: 'basis', properties: ['flex-basis'] },
 ];
 
 const rule = (selector: string, declarations: string[]): string =>
@@ -140,6 +157,11 @@ const buildPaletteRules = (): string[] => {
   return rules;
 };
 
+const buildAspectRatioRules = (): string[] =>
+  aspectRatioSteps.map((step) =>
+    rule(`.sp-aspect-${step}`, [`aspect-ratio: var(--sp-aspect-ratio-${step});`]),
+  );
+
 const buildRadiusRules = (): string[] =>
   radiusSteps.map((step) => rule(`.sp-rounded-${step}`, [`border-radius: var(--sp-radius-${step});`]));
 
@@ -152,16 +174,21 @@ const buildOpacityRules = (): string[] =>
 const buildZIndexRules = (): string[] =>
   zIndexSteps.map((step) => rule(`.sp-z-${step}`, [`z-index: var(--sp-z-index-${step});`]));
 
+const buildFontWeightRules = (): string[] =>
+  fontWeights.map((weight) => rule(`.sp-font-${weight}`, [`font-weight: ${weight};`]));
+
 const sections: string[] = [];
 
 sections.push(LAYOUT_UTILITIES.map((utility) => utilityRule(utility)).join('\n\n'));
 sections.push(AUTO_MARGIN_UTILITIES.map((utility) => utilityRule(utility)).join('\n\n'));
 sections.push(buildBaseSpacingRules().join('\n\n'));
+sections.push(buildAspectRatioRules().join('\n\n'));
 sections.push(buildPaletteRules().join('\n\n'));
 sections.push(buildRadiusRules().join('\n\n'));
 sections.push(buildShadowRules().join('\n\n'));
 sections.push(buildOpacityRules().join('\n\n'));
 sections.push(buildZIndexRules().join('\n\n'));
+sections.push(buildFontWeightRules().join('\n\n'));
 
 for (const breakpoint of RESPONSIVE_BREAKPOINT_ORDER) {
   sections.push(buildResponsiveSpacingBlock(breakpoint));
@@ -179,9 +206,11 @@ fs.writeFileSync(outputPath, output, 'utf8');
 
 console.log(
   `Generated ${outputPath.replace(`${projectRoot}/`, '')}: ` +
-    `${spaceSteps.length} space steps, ${paletteHues.size} palette hues, ` +
+    `${spaceSteps.length} space steps, ${aspectRatioSteps.length} aspect-ratio steps, ` +
+    `${paletteHues.size} palette hues, ` +
     `${radiusSteps.length} radius steps, ${shadowSteps.length} shadow steps, ` +
     `${opacitySteps.length} opacity roles, ${zIndexSteps.length} z-index roles, ` +
+    `${fontWeights.length} font weights, ` +
     `${LAYOUT_UTILITIES.length + AUTO_MARGIN_UTILITIES.length} layout utilities, ` +
     `${RESPONSIVE_BREAKPOINT_ORDER.length} responsive breakpoints.`,
 );

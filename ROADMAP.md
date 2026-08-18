@@ -46,7 +46,7 @@ Tracked with acceptance criteria in [TODO.md](TODO.md):
   `--sp-icon-*`/`--sp-aspect-ratio-*`, but no downstream consumer
   (`spectre-components`, `spectre-ui-astro`, or an application) has asked for a
   recipe yet. Watched candidate, evidence-gated.
-- **`docs-phcdevworks-com`'s stale Tailwind documentation** — that repo's
+- **A downstream documentation consumer's stale Tailwind documentation** — its
   published docs still describe the Tailwind preset/theme export `spectre-ui`
   removed in `3.0.0`. Tracking the fix belongs in that repo's own `TODO.md`, not
   here.
