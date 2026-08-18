@@ -44,9 +44,15 @@ const ENTRYPOINT_CONTRACTS = [
     forbiddenMarkers: ['@layer base {', '@layer components {', 'body {', ':focus-visible {', '.sp-btn {', '.sp-card {'],
     // Phase 7 P1: generated utility-class engine adds full palette (286
     // steps), spacing, radius, shadow, opacity, and z-index coverage plus
-    // md/lg responsive variants — a deliberate, scoped size increase, not a
-    // regression. See TODO.md Phase 7 P0/P1.
-    maxBytes: 240000,
+    // responsive variants — a deliberate, scoped size increase, not a
+    // regression. See TODO.md Phase 7 P0/P1. Raised again 2026-08-18 when
+    // responsive coverage extended from md/lg to the full sm/md/lg/xl/2xl
+    // breakpoint scale (TODO.md "Decide whether to extend responsive
+    // coverage"), which roughly doubled every responsive spacing/layout
+    // class count; this is raw (unminified, ungzipped) size, and utility CSS
+    // — near-total selector/declaration repetition — compresses far better
+    // than typical CSS under gzip/brotli in transit.
+    maxBytes: 340000,
   },
 ] as const;
 

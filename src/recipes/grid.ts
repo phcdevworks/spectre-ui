@@ -63,6 +63,11 @@ const GRID_FIXED_TRACK_COUNTS = {
   '4': true,
 } as const
 
+const GRID_TEMPLATES = {
+  'edge-fluid-edge': true,
+  'label-fluid-fluid': true,
+} as const
+
 const GRID_ORDERS = {
   first: true,
   last: true,
@@ -87,6 +92,7 @@ export type GridSpan = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 'full'
 export type GridOffset = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11
 export type GridLeadingWeight = 1.5 | 1.6 | 2 | 2.5 | 3
 export type GridFixedTrackCount = 1 | 2 | 3 | 4
+export type GridTemplate = keyof typeof GRID_TEMPLATES
 export type GridOrder =
   | 'first'
   | 'last'
@@ -150,6 +156,21 @@ export interface GridFixedTracksOptions {
   count: GridFixedTrackCount
 }
 
+/**
+ * A fixed, named set of asymmetric column shapes — every column a distinct
+ * size — for layouts N-equal/span-offset/leadingTracks/fixedTracks can't
+ * express. `weight` only applies to `label-fluid-fluid` (the first fluid
+ * column's weight against the second, which is always 1fr); it is ignored
+ * for `edge-fluid-edge`, which has no fluid-weight axis to tune. Mutually
+ * exclusive with `columns`/`leadingTracks`/`fixedTracks` — when set, it
+ * replaces the column-count/sizing classes those options would otherwise
+ * emit.
+ */
+export interface GridExplicitTemplateOptions {
+  template: GridTemplate
+  weight?: GridLeadingWeight
+}
+
 export interface GridRecipeOptions {
   columns?: GridColumns
   gap?: GridGap
@@ -162,6 +183,7 @@ export interface GridRecipeOptions {
   order?: GridOrder | GridOrderOptions
   leadingTracks?: GridLeadingTracksOptions
   fixedTracks?: GridFixedTracksOptions
+  explicitTemplate?: GridExplicitTemplateOptions
 }
 
 function resolveSpan(value: GridSpan | undefined, name: string): string | undefined {
@@ -223,6 +245,16 @@ function resolveFixedTrackCount(
   })
 }
 
+function resolveTemplate(value: GridTemplate | undefined): string | undefined {
+  if (value === undefined) return undefined
+  return resolveOption({
+    name: 'grid explicit template',
+    value,
+    allowed: GRID_TEMPLATES,
+    fallback: 'edge-fluid-edge',
+  })
+}
+
 export function getGridClasses(opts: GridRecipeOptions = {}): string {
   const {
     columns: columnsInput,
@@ -236,6 +268,7 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
     order: orderInput,
     leadingTracks,
     fixedTracks,
+    explicitTemplate,
   } = opts
 
   const columns = resolveOption({
@@ -368,16 +401,28 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
 
   const fixedTrackCount = resolveFixedTrackCount(fixedTracks?.count)
 
+  const template = resolveTemplate(explicitTemplate?.template)
+  const templateWeight =
+    template === 'label-fluid-fluid'
+      ? (resolveLeadingWeight(explicitTemplate?.weight, 'grid explicit template weight') ?? '2')
+      : undefined
+  const templateClass = template
+    ? template === 'label-fluid-fluid'
+      ? `sp-grid-template--label-fluid-fluid-${templateWeight}`
+      : `sp-grid-template--${template}`
+    : undefined
+
   return cx(
     'sp-grid',
     `sp-grid--gap-${gap}`,
     columnGap && `sp-grid--column-gap-${columnGap}`,
     rowGap && `sp-grid--row-gap-${rowGap}`,
-    !fixedTrackCount && `sp-grid-cols-${columns}`,
-    fixedTrackCount && `sp-grid-fixed-tracks-${fixedTrackCount}`,
-    baseLeadingWeight && `sp-grid-leading-${baseLeadingWeight}-of-${columns}`,
-    mdLeadingWeight && `sp-md-grid-leading-${mdLeadingWeight}-of-${columns}`,
-    lgLeadingWeight && `sp-lg-grid-leading-${lgLeadingWeight}-of-${columns}`,
+    !fixedTrackCount && !templateClass && `sp-grid-cols-${columns}`,
+    !templateClass && fixedTrackCount && `sp-grid-fixed-tracks-${fixedTrackCount}`,
+    templateClass,
+    !templateClass && baseLeadingWeight && `sp-grid-leading-${baseLeadingWeight}-of-${columns}`,
+    !templateClass && mdLeadingWeight && `sp-md-grid-leading-${mdLeadingWeight}-of-${columns}`,
+    !templateClass && lgLeadingWeight && `sp-lg-grid-leading-${lgLeadingWeight}-of-${columns}`,
     baseSpan && `sp-col-span-${baseSpan}`,
     mdSpan && `sp-md-col-span-${mdSpan}`,
     lgSpan && `sp-lg-col-span-${lgSpan}`,

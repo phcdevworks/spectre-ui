@@ -64,6 +64,7 @@ const collectFontWeights = (): string[] => {
 
 const spaceSteps = collectVarSteps('space');
 const aspectRatioSteps = collectVarSteps('aspect-ratio');
+const trackingSteps = collectVarSteps('tracking');
 const radiusSteps = collectVarSteps('radius');
 const shadowSteps = collectVarSteps('shadow');
 const opacitySteps = collectVarSteps('opacity');
@@ -72,10 +73,13 @@ const paletteHues = collectPaletteHues();
 const breakpoints = collectBreakpoints();
 const fontWeights = collectFontWeights();
 
-// Responsive variants land at md/lg only, matching Grid's existing step-down
-// convention (Phase 4c) — sm/xl/2xl are not used by any generated utility
-// today. Extend this list if a real downstream need surfaces (Phase 7 P0).
-const RESPONSIVE_BREAKPOINT_ORDER = ['md', 'lg'] as const;
+// Full published breakpoint scale. Extended from md/lg-only (Phase 7 P0) once
+// a downstream consumer's flex/spacing layouts needed sm/xl/2xl step-downs
+// that md/lg alone couldn't express (TODO.md, decided 2026-08-18). This is
+// the generated utility engine's own responsive scope — Grid's hand-authored
+// column-count utilities (src/styles/utilities.css) keep their separate
+// md/lg-only convention (Phase 4c) and are unaffected by this list.
+const RESPONSIVE_BREAKPOINT_ORDER = ['sm', 'md', 'lg', 'xl', '2xl'] as const;
 
 interface SpacingAxis {
   className: string;
@@ -162,6 +166,11 @@ const buildAspectRatioRules = (): string[] =>
     rule(`.sp-aspect-${step}`, [`aspect-ratio: var(--sp-aspect-ratio-${step});`]),
   );
 
+const buildTrackingRules = (): string[] =>
+  trackingSteps.map((step) =>
+    rule(`.sp-tracking-${step}`, [`letter-spacing: var(--sp-tracking-${step});`]),
+  );
+
 const buildRadiusRules = (): string[] =>
   radiusSteps.map((step) => rule(`.sp-rounded-${step}`, [`border-radius: var(--sp-radius-${step});`]));
 
@@ -183,6 +192,7 @@ sections.push(LAYOUT_UTILITIES.map((utility) => utilityRule(utility)).join('\n\n
 sections.push(AUTO_MARGIN_UTILITIES.map((utility) => utilityRule(utility)).join('\n\n'));
 sections.push(buildBaseSpacingRules().join('\n\n'));
 sections.push(buildAspectRatioRules().join('\n\n'));
+sections.push(buildTrackingRules().join('\n\n'));
 sections.push(buildPaletteRules().join('\n\n'));
 sections.push(buildRadiusRules().join('\n\n'));
 sections.push(buildShadowRules().join('\n\n'));
@@ -207,6 +217,7 @@ fs.writeFileSync(outputPath, output, 'utf8');
 console.log(
   `Generated ${outputPath.replace(`${projectRoot}/`, '')}: ` +
     `${spaceSteps.length} space steps, ${aspectRatioSteps.length} aspect-ratio steps, ` +
+    `${trackingSteps.length} tracking steps, ` +
     `${paletteHues.size} palette hues, ` +
     `${radiusSteps.length} radius steps, ${shadowSteps.length} shadow steps, ` +
     `${opacitySteps.length} opacity roles, ${zIndexSteps.length} z-index roles, ` +

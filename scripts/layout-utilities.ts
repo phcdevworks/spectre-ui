@@ -109,6 +109,11 @@ export const LAYOUT_UTILITIES: UtilityDefinition[] = [
   { className: 'object-fill', declarations: ['object-fit: fill;'] },
   { className: 'object-none', declarations: ['object-fit: none;'] },
   { className: 'object-scale-down', declarations: ['object-fit: scale-down;'] },
+  { className: 'object-top', declarations: ['object-position: top;'] },
+  { className: 'object-right', declarations: ['object-position: right;'] },
+  { className: 'object-bottom', declarations: ['object-position: bottom;'] },
+  { className: 'object-left', declarations: ['object-position: left;'] },
+  { className: 'object-center', declarations: ['object-position: center;'] },
   { className: 'aspect-auto', declarations: ['aspect-ratio: auto;'] },
   {
     className: 'border',
@@ -151,6 +156,11 @@ export const LAYOUT_UTILITIES: UtilityDefinition[] = [
     ],
   },
   { className: 'border-none', declarations: ['border: none;'] },
+  { className: 'list-none', declarations: ['list-style: none;'] },
+  { className: 'list-disc', declarations: ['list-style: disc;'] },
+  { className: 'list-decimal', declarations: ['list-style: decimal;'] },
+  { className: 'list-inside', declarations: ['list-style-position: inside;'] },
+  { className: 'list-outside', declarations: ['list-style-position: outside;'] },
 ];
 
 export const AUTO_MARGIN_UTILITIES: UtilityDefinition[] = [

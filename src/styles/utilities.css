@@ -1313,6 +1313,48 @@
     }
   }
 
+  /*
+   * Explicit asymmetric column templates: a fixed, named set of shapes where
+   * every column has a distinct size, for the cases N-equal/span-offset/
+   * leading-track/fixed-track coverage above doesn't reach. Named rather than
+   * accepting an arbitrary grid-template-columns value, to stay inside the
+   * same finite-class, no-inline-style contract every other Grid option
+   * follows — see TODO.md "Grid — Explicit Asymmetric Column Templates".
+   *
+   * edge-fluid-edge: two content-sized edge columns (e.g. a logo and a CTA)
+   * around one fluid middle column that absorbs the remaining width.
+   */
+  .sp-grid-template--edge-fluid-edge {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  /*
+   * label-fluid-fluid: a content-sized leading label column, then two fluid
+   * columns weighted differently against each other (matching the original
+   * evidence: a numbered-list-with-detail-columns layout). The weight suffix
+   * reuses the same 1_5/1_6/2/2_5/3 scale as sp-grid-leading-*, applied to
+   * the first fluid column; the second fluid column is always 1fr.
+   */
+  .sp-grid-template--label-fluid-fluid-1_5 {
+    grid-template-columns: auto 1.5fr 1fr;
+  }
+
+  .sp-grid-template--label-fluid-fluid-1_6 {
+    grid-template-columns: auto 1.6fr 1fr;
+  }
+
+  .sp-grid-template--label-fluid-fluid-2 {
+    grid-template-columns: auto 2fr 1fr;
+  }
+
+  .sp-grid-template--label-fluid-fluid-2_5 {
+    grid-template-columns: auto 2.5fr 1fr;
+  }
+
+  .sp-grid-template--label-fluid-fluid-3 {
+    grid-template-columns: auto 3fr 1fr;
+  }
+
 
   .sp-link {
     color: var(--sp-link-default);

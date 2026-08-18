@@ -32,24 +32,34 @@ file does not restate delivered work.
 | —     | Dropdown `mega` flag — container-anchored, multi-column panel composition                                                                                   | 4.0.0                               |
 | —     | Button `compact` flag — invisible hit-area padding preserving `--sp-min-touch-target` | 4.0.0                               |
 | 9     | Footer semantic alignment — independent `--sp-footer-*` token contract, Footer anatomy recipes                                                              | 4.0.0                               |
+| 10    | Cascade-layer fix (`@phcdevworks/spectre-tokens` import scoped ahead of `base`/`components`/`utilities`, fixing silently-defeated dark-theme overrides); `validate:token-usage` lint gate; base `ul`/`ol` list reset | 4.1.0 |
+| 11    | Typography axis utilities — standalone `sp-font-{weight}` and `sp-tracking-{step}`, independent of `getTextClasses`'s bundled `size` preset | 4.1.0 |
+| 12    | Utility engine expansion — `align-content`/`order`/`flex-basis` fill-out; responsive coverage extended from `md`/`lg` to the full `sm`/`md`/`lg`/`xl`/`2xl` scale; `object-fit`/`object-position`/`aspect-ratio`/divider-border/`transition`/`list-style` families | 4.1.0 |
+| 4c v3 | Grid `explicitTemplate` — named asymmetric column-template shapes (`edge-fluid-edge`, `label-fluid-fluid`) for layouts no existing Grid option could express | 4.1.0 |
 
-Deferred-not-abandoned sub-scope from delivered phases (see "What's Next"
-below): Phase 4f (Icon/AspectRatio recipes).
+Phase 4f (Icon/AspectRatio recipes) was dropped, not delivered — see
+"What's Next" below.
 
 ---
 
 ## What's Next
 
-Tracked with acceptance criteria in [TODO.md](TODO.md):
+Everything actionable inside this package is done as of 2026-08-18 — see
+Phases 10–12 and 4c v3 above. Nothing is currently open here; only a
+cross-repo item remains, tracked with acceptance criteria in
+[TODO.md](TODO.md):
 
-- **Icon/AspectRatio recipes** — `@phcdevworks/spectre-tokens@3.4.0` publishes
-  `--sp-icon-*`/`--sp-aspect-ratio-*`, but no downstream consumer
-  (`spectre-components`, `spectre-ui-astro`, or an application) has asked for a
-  recipe yet. Watched candidate, evidence-gated.
 - **A downstream documentation consumer's stale Tailwind documentation** — its
   published docs still describe the Tailwind preset/theme export `spectre-ui`
   removed in `3.0.0`. Tracking the fix belongs in that repo's own `TODO.md`, not
   here.
+
+Icon/AspectRatio recipes (formerly a watched candidate here) were dropped
+2026-08-18 — two independent evidence checks found no downstream use case
+across `spectre-components`, `spectre-ui-astro`, `spectre-base`,
+`project-web`, or a real client page; `AspectRatio`'s plain-CSS-property case
+is separately satisfied by Phase 12's utility classes. See `TODO.md` for the
+full rationale — it reopens the moment a real consumer asks.
 
 Periodic downstream drift audits (grepping `spectre-components`,
 `spectre-ui-astro`, and the `project-web` sites for hand-rolled CSS

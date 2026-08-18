@@ -13,15 +13,19 @@
       "spacing": {
         "axes": ["p", "px", "py", "pt", "pr", "pb", "pl", "m", "mx", "my", "mt", "mr", "mb", "ml", "gap", "gap-x", "gap-y"],
         "tokenGroup": "--sp-space-*",
-        "responsiveBreakpoints": ["md", "lg"]
+        "responsiveBreakpoints": ["sm", "md", "lg", "xl", "2xl"]
       },
       "layout": {
-        "axes": ["display", "flexDirection", "flexWrap", "flexSizing", "justifyContent", "alignItems", "alignSelf", "position", "inset", "width", "height", "overflow", "whiteSpace", "textAlign", "objectFit", "border", "autoMargin"],
-        "responsiveBreakpoints": ["md", "lg"]
+        "axes": ["display", "flexDirection", "flexWrap", "flexSizing", "justifyContent", "alignItems", "alignSelf", "position", "inset", "width", "height", "overflow", "whiteSpace", "textAlign", "objectFit", "objectPosition", "border", "list", "autoMargin"],
+        "responsiveBreakpoints": ["sm", "md", "lg", "xl", "2xl"]
       },
       "aspectRatio": {
         "axes": ["aspect"],
         "tokenGroup": "--sp-aspect-ratio-*"
+      },
+      "tracking": {
+        "axes": ["tracking"],
+        "tokenGroup": "--sp-tracking-*"
       },
       "palette": {
         "axes": ["text", "bg", "border"],
@@ -219,7 +223,9 @@
       "orderBreakpoints": ["base", "md", "lg"],
       "fixedTrackCounts": [1, 2, 3, 4],
       "leadingTrackWeights": [1.5, 1.6, 2, 2.5, 3],
-      "leadingTrackWeightBreakpoints": ["base", "md", "lg"]
+      "leadingTrackWeightBreakpoints": ["base", "md", "lg"],
+      "explicitTemplates": ["edge-fluid-edge", "label-fluid-fluid"],
+      "explicitTemplateWeights": [1.5, 1.6, 2, 2.5, 3]
     },
     "sidebar": {
       "fn": "getSidebarClasses"

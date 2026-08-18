@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [4.1.0] - 2026-08-18
+
+**Release Title:** Expanded Utility and Layout Contracts
+
 Contract change type: semantic change
 
 ### Added
@@ -37,11 +41,9 @@ Contract change type: semantic change
   tokens (currently `400`/`500`/`600`/`700`/`800`/`900`) — no new weight
   values invented locally. Confirmed downstream need from
   a production consumer (see `TODO.md`). Standalone letter-spacing/tracking
-  utilities remain blocked: `spectre-tokens` has no dedicated tracking scale
-  to derive from (only `0em`/`0.02em` bundled per size step), so adding
-  `sp-tracking-*` here would mean inventing brand-specific tracking values
-  locally, which this package does not do — filed as a token-gap ask instead
-  of implemented.
+  utilities were blocked at this point on a missing `spectre-tokens` scale —
+  see the `sp-tracking-{step}` entry below, added later in this same
+  Unreleased window once that scale published.
 - Added `scripts/validate-token-usage.ts` (wired into `ci:verify` as
   `validate:token-usage`), a blanket lint over every file in `src/styles/`
   that fails the build on any raw hex color or bare `px`/`rem` length outside
@@ -71,6 +73,53 @@ Contract change type: semantic change
   `prefers-reduced-motion` — same as `sp-link` and `sp-animate-*` today —
   consumers still opt out explicitly. Confirmed downstream need from a
   production consumer's hand-rolled theme CSS (see `TODO.md`).
+- Extended the generated utility engine's responsive coverage from `md`/`lg`
+  only to the full published breakpoint scale (`sm`/`md`/`lg`/`xl`/`2xl`),
+  for every spacing and layout utility family (`sp-{bp}-p-*`,
+  `sp-{bp}-flex`, `sp-{bp}-justify-*`, etc.). Decided per `TODO.md`'s open
+  "extend responsive coverage" item. Grid's own hand-authored column-count
+  utilities in `src/styles/utilities.css` keep their separate `md`/`lg`-only
+  convention (Phase 4c) — this change is scoped to `scripts/build-utilities.ts`
+  only, not `getGridClasses`.
+- Bumped the `@phcdevworks/spectre-tokens` dependency range to `^4.4.0` and
+  added a token-driven `sp-tracking-{step}` family (one class per published
+  `--sp-tracking-*` step: `tightest`/`tighter`/`tight`/`normal`/`wide`/
+  `wider`/`widest`) to the generated utility engine
+  (`scripts/build-utilities.ts` `buildTrackingRules`), following the same
+  pattern as `sp-aspect-*`/`sp-rounded-*`. Closes the `sp-tracking-*` item in
+  `TODO.md`, blocked since 2026-08-15 on `spectre-tokens` publishing a
+  standalone tracking scale — that landed in `spectre-tokens@4.4.0`.
+- Added `sp-list-{none,disc,decimal,inside,outside}` utilities
+  (`scripts/layout-utilities.ts`). The `ul, ol` base reset
+  (`base.css`, above) zeroes `list-style` globally with no opt-in utility to
+  restore it — any consumer with a genuine bulleted/numbered list (not
+  nav/menu content) had to hand-write `list-style` to undo the reset. `sp-
+  list-none` is included for symmetry/explicitness even though it duplicates
+  the base default, matching the existing `block`/`hidden` utility pattern.
+- Added `sp-object-{top,right,bottom,left,center}` (`object-position`)
+  utilities, alongside the `sp-object-{contain,cover,fill,none,scale-down}`
+  (`object-fit`) utilities added earlier in this Unreleased section —
+  `object-fit: cover` alone can't bias a crop toward a specific part of the
+  image (e.g. a face near the top of a portrait photo); the two are meant to
+  be composed together.
+- Added `explicitTemplate` to `getGridClasses` (`src/recipes/grid.ts`): a
+  named, finite set of asymmetric column-template shapes —
+  `edge-fluid-edge` (`auto 1fr auto`, e.g. a logo/nav/CTA row) and
+  `label-fluid-fluid` (`auto {weight}fr 1fr`, a fixed leading label column
+  plus two differently-weighted fluid columns, `weight` reusing the existing
+  `leadingTracks` 1.5/1.6/2/2.5/3 scale) — for layouts N-equal columns,
+  `span`/`offset`, `leadingTracks`, and `fixedTracks` can't express, where
+  every column needs a distinct, specific size. Deliberately a named preset
+  list rather than an arbitrary `grid-template-columns` value or inline
+  style, to stay inside the same finite-class, no-inline-style contract
+  every other Grid option follows. Mutually exclusive with
+  `columns`/`fixedTracks`/`leadingTracks` — when set, it replaces the
+  column-sizing classes those would otherwise emit. Closes `TODO.md`'s
+  "Grid — Explicit Asymmetric Column Templates" item: one confirmed
+  production-consumer need (2026-08-15) plus a second real match
+  (`edge-fluid-edge`, seen directly in a production consumer's hand-rolled
+  navigation grid) — scoped to
+  exactly those two confirmed shapes, not a general mechanism.
 
 ### Fixed
 
@@ -1169,7 +1218,9 @@ Contract change type: additive
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe
   helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/3.4.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/4.1.0...HEAD
+[4.1.0]: https://github.com/phcdevworks/spectre-ui/compare/4.0.0...4.1.0
+[4.0.0]: https://github.com/phcdevworks/spectre-ui/compare/3.4.0...4.0.0
 [3.4.0]: https://github.com/phcdevworks/spectre-ui/compare/3.3.0...3.4.0
 [3.3.0]: https://github.com/phcdevworks/spectre-ui/compare/3.2.0...3.3.0
 [3.2.0]: https://github.com/phcdevworks/spectre-ui/compare/3.1.0...3.2.0

@@ -285,6 +285,42 @@ describe('getGridClasses', () => {
     })
   })
 
+  it('returns a template class and omits sp-grid-cols-* when explicitTemplate is set', () => {
+    expect(
+      getGridClasses({ columns: 3, explicitTemplate: { template: 'edge-fluid-edge' } })
+    ).toBe('sp-grid sp-grid--gap-md sp-grid-template--edge-fluid-edge')
+  })
+
+  it('defaults label-fluid-fluid weight to 2 and honors an explicit weight', () => {
+    expect(
+      getGridClasses({ explicitTemplate: { template: 'label-fluid-fluid' } })
+    ).toBe('sp-grid sp-grid--gap-md sp-grid-template--label-fluid-fluid-2')
+    expect(
+      getGridClasses({ explicitTemplate: { template: 'label-fluid-fluid', weight: 1.6 } })
+    ).toBe('sp-grid sp-grid--gap-md sp-grid-template--label-fluid-fluid-1_6')
+  })
+
+  it('lets explicitTemplate override fixedTracks and leadingTracks', () => {
+    expect(
+      getGridClasses({
+        columns: 4,
+        fixedTracks: { count: 2 },
+        leadingTracks: { weight: 2 },
+        explicitTemplate: { template: 'edge-fluid-edge' },
+      })
+    ).toBe('sp-grid sp-grid--gap-md sp-grid-template--edge-fluid-edge')
+  })
+
+  it('ships sp-grid-template--* rules in utilities.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    expect(css).toContain('.sp-grid-template--edge-fluid-edge')
+    expect(css).toContain('grid-template-columns: auto 1fr auto;')
+    ;['1_5', '1_6', '2', '2_5', '3'].forEach((weight) => {
+      expect(css).toContain(`.sp-grid-template--label-fluid-fluid-${weight}`)
+    })
+  })
+
   it('returns independent columnGap and rowGap classes', () => {
     expect(
       getGridClasses({ columns: 3, columnGap: 'lg', rowGap: 'sm' })
