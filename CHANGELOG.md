@@ -6,6 +6,25 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [4.1.1] - 2026-08-19
+
+**Release Title:** Grid Type Export Parity
+
+Contract change type: additive
+
+### Fixed
+
+- Exported `GridTemplate` and `GridExplicitTemplateOptions` from
+  `src/recipes/index.ts`. Both types backed the `explicitTemplate` option
+  added to `getGridClasses` in 4.1.0, but were omitted from the recipes
+  barrel, so no downstream consumer could type-check against them. Found
+  while wiring `explicitTemplate` through to `spectre-components`' `sp-grid`.
+
+### Changed
+
+- Refreshed the Vitest development dependency within its existing compatible
+  range.
+
 ## [4.1.0] - 2026-08-18
 
 **Release Title:** Expanded Utility and Layout Contracts
@@ -257,7 +276,7 @@ Contract change type: additive
   and `sp-text--capitalize` modifier classes in `components.css`. Exported
   the new `TextTransform` type from the recipe barrel.
 - Added a `span` option to `getGridClasses` (Grid v2, scoped against a
-  confirmed enterprise client need for irregular/dashboard-style layouts):
+  confirmed production consumer need for irregular/dashboard-style layouts):
   accepts a single column-span value (`1`-`12` or `full`) or a per-breakpoint
   object (`{ base, md, lg }`). Adds `sp-col-span-{1-12,full}` and responsive
   `sp-md-col-span-*` / `sp-lg-col-span-*` modifier classes in
@@ -1218,7 +1237,8 @@ Contract change type: additive
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe
   helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/4.1.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/4.1.1...HEAD
+[4.1.1]: https://github.com/phcdevworks/spectre-ui/compare/4.1.0...4.1.1
 [4.1.0]: https://github.com/phcdevworks/spectre-ui/compare/4.0.0...4.1.0
 [4.0.0]: https://github.com/phcdevworks/spectre-ui/compare/3.4.0...4.0.0
 [3.4.0]: https://github.com/phcdevworks/spectre-ui/compare/3.3.0...3.4.0

@@ -191,6 +191,8 @@ export {
   type GridFixedTracksOptions,
   type GridOrder,
   type GridOrderOptions,
+  type GridTemplate,
+  type GridExplicitTemplateOptions,
 } from './grid'
 
 export { getCheckboxClasses, type CheckboxRecipeOptions } from './checkbox'
