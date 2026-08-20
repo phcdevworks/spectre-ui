@@ -73,4 +73,35 @@
     background-color: var(--sp-color-brand-100);
     color: inherit;
   }
+
+  /* @phcdevworks/spectre-components registers every custom element without
+     a host display, so an unstyled host defaults to the UA `inline` display,
+     against which `width`/`height` do not apply per the CSS spec. Every
+     component below reflects its full-width/full-height boolean prop as a
+     same-named attribute on the host (see each component's `reflect: true`
+     property definition), so percentage sizing on the shadow content only
+     needs to resolve against a real box exactly when that attribute is set —
+     default (non-full) usage is untouched. See TODO.md "Host — Custom
+     Element Display Contract". */
+  :where(
+      sp-alert[full-width],
+      sp-avatar[full-width],
+      sp-badge[full-width],
+      sp-button[full-width],
+      sp-card[full-height],
+      sp-dropdown[full-width],
+      sp-footer[full-width],
+      sp-icon-box[full-width],
+      sp-input[full-width],
+      sp-modal[full-width],
+      sp-nav[full-width],
+      sp-pricing-card[full-height],
+      sp-select[full-width],
+      sp-tag[full-width],
+      sp-testimonial[full-height],
+      sp-textarea[full-width],
+      sp-toast[full-width]
+    ) {
+    display: block;
+  }
 }

@@ -175,6 +175,8 @@ export {
 
 export { getSectionClasses, type SectionRecipeOptions } from './section'
 
+export { getProseClasses, type ProseRecipeOptions } from './prose'
+
 export {
   getGridClasses,
   type GridRecipeOptions,
@@ -184,6 +186,9 @@ export {
   type GridSpanOptions,
   type GridOffset,
   type GridOffsetOptions,
+  type GridColStart,
+  type GridColStartOptions,
+  type GridAlign,
   type GridLeadingWeight,
   type GridLeadingWeightOptions,
   type GridFixedTrackCount,
@@ -192,6 +197,8 @@ export {
   type GridOrder,
   type GridOrderOptions,
   type GridTemplate,
+  type GridTemplateOptions,
+  type GridFixedTrackCountOptions,
   type GridExplicitTemplateOptions,
 } from './grid'
 

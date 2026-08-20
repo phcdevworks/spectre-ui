@@ -1,6 +1,6 @@
 {
   "name": "@phcdevworks/spectre-ui",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "@phcdevworks/spectre-ui is the styling contract package of the Spectre system. It translates Spectre design tokens into CSS bundles and class recipe functions for downstream adapters and apps.",
   "keywords": [
     "phcdevworks",
@@ -95,7 +95,7 @@
     "typescript": "^5.0 || ^6.0 || ^7.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^4.4.0"
+    "@phcdevworks/spectre-tokens": "^4.5.0"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.1.0",
@@ -113,7 +113,7 @@
     "tsup": "^8.5.1",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-eslint": "^8.67.0",
-    "vite": "^8.2.1",
+    "vite": "^8.2.2",
     "vitest": "^4.1.11"
   },
   "cSpell.words": [

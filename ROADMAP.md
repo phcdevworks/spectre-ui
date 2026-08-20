@@ -36,6 +36,8 @@ file does not restate delivered work.
 | 11    | Typography axis utilities — standalone `sp-font-{weight}` and `sp-tracking-{step}`, independent of `getTextClasses`'s bundled `size` preset | 4.1.0 |
 | 12    | Utility engine expansion — `align-content`/`order`/`flex-basis` fill-out; responsive coverage extended from `md`/`lg` to the full `sm`/`md`/`lg`/`xl`/`2xl` scale; `object-fit`/`object-position`/`aspect-ratio`/divider-border/`transition`/`list-style` families | 4.1.0 |
 | 4c v3 | Grid `explicitTemplate` — named asymmetric column-template shapes (`edge-fluid-edge`, `label-fluid-fluid`) for layouts no existing Grid option could express | 4.1.0 |
+| 13    | Cascade-layer fix for `sp-stack`/`sp-grid--*-gap-*` vs. `sp-gap-*` (the gap-utility escape hatch was unreachable); host `display: block` for `full-width`/`full-height` custom elements; `explicitTemplate` responsive (`sp-md-`/`sp-lg-grid-template--*`) variants | 4.2.0 |
+| 4c v4 | Grid `fluid-fixed` explicit-template shape; `align`/`colStart` options (`.sp-grid--align-*`, `.sp-col-start-*`); Nav/Footer `sp-container` seam fix; `.sp-prose` recipe | 4.2.0 |
 
 Phase 4f (Icon/AspectRatio recipes) was dropped, not delivered — see
 "What's Next" below.
@@ -44,8 +46,8 @@ Phase 4f (Icon/AspectRatio recipes) was dropped, not delivered — see
 
 ## What's Next
 
-Everything actionable inside this package is done as of 2026-08-18 — see
-Phases 10–12 and 4c v3 above. Nothing is currently open here; only a
+Everything actionable inside this package is done as of 2026-08-20 — see
+Phases 10–13 and 4c v3/v4 above. Nothing is currently open here; only a
 cross-repo item remains, tracked with acceptance criteria in
 [TODO.md](TODO.md):
 

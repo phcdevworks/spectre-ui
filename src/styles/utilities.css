@@ -1,6 +1,13 @@
 @import "./utilities.generated.css";
 
-@layer utilities {
+/* Layout primitives that share a CSS property with a spacing utility class
+   (gap, column-gap, row-gap) live in @layer components, not @layer
+   utilities, so the sp-gap, sp-column-gap, and sp-row-gap utility scales
+   always win on layer precedence regardless of source order within this
+   bundle — see TODO.md "Layout — Spacing Utility Override Of Layout
+   Primitives". The layer order itself (base, components, utilities) is
+   declared by the @import above. */
+@layer components {
   .sp-stack {
     display: flex;
     flex-direction: column;
@@ -32,24 +39,6 @@
 
   .sp-stack--align-stretch {
     align-items: stretch;
-  }
-
-  .sp-container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: var(--sp-layout-container-padding-inline-md);
-    padding-right: var(--sp-layout-container-padding-inline-md);
-    max-width: var(--sp-layout-container-max-width);
-  }
-
-  .sp-container--max-width-prose {
-    max-width: var(--sp-layout-container-max-width-prose);
-  }
-
-  .sp-section {
-    padding-top: var(--sp-layout-section-padding-md);
-    padding-bottom: var(--sp-layout-section-padding-md);
   }
 
   .sp-grid--gap-sm {
@@ -86,6 +75,99 @@
 
   .sp-grid--row-gap-lg {
     row-gap: var(--sp-layout-stack-gap-lg);
+  }
+
+  /* Grid-scoped cell alignment, wired to getGridClasses's `align` option —
+     see TODO.md "Grid — Cell Alignment And Column Start". The generic
+     sp-items-* utility already covers this CSS effect standalone; this
+     family exists so alignment is reachable directly from the Grid recipe
+     API, consistent with gap/columnGap/rowGap on the same recipe. */
+  .sp-grid--align-start {
+    align-items: start;
+  }
+
+  .sp-grid--align-center {
+    align-items: center;
+  }
+
+  .sp-grid--align-end {
+    align-items: end;
+  }
+
+  .sp-grid--align-baseline {
+    align-items: baseline;
+  }
+
+  .sp-grid--align-stretch {
+    align-items: stretch;
+  }
+}
+
+@layer utilities {
+  .sp-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--sp-layout-container-padding-inline-md);
+    padding-right: var(--sp-layout-container-padding-inline-md);
+    max-width: var(--sp-layout-container-max-width);
+  }
+
+  .sp-container--max-width-prose {
+    max-width: var(--sp-layout-container-max-width-prose);
+  }
+
+  /* sp-nav and sp-footer are flex containers with their own inline padding.
+     A nested sp-container is a flex item, so it needs an explicit width to
+     reliably fill it, and its own inline padding would otherwise stack on
+     top of the nav/footer's padding — an inset a sibling plain-block band
+     wrapped in the same sp-container does not have, so they cannot share a
+     left edge. See TODO.md "Shell — Nav And Footer Container Seam". */
+  :where(.sp-nav, .sp-footer) > .sp-container {
+    width: 100%;
+    padding-inline: 0;
+  }
+
+  .sp-section {
+    padding-top: var(--sp-layout-section-padding-md);
+    padding-bottom: var(--sp-layout-section-padding-md);
+  }
+
+  /* Restores structure the build's CSS reset and this package's own
+     `ul, ol { list-style: none }` base rule (spectre-ui@4.1.0) strip from
+     raw editor HTML — content an app renders directly (e.g. a WordPress
+     `the_content()` call) rather than through a component. Heading and
+     link type are deliberately left alone: that belongs to the consuming
+     theme's own type scale (e.g. `theme.json`'s `styles.elements`), not to
+     this package. This layer beats the base-layer list reset regardless of
+     selector specificity, since @layer order (not specificity) decides
+     that conflict. See TODO.md "Prose — Editor Content Recipe". */
+  .sp-prose > * + * {
+    margin-top: var(--sp-layout-stack-gap-md);
+  }
+
+  .sp-prose :where(ul, ol) {
+    margin: 0;
+    padding-inline-start: var(--sp-space-24);
+  }
+
+  .sp-prose ul {
+    list-style: disc;
+  }
+
+  .sp-prose ol {
+    list-style: decimal;
+  }
+
+  .sp-prose li + li {
+    margin-top: var(--sp-space-4);
+  }
+
+  .sp-prose blockquote {
+    margin: 0;
+    padding-inline-start: var(--sp-space-16);
+    border-inline-start: var(--sp-border-width-thick) solid var(--sp-surface-divider);
+    color: var(--sp-text-on-page-muted);
   }
 
   .sp-grid-cols-1 {
@@ -439,6 +521,159 @@
     }
 
     .sp-lg-col-offset-11 {
+      grid-column-start: 12;
+    }
+  }
+
+  /* Absolute grid-column-start line (1-12), distinct from sp-col-offset-*
+     (a shift relative to natural position). See TODO.md "Grid — Cell
+     Alignment And Column Start". */
+  .sp-col-start-1 {
+    grid-column-start: 1;
+  }
+
+  .sp-col-start-2 {
+    grid-column-start: 2;
+  }
+
+  .sp-col-start-3 {
+    grid-column-start: 3;
+  }
+
+  .sp-col-start-4 {
+    grid-column-start: 4;
+  }
+
+  .sp-col-start-5 {
+    grid-column-start: 5;
+  }
+
+  .sp-col-start-6 {
+    grid-column-start: 6;
+  }
+
+  .sp-col-start-7 {
+    grid-column-start: 7;
+  }
+
+  .sp-col-start-8 {
+    grid-column-start: 8;
+  }
+
+  .sp-col-start-9 {
+    grid-column-start: 9;
+  }
+
+  .sp-col-start-10 {
+    grid-column-start: 10;
+  }
+
+  .sp-col-start-11 {
+    grid-column-start: 11;
+  }
+
+  .sp-col-start-12 {
+    grid-column-start: 12;
+  }
+
+  /* min-width values match the published --sp-breakpoint-md / --sp-breakpoint-lg
+     token values; CSS does not allow var() inside @media feature queries. */
+  @media (min-width: 768px) {
+    .sp-md-col-start-1 {
+      grid-column-start: 1;
+    }
+
+    .sp-md-col-start-2 {
+      grid-column-start: 2;
+    }
+
+    .sp-md-col-start-3 {
+      grid-column-start: 3;
+    }
+
+    .sp-md-col-start-4 {
+      grid-column-start: 4;
+    }
+
+    .sp-md-col-start-5 {
+      grid-column-start: 5;
+    }
+
+    .sp-md-col-start-6 {
+      grid-column-start: 6;
+    }
+
+    .sp-md-col-start-7 {
+      grid-column-start: 7;
+    }
+
+    .sp-md-col-start-8 {
+      grid-column-start: 8;
+    }
+
+    .sp-md-col-start-9 {
+      grid-column-start: 9;
+    }
+
+    .sp-md-col-start-10 {
+      grid-column-start: 10;
+    }
+
+    .sp-md-col-start-11 {
+      grid-column-start: 11;
+    }
+
+    .sp-md-col-start-12 {
+      grid-column-start: 12;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .sp-lg-col-start-1 {
+      grid-column-start: 1;
+    }
+
+    .sp-lg-col-start-2 {
+      grid-column-start: 2;
+    }
+
+    .sp-lg-col-start-3 {
+      grid-column-start: 3;
+    }
+
+    .sp-lg-col-start-4 {
+      grid-column-start: 4;
+    }
+
+    .sp-lg-col-start-5 {
+      grid-column-start: 5;
+    }
+
+    .sp-lg-col-start-6 {
+      grid-column-start: 6;
+    }
+
+    .sp-lg-col-start-7 {
+      grid-column-start: 7;
+    }
+
+    .sp-lg-col-start-8 {
+      grid-column-start: 8;
+    }
+
+    .sp-lg-col-start-9 {
+      grid-column-start: 9;
+    }
+
+    .sp-lg-col-start-10 {
+      grid-column-start: 10;
+    }
+
+    .sp-lg-col-start-11 {
+      grid-column-start: 11;
+    }
+
+    .sp-lg-col-start-12 {
       grid-column-start: 12;
     }
   }
@@ -1355,6 +1590,119 @@
     grid-template-columns: auto 3fr 1fr;
   }
 
+  /*
+   * fluid-fixed: one fluid label/lead column, then N equal fixed-width
+   * columns sized from --sp-space-240 — the same step sp-grid-fixed-tracks-*
+   * uses — so a comparison table can give every compared column identical
+   * width while the leading label absorbs the remaining space. See TODO.md
+   * "Grid — Fluid Plus Equal Fixed Tracks Template".
+   */
+  .sp-grid-template--fluid-fixed-1 {
+    grid-template-columns: minmax(0, 1fr) repeat(1, minmax(0, var(--sp-space-240)));
+  }
+
+  .sp-grid-template--fluid-fixed-2 {
+    grid-template-columns: minmax(0, 1fr) repeat(2, minmax(0, var(--sp-space-240)));
+  }
+
+  .sp-grid-template--fluid-fixed-3 {
+    grid-template-columns: minmax(0, 1fr) repeat(3, minmax(0, var(--sp-space-240)));
+  }
+
+  .sp-grid-template--fluid-fixed-4 {
+    grid-template-columns: minmax(0, 1fr) repeat(4, minmax(0, var(--sp-space-240)));
+  }
+
+  /* min-width values match the published --sp-breakpoint-md / --sp-breakpoint-lg
+     token values; CSS does not allow var() inside @media feature queries.
+     Every other grid sizing option (columns, span, offset, order,
+     leading-track weight) ships md/lg responsive steps — these close the
+     same gap for explicit-template, so a template does not have to apply
+     uniformly down to the smallest width. See TODO.md "Grid — Responsive
+     Explicit Template Variants". */
+  @media (min-width: 768px) {
+    .sp-md-grid-template--edge-fluid-edge {
+      grid-template-columns: auto 1fr auto;
+    }
+
+    .sp-md-grid-template--label-fluid-fluid-1_5 {
+      grid-template-columns: auto 1.5fr 1fr;
+    }
+
+    .sp-md-grid-template--label-fluid-fluid-1_6 {
+      grid-template-columns: auto 1.6fr 1fr;
+    }
+
+    .sp-md-grid-template--label-fluid-fluid-2 {
+      grid-template-columns: auto 2fr 1fr;
+    }
+
+    .sp-md-grid-template--label-fluid-fluid-2_5 {
+      grid-template-columns: auto 2.5fr 1fr;
+    }
+
+    .sp-md-grid-template--label-fluid-fluid-3 {
+      grid-template-columns: auto 3fr 1fr;
+    }
+
+    .sp-md-grid-template--fluid-fixed-1 {
+      grid-template-columns: minmax(0, 1fr) repeat(1, minmax(0, var(--sp-space-240)));
+    }
+
+    .sp-md-grid-template--fluid-fixed-2 {
+      grid-template-columns: minmax(0, 1fr) repeat(2, minmax(0, var(--sp-space-240)));
+    }
+
+    .sp-md-grid-template--fluid-fixed-3 {
+      grid-template-columns: minmax(0, 1fr) repeat(3, minmax(0, var(--sp-space-240)));
+    }
+
+    .sp-md-grid-template--fluid-fixed-4 {
+      grid-template-columns: minmax(0, 1fr) repeat(4, minmax(0, var(--sp-space-240)));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .sp-lg-grid-template--edge-fluid-edge {
+      grid-template-columns: auto 1fr auto;
+    }
+
+    .sp-lg-grid-template--label-fluid-fluid-1_5 {
+      grid-template-columns: auto 1.5fr 1fr;
+    }
+
+    .sp-lg-grid-template--label-fluid-fluid-1_6 {
+      grid-template-columns: auto 1.6fr 1fr;
+    }
+
+    .sp-lg-grid-template--label-fluid-fluid-2 {
+      grid-template-columns: auto 2fr 1fr;
+    }
+
+    .sp-lg-grid-template--label-fluid-fluid-2_5 {
+      grid-template-columns: auto 2.5fr 1fr;
+    }
+
+    .sp-lg-grid-template--label-fluid-fluid-3 {
+      grid-template-columns: auto 3fr 1fr;
+    }
+
+    .sp-lg-grid-template--fluid-fixed-1 {
+      grid-template-columns: minmax(0, 1fr) repeat(1, minmax(0, var(--sp-space-240)));
+    }
+
+    .sp-lg-grid-template--fluid-fixed-2 {
+      grid-template-columns: minmax(0, 1fr) repeat(2, minmax(0, var(--sp-space-240)));
+    }
+
+    .sp-lg-grid-template--fluid-fixed-3 {
+      grid-template-columns: minmax(0, 1fr) repeat(3, minmax(0, var(--sp-space-240)));
+    }
+
+    .sp-lg-grid-template--fluid-fixed-4 {
+      grid-template-columns: minmax(0, 1fr) repeat(4, minmax(0, var(--sp-space-240)));
+    }
+  }
 
   .sp-link {
     color: var(--sp-link-default);

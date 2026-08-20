@@ -16,7 +16,7 @@ to consume Spectre's visual language.
 | Project team           | `project-design`                   |
 | Repository role        | Spectre L2 CSS and recipe contract |
 | Package/artifact       | `@phcdevworks/spectre-ui`          |
-| Current version/status | 4.1.1                              |
+| Current version/status | 4.2.0                              |
 
 ## Standard Workflow
 
@@ -260,6 +260,7 @@ All options are optional and fall back to sensible defaults.
 | Container   | `getContainerClasses`   | maxWidth: `prose`                                                                                              | —                                    | —                                                                                                                                     |
 | Stack       | `getStackClasses`       | direction: `vertical` `horizontal`, basis: `sidebar`, align: `center` `stretch`                                | —                                    | —                                                                                                                                     |
 | Section     | `getSectionClasses`     | —                                                                                                              | —                                    | —                                                                                                                                     |
+| Prose       | `getProseClasses`       | —                                                                                                              | —                                    | —                                                                                                                                     |
 | Grid        | `getGridClasses`        | columns: `1` `2` `3` `4` `6` `12` `auto`                                                                       | gap/columnGap/rowGap: `sm` `md` `lg` | `span`/`offset`/`rowSpan`/`rowOffset`/`order`: `1`–`12`/`0`–`11`/`first`\|`last`\|`none`\|`1`–`12`, per-breakpoint `{ base, md, lg }` |
 | Sidebar     | `getSidebarClasses`     | —                                                                                                              | —                                    | `bordered`                                                                                                                            |
 | Footer      | `getFooterClasses`      | —                                                                                                              | —                                    | `bordered` `fullWidth`                                                                                                                |
@@ -399,6 +400,7 @@ Root recipe functions:
 - `getModalClasses`
 - `getNavClasses`
 - `getPricingCardClasses`
+- `getProseClasses`
 - `getRadioClasses`
 - `getRatingClasses`
 - `getSectionClasses`

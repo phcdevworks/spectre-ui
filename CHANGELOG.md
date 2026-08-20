@@ -6,6 +6,103 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [4.2.0] - 2026-08-20
+
+**Release Title:** Layout and Prose Contract Hardening
+
+Contract change type: semantic change
+
+### Added
+
+- New `.sp-prose` recipe (`getProseClasses`, new `ProseRecipeOptions` type)
+  restores `ul`/`ol` markers, blockquote treatment, and top-level flow
+  spacing for raw HTML content an app renders directly (e.g. a WordPress
+  `the_content()` call) rather than through a component — content the
+  build's CSS reset, and this package's own base-layer
+  `ul, ol { list-style: none }` rule (`spectre-ui@4.1.0`), otherwise leave
+  markerless and unspaced with no way to opt back in. Deliberately leaves
+  heading and link typography alone — that belongs to the consuming
+  theme's own type scale, not this package. Requested by `spectre-base`;
+  see TODO.md "Prose — Editor Content Recipe".
+
+- `sp-col-start-*` (1-12, plus `sp-md-`/`sp-lg-` responsive variants) sets
+  an absolute `grid-column-start` line, distinct from `sp-col-offset-*`
+  (a shift relative to natural position, which cannot express an absolute
+  start). `getGridClasses` gained a matching `colStart` option (plain value
+  or `{ base, md, lg }`, new exported `GridColStart`/`GridColStartOptions`
+  types).
+- `.sp-grid--align-start`/`-center`/`-end`/`-baseline`/`-stretch` and a
+  matching `align` option on `getGridClasses` (new exported `GridAlign`
+  type). The generic `sp-items-*` utility already covers this CSS effect
+  standalone; this family makes it reachable directly from the Grid recipe
+  API, consistent with `gap`/`columnGap`/`rowGap` on the same recipe. Filed
+  a matching request in `spectre-components/TODO.md` to wire an `align`
+  prop through to `<sp-grid>` — this package can only add the recipe/CSS
+  side. Requested by `spectre-base`; see TODO.md "Grid — Cell Alignment And
+  Column Start".
+
+- `fluid-fixed` explicit-template shape: one fluid label/lead column plus N
+  equal fixed-width columns sized from the same `--sp-space-240` step
+  `fixedTracks` uses (`sp-grid-template--fluid-fixed-1` through `-4`, plus
+  `sp-md-`/`sp-lg-` responsive variants). `getGridClasses`'s
+  `explicitTemplate.count` (new option, plain value or `{ base, md, lg }`,
+  exported as `GridFixedTrackCountOptions`) selects how many fixed columns
+  follow the fluid one, defaulting to 2. Closes the gap for a comparison
+  table that wants `minmax(0, 1fr) repeat(N, <fixed>)` — neither
+  `fixedTracks` (every track fixed) nor `label-fluid-fluid` (two
+  differently-weighted fluid columns) fit that shape. Requested by
+  `spectre-base`; see TODO.md "Grid — Fluid Plus Equal Fixed Tracks
+  Template".
+
+- `sp-md-grid-template--*` / `sp-lg-grid-template--*` responsive variants for
+  the six existing `explicitTemplate` shapes (`edge-fluid-edge` and the five
+  `label-fluid-fluid-*` weights), matching the md/lg responsive steps every
+  other Grid sizing option already ships. `getGridClasses`'s
+  `explicitTemplate.template` and `explicitTemplate.weight` now also accept a
+  `{ base, md, lg }` object, exported as the new `GridTemplateOptions` type,
+  alongside the existing single-value form (still applies at the base width
+  only — fully backward compatible). Previously an explicit template applied
+  uniformly at every width, including 375px, with no way to opt in only at
+  md/lg. Requested by `spectre-base`; see TODO.md "Grid — Responsive
+  Explicit Template Variants".
+
+### Fixed
+
+- `:where(.sp-nav, .sp-footer) > .sp-container` now sets `width: 100%` and
+  `padding-inline: 0`. `sp-nav`/`sp-footer` are flex containers with their
+  own inline padding, so a nested `sp-container` — a flex item — needed an
+  explicit width to reliably fill it, and its own inline padding was
+  stacking on top of the nav/footer's padding, an inset a sibling
+  plain-block band wrapped in the same `sp-container` does not have, so a
+  utility bar, a nav, and a footer that all wrap content in `sp-container`
+  could not share a left edge. Requested by `spectre-base`; see TODO.md
+  "Shell — Nav And Footer Container Seam".
+
+- `base.css` now sets `display: block` on `sp-alert`, `sp-avatar`,
+  `sp-badge`, `sp-button`, `sp-card`, `sp-dropdown`, `sp-footer`,
+  `sp-icon-box`, `sp-input`, `sp-modal`, `sp-nav`, `sp-pricing-card`,
+  `sp-select`, `sp-tag`, `sp-testimonial`, `sp-textarea`, and `sp-toast`
+  hosts, scoped to exactly when their reflected `full-width`/`full-height`
+  boolean attribute is present. `@phcdevworks/spectre-components` registers
+  every custom element without a host display, so an unstyled host falls
+  back to the UA default `inline`, against which `width`/`height` do not
+  apply — `full-width`/`full-height` silently did nothing on any of these
+  seventeen components. Scoped to the attribute (not a bare tag selector) so
+  ordinary non-full usage — e.g. a badge sitting inline with text — is
+  unaffected. Requested by `spectre-base`; see TODO.md "Host — Custom
+  Element Display Contract".
+
+- `.sp-stack`, `.sp-hstack`, and `.sp-grid--gap-*`/`.sp-grid--column-gap-*`/
+  `.sp-grid--row-gap-*` now live in `@layer components` instead of
+  `@layer utilities` within the `utilities.css` bundle, so the standalone
+  `sp-gap-*`/`sp-column-gap-*`/`sp-row-gap-*` utility scale always wins by
+  layer precedence, regardless of source order. Previously both sets of
+  rules shared `@layer utilities` with equal specificity, and the primitive
+  happened to be emitted later in the bundle, so `class="sp-stack sp-gap-40"`
+  silently did nothing — the utility escape hatch was unreachable on exactly
+  the two components that most need it. Requested by `spectre-base`; see
+  TODO.md "Layout — Spacing Utility Override Of Layout Primitives".
+
 ## [4.1.1] - 2026-08-19
 
 **Release Title:** Grid Type Export Parity
@@ -1237,7 +1334,8 @@ Contract change type: additive
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe
   helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/4.1.1...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/4.2.0...HEAD
+[4.2.0]: https://github.com/phcdevworks/spectre-ui/compare/4.1.1...4.2.0
 [4.1.1]: https://github.com/phcdevworks/spectre-ui/compare/4.1.0...4.1.1
 [4.1.0]: https://github.com/phcdevworks/spectre-ui/compare/4.0.0...4.1.0
 [4.0.0]: https://github.com/phcdevworks/spectre-ui/compare/3.4.0...4.0.0

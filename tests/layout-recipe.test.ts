@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import postcss from 'postcss'
 import { describe, expect, it } from 'vitest'
 import {
   getContainerClasses,
@@ -13,6 +14,7 @@ import {
   getFooterMutedClasses,
   getFooterTextClasses,
   getGridClasses,
+  getProseClasses,
   getSectionClasses,
   getSidebarBackdropClasses,
   getSidebarClasses,
@@ -36,6 +38,28 @@ describe('getContainerClasses', () => {
     expect(getContainerClasses({ maxWidth: 'prose' })).toBe(
       'sp-container sp-container--max-width-prose'
     )
+  })
+
+  // Regression for TODO.md "Shell — Nav And Footer Container Seam": sp-nav
+  // and sp-footer are flex containers with their own inline padding, so a
+  // nested sp-container needs an explicit width to fill that flex item and
+  // must not stack a second inline inset on top of the nav/footer padding.
+  it('fills the flex item and drops inline padding when nested inside sp-nav/sp-footer', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    const root = postcss.parse(css, { from: cssPath })
+
+    let matchedRule: import('postcss').Rule | undefined
+    root.walkRules((rule) => {
+      if (rule.selector.includes('.sp-nav') && rule.selector.includes('> .sp-container')) {
+        matchedRule = rule
+      }
+    })
+
+    expect(matchedRule).toBeDefined()
+    expect(matchedRule?.selector).toContain('.sp-footer')
+    expect(matchedRule?.toString()).toContain('width: 100%')
+    expect(matchedRule?.toString()).toContain('padding-inline: 0')
   })
 })
 
@@ -103,6 +127,45 @@ describe('getStackClasses', () => {
 describe('getSectionClasses', () => {
   it('returns the default section class', () => {
     expect(getSectionClasses()).toBe('sp-section')
+  })
+})
+
+describe('getProseClasses', () => {
+  it('returns the default prose class', () => {
+    expect(getProseClasses()).toBe('sp-prose')
+  })
+
+  // Regression for TODO.md "Prose — Editor Content Recipe": raw editor HTML
+  // (e.g. a WordPress the_content() call) gets no component treatment, so
+  // the build's CSS reset and this package's own base-layer list reset
+  // (spectre-ui@4.1.0) leave it with no list markers, no blockquote
+  // treatment, and no flow spacing between top-level elements.
+  it('ships list marker, blockquote, and flow-spacing rules scoped to .sp-prose in utilities.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    expect(css).toContain('.sp-prose > * + *')
+    expect(css).toContain('.sp-prose ul')
+    expect(css).toContain('.sp-prose ol')
+    expect(css).toContain('list-style: disc')
+    expect(css).toContain('list-style: decimal')
+    expect(css).toContain('.sp-prose blockquote')
+  })
+
+  it('does not restyle headings or links, leaving that to the consuming theme', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    const root = postcss.parse(css, { from: cssPath })
+
+    let hasHeadingRule = false
+    let hasLinkRule = false
+    root.walkRules((rule) => {
+      if (!rule.selector.startsWith('.sp-prose')) return
+      if (/\bh[1-6]\b/.test(rule.selector)) hasHeadingRule = true
+      if (/\ba\b/.test(rule.selector)) hasLinkRule = true
+    })
+
+    expect(hasHeadingRule).toBe(false)
+    expect(hasLinkRule).toBe(false)
   })
 })
 
@@ -226,6 +289,57 @@ describe('getGridClasses', () => {
     })
   })
 
+  it('returns a base column start class', () => {
+    expect(getGridClasses({ colStart: 4 })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1 sp-col-start-4'
+    )
+  })
+
+  it('returns per-breakpoint column start classes', () => {
+    expect(
+      getGridClasses({ columns: 12, colStart: { md: 2, lg: 5 } })
+    ).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-12 sp-md-col-start-2 sp-lg-col-start-5'
+    )
+  })
+
+  // Regression for TODO.md "Grid — Cell Alignment And Column Start":
+  // sp-col-offset-* shifts relative to natural position; sp-col-start-*
+  // sets the absolute grid-column-start line, which offset cannot express.
+  it('ships sp-col-start-* and responsive sp-{bp}-col-start-* rules in utilities.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    ;[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].forEach((start) => {
+      expect(css).toContain(`.sp-col-start-${start} {\n    grid-column-start: ${start};`)
+      expect(css).toContain(`.sp-md-col-start-${start} {\n      grid-column-start: ${start};`)
+      expect(css).toContain(`.sp-lg-col-start-${start} {\n      grid-column-start: ${start};`)
+    })
+  })
+
+  it('returns a grid alignment class', () => {
+    expect(getGridClasses({ align: 'start' })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid--align-start sp-grid-cols-1'
+    )
+  })
+
+  it('omits the alignment class when align is not provided', () => {
+    expect(getGridClasses({ columns: 3 })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-3'
+    )
+  })
+
+  // Regression for TODO.md "Grid — Cell Alignment And Column Start": the
+  // generic sp-items-* utility already covers this CSS effect, but Grid's
+  // own recipe API had no way to reach it directly, unlike gap/columnGap/
+  // rowGap on the same recipe.
+  it('ships sp-grid--align-* rules in utilities.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    ;['start', 'center', 'end', 'baseline', 'stretch'].forEach((align) => {
+      expect(css).toContain(`.sp-grid--align-${align}`)
+    })
+  })
+
   it('returns a fixed-track class and omits sp-grid-cols-* when fixedTracks is set', () => {
     expect(getGridClasses({ columns: 4, fixedTracks: { count: 2 } })).toBe(
       'sp-grid sp-grid--gap-md sp-grid-fixed-tracks-2'
@@ -321,6 +435,88 @@ describe('getGridClasses', () => {
     })
   })
 
+  it('accepts a { base, md, lg } explicitTemplate.template object for responsive templates', () => {
+    expect(
+      getGridClasses({
+        explicitTemplate: {
+          template: { md: 'edge-fluid-edge', lg: 'label-fluid-fluid' },
+          weight: { lg: 1.6 },
+        },
+      })
+    ).toBe(
+      'sp-grid sp-grid--gap-md sp-md-grid-template--edge-fluid-edge sp-lg-grid-template--label-fluid-fluid-1_6'
+    )
+  })
+
+  it('omits sp-grid-cols-*/leading-track classes when only a responsive explicitTemplate is set', () => {
+    expect(
+      getGridClasses({
+        columns: 3,
+        leadingTracks: { weight: 2 },
+        explicitTemplate: { template: { lg: 'edge-fluid-edge' } },
+      })
+    ).toBe('sp-grid sp-grid--gap-md sp-lg-grid-template--edge-fluid-edge')
+  })
+
+  // Regression for TODO.md "Grid — Responsive Explicit Template Variants":
+  // every other Grid sizing option (columns, span, offset, order,
+  // leading-track weight) ships md/lg responsive steps in the CSS bundle;
+  // explicit-template previously had none, forcing the same asymmetric
+  // shape at every width down to 375px.
+  it('ships sp-md-grid-template--* and sp-lg-grid-template--* rules in utilities.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    ;['sp-md-', 'sp-lg-'].forEach((prefix) => {
+      expect(css).toContain(`.${prefix}grid-template--edge-fluid-edge`)
+      ;['1_5', '1_6', '2', '2_5', '3'].forEach((weight) => {
+        expect(css).toContain(`.${prefix}grid-template--label-fluid-fluid-${weight}`)
+      })
+    })
+  })
+
+  it('defaults fluid-fixed count to 2 and honors an explicit count', () => {
+    expect(
+      getGridClasses({ explicitTemplate: { template: 'fluid-fixed' } })
+    ).toBe('sp-grid sp-grid--gap-md sp-grid-template--fluid-fixed-2')
+    expect(
+      getGridClasses({ explicitTemplate: { template: 'fluid-fixed', count: 3 } })
+    ).toBe('sp-grid sp-grid--gap-md sp-grid-template--fluid-fixed-3')
+  })
+
+  it('accepts a { base, md, lg } explicitTemplate.count object for responsive fluid-fixed counts', () => {
+    expect(
+      getGridClasses({
+        explicitTemplate: {
+          template: { md: 'fluid-fixed', lg: 'fluid-fixed' },
+          count: { md: 2, lg: 4 },
+        },
+      })
+    ).toBe(
+      'sp-grid sp-grid--gap-md sp-md-grid-template--fluid-fixed-2 sp-lg-grid-template--fluid-fixed-4'
+    )
+  })
+
+  // Regression for TODO.md "Grid — Fluid Plus Equal Fixed Tracks Template":
+  // a comparison table wants one fluid label column plus N equal fixed
+  // columns sized from the same --sp-space-240 step as fixedTracks, so
+  // compared values sit in identical space.
+  it('ships sp-grid-template--fluid-fixed-* rules (and md/lg variants) in utilities.css', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    ;['', 'sp-md-', 'sp-lg-'].forEach((prefix) => {
+      ;[1, 2, 3, 4].forEach((count) => {
+        const selector =
+          prefix === ''
+            ? `.sp-grid-template--fluid-fixed-${count}`
+            : `.${prefix}grid-template--fluid-fixed-${count}`
+        expect(css).toContain(selector)
+      })
+    })
+    expect(css).toContain(
+      'grid-template-columns: minmax(0, 1fr) repeat(2, minmax(0, var(--sp-space-240)));'
+    )
+  })
+
   it('returns independent columnGap and rowGap classes', () => {
     expect(
       getGridClasses({ columns: 3, columnGap: 'lg', rowGap: 'sm' })
@@ -336,6 +532,50 @@ describe('getGridClasses', () => {
       expect(css).toContain(`.sp-grid--column-gap-${gap}`)
       expect(css).toContain(`.sp-grid--row-gap-${gap}`)
     })
+  })
+
+  it('keeps sp-gap-*/sp-grid--*-gap-* utilities able to override sp-stack/sp-grid gap primitives', () => {
+    // Regression for TODO.md "Layout — Spacing Utility Override Of Layout
+    // Primitives": .sp-stack and .sp-grid--{,column-,row-}gap-* must live in
+    // a weaker @layer than the standalone sp-gap-*/sp-column-gap-*/
+    // sp-row-gap-* utility scale, so `class="sp-stack sp-gap-40"` (or the
+    // grid equivalents) always resolves to the utility's value regardless of
+    // source order in the bundle.
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    const root = postcss.parse(css, { from: cssPath })
+
+    const layerNameFor = (selector: string): string | undefined => {
+      let found: string | undefined
+      root.walkRules(selector, (rule) => {
+        let node: import('postcss').Container | import('postcss').Document | undefined = rule.parent
+        while (node) {
+          if (node.type === 'atrule' && (node as import('postcss').AtRule).name === 'layer') {
+            found = (node as import('postcss').AtRule).params
+            break
+          }
+          node = node.parent
+        }
+      })
+      return found
+    }
+
+    const primitiveLayer = layerNameFor('.sp-stack')
+    const utilityLayer = layerNameFor('.sp-gap-40')
+
+    expect(primitiveLayer).toBe('components')
+    expect(utilityLayer).toBe('utilities')
+
+    const layerOrderMatch = css.match(/@layer\s+([^;{]+);/)
+    expect(layerOrderMatch).not.toBeNull()
+    const layerOrder = (layerOrderMatch?.[1] ?? '')
+      .split(',')
+      .map((name) => name.trim())
+
+    expect(layerOrder.indexOf('components')).toBeGreaterThanOrEqual(0)
+    expect(layerOrder.indexOf('utilities')).toBeGreaterThan(
+      layerOrder.indexOf('components')
+    )
   })
 
   it('returns a base row span class', () => {

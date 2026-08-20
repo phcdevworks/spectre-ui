@@ -18,13 +18,18 @@ const ENTRYPOINT_CONTRACTS = [
   {
     fileName: 'base.css',
     standaloneTokens: ['--sp-surface-page:', '--sp-text-on-page-default:'],
-    bundleMarkers: ['@layer base', 'body {', ':focus-visible {'],
+    bundleMarkers: ['@layer base', 'body {', ':focus-visible {', 'sp-card[full-height]'],
     forbiddenMarkers: ['@layer components {', '@layer utilities {', '.sp-btn {', '.sp-stack {'],
     // spectre-tokens Phase 11: independent component.footer semantic group
     // adds new CSS variables in default and dark modes — a deliberate,
     // scoped size increase, not a regression. See spectre-tokens TODO.md
-    // Phase 11 P0/P1.
-    maxBytes: 40000,
+    // Phase 11 P0/P1. Raised again 2026-08-19 (base.css grew to 41304 bytes)
+    // when the spectre-tokens dependency range was bumped to ^4.5.0 (an
+    // unrelated, already-published dependency update) and again for the new
+    // custom-element host display:block rule for full-width/full-height —
+    // both deliberate, scoped increases, not regressions. See TODO.md
+    // "Host — Custom Element Display Contract".
+    maxBytes: 42000,
   },
   {
     fileName: 'components.css',
@@ -34,14 +39,23 @@ const ENTRYPOINT_CONTRACTS = [
     // Phase 9: independent component.footer semantic contract adds Footer
     // anatomy classes (heading, muted text, links, divider, icon chip) and
     // drops the Nav-alias token reuse — a deliberate, scoped size increase,
-    // not a regression. See TODO.md Phase 9.
-    maxBytes: 144500,
+    // not a regression. See TODO.md Phase 9. Raised again 2026-08-19
+    // (components.css grew to 144564 bytes) when the spectre-tokens
+    // dependency range was bumped to ^4.5.0 — an unrelated, already-
+    // published dependency update, not a regression here.
+    maxBytes: 145000,
   },
   {
     fileName: 'utilities.css',
     standaloneTokens: ['--sp-surface-page:', '--sp-layout-stack-gap-md:'],
-    bundleMarkers: ['@layer base, components, utilities;', '@layer utilities', '.sp-stack {', '@keyframes fade-in', '.sp-p-4 {', '.sp-flex {'],
-    forbiddenMarkers: ['@layer base {', '@layer components {', 'body {', ':focus-visible {', '.sp-btn {', '.sp-card {'],
+    // .sp-stack / .sp-grid--gap-* / .sp-grid--column-gap-* / .sp-grid--row-gap-*
+    // live inside a `@layer components` block within this same standalone
+    // bundle — not imported from components.css — so the sp-gap-*/
+    // sp-column-gap-*/sp-row-gap-* utility scale always wins on layer
+    // precedence regardless of source order. See TODO.md "Layout — Spacing
+    // Utility Override Of Layout Primitives".
+    bundleMarkers: ['@layer base, components, utilities;', '@layer utilities', '@layer components {', '.sp-stack {', '@keyframes fade-in', '.sp-p-4 {', '.sp-flex {'],
+    forbiddenMarkers: ['@layer base {', 'body {', ':focus-visible {', '.sp-btn {', '.sp-card {'],
     // Phase 7 P1: generated utility-class engine adds full palette (286
     // steps), spacing, radius, shadow, opacity, and z-index coverage plus
     // responsive variants — a deliberate, scoped size increase, not a
@@ -51,8 +65,20 @@ const ENTRYPOINT_CONTRACTS = [
     // coverage"), which roughly doubled every responsive spacing/layout
     // class count; this is raw (unminified, ungzipped) size, and utility CSS
     // — near-total selector/declaration repetition — compresses far better
-    // than typical CSS under gzip/brotli in transit.
-    maxBytes: 340000,
+    // than typical CSS under gzip/brotli in transit. Raised again 2026-08-19
+    // (utilities.css grew to 342018 bytes) for the sp-md-/sp-lg-grid-template--*
+    // responsive variants (TODO.md "Grid — Responsive Explicit Template
+    // Variants") plus the unrelated spectre-tokens ^4.5.0 bump — both
+    // deliberate, scoped increases, not a regression. Raised again
+    // 2026-08-20 (utilities.css grew to 344534 bytes) for the
+    // sp-grid-template--fluid-fixed-*/sp-md-/sp-lg- variants (TODO.md
+    // "Grid — Fluid Plus Equal Fixed Tracks Template"). Raised again
+    // 2026-08-20 (utilities.css grew to 347668 bytes) for
+    // sp-col-start-*/sp-md-/sp-lg- and sp-grid--align-* (TODO.md
+    // "Grid — Cell Alignment And Column Start"). Raised again 2026-08-20
+    // (utilities.css grew to 348868 bytes) for .sp-prose (TODO.md
+    // "Prose — Editor Content Recipe").
+    maxBytes: 349500,
   },
 ] as const;
 
@@ -204,5 +230,57 @@ describe('dist CSS entrypoints', () => {
         ? 'Expected selector blocks to remain unique to their exported bundle.'
         : `Selectors repeated across exported bundles:\n- ${duplicatesAcrossBundles.join('\n- ')}`
     ).toEqual([]);
+  });
+
+  it('sets display: block on every full-width/full-height custom-element host, and nothing else', () => {
+    // Regression for TODO.md "Host — Custom Element Display Contract": the
+    // rule must be scoped by the reflected full-width/full-height attribute
+    // (not a bare tag selector), so default (non-full) usage of these
+    // elements stays at the UA default inline display.
+    const css = readDistCss('base.css');
+    const root = postcss.parse(css, { from: path.join(distDir, 'base.css') });
+
+    const fullAttributeHosts = [
+      ['sp-alert', 'full-width'],
+      ['sp-avatar', 'full-width'],
+      ['sp-badge', 'full-width'],
+      ['sp-button', 'full-width'],
+      ['sp-card', 'full-height'],
+      ['sp-dropdown', 'full-width'],
+      ['sp-footer', 'full-width'],
+      ['sp-icon-box', 'full-width'],
+      ['sp-input', 'full-width'],
+      ['sp-modal', 'full-width'],
+      ['sp-nav', 'full-width'],
+      ['sp-pricing-card', 'full-height'],
+      ['sp-select', 'full-width'],
+      ['sp-tag', 'full-width'],
+      ['sp-testimonial', 'full-height'],
+      ['sp-textarea', 'full-width'],
+      ['sp-toast', 'full-width'],
+    ] as const;
+
+    let matchedRule: import('postcss').Rule | undefined;
+    root.walkRules((rule) => {
+      if (rule.selector.includes('sp-card[full-height]')) {
+        matchedRule = rule;
+      }
+    });
+
+    expect(matchedRule).toBeDefined();
+    expect(matchedRule?.toString()).toContain('display: block');
+
+    fullAttributeHosts.forEach(([tag, attribute]) => {
+      expect(matchedRule?.selector).toContain(`${tag}[${attribute}]`);
+    });
+
+    // A bare tag selector (no attribute qualifier) would force every
+    // instance of these elements to display: block, including ordinary
+    // inline usage (e.g. a badge inline with text) that never opts into
+    // full-width/full-height — that regression is exactly what the
+    // attribute-scoped selector avoids.
+    fullAttributeHosts.forEach(([tag]) => {
+      expect(css).not.toMatch(new RegExp(`(?<![\\w[-])${tag}\\s*[,{]`));
+    });
   });
 });

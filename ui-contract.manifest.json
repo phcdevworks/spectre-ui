@@ -205,6 +205,9 @@
     "section": {
       "fn": "getSectionClasses"
     },
+    "prose": {
+      "fn": "getProseClasses"
+    },
     "grid": {
       "fn": "getGridClasses",
       "columns": [1, 2, 3, 4, 6, 12, "auto"],
@@ -215,6 +218,9 @@
       "spanBreakpoints": ["base", "md", "lg"],
       "offsets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       "offsetBreakpoints": ["base", "md", "lg"],
+      "colStarts": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "colStartBreakpoints": ["base", "md", "lg"],
+      "aligns": ["start", "center", "end", "baseline", "stretch"],
       "rowSpans": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "full"],
       "rowSpanBreakpoints": ["base", "md", "lg"],
       "rowOffsets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
@@ -224,8 +230,12 @@
       "fixedTrackCounts": [1, 2, 3, 4],
       "leadingTrackWeights": [1.5, 1.6, 2, 2.5, 3],
       "leadingTrackWeightBreakpoints": ["base", "md", "lg"],
-      "explicitTemplates": ["edge-fluid-edge", "label-fluid-fluid"],
-      "explicitTemplateWeights": [1.5, 1.6, 2, 2.5, 3]
+      "explicitTemplates": ["edge-fluid-edge", "label-fluid-fluid", "fluid-fixed"],
+      "explicitTemplateBreakpoints": ["base", "md", "lg"],
+      "explicitTemplateWeights": [1.5, 1.6, 2, 2.5, 3],
+      "explicitTemplateWeightBreakpoints": ["base", "md", "lg"],
+      "explicitTemplateCounts": [1, 2, 3, 4],
+      "explicitTemplateCountBreakpoints": ["base", "md", "lg"]
     },
     "sidebar": {
       "fn": "getSidebarClasses"

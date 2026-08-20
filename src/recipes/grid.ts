@@ -48,6 +48,29 @@ const GRID_OFFSETS = {
   '11': true,
 } as const
 
+const GRID_COL_STARTS = {
+  '1': true,
+  '2': true,
+  '3': true,
+  '4': true,
+  '5': true,
+  '6': true,
+  '7': true,
+  '8': true,
+  '9': true,
+  '10': true,
+  '11': true,
+  '12': true,
+} as const
+
+const GRID_ALIGNS = {
+  start: true,
+  center: true,
+  end: true,
+  baseline: true,
+  stretch: true,
+} as const
+
 const GRID_LEADING_WEIGHTS = {
   '1_5': true,
   '1_6': true,
@@ -66,6 +89,7 @@ const GRID_FIXED_TRACK_COUNTS = {
 const GRID_TEMPLATES = {
   'edge-fluid-edge': true,
   'label-fluid-fluid': true,
+  'fluid-fixed': true,
 } as const
 
 const GRID_ORDERS = {
@@ -90,6 +114,8 @@ export type GridColumns = 1 | 2 | 3 | 4 | 6 | 12 | 'auto'
 export type GridGap = keyof typeof GRID_GAPS
 export type GridSpan = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 'full'
 export type GridOffset = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11
+export type GridColStart = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+export type GridAlign = keyof typeof GRID_ALIGNS
 export type GridLeadingWeight = 1.5 | 1.6 | 2 | 2.5 | 3
 export type GridFixedTrackCount = 1 | 2 | 3 | 4
 export type GridTemplate = keyof typeof GRID_TEMPLATES
@@ -120,6 +146,12 @@ export interface GridOffsetOptions {
   base?: GridOffset
   md?: GridOffset
   lg?: GridOffset
+}
+
+export interface GridColStartOptions {
+  base?: GridColStart
+  md?: GridColStart
+  lg?: GridColStart
 }
 
 export interface GridOrderOptions {
@@ -156,19 +188,40 @@ export interface GridFixedTracksOptions {
   count: GridFixedTrackCount
 }
 
+export interface GridTemplateOptions {
+  base?: GridTemplate
+  md?: GridTemplate
+  lg?: GridTemplate
+}
+
+export interface GridFixedTrackCountOptions {
+  base?: GridFixedTrackCount
+  md?: GridFixedTrackCount
+  lg?: GridFixedTrackCount
+}
+
 /**
  * A fixed, named set of asymmetric column shapes — every column a distinct
  * size — for layouts N-equal/span-offset/leadingTracks/fixedTracks can't
  * express. `weight` only applies to `label-fluid-fluid` (the first fluid
- * column's weight against the second, which is always 1fr); it is ignored
- * for `edge-fluid-edge`, which has no fluid-weight axis to tune. Mutually
- * exclusive with `columns`/`leadingTracks`/`fixedTracks` — when set, it
- * replaces the column-count/sizing classes those options would otherwise
- * emit.
+ * column's weight against the second, which is always 1fr); `count` only
+ * applies to `fluid-fixed` (how many equal fixed-width columns follow the
+ * fluid one, sized from the same --sp-space-240 step as `fixedTracks`);
+ * both are ignored for `edge-fluid-edge`, which has no tunable axis.
+ * Mutually exclusive with `columns`/`leadingTracks`/`fixedTracks` — when
+ * set, it replaces the column-count/sizing classes those options would
+ * otherwise emit.
+ *
+ * `template`/`weight`/`count` accept a plain value (applies at the base
+ * width only, matching every other explicit-template usage before
+ * responsive variants existed) or a `{ base, md, lg }` object for
+ * per-breakpoint control, same as `span`/`offset`/`order` elsewhere on this
+ * recipe.
  */
 export interface GridExplicitTemplateOptions {
-  template: GridTemplate
-  weight?: GridLeadingWeight
+  template: GridTemplate | GridTemplateOptions
+  weight?: GridLeadingWeight | GridLeadingWeightOptions
+  count?: GridFixedTrackCount | GridFixedTrackCountOptions
 }
 
 export interface GridRecipeOptions {
@@ -178,9 +231,11 @@ export interface GridRecipeOptions {
   rowGap?: GridGap
   span?: GridSpan | GridSpanOptions
   offset?: GridOffset | GridOffsetOptions
+  colStart?: GridColStart | GridColStartOptions
   rowSpan?: GridSpan | GridSpanOptions
   rowOffset?: GridOffset | GridOffsetOptions
   order?: GridOrder | GridOrderOptions
+  align?: GridAlign
   leadingTracks?: GridLeadingTracksOptions
   fixedTracks?: GridFixedTracksOptions
   explicitTemplate?: GridExplicitTemplateOptions
@@ -203,6 +258,16 @@ function resolveOffset(value: GridOffset | undefined, name: string): string | un
     value: String(value),
     allowed: GRID_OFFSETS,
     fallback: '0',
+  })
+}
+
+function resolveColStart(value: GridColStart | undefined, name: string): string | undefined {
+  if (value === undefined) return undefined
+  return resolveOption({
+    name,
+    value: String(value),
+    allowed: GRID_COL_STARTS,
+    fallback: '1',
   })
 }
 
@@ -234,25 +299,45 @@ function resolveOrder(value: GridOrder | undefined, name: string): string | unde
 }
 
 function resolveFixedTrackCount(
-  value: GridFixedTrackCount | undefined
+  value: GridFixedTrackCount | undefined,
+  name = 'grid fixed track count'
 ): string | undefined {
   if (value === undefined) return undefined
   return resolveOption({
-    name: 'grid fixed track count',
+    name,
     value: String(value),
     allowed: GRID_FIXED_TRACK_COUNTS,
     fallback: '1',
   })
 }
 
-function resolveTemplate(value: GridTemplate | undefined): string | undefined {
+function resolveTemplate(
+  value: GridTemplate | undefined,
+  name = 'grid explicit template'
+): string | undefined {
   if (value === undefined) return undefined
   return resolveOption({
-    name: 'grid explicit template',
+    name,
     value,
     allowed: GRID_TEMPLATES,
     fallback: 'edge-fluid-edge',
   })
+}
+
+function buildTemplateClass(
+  prefix: '' | 'md-' | 'lg-',
+  template: string | undefined,
+  weight: string | undefined,
+  count: string | undefined
+): string | undefined {
+  if (!template) return undefined
+  if (template === 'label-fluid-fluid') {
+    return `sp-${prefix}grid-template--label-fluid-fluid-${weight ?? '2'}`
+  }
+  if (template === 'fluid-fixed') {
+    return `sp-${prefix}grid-template--fluid-fixed-${count ?? '2'}`
+  }
+  return `sp-${prefix}grid-template--${template}`
 }
 
 export function getGridClasses(opts: GridRecipeOptions = {}): string {
@@ -263,9 +348,11 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
     rowGap: rowGapInput,
     span: spanInput,
     offset: offsetInput,
+    colStart: colStartInput,
     rowSpan: rowSpanInput,
     rowOffset: rowOffsetInput,
     order: orderInput,
+    align: alignInput,
     leadingTracks,
     fixedTracks,
     explicitTemplate,
@@ -303,6 +390,15 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
       })
     : undefined
 
+  const align = alignInput
+    ? resolveOption({
+        name: 'grid align',
+        value: alignInput,
+        allowed: GRID_ALIGNS,
+        fallback: 'stretch',
+      })
+    : undefined
+
   const isSpanOptions = typeof spanInput === 'object'
 
   const baseSpan = resolveSpan(
@@ -331,6 +427,21 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
   const lgOffset = resolveOffset(
     isOffsetOptions ? offsetInput.lg : undefined,
     'grid column offset (lg)'
+  )
+
+  const isColStartOptions = typeof colStartInput === 'object'
+
+  const baseColStart = resolveColStart(
+    isColStartOptions ? colStartInput.base : colStartInput,
+    'grid column start'
+  )
+  const mdColStart = resolveColStart(
+    isColStartOptions ? colStartInput.md : undefined,
+    'grid column start (md)'
+  )
+  const lgColStart = resolveColStart(
+    isColStartOptions ? colStartInput.lg : undefined,
+    'grid column start (lg)'
   )
 
   const isRowSpanOptions = typeof rowSpanInput === 'object'
@@ -401,25 +512,72 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
 
   const fixedTrackCount = resolveFixedTrackCount(fixedTracks?.count)
 
-  const template = resolveTemplate(explicitTemplate?.template)
-  const templateWeight =
-    template === 'label-fluid-fluid'
-      ? (resolveLeadingWeight(explicitTemplate?.weight, 'grid explicit template weight') ?? '2')
-      : undefined
-  const templateClass = template
-    ? template === 'label-fluid-fluid'
-      ? `sp-grid-template--label-fluid-fluid-${templateWeight}`
-      : `sp-grid-template--${template}`
-    : undefined
+  const templateInput = explicitTemplate?.template
+  const isTemplateOptions = typeof templateInput === 'object'
+
+  const baseTemplate = resolveTemplate(
+    isTemplateOptions ? templateInput.base : (templateInput as GridTemplate | undefined),
+    'grid explicit template'
+  )
+  const mdTemplate = resolveTemplate(
+    isTemplateOptions ? templateInput.md : undefined,
+    'grid explicit template (md)'
+  )
+  const lgTemplate = resolveTemplate(
+    isTemplateOptions ? templateInput.lg : undefined,
+    'grid explicit template (lg)'
+  )
+
+  const weightInput = explicitTemplate?.weight
+  const isTemplateWeightOptions = typeof weightInput === 'object'
+
+  const baseTemplateWeight = resolveLeadingWeight(
+    isTemplateWeightOptions ? weightInput.base : (weightInput as GridLeadingWeight | undefined),
+    'grid explicit template weight'
+  )
+  const mdTemplateWeight = resolveLeadingWeight(
+    isTemplateWeightOptions ? weightInput.md : undefined,
+    'grid explicit template weight (md)'
+  )
+  const lgTemplateWeight = resolveLeadingWeight(
+    isTemplateWeightOptions ? weightInput.lg : undefined,
+    'grid explicit template weight (lg)'
+  )
+
+  const templateCountInput = explicitTemplate?.count
+  const isTemplateCountOptions = typeof templateCountInput === 'object'
+
+  const baseTemplateCount = resolveFixedTrackCount(
+    isTemplateCountOptions
+      ? templateCountInput.base
+      : (templateCountInput as GridFixedTrackCount | undefined),
+    'grid explicit template count'
+  )
+  const mdTemplateCount = resolveFixedTrackCount(
+    isTemplateCountOptions ? templateCountInput.md : undefined,
+    'grid explicit template count (md)'
+  )
+  const lgTemplateCount = resolveFixedTrackCount(
+    isTemplateCountOptions ? templateCountInput.lg : undefined,
+    'grid explicit template count (lg)'
+  )
+
+  const baseTemplateClass = buildTemplateClass('', baseTemplate, baseTemplateWeight, baseTemplateCount)
+  const mdTemplateClass = buildTemplateClass('md-', mdTemplate, mdTemplateWeight, mdTemplateCount)
+  const lgTemplateClass = buildTemplateClass('lg-', lgTemplate, lgTemplateWeight, lgTemplateCount)
+  const templateClass = baseTemplateClass ?? mdTemplateClass ?? lgTemplateClass
 
   return cx(
     'sp-grid',
     `sp-grid--gap-${gap}`,
     columnGap && `sp-grid--column-gap-${columnGap}`,
     rowGap && `sp-grid--row-gap-${rowGap}`,
+    align && `sp-grid--align-${align}`,
     !fixedTrackCount && !templateClass && `sp-grid-cols-${columns}`,
     !templateClass && fixedTrackCount && `sp-grid-fixed-tracks-${fixedTrackCount}`,
-    templateClass,
+    baseTemplateClass,
+    mdTemplateClass,
+    lgTemplateClass,
     !templateClass && baseLeadingWeight && `sp-grid-leading-${baseLeadingWeight}-of-${columns}`,
     !templateClass && mdLeadingWeight && `sp-md-grid-leading-${mdLeadingWeight}-of-${columns}`,
     !templateClass && lgLeadingWeight && `sp-lg-grid-leading-${lgLeadingWeight}-of-${columns}`,
@@ -429,6 +587,9 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
     baseOffset && baseOffset !== '0' && `sp-col-offset-${baseOffset}`,
     mdOffset && mdOffset !== '0' && `sp-md-col-offset-${mdOffset}`,
     lgOffset && lgOffset !== '0' && `sp-lg-col-offset-${lgOffset}`,
+    baseColStart && `sp-col-start-${baseColStart}`,
+    mdColStart && `sp-md-col-start-${mdColStart}`,
+    lgColStart && `sp-lg-col-start-${lgColStart}`,
     baseRowSpan && `sp-row-span-${baseRowSpan}`,
     mdRowSpan && `sp-md-row-span-${mdRowSpan}`,
     lgRowSpan && `sp-lg-row-span-${lgRowSpan}`,
