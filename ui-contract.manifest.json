@@ -200,7 +200,8 @@
       "fn": "getContainerClasses"
     },
     "stack": {
-      "fn": "getStackClasses"
+      "fn": "getStackClasses",
+      "gaps": ["sm", "md", "lg"]
     },
     "section": {
       "fn": "getSectionClasses"

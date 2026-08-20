@@ -41,6 +41,20 @@
     align-items: stretch;
   }
 
+  /* getStackClasses's `gap` option, matching getGridClasses's `gap`/
+     `columnGap`/`rowGap` pattern — see TODO.md "Stack — Gap Option On
+     getStackClasses". `md` is the default baked into .sp-stack/.sp-hstack
+     directly, so only the sm/lg overrides need a class. Same @layer
+     components as .sp-stack itself, so sp-gap-* still wins by layer
+     precedence over this too. */
+  .sp-stack--gap-sm {
+    gap: var(--sp-layout-stack-gap-sm);
+  }
+
+  .sp-stack--gap-lg {
+    gap: var(--sp-layout-stack-gap-lg);
+  }
+
   .sp-grid--gap-sm {
     gap: var(--sp-layout-stack-gap-sm);
   }

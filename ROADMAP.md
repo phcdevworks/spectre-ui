@@ -38,6 +38,7 @@ file does not restate delivered work.
 | 4c v3 | Grid `explicitTemplate` — named asymmetric column-template shapes (`edge-fluid-edge`, `label-fluid-fluid`) for layouts no existing Grid option could express | 4.1.0 |
 | 13    | Cascade-layer fix for `sp-stack`/`sp-grid--*-gap-*` vs. `sp-gap-*` (the gap-utility escape hatch was unreachable); host `display: block` for `full-width`/`full-height` custom elements; `explicitTemplate` responsive (`sp-md-`/`sp-lg-grid-template--*`) variants | 4.2.0 |
 | 4c v4 | Grid `fluid-fixed` explicit-template shape; `align`/`colStart` options (`.sp-grid--align-*`, `.sp-col-start-*`); Nav/Footer `sp-container` seam fix; `.sp-prose` recipe | 4.2.0 |
+| 14    | Stack `gap` option (`.sp-stack--gap-*`), parity with Grid's `gap`/`columnGap`/`rowGap` — requested by `spectre-components` while wiring a matching `gap` prop onto `<sp-stack>` | 4.3.0 |
 
 Phase 4f (Icon/AspectRatio recipes) was dropped, not delivered — see
 "What's Next" below.
@@ -47,9 +48,8 @@ Phase 4f (Icon/AspectRatio recipes) was dropped, not delivered — see
 ## What's Next
 
 Everything actionable inside this package is done as of 2026-08-20 — see
-Phases 10–13 and 4c v3/v4 above. Nothing is currently open here; only a
-cross-repo item remains, tracked with acceptance criteria in
-[TODO.md](TODO.md):
+Phases 10–14 and 4c v3/v4 above. Only a cross-repo item remains, tracked with
+acceptance criteria in [TODO.md](TODO.md):
 
 - **A downstream documentation consumer's stale Tailwind documentation** — its
   published docs still describe the Tailwind preset/theme export `spectre-ui`

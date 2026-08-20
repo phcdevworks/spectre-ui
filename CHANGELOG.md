@@ -6,6 +6,25 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [4.3.0] - 2026-08-20
+
+**Release Title:** Stack Gap Recipe Parity
+
+Contract change type: additive
+
+### Added
+
+- `getStackClasses` gained a `gap` option (`sm`/`md`/`lg`, matching
+  `GridGap`/`--sp-layout-stack-gap-*`, new exported `StackGap` type),
+  backing new `.sp-stack--gap-sm`/`.sp-stack--gap-lg` classes (`md` is
+  already the default baked into `.sp-stack`/`.sp-hstack`, so it needs no
+  class). Matches `getGridClasses`'s `gap`/`columnGap`/`rowGap` options —
+  previously a consumer had to reach for the generic `sp-gap-*` utility
+  name instead of a recipe-backed option, unlike every other layout
+  primitive. Requested by `spectre-components` on 2026-08-20 while wiring a
+  matching `gap` prop onto `<sp-stack>`; see TODO.md "Stack — Gap Option On
+  getStackClasses".
+
 ## [4.2.0] - 2026-08-20
 
 **Release Title:** Layout and Prose Contract Hardening

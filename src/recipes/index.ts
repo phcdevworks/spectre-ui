@@ -171,6 +171,7 @@ export {
   type StackDirection,
   type StackBasis,
   type StackAlign,
+  type StackGap,
 } from './stack'
 
 export { getSectionClasses, type SectionRecipeOptions } from './section'

@@ -122,6 +122,51 @@ describe('getStackClasses', () => {
       getStackClasses({ direction: 'horizontal', align: 'stretch' })
     ).toBe('sp-hstack sp-stack--align-stretch')
   })
+
+  it('returns md gap by default with no modifier class', () => {
+    expect(getStackClasses({ gap: 'md' })).toBe('sp-stack')
+  })
+
+  it('returns the sm and lg gap modifier classes', () => {
+    expect(getStackClasses({ gap: 'sm' })).toBe('sp-stack sp-stack--gap-sm')
+    expect(getStackClasses({ gap: 'lg' })).toBe('sp-stack sp-stack--gap-lg')
+  })
+
+  it('combines direction and gap', () => {
+    expect(
+      getStackClasses({ direction: 'horizontal', gap: 'lg' })
+    ).toBe('sp-hstack sp-stack--gap-lg')
+  })
+
+  // Regression for TODO.md "Stack — Gap Option On getStackClasses":
+  // getGridClasses has gap/columnGap/rowGap options; getStackClasses had no
+  // matching option, so a consumer had to reach for the generic sp-gap-*
+  // utility name instead of a recipe-backed option, unlike every other
+  // layout primitive.
+  it('ships sp-stack--gap-sm/lg in @layer components, so sp-gap-* still wins by layer precedence', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    const root = postcss.parse(css, { from: cssPath })
+
+    const layerOf = (selector: string): string | undefined => {
+      let found: string | undefined
+      root.walkRules(selector, (rule) => {
+        let node: import('postcss').Container | import('postcss').Document | undefined = rule.parent
+        while (node) {
+          if (node.type === 'atrule' && (node as import('postcss').AtRule).name === 'layer') {
+            found = (node as import('postcss').AtRule).params
+            break
+          }
+          node = node.parent
+        }
+      })
+      return found
+    }
+
+    expect(layerOf('.sp-stack--gap-sm')).toBe('components')
+    expect(layerOf('.sp-stack--gap-lg')).toBe('components')
+    expect(layerOf('.sp-gap-64')).toBe('utilities')
+  })
 })
 
 describe('getSectionClasses', () => {

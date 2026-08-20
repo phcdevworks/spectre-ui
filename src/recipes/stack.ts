@@ -16,18 +16,31 @@ const STACK_ALIGNS = {
   stretch: true,
 } as const
 
+const STACK_GAPS = {
+  sm: true,
+  md: true,
+  lg: true,
+} as const
+
 export type StackDirection = keyof typeof STACK_DIRECTIONS
 export type StackBasis = Exclude<keyof typeof STACK_BASES, 'none'>
 export type StackAlign = keyof typeof STACK_ALIGNS
+export type StackGap = keyof typeof STACK_GAPS
 
 export interface StackRecipeOptions {
   direction?: StackDirection
   basis?: StackBasis
   align?: StackAlign
+  gap?: StackGap
 }
 
 export function getStackClasses(opts: StackRecipeOptions = {}): string {
-  const { direction: directionInput, basis: basisInput, align: alignInput } = opts
+  const {
+    direction: directionInput,
+    basis: basisInput,
+    align: alignInput,
+    gap: gapInput,
+  } = opts
 
   const direction = resolveOption({
     name: 'stack direction',
@@ -50,9 +63,17 @@ export function getStackClasses(opts: StackRecipeOptions = {}): string {
     fallback: 'center',
   })
 
+  const gap = resolveOption({
+    name: 'stack gap',
+    value: gapInput,
+    allowed: STACK_GAPS,
+    fallback: 'md',
+  })
+
   return cx(
     direction === 'horizontal' ? 'sp-hstack' : 'sp-stack',
     basis !== 'none' && `sp-stack--basis-${basis}`,
-    align !== 'center' && `sp-stack--align-${align}`
+    align !== 'center' && `sp-stack--align-${align}`,
+    gap !== 'md' && `sp-stack--gap-${gap}`
   )
 }

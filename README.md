@@ -16,7 +16,7 @@ to consume Spectre's visual language.
 | Project team           | `project-design`                   |
 | Repository role        | Spectre L2 CSS and recipe contract |
 | Package/artifact       | `@phcdevworks/spectre-ui`          |
-| Current version/status | 4.2.0                              |
+| Current version/status | 4.3.0                              |
 
 ## Standard Workflow
 
