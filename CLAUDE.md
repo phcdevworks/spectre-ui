@@ -1,5 +1,16 @@
 # CLAUDE.md - Spectre UI Maintainer Guide
 
+## Verified TODO Completion Workflow
+
+For every TODO item Claude Code completes, use this sequence in the same change:
+
+1. Keep the item in `TODO.md` while implementation or verification is in progress.
+2. Confirm every acceptance criterion is met and the repository's required tests and validation gate pass.
+3. Only after verification passes, remove the completed item from `TODO.md` immediately; do not leave it active or checked off.
+4. Update `CHANGELOG.md` under `[Unreleased]` as usual, update the applicable `ROADMAP.md` shipped/status table and phase text, and update every other affected status or dependency reference.
+
+If implementation is incomplete or any required check fails, keep the TODO item open and do not describe the work as shipped.
+
 ## Project Identity
 
 **Package:** `@phcdevworks/spectre-ui`
