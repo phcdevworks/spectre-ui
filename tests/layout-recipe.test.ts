@@ -40,6 +40,15 @@ describe('getContainerClasses', () => {
     )
   })
 
+  // Regression for TODO.md "Requested by Downstream" / "Container — wide
+  // max-width variant": a named 80rem step alongside the 72rem default and
+  // the existing 65ch prose step.
+  it('returns the wide max-width modifier class', () => {
+    expect(getContainerClasses({ maxWidth: 'wide' })).toBe(
+      'sp-container sp-container--max-width-wide'
+    )
+  })
+
   // Regression for TODO.md "Shell — Nav And Footer Container Seam": sp-nav
   // and sp-footer are flex containers with their own inline padding, so a
   // nested sp-container needs an explicit width to fill that flex item and
@@ -172,6 +181,49 @@ describe('getStackClasses', () => {
 describe('getSectionClasses', () => {
   it('returns the default section class', () => {
     expect(getSectionClasses()).toBe('sp-section')
+  })
+
+  // Regression for TODO.md "Requested by Downstream" / "Section — spacing
+  // utility override of section padding": .sp-section shared padding-top/
+  // padding-bottom with the sp-py-*/sp-pt-*/sp-pb-* spacing utility scale
+  // while living in the weaker @layer utilities, so a consumer's standalone
+  // spacing utility could never win by layer precedence, forcing local
+  // !important/plain-element workarounds downstream.
+  it('ships .sp-section in @layer components, so sp-py-*/sp-pt-*/sp-pb-* still win by layer precedence, with the no-override default unchanged', () => {
+    const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
+    const css = fs.readFileSync(cssPath, 'utf8')
+    const root = postcss.parse(css, { from: cssPath })
+
+    const layerOf = (selector: string): string | undefined => {
+      let found: string | undefined
+      root.walkRules(selector, (rule) => {
+        let node: import('postcss').Container | import('postcss').Document | undefined = rule.parent
+        while (node) {
+          if (node.type === 'atrule' && (node as import('postcss').AtRule).name === 'layer') {
+            found = (node as import('postcss').AtRule).params
+            break
+          }
+          node = node.parent
+        }
+      })
+      return found
+    }
+
+    expect(layerOf('.sp-section')).toBe('components')
+    expect(layerOf('.sp-py-16')).toBe('utilities')
+    expect(layerOf('.sp-pt-16')).toBe('utilities')
+    expect(layerOf('.sp-pb-16')).toBe('utilities')
+
+    let sectionPaddingTop: string | undefined
+    let sectionPaddingBottom: string | undefined
+    root.walkRules('.sp-section', (rule) => {
+      rule.walkDecls((decl) => {
+        if (decl.prop === 'padding-top') sectionPaddingTop = decl.value
+        if (decl.prop === 'padding-bottom') sectionPaddingBottom = decl.value
+      })
+    })
+    expect(sectionPaddingTop).toBe('var(--sp-layout-section-padding-md)')
+    expect(sectionPaddingBottom).toBe('var(--sp-layout-section-padding-md)')
   })
 })
 

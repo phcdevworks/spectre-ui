@@ -20,6 +20,14 @@ const TEXT_VARIANTS = {
   subtle: true,
   meta: true,
   brand: true,
+  /**
+   * For text placed on a `surface.inverse`-backed background (a photo card,
+   * a brand-dark card body, a utility bar) that isn't owned by the page's
+   * own light/dark mode. See TODO.md "Requested by Downstream" /
+   * "On-dark/inverse surface role".
+   */
+  onInverse: true,
+  onInverseMuted: true,
 } as const
 
 const TEXT_FAMILIES = {
@@ -69,6 +77,17 @@ export function getTextClasses(opts: TextRecipeOptions = {}): string {
     fallback: 'default',
   })
 
+  const variantMap: Record<TextVariant, string> = {
+    default: 'sp-text--default',
+    muted: 'sp-text--muted',
+    subtle: 'sp-text--subtle',
+    meta: 'sp-text--meta',
+    brand: 'sp-text--brand',
+    onInverse: 'sp-text--on-inverse',
+    onInverseMuted: 'sp-text--on-inverse-muted',
+  }
+  const variantClass = variantMap[variant]
+
   const family = familyInput
     ? resolveOption({
         name: 'text family',
@@ -91,7 +110,7 @@ export function getTextClasses(opts: TextRecipeOptions = {}): string {
   return cx(
     'sp-text',
     `sp-text--${size}`,
-    `sp-text--${variant}`,
+    variantClass,
     family && `sp-text--${family}`,
     transform && `sp-text--${transform}`
   )

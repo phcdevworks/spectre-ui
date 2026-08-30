@@ -20,6 +20,16 @@ describe('link utility', () => {
     expect(css).toContain('.sp-link:visited')
     expect(css).toContain('color: var(--sp-link-visited)')
   })
+
+  // Regression for TODO.md "Requested by Downstream" / "On-dark/inverse
+  // surface role": a link placed on a surface.inverse-backed background
+  // needs its own default/hover pair, mirroring the page-mode pair above.
+  it('ships a token-backed .sp-link--on-inverse class with a hover state', () => {
+    expect(css).toContain('.sp-link--on-inverse {')
+    expect(css).toContain('color: var(--sp-link-on-inverse)')
+    expect(css).toContain('.sp-link--on-inverse:hover')
+    expect(css).toContain('color: var(--sp-link-on-inverse-hover)')
+  })
 })
 
 describe('interactive surface state utilities', () => {
@@ -36,6 +46,17 @@ describe('interactive surface state utilities', () => {
   it('ships .sp-surface--active backed by --sp-surface-active', () => {
     expect(css).toContain('.sp-surface--active:active')
     expect(css).toContain('background-color: var(--sp-surface-active)')
+  })
+
+  // Regression: the on-dark/inverse foreground treatments
+  // (.sp-text--on-inverse, .sp-link--on-inverse, the inverse Badge/Button
+  // variants) all assume something already painted an inverse background —
+  // this is that background utility, sourced from the same
+  // --sp-surface-inverse token. See CHANGELOG.md "On-dark/inverse surface
+  // role".
+  it('ships .sp-surface--inverse backed by --sp-surface-inverse', () => {
+    expect(css).toContain('.sp-surface--inverse {')
+    expect(css).toContain('background-color: var(--sp-surface-inverse)')
   })
 })
 

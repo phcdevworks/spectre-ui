@@ -18,8 +18,14 @@ describe('Arsenal Sync Recipes', () => {
     expect(getBadgeClasses({ variant: 'info' })).toContain('sp-badge--info');
   });
 
-  it('returns classes for testimonial', () => {
-    expect(getTestimonialClasses()).toBe('sp-testimonial sp-testimonial--outline');
+  // Regression: getTestimonialClasses() previously defaulted variant to
+  // 'outline' while <sp-testimonial> (spectre-components) defaulted its own
+  // variant to 'elevated' — a bare recipe call and a bare component instance
+  // rendered differently. Aligned to 'elevated' so both match, the same fix
+  // applied to Card's padded default; see TODO.md "Requested by Downstream".
+  it('returns classes for testimonial, defaulting to elevated to match <sp-testimonial>', () => {
+    expect(getTestimonialClasses()).toBe('sp-testimonial sp-testimonial--elevated');
+    expect(getTestimonialClasses({ variant: 'outline' })).toBe('sp-testimonial sp-testimonial--outline');
   });
 
   it('returns classes for pricing card', () => {

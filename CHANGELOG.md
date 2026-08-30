@@ -6,6 +6,105 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: breaking
+
+### Added
+
+- `.sp-shadow-inset-sm`/`-md`/`-lg`/`-xl`/`-2xl` utility classes, generated
+  from the already-published `--sp-shadow-inset-*` tokens alongside the
+  existing outer-shadow scale, with contract tests proving the outer-shadow
+  classes are untouched. Requested by `spectre-base` on behalf of a
+  downstream theme integration on 2026-08-29 to unblock removing
+  hand-composed local inset shadows; see TODO.md "Requested by Downstream".
+- `CardRecipeOptions.padded` now also accepts `'sm'`/`'md'`/`'lg'` (in
+  addition to `boolean`), backed by the published
+  `component.card.padding.{sm,md,lg}` token scale. `'md'` (and `true`)
+  render the existing `.sp-card--padded` class, now aliased in CSS to
+  `--sp-component-card-padding-md` (the same `2rem` value as before, so no
+  visual change); `'sm'`/`'lg'` render new `.sp-card--padded-sm`/`-lg`
+  classes. Requested by `spectre-base` on behalf of a downstream theme
+  integration on 2026-08-29; see TODO.md "Requested by Downstream".
+- `getContainerClasses({ maxWidth: 'wide' })` and a `.sp-container--max-width-wide`
+  utility class, backed by the published `layout.container.maxWidthWide`
+  token — a named wider step alongside the existing default and `prose`
+  max-widths, mirroring the existing `prose` variant. Unblocks `spectre-base`
+  removing its local `--sp-layout-container-max-width` override. Requested by
+  `spectre-base` on behalf of a downstream theme integration on 2026-08-29;
+  see TODO.md "Requested by Downstream".
+- On-dark/inverse surface role, sourced from the published `surface.inverse`
+  role set, so a downstream theme can stop hand-painting on-dark treatments
+  with contrast measured by hand against a hardcoded background:
+  - A new `.sp-surface--inverse` utility class, sourced from
+    `--sp-surface-inverse` — the background itself; every other item below
+    is a foreground treatment that assumes this (or an equivalent) is
+    already applied.
+  - `getTextClasses()` gained `onInverse`/`onInverseMuted` variants
+    (`.sp-text--on-inverse`/`-muted`), sourced from `--sp-text-on-inverse-*`,
+    mirroring the existing `default`/`muted` pair.
+  - A new `.sp-link--on-inverse` utility class, sourced from
+    `--sp-link-on-inverse`/`-hover`; `:active`/`:visited` fall back to the
+    page-mode tokens, since no dedicated inverse state is published for them.
+  - `getBadgeClasses()` gained an `inverse` variant (`.sp-badge--inverse`),
+    sourced from `--sp-badge-inverse-{bg,bg-hover,text,border}`, mirroring
+    the existing variant shape.
+  - `getButtonClasses()` gained an `inverse` variant (`.sp-btn--inverse`),
+    sourced from `--sp-button-inverse-*`, mirroring the existing
+    `secondary` variant's border/bg/text/focus-visible shape.
+
+  Requested by `spectre-base` on behalf of a downstream theme integration on
+  2026-08-29 to unblock replacing five hand-painted instances; see TODO.md
+  "Requested by Downstream".
+
+### Changed
+
+- **Breaking:** Boolean recipe options are caller-owned and neutral when
+  omitted: `getCardClasses()` adds `.sp-card--padded` only when `padded: true`
+  (or an explicit padding size) is passed, and `getSpinnerClasses()` adds
+  `.sp-spinner--loading` only when `loading: true` is passed. An audit of every
+  exported recipe boolean confirmed all other omitted boolean options were
+  already neutral. Component packages retain ownership of their property
+  defaults and pass resolved values explicitly.
+- **Breaking:** `getTestimonialClasses()` now defaults `variant` to
+  `'elevated'` (was `'outline'`), matching the corresponding component
+  default. Direct recipe consumers relying on the previous `'outline'`
+  default must now pass `variant: 'outline'` explicitly. Every other
+  non-boolean recipe/component default pair was checked and found consistent.
+
+### Fixed
+
+- Moved `.sp-section` from `@layer utilities` to `@layer components`, so a
+  consumer's standalone `sp-py-*`/`sp-pt-*`/`sp-pb-*` spacing utility now
+  wins by layer precedence over the recipe's own padding instead of losing
+  to it regardless of source order; the no-override default remains
+  `--sp-layout-section-padding-md`. Requested by `spectre-base` on behalf of
+  a downstream theme integration on 2026-08-29 to unblock removing local
+  `!important`/plain-element workarounds; see TODO.md "Requested by
+  Downstream".
+- Added a bare `sp-section` selector to the base-layer custom-element host
+  `display: block` contract. `sp-section` has no reflected
+  `full-width`/`full-height` attribute to opt into the existing
+  attribute-scoped rule, so a host-level background or shadow on a
+  server-rendered `<sp-section>` previously painted against the UA default
+  inline box until `spectre-components`' `connectedCallback` fallback ran
+  post-hydration. Requested by `spectre-base` on behalf of a downstream
+  theme integration on 2026-08-29; see TODO.md "Requested by Downstream".
+- Folded `sp-stack` into that same bare-tag `display: block` host rule, for
+  the same reason and from the same request — `sp-stack` has no reflected
+  `full-width`/`full-height` attribute either, so a host-level `max-width`
+  or background previously had no effect pre-hydration. `sp-hstack` is a
+  direction variant of the same `sp-stack` custom element, not a distinct
+  registered tag, so it needs no separate entry. The
+  `spectre-components` `connectedCallback` fallback is unchanged; it
+  remains defence for markup that skips this stylesheet.
+
+### Changed
+
+- Bumped the `@phcdevworks/spectre-tokens` dependency range to `^4.7.0` and
+  regenerated `dist/` against the newly published token set
+  (`layout.container.maxWidthWide`, `component.card.padding`, and the
+  `surface.inverse`/on-inverse semantic role set), raising the `base.css`,
+  `components.css`, and `utilities.css` size-budget test thresholds to match.
+
 ## [4.3.0] - 2026-08-20
 
 **Release Title:** Stack Gap Recipe Parity

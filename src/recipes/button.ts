@@ -9,6 +9,7 @@ const BUTTON_VARIANTS = {
   success: true,
   cta: true,
   accent: true,
+  inverse: true,
 } as const;
 
 const BUTTON_SIZES = {
@@ -76,6 +77,7 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     success: "sp-btn--success",
     cta: "sp-btn--cta",
     accent: "sp-btn--accent",
+    inverse: "sp-btn--inverse",
   };
   const variantClass = variantMap[variant];
 

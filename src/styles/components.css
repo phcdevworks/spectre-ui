@@ -62,6 +62,18 @@
     --sp-component-button-accent-text: var(--sp-button-accent-text);
     --sp-component-button-accent-text-disabled: var(--sp-button-accent-textdisabled);
     --sp-component-button-accent-focus-visible: var(--sp-button-accent-focusvisible);
+    /* on-dark/inverse content islands not owned by the page's own light/dark
+       mode — see TODO.md "Requested by Downstream" / "On-dark/inverse
+       surface role" */
+    --sp-component-button-inverse-bg: var(--sp-button-inverse-bg);
+    --sp-component-button-inverse-bg-hover: var(--sp-button-inverse-bghover);
+    --sp-component-button-inverse-bg-active: var(--sp-button-inverse-bgactive);
+    --sp-component-button-inverse-bg-disabled: var(--sp-button-inverse-bgdisabled);
+    --sp-component-button-inverse-text: var(--sp-button-inverse-text);
+    --sp-component-button-inverse-text-disabled: var(--sp-button-inverse-textdisabled);
+    --sp-component-button-inverse-border: var(--sp-button-inverse-border);
+    --sp-component-button-inverse-border-disabled: var(--sp-button-inverse-borderdisabled);
+    --sp-component-button-inverse-focus-visible: var(--sp-button-inverse-focusvisible);
 
     /* card roles */
     --sp-component-card-bg: var(--sp-surface-card);
@@ -125,6 +137,11 @@
     --sp-component-badge-accent-text: var(--sp-button-accent-text);
     --sp-component-badge-cta-bg: var(--sp-button-cta-bg);
     --sp-component-badge-cta-text: var(--sp-button-cta-text);
+    /* on-dark/inverse content islands — see TODO.md "Requested by
+       Downstream" / "On-dark/inverse surface role" */
+    --sp-component-badge-inverse-bg: var(--sp-badge-inverse-bg);
+    --sp-component-badge-inverse-text: var(--sp-badge-inverse-text);
+    --sp-component-badge-inverse-border: var(--sp-badge-inverse-border);
 
     /* badge hover states derived from Spectre token semantics */
     --sp-component-badge-primary-bg-hover: var(--sp-button-primary-bghover);
@@ -137,6 +154,7 @@
     --sp-component-badge-ghost-bg-hover: var(--sp-button-ghost-bghover);
     --sp-component-badge-accent-bg-hover: var(--sp-button-accent-bghover);
     --sp-component-badge-cta-bg-hover: var(--sp-button-cta-bghover);
+    --sp-component-badge-inverse-bg-hover: var(--sp-badge-inverse-bg-hover);
 
     --sp-component-badge-padding-x-sm: var(--sp-space-8);
     --sp-component-badge-padding-x-md: var(--sp-space-12);
@@ -793,6 +811,40 @@
     color: var(--sp-component-button-accent-text-disabled);
   }
 
+  /* inverse — see TODO.md "Requested by Downstream" / "On-dark/inverse
+     surface role" */
+  .sp-btn--inverse {
+    background-color: var(--sp-component-button-inverse-bg);
+    color: var(--sp-component-button-inverse-text);
+    border-color: var(--sp-component-button-inverse-border);
+  }
+
+  .sp-btn--inverse:focus-visible,
+  .sp-btn--inverse.sp-btn--focus,
+  .sp-btn--inverse.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-inverse-focus-visible);
+  }
+
+  .sp-btn--inverse.sp-btn--hover,
+  .sp-btn--inverse.is-hover,
+  .sp-btn--inverse:hover {
+    background-color: var(--sp-component-button-inverse-bg-hover);
+  }
+
+  .sp-btn--inverse.sp-btn--active,
+  .sp-btn--inverse.is-active,
+  .sp-btn--inverse:active {
+    background-color: var(--sp-component-button-inverse-bg-active);
+  }
+
+  .sp-btn--inverse.sp-btn--disabled,
+  .sp-btn--inverse[aria-disabled="true"],
+  .sp-btn--inverse:disabled {
+    background-color: var(--sp-component-button-inverse-bg-disabled);
+    color: var(--sp-component-button-inverse-text-disabled);
+    border-color: var(--sp-component-button-inverse-border-disabled);
+  }
+
   /* INPUTS --------------------------------------------------------------- */
 
   .sp-input-wrapper {
@@ -976,8 +1028,21 @@
     box-shadow: var(--sp-component-card-shadow-ghost);
   }
 
-  .sp-card--padded {
-    padding: var(--sp-space-32);
+  /* sp-card--padded is the historical boolean-padded class; aliased to the
+     md step of component.card.padding so existing markup keeps its current
+     size. See TODO.md "Requested by Downstream" / "Card — padding size
+     scale". */
+  .sp-card--padded,
+  .sp-card--padded-md {
+    padding: var(--sp-component-card-padding-md);
+  }
+
+  .sp-card--padded-sm {
+    padding: var(--sp-component-card-padding-sm);
+  }
+
+  .sp-card--padded-lg {
+    padding: var(--sp-component-card-padding-lg);
   }
 
   .sp-card--full {
@@ -1184,6 +1249,20 @@
   .sp-badge--cta.sp-badge--hover,
   .sp-badge--cta.is-hover {
     background-color: var(--sp-component-badge-cta-bg-hover);
+  }
+
+  /* inverse — see TODO.md "Requested by Downstream" / "On-dark/inverse
+     surface role" */
+  .sp-badge--inverse {
+    background-color: var(--sp-component-badge-inverse-bg);
+    color: var(--sp-component-badge-inverse-text);
+    border-color: var(--sp-component-badge-inverse-border);
+  }
+
+  .sp-badge--inverse.sp-badge--interactive:hover,
+  .sp-badge--inverse.sp-badge--hover,
+  .sp-badge--inverse.is-hover {
+    background-color: var(--sp-component-badge-inverse-bg-hover);
   }
 
   .sp-badge--interactive {
@@ -3154,6 +3233,16 @@
 
   .sp-text--brand {
     color: var(--sp-text-on-page-brand);
+  }
+
+  /* on-dark/inverse content islands — see TODO.md "Requested by
+     Downstream" / "On-dark/inverse surface role" */
+  .sp-text--on-inverse {
+    color: var(--sp-text-on-inverse-default);
+  }
+
+  .sp-text--on-inverse-muted {
+    color: var(--sp-text-on-inverse-muted);
   }
 
   .sp-text--sans {

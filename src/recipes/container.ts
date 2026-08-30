@@ -4,6 +4,7 @@ import { resolveOption } from '../internal/resolve-option'
 const CONTAINER_MAX_WIDTHS = {
   none: true,
   prose: true,
+  wide: true,
 } as const
 
 export type ContainerMaxWidth = Exclude<keyof typeof CONTAINER_MAX_WIDTHS, 'none'>

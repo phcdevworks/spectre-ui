@@ -92,7 +92,7 @@ const buildRecipeOutputs = <T extends Record<string, unknown>>(config: {
 const buttonSelectors = collectSelectors(
   buildRecipeOutputs({
     axes: {
-      variant: ['primary', 'secondary', 'ghost', 'danger', 'success', 'cta', 'accent'],
+      variant: ['primary', 'secondary', 'ghost', 'danger', 'success', 'cta', 'accent', 'inverse'],
       size: ['sm', 'md', 'lg'],
     },
     booleans: ['fullWidth', 'loading', 'disabled', 'hovered', 'focused', 'active', 'iconOnly', 'pill'],
@@ -130,7 +130,7 @@ const inputSelectors = collectSelectors([
 const badgeSelectors = collectSelectors(
   buildRecipeOutputs({
     axes: {
-      variant: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral', 'info', 'ghost', 'accent'],
+      variant: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral', 'info', 'ghost', 'accent', 'inverse'],
       size: ['sm', 'md', 'lg'],
     },
     booleans: ['interactive', 'hovered', 'focused', 'active', 'disabled', 'loading'],
@@ -386,6 +386,10 @@ const sizeVariantContracts = [
   {
     name: 'avatar sizes',
     selectors: ['.sp-avatar--sm', '.sp-avatar--md', '.sp-avatar--lg', '.sp-avatar--xl'],
+  },
+  {
+    name: 'card padded sizes',
+    selectors: ['.sp-card--padded-sm', '.sp-card--padded-md', '.sp-card--padded-lg'],
   },
 ] as const;
 

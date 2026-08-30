@@ -28,8 +28,20 @@ const ENTRYPOINT_CONTRACTS = [
     // unrelated, already-published dependency update) and again for the new
     // custom-element host display:block rule for full-width/full-height —
     // both deliberate, scoped increases, not regressions. See TODO.md
-    // "Host — Custom Element Display Contract".
-    maxBytes: 42000,
+    // "Host — Custom Element Display Contract". Raised again 2026-08-30
+    // (base.css grew to 47305 bytes) when the spectre-tokens dependency
+    // range was bumped to ^4.7.0 — an unrelated, already-published
+    // dependency update adding layout.container.maxWidthWide,
+    // component.card.padding, and the surface.inverse/on-inverse semantic
+    // role set, not a regression here. Raised again 2026-08-30 (base.css
+    // grew to 48029 bytes) for the bare sp-section display: block host
+    // rule (TODO.md "Requested by Downstream" / "Section — block-level
+    // custom-element host contract") — a deliberate, scoped increase, not
+    // a regression. Raised again 2026-08-30 (base.css grew to 48313 bytes)
+    // to fold sp-stack into that same bare-tag rule (TODO.md "Host —
+    // extend the block-level display contract to sp-stack") — a
+    // deliberate, scoped increase, not a regression.
+    maxBytes: 48500,
   },
   {
     fileName: 'components.css',
@@ -42,8 +54,21 @@ const ENTRYPOINT_CONTRACTS = [
     // not a regression. See TODO.md Phase 9. Raised again 2026-08-19
     // (components.css grew to 144564 bytes) when the spectre-tokens
     // dependency range was bumped to ^4.5.0 — an unrelated, already-
-    // published dependency update, not a regression here.
-    maxBytes: 145000,
+    // published dependency update, not a regression here. Raised again
+    // 2026-08-30 (components.css grew to 150565 bytes) when the
+    // spectre-tokens dependency range was bumped to ^4.7.0 — an unrelated,
+    // already-published dependency update adding
+    // layout.container.maxWidthWide, component.card.padding, and the
+    // surface.inverse/on-inverse semantic role set, not a regression here.
+    // Raised again 2026-08-30 (components.css grew to 151005 bytes) for the
+    // .sp-card--padded-sm/-md/-lg size scale sourced from
+    // component.card.padding (TODO.md "Requested by Downstream" / "Card —
+    // padding size scale") — a deliberate, scoped increase, not a
+    // regression. Raised again 2026-08-30 (components.css grew to 154255
+    // bytes) for the inverse Button/Badge variants and Text on-inverse
+    // color variants (TODO.md "Requested by Downstream" / "On-dark/inverse
+    // surface role") — a deliberate, scoped increase, not a regression.
+    maxBytes: 154500,
   },
   {
     fileName: 'utilities.css',
@@ -77,8 +102,34 @@ const ENTRYPOINT_CONTRACTS = [
     // sp-col-start-*/sp-md-/sp-lg- and sp-grid--align-* (TODO.md
     // "Grid — Cell Alignment And Column Start"). Raised again 2026-08-20
     // (utilities.css grew to 348868 bytes) for .sp-prose (TODO.md
-    // "Prose — Editor Content Recipe").
-    maxBytes: 349500,
+    // "Prose — Editor Content Recipe"). Raised again 2026-08-30
+    // (utilities.css grew to 349756 bytes) for the .sp-shadow-inset-{sm,md,
+    // lg,xl,2xl} utility scale generated from the published
+    // --sp-shadow-inset-* tokens (TODO.md "Shadow — deliver the inset token
+    // scale as utilities") — a deliberate, scoped increase, not a
+    // regression. Raised again 2026-08-30 (utilities.css grew to 355757
+    // bytes) when the spectre-tokens dependency range was bumped to ^4.7.0
+    // — an unrelated, already-published dependency update adding
+    // layout.container.maxWidthWide, component.card.padding, and the
+    // surface.inverse/on-inverse semantic role set to the standalone
+    // token block this bundle embeds, not a regression here. Raised again
+    // 2026-08-30 (utilities.css grew to 356168 bytes) when .sp-section
+    // moved from @layer utilities to @layer components so the standalone
+    // sp-py-*/sp-pt-*/sp-pb-* spacing utilities win by layer precedence
+    // (TODO.md "Requested by Downstream" / "Section — spacing utility
+    // override of section padding") — a deliberate, scoped increase, not a
+    // regression. Raised again 2026-08-30 (utilities.css grew to 356525
+    // bytes) for .sp-container--max-width-wide (TODO.md "Requested by
+    // Downstream" / "Container — wide max-width variant") — a deliberate,
+    // scoped increase, not a regression. Raised again 2026-08-30
+    // (utilities.css grew to 357032 bytes) for .sp-link--on-inverse
+    // (TODO.md "Requested by Downstream" / "On-dark/inverse surface role")
+    // — a deliberate, scoped increase, not a regression. Raised again
+    // 2026-08-30 (utilities.css grew to 357390 bytes) for
+    // .sp-surface--inverse, the background half of the same on-dark/
+    // inverse surface role — a deliberate, scoped increase, not a
+    // regression.
+    maxBytes: 357600,
   },
 ] as const;
 
@@ -281,6 +332,55 @@ describe('dist CSS entrypoints', () => {
     // attribute-scoped selector avoids.
     fullAttributeHosts.forEach(([tag]) => {
       expect(css).not.toMatch(new RegExp(`(?<![\\w[-])${tag}\\s*[,{]`));
+    });
+  });
+
+  it('sets display: block unconditionally on the bare sp-section/sp-stack hosts, without widening the attribute-scoped contract for unrelated inline components', () => {
+    // Regression for TODO.md "Requested by Downstream" / "Section —
+    // block-level custom-element host contract" and "Host — extend the
+    // block-level display contract to sp-stack": neither tag has a
+    // reflected full-width/full-height attribute to opt into the rule
+    // above, so each needs an unconditional bare-tag rule, unlike every
+    // host in fullAttributeHosts. Per the CSS spec, width/max-width/height
+    // have no effect on `display: inline` boxes — the UA default a custom
+    // element gets before this rule (or spectre-components' post-hydration
+    // connectedCallback fallback) applies — so an unconditional
+    // `display: block` here is what makes a host-level max-width or
+    // background take effect pre-hydration, including on a server-rendered
+    // element the client never upgrades.
+    const css = readDistCss('base.css');
+    const root = postcss.parse(css, { from: path.join(distDir, 'base.css') });
+
+    const bareBlockHosts = ['sp-section', 'sp-stack'] as const;
+
+    let bareHostRule: import('postcss').Rule | undefined;
+    root.walkRules((rule) => {
+      const selectors = rule.selector.split(',').map((s) => s.trim());
+      if (bareBlockHosts.every((tag) => selectors.includes(tag))) {
+        bareHostRule = rule;
+      }
+    });
+
+    expect(bareHostRule).toBeDefined();
+    expect(bareHostRule?.toString()).toContain('display: block');
+
+    // sp-hstack is a direction variant of the same sp-stack custom element,
+    // not a distinct registered tag, so it must not appear as its own
+    // selector anywhere in this stylesheet.
+    expect(css).not.toMatch(/(?<![\w[-])sp-hstack\s*[,{[]/);
+
+    // The bare host rule must stay scoped to these two tags — it must not
+    // fold into (or widen) the attribute-scoped full-width/full-height
+    // selector list, and no other host in that list should gain a matching
+    // bare-tag rule as a side effect.
+    let attributeScopedRule: import('postcss').Rule | undefined;
+    root.walkRules((rule) => {
+      if (rule.selector.includes('sp-card[full-height]')) {
+        attributeScopedRule = rule;
+      }
+    });
+    bareBlockHosts.forEach((tag) => {
+      expect(attributeScopedRule?.selector).not.toContain(tag);
     });
   });
 });

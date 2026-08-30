@@ -29,6 +29,7 @@ describe('getBadgeClasses', () => {
       { variant: 'ghost' as const, className: 'sp-badge--ghost' },
       { variant: 'accent' as const, className: 'sp-badge--accent' },
       { variant: 'cta' as const, className: 'sp-badge--cta' },
+      { variant: 'inverse' as const, className: 'sp-badge--inverse' },
     ];
 
     variants.forEach(({ variant, className }) => {

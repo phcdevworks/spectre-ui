@@ -22,6 +22,7 @@ describe('getButtonClasses', () => {
         { variant: 'danger', token: 'sp-btn--danger' },
         { variant: 'cta', token: 'sp-btn--cta' },
         { variant: 'accent', token: 'sp-btn--accent' },
+        { variant: 'inverse', token: 'sp-btn--inverse' },
       ];
 
     variants.forEach(({ variant, token }) => {

@@ -11,14 +11,30 @@ const expectTokenizedClassString = (result: string) => {
 };
 
 describe('getCardClasses', () => {
-  it('returns defaults for elevated card without extra flags', () => {
+  it('leaves padding neutral when the caller omits padded', () => {
     const result = getCardClasses();
 
     expect(result).toBe('sp-card sp-card--elevated');
-    expect(result).not.toContain('sp-card--interactive');
     expect(result).not.toContain('sp-card--padded');
+    expect(result).not.toContain('sp-card--interactive');
     expect(result).not.toContain('sp-card--full');
     expectTokenizedClassString(result);
+  });
+
+  it('omits the padded class when padded is explicitly false', () => {
+    const result = getCardClasses({ padded: false });
+
+    expect(result).toBe('sp-card sp-card--elevated');
+    expect(result).not.toContain('sp-card--padded');
+  });
+
+  it('maps the padded size scale to its own class, with sm/lg getting explicit classes and md/true sharing the legacy alias', () => {
+    expect(getCardClasses({ padded: 'sm' })).toContain('sp-card--padded-sm');
+    expect(getCardClasses({ padded: 'lg' })).toContain('sp-card--padded-lg');
+    expect(getCardClasses({ padded: 'md' })).toContain('sp-card--padded');
+    expect(getCardClasses({ padded: 'md' })).not.toContain('sp-card--padded-md');
+    expect(getCardClasses({ padded: true })).toContain('sp-card--padded');
+    expect(getCardClasses({ padded: true })).not.toContain('sp-card--padded-md');
   });
 
   it('maps card variants correctly', () => {

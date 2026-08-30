@@ -67,6 +67,7 @@ const aspectRatioSteps = collectVarSteps('aspect-ratio');
 const trackingSteps = collectVarSteps('tracking');
 const radiusSteps = collectVarSteps('radius');
 const shadowSteps = collectVarSteps('shadow');
+const shadowInsetSteps = collectVarSteps('shadow-inset');
 const opacitySteps = collectVarSteps('opacity');
 const zIndexSteps = collectVarSteps('z-index');
 const paletteHues = collectPaletteHues();
@@ -177,6 +178,11 @@ const buildRadiusRules = (): string[] =>
 const buildShadowRules = (): string[] =>
   shadowSteps.map((step) => rule(`.sp-shadow-${step}`, [`box-shadow: var(--sp-shadow-${step});`]));
 
+const buildShadowInsetRules = (): string[] =>
+  shadowInsetSteps.map((step) =>
+    rule(`.sp-shadow-inset-${step}`, [`box-shadow: var(--sp-shadow-inset-${step});`]),
+  );
+
 const buildOpacityRules = (): string[] =>
   opacitySteps.map((step) => rule(`.sp-opacity-${step}`, [`opacity: var(--sp-opacity-${step});`]));
 
@@ -196,6 +202,7 @@ sections.push(buildTrackingRules().join('\n\n'));
 sections.push(buildPaletteRules().join('\n\n'));
 sections.push(buildRadiusRules().join('\n\n'));
 sections.push(buildShadowRules().join('\n\n'));
+sections.push(buildShadowInsetRules().join('\n\n'));
 sections.push(buildOpacityRules().join('\n\n'));
 sections.push(buildZIndexRules().join('\n\n'));
 sections.push(buildFontWeightRules().join('\n\n'));
@@ -220,6 +227,7 @@ console.log(
     `${trackingSteps.length} tracking steps, ` +
     `${paletteHues.size} palette hues, ` +
     `${radiusSteps.length} radius steps, ${shadowSteps.length} shadow steps, ` +
+    `${shadowInsetSteps.length} inset shadow steps, ` +
     `${opacitySteps.length} opacity roles, ${zIndexSteps.length} z-index roles, ` +
     `${fontWeights.length} font weights, ` +
     `${LAYOUT_UTILITIES.length + AUTO_MARGIN_UTILITIES.length} layout utilities, ` +

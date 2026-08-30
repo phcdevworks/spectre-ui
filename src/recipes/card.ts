@@ -8,12 +8,26 @@ const CARD_VARIANTS = {
   ghost: true,
 } as const;
 
+const CARD_PADDING_SIZES = {
+  sm: true,
+  md: true,
+  lg: true,
+} as const;
+
 export type CardVariant = keyof typeof CARD_VARIANTS;
+export type CardPaddingSize = keyof typeof CARD_PADDING_SIZES;
 
 export interface CardRecipeOptions {
   variant?: CardVariant;
   interactive?: boolean;
-  padded?: boolean;
+  /**
+   * `true`/`false` keep their historical meaning (padded at the `md` step,
+   * or unpadded). Pass `'sm'`/`'md'`/`'lg'` to opt into a specific step from
+   * `component.card.padding` instead. Omission is neutral and adds no padding
+   * modifier; component packages own their public `padded` default and pass
+   * the resolved value explicitly.
+   */
+  padded?: boolean | CardPaddingSize;
   fullHeight?: boolean;
   disabled?: boolean;
   loading?: boolean;
@@ -26,7 +40,7 @@ export function getCardClasses(opts: CardRecipeOptions = {}): string {
   const {
     variant: variantInput,
     interactive = false,
-    padded = false,
+    padded,
     fullHeight = false,
     disabled = false,
     loading = false,
@@ -50,11 +64,29 @@ export function getCardClasses(opts: CardRecipeOptions = {}): string {
   };
   const variantClass = variantMap[variant];
 
+  // `true` and `'md'` share the legacy `sp-card--padded` class (aliased to
+  // the `md` step in CSS) so existing markup and snapshots are unaffected;
+  // `'sm'`/`'lg'` get their own explicit size class. An unrecognized string
+  // still goes through resolveOption, so it throws in development the same
+  // way an unknown `variant` does, rather than silently rendering unpadded.
+  let paddedClass: string | false = false;
+  if (padded === true) {
+    paddedClass = "sp-card--padded";
+  } else if (typeof padded === "string") {
+    const paddedSize = resolveOption({
+      name: "card padded size",
+      value: padded,
+      allowed: CARD_PADDING_SIZES,
+      fallback: "md",
+    });
+    paddedClass = paddedSize === "md" ? "sp-card--padded" : `sp-card--padded-${paddedSize}`;
+  }
+
   return cx(
     "sp-card",
     variantClass,
     interactive && "sp-card--interactive",
-    padded && "sp-card--padded",
+    paddedClass,
     fullHeight && "sp-card--full",
     disabled && "sp-card--disabled",
     loading && "sp-card--loading",

@@ -11,6 +11,11 @@ const TESTIMONIAL_VARIANTS = {
 export type TestimonialVariant = keyof typeof TESTIMONIAL_VARIANTS;
 
 export interface TestimonialRecipeOptions {
+  /**
+   * Defaults to `'elevated'`, matching `<sp-testimonial>`'s own default in
+   * `spectre-components` — a bare `getTestimonialClasses()` call and a bare
+   * `<sp-testimonial>` now render the same way.
+   */
   variant?: TestimonialVariant;
   disabled?: boolean;
   loading?: boolean;
@@ -37,7 +42,7 @@ export function getTestimonialClasses(opts: TestimonialRecipeOptions = {}): stri
     name: "testimonial variant",
     value: variantInput,
     allowed: TESTIMONIAL_VARIANTS,
-    fallback: "outline",
+    fallback: "elevated",
   });
 
   const variantMap: Record<TestimonialVariant, string> = {

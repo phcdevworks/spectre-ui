@@ -88,6 +88,34 @@ describe('generated utility-class engine (Phase 7)', () => {
     }
   });
 
+  it('produces exactly one utility class per published --sp-shadow-inset-* step, without disturbing the existing outer-shadow classes', () => {
+    const outerSteps = new Set(
+      Array.from(tokensCss.matchAll(/--sp-shadow-([a-z0-9]+):/g), (m) => m[1]),
+    );
+    expect(outerSteps.size).toBeGreaterThan(0);
+
+    for (const step of outerSteps) {
+      const count = countMatches(generatedCss, new RegExp(`\\.sp-shadow-${step} \\{`, 'g'));
+      expect(count, `.sp-shadow-${step} should still be generated exactly once`).toBe(1);
+    }
+
+    const insetSteps = new Set(
+      Array.from(tokensCss.matchAll(/--sp-shadow-inset-([a-z0-9]+):/g), (m) => m[1]),
+    );
+    expect(insetSteps.size).toBeGreaterThan(0);
+
+    for (const step of insetSteps) {
+      const count = countMatches(
+        generatedCss,
+        new RegExp(`\\.sp-shadow-inset-${step} \\{`, 'g'),
+      );
+      expect(count, `.sp-shadow-inset-${step} should be generated exactly once`).toBe(1);
+      expect(generatedCss).toMatch(
+        new RegExp(`\\.sp-shadow-inset-${step} \\{\\s*box-shadow: var\\(--sp-shadow-inset-${step}\\);`),
+      );
+    }
+  });
+
   it('produces exactly one sp-font-{weight} utility per distinct published weight value', () => {
     const weights = new Set(
       Array.from(

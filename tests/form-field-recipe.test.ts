@@ -205,6 +205,19 @@ describe('getTextClasses', () => {
     )
   })
 
+  // Regression for TODO.md "Requested by Downstream" / "On-dark/inverse
+  // surface role": text placed on a surface.inverse-backed background
+  // needs its own default/muted color pair, mirroring the existing
+  // default/muted pair for the page surface.
+  it('returns the on-inverse variant classes', () => {
+    expect(getTextClasses({ variant: 'onInverse' })).toBe(
+      'sp-text sp-text--md sp-text--on-inverse'
+    )
+    expect(getTextClasses({ variant: 'onInverseMuted' })).toBe(
+      'sp-text sp-text--md sp-text--on-inverse-muted'
+    )
+  })
+
   it('combines size, variant, family, and transform', () => {
     expect(
       getTextClasses({

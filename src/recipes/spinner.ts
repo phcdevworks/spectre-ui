@@ -26,6 +26,10 @@ export interface SpinnerRecipeOptions {
   variant?: SpinnerVariant
   size?: SpinnerSize
   disabled?: boolean
+  /**
+   * Omission is neutral and adds no loading modifier; component packages own
+   * their public `loading` default and pass the resolved value explicitly.
+   */
   loading?: boolean
 }
 
@@ -34,7 +38,7 @@ export function getSpinnerClasses(opts: SpinnerRecipeOptions = {}): string {
     variant: variantInput,
     size: sizeInput,
     disabled = false,
-    loading = false,
+    loading,
   } = opts
 
   const variant =

@@ -115,6 +115,17 @@
   .sp-grid--align-stretch {
     align-items: stretch;
   }
+
+  /* Shares padding-top/padding-bottom with the sp-py-, sp-pt-, and sp-pb-
+     spacing utility scale, so it lives here (not @layer utilities) for the
+     same reason as .sp-stack's gap above — the standalone padding utilities
+     must always win by layer precedence regardless of source order. See
+     TODO.md "Requested by Downstream" / "Section — spacing utility override
+     of section padding". */
+  .sp-section {
+    padding-top: var(--sp-layout-section-padding-md);
+    padding-bottom: var(--sp-layout-section-padding-md);
+  }
 }
 
 @layer utilities {
@@ -131,6 +142,14 @@
     max-width: var(--sp-layout-container-max-width-prose);
   }
 
+  /* See TODO.md "Requested by Downstream" / "Container — wide max-width
+     variant": a named wider step alongside the default max-width, so a
+     downstream reusable multi-column layout stops needing a local
+     --sp-layout-container-max-width override. */
+  .sp-container--max-width-wide {
+    max-width: var(--sp-layout-container-max-width-wide);
+  }
+
   /* sp-nav and sp-footer are flex containers with their own inline padding.
      A nested sp-container is a flex item, so it needs an explicit width to
      reliably fill it, and its own inline padding would otherwise stack on
@@ -140,11 +159,6 @@
   :where(.sp-nav, .sp-footer) > .sp-container {
     width: 100%;
     padding-inline: 0;
-  }
-
-  .sp-section {
-    padding-top: var(--sp-layout-section-padding-md);
-    padding-bottom: var(--sp-layout-section-padding-md);
   }
 
   /* Restores structure the build's CSS reset and this package's own
@@ -1736,6 +1750,19 @@
     color: var(--sp-link-visited);
   }
 
+  /* For a link placed on a surface.inverse-backed background — see TODO.md
+     "Requested by Downstream" / "On-dark/inverse surface role". Only
+     default/hover states are published for this role; :active/:visited
+     fall back to the page-mode tokens above, same as every other
+     inverse-role component that has no dedicated state for them. */
+  .sp-link--on-inverse {
+    color: var(--sp-link-on-inverse);
+  }
+
+  .sp-link--on-inverse:hover {
+    color: var(--sp-link-on-inverse-hover);
+  }
+
   .sp-surface--hover:hover,
   .sp-surface--hover.is-hover {
     background-color: var(--sp-surface-hover);
@@ -1748,6 +1775,14 @@
   .sp-surface--active:active,
   .sp-surface--active.is-active {
     background-color: var(--sp-surface-active);
+  }
+
+  /* The background for an on-dark/inverse content island itself — pairs
+     with .sp-text--on-inverse/-muted, .sp-link--on-inverse, and the
+     inverse Badge/Button variants, none of which paint their own
+     background. See CHANGELOG.md "On-dark/inverse surface role". */
+  .sp-surface--inverse {
+    background-color: var(--sp-surface-inverse);
   }
 
   .sp-divider {

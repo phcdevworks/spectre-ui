@@ -104,4 +104,23 @@
     ) {
     display: block;
   }
+
+  /* sp-section and sp-stack have no reflected full-width/full-height
+     attribute to opt into the rule above — they always need a block box,
+     not just on a boolean prop — so they get their own bare-tag selector.
+     (sp-hstack is a direction variant of the same sp-stack custom element,
+     not a distinct registered tag, so it needs no separate entry here.)
+     Without this, a host-level max-width/background/shadow on a
+     server-rendered <sp-section> or <sp-stack> paints against the UA
+     default inline box until spectre-components' connectedCallback
+     fallback (`this.style.display ||= 'block'`) runs after hydration.
+     Scoped to these two tags, not folded into the attribute-scoped list
+     above, since neither has an attribute to scope on. See TODO.md
+     "Requested by Downstream" / "Section — block-level custom-element host
+     contract" and "Host — extend the block-level display contract to
+     sp-stack". */
+  sp-section,
+  sp-stack {
+    display: block;
+  }
 }

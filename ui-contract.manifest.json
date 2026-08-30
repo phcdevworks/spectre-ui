@@ -39,6 +39,10 @@
         "axes": ["shadow"],
         "tokenGroup": "--sp-shadow-*"
       },
+      "shadowInset": {
+        "axes": ["shadow-inset"],
+        "tokenGroup": "--sp-shadow-inset-*"
+      },
       "opacity": {
         "axes": ["opacity"],
         "tokenGroup": "--sp-opacity-*"

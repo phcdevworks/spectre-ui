@@ -5707,6 +5707,26 @@
     box-shadow: var(--sp-shadow-2xl);
   }
 
+  .sp-shadow-inset-sm {
+    box-shadow: var(--sp-shadow-inset-sm);
+  }
+
+  .sp-shadow-inset-md {
+    box-shadow: var(--sp-shadow-inset-md);
+  }
+
+  .sp-shadow-inset-lg {
+    box-shadow: var(--sp-shadow-inset-lg);
+  }
+
+  .sp-shadow-inset-xl {
+    box-shadow: var(--sp-shadow-inset-xl);
+  }
+
+  .sp-shadow-inset-2xl {
+    box-shadow: var(--sp-shadow-inset-2xl);
+  }
+
   .sp-opacity-disabled {
     opacity: var(--sp-opacity-disabled);
   }
