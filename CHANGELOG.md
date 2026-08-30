@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [5.0.0] - 2026-08-31
+
+**Release Title:** Inverse Surfaces and Explicit Recipe Defaults
+
 Contract change type: breaking
 
 ### Added
