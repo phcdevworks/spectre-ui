@@ -6,6 +6,21 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [5.0.1] - 2026-09-05
+
+**Release Title:** Published Token Alignment and Contract Inventory
+
+Contract change type: semantic change
+
+### Fixed
+
+- Align the token dependency range and lockfile with published
+  `@phcdevworks/spectre-tokens` 4.8.0 so clean installs pass the latest-token
+  validation gate.
+- Complete the contract manifest and README inventories for already-shipped
+  recipe exports, variants, and sizes. Add runtime export parity coverage
+  and validate inverse text variant class names without changing recipe APIs.
+
 ## [5.0.0] - 2026-08-31
 
 **Release Title:** Inverse Surfaces and Explicit Recipe Defaults
