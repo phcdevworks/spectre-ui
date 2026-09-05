@@ -100,6 +100,7 @@
       "getPricingCardDescriptionClasses",
       "getPricingCardPriceClasses",
       "getPricingCardPriceContainerClasses",
+      "getProseClasses",
       "getRadioClasses",
       "getRatingClasses",
       "getRatingStarClasses",
@@ -113,6 +114,7 @@
       "getSidebarGroupSummaryClasses",
       "getSidebarHeaderClasses",
       "getSidebarLinkClasses",
+      "getSidebarToggleClasses",
       "getSpinnerClasses",
       "getStackClasses",
       "getTagClasses",
@@ -132,12 +134,12 @@
   "recipeFamilies": {
     "button": {
       "fn": "getButtonClasses",
-      "variants": ["primary", "secondary", "ghost", "danger", "success", "cta", "accent"],
+      "variants": ["primary", "secondary", "ghost", "danger", "success", "cta", "accent", "inverse"],
       "sizes": ["sm", "md", "lg"]
     },
     "badge": {
       "fn": "getBadgeClasses",
-      "variants": ["primary", "secondary", "success", "warning", "danger", "neutral", "info", "ghost", "accent", "cta"],
+      "variants": ["primary", "secondary", "success", "warning", "danger", "neutral", "info", "ghost", "outline", "accent", "cta", "inverse"],
       "sizes": ["sm", "md", "lg"]
     },
     "card": {
@@ -151,8 +153,8 @@
     },
     "iconbox": {
       "fn": "getIconBoxClasses",
-      "variants": ["primary", "secondary", "success", "warning", "danger", "info", "neutral", "ghost", "accent", "cta"],
-      "sizes": ["sm", "md", "lg"]
+      "variants": ["primary", "secondary", "success", "warning", "danger", "info", "neutral", "ghost", "accent", "cta", "outline"],
+      "sizes": ["xs", "sm", "md", "lg"]
     },
     "pricingCard": {
       "fn": "getPricingCardClasses"
@@ -268,7 +270,7 @@
     },
     "text": {
       "fn": "getTextClasses",
-      "variants": ["default", "muted", "subtle", "meta", "brand"],
+      "variants": ["default", "muted", "subtle", "meta", "brand", "onInverse", "onInverseMuted"],
       "sizes": ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl", "6xl"],
       "families": ["sans", "serif", "mono"],
       "transforms": ["none", "uppercase", "lowercase", "capitalize"]

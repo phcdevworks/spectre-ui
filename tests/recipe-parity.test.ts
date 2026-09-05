@@ -10,6 +10,10 @@ const __dirname = path.dirname(__filename);
 const manifest = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, '..', 'ui-contract.manifest.json'), 'utf8'),
 ) as {
+  rootExports: {
+    constants: string[];
+    functions: string[];
+  };
   recipeFamilies: Record<
     string,
     {
@@ -22,6 +26,16 @@ const manifest = JSON.parse(
 };
 
 describe('recipe family parity (manifest → live output)', () => {
+  it('lists every runtime root export with its correct kind', () => {
+    const entries = Object.entries(recipes);
+    expect(manifest.rootExports.functions.slice().sort()).toEqual(
+      entries.filter(([, value]) => typeof value === 'function').map(([name]) => name).sort(),
+    );
+    expect(manifest.rootExports.constants.slice().sort()).toEqual(
+      entries.filter(([, value]) => typeof value !== 'function').map(([name]) => name).sort(),
+    );
+  });
+
   for (const [family, spec] of Object.entries(manifest.recipeFamilies)) {
     const fn = (recipes as Record<string, unknown>)[spec.fn];
 
@@ -36,7 +50,9 @@ describe('recipe family parity (manifest → live output)', () => {
           const result = call({ variant });
           expect(typeof result).toBe('string');
           expect(result.length, `variant "${variant}" returned empty string`).toBeGreaterThan(0);
-          expect(result, `variant "${variant}" class not present in output`).toContain(`--${variant}`);
+          const suffix = variant.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
+          expect(result.split(/\s+/).some((name) => name.endsWith(`--${suffix}`)),
+            `variant "${variant}" class not present in output`).toBe(true);
         });
       }
     }
