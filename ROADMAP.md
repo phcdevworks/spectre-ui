@@ -39,7 +39,8 @@ file does not restate delivered work.
 | 13    | Cascade-layer fix for `sp-stack`/`sp-grid--*-gap-*` vs. `sp-gap-*` (the gap-utility escape hatch was unreachable); host `display: block` for `full-width`/`full-height` custom elements; `explicitTemplate` responsive (`sp-md-`/`sp-lg-grid-template--*`) variants | 4.2.0 |
 | 4c v4 | Grid `fluid-fixed` explicit-template shape; `align`/`colStart` options (`.sp-grid--align-*`, `.sp-col-start-*`); Nav/Footer `sp-container` seam fix; `.sp-prose` recipe | 4.2.0 |
 | 14    | Stack `gap` option (`.sp-stack--gap-*`), parity with Grid's `gap`/`columnGap`/`rowGap` — requested by `spectre-components` while wiring a matching `gap` prop onto `<sp-stack>` | 4.3.0 |
-| 15    | Consumer-owned boolean recipe defaults — omission is neutral, explicit `true` adds a modifier, and component packages retain property-default ownership; source audit guard prevents positive defaults from returning | 5.0.0 |
+| 15    | Consumer-owned boolean recipe defaults — omission is neutral, explicit `true` adds a modifier, and component packages retain property-default ownership; source audit guard prevents positive defaults from returning; on-dark/inverse surface role (`.sp-surface--inverse`, `getTextClasses()` `onInverse`/`onInverseMuted`, `.sp-link--on-inverse`, `inverse` variants on `getBadgeClasses()`/`getButtonClasses()`); `.sp-shadow-inset-*` utility scale; `.sp-section` moved to `@layer components` for spacing-utility precedence; bare `sp-section`/`sp-stack` host `display: block`; Card `padded` size scale (`sm`/`md`/`lg`); Container `wide` max-width variant — all seven requested by `spectre-base` on 2026-08-29 | 5.0.0 |
+| 16    | Token dependency range and lockfile aligned to published `spectre-tokens` 4.8.0; contract manifest and README inventories completed for already-shipped recipe exports, variants, and sizes; runtime export parity coverage and inverse text variant class-name validation added | 5.0.1 |
 
 Phase 4f (Icon/AspectRatio recipes) was dropped, not delivered — see
 "What's Next" below.
@@ -48,33 +49,8 @@ Phase 4f (Icon/AspectRatio recipes) was dropped, not delivered — see
 
 ## What's Next
 
-As of 2026-08-29, seven evidence-confirmed downstream requests from
-`spectre-base` reopened actionable work on top of Phases 10–14 and 4c v3/v4
-above. All seven are complete on `main` for the pending 5.0.0 release (see
-[CHANGELOG.md](CHANGELOG.md) `[Unreleased]`):
-
-- The `.sp-shadow-inset-*` utility scale.
-- The `.sp-section` `@layer components` move, so standalone spacing
-  utilities win by layer precedence.
-- The bare `sp-section`/`sp-stack` host `display: block` rule.
-- The Card `padded` size scale (`sm`/`md`/`lg`) with caller-owned boolean
-  defaults: omission is neutral and component packages pass resolved values.
-- The Container `wide` max-width variant.
-- The on-dark/inverse surface role — `getTextClasses()`
-  `onInverse`/`onInverseMuted`, `.sp-link--on-inverse`, and `inverse`
-  variants on `getBadgeClasses()`/`getButtonClasses()`.
-
-The Card default finding also prompted a full audit of every recipe/component
-default pair in the suite. Recipes translate caller choices into modifier
-classes but do not choose whether a component capability or state is enabled.
-The boolean-option audit confirmed Card `padded` and Spinner `loading` remain
-neutral when omitted, while component packages pass their resolved defaults
-explicitly. Test coverage guards every recipe source file against positive
-boolean initializers and nullish fallbacks. The non-boolean audit aligned
-`getTestimonialClasses()` with the corresponding component's `'elevated'`
-default; every other pair checked out consistent. There is no open "Requested
-by Downstream" item in [TODO.md](TODO.md) as of this writing. Only a cross-repo
-item remains:
+There is no open "Requested by Downstream" item in [TODO.md](TODO.md) as of
+this writing. Only a cross-repo item remains:
 
 - **A downstream documentation consumer's stale Tailwind documentation** — its
   published docs still describe the Tailwind preset/theme export `spectre-ui`
