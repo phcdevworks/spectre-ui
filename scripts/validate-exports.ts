@@ -1,76 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import { collectExports } from './collect-exports.ts';
 
 const projectRoot = path.resolve(import.meta.dirname, '..');
 const entryFile = path.join(projectRoot, 'src', 'index.ts');
 const snapshotFile = path.join(projectRoot, 'scripts', 'export-snapshot.json');
 const shouldUpdate = process.argv.includes('--update');
 
-const exportBlockRegex = /export\s*\{([\s\S]*?)\}\s*from\s*['"](.+?)['"];?/g;
-const exportAllRegex = /export\s+\*\s+from\s+['"](.+?)['"];?/g;
-
-const visitedFiles = new Set<string>();
-
-const resolveImportPath = (fromFile: string, specifier: string): string => {
-  if (!specifier.startsWith('.')) {
-    throw new Error(`Unsupported non-relative export in ${fromFile}: ${specifier}`);
-  }
-
-  const candidateBase = path.resolve(path.dirname(fromFile), specifier);
-  const candidates = [
-    `${candidateBase}.ts`,
-    `${candidateBase}.mts`,
-    `${candidateBase}.tsx`,
-    path.join(candidateBase, 'index.ts'),
-    candidateBase,
-  ];
-
-  const resolved = candidates.find((candidate) => fs.existsSync(candidate));
-  if (!resolved) {
-    throw new Error(`Unable to resolve export target "${specifier}" from ${fromFile}`);
-  }
-
-  return resolved;
-};
-
-const parseExportSpecifiers = (block: string): string[] =>
-  block
-    .split(',')
-    .map((part) => part.trim())
-    .filter(Boolean)
-    .map((part) => part.replace(/^type\s+/, ''))
-    .map((part) => part.split(/\s+as\s+/).at(-1)?.trim() ?? '')
-    .filter(Boolean);
-
-const collectExports = (filePath: string): Set<string> => {
-  if (visitedFiles.has(filePath)) {
-    return new Set();
-  }
-
-  visitedFiles.add(filePath);
-  const source = fs.readFileSync(filePath, 'utf8');
-  const names = new Set<string>();
-
-  for (const match of source.matchAll(exportBlockRegex)) {
-    const [, block, specifier] = match;
-    if (specifier && block) {
-      parseExportSpecifiers(block).forEach((name) => names.add(name));
-    }
-  }
-
-  for (const match of source.matchAll(exportAllRegex)) {
-    const [, specifier] = match;
-    if (specifier) {
-      const nestedPath = resolveImportPath(filePath, specifier);
-      collectExports(nestedPath).forEach((name) => names.add(name));
-    }
-  }
-
-  return names;
-};
-
-const actualExports = Array.from(collectExports(entryFile)).sort((a, b) => a.localeCompare(b));
+const actualExports = collectExports(entryFile);
 const serialized = `${JSON.stringify(actualExports, null, 2)}\n`;
 
 if (shouldUpdate) {
