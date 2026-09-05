@@ -99,22 +99,22 @@
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.1.0",
-    "@types/node": "^26.4.0",
-    "@typescript-eslint/eslint-plugin": "^8.68.0",
-    "@typescript-eslint/parser": "^8.68.0",
+    "@types/node": "^26.4.1",
+    "@typescript-eslint/eslint-plugin": "^8.69.0",
+    "@typescript-eslint/parser": "^8.69.0",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "autoprefixer": "^10.5.4",
-    "eslint": "^10.9.1",
+    "autoprefixer": "^10.5.5",
+    "eslint": "^10.10.0",
     "jiti": "^2.7.0",
-    "postcss": "^8.5.26",
-    "postcss-cli": "^11.0.1",
+    "postcss": "^8.5.28",
+    "postcss-cli": "^12.0.0",
     "postcss-import": "^17.0.0",
     "prettier": "^3.9.6",
     "tsup": "^8.5.1",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.68.0",
+    "typescript-eslint": "^8.69.0",
     "vite": "^8.2.2",
-    "vitest": "^4.1.11"
+    "vitest": "^5.0.0"
   },
   "cSpell.words": [
     "phcdevworks"
