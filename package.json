@@ -98,12 +98,12 @@
     "@phcdevworks/spectre-tokens": "^4.8.0"
   },
   "devDependencies": {
-    "@phcdevworks/spectre-manifest": "^1.1.0",
-    "@types/node": "^26.4.1",
-    "@typescript-eslint/eslint-plugin": "^8.69.0",
-    "@typescript-eslint/parser": "^8.69.0",
+    "@phcdevworks/spectre-manifest": "^1.2.0",
+    "@types/node": "^26.5.1",
+    "@typescript-eslint/eslint-plugin": "^8.70.0",
+    "@typescript-eslint/parser": "^8.70.0",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "autoprefixer": "^10.5.5",
+    "autoprefixer": "^10.6.0",
     "eslint": "^10.10.0",
     "jiti": "^2.7.0",
     "postcss": "^8.5.28",
@@ -112,9 +112,9 @@
     "prettier": "^3.9.6",
     "tsup": "^8.5.1",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.69.0",
-    "vite": "^8.2.2",
-    "vitest": "^5.0.0"
+    "typescript-eslint": "^8.70.0",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1"
   },
   "cSpell.words": [
     "phcdevworks"
