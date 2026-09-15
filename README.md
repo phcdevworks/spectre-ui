@@ -1,8 +1,8 @@
 # @phcdevworks/spectre-ui
 
-`@phcdevworks/spectre-ui` is the styling contract package of the Spectre system.
-It translates Spectre design tokens into CSS bundles and class recipe functions
-for downstream adapters and apps.
+`@phcdevworks/spectre-ui` is the styling layer of the Spectre system. It
+transforms Spectre tokens into reusable CSS, utilities, and class recipes for
+consistent application interfaces.
 
 Maintained by [PHCDevworks](https://go.phcdev.co). It sits between
 `@phcdevworks/spectre-tokens` and the framework-specific adapter and component

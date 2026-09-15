@@ -6,6 +6,11 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+### Changed
+
+- Standardized the package summary against the approved PHCDevworks product
+  description.
+
 ## [5.0.1] - 2026-09-05
 
 **Release Title:** Published Token Alignment and Contract Inventory

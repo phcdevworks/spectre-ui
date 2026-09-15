@@ -1,7 +1,7 @@
 {
   "name": "@phcdevworks/spectre-ui",
   "version": "5.0.1",
-  "description": "@phcdevworks/spectre-ui is the styling contract package of the Spectre system. It translates Spectre design tokens into CSS bundles and class recipe functions for downstream adapters and apps.",
+  "description": "@phcdevworks/spectre-ui is the styling layer of the Spectre system. It transforms Spectre tokens into reusable CSS, utilities, and class recipes for consistent application interfaces.",
   "keywords": [
     "phcdevworks",
     "spectre",
