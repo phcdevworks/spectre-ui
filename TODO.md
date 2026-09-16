@@ -7,6 +7,46 @@ rationale that doesn't belong in a changelog (e.g. why the responsive-variant
 separator was chosen, or why a given evidence gate was dropped rather than
 left open) lives in git history for the commits that made those calls.
 
+## Requested by Downstream
+
+### 2026-09-16 — Card full-bleed child composition contract
+
+A production consumer still has to reverse a padded card's internal spacing with
+local negative margins and duplicate its corner-radius math when media or a
+surface must run flush to one or more card edges. That is reusable card geometry,
+not application-specific presentation.
+
+Implementation instructions:
+
+- Add a small, framework-agnostic Spectre UI contract for a child of a padded
+  card to bleed through the card padding without requiring the consumer to know
+  or negate the active padding token manually.
+- Keep the API narrow. Prefer one composable utility/recipe family with only the
+  proven edge modes needed for card media/surface composition rather than a new
+  compound card abstraction.
+- Derive the bleed amount from the active card padding contract so `sm`, `md`,
+  `lg`, and the historical boolean-padded alias cannot drift from the child
+  geometry.
+- Derive any edge radius from the card radius and border-width contracts; do not
+  hardcode local radius, spacing, or border values.
+- Preserve the existing `getCardClasses()` API and existing card class names.
+  This request is additive unless implementation evidence proves otherwise.
+- Add focused CSS/recipe tests covering each supported padded size and the
+  unpadded case. Verify the utility does not alter unrelated card children.
+- Update `ui-contract.manifest.json`, exports/snapshots, README contract docs,
+  and `CHANGELOG.md [Unreleased]` when the public surface is implemented.
+- Run `npm run check` before removing this item. Remove the TODO only after all
+  acceptance criteria and validation pass per `CLAUDE.md`.
+
+Acceptance criteria:
+
+- A consumer can create a padded card with flush media or a flush internal
+  surface using only public Spectre contracts and no local negative-margin or
+  radius-reconstruction CSS.
+- The contract remains token-backed across every supported card padding size.
+- No framework, runtime component, or downstream-specific markup enters this
+  package.
+
 ## Explicitly Out of Scope
 
 - Do not author new design tokens or semantic visual meaning here.
