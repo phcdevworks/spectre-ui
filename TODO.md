@@ -47,6 +47,26 @@ Acceptance criteria:
 - No framework, runtime component, or downstream-specific markup enters this
   package.
 
+### 2026-09-18 — Card edge-accent recipe and CSS contract
+
+Requested by `spectre-components` and `spectre-ui-astro` so card APIs can expose
+an optional thicker decorative rail on the `top`, `right`, `bottom`, or `left`
+edge with multiple selectable semantic colors.
+
+Implementation instructions:
+
+- Gate implementation on a published `spectre-tokens` card-accent contract.
+- Add backward-compatible recipe options and class modifiers, render the rail
+  entirely from published token variables, and preserve card radius and
+  existing variants and states.
+- Keep omission neutral so current card output remains unchanged.
+- Update CSS, recipes, the manifest, documentation, and focused tests.
+
+See
+[spectre-components/TODO.md](../spectre-components/TODO.md#card-edge-accents)
+and
+[spectre-ui-astro/TODO.md](../spectre-ui-astro/TODO.md#card-edge-accents).
+
 ## Explicitly Out of Scope
 
 - Do not author new design tokens or semantic visual meaning here.
