@@ -1,11 +1,12 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { describe, expect, it } from 'vitest';
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { describe, expect, it } from 'vitest'
 import {
   getAvatarClasses,
   getBadgeClasses,
   getButtonClasses,
+  getCardBleedClasses,
   getCardClasses,
   getIconBoxClasses,
   getInputClasses,
@@ -27,190 +28,317 @@ import {
   getTestimonialAuthorNameClasses,
   getTestimonialAuthorTitleClasses,
   getTestimonialClasses,
-  getTestimonialQuoteClasses,
-} from '@phcdevworks/spectre-ui';
+  getTestimonialQuoteClasses
+} from '@phcdevworks/spectre-ui'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
-const cssPath = path.join(__dirname, '..', 'dist', 'components.css');
-const css = fs.readFileSync(cssPath, 'utf8');
+const cssPath = path.join(__dirname, '..', 'dist', 'components.css')
+const css = fs.readFileSync(cssPath, 'utf8')
 
-const escapeRegex = (value: string): string => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const escapeRegex = (value: string): string =>
+  value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 const toClassNames = (classes: string): string[] =>
-  classes.split(/\s+/).filter((className) => className.startsWith('sp-'));
+  classes.split(/\s+/).filter((className) => className.startsWith('sp-'))
 
 const buildSelectorMatcher = (className: string): RegExp =>
-  new RegExp(String.raw`\.${escapeRegex(className)}(?=[\s{,:])`);
+  new RegExp(String.raw`\.${escapeRegex(className)}(?=[\s{,:])`)
 
 const buildSelectorFragmentMatcher = (selector: string): RegExp =>
-  new RegExp(escapeRegex(selector));
+  new RegExp(escapeRegex(selector))
 
-const collectSelectors = (classGroups: string[]): string[] =>
-  [...new Set(classGroups.flatMap(toClassNames))];
+const collectSelectors = (classGroups: string[]): string[] => [
+  ...new Set(classGroups.flatMap(toClassNames))
+]
 
-const exhaustiveBooleanOptions = <T extends string>(keys: readonly T[]): Array<Record<T, boolean>> => {
+const exhaustiveBooleanOptions = <T extends string>(
+  keys: readonly T[]
+): Array<Record<T, boolean>> => {
   if (keys.length === 0) {
-    return [{} as Record<T, boolean>];
+    return [{} as Record<T, boolean>]
   }
 
-  const [currentKey, ...remainingKeys] = keys;
-  const tail = exhaustiveBooleanOptions(remainingKeys);
+  const [currentKey, ...remainingKeys] = keys
+  const tail = exhaustiveBooleanOptions(remainingKeys)
 
   return tail.flatMap((entry) => [
     { ...entry, [currentKey]: false },
-    { ...entry, [currentKey]: true },
-  ]);
-};
+    { ...entry, [currentKey]: true }
+  ])
+}
 
 const buildRecipeOutputs = <T extends Record<string, unknown>>(config: {
-  axes?: Record<string, readonly unknown[]>;
-  booleans?: readonly (keyof T & string)[];
-  getClasses: (options: T) => string;
+  axes?: Record<string, readonly unknown[]>
+  booleans?: readonly (keyof T & string)[]
+  getClasses: (options: T) => string
 }): string[] => {
-  const axisEntries = Object.entries(config.axes ?? {});
+  const axisEntries = Object.entries(config.axes ?? {})
   const axisOptions = axisEntries.reduce<Array<Record<string, unknown>>>(
     (combinations, [key, values]) =>
       combinations.flatMap((combination) =>
-        values.map((value) => ({ ...combination, [key]: value })),
+        values.map((value) => ({ ...combination, [key]: value }))
       ),
-    [{}],
-  );
-  const booleanOptions = exhaustiveBooleanOptions(config.booleans ?? []);
+    [{}]
+  )
+  const booleanOptions = exhaustiveBooleanOptions(config.booleans ?? [])
 
   return axisOptions.flatMap((axisOption) =>
     booleanOptions.map((booleanOption) =>
       config.getClasses({
         ...(axisOption as T),
-        ...(booleanOption as T),
-      }),
-    ),
-  );
-};
+        ...(booleanOption as T)
+      })
+    )
+  )
+}
 
 const buttonSelectors = collectSelectors(
   buildRecipeOutputs({
     axes: {
-      variant: ['primary', 'secondary', 'ghost', 'danger', 'success', 'cta', 'accent', 'inverse'],
-      size: ['sm', 'md', 'lg'],
+      variant: [
+        'primary',
+        'secondary',
+        'ghost',
+        'danger',
+        'success',
+        'cta',
+        'accent',
+        'inverse'
+      ],
+      size: ['sm', 'md', 'lg']
     },
-    booleans: ['fullWidth', 'loading', 'disabled', 'hovered', 'focused', 'active', 'iconOnly', 'pill'],
-    getClasses: getButtonClasses,
-  }),
-);
+    booleans: [
+      'fullWidth',
+      'loading',
+      'disabled',
+      'hovered',
+      'focused',
+      'active',
+      'iconOnly',
+      'pill'
+    ],
+    getClasses: getButtonClasses
+  })
+)
 
-const cardSelectors = collectSelectors(
-  buildRecipeOutputs({
+const cardSelectors = collectSelectors([
+  ...buildRecipeOutputs({
     axes: {
-      variant: ['elevated', 'flat', 'outline', 'ghost'],
+      variant: ['elevated', 'flat', 'outline', 'ghost']
     },
-    booleans: ['interactive', 'padded', 'fullHeight', 'disabled', 'loading', 'hovered', 'focused', 'active'],
-    getClasses: getCardClasses,
+    booleans: [
+      'interactive',
+      'padded',
+      'fullHeight',
+      'disabled',
+      'loading',
+      'hovered',
+      'focused',
+      'active'
+    ],
+    getClasses: getCardClasses
   }),
-);
+  ...(['top', 'right', 'bottom', 'left'] as const).flatMap((accent) =>
+    (
+      [
+        'neutral',
+        'brand',
+        'info',
+        'success',
+        'warning',
+        'danger',
+        'cta'
+      ] as const
+    ).map((accentColor) => getCardClasses({ accent, accentColor }))
+  )
+])
+
+const cardBleedSelectors = collectSelectors([
+  getCardBleedClasses(),
+  getCardBleedClasses({ edges: 'top' }),
+  getCardBleedClasses({ edges: 'right' }),
+  getCardBleedClasses({ edges: 'bottom' }),
+  getCardBleedClasses({ edges: 'left' }),
+  getCardBleedClasses({ edges: 'all' }),
+  getCardBleedClasses({ padded: 'sm' }),
+  getCardBleedClasses({ padded: 'md' }),
+  getCardBleedClasses({ padded: 'lg' }),
+  getCardBleedClasses({ padded: true })
+])
 
 const inputSelectors = collectSelectors([
   ...buildRecipeOutputs({
     axes: {
       state: ['default', 'error', 'success', 'disabled', 'loading'],
-      size: ['sm', 'md', 'lg'],
+      size: ['sm', 'md', 'lg']
     },
     booleans: ['fullWidth', 'pill', 'focused', 'hovered'],
-    getClasses: getInputClasses,
+    getClasses: getInputClasses
   }),
   getInputWrapperClasses(),
   getInputLabelClasses(),
   getInputLabelClasses({ disabled: true }),
   getInputHelperTextClasses(),
   getInputHelperTextClasses({ disabled: true }),
-  getInputErrorMessageClasses(),
-]);
+  getInputErrorMessageClasses()
+])
 
 const badgeSelectors = collectSelectors(
   buildRecipeOutputs({
     axes: {
-      variant: ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral', 'info', 'ghost', 'accent', 'inverse'],
-      size: ['sm', 'md', 'lg'],
+      variant: [
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+        'danger',
+        'neutral',
+        'info',
+        'ghost',
+        'accent',
+        'inverse'
+      ],
+      size: ['sm', 'md', 'lg']
     },
-    booleans: ['interactive', 'hovered', 'focused', 'active', 'disabled', 'loading'],
-    getClasses: getBadgeClasses,
-  }),
-);
+    booleans: [
+      'interactive',
+      'hovered',
+      'focused',
+      'active',
+      'disabled',
+      'loading'
+    ],
+    getClasses: getBadgeClasses
+  })
+)
 
 const iconBoxSelectors = collectSelectors(
   buildRecipeOutputs({
     axes: {
-      variant: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'neutral', 'ghost', 'accent'],
-      size: ['sm', 'md', 'lg'],
+      variant: [
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+        'danger',
+        'info',
+        'neutral',
+        'ghost',
+        'accent'
+      ],
+      size: ['sm', 'md', 'lg']
     },
-    booleans: ['disabled', 'loading', 'interactive', 'hovered', 'focused', 'active', 'pill', 'fullWidth'],
-    getClasses: getIconBoxClasses,
-  }),
-);
+    booleans: [
+      'disabled',
+      'loading',
+      'interactive',
+      'hovered',
+      'focused',
+      'active',
+      'pill',
+      'fullWidth'
+    ],
+    getClasses: getIconBoxClasses
+  })
+)
 
 const testimonialSelectors = collectSelectors([
   ...buildRecipeOutputs({
     axes: {
-      variant: ['elevated', 'flat', 'outline', 'ghost'],
+      variant: ['elevated', 'flat', 'outline', 'ghost']
     },
-    booleans: ['disabled', 'loading', 'interactive', 'hovered', 'focused', 'active', 'fullHeight'],
-    getClasses: getTestimonialClasses,
+    booleans: [
+      'disabled',
+      'loading',
+      'interactive',
+      'hovered',
+      'focused',
+      'active',
+      'fullHeight'
+    ],
+    getClasses: getTestimonialClasses
   }),
   getTestimonialQuoteClasses(),
   getTestimonialAuthorClasses(),
   getTestimonialAuthorInfoClasses(),
   getTestimonialAuthorNameClasses(),
-  getTestimonialAuthorTitleClasses(),
-]);
+  getTestimonialAuthorTitleClasses()
+])
 
 const pricingCardSelectors = collectSelectors([
   ...buildRecipeOutputs({
-    booleans: ['featured', 'disabled', 'loading', 'interactive', 'hovered', 'focused', 'active'],
-    getClasses: getPricingCardClasses,
+    booleans: [
+      'featured',
+      'disabled',
+      'loading',
+      'interactive',
+      'hovered',
+      'focused',
+      'active'
+    ],
+    getClasses: getPricingCardClasses
   }),
   getPricingCardBadgeClasses(),
   getPricingCardPriceContainerClasses(),
   getPricingCardPriceClasses(),
-  getPricingCardDescriptionClasses(),
-]);
+  getPricingCardDescriptionClasses()
+])
 
 const ratingSelectors = collectSelectors([
   ...buildRecipeOutputs({
     axes: {
-      size: ['sm', 'md', 'lg'],
+      size: ['sm', 'md', 'lg']
     },
-    booleans: ['disabled', 'loading', 'interactive', 'hovered', 'focused', 'active', 'fullWidth'],
-    getClasses: getRatingClasses,
+    booleans: [
+      'disabled',
+      'loading',
+      'interactive',
+      'hovered',
+      'focused',
+      'active',
+      'fullWidth'
+    ],
+    getClasses: getRatingClasses
   }),
   getRatingStarsClasses(),
   getRatingStarClasses(),
   getRatingStarClasses(true),
-  getRatingTextClasses(),
-]);
+  getRatingTextClasses()
+])
 
 const avatarSelectors = collectSelectors(
   buildRecipeOutputs({
     axes: {
       size: ['sm', 'md', 'lg', 'xl'],
-      shape: ['circle', 'square'],
+      shape: ['circle', 'square']
     },
-    booleans: ['disabled', 'loading', 'interactive', 'hovered', 'focused', 'active', 'fullWidth'],
-    getClasses: getAvatarClasses,
-  }),
-);
+    booleans: [
+      'disabled',
+      'loading',
+      'interactive',
+      'hovered',
+      'focused',
+      'active',
+      'fullWidth'
+    ],
+    getClasses: getAvatarClasses
+  })
+)
 
 const recipeSelectorContracts = [
   { name: 'button', selectors: buttonSelectors },
   { name: 'card', selectors: cardSelectors },
+  { name: 'card bleed', selectors: cardBleedSelectors },
   { name: 'input', selectors: inputSelectors },
   { name: 'badge', selectors: badgeSelectors },
   { name: 'icon box', selectors: iconBoxSelectors },
   { name: 'testimonial', selectors: testimonialSelectors },
   { name: 'pricing card', selectors: pricingCardSelectors },
   { name: 'rating', selectors: ratingSelectors },
-  { name: 'avatar', selectors: avatarSelectors },
-] as const;
+  { name: 'avatar', selectors: avatarSelectors }
+] as const
 
 const interactionStateContracts = [
   {
@@ -249,8 +377,8 @@ const interactionStateContracts = [
       '.sp-btn--accent:hover',
       '.sp-btn--accent.sp-btn--disabled',
       '.sp-btn--accent[aria-disabled="true"]',
-      '.sp-btn--accent:disabled',
-    ],
+      '.sp-btn--accent:disabled'
+    ]
   },
   {
     name: 'input states',
@@ -259,8 +387,8 @@ const interactionStateContracts = [
       '.sp-input:focus',
       '.sp-input:disabled',
       '.sp-input[aria-disabled="true"]',
-      '.sp-input--disabled:focus',
-    ],
+      '.sp-input--disabled:focus'
+    ]
   },
   {
     name: 'card states',
@@ -268,8 +396,8 @@ const interactionStateContracts = [
       '.sp-card--interactive:hover',
       '.sp-card--interactive:focus-visible',
       '.sp-card--interactive:focus-within',
-      '.sp-card--disabled',
-    ],
+      '.sp-card--disabled'
+    ]
   },
   {
     name: 'badge variants',
@@ -312,8 +440,8 @@ const interactionStateContracts = [
       '.sp-badge--active',
       '.sp-badge.is-active',
       '.sp-badge--focus',
-      '.sp-badge.is-focus',
-    ],
+      '.sp-badge.is-focus'
+    ]
   },
   {
     name: 'icon box variants',
@@ -322,8 +450,8 @@ const interactionStateContracts = [
       '.sp-iconbox--interactive:focus-visible',
       '.sp-iconbox:disabled',
       '.sp-iconbox[aria-disabled="true"]',
-      '.sp-iconbox--disabled',
-    ],
+      '.sp-iconbox--disabled'
+    ]
   },
   {
     name: 'pricing card states',
@@ -337,8 +465,8 @@ const interactionStateContracts = [
       '.sp-pricing-card[aria-busy="true"]',
       '.sp-pricing-card--featured.sp-pricing-card--interactive:hover',
       '.sp-pricing-card--featured.sp-pricing-card--interactive:focus-visible',
-      '.sp-pricing-card--featured.sp-pricing-card--interactive:focus-within',
-    ],
+      '.sp-pricing-card--featured.sp-pricing-card--interactive:focus-within'
+    ]
   },
   {
     name: 'rating states',
@@ -347,8 +475,8 @@ const interactionStateContracts = [
       '.sp-rating--interactive:focus-visible',
       '.sp-rating:disabled',
       '.sp-rating[aria-disabled="true"]',
-      '.sp-rating--disabled',
-    ],
+      '.sp-rating--disabled'
+    ]
   },
   {
     name: 'avatar states',
@@ -357,72 +485,83 @@ const interactionStateContracts = [
       '.sp-avatar--interactive:focus-visible',
       '.sp-avatar:disabled',
       '.sp-avatar[aria-disabled="true"]',
-      '.sp-avatar--disabled',
-    ],
-  },
-] as const;
+      '.sp-avatar--disabled'
+    ]
+  }
+] as const
 
 const sizeVariantContracts = [
   {
     name: 'button sizes',
-    selectors: ['.sp-btn--sm', '.sp-btn--md', '.sp-btn--lg'],
+    selectors: ['.sp-btn--sm', '.sp-btn--md', '.sp-btn--lg']
   },
   {
     name: 'input sizes',
-    selectors: ['.sp-input--sm', '.sp-input--md', '.sp-input--lg'],
+    selectors: ['.sp-input--sm', '.sp-input--md', '.sp-input--lg']
   },
   {
     name: 'badge sizes',
-    selectors: ['.sp-badge--sm', '.sp-badge--md', '.sp-badge--lg'],
+    selectors: ['.sp-badge--sm', '.sp-badge--md', '.sp-badge--lg']
   },
   {
     name: 'icon box sizes',
-    selectors: ['.sp-iconbox--sm', '.sp-iconbox--md', '.sp-iconbox--lg'],
+    selectors: ['.sp-iconbox--sm', '.sp-iconbox--md', '.sp-iconbox--lg']
   },
   {
     name: 'rating sizes',
-    selectors: ['.sp-rating--sm', '.sp-rating--md', '.sp-rating--lg'],
+    selectors: ['.sp-rating--sm', '.sp-rating--md', '.sp-rating--lg']
   },
   {
     name: 'avatar sizes',
-    selectors: ['.sp-avatar--sm', '.sp-avatar--md', '.sp-avatar--lg', '.sp-avatar--xl'],
+    selectors: [
+      '.sp-avatar--sm',
+      '.sp-avatar--md',
+      '.sp-avatar--lg',
+      '.sp-avatar--xl'
+    ]
   },
   {
     name: 'card padded sizes',
-    selectors: ['.sp-card--padded-sm', '.sp-card--padded-md', '.sp-card--padded-lg'],
-  },
-] as const;
+    selectors: [
+      '.sp-card--padded-sm',
+      '.sp-card--padded-md',
+      '.sp-card--padded-lg'
+    ]
+  }
+] as const
 
 describe('dist/components.css contract', () => {
   recipeSelectorContracts.forEach(({ name, selectors }) => {
     it(`contains all ${name} selectors exposed by recipes`, () => {
       selectors.forEach((selector) => {
-        expect(css).toMatch(buildSelectorMatcher(selector));
-      });
-    });
-  });
+        expect(css).toMatch(buildSelectorMatcher(selector))
+      })
+    })
+  })
 
   interactionStateContracts.forEach(({ name, selectors }) => {
     it(`contains required interaction state selectors for ${name}`, () => {
       selectors.forEach((selector) => {
-        expect(css).toMatch(buildSelectorFragmentMatcher(selector));
-      });
-    });
-  });
+        expect(css).toMatch(buildSelectorFragmentMatcher(selector))
+      })
+    })
+  })
 
   sizeVariantContracts.forEach(({ name, selectors }) => {
     it(`contains required size selectors for ${name}`, () => {
       selectors.forEach((selector) => {
-        expect(css).toMatch(buildSelectorFragmentMatcher(selector));
-      });
-    });
-  });
+        expect(css).toMatch(buildSelectorFragmentMatcher(selector))
+      })
+    })
+  })
 
   it('contains selectors for every public recipe class emitted by the exhaustive matrix', () => {
-    const generatedClassNames = new Set(recipeSelectorContracts.flatMap(({ selectors }) => selectors));
+    const generatedClassNames = new Set(
+      recipeSelectorContracts.flatMap(({ selectors }) => selectors)
+    )
 
     generatedClassNames.forEach((className) => {
-      expect(css).toMatch(buildSelectorMatcher(className));
-    });
-  });
-});
+      expect(css).toMatch(buildSelectorMatcher(className))
+    })
+  })
+})

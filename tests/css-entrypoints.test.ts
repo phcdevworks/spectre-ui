@@ -1,25 +1,38 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import postcss from 'postcss';
-import { describe, expect, it } from 'vitest';
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import postcss from 'postcss'
+import { describe, expect, it } from 'vitest'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const distDir = path.join(__dirname, '..', 'dist');
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const distDir = path.join(__dirname, '..', 'dist')
 
 const readDistCss = (fileName: string): string =>
-  fs.readFileSync(path.join(distDir, fileName), 'utf8');
+  fs.readFileSync(path.join(distDir, fileName), 'utf8')
 
-const CUSTOM_PROPERTY_DECLARATION_PATTERN = /(^|[{\s;])(--[A-Za-z0-9_-]+)\s*:/gm;
-const ALLOWED_SHARED_SELECTORS = new Set([':root', ':root[data-spectre-theme="dark"]']);
+const CUSTOM_PROPERTY_DECLARATION_PATTERN = /(^|[{\s;])(--[A-Za-z0-9_-]+)\s*:/gm
+const ALLOWED_SHARED_SELECTORS = new Set([
+  ':root',
+  ':root[data-spectre-theme="dark"]'
+])
 
 const ENTRYPOINT_CONTRACTS = [
   {
     fileName: 'base.css',
     standaloneTokens: ['--sp-surface-page:', '--sp-text-on-page-default:'],
-    bundleMarkers: ['@layer base', 'body {', ':focus-visible {', 'sp-card[full-height]'],
-    forbiddenMarkers: ['@layer components {', '@layer utilities {', '.sp-btn {', '.sp-stack {'],
+    bundleMarkers: [
+      '@layer base',
+      'body {',
+      ':focus-visible {',
+      'sp-card[full-height]'
+    ],
+    forbiddenMarkers: [
+      '@layer components {',
+      '@layer utilities {',
+      '.sp-btn {',
+      '.sp-stack {'
+    ],
     // spectre-tokens Phase 11: independent component.footer semantic group
     // adds new CSS variables in default and dark modes — a deliberate,
     // scoped size increase, not a regression. See spectre-tokens TODO.md
@@ -41,13 +54,23 @@ const ENTRYPOINT_CONTRACTS = [
     // to fold sp-stack into that same bare-tag rule (TODO.md "Host —
     // extend the block-level display contract to sp-stack") — a
     // deliberate, scoped increase, not a regression.
-    maxBytes: 48500,
+    // Raised again 2026-09-18 (base.css grew to 54649 bytes) when the
+    // spectre-tokens dependency range was bumped to ^4.9.0 — an unrelated,
+    // already-published dependency update, not a regression here.
+    maxBytes: 54800
   },
   {
     fileName: 'components.css',
     standaloneTokens: ['--sp-surface-page:', '--sp-button-primary-bg:'],
     bundleMarkers: ['@layer components', '.sp-btn {', '.sp-card {'],
-    forbiddenMarkers: ['@layer base {', '@layer utilities {', 'body {', ':focus-visible {', '.sp-stack {', '@keyframes fade-in'],
+    forbiddenMarkers: [
+      '@layer base {',
+      '@layer utilities {',
+      'body {',
+      ':focus-visible {',
+      '.sp-stack {',
+      '@keyframes fade-in'
+    ],
     // Phase 9: independent component.footer semantic contract adds Footer
     // anatomy classes (heading, muted text, links, divider, icon chip) and
     // drops the Nav-alias token reuse — a deliberate, scoped size increase,
@@ -68,7 +91,17 @@ const ENTRYPOINT_CONTRACTS = [
     // bytes) for the inverse Button/Badge variants and Text on-inverse
     // color variants (TODO.md "Requested by Downstream" / "On-dark/inverse
     // surface role") — a deliberate, scoped increase, not a regression.
-    maxBytes: 154500,
+    // Raised again 2026-09-18 (components.css grew to 161090 bytes) when
+    // the spectre-tokens dependency range was bumped to ^4.9.0 — an
+    // unrelated, already-published dependency update, not a regression
+    // here — and again for the .sp-card__bleed contract (TODO.md
+    // "Requested by Downstream" / "Card full-bleed child composition
+    // contract") — a deliberate, scoped increase, not a regression. Raised
+    // again 2026-09-18 (components.css grew to 164498 bytes) for the
+    // .sp-card--accent-* rail contract (TODO.md "Requested by Downstream" /
+    // "Card edge-accent recipe and CSS contract") — a deliberate, scoped
+    // increase, not a regression.
+    maxBytes: 164700
   },
   {
     fileName: 'utilities.css',
@@ -79,8 +112,22 @@ const ENTRYPOINT_CONTRACTS = [
     // sp-column-gap-*/sp-row-gap-* utility scale always wins on layer
     // precedence regardless of source order. See TODO.md "Layout — Spacing
     // Utility Override Of Layout Primitives".
-    bundleMarkers: ['@layer base, components, utilities;', '@layer utilities', '@layer components {', '.sp-stack {', '@keyframes fade-in', '.sp-p-4 {', '.sp-flex {'],
-    forbiddenMarkers: ['@layer base {', 'body {', ':focus-visible {', '.sp-btn {', '.sp-card {'],
+    bundleMarkers: [
+      '@layer base, components, utilities;',
+      '@layer utilities',
+      '@layer components {',
+      '.sp-stack {',
+      '@keyframes fade-in',
+      '.sp-p-4 {',
+      '.sp-flex {'
+    ],
+    forbiddenMarkers: [
+      '@layer base {',
+      'body {',
+      ':focus-visible {',
+      '.sp-btn {',
+      '.sp-card {'
+    ],
     // Phase 7 P1: generated utility-class engine adds full palette (286
     // steps), spacing, radius, shadow, opacity, and z-index coverage plus
     // responsive variants — a deliberate, scoped size increase, not a
@@ -128,75 +175,81 @@ const ENTRYPOINT_CONTRACTS = [
     // 2026-08-30 (utilities.css grew to 357390 bytes) for
     // .sp-surface--inverse, the background half of the same on-dark/
     // inverse surface role — a deliberate, scoped increase, not a
-    // regression.
-    maxBytes: 357600,
-  },
-] as const;
+    // regression. Raised again 2026-09-18 (utilities.css grew to 363726
+    // bytes) when the spectre-tokens dependency range was bumped to ^4.9.0
+    // — an unrelated, already-published dependency update to the
+    // standalone token block this bundle embeds, not a regression here.
+    maxBytes: 363900
+  }
+] as const
 
 const getEntryPointRules = (fileName: string) =>
-  postcss.parse(readDistCss(fileName), { from: path.join(distDir, fileName) });
+  postcss.parse(readDistCss(fileName), { from: path.join(distDir, fileName) })
 
 const isKeyframeRule = (rule: postcss.Rule): boolean => {
   let node: postcss.Node | undefined = rule.parent
   while (node) {
-    if (node.type === 'atrule' && (node as postcss.AtRule).name === 'keyframes') return true
+    if (node.type === 'atrule' && (node as postcss.AtRule).name === 'keyframes')
+      return true
     node = node.parent
   }
   return false
 }
 
 const getRuleContext = (rule: postcss.Rule): string => {
-  const contexts: string[] = [];
-  let current = rule.parent;
+  const contexts: string[] = []
+  let current = rule.parent
 
   while (current) {
     if (current.type === 'atrule') {
-      contexts.unshift(`@${current.name} ${current.params}`.trim());
+      contexts.unshift(`@${current.name} ${current.params}`.trim())
     }
-    current = current.parent;
+    current = current.parent
   }
 
-  return contexts.join(' > ');
-};
+  return contexts.join(' > ')
+}
 
 describe('dist CSS entrypoints', () => {
   it('ships standalone exported bundles with enforced entrypoint boundaries', () => {
-    ENTRYPOINT_CONTRACTS.forEach(({ fileName, standaloneTokens, bundleMarkers, forbiddenMarkers }) => {
-      const css = readDistCss(fileName);
+    ENTRYPOINT_CONTRACTS.forEach(
+      ({ fileName, standaloneTokens, bundleMarkers, forbiddenMarkers }) => {
+        const css = readDistCss(fileName)
 
-      standaloneTokens.forEach((token) => {
-        expect(
-          css,
-          `${fileName} is missing standalone token context: ${token}`
-        ).toContain(token);
-      });
+        standaloneTokens.forEach((token) => {
+          expect(
+            css,
+            `${fileName} is missing standalone token context: ${token}`
+          ).toContain(token)
+        })
 
-      bundleMarkers.forEach((marker) => {
-        expect(
-          css,
-          `${fileName} is missing its bundle-specific contract marker: ${marker}`
-        ).toContain(marker);
-      });
+        bundleMarkers.forEach((marker) => {
+          expect(
+            css,
+            `${fileName} is missing its bundle-specific contract marker: ${marker}`
+          ).toContain(marker)
+        })
 
-      forbiddenMarkers.forEach((marker) => {
-        expect(
-          css,
-          `${fileName} leaked cross-bundle marker: ${marker}`
-        ).not.toContain(marker);
-      });
-    });
-  });
+        forbiddenMarkers.forEach((marker) => {
+          expect(
+            css,
+            `${fileName} leaked cross-bundle marker: ${marker}`
+          ).not.toContain(marker)
+        })
+      }
+    )
+  })
 
   it('allows only Spectre-prefixed CSS variables in exported bundles', () => {
     ENTRYPOINT_CONTRACTS.forEach(({ fileName }) => {
-      const css = readDistCss(fileName);
-      const nonSpectreVariables = new Set<string>();
+      const css = readDistCss(fileName)
+      const nonSpectreVariables = new Set<string>()
 
       for (const match of css.matchAll(CUSTOM_PROPERTY_DECLARATION_PATTERN)) {
-        const variableName = match[2];
+        const variableName = match[2]
 
         if (!variableName.startsWith('--sp-')) {
-          nonSpectreVariables.add(variableName);
+          nonSpectreVariables.add(variableName)
         }
       }
 
@@ -205,91 +258,98 @@ describe('dist CSS entrypoints', () => {
         nonSpectreVariables.size === 0
           ? `${fileName} should only declare Spectre-prefixed CSS variables.`
           : `${fileName} contains non-Spectre CSS variables: ${[...nonSpectreVariables].join(', ')}`
-      ).toEqual([]);
-    });
-  });
+      ).toEqual([])
+    })
+  })
 
   it('keeps exported bundles within their size budgets', () => {
     ENTRYPOINT_CONTRACTS.forEach(({ fileName, maxBytes }) => {
-      const cssSize = Buffer.byteLength(readDistCss(fileName), 'utf8');
+      const cssSize = Buffer.byteLength(readDistCss(fileName), 'utf8')
 
       expect(
         cssSize,
         `${fileName} exceeded its size budget: ${cssSize} bytes > ${maxBytes} bytes`
-      ).toBeLessThanOrEqual(maxBytes);
-    });
-  });
+      ).toBeLessThanOrEqual(maxBytes)
+    })
+  })
 
   it('does not repeat selectors within the same exported bundle', () => {
     ENTRYPOINT_CONTRACTS.forEach(({ fileName }) => {
-      const selectorCounts = new Map<string, { count: number; selector: string }>();
+      const selectorCounts = new Map<
+        string,
+        { count: number; selector: string }
+      >()
 
       getEntryPointRules(fileName).walkRules((rule) => {
-        if (isKeyframeRule(rule)) return;
-        const context = getRuleContext(rule);
+        if (isKeyframeRule(rule)) return
+        const context = getRuleContext(rule)
 
         rule.selectors.forEach((selector) => {
-          const normalizedSelector = selector.trim();
-          const key = context ? `${context} :: ${normalizedSelector}` : normalizedSelector;
-          const existing = selectorCounts.get(key);
+          const normalizedSelector = selector.trim()
+          const key = context
+            ? `${context} :: ${normalizedSelector}`
+            : normalizedSelector
+          const existing = selectorCounts.get(key)
           selectorCounts.set(key, {
             selector: normalizedSelector,
-            count: (existing?.count ?? 0) + 1,
-          });
-        });
-      });
+            count: (existing?.count ?? 0) + 1
+          })
+        })
+      })
 
       const duplicates = [...selectorCounts.values()]
         .filter(({ count }) => count > 1)
-        .map(({ selector, count }) => `${selector} (${count}x)`);
+        .map(({ selector, count }) => `${selector} (${count}x)`)
 
       expect(
         duplicates,
         duplicates.length === 0
           ? `${fileName} should not repeat selectors.`
           : `${fileName} contains duplicate selectors:\n- ${duplicates.join('\n- ')}`
-      ).toEqual([]);
-    });
-  });
+      ).toEqual([])
+    })
+  })
 
   it('does not repeat selector blocks across exported bundles beyond shared token roots', () => {
-    const selectorToFiles = new Map<string, Set<string>>();
+    const selectorToFiles = new Map<string, Set<string>>()
 
     ENTRYPOINT_CONTRACTS.forEach(({ fileName }) => {
       getEntryPointRules(fileName).walkRules((rule) => {
-        if (isKeyframeRule(rule)) return;
+        if (isKeyframeRule(rule)) return
         rule.selectors.forEach((selector) => {
-          const normalizedSelector = selector.trim();
-          if (ALLOWED_SHARED_SELECTORS.has(normalizedSelector)) return;
+          const normalizedSelector = selector.trim()
+          if (ALLOWED_SHARED_SELECTORS.has(normalizedSelector)) return
 
           if (!selectorToFiles.has(normalizedSelector)) {
-            selectorToFiles.set(normalizedSelector, new Set());
+            selectorToFiles.set(normalizedSelector, new Set())
           }
 
-          selectorToFiles.get(normalizedSelector)?.add(fileName);
-        });
-      });
-    });
+          selectorToFiles.get(normalizedSelector)?.add(fileName)
+        })
+      })
+    })
 
     const duplicatesAcrossBundles = [...selectorToFiles.entries()]
       .filter(([, files]) => files.size > 1)
-      .map(([selector, files]) => `${selector} (${[...files].sort().join(', ')})`);
+      .map(
+        ([selector, files]) => `${selector} (${[...files].sort().join(', ')})`
+      )
 
     expect(
       duplicatesAcrossBundles,
       duplicatesAcrossBundles.length === 0
         ? 'Expected selector blocks to remain unique to their exported bundle.'
         : `Selectors repeated across exported bundles:\n- ${duplicatesAcrossBundles.join('\n- ')}`
-    ).toEqual([]);
-  });
+    ).toEqual([])
+  })
 
   it('sets display: block on every full-width/full-height custom-element host, and nothing else', () => {
     // Regression for TODO.md "Host — Custom Element Display Contract": the
     // rule must be scoped by the reflected full-width/full-height attribute
     // (not a bare tag selector), so default (non-full) usage of these
     // elements stays at the UA default inline display.
-    const css = readDistCss('base.css');
-    const root = postcss.parse(css, { from: path.join(distDir, 'base.css') });
+    const css = readDistCss('base.css')
+    const root = postcss.parse(css, { from: path.join(distDir, 'base.css') })
 
     const fullAttributeHosts = [
       ['sp-alert', 'full-width'],
@@ -308,22 +368,22 @@ describe('dist CSS entrypoints', () => {
       ['sp-tag', 'full-width'],
       ['sp-testimonial', 'full-height'],
       ['sp-textarea', 'full-width'],
-      ['sp-toast', 'full-width'],
-    ] as const;
+      ['sp-toast', 'full-width']
+    ] as const
 
-    let matchedRule: import('postcss').Rule | undefined;
+    let matchedRule: import('postcss').Rule | undefined
     root.walkRules((rule) => {
       if (rule.selector.includes('sp-card[full-height]')) {
-        matchedRule = rule;
+        matchedRule = rule
       }
-    });
+    })
 
-    expect(matchedRule).toBeDefined();
-    expect(matchedRule?.toString()).toContain('display: block');
+    expect(matchedRule).toBeDefined()
+    expect(matchedRule?.toString()).toContain('display: block')
 
     fullAttributeHosts.forEach(([tag, attribute]) => {
-      expect(matchedRule?.selector).toContain(`${tag}[${attribute}]`);
-    });
+      expect(matchedRule?.selector).toContain(`${tag}[${attribute}]`)
+    })
 
     // A bare tag selector (no attribute qualifier) would force every
     // instance of these elements to display: block, including ordinary
@@ -331,9 +391,9 @@ describe('dist CSS entrypoints', () => {
     // full-width/full-height — that regression is exactly what the
     // attribute-scoped selector avoids.
     fullAttributeHosts.forEach(([tag]) => {
-      expect(css).not.toMatch(new RegExp(`(?<![\\w[-])${tag}\\s*[,{]`));
-    });
-  });
+      expect(css).not.toMatch(new RegExp(`(?<![\\w[-])${tag}\\s*[,{]`))
+    })
+  })
 
   it('sets display: block unconditionally on the bare sp-section/sp-stack hosts, without widening the attribute-scoped contract for unrelated inline components', () => {
     // Regression for TODO.md "Requested by Downstream" / "Section —
@@ -348,39 +408,39 @@ describe('dist CSS entrypoints', () => {
     // `display: block` here is what makes a host-level max-width or
     // background take effect pre-hydration, including on a server-rendered
     // element the client never upgrades.
-    const css = readDistCss('base.css');
-    const root = postcss.parse(css, { from: path.join(distDir, 'base.css') });
+    const css = readDistCss('base.css')
+    const root = postcss.parse(css, { from: path.join(distDir, 'base.css') })
 
-    const bareBlockHosts = ['sp-section', 'sp-stack'] as const;
+    const bareBlockHosts = ['sp-section', 'sp-stack'] as const
 
-    let bareHostRule: import('postcss').Rule | undefined;
+    let bareHostRule: import('postcss').Rule | undefined
     root.walkRules((rule) => {
-      const selectors = rule.selector.split(',').map((s) => s.trim());
+      const selectors = rule.selector.split(',').map((s) => s.trim())
       if (bareBlockHosts.every((tag) => selectors.includes(tag))) {
-        bareHostRule = rule;
+        bareHostRule = rule
       }
-    });
+    })
 
-    expect(bareHostRule).toBeDefined();
-    expect(bareHostRule?.toString()).toContain('display: block');
+    expect(bareHostRule).toBeDefined()
+    expect(bareHostRule?.toString()).toContain('display: block')
 
     // sp-hstack is a direction variant of the same sp-stack custom element,
     // not a distinct registered tag, so it must not appear as its own
     // selector anywhere in this stylesheet.
-    expect(css).not.toMatch(/(?<![\w[-])sp-hstack\s*[,{[]/);
+    expect(css).not.toMatch(/(?<![\w[-])sp-hstack\s*[,{[]/)
 
     // The bare host rule must stay scoped to these two tags — it must not
     // fold into (or widen) the attribute-scoped full-width/full-height
     // selector list, and no other host in that list should gain a matching
     // bare-tag rule as a side effect.
-    let attributeScopedRule: import('postcss').Rule | undefined;
+    let attributeScopedRule: import('postcss').Rule | undefined
     root.walkRules((rule) => {
       if (rule.selector.includes('sp-card[full-height]')) {
-        attributeScopedRule = rule;
+        attributeScopedRule = rule
       }
-    });
+    })
     bareBlockHosts.forEach((tag) => {
-      expect(attributeScopedRule?.selector).not.toContain(tag);
-    });
-  });
-});
+      expect(attributeScopedRule?.selector).not.toContain(tag)
+    })
+  })
+})

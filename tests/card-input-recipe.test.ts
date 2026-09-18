@@ -1,54 +1,54 @@
-import { describe, expect, it } from 'vitest';
-import { getCardClasses, getInputClasses } from '@phcdevworks/spectre-ui';
+import { describe, expect, it } from 'vitest'
+import { getCardClasses, getInputClasses } from '@phcdevworks/spectre-ui'
 
 const expectTokenizedClassString = (result: string) => {
-  const tokens = result.split(/\s+/);
+  const tokens = result.split(/\s+/)
 
-  expect(result).toBe(result.trim());
-  expect(tokens).not.toContain('');
-  expect(tokens.join(' ')).toBe(result);
-  expect(new Set(tokens).size).toBe(tokens.length);
-};
+  expect(result).toBe(result.trim())
+  expect(tokens).not.toContain('')
+  expect(tokens.join(' ')).toBe(result)
+  expect(new Set(tokens).size).toBe(tokens.length)
+}
 
 describe('getCardClasses', () => {
   it('leaves padding neutral when the caller omits padded', () => {
-    const result = getCardClasses();
+    const result = getCardClasses()
 
-    expect(result).toBe('sp-card sp-card--elevated');
-    expect(result).not.toContain('sp-card--padded');
-    expect(result).not.toContain('sp-card--interactive');
-    expect(result).not.toContain('sp-card--full');
-    expectTokenizedClassString(result);
-  });
+    expect(result).toBe('sp-card sp-card--elevated')
+    expect(result).not.toContain('sp-card--padded')
+    expect(result).not.toContain('sp-card--interactive')
+    expect(result).not.toContain('sp-card--full')
+    expectTokenizedClassString(result)
+  })
 
   it('omits the padded class when padded is explicitly false', () => {
-    const result = getCardClasses({ padded: false });
+    const result = getCardClasses({ padded: false })
 
-    expect(result).toBe('sp-card sp-card--elevated');
-    expect(result).not.toContain('sp-card--padded');
-  });
+    expect(result).toBe('sp-card sp-card--elevated')
+    expect(result).not.toContain('sp-card--padded')
+  })
 
   it('maps the padded size scale to its own class, with sm/lg getting explicit classes and md/true sharing the legacy alias', () => {
-    expect(getCardClasses({ padded: 'sm' })).toContain('sp-card--padded-sm');
-    expect(getCardClasses({ padded: 'lg' })).toContain('sp-card--padded-lg');
-    expect(getCardClasses({ padded: 'md' })).toContain('sp-card--padded');
-    expect(getCardClasses({ padded: 'md' })).not.toContain('sp-card--padded-md');
-    expect(getCardClasses({ padded: true })).toContain('sp-card--padded');
-    expect(getCardClasses({ padded: true })).not.toContain('sp-card--padded-md');
-  });
+    expect(getCardClasses({ padded: 'sm' })).toContain('sp-card--padded-sm')
+    expect(getCardClasses({ padded: 'lg' })).toContain('sp-card--padded-lg')
+    expect(getCardClasses({ padded: 'md' })).toContain('sp-card--padded')
+    expect(getCardClasses({ padded: 'md' })).not.toContain('sp-card--padded-md')
+    expect(getCardClasses({ padded: true })).toContain('sp-card--padded')
+    expect(getCardClasses({ padded: true })).not.toContain('sp-card--padded-md')
+  })
 
   it('maps card variants correctly', () => {
     const variants = [
       { variant: 'elevated' as const, className: 'sp-card--elevated' },
       { variant: 'outline' as const, className: 'sp-card--outline' },
-      { variant: 'ghost' as const, className: 'sp-card--ghost' },
-    ];
+      { variant: 'ghost' as const, className: 'sp-card--ghost' }
+    ]
 
     variants.forEach(({ variant, className }) => {
-      const result = getCardClasses({ variant });
-      expect(result).toContain(className);
-    });
-  });
+      const result = getCardClasses({ variant })
+      expect(result).toContain(className)
+    })
+  })
 
   it('adds card flag modifiers', () => {
     const result = getCardClasses({
@@ -56,108 +56,181 @@ describe('getCardClasses', () => {
       padded: true,
       fullHeight: true,
       disabled: true,
-      loading: true,
-    });
+      loading: true
+    })
 
-    expect(result).toContain('sp-card--interactive');
-    expect(result).toContain('sp-card--padded');
-    expect(result).toContain('sp-card--full');
-    expect(result).toContain('sp-card--disabled');
-    expect(result).toContain('sp-card--loading');
-  });
+    expect(result).toContain('sp-card--interactive')
+    expect(result).toContain('sp-card--padded')
+    expect(result).toContain('sp-card--full')
+    expect(result).toContain('sp-card--disabled')
+    expect(result).toContain('sp-card--loading')
+  })
 
   it('adds hovered, focused and active state modifiers', () => {
-    const result = getCardClasses({ hovered: true, focused: true, active: true });
-    expect(result).toContain('sp-card--hover');
-    expect(result).toContain('sp-card--focus');
-    expect(result).toContain('sp-card--active');
-  });
+    const result = getCardClasses({
+      hovered: true,
+      focused: true,
+      active: true
+    })
+    expect(result).toContain('sp-card--hover')
+    expect(result).toContain('sp-card--focus')
+    expect(result).toContain('sp-card--active')
+  })
 
   it('combines classes deterministically for a complex card', () => {
-    const result = getCardClasses({ variant: 'outline', interactive: true, padded: true });
-    expect(result).toBe('sp-card sp-card--outline sp-card--interactive sp-card--padded');
-  });
+    const result = getCardClasses({
+      variant: 'outline',
+      interactive: true,
+      padded: true
+    })
+    expect(result).toBe(
+      'sp-card sp-card--outline sp-card--interactive sp-card--padded'
+    )
+  })
 
   it('creates trimmed, space-delimited class strings for a full option card', () => {
     const result = getCardClasses({
       variant: 'ghost',
       interactive: true,
       padded: true,
-      fullHeight: true,
-    });
+      fullHeight: true
+    })
 
-    expect(result).toContain('sp-card--ghost');
-    expect(result).toContain('sp-card--interactive');
-    expect(result).toContain('sp-card--padded');
-    expect(result).toContain('sp-card--full');
-    expectTokenizedClassString(result);
-  });
-});
+    expect(result).toContain('sp-card--ghost')
+    expect(result).toContain('sp-card--interactive')
+    expect(result).toContain('sp-card--padded')
+    expect(result).toContain('sp-card--full')
+    expectTokenizedClassString(result)
+  })
+
+  it('omits the accent rail when accent is not set, leaving output unchanged', () => {
+    const result = getCardClasses({ accentColor: 'success' })
+
+    expect(result).toBe('sp-card sp-card--elevated')
+    expect(result).not.toContain('sp-card--accent')
+  })
+
+  it('defaults accentColor to brand when accent edge is set without a color', () => {
+    const result = getCardClasses({ accent: 'top' })
+
+    expect(result).toBe(
+      'sp-card sp-card--elevated sp-card--accent-top sp-card--accent-brand'
+    )
+  })
+
+  it('renders every accent edge and color combination', () => {
+    const edges = ['top', 'right', 'bottom', 'left'] as const
+    const colors = [
+      'neutral',
+      'brand',
+      'info',
+      'success',
+      'warning',
+      'danger',
+      'cta'
+    ] as const
+
+    edges.forEach((edge) => {
+      colors.forEach((color) => {
+        const result = getCardClasses({ accent: edge, accentColor: color })
+        expect(result).toContain(`sp-card--accent-${edge}`)
+        expect(result).toContain(`sp-card--accent-${color}`)
+        expectTokenizedClassString(result)
+      })
+    })
+  })
+
+  it('preserves existing variants and states alongside the accent rail', () => {
+    const result = getCardClasses({
+      variant: 'outline',
+      interactive: true,
+      padded: true,
+      accent: 'left',
+      accentColor: 'danger'
+    })
+
+    expect(result).toBe(
+      'sp-card sp-card--outline sp-card--interactive sp-card--padded sp-card--accent-left sp-card--accent-danger'
+    )
+  })
+})
 
 describe('getInputClasses', () => {
   it('returns defaults for md input without modifiers', () => {
-    const result = getInputClasses();
+    const result = getInputClasses()
 
-    expect(result).toBe('sp-input sp-input--md');
-    expect(result).not.toContain('sp-input--error');
-    expect(result).not.toContain('sp-input--success');
-    expect(result).not.toContain('sp-input--full');
-    expectTokenizedClassString(result);
-  });
+    expect(result).toBe('sp-input sp-input--md')
+    expect(result).not.toContain('sp-input--error')
+    expect(result).not.toContain('sp-input--success')
+    expect(result).not.toContain('sp-input--full')
+    expectTokenizedClassString(result)
+  })
 
   it('includes size modifiers', () => {
     const sizes = [
       { size: 'sm' as const, className: 'sp-input--sm' },
       { size: 'md' as const, className: 'sp-input--md' },
-      { size: 'lg' as const, className: 'sp-input--lg' },
-    ];
+      { size: 'lg' as const, className: 'sp-input--lg' }
+    ]
 
     sizes.forEach(({ size, className }) => {
-      const result = getInputClasses({ size });
-      expect(result).toContain(className);
-    });
-  });
+      const result = getInputClasses({ size })
+      expect(result).toContain(className)
+    })
+  })
 
   it('applies state modifiers', () => {
-    expect(getInputClasses({ state: 'default' })).not.toMatch(/sp-input--(error|success)/);
-    expect(getInputClasses({ state: 'error' })).toContain('sp-input--error');
-    expect(getInputClasses({ state: 'success' })).toContain('sp-input--success');
-  });
+    expect(getInputClasses({ state: 'default' })).not.toMatch(
+      /sp-input--(error|success)/
+    )
+    expect(getInputClasses({ state: 'error' })).toContain('sp-input--error')
+    expect(getInputClasses({ state: 'success' })).toContain('sp-input--success')
+  })
 
   it('adds fullWidth modifier', () => {
-    const result = getInputClasses({ fullWidth: true });
-    expect(result).toContain('sp-input--full');
-  });
+    const result = getInputClasses({ fullWidth: true })
+    expect(result).toContain('sp-input--full')
+  })
 
   it('adds pill modifier', () => {
-    const result = getInputClasses({ pill: true });
-    expect(result).toContain('sp-input--pill');
-  });
+    const result = getInputClasses({ pill: true })
+    expect(result).toContain('sp-input--pill')
+  })
 
   it('adds focused, hovered and active modifiers', () => {
-    const result = getInputClasses({ focused: true, hovered: true, active: true });
-    expect(result).toContain('sp-input--focus');
-    expect(result).toContain('sp-input--hover');
-    expect(result).toContain('sp-input--active');
-  });
+    const result = getInputClasses({
+      focused: true,
+      hovered: true,
+      active: true
+    })
+    expect(result).toContain('sp-input--focus')
+    expect(result).toContain('sp-input--hover')
+    expect(result).toContain('sp-input--active')
+  })
 
   it('adds disabled and loading boolean modifiers', () => {
-    const result = getInputClasses({ disabled: true, loading: true });
-    expect(result).toContain('sp-input--disabled');
-    expect(result).toContain('sp-input--loading');
-  });
+    const result = getInputClasses({ disabled: true, loading: true })
+    expect(result).toContain('sp-input--disabled')
+    expect(result).toContain('sp-input--loading')
+  })
 
   it('respects state-based disabled and loading modifiers', () => {
-    expect(getInputClasses({ state: 'disabled' })).toContain('sp-input--disabled');
-    expect(getInputClasses({ state: 'loading' })).toContain('sp-input--loading');
-  });
+    expect(getInputClasses({ state: 'disabled' })).toContain(
+      'sp-input--disabled'
+    )
+    expect(getInputClasses({ state: 'loading' })).toContain('sp-input--loading')
+  })
 
   it('creates trimmed, space-delimited class strings for complex input options', () => {
-    const result = getInputClasses({ state: 'success', size: 'lg', fullWidth: true });
+    const result = getInputClasses({
+      state: 'success',
+      size: 'lg',
+      fullWidth: true
+    })
 
-    expect(result).toContain('sp-input--success');
-    expect(result).toContain('sp-input--lg');
-    expect(result).toContain('sp-input--full');
-    expectTokenizedClassString(result);
-  });
-});
+    expect(result).toContain('sp-input--success')
+    expect(result).toContain('sp-input--lg')
+    expect(result).toContain('sp-input--full')
+    expectTokenizedClassString(result)
+  })
+})

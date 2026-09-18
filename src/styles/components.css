@@ -1,7 +1,6 @@
 @layer base, components, utilities;
 
 @layer components {
-
   :where(:root) {
     /* structural border width */
     --sp-component-border-width: var(--sp-border-width-base);
@@ -587,7 +586,6 @@
 
   /* Generic forced-state helpers (actual colors defined in variant sections below) */
 
-
   /* primary */
   .sp-btn--primary {
     background-color: var(--sp-component-button-primary-bg);
@@ -996,6 +994,7 @@
     padding: var(--sp-space-24);
     box-shadow: var(--sp-component-card-shadow);
     border: var(--sp-component-border-width) solid var(--sp-component-card-border-base);
+    --sp-component-card-accent-color: var(--sp-component-card-accent-brand);
   }
 
   .sp-card p {
@@ -1093,6 +1092,118 @@
   .sp-card--interactive.is-active {
     opacity: var(--sp-opacity-active);
     transform: translateY(0);
+  }
+
+  /* sp-card__bleed lets a padded card's child run flush through one or more
+     edges without the consumer negating the active padding token or
+     reconstructing card corner radius locally. The padded-size modifier only
+     sets the --sp-component-card-bleed-amount custom property; the edge
+     modifiers read it, so bleed amount and edge selection stay independent
+     and every edge/size pairing works without a combinatorial class list. */
+  .sp-card__bleed {
+    --sp-component-card-bleed-amount: var(--sp-space-0);
+    --sp-component-card-bleed-radius: calc(var(--sp-radius-lg) - var(--sp-component-border-width));
+  }
+
+  .sp-card__bleed--padded,
+  .sp-card__bleed--padded-md {
+    --sp-component-card-bleed-amount: var(--sp-component-card-padding-md);
+  }
+
+  .sp-card__bleed--padded-sm {
+    --sp-component-card-bleed-amount: var(--sp-component-card-padding-sm);
+  }
+
+  .sp-card__bleed--padded-lg {
+    --sp-component-card-bleed-amount: var(--sp-component-card-padding-lg);
+  }
+
+  .sp-card__bleed--top {
+    margin-top: calc(var(--sp-component-card-bleed-amount) * -1);
+  }
+
+  .sp-card__bleed--right {
+    margin-right: calc(var(--sp-component-card-bleed-amount) * -1);
+  }
+
+  .sp-card__bleed--bottom {
+    margin-bottom: calc(var(--sp-component-card-bleed-amount) * -1);
+  }
+
+  .sp-card__bleed--left {
+    margin-left: calc(var(--sp-component-card-bleed-amount) * -1);
+  }
+
+  .sp-card__bleed--top.sp-card__bleed--left {
+    border-top-left-radius: var(--sp-component-card-bleed-radius);
+  }
+
+  .sp-card__bleed--top.sp-card__bleed--right {
+    border-top-right-radius: var(--sp-component-card-bleed-radius);
+  }
+
+  .sp-card__bleed--bottom.sp-card__bleed--left {
+    border-bottom-left-radius: var(--sp-component-card-bleed-radius);
+  }
+
+  .sp-card__bleed--bottom.sp-card__bleed--right {
+    border-bottom-right-radius: var(--sp-component-card-bleed-radius);
+  }
+
+  /* sp-card--accent-* renders an optional thicker decorative rail on one
+     edge, entirely from the published component.card.accent token group.
+     Edge and color are independent modifier classes (like sp-card__bleed)
+     so every edge/color pairing works without a combinatorial class list.
+     Omission renders no rail — card border-width/color/radius stay
+     untouched on every edge. The default --sp-component-card-accent-color
+     lives on the base .sp-card rule above so this contract never repeats
+     that selector. */
+  .sp-card--accent-neutral {
+    --sp-component-card-accent-color: var(--sp-component-card-accent-neutral);
+  }
+
+  .sp-card--accent-brand {
+    --sp-component-card-accent-color: var(--sp-component-card-accent-brand);
+  }
+
+  .sp-card--accent-info {
+    --sp-component-card-accent-color: var(--sp-component-card-accent-info);
+  }
+
+  .sp-card--accent-success {
+    --sp-component-card-accent-color: var(--sp-component-card-accent-success);
+  }
+
+  .sp-card--accent-warning {
+    --sp-component-card-accent-color: var(--sp-component-card-accent-warning);
+  }
+
+  .sp-card--accent-danger {
+    --sp-component-card-accent-color: var(--sp-component-card-accent-danger);
+  }
+
+  .sp-card--accent-cta {
+    --sp-component-card-accent-color: var(--sp-component-card-accent-cta);
+  }
+
+  .sp-card--accent-top {
+    border-top-width: var(--sp-component-card-accent-thickness);
+    border-top-color: var(--sp-component-card-accent-color);
+  }
+
+  .sp-card--accent-right {
+    border-right-width: var(--sp-component-card-accent-thickness);
+    border-right-color: var(--sp-component-card-accent-color);
+  }
+
+  .sp-card--accent-bottom {
+    border-bottom-width: var(--sp-component-card-accent-thickness);
+    border-bottom-color: var(--sp-component-card-accent-color);
+  }
+
+  .sp-card--accent-left {
+    border-left-width: var(--sp-component-card-accent-thickness);
+    border-left-color: var(--sp-component-card-accent-color);
   }
 
   /* BADGES --------------------------------------------------------------- */
@@ -1326,7 +1437,7 @@
      - force currentColor for common svg shapes
      - preserve stroke-only icons (fill="none")
   */
-  .sp-iconbox>i {
+  .sp-iconbox > i {
     display: inline-flex;
     align-items: center;
     justify-content: center;

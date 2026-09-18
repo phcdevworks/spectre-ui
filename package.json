@@ -1,6 +1,6 @@
 {
   "name": "@phcdevworks/spectre-ui",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "description": "@phcdevworks/spectre-ui is the styling layer of the Spectre system. It transforms Spectre tokens into reusable CSS, utilities, and class recipes for consistent application interfaces.",
   "keywords": [
     "phcdevworks",
@@ -95,21 +95,21 @@
     "typescript": "^5.0 || ^6.0 || ^7.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^4.8.0"
+    "@phcdevworks/spectre-tokens": "^4.9.0"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.2.0",
-    "@types/node": "^26.5.1",
+    "@types/node": "^26.6.1",
     "@typescript-eslint/eslint-plugin": "^8.70.0",
     "@typescript-eslint/parser": "^8.70.0",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "autoprefixer": "^10.6.0",
+    "autoprefixer": "^10.6.1",
     "eslint": "^10.10.0",
     "jiti": "^2.7.0",
     "postcss": "^8.5.28",
     "postcss-cli": "^12.0.0",
     "postcss-import": "^17.0.0",
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.8",
     "tsup": "^8.5.1",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-eslint": "^8.70.0",

@@ -2,14 +2,24 @@ export {
   getButtonClasses,
   type ButtonRecipeOptions,
   type ButtonSize,
-  type ButtonVariant,
+  type ButtonVariant
 } from './button'
 
 export {
   getCardClasses,
   type CardRecipeOptions,
   type CardVariant,
+  type CardPaddingSize,
+  type CardAccentEdge,
+  type CardAccentColor
 } from './card'
+
+export {
+  getCardBleedClasses,
+  type CardBleedRecipeOptions,
+  type CardBleedEdge,
+  type CardBleedPaddingSize
+} from './card-bleed'
 
 export {
   getInputClasses,
@@ -19,21 +29,21 @@ export {
   getInputErrorMessageClasses,
   type InputRecipeOptions,
   type InputSize,
-  type InputState,
+  type InputState
 } from './input'
 
 export {
   getBadgeClasses,
   type BadgeRecipeOptions,
   type BadgeSize,
-  type BadgeVariant,
+  type BadgeVariant
 } from './badge'
 
 export {
   getIconBoxClasses,
   type IconBoxRecipeOptions,
   type IconBoxSize,
-  type IconBoxVariant,
+  type IconBoxVariant
 } from './iconbox'
 
 export {
@@ -43,7 +53,7 @@ export {
   getTestimonialAuthorNameClasses,
   getTestimonialAuthorTitleClasses,
   getTestimonialQuoteClasses,
-  type TestimonialRecipeOptions,
+  type TestimonialRecipeOptions
 } from './testimonial'
 
 export {
@@ -52,7 +62,7 @@ export {
   getPricingCardDescriptionClasses,
   getPricingCardPriceClasses,
   getPricingCardPriceContainerClasses,
-  type PricingCardRecipeOptions,
+  type PricingCardRecipeOptions
 } from './pricing-card'
 
 export {
@@ -61,35 +71,35 @@ export {
   getRatingStarsClasses,
   getRatingTextClasses,
   type RatingRecipeOptions,
-  type RatingSize,
+  type RatingSize
 } from './rating'
 
 export {
   getAlertClasses,
   type AlertRecipeOptions,
   type AlertSize,
-  type AlertVariant,
+  type AlertVariant
 } from './alert'
 
 export {
   getAvatarClasses,
   type AvatarRecipeOptions,
   type AvatarShape,
-  type AvatarSize,
+  type AvatarSize
 } from './avatar'
 
 export {
   getTagClasses,
   type TagRecipeOptions,
   type TagSize,
-  type TagVariant,
+  type TagVariant
 } from './tag'
 
 export {
   getSpinnerClasses,
   type SpinnerRecipeOptions,
   type SpinnerSize,
-  type SpinnerVariant,
+  type SpinnerVariant
 } from './spinner'
 
 export {
@@ -98,7 +108,7 @@ export {
   getNavLinkClasses,
   type NavAlign,
   type NavRecipeOptions,
-  type NavLinkRecipeOptions,
+  type NavLinkRecipeOptions
 } from './nav'
 
 export {
@@ -111,7 +121,7 @@ export {
   getSidebarToggleClasses,
   type SidebarRecipeOptions,
   type SidebarLinkRecipeOptions,
-  type SidebarLinkLevel,
+  type SidebarLinkLevel
 } from './sidebar'
 
 export {
@@ -125,7 +135,7 @@ export {
   getFooterChipClasses,
   type FooterRecipeOptions,
   type FooterLinkRecipeOptions,
-  type FooterChipRecipeOptions,
+  type FooterChipRecipeOptions
 } from './footer'
 
 export {
@@ -133,13 +143,13 @@ export {
   getToastIconClasses,
   type ToastRecipeOptions,
   type ToastIconRecipeOptions,
-  type ToastVariant,
+  type ToastVariant
 } from './toast'
 
 export {
   getTooltipClasses,
   type TooltipRecipeOptions,
-  type TooltipPlacement,
+  type TooltipPlacement
 } from './tooltip'
 
 export {
@@ -149,20 +159,20 @@ export {
   type DropdownRecipeOptions,
   type DropdownMenuRecipeOptions,
   type DropdownItemRecipeOptions,
-  type DropdownPlacement,
+  type DropdownPlacement
 } from './dropdown'
 
 export {
   getModalClasses,
   getModalOverlayClasses,
   type ModalRecipeOptions,
-  type ModalOverlayRecipeOptions,
+  type ModalOverlayRecipeOptions
 } from './modal'
 
 export {
   getContainerClasses,
   type ContainerRecipeOptions,
-  type ContainerMaxWidth,
+  type ContainerMaxWidth
 } from './container'
 
 export {
@@ -171,7 +181,7 @@ export {
   type StackDirection,
   type StackBasis,
   type StackAlign,
-  type StackGap,
+  type StackGap
 } from './stack'
 
 export { getSectionClasses, type SectionRecipeOptions } from './section'
@@ -200,7 +210,7 @@ export {
   type GridTemplate,
   type GridTemplateOptions,
   type GridFixedTrackCountOptions,
-  type GridExplicitTemplateOptions,
+  type GridExplicitTemplateOptions
 } from './grid'
 
 export { getCheckboxClasses, type CheckboxRecipeOptions } from './checkbox'
@@ -214,7 +224,7 @@ export { getTextareaClasses, type TextareaRecipeOptions } from './textarea'
 export {
   getFieldsetClasses,
   getFieldsetLegendClasses,
-  type FieldsetRecipeOptions,
+  type FieldsetRecipeOptions
 } from './fieldset'
 
 export { getLabelClasses, type LabelRecipeOptions } from './label'
@@ -225,5 +235,5 @@ export {
   type TextSize,
   type TextVariant,
   type TextFamily,
-  type TextTransform,
+  type TextTransform
 } from './text'

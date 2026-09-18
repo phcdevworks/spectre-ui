@@ -1,5 +1,5 @@
 {
-  "version": "3.3.0",
+  "version": "3.5.0",
   "cssEntrypoints": [
     "@phcdevworks/spectre-ui/index.css",
     "@phcdevworks/spectre-ui/base.css",
@@ -11,12 +11,50 @@
     "output": "src/styles/utilities.generated.css",
     "families": {
       "spacing": {
-        "axes": ["p", "px", "py", "pt", "pr", "pb", "pl", "m", "mx", "my", "mt", "mr", "mb", "ml", "gap", "gap-x", "gap-y"],
+        "axes": [
+          "p",
+          "px",
+          "py",
+          "pt",
+          "pr",
+          "pb",
+          "pl",
+          "m",
+          "mx",
+          "my",
+          "mt",
+          "mr",
+          "mb",
+          "ml",
+          "gap",
+          "gap-x",
+          "gap-y"
+        ],
         "tokenGroup": "--sp-space-*",
         "responsiveBreakpoints": ["sm", "md", "lg", "xl", "2xl"]
       },
       "layout": {
-        "axes": ["display", "flexDirection", "flexWrap", "flexSizing", "justifyContent", "alignItems", "alignSelf", "position", "inset", "width", "height", "overflow", "whiteSpace", "textAlign", "objectFit", "objectPosition", "border", "list", "autoMargin"],
+        "axes": [
+          "display",
+          "flexDirection",
+          "flexWrap",
+          "flexSizing",
+          "justifyContent",
+          "alignItems",
+          "alignSelf",
+          "position",
+          "inset",
+          "width",
+          "height",
+          "overflow",
+          "whiteSpace",
+          "textAlign",
+          "objectFit",
+          "objectPosition",
+          "border",
+          "list",
+          "autoMargin"
+        ],
         "responsiveBreakpoints": ["sm", "md", "lg", "xl", "2xl"]
       },
       "aspectRatio": {
@@ -66,6 +104,7 @@
       "getAvatarClasses",
       "getBadgeClasses",
       "getButtonClasses",
+      "getCardBleedClasses",
       "getCardClasses",
       "getCheckboxClasses",
       "getDropdownClasses",
@@ -134,17 +173,42 @@
   "recipeFamilies": {
     "button": {
       "fn": "getButtonClasses",
-      "variants": ["primary", "secondary", "ghost", "danger", "success", "cta", "accent", "inverse"],
+      "variants": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger",
+        "success",
+        "cta",
+        "accent",
+        "inverse"
+      ],
       "sizes": ["sm", "md", "lg"]
     },
     "badge": {
       "fn": "getBadgeClasses",
-      "variants": ["primary", "secondary", "success", "warning", "danger", "neutral", "info", "ghost", "outline", "accent", "cta", "inverse"],
+      "variants": [
+        "primary",
+        "secondary",
+        "success",
+        "warning",
+        "danger",
+        "neutral",
+        "info",
+        "ghost",
+        "outline",
+        "accent",
+        "cta",
+        "inverse"
+      ],
       "sizes": ["sm", "md", "lg"]
     },
     "card": {
       "fn": "getCardClasses",
       "variants": ["elevated", "flat", "outline", "ghost"]
+    },
+    "cardBleed": {
+      "fn": "getCardBleedClasses"
     },
     "input": {
       "fn": "getInputClasses",
@@ -153,7 +217,19 @@
     },
     "iconbox": {
       "fn": "getIconBoxClasses",
-      "variants": ["primary", "secondary", "success", "warning", "danger", "info", "neutral", "ghost", "accent", "cta", "outline"],
+      "variants": [
+        "primary",
+        "secondary",
+        "success",
+        "warning",
+        "danger",
+        "info",
+        "neutral",
+        "ghost",
+        "accent",
+        "cta",
+        "outline"
+      ],
       "sizes": ["xs", "sm", "md", "lg"]
     },
     "pricingCard": {
@@ -178,12 +254,35 @@
     },
     "tag": {
       "fn": "getTagClasses",
-      "variants": ["default", "primary", "secondary", "success", "warning", "danger", "info", "neutral", "accent", "cta", "outline", "ghost"],
+      "variants": [
+        "default",
+        "primary",
+        "secondary",
+        "success",
+        "warning",
+        "danger",
+        "info",
+        "neutral",
+        "accent",
+        "cta",
+        "outline",
+        "ghost"
+      ],
       "sizes": ["sm", "md", "lg"]
     },
     "spinner": {
       "fn": "getSpinnerClasses",
-      "variants": ["primary", "secondary", "success", "warning", "danger", "info", "neutral", "accent", "cta"],
+      "variants": [
+        "primary",
+        "secondary",
+        "success",
+        "warning",
+        "danger",
+        "info",
+        "neutral",
+        "accent",
+        "cta"
+      ],
       "sizes": ["sm", "md", "lg"]
     },
     "nav": {
@@ -232,12 +331,32 @@
       "rowSpanBreakpoints": ["base", "md", "lg"],
       "rowOffsets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       "rowOffsetBreakpoints": ["base", "md", "lg"],
-      "orders": ["first", "last", "none", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "orders": [
+        "first",
+        "last",
+        "none",
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
       "orderBreakpoints": ["base", "md", "lg"],
       "fixedTrackCounts": [1, 2, 3, 4],
       "leadingTrackWeights": [1.5, 1.6, 2, 2.5, 3],
       "leadingTrackWeightBreakpoints": ["base", "md", "lg"],
-      "explicitTemplates": ["edge-fluid-edge", "label-fluid-fluid", "fluid-fixed"],
+      "explicitTemplates": [
+        "edge-fluid-edge",
+        "label-fluid-fluid",
+        "fluid-fixed"
+      ],
       "explicitTemplateBreakpoints": ["base", "md", "lg"],
       "explicitTemplateWeights": [1.5, 1.6, 2, 2.5, 3],
       "explicitTemplateWeightBreakpoints": ["base", "md", "lg"],
@@ -270,8 +389,27 @@
     },
     "text": {
       "fn": "getTextClasses",
-      "variants": ["default", "muted", "subtle", "meta", "brand", "onInverse", "onInverseMuted"],
-      "sizes": ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl", "6xl"],
+      "variants": [
+        "default",
+        "muted",
+        "subtle",
+        "meta",
+        "brand",
+        "onInverse",
+        "onInverseMuted"
+      ],
+      "sizes": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "2xl",
+        "3xl",
+        "4xl",
+        "5xl",
+        "6xl"
+      ],
       "families": ["sans", "serif", "mono"],
       "transforms": ["none", "uppercase", "lowercase", "capitalize"]
     }
