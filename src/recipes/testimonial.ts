@@ -8,7 +8,26 @@ const TESTIMONIAL_VARIANTS = {
   ghost: true,
 } as const;
 
+const TESTIMONIAL_ACCENT_EDGES = {
+  top: true,
+  right: true,
+  bottom: true,
+  left: true,
+} as const;
+
+const TESTIMONIAL_ACCENT_COLORS = {
+  neutral: true,
+  brand: true,
+  info: true,
+  success: true,
+  warning: true,
+  danger: true,
+  cta: true,
+} as const;
+
 export type TestimonialVariant = keyof typeof TESTIMONIAL_VARIANTS;
+export type TestimonialAccentEdge = keyof typeof TESTIMONIAL_ACCENT_EDGES;
+export type TestimonialAccentColor = keyof typeof TESTIMONIAL_ACCENT_COLORS;
 
 export interface TestimonialRecipeOptions {
   /**
@@ -24,6 +43,14 @@ export interface TestimonialRecipeOptions {
   focused?: boolean;
   active?: boolean;
   fullHeight?: boolean;
+  /**
+   * Renders a thicker decorative rail on the given edge, sized from
+   * `component.testimonial.accent.thickness` (`spectre-tokens` 4.9.0).
+   * Omission renders no rail. `accentColor` defaults to `'brand'` when
+   * `accent` is set but `accentColor` is omitted.
+   */
+  accent?: TestimonialAccentEdge;
+  accentColor?: TestimonialAccentColor;
 }
 
 export function getTestimonialClasses(opts: TestimonialRecipeOptions = {}): string {
@@ -36,6 +63,8 @@ export function getTestimonialClasses(opts: TestimonialRecipeOptions = {}): stri
     focused = false,
     active = false,
     fullHeight = false,
+    accent: accentInput,
+    accentColor: accentColorInput,
   } = opts;
 
   const variant = resolveOption({
@@ -53,6 +82,26 @@ export function getTestimonialClasses(opts: TestimonialRecipeOptions = {}): stri
   };
   const variantClass = variantMap[variant];
 
+  let accentEdgeClass: string | false = false;
+  let accentColorClass: string | false = false;
+  if (accentInput !== undefined) {
+    const accentEdge = resolveOption({
+      name: "testimonial accent edge",
+      value: accentInput,
+      allowed: TESTIMONIAL_ACCENT_EDGES,
+      fallback: "top",
+    });
+    accentEdgeClass = `sp-testimonial--accent-${accentEdge}`;
+
+    const accentColor = resolveOption({
+      name: "testimonial accent color",
+      value: accentColorInput,
+      allowed: TESTIMONIAL_ACCENT_COLORS,
+      fallback: "brand",
+    });
+    accentColorClass = `sp-testimonial--accent-${accentColor}`;
+  }
+
   return cx(
     "sp-testimonial",
     variantClass,
@@ -62,7 +111,9 @@ export function getTestimonialClasses(opts: TestimonialRecipeOptions = {}): stri
     hovered && "sp-testimonial--hover is-hover",
     focused && "sp-testimonial--focus is-focus",
     active && "sp-testimonial--active is-active",
-    fullHeight && "sp-testimonial--full"
+    fullHeight && "sp-testimonial--full",
+    accentEdgeClass,
+    accentColorClass
   );
 }
 

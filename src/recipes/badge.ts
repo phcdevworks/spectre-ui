@@ -22,8 +22,27 @@ const BADGE_SIZES = {
   lg: true,
 } as const;
 
+const BADGE_ACCENT_RAIL_EDGES = {
+  top: true,
+  right: true,
+  bottom: true,
+  left: true,
+} as const;
+
+const BADGE_ACCENT_RAIL_COLORS = {
+  neutral: true,
+  brand: true,
+  info: true,
+  success: true,
+  warning: true,
+  danger: true,
+  cta: true,
+} as const;
+
 export type BadgeVariant = keyof typeof BADGE_VARIANTS;
 export type BadgeSize = keyof typeof BADGE_SIZES;
+export type BadgeAccentRailEdge = keyof typeof BADGE_ACCENT_RAIL_EDGES;
+export type BadgeAccentRailColor = keyof typeof BADGE_ACCENT_RAIL_COLORS;
 
 export interface BadgeRecipeOptions {
   variant?: BadgeVariant;
@@ -35,6 +54,16 @@ export interface BadgeRecipeOptions {
   disabled?: boolean;
   loading?: boolean;
   fullWidth?: boolean;
+  /**
+   * Renders a thicker decorative rail on the given edge, sized from
+   * `component.badge.accent.thickness`. Named `accentRail` (not `accent`)
+   * because `variant: 'accent'` already names the single-tone brand-accent
+   * fill; this is the unrelated, additive multi-role edge-rail contract
+   * (`spectre-tokens` 4.9.0). Omission renders no rail. `accentRailColor`
+   * defaults to `'brand'` when `accentRail` is set but it is omitted.
+   */
+  accentRail?: BadgeAccentRailEdge;
+  accentRailColor?: BadgeAccentRailColor;
 }
 
 export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
@@ -48,6 +77,8 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
     disabled = false,
     loading = false,
     fullWidth = false,
+    accentRail: accentRailInput,
+    accentRailColor: accentRailColorInput,
   } = opts;
 
   const variant = resolveOption({
@@ -86,6 +117,26 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
   };
   const sizeClass = sizeMap[size];
 
+  let accentRailEdgeClass: string | false = false;
+  let accentRailColorClass: string | false = false;
+  if (accentRailInput !== undefined) {
+    const accentRailEdge = resolveOption({
+      name: "badge accent rail edge",
+      value: accentRailInput,
+      allowed: BADGE_ACCENT_RAIL_EDGES,
+      fallback: "top",
+    });
+    accentRailEdgeClass = `sp-badge--accent-rail-${accentRailEdge}`;
+
+    const accentRailColor = resolveOption({
+      name: "badge accent rail color",
+      value: accentRailColorInput,
+      allowed: BADGE_ACCENT_RAIL_COLORS,
+      fallback: "brand",
+    });
+    accentRailColorClass = `sp-badge--accent-rail-${accentRailColor}`;
+  }
+
   return cx(
     "sp-badge",
     variantClass,
@@ -96,6 +147,8 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
     active && "sp-badge--active is-active",
     disabled && "sp-badge--disabled",
     loading && "sp-badge--loading",
-    fullWidth && "sp-badge--full"
+    fullWidth && "sp-badge--full",
+    accentRailEdgeClass,
+    accentRailColorClass
   );
 }

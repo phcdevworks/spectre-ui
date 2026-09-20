@@ -1221,6 +1221,7 @@
     line-height: var(--sp-font-sm-line-height);
     border: var(--sp-component-border-width) solid transparent;
     white-space: nowrap;
+    --sp-component-badge-accent-rail-color: var(--sp-badge-accent-brand);
   }
 
   .sp-badge--full {
@@ -1410,6 +1411,60 @@
   .sp-badge[aria-busy="true"] {
     opacity: var(--sp-opacity-active);
     pointer-events: none;
+  }
+
+  /* sp-badge--accent-rail-* renders an optional thicker decorative rail on
+     one edge, entirely from the published component.badge.accent token
+     group (spectre-tokens 4.9.0). Edge and color are independent modifier
+     classes, matching the sp-card--accent-* precedent. Named "accent-rail"
+     rather than "accent" because `.sp-badge--accent` already names the
+     single-tone brand-accent fill variant above. */
+  .sp-badge--accent-rail-neutral {
+    --sp-component-badge-accent-rail-color: var(--sp-badge-accent-neutral);
+  }
+
+  .sp-badge--accent-rail-brand {
+    --sp-component-badge-accent-rail-color: var(--sp-badge-accent-brand);
+  }
+
+  .sp-badge--accent-rail-info {
+    --sp-component-badge-accent-rail-color: var(--sp-badge-accent-info);
+  }
+
+  .sp-badge--accent-rail-success {
+    --sp-component-badge-accent-rail-color: var(--sp-badge-accent-success);
+  }
+
+  .sp-badge--accent-rail-warning {
+    --sp-component-badge-accent-rail-color: var(--sp-badge-accent-warning);
+  }
+
+  .sp-badge--accent-rail-danger {
+    --sp-component-badge-accent-rail-color: var(--sp-badge-accent-danger);
+  }
+
+  .sp-badge--accent-rail-cta {
+    --sp-component-badge-accent-rail-color: var(--sp-badge-accent-cta);
+  }
+
+  .sp-badge--accent-rail-top {
+    border-top-width: var(--sp-badge-accent-thickness);
+    border-top-color: var(--sp-component-badge-accent-rail-color);
+  }
+
+  .sp-badge--accent-rail-right {
+    border-right-width: var(--sp-badge-accent-thickness);
+    border-right-color: var(--sp-component-badge-accent-rail-color);
+  }
+
+  .sp-badge--accent-rail-bottom {
+    border-bottom-width: var(--sp-badge-accent-thickness);
+    border-bottom-color: var(--sp-component-badge-accent-rail-color);
+  }
+
+  .sp-badge--accent-rail-left {
+    border-left-width: var(--sp-badge-accent-thickness);
+    border-left-color: var(--sp-component-badge-accent-rail-color);
   }
 
   /* ICON BOXES ----------------------------------------------------------- */
@@ -1611,6 +1666,7 @@
     flex-direction: column;
     gap: var(--sp-space-24);
     box-shadow: var(--sp-component-testimonial-shadow);
+    --sp-component-testimonial-accent-color: var(--sp-testimonial-accent-brand);
   }
 
   .sp-testimonial--elevated {
@@ -1724,6 +1780,58 @@
     font-size: var(--sp-font-sm-size);
   }
 
+  /* sp-testimonial--accent-* renders an optional thicker decorative rail on
+     one edge, entirely from the published component.testimonial.accent
+     token group (spectre-tokens 4.9.0), matching the sp-card--accent-*
+     precedent. Edge and color are independent modifier classes. */
+  .sp-testimonial--accent-neutral {
+    --sp-component-testimonial-accent-color: var(--sp-testimonial-accent-neutral);
+  }
+
+  .sp-testimonial--accent-brand {
+    --sp-component-testimonial-accent-color: var(--sp-testimonial-accent-brand);
+  }
+
+  .sp-testimonial--accent-info {
+    --sp-component-testimonial-accent-color: var(--sp-testimonial-accent-info);
+  }
+
+  .sp-testimonial--accent-success {
+    --sp-component-testimonial-accent-color: var(--sp-testimonial-accent-success);
+  }
+
+  .sp-testimonial--accent-warning {
+    --sp-component-testimonial-accent-color: var(--sp-testimonial-accent-warning);
+  }
+
+  .sp-testimonial--accent-danger {
+    --sp-component-testimonial-accent-color: var(--sp-testimonial-accent-danger);
+  }
+
+  .sp-testimonial--accent-cta {
+    --sp-component-testimonial-accent-color: var(--sp-testimonial-accent-cta);
+  }
+
+  .sp-testimonial--accent-top {
+    border-top-width: var(--sp-testimonial-accent-thickness);
+    border-top-color: var(--sp-component-testimonial-accent-color);
+  }
+
+  .sp-testimonial--accent-right {
+    border-right-width: var(--sp-testimonial-accent-thickness);
+    border-right-color: var(--sp-component-testimonial-accent-color);
+  }
+
+  .sp-testimonial--accent-bottom {
+    border-bottom-width: var(--sp-testimonial-accent-thickness);
+    border-bottom-color: var(--sp-component-testimonial-accent-color);
+  }
+
+  .sp-testimonial--accent-left {
+    border-left-width: var(--sp-testimonial-accent-thickness);
+    border-left-color: var(--sp-component-testimonial-accent-color);
+  }
+
   /* PRICING CARDS -------------------------------------------------------- */
 
   .sp-pricing-card {
@@ -1739,6 +1847,7 @@
       transform var(--sp-duration-fast) var(--sp-easing-out),
       box-shadow var(--sp-duration-fast) var(--sp-easing-out),
       opacity var(--sp-duration-fast) var(--sp-easing-out);
+    --sp-component-pricing-card-accent-color: var(--sp-pricing-card-accent-brand);
   }
 
   .sp-pricing-card--featured {
@@ -1846,6 +1955,58 @@
   .sp-pricing-card--featured .sp-pricing-card-description {
     color: var(--sp-component-pricing-card-featured-text);
     opacity: 0.8;
+  }
+
+  /* sp-pricing-card--accent-* renders an optional thicker decorative rail on
+     one edge, entirely from the published component.pricingCard.accent
+     token group (spectre-tokens 4.9.0), matching the sp-card--accent-*
+     precedent. Edge and color are independent modifier classes. */
+  .sp-pricing-card--accent-neutral {
+    --sp-component-pricing-card-accent-color: var(--sp-pricing-card-accent-neutral);
+  }
+
+  .sp-pricing-card--accent-brand {
+    --sp-component-pricing-card-accent-color: var(--sp-pricing-card-accent-brand);
+  }
+
+  .sp-pricing-card--accent-info {
+    --sp-component-pricing-card-accent-color: var(--sp-pricing-card-accent-info);
+  }
+
+  .sp-pricing-card--accent-success {
+    --sp-component-pricing-card-accent-color: var(--sp-pricing-card-accent-success);
+  }
+
+  .sp-pricing-card--accent-warning {
+    --sp-component-pricing-card-accent-color: var(--sp-pricing-card-accent-warning);
+  }
+
+  .sp-pricing-card--accent-danger {
+    --sp-component-pricing-card-accent-color: var(--sp-pricing-card-accent-danger);
+  }
+
+  .sp-pricing-card--accent-cta {
+    --sp-component-pricing-card-accent-color: var(--sp-pricing-card-accent-cta);
+  }
+
+  .sp-pricing-card--accent-top {
+    border-top-width: var(--sp-pricing-card-accent-thickness);
+    border-top-color: var(--sp-component-pricing-card-accent-color);
+  }
+
+  .sp-pricing-card--accent-right {
+    border-right-width: var(--sp-pricing-card-accent-thickness);
+    border-right-color: var(--sp-component-pricing-card-accent-color);
+  }
+
+  .sp-pricing-card--accent-bottom {
+    border-bottom-width: var(--sp-pricing-card-accent-thickness);
+    border-bottom-color: var(--sp-component-pricing-card-accent-color);
+  }
+
+  .sp-pricing-card--accent-left {
+    border-left-width: var(--sp-pricing-card-accent-thickness);
+    border-left-color: var(--sp-component-pricing-card-accent-color);
   }
 
   /* RATING --------------------------------------------------------------- */
@@ -2409,6 +2570,7 @@
       background-color var(--sp-duration-fast) var(--sp-easing-out),
       color var(--sp-duration-fast) var(--sp-easing-out),
       border-color var(--sp-duration-fast) var(--sp-easing-out);
+    --sp-component-nav-accent-color: var(--sp-nav-accent-brand);
   }
 
   .sp-nav--bordered {
@@ -2469,6 +2631,58 @@
   .sp-nav__link--active,
   .sp-nav__link.is-active {
     color: var(--sp-component-nav-link-active);
+  }
+
+  /* sp-nav--accent-* renders an optional thicker decorative rail on one
+     edge, entirely from the published component.nav.accent token group
+     (spectre-tokens 4.9.0), matching the sp-card--accent-* precedent. Edge
+     and color are independent modifier classes. */
+  .sp-nav--accent-neutral {
+    --sp-component-nav-accent-color: var(--sp-nav-accent-neutral);
+  }
+
+  .sp-nav--accent-brand {
+    --sp-component-nav-accent-color: var(--sp-nav-accent-brand);
+  }
+
+  .sp-nav--accent-info {
+    --sp-component-nav-accent-color: var(--sp-nav-accent-info);
+  }
+
+  .sp-nav--accent-success {
+    --sp-component-nav-accent-color: var(--sp-nav-accent-success);
+  }
+
+  .sp-nav--accent-warning {
+    --sp-component-nav-accent-color: var(--sp-nav-accent-warning);
+  }
+
+  .sp-nav--accent-danger {
+    --sp-component-nav-accent-color: var(--sp-nav-accent-danger);
+  }
+
+  .sp-nav--accent-cta {
+    --sp-component-nav-accent-color: var(--sp-nav-accent-cta);
+  }
+
+  .sp-nav--accent-top {
+    border-top-width: var(--sp-nav-accent-thickness);
+    border-top-color: var(--sp-component-nav-accent-color);
+  }
+
+  .sp-nav--accent-right {
+    border-right-width: var(--sp-nav-accent-thickness);
+    border-right-color: var(--sp-component-nav-accent-color);
+  }
+
+  .sp-nav--accent-bottom {
+    border-bottom-width: var(--sp-nav-accent-thickness);
+    border-bottom-color: var(--sp-component-nav-accent-color);
+  }
+
+  .sp-nav--accent-left {
+    border-left-width: var(--sp-nav-accent-thickness);
+    border-left-color: var(--sp-component-nav-accent-color);
   }
 
   .sp-nav__link--disabled,
@@ -2685,6 +2899,7 @@
       background-color var(--sp-duration-fast) var(--sp-easing-out),
       color var(--sp-duration-fast) var(--sp-easing-out),
       border-color var(--sp-duration-fast) var(--sp-easing-out);
+    --sp-component-footer-accent-color: var(--sp-footer-accent-brand);
   }
 
   .sp-footer--bordered {
@@ -2787,6 +3002,58 @@
     opacity: var(--sp-opacity-disabled);
   }
 
+  /* sp-footer--accent-* renders an optional thicker decorative rail on one
+     edge, entirely from the published component.footer.accent token group
+     (spectre-tokens 4.9.0), matching the sp-card--accent-* precedent. Edge
+     and color are independent modifier classes. */
+  .sp-footer--accent-neutral {
+    --sp-component-footer-accent-color: var(--sp-footer-accent-neutral);
+  }
+
+  .sp-footer--accent-brand {
+    --sp-component-footer-accent-color: var(--sp-footer-accent-brand);
+  }
+
+  .sp-footer--accent-info {
+    --sp-component-footer-accent-color: var(--sp-footer-accent-info);
+  }
+
+  .sp-footer--accent-success {
+    --sp-component-footer-accent-color: var(--sp-footer-accent-success);
+  }
+
+  .sp-footer--accent-warning {
+    --sp-component-footer-accent-color: var(--sp-footer-accent-warning);
+  }
+
+  .sp-footer--accent-danger {
+    --sp-component-footer-accent-color: var(--sp-footer-accent-danger);
+  }
+
+  .sp-footer--accent-cta {
+    --sp-component-footer-accent-color: var(--sp-footer-accent-cta);
+  }
+
+  .sp-footer--accent-top {
+    border-top-width: var(--sp-footer-accent-thickness);
+    border-top-color: var(--sp-component-footer-accent-color);
+  }
+
+  .sp-footer--accent-right {
+    border-right-width: var(--sp-footer-accent-thickness);
+    border-right-color: var(--sp-component-footer-accent-color);
+  }
+
+  .sp-footer--accent-bottom {
+    border-bottom-width: var(--sp-footer-accent-thickness);
+    border-bottom-color: var(--sp-component-footer-accent-color);
+  }
+
+  .sp-footer--accent-left {
+    border-left-width: var(--sp-footer-accent-thickness);
+    border-left-color: var(--sp-component-footer-accent-color);
+  }
+
   /* TOASTS ----------------------------------------------------------------- */
   .sp-toast {
     display: flex;
@@ -2803,6 +3070,7 @@
       background-color var(--sp-duration-fast) var(--sp-easing-out),
       color var(--sp-duration-fast) var(--sp-easing-out),
       border-color var(--sp-duration-fast) var(--sp-easing-out);
+    --sp-component-toast-accent-color: var(--sp-toast-accent-brand);
   }
 
   .sp-toast--dismissed {
@@ -2858,6 +3126,59 @@
     color: var(--sp-component-toast-danger-icon);
   }
 
+  /* sp-toast--accent-* renders an optional thicker decorative rail on one
+     edge, entirely from the published component.toast.accent token group
+     (spectre-tokens 4.9.0), matching the sp-card--accent-* precedent.
+     Distinct from the info/success/warning/danger variant fill above. Edge
+     and color are independent modifier classes. */
+  .sp-toast--accent-neutral {
+    --sp-component-toast-accent-color: var(--sp-toast-accent-neutral);
+  }
+
+  .sp-toast--accent-brand {
+    --sp-component-toast-accent-color: var(--sp-toast-accent-brand);
+  }
+
+  .sp-toast--accent-info {
+    --sp-component-toast-accent-color: var(--sp-toast-accent-info);
+  }
+
+  .sp-toast--accent-success {
+    --sp-component-toast-accent-color: var(--sp-toast-accent-success);
+  }
+
+  .sp-toast--accent-warning {
+    --sp-component-toast-accent-color: var(--sp-toast-accent-warning);
+  }
+
+  .sp-toast--accent-danger {
+    --sp-component-toast-accent-color: var(--sp-toast-accent-danger);
+  }
+
+  .sp-toast--accent-cta {
+    --sp-component-toast-accent-color: var(--sp-toast-accent-cta);
+  }
+
+  .sp-toast--accent-top {
+    border-top-width: var(--sp-toast-accent-thickness);
+    border-top-color: var(--sp-component-toast-accent-color);
+  }
+
+  .sp-toast--accent-right {
+    border-right-width: var(--sp-toast-accent-thickness);
+    border-right-color: var(--sp-component-toast-accent-color);
+  }
+
+  .sp-toast--accent-bottom {
+    border-bottom-width: var(--sp-toast-accent-thickness);
+    border-bottom-color: var(--sp-component-toast-accent-color);
+  }
+
+  .sp-toast--accent-left {
+    border-left-width: var(--sp-toast-accent-thickness);
+    border-left-color: var(--sp-component-toast-accent-color);
+  }
+
   /* TOOLTIPS --------------------------------------------------------------- */
   .sp-tooltip {
     position: absolute;
@@ -2880,6 +3201,7 @@
     transition:
       opacity var(--sp-duration-fast) var(--sp-easing-out),
       visibility var(--sp-duration-fast) var(--sp-easing-out);
+    --sp-component-tooltip-accent-color: var(--sp-tooltip-accent-brand);
   }
 
   .sp-tooltip--visible {
@@ -2910,6 +3232,59 @@
     transform: translate(var(--sp-component-tooltip-offset), -50%);
   }
 
+  /* sp-tooltip--accent-* renders an optional thicker decorative rail on one
+     edge, entirely from the published component.tooltip.accent token group
+     (spectre-tokens 4.9.0), matching the sp-card--accent-* precedent.
+     Distinct from the top/bottom/left/right placement classes above. Edge
+     and color are independent modifier classes. */
+  .sp-tooltip--accent-neutral {
+    --sp-component-tooltip-accent-color: var(--sp-tooltip-accent-neutral);
+  }
+
+  .sp-tooltip--accent-brand {
+    --sp-component-tooltip-accent-color: var(--sp-tooltip-accent-brand);
+  }
+
+  .sp-tooltip--accent-info {
+    --sp-component-tooltip-accent-color: var(--sp-tooltip-accent-info);
+  }
+
+  .sp-tooltip--accent-success {
+    --sp-component-tooltip-accent-color: var(--sp-tooltip-accent-success);
+  }
+
+  .sp-tooltip--accent-warning {
+    --sp-component-tooltip-accent-color: var(--sp-tooltip-accent-warning);
+  }
+
+  .sp-tooltip--accent-danger {
+    --sp-component-tooltip-accent-color: var(--sp-tooltip-accent-danger);
+  }
+
+  .sp-tooltip--accent-cta {
+    --sp-component-tooltip-accent-color: var(--sp-tooltip-accent-cta);
+  }
+
+  .sp-tooltip--accent-top {
+    border-top-width: var(--sp-tooltip-accent-thickness);
+    border-top-color: var(--sp-component-tooltip-accent-color);
+  }
+
+  .sp-tooltip--accent-right {
+    border-right-width: var(--sp-tooltip-accent-thickness);
+    border-right-color: var(--sp-component-tooltip-accent-color);
+  }
+
+  .sp-tooltip--accent-bottom {
+    border-bottom-width: var(--sp-tooltip-accent-thickness);
+    border-bottom-color: var(--sp-component-tooltip-accent-color);
+  }
+
+  .sp-tooltip--accent-left {
+    border-left-width: var(--sp-tooltip-accent-thickness);
+    border-left-color: var(--sp-component-tooltip-accent-color);
+  }
+
   /* DROPDOWNS ---------------------------------------------------------------- */
   .sp-dropdown {
     position: relative;
@@ -2925,6 +3300,10 @@
     position: static;
   }
 
+  .sp-dropdown--viewport {
+    position: static;
+  }
+
   .sp-dropdown__menu {
     position: absolute;
     display: none;
@@ -2937,6 +3316,7 @@
     box-shadow: var(--sp-component-dropdown-shadow);
     z-index: var(--sp-component-dropdown-z-index);
     font-family: var(--sp-font-family-sans);
+    --sp-component-dropdown-accent-color: var(--sp-dropdown-accent-brand);
   }
 
   .sp-dropdown__menu--open {
@@ -2974,6 +3354,74 @@
     min-width: 0;
     max-height: 70vh;
     overflow-y: auto;
+  }
+
+  /* Full-bleed breakout: assumes the menu's positioned ancestor (set to
+     position: static by sp-dropdown--viewport, same as mega) is
+     horizontally centered in the viewport, so escaping to the true viewport
+     edges needs no JS-measured offset. Declared after sp-dropdown__menu--mega
+     so it wins on left/right/width when both classes are present, since
+     viewport is the widest tier. */
+  .sp-dropdown__menu--viewport {
+    left: 50%;
+    right: auto;
+    width: 100vw;
+    margin-left: -50vw;
+    min-width: 0;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  /* sp-dropdown__menu--accent-* renders an optional thicker decorative rail
+     on one edge, entirely from the published component.dropdown.accent
+     token group (spectre-tokens 4.9.0), matching the sp-card--accent-*
+     precedent. Edge and color are independent modifier classes. */
+  .sp-dropdown__menu--accent-neutral {
+    --sp-component-dropdown-accent-color: var(--sp-dropdown-accent-neutral);
+  }
+
+  .sp-dropdown__menu--accent-brand {
+    --sp-component-dropdown-accent-color: var(--sp-dropdown-accent-brand);
+  }
+
+  .sp-dropdown__menu--accent-info {
+    --sp-component-dropdown-accent-color: var(--sp-dropdown-accent-info);
+  }
+
+  .sp-dropdown__menu--accent-success {
+    --sp-component-dropdown-accent-color: var(--sp-dropdown-accent-success);
+  }
+
+  .sp-dropdown__menu--accent-warning {
+    --sp-component-dropdown-accent-color: var(--sp-dropdown-accent-warning);
+  }
+
+  .sp-dropdown__menu--accent-danger {
+    --sp-component-dropdown-accent-color: var(--sp-dropdown-accent-danger);
+  }
+
+  .sp-dropdown__menu--accent-cta {
+    --sp-component-dropdown-accent-color: var(--sp-dropdown-accent-cta);
+  }
+
+  .sp-dropdown__menu--accent-top {
+    border-top-width: var(--sp-dropdown-accent-thickness);
+    border-top-color: var(--sp-component-dropdown-accent-color);
+  }
+
+  .sp-dropdown__menu--accent-right {
+    border-right-width: var(--sp-dropdown-accent-thickness);
+    border-right-color: var(--sp-component-dropdown-accent-color);
+  }
+
+  .sp-dropdown__menu--accent-bottom {
+    border-bottom-width: var(--sp-dropdown-accent-thickness);
+    border-bottom-color: var(--sp-component-dropdown-accent-color);
+  }
+
+  .sp-dropdown__menu--accent-left {
+    border-left-width: var(--sp-dropdown-accent-thickness);
+    border-left-color: var(--sp-component-dropdown-accent-color);
   }
 
   .sp-dropdown__item {
@@ -3051,6 +3499,7 @@
     transition:
       opacity var(--sp-duration-fast) var(--sp-easing-out),
       transform var(--sp-duration-fast) var(--sp-easing-out);
+    --sp-component-modal-accent-color: var(--sp-modal-accent-brand);
   }
 
   .sp-modal--open {
@@ -3060,6 +3509,58 @@
 
   .sp-modal--full {
     width: 100%;
+  }
+
+  /* sp-modal--accent-* renders an optional thicker decorative rail on one
+     edge, entirely from the published component.modal.accent token group
+     (spectre-tokens 4.9.0), matching the sp-card--accent-* precedent. Edge
+     and color are independent modifier classes. */
+  .sp-modal--accent-neutral {
+    --sp-component-modal-accent-color: var(--sp-modal-accent-neutral);
+  }
+
+  .sp-modal--accent-brand {
+    --sp-component-modal-accent-color: var(--sp-modal-accent-brand);
+  }
+
+  .sp-modal--accent-info {
+    --sp-component-modal-accent-color: var(--sp-modal-accent-info);
+  }
+
+  .sp-modal--accent-success {
+    --sp-component-modal-accent-color: var(--sp-modal-accent-success);
+  }
+
+  .sp-modal--accent-warning {
+    --sp-component-modal-accent-color: var(--sp-modal-accent-warning);
+  }
+
+  .sp-modal--accent-danger {
+    --sp-component-modal-accent-color: var(--sp-modal-accent-danger);
+  }
+
+  .sp-modal--accent-cta {
+    --sp-component-modal-accent-color: var(--sp-modal-accent-cta);
+  }
+
+  .sp-modal--accent-top {
+    border-top-width: var(--sp-modal-accent-thickness);
+    border-top-color: var(--sp-component-modal-accent-color);
+  }
+
+  .sp-modal--accent-right {
+    border-right-width: var(--sp-modal-accent-thickness);
+    border-right-color: var(--sp-component-modal-accent-color);
+  }
+
+  .sp-modal--accent-bottom {
+    border-bottom-width: var(--sp-modal-accent-thickness);
+    border-bottom-color: var(--sp-component-modal-accent-color);
+  }
+
+  .sp-modal--accent-left {
+    border-left-width: var(--sp-modal-accent-thickness);
+    border-left-color: var(--sp-component-modal-accent-color);
   }
 
   .sp-checkbox-indicator {

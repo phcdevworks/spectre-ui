@@ -6,6 +6,36 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [5.2.0] - 2026-09-20
+
+**Release Title:** Expanded Accent Rails and Viewport Dropdowns
+
+Contract change type: additive
+
+### Added
+
+- Extend the `sp-card--accent-*` decorative edge-rail pattern to the nine
+  other component groups published in `spectre-tokens` 4.9.0's
+  `component.*.accent` token expansion: `getTestimonialClasses`,
+  `getPricingCardClasses`, `getNavClasses`, `getFooterClasses`,
+  `getModalClasses`, `getToastClasses`, `getTooltipClasses`, and
+  `getDropdownMenuClasses` gain the same `accent`/`accentColor` options and
+  `.sp-<block>--accent-*` CSS contract as `getCardClasses`.
+  `getBadgeClasses` gains the equivalent `accentRail`/`accentRailColor`
+  options and `.sp-badge--accent-rail-*` classes — named distinctly because
+  `variant: 'accent'` already names badge's single-tone brand-accent fill,
+  which predates and is unrelated to this token group. Brings `spectre-ui`
+  to full utilization of the `spectre-tokens` 4.9.0 accent-rail contract;
+  only `card` had consumed it prior to this release.
+- `getDropdownClasses`/`getDropdownMenuClasses` `viewport` flag — a third
+  menu-width tier alongside the default (trigger width) and `mega` (nearest
+  positioned ancestor, typically `sp-nav`, width): `viewport` breaks the menu
+  out to the full browser viewport width via the standard full-bleed
+  breakout technique (`left: 50%; width: 100vw; margin-left: -50vw`), fixing
+  reports of a wide `mega` menu overflowing past the edge of a
+  width-constrained nav. Takes precedence over `mega` if both are set.
+  Requested by Bradley Potts on 2026-09-19.
+
 ## [5.1.0] - 2026-09-18
 
 **Release Title:** Card Composition and Accent Rails

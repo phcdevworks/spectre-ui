@@ -100,8 +100,20 @@ const ENTRYPOINT_CONTRACTS = [
     // again 2026-09-18 (components.css grew to 164498 bytes) for the
     // .sp-card--accent-* rail contract (TODO.md "Requested by Downstream" /
     // "Card edge-accent recipe and CSS contract") — a deliberate, scoped
-    // increase, not a regression.
-    maxBytes: 164700
+    // increase, not a regression. Raised again 2026-09-19 (components.css
+    // grew to 180739 bytes) to extend the accent-rail pattern to the nine
+    // remaining component groups published in spectre-tokens 4.9.0 —
+    // badge (as .sp-badge--accent-rail-*, since .sp-badge--accent already
+    // names the single-tone fill variant), testimonial, pricing-card, nav,
+    // footer, modal, toast, tooltip, and dropdown menu — bringing spectre-ui
+    // to parity with the full component.*.accent token contract. A
+    // deliberate, scoped increase, not a regression. Raised again
+    // 2026-09-19 (components.css grew to 181371 bytes) for the Dropdown
+    // `viewport` flag — a third menu-width tier that breaks the menu out to
+    // the full browser viewport width, fixing a wide `mega` menu overflowing
+    // past a width-constrained nav. A deliberate, scoped increase, not a
+    // regression.
+    maxBytes: 181600
   },
   {
     fileName: 'utilities.css',

@@ -36,7 +36,9 @@ export {
   getBadgeClasses,
   type BadgeRecipeOptions,
   type BadgeSize,
-  type BadgeVariant
+  type BadgeVariant,
+  type BadgeAccentRailEdge,
+  type BadgeAccentRailColor
 } from './badge'
 
 export {
@@ -53,7 +55,9 @@ export {
   getTestimonialAuthorNameClasses,
   getTestimonialAuthorTitleClasses,
   getTestimonialQuoteClasses,
-  type TestimonialRecipeOptions
+  type TestimonialRecipeOptions,
+  type TestimonialAccentEdge,
+  type TestimonialAccentColor
 } from './testimonial'
 
 export {
@@ -62,7 +66,9 @@ export {
   getPricingCardDescriptionClasses,
   getPricingCardPriceClasses,
   getPricingCardPriceContainerClasses,
-  type PricingCardRecipeOptions
+  type PricingCardRecipeOptions,
+  type PricingCardAccentEdge,
+  type PricingCardAccentColor
 } from './pricing-card'
 
 export {
@@ -108,7 +114,9 @@ export {
   getNavLinkClasses,
   type NavAlign,
   type NavRecipeOptions,
-  type NavLinkRecipeOptions
+  type NavLinkRecipeOptions,
+  type NavAccentEdge,
+  type NavAccentColor
 } from './nav'
 
 export {
@@ -135,7 +143,9 @@ export {
   getFooterChipClasses,
   type FooterRecipeOptions,
   type FooterLinkRecipeOptions,
-  type FooterChipRecipeOptions
+  type FooterChipRecipeOptions,
+  type FooterAccentEdge,
+  type FooterAccentColor
 } from './footer'
 
 export {
@@ -143,13 +153,17 @@ export {
   getToastIconClasses,
   type ToastRecipeOptions,
   type ToastIconRecipeOptions,
-  type ToastVariant
+  type ToastVariant,
+  type ToastAccentEdge,
+  type ToastAccentColor
 } from './toast'
 
 export {
   getTooltipClasses,
   type TooltipRecipeOptions,
-  type TooltipPlacement
+  type TooltipPlacement,
+  type TooltipAccentEdge,
+  type TooltipAccentColor
 } from './tooltip'
 
 export {
@@ -159,14 +173,18 @@ export {
   type DropdownRecipeOptions,
   type DropdownMenuRecipeOptions,
   type DropdownItemRecipeOptions,
-  type DropdownPlacement
+  type DropdownPlacement,
+  type DropdownAccentEdge,
+  type DropdownAccentColor
 } from './dropdown'
 
 export {
   getModalClasses,
   getModalOverlayClasses,
   type ModalRecipeOptions,
-  type ModalOverlayRecipeOptions
+  type ModalOverlayRecipeOptions,
+  type ModalAccentEdge,
+  type ModalAccentColor
 } from './modal'
 
 export {
