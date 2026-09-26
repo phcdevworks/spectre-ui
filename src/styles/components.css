@@ -15,6 +15,7 @@
     --sp-component-button-primary-text: var(--sp-button-primary-text);
     --sp-component-button-primary-text-disabled: var(--sp-button-primary-textdisabled);
     --sp-component-button-primary-focus-visible: var(--sp-button-primary-focusvisible);
+    --sp-component-button-primary-focus-ring: var(--sp-button-primary-focusring);
     --sp-component-button-secondary-bg: var(--sp-button-secondary-bg);
     --sp-component-button-secondary-bg-hover: var(--sp-button-secondary-bghover);
     --sp-component-button-secondary-bg-active: var(--sp-button-secondary-bgactive);
@@ -24,6 +25,7 @@
     --sp-component-button-secondary-border: var(--sp-button-secondary-border);
     --sp-component-button-secondary-border-disabled: var(--sp-button-secondary-borderdisabled);
     --sp-component-button-secondary-focus-visible: var(--sp-button-secondary-focusvisible);
+    --sp-component-button-secondary-focus-ring: var(--sp-button-secondary-focusring);
     --sp-component-button-ghost-bg: var(--sp-button-ghost-bg);
     --sp-component-button-ghost-bg-hover: var(--sp-button-ghost-bghover);
     --sp-component-button-ghost-bg-active: var(--sp-button-ghost-bgactive);
@@ -31,6 +33,7 @@
     --sp-component-button-ghost-text: var(--sp-button-ghost-text);
     --sp-component-button-ghost-text-disabled: var(--sp-button-ghost-textdisabled);
     --sp-component-button-ghost-focus-visible: var(--sp-button-ghost-focusvisible);
+    --sp-component-button-ghost-focus-ring: var(--sp-button-ghost-focusring);
     --sp-component-button-danger-bg: var(--sp-button-danger-bg);
     --sp-component-button-danger-bg-hover: var(--sp-button-danger-bghover);
     --sp-component-button-danger-bg-active: var(--sp-button-danger-bgactive);
@@ -38,6 +41,7 @@
     --sp-component-button-danger-text: var(--sp-button-danger-text);
     --sp-component-button-danger-text-disabled: var(--sp-button-danger-textdisabled);
     --sp-component-button-danger-focus-visible: var(--sp-button-danger-focusvisible);
+    --sp-component-button-danger-focus-ring: var(--sp-button-danger-focusring);
     --sp-component-button-success-bg: var(--sp-button-success-bg);
     --sp-component-button-success-bg-hover: var(--sp-button-success-bghover);
     --sp-component-button-success-bg-active: var(--sp-button-success-bgactive);
@@ -45,6 +49,7 @@
     --sp-component-button-success-text: var(--sp-button-success-text);
     --sp-component-button-success-text-disabled: var(--sp-button-success-textdisabled);
     --sp-component-button-success-focus-visible: var(--sp-button-success-focusvisible);
+    --sp-component-button-success-focus-ring: var(--sp-button-success-focusring);
     /* CTA button alignment restored to official tokens as they now use the brand palette (Blue). */
     --sp-component-button-cta-bg: var(--sp-button-cta-bg);
     --sp-component-button-cta-bg-hover: var(--sp-button-cta-bghover);
@@ -61,6 +66,7 @@
     --sp-component-button-accent-text: var(--sp-button-accent-text);
     --sp-component-button-accent-text-disabled: var(--sp-button-accent-textdisabled);
     --sp-component-button-accent-focus-visible: var(--sp-button-accent-focusvisible);
+    --sp-component-button-accent-focus-ring: var(--sp-button-accent-focusring);
     /* on-dark/inverse content islands not owned by the page's own light/dark
        mode — see TODO.md "Requested by Downstream" / "On-dark/inverse
        surface role" */
@@ -73,6 +79,7 @@
     --sp-component-button-inverse-border: var(--sp-button-inverse-border);
     --sp-component-button-inverse-border-disabled: var(--sp-button-inverse-borderdisabled);
     --sp-component-button-inverse-focus-visible: var(--sp-button-inverse-focusvisible);
+    --sp-component-button-inverse-focus-ring: var(--sp-button-inverse-focusring);
 
     /* warning/link/light/dark roles (spectre-tokens 4.10.0) */
     --sp-component-button-warning-bg: var(--sp-button-warning-bg);
@@ -82,6 +89,7 @@
     --sp-component-button-warning-text: var(--sp-button-warning-text);
     --sp-component-button-warning-text-disabled: var(--sp-button-warning-textdisabled);
     --sp-component-button-warning-focus-visible: var(--sp-button-warning-focusvisible);
+    --sp-component-button-warning-focus-ring: var(--sp-button-warning-focusring);
     --sp-component-button-light-bg: var(--sp-button-light-bg);
     --sp-component-button-light-bg-hover: var(--sp-button-light-bghover);
     --sp-component-button-light-bg-active: var(--sp-button-light-bgactive);
@@ -89,6 +97,7 @@
     --sp-component-button-light-text: var(--sp-button-light-text);
     --sp-component-button-light-text-disabled: var(--sp-button-light-textdisabled);
     --sp-component-button-light-focus-visible: var(--sp-button-light-focusvisible);
+    --sp-component-button-light-focus-ring: var(--sp-button-light-focusring);
     --sp-component-button-dark-bg: var(--sp-button-dark-bg);
     --sp-component-button-dark-bg-hover: var(--sp-button-dark-bghover);
     --sp-component-button-dark-bg-active: var(--sp-button-dark-bgactive);
@@ -96,12 +105,17 @@
     --sp-component-button-dark-text: var(--sp-button-dark-text);
     --sp-component-button-dark-text-disabled: var(--sp-button-dark-textdisabled);
     --sp-component-button-dark-focus-visible: var(--sp-button-dark-focusvisible);
+    --sp-component-button-dark-focus-ring: var(--sp-button-dark-focusring);
     --sp-component-button-link-bg: var(--sp-button-link-bg);
+    --sp-component-button-link-bg-hover: var(--sp-button-link-bghover);
+    --sp-component-button-link-bg-active: var(--sp-button-link-bgactive);
+    --sp-component-button-link-bg-disabled: var(--sp-button-link-bgdisabled);
     --sp-component-button-link-text: var(--sp-button-link-text);
     --sp-component-button-link-text-hover: var(--sp-button-link-texthover);
     --sp-component-button-link-text-active: var(--sp-button-link-textactive);
     --sp-component-button-link-text-disabled: var(--sp-button-link-textdisabled);
     --sp-component-button-link-focus-visible: var(--sp-button-link-focusvisible);
+    --sp-component-button-link-focus-ring: var(--sp-button-link-focusring);
 
     /* card roles */
     --sp-component-card-bg: var(--sp-surface-card);
@@ -120,12 +134,15 @@
 
     /* input roles */
     --sp-component-input-role-border: var(--sp-form-default-border);
+    /* form.default.bg is mode-aware as of spectre-tokens 4.11.0 */
     --sp-component-input-role-bg: var(--sp-form-default-bg);
     --sp-component-input-role-text: var(--sp-component-input-text);
     --sp-component-input-role-placeholder: var(--sp-component-input-placeholder);
     --sp-component-input-role-border-hover: var(--sp-form-hover-border);
     --sp-component-input-role-border-focus: var(--sp-form-focus-border);
     --sp-component-input-role-ring: var(--sp-form-focus-ring);
+    --sp-component-input-role-border-focus-visible: var(--sp-form-focusvisible-border);
+    --sp-component-input-role-ring-focus-visible: var(--sp-form-focusvisible-ring);
     --sp-component-input-role-border-error: var(--sp-form-invalid-border);
     --sp-component-input-role-bg-error: var(--sp-form-invalid-bg);
     --sp-component-input-role-text-error: var(--sp-form-invalid-text);
@@ -175,14 +192,15 @@
     --sp-component-badge-inverse-text: var(--sp-badge-inverse-text);
     --sp-component-badge-inverse-border: var(--sp-badge-inverse-border);
 
-    /* badge hover states derived from Spectre token semantics */
+    /* badge hover states — tint roles are mode-aware via
+       component.badge.<role>BgHover (spectre-tokens 4.10.0) */
     --sp-component-badge-primary-bg-hover: var(--sp-button-primary-bghover);
     --sp-component-badge-secondary-bg-hover: var(--sp-button-secondary-bghover);
-    --sp-component-badge-success-bg-hover: var(--sp-color-success-200);
-    --sp-component-badge-warning-bg-hover: var(--sp-color-warning-200);
-    --sp-component-badge-danger-bg-hover: var(--sp-color-error-200);
-    --sp-component-badge-neutral-bg-hover: var(--sp-color-neutral-200);
-    --sp-component-badge-info-bg-hover: var(--sp-color-info-200);
+    --sp-component-badge-success-bg-hover: var(--sp-badge-success-bg-hover);
+    --sp-component-badge-warning-bg-hover: var(--sp-badge-warning-bg-hover);
+    --sp-component-badge-danger-bg-hover: var(--sp-badge-danger-bg-hover);
+    --sp-component-badge-neutral-bg-hover: var(--sp-badge-neutral-bg-hover);
+    --sp-component-badge-info-bg-hover: var(--sp-badge-info-bg-hover);
     --sp-component-badge-ghost-bg-hover: var(--sp-button-ghost-bghover);
     --sp-component-badge-accent-bg-hover: var(--sp-button-accent-bghover);
     --sp-component-badge-cta-bg-hover: var(--sp-button-cta-bghover);
@@ -227,15 +245,15 @@
     --sp-component-iconbox-outline-text: var(--sp-badge-neutral-text);
     --sp-component-iconbox-outline-border: var(--sp-button-secondary-border);
 
-    /* testimonial roles */
-    --sp-component-testimonial-bg: var(--sp-surface-card);
-    --sp-component-testimonial-bg-hover: var(--sp-color-neutral-50);
-    --sp-component-testimonial-border: var(--sp-color-neutral-200);
+    /* testimonial roles — colors are mode-aware via component.testimonial */
+    --sp-component-testimonial-bg: var(--sp-testimonial-bg);
+    --sp-component-testimonial-bg-hover: var(--sp-testimonial-bg-hover);
+    --sp-component-testimonial-border: var(--sp-testimonial-border);
     --sp-component-testimonial-border-base: var(--sp-component-testimonial-ghost-border);
-    --sp-component-testimonial-text: var(--sp-color-neutral-700);
-    --sp-component-testimonial-author-name: var(--sp-color-neutral-900);
-    --sp-component-testimonial-author-title: var(--sp-color-neutral-600);
-    --sp-component-testimonial-quote-mark: var(--sp-color-neutral-600);
+    --sp-component-testimonial-text: var(--sp-testimonial-text);
+    --sp-component-testimonial-author-name: var(--sp-testimonial-author-name);
+    --sp-component-testimonial-author-title: var(--sp-testimonial-author-title);
+    --sp-component-testimonial-quote-mark: var(--sp-testimonial-quote-mark);
     --sp-component-testimonial-shadow: var(--sp-shadow-none);
     --sp-component-testimonial-shadow-elevated: var(--sp-shadow-lg);
     --sp-component-testimonial-shadow-flat: var(--sp-shadow-none);
@@ -246,22 +264,23 @@
     --sp-component-testimonial-ghost-bg: var(--sp-button-ghost-bg);
     --sp-component-testimonial-ghost-border: var(--sp-component-testimonial-ghost-bg);
 
-    /* pricing card roles */
-    --sp-component-pricing-card-bg: var(--sp-surface-card);
-    --sp-component-pricing-card-bg-hover: var(--sp-color-neutral-50);
-    --sp-component-pricing-card-border: var(--sp-color-neutral-200);
-    --sp-component-pricing-card-featured-bg: var(--sp-color-info-600);
-    --sp-component-pricing-card-featured-text: var(--sp-button-text-on-primary);
-    --sp-component-pricing-card-featured-badge-bg: var(--sp-color-warning-500);
-    --sp-component-pricing-card-featured-badge-text: var(--sp-color-neutral-900);
-    --sp-component-pricing-card-price: var(--sp-color-neutral-900);
+    /* pricing card roles — colors are mode-aware via component.pricingCard;
+       featured-price has no token and stays on the white primitive */
+    --sp-component-pricing-card-bg: var(--sp-pricing-card-bg);
+    --sp-component-pricing-card-bg-hover: var(--sp-pricing-card-bg-hover);
+    --sp-component-pricing-card-border: var(--sp-pricing-card-border);
+    --sp-component-pricing-card-featured-bg: var(--sp-pricing-card-featured-bg);
+    --sp-component-pricing-card-featured-text: var(--sp-pricing-card-featured-text);
+    --sp-component-pricing-card-featured-badge-bg: var(--sp-pricing-card-featured-badge-bg);
+    --sp-component-pricing-card-featured-badge-text: var(--sp-pricing-card-featured-badge-text);
+    --sp-component-pricing-card-price: var(--sp-pricing-card-price);
     --sp-component-pricing-card-featured-price: var(--sp-color-white);
-    --sp-component-pricing-card-price-description: var(--sp-color-neutral-600);
+    --sp-component-pricing-card-price-description: var(--sp-pricing-card-price-description);
 
-    /* rating roles */
-    --sp-component-rating-star-filled: var(--sp-color-warning-500);
-    --sp-component-rating-star-empty: var(--sp-color-neutral-200);
-    --sp-component-rating-text: var(--sp-color-neutral-500);
+    /* rating roles — colors are mode-aware via component.rating */
+    --sp-component-rating-star-filled: var(--sp-rating-star-filled);
+    --sp-component-rating-star-empty: var(--sp-rating-star-empty);
+    --sp-component-rating-text: var(--sp-rating-text);
     --sp-component-rating-size-sm: var(--sp-font-sm-size);
     --sp-component-rating-size-md: var(--sp-font-md-size);
     --sp-component-rating-size-lg: var(--sp-font-lg-size);
@@ -478,42 +497,16 @@
 
   /* dark mode overrides mapped from Spectre token mode definitions */
   :where(:root[data-spectre-theme="dark"]) {
-    /* badge hover states remain manual as they are not currently exported as tokens */
-    --sp-component-badge-success-bg-hover: var(--sp-color-success-700);
-    --sp-component-badge-warning-bg-hover: var(--sp-color-warning-700);
-    --sp-component-badge-danger-bg-hover: var(--sp-color-error-700);
-    --sp-component-badge-neutral-bg-hover: var(--sp-color-neutral-600);
-    --sp-component-badge-info-bg-hover: var(--sp-color-info-700);
-
-    --sp-component-iconbox-primary-bg: var(--sp-icon-box-bg);
-    --sp-component-iconbox-border-color: var(--sp-icon-box-border);
-    --sp-component-iconbox-primary-text: var(--sp-color-brand-400);
+    /* icon box status tints have no component.iconBox token; their icon
+       colors (iconSuccess/iconWarning/iconDanger) are already mode-aware */
     --sp-component-iconbox-success-bg: var(--sp-color-neutral-800);
-    --sp-component-iconbox-success-text: var(--sp-color-success-400);
+    --sp-component-iconbox-success-text: var(--sp-icon-box-icon-success);
     --sp-component-iconbox-warning-bg: var(--sp-color-neutral-800);
-    --sp-component-iconbox-warning-text: var(--sp-color-warning-400);
+    --sp-component-iconbox-warning-text: var(--sp-icon-box-icon-warning);
     --sp-component-iconbox-danger-bg: var(--sp-color-neutral-800);
-    --sp-component-iconbox-danger-text: var(--sp-color-error-400);
+    --sp-component-iconbox-danger-text: var(--sp-icon-box-icon-danger);
     --sp-component-iconbox-info-bg: var(--sp-color-neutral-800);
     --sp-component-iconbox-info-text: var(--sp-color-info-400);
-
-    --sp-component-testimonial-bg: var(--sp-color-neutral-800);
-    --sp-component-testimonial-bg-hover: var(--sp-color-neutral-700);
-    --sp-component-testimonial-border: var(--sp-color-neutral-700);
-    --sp-component-testimonial-text: var(--sp-color-neutral-200);
-    --sp-component-testimonial-author-name: var(--sp-color-neutral-100);
-    --sp-component-testimonial-author-title: var(--sp-color-neutral-300);
-    --sp-component-testimonial-quote-mark: var(--sp-color-neutral-300);
-
-    --sp-component-pricing-card-bg: var(--sp-color-neutral-800);
-    --sp-component-pricing-card-bg-hover: var(--sp-color-neutral-700);
-    --sp-component-pricing-card-border: var(--sp-color-neutral-700);
-    --sp-component-pricing-card-price: var(--sp-color-neutral-100);
-    --sp-component-pricing-card-price-description: var(--sp-color-neutral-300);
-
-    --sp-component-rating-star-filled: var(--sp-color-warning-400);
-    --sp-component-rating-star-empty: var(--sp-color-neutral-700);
-    --sp-component-rating-text: var(--sp-color-neutral-400);
 
     --sp-component-spinner-track-color: var(--sp-color-neutral-700);
     --sp-component-spinner-accent-arc: var(--sp-color-brand-400);
@@ -529,6 +522,7 @@
     padding: var(--sp-space-4) var(--sp-space-16);
     border-radius: var(--sp-radius-md);
     border: var(--sp-component-border-width) solid var(--sp-component-button-border-base);
+    color: var(--sp-button-text-default);
     font-family: var(--sp-font-family-sans);
     font-size: var(--sp-font-md-size);
     line-height: var(--sp-font-md-line-height);
@@ -620,10 +614,14 @@
     box-shadow: var(--sp-component-button-shadow);
   }
 
-  .sp-btn--primary:focus-visible,
+  .sp-btn--primary:focus-visible {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-primary-focus-visible);
+  }
+
+  /* recipe-forced focus state (focused: true) uses the focusRing role */
   .sp-btn--primary.sp-btn--focus,
   .sp-btn--primary.is-focus {
-    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-primary-focus-visible);
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-primary-focus-ring);
   }
 
   .sp-btn--primary.sp-btn--hover,
@@ -653,10 +651,14 @@
     border-color: var(--sp-component-button-secondary-border);
   }
 
-  .sp-btn--secondary:focus-visible,
+  .sp-btn--secondary:focus-visible {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-secondary-focus-visible);
+  }
+
+  /* recipe-forced focus state (focused: true) uses the focusRing role */
   .sp-btn--secondary.sp-btn--focus,
   .sp-btn--secondary.is-focus {
-    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-secondary-focus-visible);
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-secondary-focus-ring);
   }
 
   .sp-btn--secondary.sp-btn--hover,
@@ -685,10 +687,14 @@
     color: var(--sp-component-button-ghost-text);
   }
 
-  .sp-btn--ghost:focus-visible,
+  .sp-btn--ghost:focus-visible {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-ghost-focus-visible);
+  }
+
+  /* recipe-forced focus state (focused: true) uses the focusRing role */
   .sp-btn--ghost.sp-btn--focus,
   .sp-btn--ghost.is-focus {
-    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-ghost-focus-visible);
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-ghost-focus-ring);
   }
 
   .sp-btn--ghost.sp-btn--hover,
@@ -735,10 +741,14 @@
     color: var(--sp-component-button-danger-text-disabled);
   }
 
-  .sp-btn--danger:focus-visible,
+  .sp-btn--danger:focus-visible {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-danger-focus-visible);
+  }
+
+  /* recipe-forced focus state (focused: true) uses the focusRing role */
   .sp-btn--danger.sp-btn--focus,
   .sp-btn--danger.is-focus {
-    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-danger-focus-visible);
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-danger-focus-ring);
   }
 
   /* success */
@@ -766,10 +776,14 @@
     color: var(--sp-component-button-success-text-disabled);
   }
 
-  .sp-btn--success:focus-visible,
+  .sp-btn--success:focus-visible {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-success-focus-visible);
+  }
+
+  /* recipe-forced focus state (focused: true) uses the focusRing role */
   .sp-btn--success.sp-btn--focus,
   .sp-btn--success.is-focus {
-    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-success-focus-visible);
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-success-focus-ring);
   }
 
   /* cta */
@@ -811,10 +825,14 @@
     color: var(--sp-component-button-accent-text);
   }
 
-  .sp-btn--accent:focus-visible,
+  .sp-btn--accent:focus-visible {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-accent-focus-visible);
+  }
+
+  /* recipe-forced focus state (focused: true) uses the focusRing role */
   .sp-btn--accent.sp-btn--focus,
   .sp-btn--accent.is-focus {
-    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-accent-focus-visible);
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-accent-focus-ring);
   }
 
   .sp-btn--accent.sp-btn--hover,
@@ -844,10 +862,14 @@
     border-color: var(--sp-component-button-inverse-border);
   }
 
-  .sp-btn--inverse:focus-visible,
+  .sp-btn--inverse:focus-visible {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-inverse-focus-visible);
+  }
+
+  /* recipe-forced focus state (focused: true) uses the focusRing role */
   .sp-btn--inverse.sp-btn--focus,
   .sp-btn--inverse.is-focus {
-    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-inverse-focus-visible);
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-inverse-focus-ring);
   }
 
   .sp-btn--inverse.sp-btn--hover,
@@ -894,10 +916,14 @@
     color: var(--sp-component-button-warning-text-disabled);
   }
 
-  .sp-btn--warning:focus-visible,
+  .sp-btn--warning:focus-visible {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-warning-focus-visible);
+  }
+
+  /* recipe-forced focus state (focused: true) uses the focusRing role */
   .sp-btn--warning.sp-btn--focus,
   .sp-btn--warning.is-focus {
-    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-warning-focus-visible);
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-warning-focus-ring);
   }
 
   .sp-btn--light {
@@ -924,10 +950,14 @@
     color: var(--sp-component-button-light-text-disabled);
   }
 
-  .sp-btn--light:focus-visible,
+  .sp-btn--light:focus-visible {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-light-focus-visible);
+  }
+
+  /* recipe-forced focus state (focused: true) uses the focusRing role */
   .sp-btn--light.sp-btn--focus,
   .sp-btn--light.is-focus {
-    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-light-focus-visible);
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-light-focus-ring);
   }
 
   .sp-btn--dark {
@@ -954,14 +984,18 @@
     color: var(--sp-component-button-dark-text-disabled);
   }
 
-  .sp-btn--dark:focus-visible,
-  .sp-btn--dark.sp-btn--focus,
-  .sp-btn--dark.is-focus {
+  .sp-btn--dark:focus-visible {
     box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-dark-focus-visible);
   }
 
-  /* link: the background stays transparent in every state; the text color
-     carries hover/active feedback instead */
+  /* recipe-forced focus state (focused: true) uses the focusRing role */
+  .sp-btn--dark.sp-btn--focus,
+  .sp-btn--dark.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-dark-focus-ring);
+  }
+
+  /* link: the published background is transparent in every state; the
+     text color carries hover/active feedback instead */
   .sp-btn--link {
     background-color: var(--sp-component-button-link-bg);
     color: var(--sp-component-button-link-text);
@@ -972,28 +1006,32 @@
   .sp-btn--link.sp-btn--hover,
   .sp-btn--link.is-hover,
   .sp-btn--link:hover {
-    background-color: var(--sp-component-button-link-bg);
+    background-color: var(--sp-component-button-link-bg-hover);
     color: var(--sp-component-button-link-text-hover);
   }
 
   .sp-btn--link.sp-btn--active,
   .sp-btn--link.is-active,
   .sp-btn--link:active {
-    background-color: var(--sp-component-button-link-bg);
+    background-color: var(--sp-component-button-link-bg-active);
     color: var(--sp-component-button-link-text-active);
   }
 
   .sp-btn--link.sp-btn--disabled,
   .sp-btn--link[aria-disabled="true"],
   .sp-btn--link:disabled {
-    background-color: var(--sp-component-button-link-bg);
+    background-color: var(--sp-component-button-link-bg-disabled);
     color: var(--sp-component-button-link-text-disabled);
   }
 
-  .sp-btn--link:focus-visible,
+  .sp-btn--link:focus-visible {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-link-focus-visible);
+  }
+
+  /* recipe-forced focus state (focused: true) uses the focusRing role */
   .sp-btn--link.sp-btn--focus,
   .sp-btn--link.is-focus {
-    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-link-focus-visible);
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-link-focus-ring);
   }
 
   /* INPUTS --------------------------------------------------------------- */
@@ -1099,12 +1137,24 @@
     outline: none;
   }
 
+  /* keyboard focus uses the form.focusVisible role */
+  .sp-input:focus-visible {
+    border-color: var(--sp-component-input-role-border-focus-visible);
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-input-role-ring-focus-visible);
+  }
+
   /* State styling should not force typed text to be red/green by default */
   .sp-input--error,
   .sp-input[aria-invalid="true"] {
     border-color: var(--sp-component-input-role-border-error);
     background-color: var(--sp-component-input-role-bg-error);
     color: var(--sp-component-input-role-text);
+  }
+
+  /* an invalid field keeps its error tone while focused (color.focus.error) */
+  .sp-input--error:focus,
+  .sp-input[aria-invalid="true"]:focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-error);
   }
 
   .sp-input--success {
@@ -2448,6 +2498,19 @@
   .sp-alert.is-focus {
     outline: none;
     box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-primary);
+  }
+
+  /* status-toned focus rings from the published color.focus roles */
+  .sp-alert--danger.sp-alert--interactive:focus-visible,
+  .sp-alert--danger.sp-alert--focus,
+  .sp-alert--danger.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-error);
+  }
+
+  .sp-alert--info.sp-alert--interactive:focus-visible,
+  .sp-alert--info.sp-alert--focus,
+  .sp-alert--info.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-color-focus-info);
   }
 
   .sp-alert:disabled,
@@ -3852,6 +3915,7 @@
   }
 
   .sp-checkbox-indicator {
+    position: relative;
     display: inline-block;
     width: var(--sp-space-16);
     height: var(--sp-space-16);
@@ -3868,12 +3932,27 @@
     border-color: var(--sp-checkbox-checked-border);
   }
 
+  /* checkmark glyph in the component.checkbox.text color */
+  .sp-checkbox-indicator--checked::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--sp-space-4);
+    height: var(--sp-space-8);
+    border-style: solid;
+    border-color: var(--sp-checkbox-text);
+    border-width: 0 var(--sp-border-width-thick) var(--sp-border-width-thick) 0;
+    transform: translate(-50%, -60%) rotate(45deg);
+  }
+
   .sp-checkbox-indicator--disabled {
     background-color: var(--sp-checkbox-disabled-bg);
     border-color: var(--sp-checkbox-disabled-border);
   }
 
   .sp-radio-indicator {
+    position: relative;
     display: inline-block;
     width: var(--sp-space-16);
     height: var(--sp-space-16);
@@ -3888,6 +3967,19 @@
   .sp-radio-indicator--checked {
     background-color: var(--sp-radio-checked-bg);
     border-color: var(--sp-radio-checked-border);
+  }
+
+  /* center dot in the component.radio.text color */
+  .sp-radio-indicator--checked::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--sp-space-6);
+    height: var(--sp-space-6);
+    border-radius: var(--sp-radius-pill);
+    background-color: var(--sp-radio-text);
+    transform: translate(-50%, -50%);
   }
 
   .sp-radio-indicator--disabled {
@@ -4143,6 +4235,27 @@
 
   .sp-text--on-inverse-muted {
     color: var(--sp-text-on-inverse-muted);
+  }
+
+  /* text inside a surface.card container */
+  .sp-text--on-surface {
+    color: var(--sp-text-on-surface-default);
+  }
+
+  .sp-text--on-surface-muted {
+    color: var(--sp-text-on-surface-muted);
+  }
+
+  .sp-text--on-surface-subtle {
+    color: var(--sp-text-on-surface-subtle);
+  }
+
+  .sp-text--on-surface-meta {
+    color: var(--sp-text-on-surface-meta);
+  }
+
+  .sp-text--on-surface-brand {
+    color: var(--sp-text-on-surface-brand);
   }
 
   .sp-text--sans {
@@ -4762,7 +4875,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .sp-offcanvas {
-      transition: none;
+      transition-duration: var(--sp-reduced-motion);
     }
 
     .sp-carousel__viewport {
@@ -4770,7 +4883,7 @@
     }
 
     .sp-carousel--fade .sp-carousel__slide {
-      transition: none;
+      transition-duration: var(--sp-reduced-motion);
     }
   }
 
@@ -6002,5 +6115,126 @@
     color: var(--sp-choice-card-disabled-text);
     pointer-events: none;
     cursor: not-allowed;
+  }
+
+  /* HEADING ---------------------------------------------------------------- */
+  /* Each level applies the full typography.heading.h{n} preset. Opt-in by
+     class, so raw editor headings stay with the consuming theme. */
+  .sp-heading {
+    margin: 0;
+    color: var(--sp-text-on-page-default);
+  }
+
+  .sp-heading--h1 {
+    font-family: var(--sp-heading-h1-family);
+    font-size: var(--sp-heading-h1-size);
+    font-weight: var(--sp-heading-h1-weight);
+    line-height: var(--sp-heading-h1-line-height);
+    letter-spacing: var(--sp-heading-h1-letter-spacing);
+  }
+
+  .sp-heading--h2 {
+    font-family: var(--sp-heading-h2-family);
+    font-size: var(--sp-heading-h2-size);
+    font-weight: var(--sp-heading-h2-weight);
+    line-height: var(--sp-heading-h2-line-height);
+    letter-spacing: var(--sp-heading-h2-letter-spacing);
+  }
+
+  .sp-heading--h3 {
+    font-family: var(--sp-heading-h3-family);
+    font-size: var(--sp-heading-h3-size);
+    font-weight: var(--sp-heading-h3-weight);
+    line-height: var(--sp-heading-h3-line-height);
+    letter-spacing: var(--sp-heading-h3-letter-spacing);
+  }
+
+  .sp-heading--h4 {
+    font-family: var(--sp-heading-h4-family);
+    font-size: var(--sp-heading-h4-size);
+    font-weight: var(--sp-heading-h4-weight);
+    line-height: var(--sp-heading-h4-line-height);
+    letter-spacing: var(--sp-heading-h4-letter-spacing);
+  }
+
+  .sp-heading--h5 {
+    font-family: var(--sp-heading-h5-family);
+    font-size: var(--sp-heading-h5-size);
+    font-weight: var(--sp-heading-h5-weight);
+    line-height: var(--sp-heading-h5-line-height);
+    letter-spacing: var(--sp-heading-h5-letter-spacing);
+  }
+
+  .sp-heading--h6 {
+    font-family: var(--sp-heading-h6-family);
+    font-size: var(--sp-heading-h6-size);
+    font-weight: var(--sp-heading-h6-weight);
+    line-height: var(--sp-heading-h6-line-height);
+    letter-spacing: var(--sp-heading-h6-letter-spacing);
+  }
+
+  /* DISPLAY + LEAD --------------------------------------------------------- */
+  /* typography.display.{1-6} and typography.lead presets (spectre-tokens
+     4.11.0 CSS output), opt-in by class like .sp-heading. */
+  .sp-display {
+    margin: 0;
+    color: var(--sp-text-on-page-default);
+  }
+
+  .sp-display--1 {
+    font-family: var(--sp-display-1-family);
+    font-size: var(--sp-display-1-size);
+    font-weight: var(--sp-display-1-weight);
+    line-height: var(--sp-display-1-line-height);
+    letter-spacing: var(--sp-display-1-letter-spacing);
+  }
+
+  .sp-display--2 {
+    font-family: var(--sp-display-2-family);
+    font-size: var(--sp-display-2-size);
+    font-weight: var(--sp-display-2-weight);
+    line-height: var(--sp-display-2-line-height);
+    letter-spacing: var(--sp-display-2-letter-spacing);
+  }
+
+  .sp-display--3 {
+    font-family: var(--sp-display-3-family);
+    font-size: var(--sp-display-3-size);
+    font-weight: var(--sp-display-3-weight);
+    line-height: var(--sp-display-3-line-height);
+    letter-spacing: var(--sp-display-3-letter-spacing);
+  }
+
+  .sp-display--4 {
+    font-family: var(--sp-display-4-family);
+    font-size: var(--sp-display-4-size);
+    font-weight: var(--sp-display-4-weight);
+    line-height: var(--sp-display-4-line-height);
+    letter-spacing: var(--sp-display-4-letter-spacing);
+  }
+
+  .sp-display--5 {
+    font-family: var(--sp-display-5-family);
+    font-size: var(--sp-display-5-size);
+    font-weight: var(--sp-display-5-weight);
+    line-height: var(--sp-display-5-line-height);
+    letter-spacing: var(--sp-display-5-letter-spacing);
+  }
+
+  .sp-display--6 {
+    font-family: var(--sp-display-6-family);
+    font-size: var(--sp-display-6-size);
+    font-weight: var(--sp-display-6-weight);
+    line-height: var(--sp-display-6-line-height);
+    letter-spacing: var(--sp-display-6-letter-spacing);
+  }
+
+  .sp-lead {
+    margin: 0;
+    font-family: var(--sp-lead-family);
+    font-size: var(--sp-lead-size);
+    font-weight: var(--sp-lead-weight);
+    line-height: var(--sp-lead-line-height);
+    letter-spacing: var(--sp-lead-letter-spacing);
   }
 }

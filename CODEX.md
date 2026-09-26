@@ -57,7 +57,7 @@ Audit sequence:
 2. `package.json` - package export and side-effect metadata.
 3. `README.md` - consumer-facing usage and package overview.
 4. `CONTRIBUTING.md` - human contributor workflow and contract coverage map.
-5. `CLAUDE.md`, `CODEX.md`, `JULES.md`, `COPILOT.md` - role-specific guidance
+5. `CLAUDE.md`, `CODEX.md`, `JULES.md`, `GROK.md`, `COPILOT.md` - role-specific guidance
    (roster and authority table live in `AGENTS.md`).
 6. `CHANGELOG.md` - release notes and contract change classification.
 

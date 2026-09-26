@@ -11,15 +11,19 @@
   html {
     margin: 0;
     padding: 0;
+    forced-color-adjust: var(--sp-forced-colors);
   }
 
   body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    font-family: var(--sp-font-family-sans);
-    font-size: var(--sp-font-md-size);
-    line-height: var(--sp-font-md-line-height);
+    /* typography.body preset; accessibility.minTextSize floors the size */
+    font-family: var(--sp-body-family);
+    font-size: max(var(--sp-min-text-size), var(--sp-body-size));
+    font-weight: var(--sp-body-weight);
+    line-height: var(--sp-body-line-height);
+    letter-spacing: var(--sp-body-letter-spacing);
     color: var(--sp-text-on-page-default);
     background-color: var(--sp-surface-page);
   }
@@ -37,6 +41,12 @@
   textarea,
   select {
     font: inherit;
+    color: var(--sp-form-default-text);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--sp-form-default-placeholder);
   }
 
   ul,

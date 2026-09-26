@@ -30,6 +30,7 @@ skills, plugins, templates, or general-purpose workflows.
 | ChatGPT        | Strategy, coordination, prompt design, and external review        | Support only             |
 | GitHub Copilot | Development assistance                                            | [COPILOT.md](COPILOT.md) |
 | Google Jules   | Bounded automated maintenance                                     | [JULES.md](JULES.md)     |
+| xAI Grok       | Development assistance                                            | [GROK.md](GROK.md)       |
 
 **Claude Code has zero git access in this repository, effective 2026-08-13 by
 explicit direction from Bradley Potts.** Claude Code must not run any git
@@ -45,10 +46,10 @@ and tag authority** in this repository, effective 2026-07-25 by explicit
 direction from Bradley Potts — see the Commit Policy section in each agent's
 own guide ([CODEX.md](CODEX.md), [COPILOT.md](COPILOT.md),
 [JULES.md](JULES.md)). **OpenAI Codex** additionally has release authority:
-Codex cuts releases autonomously — version bump, changelog versioning,
-`v<version>` git tag, and GitHub Release publish via `gh` — for every
-release-ready `CHANGELOG.md [Unreleased]` section, without waiting for
-per-release approval; see `CODEX.md` "Release Mechanics" for the full
+Codex cuts a release — version bump, changelog versioning, `v<version>` git
+tag, and GitHub Release publish via `gh` — only when Bradley Potts says to get
+this repo ready for release; a plain commit request commits and pushes only,
+with no version bump, tag, or release; see `CODEX.md` "Release Mechanics" for the full
 procedure. **OpenAI Codex additionally executes git operations on Claude
 Code's behalf**: when Claude Code hands off validated work, Codex is
 responsible for staging, committing, tagging, and pushing it, not only
@@ -60,17 +61,23 @@ scope of work as defined above — it does not expand what any agent is
 authorized to decide otherwise. ChatGPT has no repository access and is
 excluded.
 
+**xAI Grok (including Grok Bot, the same agent running automatically) has
+commit and push authority** here, effective 2026-09-26 by explicit direction
+from Bradley Potts — see [GROK.md](GROK.md) "Git Authority." Grok commits and
+pushes its own work only: it does not create or push tags, cut releases, merge
+pull requests, or publish packages.
+
 **A commit is not finished until it is pushed.** Every agent that still holds
-git authority under this roster — Codex, Copilot, Jules — must push
+git authority under this roster — Codex, Copilot, Jules, Grok — must push
 immediately after committing (`git push`, including any needed `-u`/tags) as
 part of the same action — never leave a commit sitting local only. This
 closes a recurring gap where an agent commits and stops short of pushing,
 leaving work stranded on the machine.
 
 **Commit authorship is human-only.** No agent with git authority under this
-roster — Codex, Copilot, or Jules — adds itself (or any other AI) as a
+roster — Codex, Copilot, Jules, or Grok — adds itself (or any other AI) as a
 commit author or co-author — no `Co-Authored-By: Claude`/`Codex`/
-`Copilot`/`Jules` trailer, no author-field changes, in this repository. The
+`Copilot`/`Jules`/`Grok` trailer, no author-field changes, in this repository. The
 git author/committer stays Bradley Potts (or the configured human git user)
 on every commit, regardless of which agent performed the work. Push and tag
 authority above does not extend to authorship attribution.

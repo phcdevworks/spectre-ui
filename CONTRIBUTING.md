@@ -159,6 +159,8 @@ surface. Each area of the contract has a dedicated enforcer:
 | Recipe family parity (manifest → live output)        | `tests/recipe-parity.test.ts`                                  |
 | Token drift (CSS vars backed by published tokens)    | `tests/token-drift.test.ts` + `scripts/validate-tokens.ts`     |
 | Zero-hex enforcement (asserted component roles)      | `tests/aesthetic-audit.test.ts`                                |
+| Token parity (every published `--sp-*` var consumed) | `tests/token-parity.test.ts`                                   |
+| Emitted recipe classes have CSS (per family)         | `tests/*-recipe.test.ts` via `tests/support/component-css.ts`  |
 | Zero-hex/px/rem enforcement (all source stylesheets) | `scripts/validate-token-usage.ts`                              |
 | Built-package smoke (dist artifacts + import)        | `tests/package-smoke.test.ts`                                  |
 | README contract parity                               | `scripts/validate-readme-contract.ts`                          |

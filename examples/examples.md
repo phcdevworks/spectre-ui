@@ -26,6 +26,17 @@ Marketing-style showcase including:
 - Badge, icon box, pricing card, and call-to-action combinations
 - A polished example of Spectre UI in a product-forward presentation
 
+### 🧩 [Component Inventory Verification](component-inventory-verification.html)
+
+Light/dark check for the Bootstrap-scale inventory and token-parity work (append
+`?theme=dark`):
+
+- Tabs, accordion, breadcrumb, pagination, list group, table, alert, stepper
+- Progress, spinner, badge dot, switch, range, file input, input group
+- Choice card, datepicker, carousel, popover, dropdown, toast, prose, offcanvas
+- Testimonial, pricing card, rating, icon box on their component tokens;
+  heading/display presets, checkbox/radio glyphs, hero surface
+
 ### 🧪 [System Verification](verification.html)
 
 Component health check including:
@@ -93,8 +104,8 @@ reusable implementation layer:
 
 ## Boundaries
 
-Examples are verification fixtures and usage illustrations. They are not part
-of the public package API and are not distributed to consumers.
+Examples are verification fixtures and usage illustrations. They are not part of
+the public package API and are not distributed to consumers.
 
 The public contract of `@phcdevworks/spectre-ui` is its exported recipe
 functions, CSS entrypoints, and Tailwind helpers as declared in
@@ -102,6 +113,6 @@ functions, CSS entrypoints, and Tailwind helpers as declared in
 contract — they do not extend or redefine it.
 
 Do not add markup patterns or class names to examples that are not already
-backed by the exported recipe and CSS contract. If an example needs a class
-that does not exist in the published surface, that is a gap to report in the
-relevant recipe or CSS file, not something to patch locally in the HTML.
+backed by the exported recipe and CSS contract. If an example needs a class that
+does not exist in the published surface, that is a gap to report in the relevant
+recipe or CSS file, not something to patch locally in the HTML.

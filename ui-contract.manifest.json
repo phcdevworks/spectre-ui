@@ -88,6 +88,35 @@
       "zIndex": {
         "axes": ["z"],
         "tokenGroup": "--sp-z-index-*"
+      },
+      "semanticColor": {
+        "axes": ["text", "bg", "border"],
+        "tokenGroup": "--sp-color-{brand,accent,neutral,success,warning,error,info,indigo,violet}-*",
+        "classPattern": "sp-{axis}-color-{scale}-{step}"
+      },
+      "singleColor": {
+        "axes": ["text", "bg", "border"],
+        "tokenGroup": "--sp-color-{black,white}"
+      },
+      "duration": {
+        "axes": ["duration"],
+        "tokenGroup": "--sp-duration-*"
+      },
+      "easing": {
+        "axes": ["ease"],
+        "tokenGroup": "--sp-easing-*"
+      },
+      "borderStyle": {
+        "axes": ["border-style"],
+        "tokenGroup": "--sp-border-style-*"
+      },
+      "borderWidth": {
+        "axes": ["border-width"],
+        "tokenGroup": "--sp-border-width-*"
+      },
+      "iconSize": {
+        "axes": ["icon"],
+        "tokenGroup": "--sp-icon-*"
       }
     }
   },
@@ -230,7 +259,10 @@
       "getTabsClasses",
       "getTabsItemClasses",
       "getTabsListClasses",
-      "getTabsPanelClasses"
+      "getTabsPanelClasses",
+      "getHeadingClasses",
+      "getDisplayClasses",
+      "getLeadClasses"
     ]
   },
   "recipeFamilies": {
@@ -465,7 +497,12 @@
         "meta",
         "brand",
         "onInverse",
-        "onInverseMuted"
+        "onInverseMuted",
+        "onSurface",
+        "onSurfaceMuted",
+        "onSurfaceSubtle",
+        "onSurfaceMeta",
+        "onSurfaceBrand"
       ],
       "sizes": [
         "xs",
@@ -544,6 +581,15 @@
     },
     "choiceCard": {
       "fn": "getChoiceCardClasses"
+    },
+    "heading": {
+      "fn": "getHeadingClasses"
+    },
+    "display": {
+      "fn": "getDisplayClasses"
+    },
+    "lead": {
+      "fn": "getLeadClasses"
     }
   }
 }

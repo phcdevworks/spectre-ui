@@ -61,7 +61,15 @@ const ENTRYPOINT_CONTRACTS = [
     // spectre-tokens dependency range was bumped to ^4.10.0 — the
     // Bootstrap-scale component inventory token contracts, entirely token
     // growth in the standalone token block, not a regression here.
-    maxBytes: 72500
+    // Raised again 2026-09-26 (base.css grew to 72573 bytes) for the
+    // typography.body preset, accessibility.minTextSize floor, and
+    // accessibility.forcedColors in base — the spectre-tokens parity pass.
+    // A deliberate, scoped increase, not a regression.
+    // Raised again 2026-09-26 (base.css grew to 74453 bytes) when the
+    // spectre-tokens range was bumped to ^4.11.0 (display/lead CSS variables
+    // and mode-aware form.default), plus raw form-control text/placeholder
+    // colors from form.default. Not a regression.
+    maxBytes: 74900
   },
   {
     fileName: 'components.css',
@@ -125,7 +133,15 @@ const ENTRYPOINT_CONTRACTS = [
     // badge/alert/spinner/dropdown/toast variant expansion (TODO.md
     // "Requested by Downstream" / "Bootstrap-scale component inventory
     // expansion"). A deliberate, scoped increase, not a regression.
-    maxBytes: 264300
+    // Raised again 2026-09-26 (components.css grew to 271127 bytes) for the
+    // spectre-tokens parity pass: getHeadingClasses presets, on-surface text
+    // roles, checkbox/radio glyphs, split button focus-ring states, and the
+    // input focus-visible/invalid-focus rules. A deliberate, scoped increase,
+    // not a regression.
+    // Raised again 2026-09-26 (components.css grew to 274975 bytes):
+    // the spectre-tokens ^4.11.0 bump plus getDisplayClasses/getLeadClasses.
+    // A deliberate, scoped increase, not a regression.
+    maxBytes: 275300
   },
   {
     fileName: 'utilities.css',
@@ -208,7 +224,18 @@ const ENTRYPOINT_CONTRACTS = [
     // plus the .sp-prose code/code-block/mark/hr rules sourced from the new
     // component.prose contract. A deliberate, scoped increase, not a
     // regression.
-    maxBytes: 382900
+    // Raised again 2026-09-26 (utilities.css grew to 432266 bytes) for the
+    // spectre-tokens parity pass: the 13 multi-segment palette hues the
+    // generator previously skipped, opt-in semantic color scale utilities
+    // (sp-{axis}-color-{scale}-{step}), duration/easing/border-style/
+    // border-width/icon-size utilities, reduced-motion animation swaps,
+    // section spacing/gap and container padding steps, and the hero/input
+    // surface utilities. Raw size; utility CSS compresses heavily. A
+    // deliberate, scoped increase, not a regression.
+    // Raised again 2026-09-26 (utilities.css grew to 434006 bytes)
+    // when the spectre-tokens range was bumped to ^4.11.0 — token growth in
+    // the standalone token block, not a regression here.
+    maxBytes: 434400
   }
 ] as const
 

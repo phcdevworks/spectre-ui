@@ -126,6 +126,39 @@
     padding-top: var(--sp-layout-section-padding-md);
     padding-bottom: var(--sp-layout-section-padding-md);
   }
+
+  .sp-section--spacing-sm {
+    padding-top: var(--sp-layout-section-padding-sm);
+    padding-bottom: var(--sp-layout-section-padding-sm);
+  }
+
+  .sp-section--spacing-md {
+    padding-top: var(--sp-layout-section-padding-md);
+    padding-bottom: var(--sp-layout-section-padding-md);
+  }
+
+  .sp-section--spacing-lg {
+    padding-top: var(--sp-layout-section-padding-lg);
+    padding-bottom: var(--sp-layout-section-padding-lg);
+  }
+
+  .sp-section--gap-sm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-layout-section-gap-sm);
+  }
+
+  .sp-section--gap-md {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-layout-section-gap-md);
+  }
+
+  .sp-section--gap-lg {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-layout-section-gap-lg);
+  }
 }
 
 @layer utilities {
@@ -136,6 +169,21 @@
     padding-left: var(--sp-layout-container-padding-inline-md);
     padding-right: var(--sp-layout-container-padding-inline-md);
     max-width: var(--sp-layout-container-max-width);
+  }
+
+  .sp-container--padding-sm {
+    padding-left: var(--sp-layout-container-padding-inline-sm);
+    padding-right: var(--sp-layout-container-padding-inline-sm);
+  }
+
+  .sp-container--padding-md {
+    padding-left: var(--sp-layout-container-padding-inline-md);
+    padding-right: var(--sp-layout-container-padding-inline-md);
+  }
+
+  .sp-container--padding-lg {
+    padding-left: var(--sp-layout-container-padding-inline-lg);
+    padding-right: var(--sp-layout-container-padding-inline-lg);
   }
 
   .sp-container--max-width-prose {
@@ -1827,6 +1875,19 @@
     background-color: var(--sp-surface-inverse);
   }
 
+  /* The published surface.hero gradient for a hero/jumbotron band. It is a
+     gradient, so it sets background (not background-color); pair it with
+     the on-inverse text roles. */
+  .sp-surface--hero {
+    background: var(--sp-surface-hero);
+  }
+
+  /* An input-like well (e.g. a read-only field or a search tray) that is not
+     itself a form control. */
+  .sp-surface--input {
+    background-color: var(--sp-surface-input);
+  }
+
   .sp-divider {
     border: none;
     border-top: var(--sp-component-border-width) solid var(--sp-surface-divider);
@@ -1898,6 +1959,42 @@
 
   .sp-animate-pulse {
     animation: var(--sp-animation-pulse-keyframes) var(--sp-animation-pulse-duration) var(--sp-animation-pulse-easing);
+  }
+
+  /* Swaps each animation for its published animations.reducedMotion
+     counterpart rather than removing it outright. */
+  @media (prefers-reduced-motion: reduce) {
+    .sp-animate-fade-in {
+      animation: var(--sp-animation-reduced-motion-fadein-keyframes) var(--sp-animation-reduced-motion-fadein-duration) var(--sp-animation-reduced-motion-fadein-easing);
+    }
+
+    .sp-animate-fade-out {
+      animation: var(--sp-animation-reduced-motion-fadeout-keyframes) var(--sp-animation-reduced-motion-fadeout-duration) var(--sp-animation-reduced-motion-fadeout-easing);
+    }
+
+    .sp-animate-slide-up {
+      animation: var(--sp-animation-reduced-motion-slideup-keyframes) var(--sp-animation-reduced-motion-slideup-duration) var(--sp-animation-reduced-motion-slideup-easing);
+    }
+
+    .sp-animate-slide-down {
+      animation: var(--sp-animation-reduced-motion-slidedown-keyframes) var(--sp-animation-reduced-motion-slidedown-duration) var(--sp-animation-reduced-motion-slidedown-easing);
+    }
+
+    .sp-animate-scale-in {
+      animation: var(--sp-animation-reduced-motion-scalein-keyframes) var(--sp-animation-reduced-motion-scalein-duration) var(--sp-animation-reduced-motion-scalein-easing);
+    }
+
+    .sp-animate-bounce {
+      animation: var(--sp-animation-reduced-motion-bounce-keyframes) var(--sp-animation-reduced-motion-bounce-duration) var(--sp-animation-reduced-motion-bounce-easing);
+    }
+
+    .sp-animate-shake {
+      animation: var(--sp-animation-reduced-motion-shake-keyframes) var(--sp-animation-reduced-motion-shake-duration) var(--sp-animation-reduced-motion-shake-easing);
+    }
+
+    .sp-animate-pulse {
+      animation: var(--sp-animation-reduced-motion-pulse-keyframes) var(--sp-animation-reduced-motion-pulse-duration) var(--sp-animation-reduced-motion-pulse-easing);
+    }
   }
 
   @keyframes fade-in {

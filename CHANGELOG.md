@@ -6,6 +6,8 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [5.3.0] - 2026-09-26
+
 **Release Title:** Bootstrap-Scale Component Inventory
 
 Contract change type: semantic change
@@ -17,26 +19,26 @@ Contract change type: semantic change
   `spectre-tokens` 4.10.0, with no local color values or dark-mode overrides:
   - `getTabsClasses` (`line`/`pill` variants, `vertical`, `fullWidth`) with
     `getTabsListClasses`, `getTabsItemClasses`, `getTabsPanelClasses`.
-  - `getAccordionClasses` (`flush`) with item/header/icon/panel helpers;
-    expands from an `expanded` flag or a native `<details open>` item.
-  - `getBreadcrumbClasses` with item (`current`), link, and separator
-    helpers; a built-in `/` separator that `customSeparator` suppresses.
-  - `getListGroupClasses` (`flush`, `horizontal`, `accent`/`accentColor`
-    rail from `component.listGroup.accent`) with item (`interactive`,
-    `active`, `selected`, `disabled`), heading, and text helpers.
-  - `getOffcanvasClasses` (`start`/`end`/`top`/`bottom` placement, `open`)
-    with backdrop and header/body/footer region helpers.
+  - `getAccordionClasses` (`flush`) with item/header/icon/panel helpers; expands
+    from an `expanded` flag or a native `<details open>` item.
+  - `getBreadcrumbClasses` with item (`current`), link, and separator helpers; a
+    built-in `/` separator that `customSeparator` suppresses.
+  - `getListGroupClasses` (`flush`, `horizontal`, `accent`/`accentColor` rail
+    from `component.listGroup.accent`) with item (`interactive`, `active`,
+    `selected`, `disabled`), heading, and text helpers.
+  - `getOffcanvasClasses` (`start`/`end`/`top`/`bottom` placement, `open`) with
+    backdrop and header/body/footer region helpers.
   - `getCarouselClasses` (`fade`) with viewport, slide, control (`prev`/
     `next`), indicators, indicator, and caption helpers. The viewport is a CSS
     scroll-snap track, so it works without script.
   - `getTableClasses` (`sm`/`md`, `striped`, `hoverable`, `bordered`) with
     `getTableWrapperClasses` and `getTableRowClasses` (contextual
     `neutral`/`info`/`success`/`warning`/`danger` rows, `selected`).
-  - `getPaginationClasses` (`sm`/`md`/`lg`) with item (`active`,
-    `disabled`) and ellipsis helpers.
+  - `getPaginationClasses` (`sm`/`md`/`lg`) with item (`active`, `disabled`) and
+    ellipsis helpers.
   - `getStepperClasses` (`horizontal`/`vertical`) with step
-    (`pending`/`active`/`done`), indicator, and label helpers; connectors
-    are drawn automatically between steps.
+    (`pending`/`active`/`done`), indicator, and label helpers; connectors are
+    drawn automatically between steps.
   - `getPopoverClasses` (`top`/`bottom`/`left`/`right`, `open`) with header,
     body, and arrow helpers.
   - `getProgressClasses` (`sm`/`md`/`lg`) with `getProgressBarClasses` (six
@@ -45,34 +47,64 @@ Contract change type: semantic change
     checkbox-switch and range inputs.
   - `getFileInputClasses` (sizes, `invalid`/`success` states), styling the
     native `::file-selector-button`.
-  - `getInputGroupClasses` and `getInputGroupAddonClasses`, which join
-    addons, inputs, selects, and buttons into a single control.
+  - `getInputGroupClasses` and `getInputGroupAddonClasses`, which join addons,
+    inputs, selects, and buttons into a single control.
   - `getDatepickerClasses` with header/grid/weekday helpers, and a separate
-    `getDayClasses` (`selected`, `today`, `outsideMonth`, `disabled`) that
-    other calendar-style surfaces can reuse.
-  - `getExternalAuthButtonClasses` with an icon slot: one neutral treatment
-    for every third-party sign-in provider.
+    `getDayClasses` (`selected`, `today`, `outsideMonth`, `disabled`) that other
+    calendar-style surfaces can reuse.
+  - `getExternalAuthButtonClasses` with an icon slot: one neutral treatment for
+    every third-party sign-in provider.
   - `getChoiceCardClasses`, a whole-card radio target that also follows a
     wrapped native `:checked`/`:disabled` input via `:has()`.
-- New variants and flags on existing recipes for the 4.10.0 contract
-  extensions:
+- New variants and flags on existing recipes for the 4.10.0 contract extensions:
   - `getButtonClasses` gains `warning`, `link`, `light`, and `dark`.
-  - `getBadgeClasses` gains `brand` and a `dot` notification-dot mode
-    ringed by `component.badge.dotBorder`.
+  - `getBadgeClasses` gains `brand` and a `dot` notification-dot mode ringed by
+    `component.badge.dotBorder`.
   - `getAlertClasses` gains `brand` and `dismissible`, plus
     `getAlertIconClasses` and `getAlertDismissClasses`.
   - `getSpinnerClasses` gains `inverse`.
   - `getToastClasses`/`getToastIconClasses` gain `neutral`.
-  - `getDropdownItemClasses` gains `selected`, plus
-    `getDropdownHeaderClasses` and `getDropdownDividerClasses`.
+  - `getDropdownItemClasses` gains `selected`, plus `getDropdownHeaderClasses`
+    and `getDropdownDividerClasses`.
 - `.sp-prose` styles inline code, code blocks, `mark`, and `hr` from the new
   `component.prose` contract.
+- Full `spectre-tokens` 4.11.0 parity. Every published CSS variable is now
+  consumed, except the breakpoints, which are used by value.
+  `tests/token-parity.test.ts` now fails on any new unconsumed token. New
+  surface:
+  - `getHeadingClasses({ level })` applies the complete
+    `typography.heading.h1`–`h6` preset.
+  - `getDisplayClasses({ level })` (`1`–`6`) and `getLeadClasses()` apply the
+    `typography.display` and `typography.lead` presets, whose CSS variables
+    `spectre-tokens` 4.11.0 now emits.
+  - `getTextClasses` gains `onSurface`, `onSurfaceMuted`, `onSurfaceSubtle`,
+    `onSurfaceMeta`, and `onSurfaceBrand` (the `text.onSurface.*` roles).
+  - `getSectionClasses` gains `spacing` and `gap` (`sm`/`md`/`lg` from
+    `layout.section.padding`/`.gap`). `getContainerClasses` gains `padding`
+    (`layout.container.paddingInline`). With no options, output is unchanged.
+  - Checked checkboxes and radios draw a checkmark or dot in the
+    `component.checkbox.text`/`component.radio.text` colors.
+  - `.sp-surface--hero` (`surface.hero` gradient) and `.sp-surface--input`.
+  - Generated utilities:
+    - Palette utilities now include the multi-segment `integration-*` and
+      `phcdevworks-*` hues, which the generator previously skipped.
+    - Opt-in raw scale utilities `.sp-{text|bg|border}-color-{scale}-{step}` for
+      the `brand`, `accent`, `neutral`, `success`, `warning`, `error`, `info`,
+      `indigo`, and `violet` scales, plus `.sp-{text|bg|border}-{black|white}`.
+    - `.sp-duration-*`, `.sp-ease-*`, `.sp-border-style-*`,
+      `.sp-border-width-*`, and `.sp-icon-{xs…3xl}`.
+  - `.sp-animate-*` switches to its `animations.reducedMotion` counterpart under
+    `prefers-reduced-motion`.
+  - Focus states: invalid inputs keep an error-toned focus ring
+    (`color.focus.error`). Interactive danger and info alerts use
+    `color.focus.error`/`color.focus.info`. `.sp-input:focus-visible` uses
+    `form.focusVisible`.
 
 ### Changed
 
 - `.sp-alert--*` colors now come from the dedicated `component.alert` token
-  contract instead of aliasing badge tokens, and the hand-maintained
-  dark-mode alert overrides are removed because the tokens are mode-aware.
+  contract instead of aliasing badge tokens, and the hand-maintained dark-mode
+  alert overrides are removed because the tokens are mode-aware.
 - `.sp-spinner--*` semantic arcs (`primary`, `secondary`, `neutral`, `info`,
   `success`, `warning`, `danger`) now come from `component.loadingIndicator`
   instead of raw palette steps. Their dark-mode overrides are removed.
@@ -81,14 +113,27 @@ Contract change type: semantic change
   `component.dropdown.item.disabledText` color instead of a generic opacity
   fade.
 - `.sp-prose blockquote` uses `component.prose.blockquote` colors.
-- The `@phcdevworks/spectre-tokens` dependency is now `^4.10.0`.
-
-### Known gaps
-
-- `typography.display.*` and `typography.lead` exist as JS token values in
-  `spectre-tokens` 4.10.0 but not as CSS custom properties, so there is no
-  display or lead text recipe yet. Tracked upstream in
-  `spectre-tokens/TODO.md`.
+- Testimonial, pricing card, and rating colors, and the badge status hover
+  tints, now come from their mode-aware `component.testimonial`,
+  `component.pricingCard`, `component.rating`, and
+  `component.badge.<role>BgHover` tokens instead of raw palette steps. Their
+  hand-maintained dark-mode overrides are removed. Icon box keeps dark overrides
+  only for its status backgrounds and info text, which have no token. Its icon
+  colors follow the mode-aware `component.iconBox` tokens.
+- `.sp-input` backgrounds and raw form-control text and placeholder colors come
+  from `form.default.*`, which `spectre-tokens` 4.11.0 made mode-aware. This
+  fixes inputs rendering white in dark mode.
+- Button focus rings are split into two states. Native `:focus-visible` uses
+  each variant's `focusVisible` token. The recipe-forced
+  `.sp-btn--focus`/`.is-focus` state uses its `focusRing` token. `sp-btn--link`
+  state backgrounds use their own published tokens. `.sp-btn` sets the
+  `component.button.textDefault` color as its base.
+- The base `body` rule uses the `typography.body` preset, floored at
+  `accessibility.minTextSize`, and `html` applies `accessibility.forcedColors`.
+  Rendering is unchanged at the current token values.
+- Offcanvas and carousel reduced-motion rules use the
+  `accessibility.reducedMotion` duration instead of removing the transition.
+- The `@phcdevworks/spectre-tokens` dependency is now `^4.11.0`.
 
 ## [5.2.0] - 2026-09-20
 
@@ -98,27 +143,26 @@ Contract change type: additive
 
 ### Added
 
-- Extend the `sp-card--accent-*` decorative edge-rail pattern to the nine
-  other component groups published in `spectre-tokens` 4.9.0's
-  `component.*.accent` token expansion: `getTestimonialClasses`,
-  `getPricingCardClasses`, `getNavClasses`, `getFooterClasses`,
-  `getModalClasses`, `getToastClasses`, `getTooltipClasses`, and
-  `getDropdownMenuClasses` gain the same `accent`/`accentColor` options and
-  `.sp-<block>--accent-*` CSS contract as `getCardClasses`.
-  `getBadgeClasses` gains the equivalent `accentRail`/`accentRailColor`
-  options and `.sp-badge--accent-rail-*` classes — named distinctly because
-  `variant: 'accent'` already names badge's single-tone brand-accent fill,
-  which predates and is unrelated to this token group. Brings `spectre-ui`
-  to full utilization of the `spectre-tokens` 4.9.0 accent-rail contract;
-  only `card` had consumed it prior to this release.
+- Extend the `sp-card--accent-*` decorative edge-rail pattern to the nine other
+  component groups published in `spectre-tokens` 4.9.0's `component.*.accent`
+  token expansion: `getTestimonialClasses`, `getPricingCardClasses`,
+  `getNavClasses`, `getFooterClasses`, `getModalClasses`, `getToastClasses`,
+  `getTooltipClasses`, and `getDropdownMenuClasses` gain the same
+  `accent`/`accentColor` options and `.sp-<block>--accent-*` CSS contract as
+  `getCardClasses`. `getBadgeClasses` gains the equivalent
+  `accentRail`/`accentRailColor` options and `.sp-badge--accent-rail-*` classes
+  — named distinctly because `variant: 'accent'` already names badge's
+  single-tone brand-accent fill, which predates and is unrelated to this token
+  group. Brings `spectre-ui` to full utilization of the `spectre-tokens` 4.9.0
+  accent-rail contract; only `card` had consumed it prior to this release.
 - `getDropdownClasses`/`getDropdownMenuClasses` `viewport` flag — a third
   menu-width tier alongside the default (trigger width) and `mega` (nearest
   positioned ancestor, typically `sp-nav`, width): `viewport` breaks the menu
-  out to the full browser viewport width via the standard full-bleed
-  breakout technique (`left: 50%; width: 100vw; margin-left: -50vw`), fixing
-  reports of a wide `mega` menu overflowing past the edge of a
-  width-constrained nav. Takes precedence over `mega` if both are set.
-  Requested by Bradley Potts on 2026-09-19.
+  out to the full browser viewport width via the standard full-bleed breakout
+  technique (`left: 50%; width: 100vw; margin-left: -50vw`), fixing reports of a
+  wide `mega` menu overflowing past the edge of a width-constrained nav. Takes
+  precedence over `mega` if both are set. Requested by Bradley Potts on
+  2026-09-19.
 
 ## [5.1.0] - 2026-09-18
 

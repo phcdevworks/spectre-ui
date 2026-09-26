@@ -28,6 +28,15 @@ const TEXT_VARIANTS = {
    */
   onInverse: true,
   onInverseMuted: true,
+  /**
+   * For text inside a card-like `surface.card` container rather than directly
+   * on the page background (`text.onSurface.*`).
+   */
+  onSurface: true,
+  onSurfaceMuted: true,
+  onSurfaceSubtle: true,
+  onSurfaceMeta: true,
+  onSurfaceBrand: true,
 } as const
 
 const TEXT_FAMILIES = {
@@ -85,6 +94,11 @@ export function getTextClasses(opts: TextRecipeOptions = {}): string {
     brand: 'sp-text--brand',
     onInverse: 'sp-text--on-inverse',
     onInverseMuted: 'sp-text--on-inverse-muted',
+    onSurface: 'sp-text--on-surface',
+    onSurfaceMuted: 'sp-text--on-surface-muted',
+    onSurfaceSubtle: 'sp-text--on-surface-subtle',
+    onSurfaceMeta: 'sp-text--on-surface-meta',
+    onSurfaceBrand: 'sp-text--on-surface-brand',
   }
   const variantClass = variantMap[variant]
 

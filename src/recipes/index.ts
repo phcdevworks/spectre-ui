@@ -194,7 +194,8 @@ export {
 export {
   getContainerClasses,
   type ContainerRecipeOptions,
-  type ContainerMaxWidth
+  type ContainerMaxWidth,
+  type ContainerPadding
 } from './container'
 
 export {
@@ -206,7 +207,12 @@ export {
   type StackGap
 } from './stack'
 
-export { getSectionClasses, type SectionRecipeOptions } from './section'
+export {
+  getSectionClasses,
+  type SectionRecipeOptions,
+  type SectionSpacing,
+  type SectionGap
+} from './section'
 
 export { getProseClasses, type ProseRecipeOptions } from './prose'
 
@@ -409,6 +415,19 @@ export {
   type TabsItemRecipeOptions,
   type TabsVariant
 } from './tabs'
+
+export {
+  getDisplayClasses,
+  getLeadClasses,
+  type DisplayRecipeOptions,
+  type DisplayLevel
+} from './display'
+
+export {
+  getHeadingClasses,
+  type HeadingRecipeOptions,
+  type HeadingLevel
+} from './heading'
 
 export {
   getTextClasses,

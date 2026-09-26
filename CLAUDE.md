@@ -30,7 +30,7 @@ Read these files before changing source:
 1. `CLAUDE.md` - primary implementation workflow.
 2. `AGENTS.md` - shared operating model and non-negotiable repo rules.
 3. `ui-contract.manifest.json` - machine-readable public styling contract.
-4. `CODEX.md`, `JULES.md`, or `COPILOT.md` only when coordinating with that
+4. `CODEX.md`, `JULES.md`, `GROK.md`, or `COPILOT.md` only when coordinating with that
    agent's role.
 
 ## Git Access — Denied

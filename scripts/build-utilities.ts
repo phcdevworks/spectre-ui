@@ -37,8 +37,10 @@ const collectBreakpoints = (): Record<string, string> => {
   return breakpoints;
 };
 
+// Hue names may be multi-segment (e.g. `integration-gunmetal`,
+// `phcdevworks-paper`), so everything before the final numeric step is the hue.
 const collectPaletteHues = (): Map<string, string[]> => {
-  const regex = /--sp-color-palette-([a-z]+)-([0-9]+):/g;
+  const regex = /--sp-color-palette-([a-z]+(?:-[a-z]+)*)-([0-9]+):/g;
   const hues = new Map<string, string[]>();
   for (const match of tokensCss.matchAll(regex)) {
     const [, hue, step] = match;
@@ -62,6 +64,23 @@ const collectFontWeights = (): string[] => {
   return [...weights].sort((a, b) => Number(a) - Number(b));
 };
 
+// Raw semantic color scales as opt-in fixed-color utilities (TOKEN_CONTRACT
+// "Semantic Tokens Vs Raw Palette Tokens"). Named `sp-{axis}-color-{scale}-{step}`
+// after the token itself, because palette hues already own
+// `sp-{axis}-neutral-*`, `-indigo-*`, and `-violet-*` with different values.
+const SEMANTIC_COLOR_SCALES = [
+  'brand',
+  'accent',
+  'neutral',
+  'success',
+  'warning',
+  'error',
+  'info',
+  'indigo',
+  'violet',
+] as const;
+const SINGLE_VALUE_COLORS = ['black', 'white'] as const;
+
 const spaceSteps = collectVarSteps('space');
 const aspectRatioSteps = collectVarSteps('aspect-ratio');
 const trackingSteps = collectVarSteps('tracking');
@@ -70,6 +89,14 @@ const shadowSteps = collectVarSteps('shadow');
 const shadowInsetSteps = collectVarSteps('shadow-inset');
 const opacitySteps = collectVarSteps('opacity');
 const zIndexSteps = collectVarSteps('z-index');
+const durationSteps = collectVarSteps('duration');
+const easingSteps = collectVarSteps('easing');
+const borderStyleSteps = collectVarSteps('border-style');
+const borderWidthSteps = collectVarSteps('border-width');
+const iconSteps = collectVarSteps('icon');
+const semanticColorSteps = new Map(
+  SEMANTIC_COLOR_SCALES.map((scale) => [scale, collectVarSteps(`color-${scale}`)]),
+);
 const paletteHues = collectPaletteHues();
 const breakpoints = collectBreakpoints();
 const fontWeights = collectFontWeights();
@@ -162,6 +189,48 @@ const buildPaletteRules = (): string[] => {
   return rules;
 };
 
+const colorAxisRules = (name: string, variable: string): string[] => [
+  rule(`.sp-text-${name}`, [`color: var(${variable});`]),
+  rule(`.sp-bg-${name}`, [`background-color: var(${variable});`]),
+  rule(`.sp-border-${name}`, [`border-color: var(${variable});`]),
+];
+
+const buildSemanticColorRules = (): string[] => [
+  ...[...semanticColorSteps].flatMap(([scale, steps]) =>
+    steps.flatMap((step) =>
+      colorAxisRules(`color-${scale}-${step}`, `--sp-color-${scale}-${step}`),
+    ),
+  ),
+  ...SINGLE_VALUE_COLORS.flatMap((color) => colorAxisRules(color, `--sp-color-${color}`)),
+];
+
+const buildDurationRules = (): string[] =>
+  durationSteps.map((step) =>
+    rule(`.sp-duration-${step}`, [`transition-duration: var(--sp-duration-${step});`]),
+  );
+
+const buildEasingRules = (): string[] =>
+  easingSteps.map((step) =>
+    rule(`.sp-ease-${step}`, [`transition-timing-function: var(--sp-easing-${step});`]),
+  );
+
+// Named border-style-*/border-width-* so they never collide with the
+// existing `.sp-border-none` (border: none) layout utility.
+const buildBorderStyleRules = (): string[] =>
+  borderStyleSteps.map((step) =>
+    rule(`.sp-border-style-${step}`, [`border-style: var(--sp-border-style-${step});`]),
+  );
+
+const buildBorderWidthRules = (): string[] =>
+  borderWidthSteps.map((step) =>
+    rule(`.sp-border-width-${step}`, [`border-width: var(--sp-border-width-${step});`]),
+  );
+
+const buildIconSizeRules = (): string[] =>
+  iconSteps.map((step) =>
+    rule(`.sp-icon-${step}`, [`width: var(--sp-icon-${step});`, `height: var(--sp-icon-${step});`]),
+  );
+
 const buildAspectRatioRules = (): string[] =>
   aspectRatioSteps.map((step) =>
     rule(`.sp-aspect-${step}`, [`aspect-ratio: var(--sp-aspect-ratio-${step});`]),
@@ -200,12 +269,18 @@ sections.push(buildBaseSpacingRules().join('\n\n'));
 sections.push(buildAspectRatioRules().join('\n\n'));
 sections.push(buildTrackingRules().join('\n\n'));
 sections.push(buildPaletteRules().join('\n\n'));
+sections.push(buildSemanticColorRules().join('\n\n'));
 sections.push(buildRadiusRules().join('\n\n'));
 sections.push(buildShadowRules().join('\n\n'));
 sections.push(buildShadowInsetRules().join('\n\n'));
 sections.push(buildOpacityRules().join('\n\n'));
 sections.push(buildZIndexRules().join('\n\n'));
 sections.push(buildFontWeightRules().join('\n\n'));
+sections.push(buildDurationRules().join('\n\n'));
+sections.push(buildEasingRules().join('\n\n'));
+sections.push(buildBorderStyleRules().join('\n\n'));
+sections.push(buildBorderWidthRules().join('\n\n'));
+sections.push(buildIconSizeRules().join('\n\n'));
 
 for (const breakpoint of RESPONSIVE_BREAKPOINT_ORDER) {
   sections.push(buildResponsiveSpacingBlock(breakpoint));
@@ -225,11 +300,13 @@ console.log(
   `Generated ${outputPath.replace(`${projectRoot}/`, '')}: ` +
     `${spaceSteps.length} space steps, ${aspectRatioSteps.length} aspect-ratio steps, ` +
     `${trackingSteps.length} tracking steps, ` +
-    `${paletteHues.size} palette hues, ` +
+    `${paletteHues.size} palette hues, ${SEMANTIC_COLOR_SCALES.length} semantic color scales, ` +
     `${radiusSteps.length} radius steps, ${shadowSteps.length} shadow steps, ` +
     `${shadowInsetSteps.length} inset shadow steps, ` +
     `${opacitySteps.length} opacity roles, ${zIndexSteps.length} z-index roles, ` +
-    `${fontWeights.length} font weights, ` +
+    `${fontWeights.length} font weights, ${durationSteps.length} durations, ` +
+    `${easingSteps.length} easings, ${borderStyleSteps.length} border styles, ` +
+    `${borderWidthSteps.length} border widths, ${iconSteps.length} icon sizes, ` +
     `${LAYOUT_UTILITIES.length + AUTO_MARGIN_UTILITIES.length} layout utilities, ` +
     `${RESPONSIVE_BREAKPOINT_ORDER.length} responsive breakpoints.`,
 );

@@ -26,9 +26,20 @@ describe('button warning/link/light/dark variants', () => {
     }
   })
 
-  it('keeps the link variant background transparent on hover', () => {
+  it('sources every link state background from its published token', () => {
+    for (const state of ['hover', 'active', 'disabled']) {
+      expect(componentsCss).toContain(
+        `--sp-component-button-link-bg-${state}: var(--sp-button-link-bg${state});`
+      )
+    }
+  })
+
+  it('splits native focus-visible from the recipe-forced focus ring', () => {
+    expect(componentsCss).toContain(
+      '--sp-component-button-primary-focus-ring: var(--sp-button-primary-focusring);'
+    )
     expect(componentsCss).toMatch(
-      /\.sp-btn--link:hover \{\s*background-color: var\(--sp-component-button-link-bg\);/
+      /\.sp-btn--primary\.sp-btn--focus,\s*\.sp-btn--primary\.is-focus \{\s*box-shadow: [^;]*--sp-component-button-primary-focus-ring\);/
     )
   })
 })
