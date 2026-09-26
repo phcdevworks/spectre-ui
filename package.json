@@ -36,7 +36,7 @@
     "npm": ">=10.0.0"
   },
   "type": "module",
-  "packageManager": "npm@12.0.2",
+  "packageManager": "npm@12.1.0",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -95,13 +95,13 @@
     "typescript": "^5.0 || ^6.0 || ^7.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^4.9.0"
+    "@phcdevworks/spectre-tokens": "^4.10.0"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^1.2.0",
-    "@types/node": "^26.6.2",
-    "@typescript-eslint/eslint-plugin": "^8.70.0",
-    "@typescript-eslint/parser": "^8.70.0",
+    "@types/node": "^26.6.3",
+    "@typescript-eslint/eslint-plugin": "^8.70.1",
+    "@typescript-eslint/parser": "^8.70.1",
     "@typescript/native": "npm:typescript@^7.0.2",
     "autoprefixer": "^10.6.1",
     "eslint": "^10.11.0",
@@ -109,12 +109,12 @@
     "postcss": "^8.5.28",
     "postcss-cli": "^12.0.0",
     "postcss-import": "^17.0.0",
-    "prettier": "^3.9.8",
+    "prettier": "^3.9.9",
     "tsup": "^8.5.1",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.70.0",
-    "vite": "^8.3.0",
-    "vitest": "^5.0.1"
+    "typescript-eslint": "^8.70.1",
+    "vite": "^8.3.1",
+    "vitest": "^5.0.2"
   },
   "cSpell.words": [
     "phcdevworks"

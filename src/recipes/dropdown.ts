@@ -136,7 +136,10 @@ export function getDropdownMenuClasses(
 }
 
 export interface DropdownItemRecipeOptions {
+  /** Keyboard-navigation highlight. */
   active?: boolean
+  /** The checked/current choice — a persistent highlight distinct from `active`. */
+  selected?: boolean
   disabled?: boolean
   hovered?: boolean
   focused?: boolean
@@ -147,6 +150,7 @@ export function getDropdownItemClasses(
 ): string {
   const {
     active = false,
+    selected = false,
     disabled = false,
     hovered = false,
     focused = false,
@@ -155,8 +159,19 @@ export function getDropdownItemClasses(
   return cx(
     'sp-dropdown__item',
     active && 'sp-dropdown__item--active',
+    selected && 'sp-dropdown__item--selected',
     disabled && 'sp-dropdown__item--disabled',
     hovered && 'sp-dropdown__item--hover is-hover',
     focused && 'sp-dropdown__item--focus is-focus'
   )
+}
+
+/** Non-interactive group label inside a dropdown menu. */
+export function getDropdownHeaderClasses(): string {
+  return 'sp-dropdown__header'
+}
+
+/** Horizontal rule separating dropdown item groups. */
+export function getDropdownDividerClasses(): string {
+  return 'sp-dropdown__divider'
 }

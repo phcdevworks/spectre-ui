@@ -57,7 +57,11 @@ const ENTRYPOINT_CONTRACTS = [
     // Raised again 2026-09-18 (base.css grew to 54649 bytes) when the
     // spectre-tokens dependency range was bumped to ^4.9.0 — an unrelated,
     // already-published dependency update, not a regression here.
-    maxBytes: 54800
+    // Raised again 2026-09-25 (base.css grew to 72337 bytes) when the
+    // spectre-tokens dependency range was bumped to ^4.10.0 — the
+    // Bootstrap-scale component inventory token contracts, entirely token
+    // growth in the standalone token block, not a regression here.
+    maxBytes: 72500
   },
   {
     fileName: 'components.css',
@@ -112,8 +116,16 @@ const ENTRYPOINT_CONTRACTS = [
     // `viewport` flag — a third menu-width tier that breaks the menu out to
     // the full browser viewport width, fixing a wide `mega` menu overflowing
     // past a width-constrained nav. A deliberate, scoped increase, not a
-    // regression.
-    maxBytes: 181600
+    // regression. Raised again 2026-09-25 (components.css grew to 264080
+    // bytes): ~17.7 KB from the spectre-tokens ^4.10.0 bump, the rest from
+    // the Bootstrap-scale component inventory recipes (tabs, accordion,
+    // breadcrumb, list group, offcanvas, carousel, table, pagination,
+    // stepper, popover, progress, switch, range, file input, input group,
+    // datepicker/day, external-auth button, choice card) and the button/
+    // badge/alert/spinner/dropdown/toast variant expansion (TODO.md
+    // "Requested by Downstream" / "Bootstrap-scale component inventory
+    // expansion"). A deliberate, scoped increase, not a regression.
+    maxBytes: 264300
   },
   {
     fileName: 'utilities.css',
@@ -191,9 +203,22 @@ const ENTRYPOINT_CONTRACTS = [
     // bytes) when the spectre-tokens dependency range was bumped to ^4.9.0
     // — an unrelated, already-published dependency update to the
     // standalone token block this bundle embeds, not a regression here.
-    maxBytes: 363900
+    // Raised again 2026-09-25 (utilities.css grew to 382686 bytes): ~17.7 KB
+    // from the spectre-tokens ^4.10.0 bump to the standalone token block,
+    // plus the .sp-prose code/code-block/mark/hr rules sourced from the new
+    // component.prose contract. A deliberate, scoped increase, not a
+    // regression.
+    maxBytes: 382900
   }
 ] as const
+
+// A marker must not be the tail of a longer identifier, so the base bundle's
+// `body {` rule does not collide with a BEM element such as
+// `.sp-offcanvas__body {`.
+const buildMarkerMatcher = (marker: string): RegExp =>
+  new RegExp(
+    String.raw`(?<![\w-])${marker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`
+  )
 
 const getEntryPointRules = (fileName: string) =>
   postcss.parse(readDistCss(fileName), { from: path.join(distDir, fileName) })
@@ -246,7 +271,7 @@ describe('dist CSS entrypoints', () => {
           expect(
             css,
             `${fileName} leaked cross-bundle marker: ${marker}`
-          ).not.toContain(marker)
+          ).not.toMatch(buildMarkerMatcher(marker))
         })
       }
     )

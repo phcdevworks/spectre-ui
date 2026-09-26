@@ -7,6 +7,7 @@ const ALERT_VARIANTS = {
   warning: true,
   danger: true,
   neutral: true,
+  brand: true,
 } as const
 
 const ALERT_SIZES = {
@@ -22,6 +23,8 @@ export interface AlertRecipeOptions {
   variant?: AlertVariant
   size?: AlertSize
   dismissed?: boolean
+  /** Reserves room for a `getAlertDismissClasses()` close button in the corner. */
+  dismissible?: boolean
   fullWidth?: boolean
   interactive?: boolean
   hovered?: boolean
@@ -36,6 +39,7 @@ export function getAlertClasses(opts: AlertRecipeOptions = {}): string {
     variant: variantInput,
     size: sizeInput,
     dismissed = false,
+    dismissible = false,
     fullWidth = false,
     interactive = false,
     hovered = false,
@@ -64,6 +68,7 @@ export function getAlertClasses(opts: AlertRecipeOptions = {}): string {
     `sp-alert--${variant}`,
     `sp-alert--${size}`,
     dismissed && 'sp-alert--dismissed',
+    dismissible && 'sp-alert--dismissible',
     fullWidth && 'sp-alert--full',
     interactive && 'sp-alert--interactive',
     hovered && 'sp-alert--hover is-hover',
@@ -72,4 +77,17 @@ export function getAlertClasses(opts: AlertRecipeOptions = {}): string {
     disabled && 'sp-alert--disabled',
     loading && 'sp-alert--loading'
   )
+}
+
+/**
+ * Leading icon slot. Its color follows the parent alert's variant through the
+ * `component.alert.<role>.icon` token.
+ */
+export function getAlertIconClasses(): string {
+  return 'sp-alert__icon'
+}
+
+/** Close button for a `dismissible` alert. */
+export function getAlertDismissClasses(): string {
+  return 'sp-alert__dismiss'
 }

@@ -191,11 +191,53 @@
     margin-top: var(--sp-space-4);
   }
 
+  /* Blockquote, code, highlight, and rule colors come from the
+     component.prose token contract (spectre-tokens 4.10.0). */
   .sp-prose blockquote {
     margin: 0;
     padding-inline-start: var(--sp-space-16);
-    border-inline-start: var(--sp-border-width-thick) solid var(--sp-surface-divider);
-    color: var(--sp-text-on-page-muted);
+    border-inline-start: var(--sp-border-width-thick) solid var(--sp-prose-blockquote-border);
+    color: var(--sp-prose-blockquote-text);
+  }
+
+  .sp-prose :not(pre) > code {
+    padding: var(--sp-space-2) var(--sp-space-4);
+    border-radius: var(--sp-radius-sm);
+    background-color: var(--sp-prose-code-bg);
+    color: var(--sp-prose-code-text);
+    font-family: var(--sp-font-family-mono);
+    font-size: var(--sp-font-sm-size);
+  }
+
+  .sp-prose pre {
+    margin-inline: 0;
+    padding: var(--sp-space-16);
+    overflow-x: auto;
+    border: var(--sp-border-width-base) solid var(--sp-prose-code-block-border);
+    border-radius: var(--sp-radius-md);
+    background-color: var(--sp-prose-code-block-bg);
+    color: var(--sp-prose-code-block-text);
+    font-family: var(--sp-font-family-mono);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-prose pre code {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  .sp-prose mark {
+    padding-inline: var(--sp-space-2);
+    border-radius: var(--sp-radius-sm);
+    background-color: var(--sp-prose-mark-bg);
+    color: var(--sp-prose-mark-text);
+  }
+
+  .sp-prose hr {
+    height: 0;
+    border: 0;
+    border-top: var(--sp-border-width-base) solid var(--sp-prose-hr);
   }
 
   .sp-grid-cols-1 {

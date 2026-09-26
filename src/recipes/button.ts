@@ -10,6 +10,10 @@ const BUTTON_VARIANTS = {
   cta: true,
   accent: true,
   inverse: true,
+  warning: true,
+  link: true,
+  light: true,
+  dark: true,
 } as const;
 
 const BUTTON_SIZES = {
@@ -78,6 +82,10 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     cta: "sp-btn--cta",
     accent: "sp-btn--accent",
     inverse: "sp-btn--inverse",
+    warning: "sp-btn--warning",
+    link: "sp-btn--link",
+    light: "sp-btn--light",
+    dark: "sp-btn--dark",
   };
   const variantClass = variantMap[variant];
 

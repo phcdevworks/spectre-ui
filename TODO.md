@@ -7,10 +7,6 @@ changelog (e.g. why the responsive-variant separator was chosen, or why a given
 evidence gate was dropped rather than left open) lives in git history for the
 commits that made those calls.
 
-## Requested by Downstream
-
-No open item.
-
 ## Explicitly Out of Scope
 
 - Do not author new design tokens or semantic visual meaning here.

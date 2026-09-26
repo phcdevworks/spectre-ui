@@ -6,6 +6,90 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+**Release Title:** Bootstrap-Scale Component Inventory
+
+Contract change type: semantic change
+
+### Added
+
+- Bootstrap-scale component inventory recipes and CSS (TODO.md "Requested by
+  Downstream"), each sourced from its own mode-aware `component.*` contract in
+  `spectre-tokens` 4.10.0, with no local color values or dark-mode overrides:
+  - `getTabsClasses` (`line`/`pill` variants, `vertical`, `fullWidth`) with
+    `getTabsListClasses`, `getTabsItemClasses`, `getTabsPanelClasses`.
+  - `getAccordionClasses` (`flush`) with item/header/icon/panel helpers;
+    expands from an `expanded` flag or a native `<details open>` item.
+  - `getBreadcrumbClasses` with item (`current`), link, and separator
+    helpers; a built-in `/` separator that `customSeparator` suppresses.
+  - `getListGroupClasses` (`flush`, `horizontal`, `accent`/`accentColor`
+    rail from `component.listGroup.accent`) with item (`interactive`,
+    `active`, `selected`, `disabled`), heading, and text helpers.
+  - `getOffcanvasClasses` (`start`/`end`/`top`/`bottom` placement, `open`)
+    with backdrop and header/body/footer region helpers.
+  - `getCarouselClasses` (`fade`) with viewport, slide, control (`prev`/
+    `next`), indicators, indicator, and caption helpers. The viewport is a CSS
+    scroll-snap track, so it works without script.
+  - `getTableClasses` (`sm`/`md`, `striped`, `hoverable`, `bordered`) with
+    `getTableWrapperClasses` and `getTableRowClasses` (contextual
+    `neutral`/`info`/`success`/`warning`/`danger` rows, `selected`).
+  - `getPaginationClasses` (`sm`/`md`/`lg`) with item (`active`,
+    `disabled`) and ellipsis helpers.
+  - `getStepperClasses` (`horizontal`/`vertical`) with step
+    (`pending`/`active`/`done`), indicator, and label helpers; connectors
+    are drawn automatically between steps.
+  - `getPopoverClasses` (`top`/`bottom`/`left`/`right`, `open`) with header,
+    body, and arrow helpers.
+  - `getProgressClasses` (`sm`/`md`/`lg`) with `getProgressBarClasses` (six
+    indicator roles, `indeterminate`) and `getProgressLabelClasses`.
+  - `getSwitchClasses` (`sm`/`md`/`lg`) and `getRangeClasses` for native
+    checkbox-switch and range inputs.
+  - `getFileInputClasses` (sizes, `invalid`/`success` states), styling the
+    native `::file-selector-button`.
+  - `getInputGroupClasses` and `getInputGroupAddonClasses`, which join
+    addons, inputs, selects, and buttons into a single control.
+  - `getDatepickerClasses` with header/grid/weekday helpers, and a separate
+    `getDayClasses` (`selected`, `today`, `outsideMonth`, `disabled`) that
+    other calendar-style surfaces can reuse.
+  - `getExternalAuthButtonClasses` with an icon slot: one neutral treatment
+    for every third-party sign-in provider.
+  - `getChoiceCardClasses`, a whole-card radio target that also follows a
+    wrapped native `:checked`/`:disabled` input via `:has()`.
+- New variants and flags on existing recipes for the 4.10.0 contract
+  extensions:
+  - `getButtonClasses` gains `warning`, `link`, `light`, and `dark`.
+  - `getBadgeClasses` gains `brand` and a `dot` notification-dot mode
+    ringed by `component.badge.dotBorder`.
+  - `getAlertClasses` gains `brand` and `dismissible`, plus
+    `getAlertIconClasses` and `getAlertDismissClasses`.
+  - `getSpinnerClasses` gains `inverse`.
+  - `getToastClasses`/`getToastIconClasses` gain `neutral`.
+  - `getDropdownItemClasses` gains `selected`, plus
+    `getDropdownHeaderClasses` and `getDropdownDividerClasses`.
+- `.sp-prose` styles inline code, code blocks, `mark`, and `hr` from the new
+  `component.prose` contract.
+
+### Changed
+
+- `.sp-alert--*` colors now come from the dedicated `component.alert` token
+  contract instead of aliasing badge tokens, and the hand-maintained
+  dark-mode alert overrides are removed because the tokens are mode-aware.
+- `.sp-spinner--*` semantic arcs (`primary`, `secondary`, `neutral`, `info`,
+  `success`, `warning`, `danger`) now come from `component.loadingIndicator`
+  instead of raw palette steps. Their dark-mode overrides are removed.
+  `accent`/`cta` are unchanged.
+- `.sp-dropdown__item--disabled` now uses the
+  `component.dropdown.item.disabledText` color instead of a generic opacity
+  fade.
+- `.sp-prose blockquote` uses `component.prose.blockquote` colors.
+- The `@phcdevworks/spectre-tokens` dependency is now `^4.10.0`.
+
+### Known gaps
+
+- `typography.display.*` and `typography.lead` exist as JS token values in
+  `spectre-tokens` 4.10.0 but not as CSS custom properties, so there is no
+  display or lead text recipe yet. Tracked upstream in
+  `spectre-tokens/TODO.md`.
+
 ## [5.2.0] - 2026-09-20
 
 **Release Title:** Expanded Accent Rails and Viewport Dropdowns

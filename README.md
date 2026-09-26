@@ -240,42 +240,60 @@ Boolean options are caller-owned: omission adds no corresponding modifier class,
 property defaults and pass resolved boolean values explicitly. Non-boolean
 recipe axes may retain documented visual fallbacks.
 
-| Recipe      | Function                | Variants                                                                                                       | Sizes                                | Common boolean flags                                                                                                                                                                                         |
-| ----------- | ----------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Button      | `getButtonClasses`      | `primary` `secondary` `ghost` `danger` `success` `cta` `accent` `inverse`                                      | `sm` `md` `lg`                       | `disabled` `loading` `fullWidth` `pill` `iconOnly` `compact`                                                                                                                                                 |
-| Badge       | `getBadgeClasses`       | `primary` `secondary` `success` `warning` `danger` `neutral` `info` `ghost` `outline` `accent` `cta` `inverse` | `sm` `md` `lg`                       | `interactive` `disabled` `loading` `fullWidth`, `accentRail`: `top`\|`right`\|`bottom`\|`left`, `accentRailColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                        |
-| Card        | `getCardClasses`        | `elevated` `flat` `outline` `ghost`                                                                            | `padded`: `sm` `md` `lg`             | `interactive` `padded` (also accepts a size) `fullHeight` `disabled` `loading`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta` |
-| Card bleed  | `getCardBleedClasses`   | —                                                                                                              | `padded`: `sm` `md` `lg`             | `edges`: single edge, an array, or `'all'`                                                                                                                                                                   |
-| Input       | `getInputClasses`       | —                                                                                                              | `sm` `md` `lg`                       | `disabled` `loading` `fullWidth` `pill`                                                                                                                                                                      |
-| Input state | `getInputClasses`       | `state`: `default` `error` `success` `disabled` `loading`                                                      | —                                    | —                                                                                                                                                                                                            |
-| IconBox     | `getIconBoxClasses`     | `primary` `secondary` `success` `warning` `danger` `info` `neutral` `ghost` `accent` `cta` `outline`           | `xs` `sm` `md` `lg`                  | `interactive` `disabled` `loading` `pill` `fullWidth`                                                                                                                                                        |
-| PricingCard | `getPricingCardClasses` | —                                                                                                              | —                                    | `featured` `interactive` `disabled` `loading` `fullHeight`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                    |
-| Rating      | `getRatingClasses`      | —                                                                                                              | `sm` `md` `lg`                       | `interactive` `disabled` `loading` `pill` `fullWidth`                                                                                                                                                        |
-| Testimonial | `getTestimonialClasses` | `elevated` `flat` `outline` `ghost`                                                                            | —                                    | `interactive` `disabled` `loading` `fullHeight`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                                |
-| Alert       | `getAlertClasses`       | `info` `success` `warning` `danger` `neutral`                                                                  | `sm` `md` `lg`                       | `dismissed`                                                                                                                                                                                                  |
-| Avatar      | `getAvatarClasses`      | —                                                                                                              | `xs` `sm` `md` `lg` `xl`             | shape: `circle` `square`                                                                                                                                                                                     |
-| Tag         | `getTagClasses`         | `default` `primary` `secondary` `success` `warning` `danger` `info` `neutral` `accent` `cta` `outline` `ghost` | `sm` `md` `lg`                       | `dismissible` `selected` `disabled` `loading` `interactive` `fullWidth`                                                                                                                                      |
-| Spinner     | `getSpinnerClasses`     | `primary` `secondary` `success` `warning` `danger` `info` `neutral` `accent` `cta`                             | `sm` `md` `lg`                       | `disabled` `loading`                                                                                                                                                                                         |
-| Nav         | `getNavClasses`         | —                                                                                                              | —                                    | `bordered` `sticky` `fullWidth` `align: start\|center\|end`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                    |
-| Toast       | `getToastClasses`       | `info` `success` `warning` `danger`                                                                            | —                                    | `dismissed` `fullWidth`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                                                        |
-| Tooltip     | `getTooltipClasses`     | placement: `top` `bottom` `left` `right`                                                                       | —                                    | `visible`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                                                                      |
-| Dropdown    | `getDropdownClasses`    | menu placement: `bottom-start` `bottom-end` `top-start` `top-end`                                              | —                                    | `fullWidth` `mega` `viewport`, item: `active` `disabled`, menu `accent`: `top`\|`right`\|`bottom`\|`left`, menu `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`             |
-| Modal       | `getModalClasses`       | —                                                                                                              | —                                    | `open` `fullWidth`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                                                             |
-| Container   | `getContainerClasses`   | maxWidth: `prose` `wide`                                                                                       | —                                    | —                                                                                                                                                                                                            |
-| Stack       | `getStackClasses`       | direction: `vertical` `horizontal`, basis: `sidebar`, align: `center` `stretch`                                | —                                    | —                                                                                                                                                                                                            |
-| Section     | `getSectionClasses`     | —                                                                                                              | —                                    | —                                                                                                                                                                                                            |
-| Prose       | `getProseClasses`       | —                                                                                                              | —                                    | —                                                                                                                                                                                                            |
-| Grid        | `getGridClasses`        | columns: `1` `2` `3` `4` `6` `12` `auto`                                                                       | gap/columnGap/rowGap: `sm` `md` `lg` | `span`/`offset`/`rowSpan`/`rowOffset`/`order`: `1`–`12`/`0`–`11`/`first`\|`last`\|`none`\|`1`–`12`, per-breakpoint `{ base, md, lg }`                                                                        |
-| Sidebar     | `getSidebarClasses`     | —                                                                                                              | —                                    | `bordered`                                                                                                                                                                                                   |
-| Footer      | `getFooterClasses`      | —                                                                                                              | —                                    | `bordered` `fullWidth`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                                                         |
-| Checkbox    | `getCheckboxClasses`    | —                                                                                                              | —                                    | `checked` `disabled`                                                                                                                                                                                         |
-| Radio       | `getRadioClasses`       | —                                                                                                              | —                                    | `checked` `disabled`                                                                                                                                                                                         |
-| Select      | `getSelectClasses`      | size: `sm` `md` `lg`, state: `default` `invalid` `success`                                                     | —                                    | `fullWidth` `pill` `disabled` `focused` `loading`                                                                                                                                                            |
-| Textarea    | `getTextareaClasses`    | size: `sm` `md` `lg`, state: `default` `invalid` `success`                                                     | —                                    | `fullWidth` `pill` `disabled` `focused` `loading`                                                                                                                                                            |
-| Fieldset    | `getFieldsetClasses`    | —                                                                                                              | —                                    | `disabled`                                                                                                                                                                                                   |
-| Label       | `getLabelClasses`       | —                                                                                                              | —                                    | `disabled` `required`                                                                                                                                                                                        |
-| Text        | `getTextClasses`        | color: `default` `muted` `subtle` `meta` `brand` `onInverse` `onInverseMuted`, family: `sans` `serif` `mono`   | `xs`–`6xl`                           | —                                                                                                                                                                                                            |
-| Text state  | `getTextClasses`        | `transform`: `none` `uppercase` `lowercase` `capitalize`                                                       | —                                    | —                                                                                                                                                                                                            |
+| Recipe               | Function                       | Variants                                                                                                               | Sizes                                | Common boolean flags                                                                                                                                                                                         |
+| -------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Button               | `getButtonClasses`             | `primary` `secondary` `ghost` `danger` `success` `cta` `accent` `inverse` `warning` `link` `light` `dark`              | `sm` `md` `lg`                       | `disabled` `loading` `fullWidth` `pill` `iconOnly` `compact`                                                                                                                                                 |
+| Badge                | `getBadgeClasses`              | `primary` `secondary` `success` `warning` `danger` `neutral` `info` `ghost` `outline` `accent` `cta` `inverse` `brand` | `sm` `md` `lg`                       | `interactive` `dot` `disabled` `loading` `fullWidth`, `accentRail`: `top`\|`right`\|`bottom`\|`left`, `accentRailColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                   |
+| Card                 | `getCardClasses`               | `elevated` `flat` `outline` `ghost`                                                                                    | `padded`: `sm` `md` `lg`             | `interactive` `padded` (also accepts a size) `fullHeight` `disabled` `loading`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta` |
+| Card bleed           | `getCardBleedClasses`          | —                                                                                                                      | `padded`: `sm` `md` `lg`             | `edges`: single edge, an array, or `'all'`                                                                                                                                                                   |
+| Input                | `getInputClasses`              | —                                                                                                                      | `sm` `md` `lg`                       | `disabled` `loading` `fullWidth` `pill`                                                                                                                                                                      |
+| Input state          | `getInputClasses`              | `state`: `default` `error` `success` `disabled` `loading`                                                              | —                                    | —                                                                                                                                                                                                            |
+| IconBox              | `getIconBoxClasses`            | `primary` `secondary` `success` `warning` `danger` `info` `neutral` `ghost` `accent` `cta` `outline`                   | `xs` `sm` `md` `lg`                  | `interactive` `disabled` `loading` `pill` `fullWidth`                                                                                                                                                        |
+| PricingCard          | `getPricingCardClasses`        | —                                                                                                                      | —                                    | `featured` `interactive` `disabled` `loading` `fullHeight`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                     |
+| Rating               | `getRatingClasses`             | —                                                                                                                      | `sm` `md` `lg`                       | `interactive` `disabled` `loading` `pill` `fullWidth`                                                                                                                                                        |
+| Testimonial          | `getTestimonialClasses`        | `elevated` `flat` `outline` `ghost`                                                                                    | —                                    | `interactive` `disabled` `loading` `fullHeight`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                                |
+| Alert                | `getAlertClasses`              | `info` `success` `warning` `danger` `neutral` `brand`                                                                  | `sm` `md` `lg`                       | `dismissed` `dismissible`                                                                                                                                                                                    |
+| Avatar               | `getAvatarClasses`             | —                                                                                                                      | `xs` `sm` `md` `lg` `xl`             | shape: `circle` `square`                                                                                                                                                                                     |
+| Tag                  | `getTagClasses`                | `default` `primary` `secondary` `success` `warning` `danger` `info` `neutral` `accent` `cta` `outline` `ghost`         | `sm` `md` `lg`                       | `dismissible` `selected` `disabled` `loading` `interactive` `fullWidth`                                                                                                                                      |
+| Spinner              | `getSpinnerClasses`            | `primary` `secondary` `success` `warning` `danger` `info` `neutral` `accent` `cta` `inverse`                           | `sm` `md` `lg`                       | `disabled` `loading`                                                                                                                                                                                         |
+| Nav                  | `getNavClasses`                | —                                                                                                                      | —                                    | `bordered` `sticky` `fullWidth` `align: start\|center\|end`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                    |
+| Toast                | `getToastClasses`              | `info` `success` `warning` `danger` `neutral`                                                                          | —                                    | `dismissed` `fullWidth`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                                                        |
+| Tooltip              | `getTooltipClasses`            | placement: `top` `bottom` `left` `right`                                                                               | —                                    | `visible`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                                                                      |
+| Dropdown             | `getDropdownClasses`           | menu placement: `bottom-start` `bottom-end` `top-start` `top-end`                                                      | —                                    | `fullWidth` `mega` `viewport`, item: `active` `selected` `disabled`, menu `accent`: `top`\|`right`\|`bottom`\|`left`, menu `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`  |
+| Modal                | `getModalClasses`              | —                                                                                                                      | —                                    | `open` `fullWidth`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                                                             |
+| Container            | `getContainerClasses`          | maxWidth: `prose` `wide`                                                                                               | —                                    | —                                                                                                                                                                                                            |
+| Stack                | `getStackClasses`              | direction: `vertical` `horizontal`, basis: `sidebar`, align: `center` `stretch`                                        | —                                    | —                                                                                                                                                                                                            |
+| Section              | `getSectionClasses`            | —                                                                                                                      | —                                    | —                                                                                                                                                                                                            |
+| Prose                | `getProseClasses`              | —                                                                                                                      | —                                    | —                                                                                                                                                                                                            |
+| Grid                 | `getGridClasses`               | columns: `1` `2` `3` `4` `6` `12` `auto`                                                                               | gap/columnGap/rowGap: `sm` `md` `lg` | `span`/`offset`/`rowSpan`/`rowOffset`/`order`: `1`–`12`/`0`–`11`/`first`\|`last`\|`none`\|`1`–`12`, per-breakpoint `{ base, md, lg }`                                                                        |
+| Sidebar              | `getSidebarClasses`            | —                                                                                                                      | —                                    | `bordered`                                                                                                                                                                                                   |
+| Footer               | `getFooterClasses`             | —                                                                                                                      | —                                    | `bordered` `fullWidth`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                                                         |
+| Checkbox             | `getCheckboxClasses`           | —                                                                                                                      | —                                    | `checked` `disabled`                                                                                                                                                                                         |
+| Radio                | `getRadioClasses`              | —                                                                                                                      | —                                    | `checked` `disabled`                                                                                                                                                                                         |
+| Select               | `getSelectClasses`             | size: `sm` `md` `lg`, state: `default` `invalid` `success`                                                             | —                                    | `fullWidth` `pill` `disabled` `focused` `loading`                                                                                                                                                            |
+| Textarea             | `getTextareaClasses`           | size: `sm` `md` `lg`, state: `default` `invalid` `success`                                                             | —                                    | `fullWidth` `pill` `disabled` `focused` `loading`                                                                                                                                                            |
+| Fieldset             | `getFieldsetClasses`           | —                                                                                                                      | —                                    | `disabled`                                                                                                                                                                                                   |
+| Label                | `getLabelClasses`              | —                                                                                                                      | —                                    | `disabled` `required`                                                                                                                                                                                        |
+| Text                 | `getTextClasses`               | color: `default` `muted` `subtle` `meta` `brand` `onInverse` `onInverseMuted`, family: `sans` `serif` `mono`           | `xs`–`6xl`                           | —                                                                                                                                                                                                            |
+| Text state           | `getTextClasses`               | `transform`: `none` `uppercase` `lowercase` `capitalize`                                                               | —                                    | —                                                                                                                                                                                                            |
+| Tabs                 | `getTabsClasses`               | `line` `pill`                                                                                                          | —                                    | `vertical` `fullWidth`, item: `active` `disabled`                                                                                                                                                            |
+| Accordion            | `getAccordionClasses`          | —                                                                                                                      | —                                    | `flush`, item/header/icon/panel: `expanded`; native `<details open>` also expands                                                                                                                            |
+| Breadcrumb           | `getBreadcrumbClasses`         | —                                                                                                                      | —                                    | `customSeparator`, item: `current`                                                                                                                                                                           |
+| List group           | `getListGroupClasses`          | —                                                                                                                      | —                                    | `flush` `horizontal`, item: `interactive` `active` `selected` `disabled`, `accent`/`accentColor`                                                                                                             |
+| Offcanvas            | `getOffcanvasClasses`          | placement: `start` `end` `top` `bottom`                                                                                | —                                    | `open` (panel and backdrop)                                                                                                                                                                                  |
+| Carousel             | `getCarouselClasses`           | control direction: `prev` `next`                                                                                       | —                                    | `fade`, slide/indicator: `active`                                                                                                                                                                            |
+| Table                | `getTableClasses`              | row variant: `neutral` `info` `success` `warning` `danger`                                                             | `sm` `md`                            | `striped` `hoverable` `bordered`, row: `selected`                                                                                                                                                            |
+| Pagination           | `getPaginationClasses`         | —                                                                                                                      | `sm` `md` `lg`                       | item: `active` `disabled`                                                                                                                                                                                    |
+| Stepper              | `getStepperClasses`            | orientation: `horizontal` `vertical`, step state: `pending` `active` `done`                                            | —                                    | —                                                                                                                                                                                                            |
+| Popover              | `getPopoverClasses`            | placement: `top` `bottom` `left` `right`                                                                               | —                                    | `open`                                                                                                                                                                                                       |
+| Progress             | `getProgressClasses`           | bar variant: `brand` `neutral` `info` `success` `warning` `danger`                                                     | `sm` `md` `lg`                       | bar: `indeterminate`                                                                                                                                                                                         |
+| Switch               | `getSwitchClasses`             | —                                                                                                                      | `sm` `md` `lg`                       | `checked` `disabled` `focused` (native `:checked`/`:disabled` also apply)                                                                                                                                    |
+| Range                | `getRangeClasses`              | —                                                                                                                      | —                                    | `disabled` `focused`                                                                                                                                                                                         |
+| File input           | `getFileInputClasses`          | state: `default` `invalid` `success`                                                                                   | `sm` `md` `lg`                       | `fullWidth` `disabled` `focused`                                                                                                                                                                             |
+| Input group          | `getInputGroupClasses`         | —                                                                                                                      | —                                    | `disabled`                                                                                                                                                                                                   |
+| Datepicker           | `getDatepickerClasses`         | —                                                                                                                      | —                                    | day (`getDayClasses`): `selected` `today` `outsideMonth` `disabled`                                                                                                                                          |
+| External auth button | `getExternalAuthButtonClasses` | —                                                                                                                      | —                                    | `fullWidth` `disabled` `loading`                                                                                                                                                                             |
+| Choice card          | `getChoiceCardClasses`         | —                                                                                                                      | —                                    | `selected` `disabled` (a wrapped native input also drives both)                                                                                                                                              |
 
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements). See the full list below.
@@ -294,15 +312,19 @@ getCardClasses({ variant: 'outline', accent: 'left', accentColor: 'danger' })
 The same edge-rail pattern extends to nine more recipe families, each sourced
 from its own `component.<name>.accent` token group (`spectre-tokens` 4.9.0):
 `getTestimonialClasses`, `getPricingCardClasses`, `getNavClasses`,
-`getFooterClasses`, `getModalClasses`, `getToastClasses`,
-`getTooltipClasses`, `getDropdownMenuClasses`, all with the same `accent`
-edge / `accentColor` options as `getCardClasses` above. `getBadgeClasses` uses
-`accentRail`/`accentRailColor` instead, since `variant: 'accent'` already
-names its single-tone brand-accent fill.
+`getFooterClasses`, `getModalClasses`, `getToastClasses`, `getTooltipClasses`,
+`getDropdownMenuClasses`, all with the same `accent` edge / `accentColor`
+options as `getCardClasses` above. `getBadgeClasses` uses
+`accentRail`/`accentRailColor` instead, since `variant: 'accent'` already names
+its single-tone brand-accent fill.
 
 ```ts
 getToastClasses({ variant: 'success', accent: 'left', accentColor: 'brand' })
-getBadgeClasses({ variant: 'outline', accentRail: 'top', accentRailColor: 'cta' })
+getBadgeClasses({
+  variant: 'outline',
+  accentRail: 'top',
+  accentRailColor: 'cta'
+})
 ```
 
 `getCardBleedClasses` lets a child of a padded card (media, a flush internal
@@ -364,14 +386,56 @@ viewport.
 A third `viewport` flag (`getDropdownClasses({ viewport: true })` paired with
 `getDropdownMenuClasses({ viewport: true })`) breaks the menu out to the full
 browser viewport width instead of the trigger's or `mega`'s positioned-ancestor
-width — for a wide menu that would otherwise overflow past a narrow trigger or
-a width-constrained nav. It uses the standard full-bleed breakout technique
+width — for a wide menu that would otherwise overflow past a narrow trigger or a
+width-constrained nav. It uses the standard full-bleed breakout technique
 (`left: 50%; width: 100vw; margin-left: -50vw`), which assumes the menu's
 positioned ancestor is horizontally centered in the viewport (true for a
 centered `sp-container`-based layout); it will not center correctly inside an
 off-center ancestor (e.g. a fixed sidebar layout). `viewport` takes precedence
 over `mega` if both are set — three widening tiers: trigger width (default),
 `mega` (nav width), `viewport` (full browser width).
+
+### Bootstrap-scale component inventory
+
+The component families added against the `spectre-tokens` 4.10.0
+`component.*` contracts follow Bootstrap's range of component _types_; their
+look stays entirely token-driven. Each family reads its colors from its own
+mode-aware token group, so dark mode needs no local overrides.
+
+```ts
+getTabsClasses({ variant: 'pill' }) // 'sp-tabs sp-tabs--pill'
+getTabsItemClasses({ active: true }) // 'sp-tabs__item sp-tabs__item--active is-active'
+getTableClasses({ striped: true, hoverable: true })
+getTableRowClasses({ variant: 'warning' })
+getOffcanvasClasses({ placement: 'end', open: true })
+getStepperStepClasses({ state: 'done' })
+```
+
+A few families need something from the caller that a class string cannot
+carry:
+
+- **Progress** — set the bar's inline `width` to the current value.
+  `indeterminate` animates instead.
+- **Range** — Firefox paints the filled track natively. For WebKit/Blink,
+  mirror the value as a percentage in `--sp-component-range-value` on the input
+  (e.g. `style="--sp-component-range-value: 40%"`).
+- **Carousel** — the viewport is a CSS scroll-snap track and works without
+  script. `fade` stacks the slides and shows the one marked `active`, which
+  the caller toggles.
+- **Popover** — like the tooltip, place it inside a `position: relative`
+  trigger wrapper.
+
+Several families also follow native state, so the matching boolean flag is
+optional: `<details open>` expands an accordion item, `:checked`/`:disabled`
+drive the switch, a wrapped `:checked` input selects a choice card, and
+`aria-current`/`aria-selected` mark the current tab, page, breadcrumb, or day.
+
+`getListGroupClasses` also takes the `accent`/`accentColor` edge-rail options
+described above, sourced from `component.listGroup.accent`.
+
+`typography.display.*` and `typography.lead` are published as JS token values
+but not yet as CSS custom properties, so no display or lead text recipe
+exists yet. `getTextClasses({ size })` covers those sizes in the meantime.
 
 ### Semantic utility classes (no recipe wrapper)
 
@@ -446,32 +510,51 @@ Root constants:
 
 Root recipe functions:
 
+- `getAccordionClasses`
 - `getAlertClasses`
 - `getAvatarClasses`
 - `getBadgeClasses`
+- `getBreadcrumbClasses`
 - `getButtonClasses`
-- `getCardClasses`
 - `getCardBleedClasses`
+- `getCardClasses`
+- `getCarouselClasses`
 - `getCheckboxClasses`
+- `getChoiceCardClasses`
 - `getContainerClasses`
+- `getDatepickerClasses`
+- `getDayClasses`
 - `getDropdownClasses`
+- `getExternalAuthButtonClasses`
 - `getFieldsetClasses`
+- `getFileInputClasses`
 - `getFooterClasses`
 - `getGridClasses`
 - `getIconBoxClasses`
 - `getInputClasses`
+- `getInputGroupClasses`
 - `getLabelClasses`
+- `getListGroupClasses`
 - `getModalClasses`
 - `getNavClasses`
+- `getOffcanvasClasses`
+- `getPaginationClasses`
+- `getPopoverClasses`
 - `getPricingCardClasses`
+- `getProgressClasses`
 - `getProseClasses`
 - `getRadioClasses`
+- `getRangeClasses`
 - `getRatingClasses`
 - `getSectionClasses`
 - `getSelectClasses`
 - `getSidebarClasses`
 - `getSpinnerClasses`
 - `getStackClasses`
+- `getStepperClasses`
+- `getSwitchClasses`
+- `getTableClasses`
+- `getTabsClasses`
 - `getTagClasses`
 - `getTestimonialClasses`
 - `getTextareaClasses`
@@ -481,8 +564,29 @@ Root recipe functions:
 
 Root recipe helper functions:
 
+- `getAccordionHeaderClasses`
+- `getAccordionIconClasses`
+- `getAccordionItemClasses`
+- `getAccordionPanelClasses`
+- `getAlertDismissClasses`
+- `getAlertIconClasses`
+- `getBreadcrumbItemClasses`
+- `getBreadcrumbLinkClasses`
+- `getBreadcrumbSeparatorClasses`
+- `getCarouselCaptionClasses`
+- `getCarouselControlClasses`
+- `getCarouselIndicatorClasses`
+- `getCarouselIndicatorsClasses`
+- `getCarouselSlideClasses`
+- `getCarouselViewportClasses`
+- `getDatepickerGridClasses`
+- `getDatepickerHeaderClasses`
+- `getDatepickerWeekdayClasses`
+- `getDropdownDividerClasses`
+- `getDropdownHeaderClasses`
 - `getDropdownItemClasses`
 - `getDropdownMenuClasses`
+- `getExternalAuthButtonIconClasses`
 - `getFieldsetLegendClasses`
 - `getFooterChipClasses`
 - `getFooterDividerClasses`
@@ -492,16 +596,31 @@ Root recipe helper functions:
 - `getFooterMutedClasses`
 - `getFooterTextClasses`
 - `getInputErrorMessageClasses`
+- `getInputGroupAddonClasses`
 - `getInputHelperTextClasses`
 - `getInputLabelClasses`
 - `getInputWrapperClasses`
+- `getListGroupItemClasses`
+- `getListGroupItemHeadingClasses`
+- `getListGroupItemTextClasses`
 - `getModalOverlayClasses`
 - `getNavLinkClasses`
 - `getNavLinksClasses`
+- `getOffcanvasBackdropClasses`
+- `getOffcanvasBodyClasses`
+- `getOffcanvasFooterClasses`
+- `getOffcanvasHeaderClasses`
+- `getPaginationEllipsisClasses`
+- `getPaginationItemClasses`
+- `getPopoverArrowClasses`
+- `getPopoverBodyClasses`
+- `getPopoverHeaderClasses`
 - `getPricingCardBadgeClasses`
 - `getPricingCardDescriptionClasses`
 - `getPricingCardPriceClasses`
 - `getPricingCardPriceContainerClasses`
+- `getProgressBarClasses`
+- `getProgressLabelClasses`
 - `getRatingStarClasses`
 - `getRatingStarsClasses`
 - `getRatingTextClasses`
@@ -511,6 +630,14 @@ Root recipe helper functions:
 - `getSidebarHeaderClasses`
 - `getSidebarLinkClasses`
 - `getSidebarToggleClasses`
+- `getStepperIndicatorClasses`
+- `getStepperLabelClasses`
+- `getStepperStepClasses`
+- `getTableRowClasses`
+- `getTableWrapperClasses`
+- `getTabsItemClasses`
+- `getTabsListClasses`
+- `getTabsPanelClasses`
 - `getTestimonialAuthorClasses`
 - `getTestimonialAuthorInfoClasses`
 - `getTestimonialAuthorNameClasses`

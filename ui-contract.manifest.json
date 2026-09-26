@@ -167,7 +167,70 @@
       "getTestimonialQuoteClasses",
       "getToastClasses",
       "getToastIconClasses",
-      "getTooltipClasses"
+      "getTooltipClasses",
+      "getAccordionClasses",
+      "getAccordionHeaderClasses",
+      "getAccordionIconClasses",
+      "getAccordionItemClasses",
+      "getAccordionPanelClasses",
+      "getAlertDismissClasses",
+      "getAlertIconClasses",
+      "getBreadcrumbClasses",
+      "getBreadcrumbItemClasses",
+      "getBreadcrumbLinkClasses",
+      "getBreadcrumbSeparatorClasses",
+      "getCarouselCaptionClasses",
+      "getCarouselClasses",
+      "getCarouselControlClasses",
+      "getCarouselIndicatorClasses",
+      "getCarouselIndicatorsClasses",
+      "getCarouselSlideClasses",
+      "getCarouselViewportClasses",
+      "getChoiceCardClasses",
+      "getDatepickerClasses",
+      "getDatepickerGridClasses",
+      "getDatepickerHeaderClasses",
+      "getDatepickerWeekdayClasses",
+      "getDayClasses",
+      "getDropdownDividerClasses",
+      "getDropdownHeaderClasses",
+      "getExternalAuthButtonClasses",
+      "getExternalAuthButtonIconClasses",
+      "getFileInputClasses",
+      "getInputGroupAddonClasses",
+      "getInputGroupClasses",
+      "getListGroupClasses",
+      "getListGroupItemClasses",
+      "getListGroupItemHeadingClasses",
+      "getListGroupItemTextClasses",
+      "getOffcanvasBackdropClasses",
+      "getOffcanvasBodyClasses",
+      "getOffcanvasClasses",
+      "getOffcanvasFooterClasses",
+      "getOffcanvasHeaderClasses",
+      "getPaginationClasses",
+      "getPaginationEllipsisClasses",
+      "getPaginationItemClasses",
+      "getPopoverArrowClasses",
+      "getPopoverBodyClasses",
+      "getPopoverClasses",
+      "getPopoverHeaderClasses",
+      "getProgressBarClasses",
+      "getProgressClasses",
+      "getProgressLabelClasses",
+      "getRangeClasses",
+      "getStepperClasses",
+      "getStepperIndicatorClasses",
+      "getStepperLabelClasses",
+      "getStepperStepClasses",
+      "getSwitchClasses",
+      "getTableClasses",
+      "getTableRowClasses",
+      "getTableWrapperClasses",
+      "getTabsClasses",
+      "getTabsItemClasses",
+      "getTabsListClasses",
+      "getTabsPanelClasses"
     ]
   },
   "recipeFamilies": {
@@ -181,7 +244,11 @@
         "success",
         "cta",
         "accent",
-        "inverse"
+        "inverse",
+        "warning",
+        "link",
+        "light",
+        "dark"
       ],
       "sizes": ["sm", "md", "lg"]
     },
@@ -199,7 +266,8 @@
         "outline",
         "accent",
         "cta",
-        "inverse"
+        "inverse",
+        "brand"
       ],
       "sizes": ["sm", "md", "lg"]
     },
@@ -245,7 +313,7 @@
     },
     "alert": {
       "fn": "getAlertClasses",
-      "variants": ["info", "success", "warning", "danger", "neutral"],
+      "variants": ["info", "success", "warning", "danger", "neutral", "brand"],
       "sizes": ["sm", "md", "lg"]
     },
     "avatar": {
@@ -281,7 +349,8 @@
         "info",
         "neutral",
         "accent",
-        "cta"
+        "cta",
+        "inverse"
       ],
       "sizes": ["sm", "md", "lg"]
     },
@@ -290,7 +359,7 @@
     },
     "toast": {
       "fn": "getToastClasses",
-      "variants": ["info", "success", "warning", "danger"]
+      "variants": ["info", "success", "warning", "danger", "neutral"]
     },
     "tooltip": {
       "fn": "getTooltipClasses"
@@ -412,6 +481,69 @@
       ],
       "families": ["sans", "serif", "mono"],
       "transforms": ["none", "uppercase", "lowercase", "capitalize"]
+    },
+    "tabs": {
+      "fn": "getTabsClasses",
+      "variants": ["line", "pill"]
+    },
+    "accordion": {
+      "fn": "getAccordionClasses"
+    },
+    "breadcrumb": {
+      "fn": "getBreadcrumbClasses"
+    },
+    "listGroup": {
+      "fn": "getListGroupClasses"
+    },
+    "offcanvas": {
+      "fn": "getOffcanvasClasses"
+    },
+    "carousel": {
+      "fn": "getCarouselClasses"
+    },
+    "table": {
+      "fn": "getTableClasses",
+      "sizes": ["sm", "md"]
+    },
+    "pagination": {
+      "fn": "getPaginationClasses",
+      "sizes": ["sm", "md", "lg"]
+    },
+    "stepper": {
+      "fn": "getStepperClasses"
+    },
+    "popover": {
+      "fn": "getPopoverClasses"
+    },
+    "progress": {
+      "fn": "getProgressClasses",
+      "sizes": ["sm", "md", "lg"]
+    },
+    "switch": {
+      "fn": "getSwitchClasses",
+      "sizes": ["sm", "md", "lg"]
+    },
+    "range": {
+      "fn": "getRangeClasses"
+    },
+    "fileInput": {
+      "fn": "getFileInputClasses",
+      "sizes": ["sm", "md", "lg"]
+    },
+    "inputGroup": {
+      "fn": "getInputGroupClasses"
+    },
+    "datepicker": {
+      "fn": "getDatepickerClasses"
+    },
+    "day": {
+      "fn": "getDayClasses"
+    },
+    "externalAuthButton": {
+      "fn": "getExternalAuthButtonClasses"
+    },
+    "choiceCard": {
+      "fn": "getChoiceCardClasses"
     }
   }
 }

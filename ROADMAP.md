@@ -43,6 +43,7 @@ file does not restate delivered work.
 | 16    | Token dependency range and lockfile aligned to published `spectre-tokens` 4.8.0; contract manifest and README inventories completed for already-shipped recipe exports, variants, and sizes; runtime export parity coverage and inverse text variant class-name validation added                                                                                                                                                                                                                                                                                                                                                                                                                                              | 5.0.1                     |
 | 17    | Card full-bleed child composition contract — `getCardBleedClasses`/`.sp-card__bleed`, lets a padded card's child (media, a flush internal surface) run through the card padding on one or more edges with corner radius derived from the card radius/border-width contracts, requested by a downstream consumer on 2026-09-16; Card edge-accent recipe — `getCardClasses()` `accent`/`accentColor` options and `.sp-card--accent-*`, a thicker decorative rail on one edge rendered from the published `component.card.accent` token group (`spectre-tokens` 4.9.0), requested by `spectre-components` and `spectre-ui-astro` on 2026-09-18                                                                                   | 5.1.0                     |
 | 18    | Accent-rail parity sweep — extended the `sp-card--accent-*` pattern to the other nine component groups `spectre-tokens` 4.9.0 published `component.*.accent` for (`badge`, `testimonial`, `pricingCard`, `nav`, `footer`, `modal`, `toast`, `tooltip`, `dropdown`); each gains `accent`/`accentColor` options and `.sp-<block>--accent-*` CSS (`getBadgeClasses` uses `accentRail`/`accentRailColor` instead, since `variant: 'accent'` already names its unrelated single-tone fill) — brings `spectre-ui` to full utilization of the published token group; Dropdown `viewport` flag — a third menu-width tier (default trigger width, `mega` nav-ancestor width, `viewport` full browser width via the standard full-bleed breakout technique), fixing a wide `mega` menu overflowing past a width-constrained nav, requested by Bradley Potts on 2026-09-19 | Unreleased                |
+| 19    | Bootstrap-scale component inventory — Tabs, Accordion, Breadcrumb, List group, Offcanvas, Carousel, Table, Pagination, Stepper, Popover, Progress, Switch, Range, File input, Input group, Datepicker/Day, External-auth button, and Choice card recipes, each on its own mode-aware `component.*` contract from `spectre-tokens` 4.10.0; Alert realigned to `component.alert` (+ `brand`, `dismissible`) and Spinner to `component.loadingIndicator` (+ `inverse`); Button `warning`/`link`/`light`/`dark`, Badge `brand`/`dot`, Toast `neutral`, Dropdown header/divider/`selected`; `.sp-prose` code/mark/hr colors — requested by Bradley Potts on 2026-09-24 | Unreleased                |
 
 Phase 4f (Icon/AspectRatio recipes) was dropped, not delivered — see "What's
 Next" below.
@@ -51,8 +52,11 @@ Next" below.
 
 ## What's Next
 
-There is no open "Requested by Downstream" item in [TODO.md](TODO.md) as of this
-writing. Only a cross-repo item remains:
+One "Requested by Downstream" item is open in [TODO.md](TODO.md): a display and
+lead text recipe. It is gated on `spectre-tokens` emitting its
+`typography.display.*`/`typography.lead` values as CSS custom properties (Phase
+19 found they exist only as JS values in 4.10.0). A cross-repo item also
+remains:
 
 - **A downstream documentation consumer's stale Tailwind documentation** — its
   published docs still describe the Tailwind preset/theme export `spectre-ui`

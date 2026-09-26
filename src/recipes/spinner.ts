@@ -11,6 +11,7 @@ const SPINNER_VARIANTS = {
   neutral: true,
   accent: true,
   cta: true,
+  inverse: true,
 } as const
 
 const SPINNER_SIZES = {

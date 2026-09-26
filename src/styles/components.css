@@ -74,6 +74,35 @@
     --sp-component-button-inverse-border-disabled: var(--sp-button-inverse-borderdisabled);
     --sp-component-button-inverse-focus-visible: var(--sp-button-inverse-focusvisible);
 
+    /* warning/link/light/dark roles (spectre-tokens 4.10.0) */
+    --sp-component-button-warning-bg: var(--sp-button-warning-bg);
+    --sp-component-button-warning-bg-hover: var(--sp-button-warning-bghover);
+    --sp-component-button-warning-bg-active: var(--sp-button-warning-bgactive);
+    --sp-component-button-warning-bg-disabled: var(--sp-button-warning-bgdisabled);
+    --sp-component-button-warning-text: var(--sp-button-warning-text);
+    --sp-component-button-warning-text-disabled: var(--sp-button-warning-textdisabled);
+    --sp-component-button-warning-focus-visible: var(--sp-button-warning-focusvisible);
+    --sp-component-button-light-bg: var(--sp-button-light-bg);
+    --sp-component-button-light-bg-hover: var(--sp-button-light-bghover);
+    --sp-component-button-light-bg-active: var(--sp-button-light-bgactive);
+    --sp-component-button-light-bg-disabled: var(--sp-button-light-bgdisabled);
+    --sp-component-button-light-text: var(--sp-button-light-text);
+    --sp-component-button-light-text-disabled: var(--sp-button-light-textdisabled);
+    --sp-component-button-light-focus-visible: var(--sp-button-light-focusvisible);
+    --sp-component-button-dark-bg: var(--sp-button-dark-bg);
+    --sp-component-button-dark-bg-hover: var(--sp-button-dark-bghover);
+    --sp-component-button-dark-bg-active: var(--sp-button-dark-bgactive);
+    --sp-component-button-dark-bg-disabled: var(--sp-button-dark-bgdisabled);
+    --sp-component-button-dark-text: var(--sp-button-dark-text);
+    --sp-component-button-dark-text-disabled: var(--sp-button-dark-textdisabled);
+    --sp-component-button-dark-focus-visible: var(--sp-button-dark-focusvisible);
+    --sp-component-button-link-bg: var(--sp-button-link-bg);
+    --sp-component-button-link-text: var(--sp-button-link-text);
+    --sp-component-button-link-text-hover: var(--sp-button-link-texthover);
+    --sp-component-button-link-text-active: var(--sp-button-link-textactive);
+    --sp-component-button-link-text-disabled: var(--sp-button-link-textdisabled);
+    --sp-component-button-link-focus-visible: var(--sp-button-link-focusvisible);
+
     /* card roles */
     --sp-component-card-bg: var(--sp-surface-card);
     /* --sp-component-card-text and --sp-component-card-text-muted are now provided directly by the token package */
@@ -127,6 +156,10 @@
     --sp-component-badge-neutral-text: var(--sp-badge-neutral-text);
     --sp-component-badge-info-bg: var(--sp-badge-info-bg);
     --sp-component-badge-info-text: var(--sp-badge-info-text);
+    /* brand tint triad, mode-aware from spectre-tokens 4.10.0 */
+    --sp-component-badge-brand-bg: var(--sp-badge-brand-bg);
+    --sp-component-badge-brand-bg-hover: var(--sp-badge-brand-bg-hover);
+    --sp-component-badge-brand-text: var(--sp-badge-brand-text);
     --sp-component-badge-ghost-bg: var(--sp-button-ghost-bg);
     --sp-component-badge-ghost-text: var(--sp-button-ghost-text);
     --sp-component-badge-outline-bg: transparent;
@@ -239,21 +272,31 @@
     --sp-component-alert-padding-y-sm: var(--sp-space-8);
     --sp-component-alert-padding-y-md: var(--sp-space-12);
     --sp-component-alert-padding-y-lg: var(--sp-space-16);
-    --sp-component-alert-info-bg: var(--sp-badge-info-bg);
-    --sp-component-alert-info-text: var(--sp-badge-info-text);
-    --sp-component-alert-info-border: var(--sp-color-info-200);
-    --sp-component-alert-success-bg: var(--sp-badge-success-bg);
-    --sp-component-alert-success-text: var(--sp-badge-success-text);
-    --sp-component-alert-success-border: var(--sp-color-success-200);
-    --sp-component-alert-warning-bg: var(--sp-badge-warning-bg);
-    --sp-component-alert-warning-text: var(--sp-badge-warning-text);
-    --sp-component-alert-warning-border: var(--sp-color-warning-200);
-    --sp-component-alert-danger-bg: var(--sp-badge-danger-bg);
-    --sp-component-alert-danger-text: var(--sp-badge-danger-text);
-    --sp-component-alert-danger-border: var(--sp-color-error-200);
-    --sp-component-alert-neutral-bg: var(--sp-badge-neutral-bg);
-    --sp-component-alert-neutral-text: var(--sp-badge-neutral-text);
-    --sp-component-alert-neutral-border: var(--sp-color-neutral-200);
+    /* mode-aware via the component.alert token contract (spectre-tokens 4.10.0) */
+    --sp-component-alert-info-bg: var(--sp-alert-info-bg);
+    --sp-component-alert-info-text: var(--sp-alert-info-text);
+    --sp-component-alert-info-border: var(--sp-alert-info-border);
+    --sp-component-alert-info-icon: var(--sp-alert-info-icon);
+    --sp-component-alert-success-bg: var(--sp-alert-success-bg);
+    --sp-component-alert-success-text: var(--sp-alert-success-text);
+    --sp-component-alert-success-border: var(--sp-alert-success-border);
+    --sp-component-alert-success-icon: var(--sp-alert-success-icon);
+    --sp-component-alert-warning-bg: var(--sp-alert-warning-bg);
+    --sp-component-alert-warning-text: var(--sp-alert-warning-text);
+    --sp-component-alert-warning-border: var(--sp-alert-warning-border);
+    --sp-component-alert-warning-icon: var(--sp-alert-warning-icon);
+    --sp-component-alert-danger-bg: var(--sp-alert-danger-bg);
+    --sp-component-alert-danger-text: var(--sp-alert-danger-text);
+    --sp-component-alert-danger-border: var(--sp-alert-danger-border);
+    --sp-component-alert-danger-icon: var(--sp-alert-danger-icon);
+    --sp-component-alert-neutral-bg: var(--sp-alert-neutral-bg);
+    --sp-component-alert-neutral-text: var(--sp-alert-neutral-text);
+    --sp-component-alert-neutral-border: var(--sp-alert-neutral-border);
+    --sp-component-alert-neutral-icon: var(--sp-alert-neutral-icon);
+    --sp-component-alert-brand-bg: var(--sp-alert-brand-bg);
+    --sp-component-alert-brand-text: var(--sp-alert-brand-text);
+    --sp-component-alert-brand-border: var(--sp-alert-brand-border);
+    --sp-component-alert-brand-icon: var(--sp-alert-brand-icon);
 
     /* avatar roles */
     --sp-component-avatar-size-xs: var(--sp-space-24);
@@ -313,14 +356,18 @@
     --sp-component-spinner-size-lg: var(--sp-space-32);
     --sp-component-spinner-border-width: var(--sp-border-width-thick);
     --sp-component-spinner-track-color: var(--sp-color-neutral-200);
-    --sp-component-spinner-arc-color: var(--sp-button-primary-bg);
-    --sp-component-spinner-primary-arc: var(--sp-button-primary-bg);
-    --sp-component-spinner-secondary-arc: var(--sp-button-secondary-border);
-    --sp-component-spinner-success-arc: var(--sp-color-success-500);
-    --sp-component-spinner-warning-arc: var(--sp-color-warning-500);
-    --sp-component-spinner-danger-arc: var(--sp-color-error-500);
-    --sp-component-spinner-info-arc: var(--sp-color-info-500);
-    --sp-component-spinner-neutral-arc: var(--sp-color-neutral-500);
+    /* semantic arcs are mode-aware via the component.loadingIndicator token
+       contract (spectre-tokens 4.10.0); accent/cta have no loading role there
+       and stay on their button tokens */
+    --sp-component-spinner-arc-color: var(--sp-loading-indicator-brand);
+    --sp-component-spinner-primary-arc: var(--sp-loading-indicator-brand);
+    --sp-component-spinner-secondary-arc: var(--sp-loading-indicator-muted);
+    --sp-component-spinner-success-arc: var(--sp-loading-indicator-success);
+    --sp-component-spinner-warning-arc: var(--sp-loading-indicator-warning);
+    --sp-component-spinner-danger-arc: var(--sp-loading-indicator-danger);
+    --sp-component-spinner-info-arc: var(--sp-loading-indicator-info);
+    --sp-component-spinner-neutral-arc: var(--sp-loading-indicator-default);
+    --sp-component-spinner-inverse-arc: var(--sp-loading-indicator-inverse);
     --sp-component-spinner-accent-arc: var(--sp-button-accent-bg);
     --sp-component-spinner-cta-arc: var(--sp-button-cta-bg);
     --sp-component-spinner-duration: var(--sp-duration-long);
@@ -385,6 +432,10 @@
     --sp-component-toast-danger-text: var(--sp-toast-danger-text);
     --sp-component-toast-danger-border: var(--sp-toast-danger-border);
     --sp-component-toast-danger-icon: var(--sp-toast-danger-icon);
+    --sp-component-toast-neutral-bg: var(--sp-toast-neutral-bg);
+    --sp-component-toast-neutral-text: var(--sp-toast-neutral-text);
+    --sp-component-toast-neutral-border: var(--sp-toast-neutral-border);
+    --sp-component-toast-neutral-icon: var(--sp-toast-neutral-icon);
 
     /* tooltip roles */
     --sp-component-tooltip-bg: var(--sp-tooltip-bg);
@@ -464,31 +515,7 @@
     --sp-component-rating-star-empty: var(--sp-color-neutral-700);
     --sp-component-rating-text: var(--sp-color-neutral-400);
 
-    --sp-component-alert-info-bg: var(--sp-color-info-800);
-    --sp-component-alert-info-text: var(--sp-color-info-100);
-    --sp-component-alert-info-border: var(--sp-color-info-700);
-    --sp-component-alert-success-bg: var(--sp-color-success-800);
-    --sp-component-alert-success-text: var(--sp-color-success-100);
-    --sp-component-alert-success-border: var(--sp-color-success-700);
-    --sp-component-alert-warning-bg: var(--sp-color-warning-800);
-    --sp-component-alert-warning-text: var(--sp-color-warning-100);
-    --sp-component-alert-warning-border: var(--sp-color-warning-700);
-    --sp-component-alert-danger-bg: var(--sp-color-error-800);
-    --sp-component-alert-danger-text: var(--sp-color-error-100);
-    --sp-component-alert-danger-border: var(--sp-color-error-700);
-    --sp-component-alert-neutral-bg: var(--sp-color-neutral-700);
-    --sp-component-alert-neutral-text: var(--sp-color-neutral-100);
-    --sp-component-alert-neutral-border: var(--sp-color-neutral-600);
-
     --sp-component-spinner-track-color: var(--sp-color-neutral-700);
-    --sp-component-spinner-arc-color: var(--sp-color-brand-400);
-    --sp-component-spinner-primary-arc: var(--sp-color-brand-400);
-    --sp-component-spinner-secondary-arc: var(--sp-color-neutral-400);
-    --sp-component-spinner-success-arc: var(--sp-color-success-400);
-    --sp-component-spinner-warning-arc: var(--sp-color-warning-400);
-    --sp-component-spinner-danger-arc: var(--sp-color-error-400);
-    --sp-component-spinner-info-arc: var(--sp-color-info-400);
-    --sp-component-spinner-neutral-arc: var(--sp-color-neutral-400);
     --sp-component-spinner-accent-arc: var(--sp-color-brand-400);
     --sp-component-spinner-cta-arc: var(--sp-color-brand-400);
   }
@@ -841,6 +868,132 @@
     background-color: var(--sp-component-button-inverse-bg-disabled);
     color: var(--sp-component-button-inverse-text-disabled);
     border-color: var(--sp-component-button-inverse-border-disabled);
+  }
+
+  .sp-btn--warning {
+    background-color: var(--sp-component-button-warning-bg);
+    color: var(--sp-component-button-warning-text);
+  }
+
+  .sp-btn--warning.sp-btn--hover,
+  .sp-btn--warning.is-hover,
+  .sp-btn--warning:hover {
+    background-color: var(--sp-component-button-warning-bg-hover);
+  }
+
+  .sp-btn--warning.sp-btn--active,
+  .sp-btn--warning.is-active,
+  .sp-btn--warning:active {
+    background-color: var(--sp-component-button-warning-bg-active);
+  }
+
+  .sp-btn--warning.sp-btn--disabled,
+  .sp-btn--warning[aria-disabled="true"],
+  .sp-btn--warning:disabled {
+    background-color: var(--sp-component-button-warning-bg-disabled);
+    color: var(--sp-component-button-warning-text-disabled);
+  }
+
+  .sp-btn--warning:focus-visible,
+  .sp-btn--warning.sp-btn--focus,
+  .sp-btn--warning.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-warning-focus-visible);
+  }
+
+  .sp-btn--light {
+    background-color: var(--sp-component-button-light-bg);
+    color: var(--sp-component-button-light-text);
+  }
+
+  .sp-btn--light.sp-btn--hover,
+  .sp-btn--light.is-hover,
+  .sp-btn--light:hover {
+    background-color: var(--sp-component-button-light-bg-hover);
+  }
+
+  .sp-btn--light.sp-btn--active,
+  .sp-btn--light.is-active,
+  .sp-btn--light:active {
+    background-color: var(--sp-component-button-light-bg-active);
+  }
+
+  .sp-btn--light.sp-btn--disabled,
+  .sp-btn--light[aria-disabled="true"],
+  .sp-btn--light:disabled {
+    background-color: var(--sp-component-button-light-bg-disabled);
+    color: var(--sp-component-button-light-text-disabled);
+  }
+
+  .sp-btn--light:focus-visible,
+  .sp-btn--light.sp-btn--focus,
+  .sp-btn--light.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-light-focus-visible);
+  }
+
+  .sp-btn--dark {
+    background-color: var(--sp-component-button-dark-bg);
+    color: var(--sp-component-button-dark-text);
+  }
+
+  .sp-btn--dark.sp-btn--hover,
+  .sp-btn--dark.is-hover,
+  .sp-btn--dark:hover {
+    background-color: var(--sp-component-button-dark-bg-hover);
+  }
+
+  .sp-btn--dark.sp-btn--active,
+  .sp-btn--dark.is-active,
+  .sp-btn--dark:active {
+    background-color: var(--sp-component-button-dark-bg-active);
+  }
+
+  .sp-btn--dark.sp-btn--disabled,
+  .sp-btn--dark[aria-disabled="true"],
+  .sp-btn--dark:disabled {
+    background-color: var(--sp-component-button-dark-bg-disabled);
+    color: var(--sp-component-button-dark-text-disabled);
+  }
+
+  .sp-btn--dark:focus-visible,
+  .sp-btn--dark.sp-btn--focus,
+  .sp-btn--dark.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-dark-focus-visible);
+  }
+
+  /* link: the background stays transparent in every state; the text color
+     carries hover/active feedback instead */
+  .sp-btn--link {
+    background-color: var(--sp-component-button-link-bg);
+    color: var(--sp-component-button-link-text);
+    text-decoration: underline;
+    text-underline-offset: var(--sp-space-2);
+  }
+
+  .sp-btn--link.sp-btn--hover,
+  .sp-btn--link.is-hover,
+  .sp-btn--link:hover {
+    background-color: var(--sp-component-button-link-bg);
+    color: var(--sp-component-button-link-text-hover);
+  }
+
+  .sp-btn--link.sp-btn--active,
+  .sp-btn--link.is-active,
+  .sp-btn--link:active {
+    background-color: var(--sp-component-button-link-bg);
+    color: var(--sp-component-button-link-text-active);
+  }
+
+  .sp-btn--link.sp-btn--disabled,
+  .sp-btn--link[aria-disabled="true"],
+  .sp-btn--link:disabled {
+    background-color: var(--sp-component-button-link-bg);
+    color: var(--sp-component-button-link-text-disabled);
+  }
+
+  .sp-btn--link:focus-visible,
+  .sp-btn--link.sp-btn--focus,
+  .sp-btn--link.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-link-focus-visible);
   }
 
   /* INPUTS --------------------------------------------------------------- */
@@ -1324,6 +1477,17 @@
     background-color: var(--sp-component-badge-info-bg-hover);
   }
 
+  .sp-badge--brand {
+    background-color: var(--sp-component-badge-brand-bg);
+    color: var(--sp-component-badge-brand-text);
+  }
+
+  .sp-badge--brand.sp-badge--interactive:hover,
+  .sp-badge--brand.sp-badge--hover,
+  .sp-badge--brand.is-hover {
+    background-color: var(--sp-component-badge-brand-bg-hover);
+  }
+
   .sp-badge--ghost {
     background-color: var(--sp-component-badge-ghost-bg);
     color: var(--sp-component-badge-ghost-text);
@@ -1465,6 +1629,18 @@
   .sp-badge--accent-rail-left {
     border-left-width: var(--sp-badge-accent-thickness);
     border-left-color: var(--sp-component-badge-accent-rail-color);
+  }
+
+  /* Notification dot: a text-free marker, typically overlaid on an avatar.
+     The ring (component.badge.dotBorder) separates it from the image below.
+     Declared after the size modifiers so it wins on source order. */
+  .sp-badge--dot {
+    width: var(--sp-space-10);
+    height: var(--sp-space-10);
+    padding: 0;
+    overflow: hidden;
+    border-radius: var(--sp-radius-pill);
+    box-shadow: 0 0 0 var(--sp-border-width-thick) var(--sp-badge-dot-border);
   }
 
   /* ICON BOXES ----------------------------------------------------------- */
@@ -2181,6 +2357,76 @@
     border-color: var(--sp-component-alert-neutral-border);
   }
 
+  .sp-alert--brand {
+    background-color: var(--sp-component-alert-brand-bg);
+    color: var(--sp-component-alert-brand-text);
+    border-color: var(--sp-component-alert-brand-border);
+  }
+
+  .sp-alert--dismissible {
+    position: relative;
+    padding-right: calc(var(--sp-component-alert-padding-x) + var(--sp-min-touch-target));
+  }
+
+  .sp-alert__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    width: var(--sp-icon-md);
+    height: var(--sp-icon-md);
+  }
+
+  .sp-alert--info .sp-alert__icon {
+    color: var(--sp-component-alert-info-icon);
+  }
+
+  .sp-alert--success .sp-alert__icon {
+    color: var(--sp-component-alert-success-icon);
+  }
+
+  .sp-alert--warning .sp-alert__icon {
+    color: var(--sp-component-alert-warning-icon);
+  }
+
+  .sp-alert--danger .sp-alert__icon {
+    color: var(--sp-component-alert-danger-icon);
+  }
+
+  .sp-alert--neutral .sp-alert__icon {
+    color: var(--sp-component-alert-neutral-icon);
+  }
+
+  .sp-alert--brand .sp-alert__icon {
+    color: var(--sp-component-alert-brand-icon);
+  }
+
+  .sp-alert__dismiss {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--sp-min-touch-target);
+    height: var(--sp-min-touch-target);
+    padding: 0;
+    border: 0;
+    border-radius: var(--sp-component-alert-radius);
+    background-color: transparent;
+    color: inherit;
+    appearance: none;
+    cursor: pointer;
+    transition: opacity var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-alert__dismiss:hover {
+    opacity: var(--sp-opacity-hover);
+  }
+
+  .sp-alert__dismiss:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--sp-focus-ring-width) var(--sp-color-focus-primary);
+  }
+
   .sp-alert--interactive {
     cursor: pointer;
   }
@@ -2529,6 +2775,11 @@
 
   .sp-spinner--cta {
     border-top-color: var(--sp-component-spinner-cta-arc);
+  }
+
+  .sp-spinner--inverse {
+    border-color: var(--sp-text-on-inverse-muted);
+    border-top-color: var(--sp-component-spinner-inverse-arc);
   }
 
   .sp-spinner--disabled {
@@ -3105,6 +3356,12 @@
     border-color: var(--sp-component-toast-danger-border);
   }
 
+  .sp-toast--neutral {
+    background-color: var(--sp-component-toast-neutral-bg);
+    color: var(--sp-component-toast-neutral-text);
+    border-color: var(--sp-component-toast-neutral-border);
+  }
+
   .sp-toast__icon {
     flex-shrink: 0;
     line-height: var(--sp-font-sm-line-height);
@@ -3124,6 +3381,10 @@
 
   .sp-toast__icon--danger {
     color: var(--sp-component-toast-danger-icon);
+  }
+
+  .sp-toast__icon--neutral {
+    color: var(--sp-component-toast-neutral-icon);
   }
 
   /* sp-toast--accent-* renders an optional thicker decorative rail on one
@@ -3460,10 +3721,37 @@
     background-color: var(--sp-component-dropdown-item-active);
   }
 
+  /* checked/current choice — distinct from --active, the keyboard-navigation
+     highlight (spectre-tokens 4.10.0 component.dropdown.item.selected*) */
+  .sp-dropdown__item--selected,
+  .sp-dropdown__item[aria-checked="true"],
+  .sp-dropdown__item[aria-selected="true"] {
+    background-color: var(--sp-dropdown-item-selected-bg);
+    color: var(--sp-dropdown-item-selected-text);
+  }
+
   .sp-dropdown__item--disabled,
   .sp-dropdown__item[aria-disabled="true"] {
+    color: var(--sp-dropdown-item-disabled-text);
     pointer-events: none;
-    opacity: var(--sp-opacity-disabled);
+    cursor: not-allowed;
+  }
+
+  .sp-dropdown__header {
+    padding: var(--sp-component-dropdown-item-padding-y) var(--sp-component-dropdown-item-padding-x);
+    color: var(--sp-dropdown-header);
+    font-size: var(--sp-font-xs-size);
+    font-weight: var(--sp-font-md-weight);
+    line-height: var(--sp-font-xs-line-height);
+    letter-spacing: var(--sp-tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .sp-dropdown__divider {
+    height: 0;
+    margin: var(--sp-space-4) 0;
+    border: 0;
+    border-top: var(--sp-component-border-width) solid var(--sp-dropdown-divider);
   }
 
   /* MODALS ------------------------------------------------------------------- */
@@ -3908,5 +4196,1811 @@
   .sp-form-label--required::after {
     content: "*";
     color: var(--sp-label-required-indicator-text);
+  }
+
+  /* TABS ------------------------------------------------------------------- */
+  /* Colors come entirely from the component.tabs token contract
+     (spectre-tokens 4.10.0). `line` marks the active tab with an indicator
+     edge; `pill` fills it as a segmented control. */
+  .sp-tabs {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--sp-font-family-sans);
+  }
+
+  .sp-tabs--vertical {
+    flex-direction: row;
+  }
+
+  .sp-tabs__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: var(--sp-tabs-list-bg);
+  }
+
+  .sp-tabs--line .sp-tabs__list {
+    border-bottom: var(--sp-component-border-width) solid var(--sp-tabs-list-border);
+  }
+
+  .sp-tabs--pill .sp-tabs__list {
+    padding: var(--sp-space-4);
+    border: var(--sp-component-border-width) solid var(--sp-tabs-list-border);
+    border-radius: var(--sp-radius-lg);
+  }
+
+  .sp-tabs--vertical .sp-tabs__list {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .sp-tabs--vertical.sp-tabs--line .sp-tabs__list {
+    border-bottom: 0;
+    border-right: var(--sp-component-border-width) solid var(--sp-tabs-list-border);
+  }
+
+  .sp-tabs__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-space-8);
+    min-height: var(--sp-min-touch-target);
+    padding: var(--sp-space-8) var(--sp-space-16);
+    border: 0;
+    background-color: transparent;
+    color: var(--sp-tabs-item-text);
+    font-family: inherit;
+    font-size: var(--sp-font-sm-size);
+    font-weight: var(--sp-font-md-weight);
+    line-height: var(--sp-font-sm-line-height);
+    text-decoration: none;
+    appearance: none;
+    cursor: pointer;
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out),
+      border-color var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-tabs--line .sp-tabs__item {
+    margin-bottom: calc(-1 * var(--sp-component-border-width));
+    border-bottom: var(--sp-border-width-thick) solid transparent;
+  }
+
+  .sp-tabs--vertical.sp-tabs--line .sp-tabs__item {
+    justify-content: flex-start;
+    margin-bottom: 0;
+    margin-right: calc(-1 * var(--sp-component-border-width));
+    border-bottom: 0;
+    border-right: var(--sp-border-width-thick) solid transparent;
+  }
+
+  .sp-tabs--pill .sp-tabs__item {
+    border-radius: var(--sp-radius-md);
+  }
+
+  .sp-tabs--full .sp-tabs__item {
+    flex: 1 1 0;
+  }
+
+  .sp-tabs__item:hover,
+  .sp-tabs__item--hover,
+  .sp-tabs__item.is-hover {
+    background-color: var(--sp-tabs-item-hover-bg);
+  }
+
+  .sp-tabs__item:focus-visible,
+  .sp-tabs__item--focus,
+  .sp-tabs__item.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 var(--sp-focus-ring-width) var(--sp-tabs-item-focus-ring-color);
+  }
+
+  .sp-tabs__item--active,
+  .sp-tabs__item[aria-selected="true"] {
+    color: var(--sp-tabs-item-active-text);
+  }
+
+  .sp-tabs--line .sp-tabs__item--active,
+  .sp-tabs--line .sp-tabs__item[aria-selected="true"] {
+    border-color: var(--sp-tabs-item-active-indicator);
+  }
+
+  .sp-tabs--pill .sp-tabs__item--active,
+  .sp-tabs--pill .sp-tabs__item[aria-selected="true"] {
+    background-color: var(--sp-tabs-pill-active-bg);
+    color: var(--sp-tabs-pill-active-text);
+  }
+
+  .sp-tabs__item--disabled,
+  .sp-tabs__item:disabled,
+  .sp-tabs__item[aria-disabled="true"] {
+    color: var(--sp-tabs-item-disabled-text);
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  .sp-tabs__panel {
+    padding: var(--sp-space-16);
+    background-color: var(--sp-tabs-panel-bg);
+  }
+
+  .sp-tabs--vertical .sp-tabs__panel {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  /* ACCORDION -------------------------------------------------------------- */
+  /* Colors come from the component.accordion token contract (spectre-tokens
+     4.10.0). Expansion is driven either by the --expanded modifiers or by a
+     native <details open> item, so no script is required. */
+  .sp-accordion {
+    display: flex;
+    flex-direction: column;
+    border: var(--sp-component-border-width) solid var(--sp-accordion-border);
+    border-radius: var(--sp-radius-lg);
+    background-color: var(--sp-accordion-bg);
+    color: var(--sp-accordion-text);
+    font-family: var(--sp-font-family-sans);
+    overflow: hidden;
+  }
+
+  .sp-accordion--flush {
+    border-width: 0;
+    border-radius: 0;
+  }
+
+  .sp-accordion__item + .sp-accordion__item {
+    border-top: var(--sp-component-border-width) solid var(--sp-accordion-border);
+  }
+
+  .sp-accordion__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-space-12);
+    width: 100%;
+    min-height: var(--sp-min-touch-target);
+    padding: var(--sp-space-16);
+    border: 0;
+    background-color: transparent;
+    color: inherit;
+    font-family: inherit;
+    font-size: var(--sp-font-md-size);
+    font-weight: var(--sp-font-md-weight);
+    line-height: var(--sp-font-md-line-height);
+    text-align: start;
+    list-style: none;
+    appearance: none;
+    cursor: pointer;
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-accordion__header::-webkit-details-marker {
+    display: none;
+  }
+
+  .sp-accordion__header:hover,
+  .sp-accordion__header--hover,
+  .sp-accordion__header.is-hover {
+    background-color: var(--sp-accordion-header-hover-bg);
+  }
+
+  .sp-accordion__header:focus-visible,
+  .sp-accordion__header--focus,
+  .sp-accordion__header.is-focus {
+    outline: none;
+    box-shadow: inset 0 0 0 var(--sp-focus-ring-width) var(--sp-color-focus-primary);
+  }
+
+  .sp-accordion__header--disabled,
+  .sp-accordion__header:disabled,
+  .sp-accordion__header[aria-disabled="true"],
+  .sp-accordion__item--disabled {
+    opacity: var(--sp-opacity-disabled);
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  .sp-accordion__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    width: var(--sp-icon-sm);
+    height: var(--sp-icon-sm);
+    color: var(--sp-accordion-icon-collapsed);
+    transition:
+      transform var(--sp-duration-base) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-accordion__icon--expanded,
+  .sp-accordion__header--expanded > .sp-accordion__icon,
+  .sp-accordion__header[aria-expanded="true"] > .sp-accordion__icon,
+  .sp-accordion__item--expanded > .sp-accordion__header > .sp-accordion__icon,
+  .sp-accordion__item[open] > .sp-accordion__header > .sp-accordion__icon {
+    color: var(--sp-accordion-icon-expanded);
+    transform: rotate(180deg);
+  }
+
+  .sp-accordion__panel {
+    display: none;
+    padding: 0 var(--sp-space-16) var(--sp-space-16);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-accordion__panel--expanded,
+  .sp-accordion__item--expanded > .sp-accordion__panel,
+  .sp-accordion__item[open] > .sp-accordion__panel {
+    display: block;
+  }
+
+  /* BREADCRUMB ------------------------------------------------------------- */
+  /* Colors come from the component.breadcrumb token contract (spectre-tokens
+     4.10.0). */
+  .sp-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sp-space-8);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--sp-font-family-sans);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-breadcrumb__item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-space-8);
+    color: var(--sp-breadcrumb-item-text);
+  }
+
+  .sp-breadcrumb__item + .sp-breadcrumb__item::before {
+    content: "/";
+    color: var(--sp-breadcrumb-separator);
+  }
+
+  .sp-breadcrumb--custom-separator .sp-breadcrumb__item + .sp-breadcrumb__item::before {
+    content: none;
+  }
+
+  .sp-breadcrumb__link {
+    color: inherit;
+    text-decoration: none;
+    border-radius: var(--sp-radius-sm);
+    transition: color var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-breadcrumb__link:hover {
+    color: var(--sp-breadcrumb-item-hover-text);
+    text-decoration: underline;
+  }
+
+  .sp-breadcrumb__link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--sp-focus-ring-width) var(--sp-color-focus-primary);
+  }
+
+  .sp-breadcrumb__item--current,
+  .sp-breadcrumb__item[aria-current="page"] {
+    color: var(--sp-breadcrumb-item-active-text);
+    font-weight: var(--sp-font-md-weight);
+  }
+
+  .sp-breadcrumb__separator {
+    display: inline-flex;
+    align-items: center;
+    color: var(--sp-breadcrumb-separator);
+  }
+
+  /* LIST GROUP ------------------------------------------------------------- */
+  /* Colors come from the component.listGroup token contract (spectre-tokens
+     4.10.0), including the accent rail group, which follows the
+     sp-card--accent-* precedent. */
+  .sp-list-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: var(--sp-component-border-width) solid var(--sp-list-group-border);
+    border-radius: var(--sp-radius-lg);
+    background-color: var(--sp-list-group-bg);
+    color: var(--sp-list-group-text);
+    font-family: var(--sp-font-family-sans);
+    overflow: hidden;
+    --sp-component-list-group-accent-color: var(--sp-list-group-accent-brand);
+  }
+
+  .sp-list-group--horizontal {
+    flex-direction: row;
+  }
+
+  .sp-list-group--flush {
+    border-width: 0;
+    border-radius: 0;
+  }
+
+  .sp-list-group__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-space-4);
+    padding: var(--sp-space-12) var(--sp-space-16);
+    color: inherit;
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+    text-align: start;
+    text-decoration: none;
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-list-group__item + .sp-list-group__item {
+    border-top: var(--sp-component-border-width) solid var(--sp-list-group-border);
+  }
+
+  .sp-list-group--horizontal > .sp-list-group__item + .sp-list-group__item {
+    border-top: 0;
+    border-left: var(--sp-component-border-width) solid var(--sp-list-group-border);
+  }
+
+  .sp-list-group__item--interactive {
+    width: 100%;
+    border: 0;
+    background-color: transparent;
+    font-family: inherit;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .sp-list-group__item--interactive:hover,
+  .sp-list-group__item--hover,
+  .sp-list-group__item.is-hover {
+    background-color: var(--sp-list-group-item-hover-bg);
+  }
+
+  .sp-list-group__item--interactive:focus-visible,
+  .sp-list-group__item--focus,
+  .sp-list-group__item.is-focus {
+    outline: none;
+    box-shadow: inset 0 0 0 var(--sp-focus-ring-width) var(--sp-color-focus-primary);
+  }
+
+  .sp-list-group__item--selected,
+  .sp-list-group__item[aria-selected="true"] {
+    background-color: var(--sp-list-group-item-selected-bg);
+  }
+
+  .sp-list-group__item--active,
+  .sp-list-group__item[aria-current="true"],
+  .sp-list-group__item[aria-current="page"] {
+    background-color: var(--sp-list-group-item-active-bg);
+    color: var(--sp-list-group-item-active-text);
+  }
+
+  .sp-list-group__item--disabled,
+  .sp-list-group__item:disabled,
+  .sp-list-group__item[aria-disabled="true"] {
+    color: var(--sp-list-group-item-disabled-text);
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  .sp-list-group__heading {
+    color: var(--sp-list-group-heading);
+    font-size: var(--sp-font-md-size);
+    font-weight: var(--sp-font-md-weight);
+    line-height: var(--sp-font-md-line-height);
+  }
+
+  .sp-list-group__text {
+    color: var(--sp-list-group-muted);
+  }
+
+  .sp-list-group__item--active .sp-list-group__heading,
+  .sp-list-group__item--active .sp-list-group__text {
+    color: inherit;
+  }
+
+  .sp-list-group--accent-neutral {
+    --sp-component-list-group-accent-color: var(--sp-list-group-accent-neutral);
+  }
+
+  .sp-list-group--accent-brand {
+    --sp-component-list-group-accent-color: var(--sp-list-group-accent-brand);
+  }
+
+  .sp-list-group--accent-info {
+    --sp-component-list-group-accent-color: var(--sp-list-group-accent-info);
+  }
+
+  .sp-list-group--accent-success {
+    --sp-component-list-group-accent-color: var(--sp-list-group-accent-success);
+  }
+
+  .sp-list-group--accent-warning {
+    --sp-component-list-group-accent-color: var(--sp-list-group-accent-warning);
+  }
+
+  .sp-list-group--accent-danger {
+    --sp-component-list-group-accent-color: var(--sp-list-group-accent-danger);
+  }
+
+  .sp-list-group--accent-cta {
+    --sp-component-list-group-accent-color: var(--sp-list-group-accent-cta);
+  }
+
+  .sp-list-group--accent-top {
+    border-top-width: var(--sp-list-group-accent-thickness);
+    border-top-color: var(--sp-component-list-group-accent-color);
+  }
+
+  .sp-list-group--accent-right {
+    border-right-width: var(--sp-list-group-accent-thickness);
+    border-right-color: var(--sp-component-list-group-accent-color);
+  }
+
+  .sp-list-group--accent-bottom {
+    border-bottom-width: var(--sp-list-group-accent-thickness);
+    border-bottom-color: var(--sp-component-list-group-accent-color);
+  }
+
+  .sp-list-group--accent-left {
+    border-left-width: var(--sp-list-group-accent-thickness);
+    border-left-color: var(--sp-component-list-group-accent-color);
+  }
+
+  /* OFFCANVAS -------------------------------------------------------------- */
+  /* Colors come from the component.offcanvas token contract (spectre-tokens
+     4.10.0). Side panels reuse the published layout sidebar width. */
+  .sp-offcanvas-backdrop {
+    position: fixed;
+    inset: 0;
+    display: none;
+    background-color: var(--sp-offcanvas-overlay);
+    z-index: var(--sp-z-index-overlay);
+  }
+
+  .sp-offcanvas-backdrop--open {
+    display: block;
+  }
+
+  .sp-offcanvas {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    max-width: 100vw;
+    max-height: 100vh;
+    background-color: var(--sp-offcanvas-bg);
+    color: var(--sp-offcanvas-text);
+    border: 0 solid var(--sp-offcanvas-border);
+    box-shadow: var(--sp-shadow-xl);
+    font-family: var(--sp-font-family-sans);
+    z-index: var(--sp-z-index-modal);
+    visibility: hidden;
+    transition:
+      transform var(--sp-duration-base) var(--sp-easing-out),
+      visibility var(--sp-duration-base) var(--sp-easing-out);
+  }
+
+  .sp-offcanvas--start {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--sp-layout-sidebar-width);
+    border-right-width: var(--sp-component-border-width);
+    transform: translateX(-100%);
+  }
+
+  .sp-offcanvas--end {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: var(--sp-layout-sidebar-width);
+    border-left-width: var(--sp-component-border-width);
+    transform: translateX(100%);
+  }
+
+  .sp-offcanvas--top {
+    top: 0;
+    right: 0;
+    left: 0;
+    border-bottom-width: var(--sp-component-border-width);
+    transform: translateY(-100%);
+  }
+
+  .sp-offcanvas--bottom {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-top-width: var(--sp-component-border-width);
+    transform: translateY(100%);
+  }
+
+  .sp-offcanvas--open {
+    visibility: visible;
+    transform: none;
+  }
+
+  .sp-offcanvas__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-space-12);
+    padding: var(--sp-space-16) var(--sp-space-24);
+    border-bottom: var(--sp-component-border-width) solid var(--sp-offcanvas-border);
+    font-size: var(--sp-font-lg-size);
+    font-weight: var(--sp-font-lg-weight);
+    line-height: var(--sp-font-lg-line-height);
+  }
+
+  .sp-offcanvas__body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: var(--sp-space-24);
+  }
+
+  .sp-offcanvas__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--sp-space-8);
+    padding: var(--sp-space-16) var(--sp-space-24);
+    border-top: var(--sp-component-border-width) solid var(--sp-offcanvas-border);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sp-offcanvas {
+      transition: none;
+    }
+
+    .sp-carousel__viewport {
+      scroll-behavior: auto;
+    }
+
+    .sp-carousel--fade .sp-carousel__slide {
+      transition: none;
+    }
+  }
+
+  /* CAROUSEL --------------------------------------------------------------- */
+  /* Colors come from the component.carousel token contract (spectre-tokens
+     4.10.0), which is mode-invariant because controls, indicators, and
+     captions render over slide media rather than the page surface. */
+  .sp-carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--sp-radius-lg);
+    font-family: var(--sp-font-family-sans);
+  }
+
+  .sp-carousel__viewport {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+
+  .sp-carousel__viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sp-carousel__slide {
+    position: relative;
+    flex: 0 0 100%;
+    min-width: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .sp-carousel--fade .sp-carousel__viewport {
+    display: grid;
+    overflow: hidden;
+    scroll-snap-type: none;
+  }
+
+  .sp-carousel--fade .sp-carousel__slide {
+    grid-area: 1 / 1;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity var(--sp-duration-slow) var(--sp-easing-inout),
+      visibility var(--sp-duration-slow) var(--sp-easing-inout);
+  }
+
+  .sp-carousel--fade .sp-carousel__slide--active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .sp-carousel__control {
+    position: absolute;
+    top: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--sp-min-touch-target);
+    height: var(--sp-min-touch-target);
+    padding: 0;
+    border: 0;
+    border-radius: var(--sp-radius-pill);
+    background-color: var(--sp-carousel-control-bg);
+    color: var(--sp-carousel-control-icon);
+    transform: translateY(-50%);
+    appearance: none;
+    cursor: pointer;
+    transition: opacity var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-carousel__control--prev {
+    left: var(--sp-space-12);
+  }
+
+  .sp-carousel__control--next {
+    right: var(--sp-space-12);
+  }
+
+  .sp-carousel__control:hover {
+    opacity: var(--sp-opacity-hover);
+  }
+
+  .sp-carousel__control:focus-visible,
+  .sp-carousel__indicator:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--sp-focus-ring-width) var(--sp-color-focus-primary);
+  }
+
+  .sp-carousel__control:disabled,
+  .sp-carousel__control[aria-disabled="true"] {
+    opacity: var(--sp-opacity-disabled);
+    pointer-events: none;
+  }
+
+  .sp-carousel__indicators {
+    position: absolute;
+    right: 0;
+    bottom: var(--sp-space-12);
+    left: 0;
+    display: flex;
+    justify-content: center;
+    gap: var(--sp-space-8);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* The visible bar is the content box; the padding widens the hit area. */
+  .sp-carousel__indicator {
+    width: var(--sp-space-24);
+    height: var(--sp-space-4);
+    box-sizing: content-box;
+    padding: var(--sp-space-8) 0;
+    border: 0;
+    border-radius: var(--sp-radius-pill);
+    background-color: var(--sp-carousel-indicator-default);
+    background-clip: content-box;
+    appearance: none;
+    cursor: pointer;
+    transition: background-color var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-carousel__indicator--active,
+  .sp-carousel__indicator[aria-current="true"] {
+    background-color: var(--sp-carousel-indicator-active);
+  }
+
+  .sp-carousel__caption {
+    position: absolute;
+    right: var(--sp-space-16);
+    bottom: var(--sp-space-40);
+    left: var(--sp-space-16);
+    padding: var(--sp-space-12) var(--sp-space-16);
+    border-radius: var(--sp-radius-md);
+    background-color: var(--sp-carousel-caption-bg);
+    color: var(--sp-carousel-caption-text);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+    text-align: center;
+  }
+
+  /* TABLE ------------------------------------------------------------------ */
+  /* Colors come from the component.table token contract (spectre-tokens
+     4.10.0). Cell padding is set per size through a component-scoped var so
+     the size modifier stays a single declaration. */
+  .sp-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .sp-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--sp-table-text);
+    font-family: var(--sp-font-family-sans);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+    text-align: start;
+    --sp-component-table-cell-padding-y: var(--sp-space-12);
+    --sp-component-table-cell-padding-x: var(--sp-space-16);
+  }
+
+  .sp-table--sm {
+    --sp-component-table-cell-padding-y: var(--sp-space-6);
+    --sp-component-table-cell-padding-x: var(--sp-space-8);
+  }
+
+  .sp-table--md {
+    --sp-component-table-cell-padding-y: var(--sp-space-12);
+    --sp-component-table-cell-padding-x: var(--sp-space-16);
+  }
+
+  .sp-table th,
+  .sp-table td {
+    padding: var(--sp-component-table-cell-padding-y) var(--sp-component-table-cell-padding-x);
+    border-bottom: var(--sp-component-border-width) solid var(--sp-table-divider);
+    text-align: inherit;
+    vertical-align: top;
+  }
+
+  .sp-table thead th {
+    background-color: var(--sp-table-header-bg);
+    color: var(--sp-table-header-text);
+    font-weight: var(--sp-font-md-weight);
+    vertical-align: bottom;
+  }
+
+  .sp-table--bordered th,
+  .sp-table--bordered td {
+    border: var(--sp-component-border-width) solid var(--sp-table-divider);
+  }
+
+  .sp-table--striped tbody tr:nth-of-type(odd) {
+    background-color: var(--sp-table-stripe-bg);
+  }
+
+  .sp-table--hover tbody tr {
+    transition: background-color var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-table--hover tbody tr:hover {
+    background-color: var(--sp-table-hover-bg);
+  }
+
+  /* tr.sp-table__row--* matches the (0,2,2) specificity of the striped and
+     hover rules above and wins on source order. */
+  .sp-table__row--selected,
+  .sp-table__row[aria-selected="true"],
+  .sp-table tbody tr.sp-table__row--selected,
+  .sp-table tbody tr[aria-selected="true"] {
+    background-color: var(--sp-table-selected-bg);
+  }
+
+  .sp-table__row--neutral,
+  .sp-table tbody tr.sp-table__row--neutral {
+    background-color: var(--sp-table-row-neutral-bg);
+    color: var(--sp-table-row-neutral-text);
+  }
+
+  .sp-table__row--info,
+  .sp-table tbody tr.sp-table__row--info {
+    background-color: var(--sp-table-row-info-bg);
+    color: var(--sp-table-row-info-text);
+  }
+
+  .sp-table__row--success,
+  .sp-table tbody tr.sp-table__row--success {
+    background-color: var(--sp-table-row-success-bg);
+    color: var(--sp-table-row-success-text);
+  }
+
+  .sp-table__row--warning,
+  .sp-table tbody tr.sp-table__row--warning {
+    background-color: var(--sp-table-row-warning-bg);
+    color: var(--sp-table-row-warning-text);
+  }
+
+  .sp-table__row--danger,
+  .sp-table tbody tr.sp-table__row--danger {
+    background-color: var(--sp-table-row-danger-bg);
+    color: var(--sp-table-row-danger-text);
+  }
+
+  /* PAGINATION ------------------------------------------------------------- */
+  /* Colors come from the component.pagination token contract (spectre-tokens
+     4.10.0). Item size is set per size modifier through component-scoped
+     vars. */
+  .sp-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sp-space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--sp-font-family-sans);
+    --sp-component-pagination-item-size: var(--sp-min-touch-target);
+    --sp-component-pagination-item-padding-x: var(--sp-space-12);
+    --sp-component-pagination-font-size: var(--sp-font-sm-size);
+    --sp-component-pagination-line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-pagination--sm {
+    --sp-component-pagination-item-size: var(--sp-space-32);
+    --sp-component-pagination-item-padding-x: var(--sp-space-8);
+    --sp-component-pagination-font-size: var(--sp-font-xs-size);
+    --sp-component-pagination-line-height: var(--sp-font-xs-line-height);
+  }
+
+  .sp-pagination--md {
+    --sp-component-pagination-item-size: var(--sp-min-touch-target);
+    --sp-component-pagination-item-padding-x: var(--sp-space-12);
+    --sp-component-pagination-font-size: var(--sp-font-sm-size);
+    --sp-component-pagination-line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-pagination--lg {
+    --sp-component-pagination-item-size: var(--sp-space-56);
+    --sp-component-pagination-item-padding-x: var(--sp-space-16);
+    --sp-component-pagination-font-size: var(--sp-font-md-size);
+    --sp-component-pagination-line-height: var(--sp-font-md-line-height);
+  }
+
+  .sp-pagination__ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--sp-component-pagination-item-size);
+    height: var(--sp-component-pagination-item-size);
+    color: var(--sp-pagination-item-disabled-text);
+    font-size: var(--sp-component-pagination-font-size);
+    line-height: var(--sp-component-pagination-line-height);
+  }
+
+  .sp-pagination__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--sp-component-pagination-item-size);
+    height: var(--sp-component-pagination-item-size);
+    padding: 0 var(--sp-component-pagination-item-padding-x);
+    color: var(--sp-pagination-item-text);
+    font-size: var(--sp-component-pagination-font-size);
+    line-height: var(--sp-component-pagination-line-height);
+    border: 0;
+    border-radius: var(--sp-radius-md);
+    background-color: transparent;
+    font-family: inherit;
+    font-weight: var(--sp-font-md-weight);
+    text-decoration: none;
+    appearance: none;
+    cursor: pointer;
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-pagination__item:hover,
+  .sp-pagination__item--hover,
+  .sp-pagination__item.is-hover {
+    background-color: var(--sp-pagination-item-hover-bg);
+  }
+
+  .sp-pagination__item:focus-visible,
+  .sp-pagination__item--focus,
+  .sp-pagination__item.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 var(--sp-focus-ring-width) var(--sp-color-focus-primary);
+  }
+
+  .sp-pagination__item--active,
+  .sp-pagination__item[aria-current="page"] {
+    background-color: var(--sp-pagination-item-active-bg);
+    color: var(--sp-pagination-item-active-text);
+  }
+
+  .sp-pagination__item--disabled,
+  .sp-pagination__item:disabled,
+  .sp-pagination__item[aria-disabled="true"] {
+    color: var(--sp-pagination-item-disabled-text);
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  /* STEPPER ---------------------------------------------------------------- */
+  /* Colors come from the component.stepper token contract (spectre-tokens
+     4.10.0). Connectors are drawn by ::after on every step but the last. */
+  .sp-stepper {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--sp-font-family-sans);
+    --sp-component-stepper-indicator-size: var(--sp-space-32);
+  }
+
+  .sp-stepper--horizontal {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .sp-stepper--vertical {
+    flex-direction: column;
+  }
+
+  .sp-stepper__step {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-space-8);
+    --sp-component-stepper-step-bg: var(--sp-stepper-step-pending-bg);
+    --sp-component-stepper-step-text: var(--sp-stepper-step-pending-text);
+  }
+
+  .sp-stepper--horizontal .sp-stepper__step:not(:last-child) {
+    flex: 1 1 0;
+  }
+
+  .sp-stepper--horizontal .sp-stepper__step:not(:last-child)::after {
+    content: "";
+    flex: 1 1 auto;
+    min-width: var(--sp-space-16);
+    height: var(--sp-border-width-thick);
+    margin-inline: var(--sp-space-8);
+    border-radius: var(--sp-radius-pill);
+    background-color: var(--sp-stepper-connector);
+  }
+
+  .sp-stepper--vertical .sp-stepper__step {
+    position: relative;
+    align-items: flex-start;
+    padding-bottom: var(--sp-space-24);
+  }
+
+  .sp-stepper--vertical .sp-stepper__step:last-child {
+    padding-bottom: 0;
+  }
+
+  .sp-stepper--vertical .sp-stepper__step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: calc(var(--sp-component-stepper-indicator-size) + var(--sp-space-4));
+    bottom: var(--sp-space-4);
+    left: calc((var(--sp-component-stepper-indicator-size) - var(--sp-border-width-thick)) / 2);
+    width: var(--sp-border-width-thick);
+    border-radius: var(--sp-radius-pill);
+    background-color: var(--sp-stepper-connector);
+  }
+
+  .sp-stepper__step--pending {
+    --sp-component-stepper-step-bg: var(--sp-stepper-step-pending-bg);
+    --sp-component-stepper-step-text: var(--sp-stepper-step-pending-text);
+  }
+
+  .sp-stepper__step--active,
+  .sp-stepper__step[aria-current="step"] {
+    --sp-component-stepper-step-bg: var(--sp-stepper-step-active-bg);
+    --sp-component-stepper-step-text: var(--sp-stepper-step-active-text);
+  }
+
+  .sp-stepper__step--done {
+    --sp-component-stepper-step-bg: var(--sp-stepper-step-done-bg);
+    --sp-component-stepper-step-text: var(--sp-stepper-step-done-text);
+  }
+
+  .sp-stepper__indicator {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: var(--sp-component-stepper-indicator-size);
+    height: var(--sp-component-stepper-indicator-size);
+    border-radius: var(--sp-radius-pill);
+    background-color: var(--sp-component-stepper-step-bg);
+    color: var(--sp-component-stepper-step-text);
+    font-size: var(--sp-font-sm-size);
+    font-weight: var(--sp-font-md-weight);
+    line-height: var(--sp-font-sm-line-height);
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-stepper__label {
+    color: var(--sp-stepper-label-text);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-stepper__step--active .sp-stepper__label {
+    font-weight: var(--sp-font-md-weight);
+  }
+
+  .sp-stepper--vertical .sp-stepper__label {
+    padding-top: calc((var(--sp-component-stepper-indicator-size) - var(--sp-font-sm-line-height)) / 2);
+  }
+
+  /* POPOVER ---------------------------------------------------------------- */
+  /* Colors and elevation come from the component.popover token contract
+     (spectre-tokens 4.10.0). Placement mirrors sp-tooltip--*. The arrow is a
+     rotated square whose two outward edges carry the popover border. */
+  .sp-popover {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    max-width: calc(var(--sp-space-240) + var(--sp-space-80));
+    border: var(--sp-component-border-width) solid var(--sp-popover-border);
+    border-radius: var(--sp-radius-lg);
+    background-color: var(--sp-popover-bg);
+    color: var(--sp-popover-text);
+    box-shadow: var(--sp-popover-shadow);
+    font-family: var(--sp-font-family-sans);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+    z-index: var(--sp-z-index-popover);
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      opacity var(--sp-duration-fast) var(--sp-easing-out),
+      visibility var(--sp-duration-fast) var(--sp-easing-out);
+    --sp-component-popover-offset: var(--sp-space-12);
+    --sp-component-popover-arrow-size: var(--sp-space-12);
+  }
+
+  .sp-popover--open {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .sp-popover--top {
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%, calc(-1 * var(--sp-component-popover-offset)));
+  }
+
+  .sp-popover--bottom {
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, var(--sp-component-popover-offset));
+  }
+
+  .sp-popover--left {
+    top: 50%;
+    right: 100%;
+    transform: translate(calc(-1 * var(--sp-component-popover-offset)), -50%);
+  }
+
+  .sp-popover--right {
+    top: 50%;
+    left: 100%;
+    transform: translate(var(--sp-component-popover-offset), -50%);
+  }
+
+  .sp-popover__header {
+    padding: var(--sp-space-8) var(--sp-space-16);
+    border-bottom: var(--sp-component-border-width) solid var(--sp-popover-border);
+    font-size: var(--sp-font-md-size);
+    font-weight: var(--sp-font-md-weight);
+    line-height: var(--sp-font-md-line-height);
+  }
+
+  .sp-popover__body {
+    padding: var(--sp-space-12) var(--sp-space-16);
+    color: var(--sp-popover-muted);
+  }
+
+  .sp-popover__arrow {
+    position: absolute;
+    width: var(--sp-component-popover-arrow-size);
+    height: var(--sp-component-popover-arrow-size);
+    border: var(--sp-component-border-width) solid transparent;
+    background-color: var(--sp-popover-arrow);
+  }
+
+  .sp-popover--top .sp-popover__arrow {
+    top: 100%;
+    left: 50%;
+    border-right-color: var(--sp-popover-border);
+    border-bottom-color: var(--sp-popover-border);
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .sp-popover--bottom .sp-popover__arrow {
+    bottom: 100%;
+    left: 50%;
+    border-top-color: var(--sp-popover-border);
+    border-left-color: var(--sp-popover-border);
+    transform: translate(-50%, 50%) rotate(45deg);
+  }
+
+  .sp-popover--left .sp-popover__arrow {
+    top: 50%;
+    left: 100%;
+    border-top-color: var(--sp-popover-border);
+    border-right-color: var(--sp-popover-border);
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .sp-popover--right .sp-popover__arrow {
+    top: 50%;
+    right: 100%;
+    border-bottom-color: var(--sp-popover-border);
+    border-left-color: var(--sp-popover-border);
+    transform: translate(50%, -50%) rotate(45deg);
+  }
+
+  /* PROGRESS --------------------------------------------------------------- */
+  /* Colors come from the component.progress token contract (spectre-tokens
+     4.10.0). The caller sets the bar's inline width for determinate values. */
+  .sp-progress {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--sp-radius-pill);
+    background-color: var(--sp-progress-track-bg);
+    --sp-component-progress-height: var(--sp-space-8);
+    height: var(--sp-component-progress-height);
+  }
+
+  .sp-progress--sm {
+    --sp-component-progress-height: var(--sp-space-4);
+  }
+
+  .sp-progress--md {
+    --sp-component-progress-height: var(--sp-space-8);
+  }
+
+  .sp-progress--lg {
+    --sp-component-progress-height: var(--sp-space-16);
+  }
+
+  .sp-progress__bar {
+    height: 100%;
+    border-radius: inherit;
+    background-color: var(--sp-progress-indicator-brand);
+    transition: width var(--sp-duration-base) var(--sp-easing-out);
+  }
+
+  .sp-progress__bar--brand {
+    background-color: var(--sp-progress-indicator-brand);
+  }
+
+  .sp-progress__bar--neutral {
+    background-color: var(--sp-progress-indicator-neutral);
+  }
+
+  .sp-progress__bar--info {
+    background-color: var(--sp-progress-indicator-info);
+  }
+
+  .sp-progress__bar--success {
+    background-color: var(--sp-progress-indicator-success);
+  }
+
+  .sp-progress__bar--warning {
+    background-color: var(--sp-progress-indicator-warning);
+  }
+
+  .sp-progress__bar--danger {
+    background-color: var(--sp-progress-indicator-danger);
+  }
+
+  .sp-progress__bar--indeterminate {
+    width: 40%;
+    animation: sp-progress-indeterminate var(--sp-duration-slowest) var(--sp-easing-inout) infinite;
+  }
+
+  .sp-progress__label {
+    display: block;
+    margin-bottom: var(--sp-space-4);
+    color: var(--sp-progress-label-text);
+    font-family: var(--sp-font-family-sans);
+    font-size: var(--sp-font-xs-size);
+    line-height: var(--sp-font-xs-line-height);
+  }
+
+  @keyframes sp-progress-indeterminate {
+    from {
+      transform: translateX(-100%);
+    }
+
+    to {
+      transform: translateX(250%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sp-progress__bar--indeterminate {
+      animation: none;
+      width: 100%;
+    }
+  }
+
+  /* SWITCH ----------------------------------------------------------------- */
+  /* Colors come from the component.switch token contract (spectre-tokens
+     4.10.0). Works on a native checkbox (appearance: none) with the thumb
+     drawn by ::before; the travel distance is derived from the size vars. */
+  .sp-switch {
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+    width: var(--sp-component-switch-width);
+    height: var(--sp-component-switch-height);
+    margin: 0;
+    border: 0;
+    border-radius: var(--sp-radius-pill);
+    background-color: var(--sp-switch-track-bg);
+    vertical-align: middle;
+    appearance: none;
+    cursor: pointer;
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out);
+    --sp-component-switch-width: var(--sp-space-40);
+    --sp-component-switch-height: var(--sp-space-24);
+    --sp-component-switch-thumb: var(--sp-space-20);
+  }
+
+  .sp-switch--sm {
+    --sp-component-switch-width: var(--sp-space-32);
+    --sp-component-switch-height: var(--sp-space-16);
+    --sp-component-switch-thumb: var(--sp-space-12);
+  }
+
+  .sp-switch--md {
+    --sp-component-switch-width: var(--sp-space-40);
+    --sp-component-switch-height: var(--sp-space-24);
+    --sp-component-switch-thumb: var(--sp-space-20);
+  }
+
+  .sp-switch--lg {
+    --sp-component-switch-width: var(--sp-space-48);
+    --sp-component-switch-height: var(--sp-space-28);
+    --sp-component-switch-thumb: var(--sp-space-24);
+  }
+
+  .sp-switch::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: calc((var(--sp-component-switch-height) - var(--sp-component-switch-thumb)) / 2);
+    width: var(--sp-component-switch-thumb);
+    height: var(--sp-component-switch-thumb);
+    border-radius: var(--sp-radius-pill);
+    background-color: var(--sp-switch-thumb-bg);
+    box-shadow: var(--sp-shadow-sm);
+    transform: translateY(-50%);
+    transition:
+      transform var(--sp-duration-fast) var(--sp-easing-out),
+      background-color var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-switch:checked,
+  .sp-switch--checked,
+  .sp-switch[aria-checked="true"] {
+    background-color: var(--sp-switch-track-checked-bg);
+  }
+
+  .sp-switch:checked::before,
+  .sp-switch--checked::before,
+  .sp-switch[aria-checked="true"]::before {
+    transform: translate(calc(var(--sp-component-switch-width) - var(--sp-component-switch-height)), -50%);
+  }
+
+  .sp-switch:focus-visible,
+  .sp-switch--focus,
+  .sp-switch.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 var(--sp-focus-ring-width) var(--sp-switch-focus-ring);
+  }
+
+  .sp-switch:disabled,
+  .sp-switch--disabled,
+  .sp-switch[aria-disabled="true"] {
+    background-color: var(--sp-switch-track-disabled-bg);
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  .sp-switch:disabled::before,
+  .sp-switch--disabled::before,
+  .sp-switch[aria-disabled="true"]::before {
+    background-color: var(--sp-switch-thumb-disabled-bg);
+    box-shadow: none;
+  }
+
+  /* RANGE ------------------------------------------------------------------ */
+  /* Colors come from the component.range token contract (spectre-tokens
+     4.10.0). Vendor pseudo-elements stay in separate rules because an
+     unknown pseudo-element invalidates a whole selector list. */
+  .sp-range {
+    display: block;
+    width: 100%;
+    height: var(--sp-space-20);
+    margin: 0;
+    background-color: transparent;
+    appearance: none;
+    cursor: pointer;
+    --sp-component-range-value: 0%;
+    --sp-component-range-track-height: var(--sp-space-6);
+    --sp-component-range-thumb-size: var(--sp-space-20);
+    --sp-component-range-track-color: var(--sp-range-track-bg);
+    --sp-component-range-fill-color: var(--sp-range-track-filled-bg);
+    --sp-component-range-thumb-border: var(--sp-range-thumb-border);
+  }
+
+  .sp-range::-webkit-slider-runnable-track {
+    height: var(--sp-component-range-track-height);
+    border-radius: var(--sp-radius-pill);
+    background: linear-gradient(
+      to right,
+      var(--sp-component-range-fill-color) var(--sp-component-range-value),
+      var(--sp-component-range-track-color) var(--sp-component-range-value)
+    );
+  }
+
+  .sp-range::-moz-range-track {
+    height: var(--sp-component-range-track-height);
+    border-radius: var(--sp-radius-pill);
+    background-color: var(--sp-component-range-track-color);
+  }
+
+  .sp-range::-moz-range-progress {
+    height: var(--sp-component-range-track-height);
+    border-radius: var(--sp-radius-pill);
+    background-color: var(--sp-component-range-fill-color);
+  }
+
+  .sp-range::-webkit-slider-thumb {
+    width: var(--sp-component-range-thumb-size);
+    height: var(--sp-component-range-thumb-size);
+    margin-top: calc((var(--sp-component-range-track-height) - var(--sp-component-range-thumb-size)) / 2);
+    border: var(--sp-border-width-thick) solid var(--sp-component-range-thumb-border);
+    border-radius: var(--sp-radius-pill);
+    background-color: var(--sp-range-thumb-bg);
+    appearance: none;
+    transition: box-shadow var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-range::-moz-range-thumb {
+    box-sizing: border-box;
+    width: var(--sp-component-range-thumb-size);
+    height: var(--sp-component-range-thumb-size);
+    border: var(--sp-border-width-thick) solid var(--sp-component-range-thumb-border);
+    border-radius: var(--sp-radius-pill);
+    background-color: var(--sp-range-thumb-bg);
+    transition: box-shadow var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-range:focus-visible,
+  .sp-range--focus,
+  .sp-range.is-focus {
+    outline: none;
+    --sp-component-range-thumb-ring: 0 0 0 var(--sp-focus-ring-width) var(--sp-range-focus-ring);
+  }
+
+  .sp-range:focus-visible::-webkit-slider-thumb {
+    box-shadow: var(--sp-component-range-thumb-ring);
+  }
+
+  .sp-range--focus::-webkit-slider-thumb {
+    box-shadow: var(--sp-component-range-thumb-ring);
+  }
+
+  .sp-range:focus-visible::-moz-range-thumb {
+    box-shadow: var(--sp-component-range-thumb-ring);
+  }
+
+  .sp-range--focus::-moz-range-thumb {
+    box-shadow: var(--sp-component-range-thumb-ring);
+  }
+
+  .sp-range:disabled,
+  .sp-range--disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    --sp-component-range-track-color: var(--sp-range-track-disabled-bg);
+    --sp-component-range-fill-color: var(--sp-range-track-disabled-bg);
+    --sp-component-range-thumb-border: var(--sp-range-thumb-disabled-border);
+  }
+
+  /* FILE INPUT ------------------------------------------------------------- */
+  /* Colors come from the component.fileInput token contract (spectre-tokens
+     4.10.0). The browse button is the native ::file-selector-button, flush
+     against the leading edge and sized by the same padding vars. */
+  .sp-file-input {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    border: var(--sp-component-border-width) solid var(--sp-file-input-border);
+    border-radius: var(--sp-radius-md);
+    background-color: var(--sp-file-input-bg);
+    color: var(--sp-file-input-text);
+    font-family: var(--sp-font-family-sans);
+    cursor: pointer;
+    transition:
+      border-color var(--sp-duration-fast) var(--sp-easing-out),
+      background-color var(--sp-duration-fast) var(--sp-easing-out);
+    --sp-component-file-input-padding-y: var(--sp-space-8);
+    --sp-component-file-input-padding-x: var(--sp-space-16);
+  }
+
+  .sp-file-input::file-selector-button {
+    margin: calc(-1 * var(--sp-component-file-input-padding-y)) var(--sp-component-file-input-padding-x) calc(-1 * var(--sp-component-file-input-padding-y)) calc(-1 * var(--sp-component-file-input-padding-x));
+    padding: var(--sp-component-file-input-padding-y) var(--sp-component-file-input-padding-x);
+    border: 0;
+    border-right: var(--sp-component-border-width) solid var(--sp-file-input-border);
+    background-color: var(--sp-file-input-action-bg);
+    color: var(--sp-file-input-action-text);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .sp-file-input--sm {
+    padding: var(--sp-component-file-input-padding-y) var(--sp-component-file-input-padding-x);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+    --sp-component-file-input-padding-y: var(--sp-space-4);
+    --sp-component-file-input-padding-x: var(--sp-space-12);
+  }
+
+  .sp-file-input--md {
+    padding: var(--sp-component-file-input-padding-y) var(--sp-component-file-input-padding-x);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
+    --sp-component-file-input-padding-y: var(--sp-space-8);
+    --sp-component-file-input-padding-x: var(--sp-space-16);
+  }
+
+  .sp-file-input--lg {
+    padding: var(--sp-component-file-input-padding-y) var(--sp-component-file-input-padding-x);
+    font-size: var(--sp-font-lg-size);
+    line-height: var(--sp-font-lg-line-height);
+    --sp-component-file-input-padding-y: var(--sp-space-12);
+    --sp-component-file-input-padding-x: var(--sp-space-24);
+  }
+
+  .sp-file-input--full {
+    width: 100%;
+  }
+
+  .sp-file-input:focus-within,
+  .sp-file-input--focus,
+  .sp-file-input.is-focus {
+    outline: none;
+    border-color: var(--sp-file-input-focus-border);
+  }
+
+  .sp-file-input--invalid,
+  .sp-file-input[aria-invalid="true"] {
+    border-color: var(--sp-file-input-border-invalid);
+    background-color: var(--sp-file-input-bg-invalid);
+  }
+
+  .sp-file-input--success {
+    border-color: var(--sp-file-input-border-success);
+    background-color: var(--sp-file-input-bg-success);
+  }
+
+  .sp-file-input:disabled,
+  .sp-file-input--disabled {
+    border-color: var(--sp-file-input-disabled-border);
+    background-color: var(--sp-file-input-disabled-bg);
+    color: var(--sp-file-input-disabled-text);
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  .sp-file-input:disabled::file-selector-button {
+    color: var(--sp-file-input-disabled-text);
+  }
+
+  .sp-file-input--disabled::file-selector-button {
+    color: var(--sp-file-input-disabled-text);
+  }
+
+  /* INPUT GROUP ------------------------------------------------------------ */
+  /* Colors come from the component.inputGroup token contract (spectre-tokens
+     4.10.0). Children overlap by one border width so seams render once; the
+     focused child is raised so its focus border is never covered. */
+  .sp-input-group {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .sp-input-group > * {
+    position: relative;
+    border-radius: 0;
+  }
+
+  .sp-input-group > * + * {
+    margin-left: calc(-1 * var(--sp-component-border-width));
+  }
+
+  .sp-input-group > :first-child {
+    border-top-left-radius: var(--sp-radius-md);
+    border-bottom-left-radius: var(--sp-radius-md);
+  }
+
+  .sp-input-group > :last-child {
+    border-top-right-radius: var(--sp-radius-md);
+    border-bottom-right-radius: var(--sp-radius-md);
+  }
+
+  .sp-input-group > .sp-input,
+  .sp-input-group > .sp-select,
+  .sp-input-group > .sp-file-input {
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+  }
+
+  .sp-input-group > :focus,
+  .sp-input-group > :focus-within {
+    z-index: 1;
+    border-color: var(--sp-input-group-focus-border);
+  }
+
+  .sp-input-group__addon {
+    display: flex;
+    align-items: center;
+    padding: var(--sp-space-8) var(--sp-space-12);
+    border: var(--sp-component-border-width) solid var(--sp-input-group-addon-border);
+    background-color: var(--sp-input-group-addon-bg);
+    color: var(--sp-input-group-addon-text);
+    font-family: var(--sp-font-family-sans);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+    white-space: nowrap;
+  }
+
+  .sp-input-group--disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  .sp-input-group--disabled > .sp-input-group__addon {
+    background-color: var(--sp-input-group-disabled-bg);
+    color: var(--sp-input-group-disabled-text);
+  }
+
+  /* DATEPICKER + DAY ------------------------------------------------------- */
+  /* Colors come from the component.datepicker and component.day token
+     contracts (spectre-tokens 4.10.0). Selected wins over today and
+     outside-month by source order. */
+  .sp-datepicker {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--sp-space-8);
+    padding: var(--sp-space-12);
+    border: var(--sp-component-border-width) solid var(--sp-datepicker-panel-border);
+    border-radius: var(--sp-radius-lg);
+    background-color: var(--sp-datepicker-panel-bg);
+    box-shadow: var(--sp-shadow-md);
+    font-family: var(--sp-font-family-sans);
+  }
+
+  .sp-datepicker__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-space-8);
+    color: var(--sp-datepicker-header-text);
+    font-size: var(--sp-font-sm-size);
+    font-weight: var(--sp-font-md-weight);
+    line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-datepicker__grid {
+    display: grid;
+    grid-template-columns: repeat(7, var(--sp-space-40));
+    gap: var(--sp-space-2);
+  }
+
+  .sp-datepicker__weekday {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--sp-space-32);
+    color: var(--sp-datepicker-weekday-text);
+    font-size: var(--sp-font-xs-size);
+    font-weight: var(--sp-font-md-weight);
+    line-height: var(--sp-font-xs-line-height);
+  }
+
+  .sp-day {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--sp-space-40);
+    height: var(--sp-space-40);
+    padding: 0;
+    border: 0;
+    border-radius: var(--sp-radius-pill);
+    background-color: transparent;
+    color: var(--sp-day-default-text);
+    font-family: inherit;
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+    appearance: none;
+    cursor: pointer;
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      color var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-day:hover,
+  .sp-day--hover,
+  .sp-day.is-hover {
+    background-color: var(--sp-day-default-hover-bg);
+  }
+
+  .sp-day--today,
+  .sp-day[aria-current="date"] {
+    box-shadow: inset 0 0 0 var(--sp-component-border-width) var(--sp-day-today-ring-color);
+    font-weight: var(--sp-font-md-weight);
+  }
+
+  .sp-day--outside-month {
+    color: var(--sp-day-outside-month-text);
+  }
+
+  .sp-day--selected,
+  .sp-day[aria-selected="true"] {
+    background-color: var(--sp-day-selected-bg);
+    color: var(--sp-day-selected-text);
+  }
+
+  .sp-day:focus-visible,
+  .sp-day--focus,
+  .sp-day.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 var(--sp-focus-ring-width) var(--sp-color-focus-primary);
+  }
+
+  .sp-day--disabled,
+  .sp-day:disabled,
+  .sp-day[aria-disabled="true"] {
+    background-color: transparent;
+    color: var(--sp-day-disabled-text);
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  /* EXTERNAL AUTH BUTTON --------------------------------------------------- */
+  /* Colors come from the component.externalAuthButton token contract
+     (spectre-tokens 4.10.0) — one neutral treatment for every provider. */
+  .sp-external-auth-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-space-12);
+    min-height: var(--sp-min-touch-target);
+    padding: var(--sp-space-8) var(--sp-space-16);
+    border: var(--sp-component-border-width) solid var(--sp-external-auth-button-border);
+    border-radius: var(--sp-radius-md);
+    background-color: var(--sp-external-auth-button-bg);
+    color: var(--sp-external-auth-button-text);
+    font-family: var(--sp-font-family-sans);
+    font-size: var(--sp-font-md-size);
+    font-weight: var(--sp-font-md-weight);
+    line-height: var(--sp-font-md-line-height);
+    text-decoration: none;
+    appearance: none;
+    cursor: pointer;
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-external-auth-btn--full {
+    width: 100%;
+  }
+
+  .sp-external-auth-btn:hover,
+  .sp-external-auth-btn--hover,
+  .sp-external-auth-btn.is-hover {
+    background-color: var(--sp-external-auth-button-hover-bg);
+  }
+
+  .sp-external-auth-btn:active,
+  .sp-external-auth-btn--active,
+  .sp-external-auth-btn.is-active {
+    background-color: var(--sp-external-auth-button-active-bg);
+  }
+
+  .sp-external-auth-btn:focus-visible,
+  .sp-external-auth-btn--focus,
+  .sp-external-auth-btn.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 var(--sp-focus-ring-width) var(--sp-external-auth-button-focus-ring);
+  }
+
+  .sp-external-auth-btn:disabled,
+  .sp-external-auth-btn--disabled,
+  .sp-external-auth-btn[aria-disabled="true"] {
+    background-color: var(--sp-external-auth-button-disabled-bg);
+    color: var(--sp-external-auth-button-disabled-text);
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  .sp-external-auth-btn--loading,
+  .sp-external-auth-btn[aria-busy="true"] {
+    opacity: var(--sp-opacity-loading);
+    pointer-events: none;
+  }
+
+  .sp-external-auth-btn__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    width: var(--sp-icon-md);
+    height: var(--sp-icon-md);
+  }
+
+  /* CHOICE CARD ------------------------------------------------------------ */
+  /* Colors come from the component.choiceCard token contract (spectre-tokens
+     4.10.0). :has() lets a wrapped native input drive selection, focus, and
+     disabled state without script. */
+  .sp-choice-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--sp-space-12);
+    padding: var(--sp-space-16);
+    border: var(--sp-component-border-width) solid var(--sp-choice-card-border);
+    border-radius: var(--sp-radius-lg);
+    background-color: var(--sp-choice-card-bg);
+    color: var(--sp-choice-card-text);
+    font-family: var(--sp-font-family-sans);
+    cursor: pointer;
+    transition:
+      background-color var(--sp-duration-fast) var(--sp-easing-out),
+      border-color var(--sp-duration-fast) var(--sp-easing-out),
+      box-shadow var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  .sp-choice-card:hover,
+  .sp-choice-card--hover,
+  .sp-choice-card.is-hover {
+    border-color: var(--sp-choice-card-hover-border);
+  }
+
+  .sp-choice-card--selected,
+  .sp-choice-card[aria-checked="true"],
+  .sp-choice-card:has(:checked) {
+    border-color: var(--sp-choice-card-selected-border);
+    background-color: var(--sp-choice-card-selected-bg);
+  }
+
+  .sp-choice-card:has(:focus-visible),
+  .sp-choice-card:focus-visible,
+  .sp-choice-card--focus,
+  .sp-choice-card.is-focus {
+    outline: none;
+    box-shadow: 0 0 0 var(--sp-focus-ring-width) var(--sp-choice-card-focus-ring);
+  }
+
+  .sp-choice-card--disabled,
+  .sp-choice-card[aria-disabled="true"],
+  .sp-choice-card:has(:disabled) {
+    border-color: var(--sp-choice-card-border);
+    background-color: var(--sp-choice-card-disabled-bg);
+    color: var(--sp-choice-card-disabled-text);
+    pointer-events: none;
+    cursor: not-allowed;
   }
 }

@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spectre UI — Component Inventory Verification</title>
+    <link rel="stylesheet" href="../dist/index.css" />
+    <!-- Append ?theme=dark to verify the token dark mode. -->
+    <script>
+      if (new URLSearchParams(location.search).get('theme') === 'dark') {
+        document.documentElement.setAttribute('data-spectre-theme', 'dark')
+      }
+    </script>
+    <style>
+      body {
+        margin: 0;
+        padding: var(--sp-space-32);
+        background-color: var(--sp-surface-page);
+        color: var(--sp-text-on-page-default);
+        font-family: var(--sp-font-family-sans);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--sp-space-24);
+      }
+      .cell {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-space-12);
+        min-width: 0;
+        padding: var(--sp-space-16);
+        border: var(--sp-component-border-width) solid var(--sp-surface-divider);
+        border-radius: var(--sp-radius-lg);
+        background-color: var(--sp-surface-card);
+      }
+      .cell h2 {
+        margin: 0;
+        font-size: var(--sp-font-xs-size);
+        text-transform: uppercase;
+        color: var(--sp-text-on-page-muted);
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--sp-space-8);
+      }
+      .anchor {
+        position: relative;
+        display: inline-block;
+        margin-top: var(--sp-space-96);
+        margin-left: var(--sp-space-96);
+      }
+      .slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: var(--sp-space-96);
+        background-color: var(--sp-surface-inverse);
+        color: var(--sp-text-on-inverse-default);
+      }
+      .inverse {
+        padding: var(--sp-space-8);
+        background-color: var(--sp-surface-inverse);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid">
+      <section class="cell">
+        <h2>Tabs — line / pill</h2>
+        <div class="sp-tabs sp-tabs--line">
+          <div class="sp-tabs__list" role="tablist">
+            <button class="sp-tabs__item" role="tab" aria-selected="true">Overview</button>
+            <button class="sp-tabs__item" role="tab">Specs</button>
+            <button class="sp-tabs__item sp-tabs__item--disabled" role="tab">Disabled</button>
+          </div>
+          <div class="sp-tabs__panel">Line panel content</div>
+        </div>
+        <div class="sp-tabs sp-tabs--pill">
+          <div class="sp-tabs__list" role="tablist">
+            <button class="sp-tabs__item" role="tab">Day</button>
+            <button class="sp-tabs__item sp-tabs__item--active" role="tab">Week</button>
+            <button class="sp-tabs__item" role="tab">Month</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="cell">
+        <h2>Accordion</h2>
+        <div class="sp-accordion">
+          <details class="sp-accordion__item" open>
+            <summary class="sp-accordion__header">
+              Native details (open)
+              <svg class="sp-accordion__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4" /></svg>
+            </summary>
+            <div class="sp-accordion__panel">Expanded by the open attribute.</div>
+          </details>
+          <div class="sp-accordion__item">
+            <button class="sp-accordion__header" aria-expanded="false">
+              Collapsed
+              <svg class="sp-accordion__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4" /></svg>
+            </button>
+            <div class="sp-accordion__panel">Hidden</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cell">
+        <h2>Breadcrumb / Pagination</h2>
+        <ol class="sp-breadcrumb">
+          <li class="sp-breadcrumb__item"><a class="sp-breadcrumb__link" href="#">Home</a></li>
+          <li class="sp-breadcrumb__item"><a class="sp-breadcrumb__link" href="#">Library</a></li>
+          <li class="sp-breadcrumb__item" aria-current="page">Data</li>
+        </ol>
+        <ul class="sp-pagination sp-pagination--md">
+          <li><a class="sp-pagination__item sp-pagination__item--disabled" href="#">‹</a></li>
+          <li><a class="sp-pagination__item" href="#">1</a></li>
+          <li><a class="sp-pagination__item" aria-current="page" href="#">2</a></li>
+          <li><span class="sp-pagination__ellipsis">…</span></li>
+          <li><a class="sp-pagination__item" href="#">9</a></li>
+          <li><a class="sp-pagination__item" href="#">›</a></li>
+        </ul>
+      </section>
+
+      <section class="cell">
+        <h2>List group</h2>
+        <ul class="sp-list-group sp-list-group--accent-left sp-list-group--accent-brand">
+          <li class="sp-list-group__item sp-list-group__item--active">Active item</li>
+          <li class="sp-list-group__item sp-list-group__item--selected">
+            <span class="sp-list-group__heading">Selected</span>
+            <span class="sp-list-group__text">Muted supporting text</span>
+          </li>
+          <li><button class="sp-list-group__item sp-list-group__item--interactive">Interactive</button></li>
+          <li class="sp-list-group__item sp-list-group__item--disabled">Disabled</li>
+        </ul>
+      </section>
+
+      <section class="cell">
+        <h2>Table</h2>
+        <div class="sp-table-wrapper">
+          <table class="sp-table sp-table--sm sp-table--striped sp-table--hover">
+            <thead><tr><th>Plan</th><th>Seats</th></tr></thead>
+            <tbody>
+              <tr><td>Starter</td><td>1</td></tr>
+              <tr><td>Team</td><td>5</td></tr>
+              <tr class="sp-table__row sp-table__row--success"><td>Success row</td><td>10</td></tr>
+              <tr class="sp-table__row sp-table__row--selected"><td>Selected row</td><td>25</td></tr>
+              <tr class="sp-table__row sp-table__row--danger"><td>Danger row</td><td>0</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="cell">
+        <h2>Alert</h2>
+        <div class="sp-alert sp-alert--brand sp-alert--sm sp-alert--dismissible">
+          <svg class="sp-alert__icon" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="6" /></svg>
+          Brand, dismissible
+          <button class="sp-alert__dismiss" aria-label="Dismiss">×</button>
+        </div>
+        <div class="sp-alert sp-alert--success sp-alert--sm">
+          <svg class="sp-alert__icon" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="6" /></svg>
+          Success
+        </div>
+        <div class="sp-alert sp-alert--danger sp-alert--sm">
+          <svg class="sp-alert__icon" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="6" /></svg>
+          Danger
+        </div>
+      </section>
+
+      <section class="cell">
+        <h2>Stepper</h2>
+        <ol class="sp-stepper sp-stepper--horizontal">
+          <li class="sp-stepper__step sp-stepper__step--done"><span class="sp-stepper__indicator">1</span><span class="sp-stepper__label">Cart</span></li>
+          <li class="sp-stepper__step sp-stepper__step--active"><span class="sp-stepper__indicator">2</span><span class="sp-stepper__label">Ship</span></li>
+          <li class="sp-stepper__step sp-stepper__step--pending"><span class="sp-stepper__indicator">3</span><span class="sp-stepper__label">Pay</span></li>
+        </ol>
+        <ol class="sp-stepper sp-stepper--vertical">
+          <li class="sp-stepper__step sp-stepper__step--done"><span class="sp-stepper__indicator">1</span><span class="sp-stepper__label">Account</span></li>
+          <li class="sp-stepper__step sp-stepper__step--active"><span class="sp-stepper__indicator">2</span><span class="sp-stepper__label">Profile</span></li>
+          <li class="sp-stepper__step"><span class="sp-stepper__indicator">3</span><span class="sp-stepper__label">Done</span></li>
+        </ol>
+      </section>
+
+      <section class="cell">
+        <h2>Progress / Spinner / Badge</h2>
+        <span class="sp-progress__label">Uploading — 60%</span>
+        <div class="sp-progress sp-progress--md" role="progressbar"><div class="sp-progress__bar sp-progress__bar--brand" style="width: 60%"></div></div>
+        <div class="sp-progress sp-progress--sm"><div class="sp-progress__bar sp-progress__bar--success" style="width: 85%"></div></div>
+        <div class="sp-progress sp-progress--lg"><div class="sp-progress__bar sp-progress__bar--warning sp-progress__bar--indeterminate"></div></div>
+        <div class="row">
+          <span class="sp-spinner sp-spinner--md sp-spinner--primary"></span>
+          <span class="inverse"><span class="sp-spinner sp-spinner--md sp-spinner--inverse"></span></span>
+          <span class="sp-badge sp-badge--md sp-badge--brand">Brand</span>
+          <span class="sp-badge sp-badge--sm sp-badge--danger sp-badge--dot" aria-label="3 unread"></span>
+        </div>
+      </section>
+
+      <section class="cell">
+        <h2>Switch / Range / File input</h2>
+        <div class="row">
+          <input type="checkbox" role="switch" class="sp-switch sp-switch--sm" checked />
+          <input type="checkbox" role="switch" class="sp-switch sp-switch--md" />
+          <input type="checkbox" role="switch" class="sp-switch sp-switch--lg" checked />
+          <input type="checkbox" role="switch" class="sp-switch sp-switch--md" disabled />
+        </div>
+        <input type="range" class="sp-range" value="40" style="--sp-component-range-value: 40%" />
+        <input type="range" class="sp-range" value="70" style="--sp-component-range-value: 70%" disabled />
+        <input type="file" class="sp-file-input sp-file-input--sm sp-file-input--full" />
+      </section>
+
+      <section class="cell">
+        <h2>Input group / Buttons</h2>
+        <div class="sp-input-group">
+          <span class="sp-input-group__addon">https://</span>
+          <input class="sp-input sp-input--md" placeholder="example.com" />
+          <button class="sp-btn sp-btn--primary sp-btn--md">Go</button>
+        </div>
+        <div class="row">
+          <button class="sp-btn sp-btn--warning sp-btn--sm">Warning</button>
+          <button class="sp-btn sp-btn--link sp-btn--sm">Link</button>
+          <button class="sp-btn sp-btn--light sp-btn--sm">Light</button>
+          <button class="sp-btn sp-btn--dark sp-btn--sm">Dark</button>
+        </div>
+        <button class="sp-external-auth-btn sp-external-auth-btn--full">
+          <svg class="sp-external-auth-btn__icon" viewBox="0 0 16 16" fill="currentColor"><rect x="2" y="2" width="12" height="12" rx="3" /></svg>
+          Continue with provider
+        </button>
+      </section>
+
+      <section class="cell">
+        <h2>Choice card</h2>
+        <label class="sp-choice-card">
+          <input type="radio" name="ship" checked /> Standard shipping (native :checked)
+        </label>
+        <label class="sp-choice-card">
+          <input type="radio" name="ship" /> Express
+        </label>
+        <label class="sp-choice-card">
+          <input type="radio" name="ship" disabled /> Unavailable
+        </label>
+      </section>
+
+      <section class="cell">
+        <h2>Datepicker</h2>
+        <div class="sp-datepicker">
+          <div class="sp-datepicker__header"><span>‹</span>September 2026<span>›</span></div>
+          <div class="sp-datepicker__grid">
+            <span class="sp-datepicker__weekday">Su</span><span class="sp-datepicker__weekday">Mo</span><span class="sp-datepicker__weekday">Tu</span><span class="sp-datepicker__weekday">We</span><span class="sp-datepicker__weekday">Th</span><span class="sp-datepicker__weekday">Fr</span><span class="sp-datepicker__weekday">Sa</span>
+            <button class="sp-day sp-day--outside-month">30</button><button class="sp-day sp-day--outside-month">31</button><button class="sp-day">1</button><button class="sp-day">2</button><button class="sp-day">3</button><button class="sp-day sp-day--disabled">4</button><button class="sp-day">5</button>
+            <button class="sp-day">20</button><button class="sp-day">21</button><button class="sp-day">22</button><button class="sp-day sp-day--selected">23</button><button class="sp-day">24</button><button class="sp-day sp-day--today">25</button><button class="sp-day">26</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="cell">
+        <h2>Carousel (fade)</h2>
+        <div class="sp-carousel sp-carousel--fade">
+          <div class="sp-carousel__viewport">
+            <div class="sp-carousel__slide">Slide 1</div>
+            <div class="sp-carousel__slide sp-carousel__slide--active"><div class="slide">Slide 2 (active)</div><div class="sp-carousel__caption">Caption</div></div>
+          </div>
+          <button class="sp-carousel__control sp-carousel__control--prev" aria-label="Previous">‹</button>
+          <button class="sp-carousel__control sp-carousel__control--next" aria-label="Next">›</button>
+          <div class="sp-carousel__indicators">
+            <button class="sp-carousel__indicator"></button>
+            <button class="sp-carousel__indicator sp-carousel__indicator--active"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="cell">
+        <h2>Popover / Dropdown / Toast</h2>
+        <span class="anchor">
+          <button class="sp-btn sp-btn--secondary sp-btn--sm">Trigger</button>
+          <div class="sp-popover sp-popover--top sp-popover--open">
+            <div class="sp-popover__arrow"></div>
+            <div class="sp-popover__header">Popover title</div>
+            <div class="sp-popover__body">Body copy in muted text.</div>
+          </div>
+        </span>
+        <div class="sp-dropdown__menu sp-dropdown__menu--open" style="position: static">
+          <div class="sp-dropdown__header">Sort by</div>
+          <a class="sp-dropdown__item sp-dropdown__item--selected" href="#">Newest</a>
+          <a class="sp-dropdown__item" href="#">Oldest</a>
+          <hr class="sp-dropdown__divider" />
+          <a class="sp-dropdown__item sp-dropdown__item--disabled" href="#">Disabled</a>
+        </div>
+        <div class="sp-toast sp-toast--neutral">Neutral toast</div>
+      </section>
+
+      <section class="cell">
+        <h2>Prose</h2>
+        <div class="sp-prose">
+          <p>Inline <code>code</code> and a <mark>highlight</mark>.</p>
+          <blockquote>A quoted passage.</blockquote>
+          <pre><code>const x = 1</code></pre>
+          <hr />
+        </div>
+      </section>
+
+      <section class="cell">
+        <h2>Offcanvas (open, end)</h2>
+        <p>Rendered over the page's right edge with its backdrop.</p>
+      </section>
+    </div>
+
+    <div class="sp-offcanvas-backdrop sp-offcanvas-backdrop--open"></div>
+    <aside class="sp-offcanvas sp-offcanvas--end sp-offcanvas--open">
+      <div class="sp-offcanvas__header">Filters <button class="sp-btn sp-btn--ghost sp-btn--sm">×</button></div>
+      <div class="sp-offcanvas__body">Offcanvas body content.</div>
+      <div class="sp-offcanvas__footer"><button class="sp-btn sp-btn--primary sp-btn--sm">Apply</button></div>
+    </aside>
+  </body>
+</html>

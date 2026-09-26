@@ -82,6 +82,8 @@ export {
 
 export {
   getAlertClasses,
+  getAlertIconClasses,
+  getAlertDismissClasses,
   type AlertRecipeOptions,
   type AlertSize,
   type AlertVariant
@@ -170,6 +172,8 @@ export {
   getDropdownClasses,
   getDropdownMenuClasses,
   getDropdownItemClasses,
+  getDropdownHeaderClasses,
+  getDropdownDividerClasses,
   type DropdownRecipeOptions,
   type DropdownMenuRecipeOptions,
   type DropdownItemRecipeOptions,
@@ -246,6 +250,165 @@ export {
 } from './fieldset'
 
 export { getLabelClasses, type LabelRecipeOptions } from './label'
+
+export {
+  getAccordionClasses,
+  getAccordionItemClasses,
+  getAccordionHeaderClasses,
+  getAccordionIconClasses,
+  getAccordionPanelClasses,
+  type AccordionRecipeOptions,
+  type AccordionItemRecipeOptions,
+  type AccordionHeaderRecipeOptions,
+  type AccordionIconRecipeOptions,
+  type AccordionPanelRecipeOptions
+} from './accordion'
+
+export {
+  getBreadcrumbClasses,
+  getBreadcrumbItemClasses,
+  getBreadcrumbLinkClasses,
+  getBreadcrumbSeparatorClasses,
+  type BreadcrumbRecipeOptions,
+  type BreadcrumbItemRecipeOptions
+} from './breadcrumb'
+
+export {
+  getListGroupClasses,
+  getListGroupItemClasses,
+  getListGroupItemHeadingClasses,
+  getListGroupItemTextClasses,
+  type ListGroupRecipeOptions,
+  type ListGroupItemRecipeOptions,
+  type ListGroupAccentEdge,
+  type ListGroupAccentColor
+} from './list-group'
+
+export {
+  getOffcanvasClasses,
+  getOffcanvasBackdropClasses,
+  getOffcanvasHeaderClasses,
+  getOffcanvasBodyClasses,
+  getOffcanvasFooterClasses,
+  type OffcanvasRecipeOptions,
+  type OffcanvasBackdropRecipeOptions,
+  type OffcanvasPlacement
+} from './offcanvas'
+
+export {
+  getCarouselClasses,
+  getCarouselViewportClasses,
+  getCarouselSlideClasses,
+  getCarouselControlClasses,
+  getCarouselIndicatorsClasses,
+  getCarouselIndicatorClasses,
+  getCarouselCaptionClasses,
+  type CarouselRecipeOptions,
+  type CarouselSlideRecipeOptions,
+  type CarouselControlRecipeOptions,
+  type CarouselControlDirection,
+  type CarouselIndicatorRecipeOptions
+} from './carousel'
+
+export {
+  getTableClasses,
+  getTableWrapperClasses,
+  getTableRowClasses,
+  type TableRecipeOptions,
+  type TableRowRecipeOptions,
+  type TableSize,
+  type TableRowVariant
+} from './table'
+
+export {
+  getPaginationClasses,
+  getPaginationItemClasses,
+  getPaginationEllipsisClasses,
+  type PaginationRecipeOptions,
+  type PaginationItemRecipeOptions,
+  type PaginationSize
+} from './pagination'
+
+export {
+  getStepperClasses,
+  getStepperStepClasses,
+  getStepperIndicatorClasses,
+  getStepperLabelClasses,
+  type StepperRecipeOptions,
+  type StepperStepRecipeOptions,
+  type StepperOrientation,
+  type StepperStepState
+} from './stepper'
+
+export {
+  getPopoverClasses,
+  getPopoverHeaderClasses,
+  getPopoverBodyClasses,
+  getPopoverArrowClasses,
+  type PopoverRecipeOptions,
+  type PopoverPlacement
+} from './popover'
+
+export {
+  getProgressClasses,
+  getProgressBarClasses,
+  getProgressLabelClasses,
+  type ProgressRecipeOptions,
+  type ProgressBarRecipeOptions,
+  type ProgressSize,
+  type ProgressBarVariant
+} from './progress'
+
+export { getRangeClasses, type RangeRecipeOptions } from './range'
+
+export {
+  getExternalAuthButtonClasses,
+  getExternalAuthButtonIconClasses,
+  type ExternalAuthButtonRecipeOptions
+} from './external-auth-button'
+
+export {
+  getChoiceCardClasses,
+  type ChoiceCardRecipeOptions
+} from './choice-card'
+
+export {
+  getDatepickerClasses,
+  getDatepickerHeaderClasses,
+  getDatepickerGridClasses,
+  getDatepickerWeekdayClasses,
+  getDayClasses,
+  type DayRecipeOptions
+} from './datepicker'
+
+export {
+  getInputGroupClasses,
+  getInputGroupAddonClasses,
+  type InputGroupRecipeOptions
+} from './input-group'
+
+export {
+  getFileInputClasses,
+  type FileInputRecipeOptions,
+  type FileInputSize,
+  type FileInputState
+} from './file-input'
+
+export {
+  getSwitchClasses,
+  type SwitchRecipeOptions,
+  type SwitchSize
+} from './switch'
+
+export {
+  getTabsClasses,
+  getTabsListClasses,
+  getTabsItemClasses,
+  getTabsPanelClasses,
+  type TabsRecipeOptions,
+  type TabsItemRecipeOptions,
+  type TabsVariant
+} from './tabs'
 
 export {
   getTextClasses,

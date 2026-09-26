@@ -14,6 +14,7 @@ const BADGE_VARIANTS = {
   accent: true,
   cta: true,
   inverse: true,
+  brand: true,
 } as const;
 
 const BADGE_SIZES = {
@@ -48,6 +49,11 @@ export interface BadgeRecipeOptions {
   variant?: BadgeVariant;
   size?: BadgeSize;
   interactive?: boolean;
+  /**
+   * Renders a text-free notification dot (e.g. overlaid on an avatar), ringed
+   * by `component.badge.dotBorder` to separate it from the image beneath.
+   */
+  dot?: boolean;
   hovered?: boolean;
   focused?: boolean;
   active?: boolean;
@@ -71,6 +77,7 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
     variant: variantInput,
     size: sizeInput,
     interactive = false,
+    dot = false,
     hovered = false,
     focused = false,
     active = false,
@@ -107,6 +114,7 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
     accent: "sp-badge--accent",
     cta: "sp-badge--cta",
     inverse: "sp-badge--inverse",
+    brand: "sp-badge--brand",
   };
   const variantClass = variantMap[variant];
 
@@ -142,6 +150,7 @@ export function getBadgeClasses(opts: BadgeRecipeOptions = {}): string {
     variantClass,
     sizeClass,
     interactive && "sp-badge--interactive",
+    dot && "sp-badge--dot",
     hovered && "sp-badge--hover is-hover",
     focused && "sp-badge--focus is-focus",
     active && "sp-badge--active is-active",

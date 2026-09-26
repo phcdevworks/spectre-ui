@@ -6,6 +6,7 @@ const TOAST_VARIANTS = {
   success: true,
   warning: true,
   danger: true,
+  neutral: true,
 } as const
 
 const TOAST_ACCENT_EDGES = {
