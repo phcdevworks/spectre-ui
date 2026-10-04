@@ -55,6 +55,22 @@
     gap: var(--sp-layout-stack-gap-lg);
   }
 
+  .sp-stack--gap-xl {
+    gap: var(--sp-layout-stack-gap-xl);
+  }
+
+  .sp-stack--gap-2xl {
+    gap: var(--sp-layout-stack-gap-2xl);
+  }
+
+  .sp-stack--gap-3xl {
+    gap: var(--sp-layout-stack-gap-3xl);
+  }
+
+  .sp-stack--gap-4xl {
+    gap: var(--sp-layout-stack-gap-4xl);
+  }
+
   .sp-grid--gap-sm {
     gap: var(--sp-layout-stack-gap-sm);
   }
@@ -65,6 +81,22 @@
 
   .sp-grid--gap-lg {
     gap: var(--sp-layout-stack-gap-lg);
+  }
+
+  .sp-grid--gap-xl {
+    gap: var(--sp-layout-stack-gap-xl);
+  }
+
+  .sp-grid--gap-2xl {
+    gap: var(--sp-layout-stack-gap-2xl);
+  }
+
+  .sp-grid--gap-3xl {
+    gap: var(--sp-layout-stack-gap-3xl);
+  }
+
+  .sp-grid--gap-4xl {
+    gap: var(--sp-layout-stack-gap-4xl);
   }
 
   .sp-grid--column-gap-sm {
@@ -79,6 +111,22 @@
     column-gap: var(--sp-layout-stack-gap-lg);
   }
 
+  .sp-grid--column-gap-xl {
+    column-gap: var(--sp-layout-stack-gap-xl);
+  }
+
+  .sp-grid--column-gap-2xl {
+    column-gap: var(--sp-layout-stack-gap-2xl);
+  }
+
+  .sp-grid--column-gap-3xl {
+    column-gap: var(--sp-layout-stack-gap-3xl);
+  }
+
+  .sp-grid--column-gap-4xl {
+    column-gap: var(--sp-layout-stack-gap-4xl);
+  }
+
   .sp-grid--row-gap-sm {
     row-gap: var(--sp-layout-stack-gap-sm);
   }
@@ -89,6 +137,22 @@
 
   .sp-grid--row-gap-lg {
     row-gap: var(--sp-layout-stack-gap-lg);
+  }
+
+  .sp-grid--row-gap-xl {
+    row-gap: var(--sp-layout-stack-gap-xl);
+  }
+
+  .sp-grid--row-gap-2xl {
+    row-gap: var(--sp-layout-stack-gap-2xl);
+  }
+
+  .sp-grid--row-gap-3xl {
+    row-gap: var(--sp-layout-stack-gap-3xl);
+  }
+
+  .sp-grid--row-gap-4xl {
+    row-gap: var(--sp-layout-stack-gap-4xl);
   }
 
   /* Grid-scoped cell alignment, wired to getGridClasses's `align` option —
@@ -142,6 +206,54 @@
     padding-bottom: var(--sp-layout-section-padding-lg);
   }
 
+  .sp-section--spacing-xl {
+    padding-top: var(--sp-layout-section-padding-xl);
+    padding-bottom: var(--sp-layout-section-padding-xl);
+  }
+
+  .sp-section--spacing-2xl {
+    padding-top: var(--sp-layout-section-padding-2xl);
+    padding-bottom: var(--sp-layout-section-padding-2xl);
+  }
+
+  .sp-section--spacing-3xl {
+    padding-top: var(--sp-layout-section-padding-3xl);
+    padding-bottom: var(--sp-layout-section-padding-3xl);
+  }
+
+  .sp-section--spacing-4xl {
+    padding-top: var(--sp-layout-section-padding-4xl);
+    padding-bottom: var(--sp-layout-section-padding-4xl);
+  }
+
+  /* Hero bands carry more space above than below. The xl–4xl section
+     steps (and so the hero pairs built on them) widen at the lg breakpoint
+     through the token package's own responsive remap. */
+  .sp-section--hero-sm {
+    padding-top: var(--sp-layout-hero-padding-top-sm);
+    padding-bottom: var(--sp-layout-hero-padding-bottom-sm);
+  }
+
+  .sp-section--hero-md {
+    padding-top: var(--sp-layout-hero-padding-top-md);
+    padding-bottom: var(--sp-layout-hero-padding-bottom-md);
+  }
+
+  .sp-section--hero-lg {
+    padding-top: var(--sp-layout-hero-padding-top-lg);
+    padding-bottom: var(--sp-layout-hero-padding-bottom-lg);
+  }
+
+  /* A band that belongs to the section above (a logo strip under a hero)
+     drops its own top padding, so the gap between them is the section
+     above's bottom padding alone instead of the sum of both. Opt-in, not an
+     adjacent-sibling rule: back-to-back sections on different surfaces each
+     need their own padding. Same layer as the spacing steps, so sp-pt-*
+     still wins. */
+  .sp-section--attached {
+    padding-top: 0;
+  }
+
   .sp-section--gap-sm {
     display: flex;
     flex-direction: column;
@@ -158,6 +270,30 @@
     display: flex;
     flex-direction: column;
     gap: var(--sp-layout-section-gap-lg);
+  }
+
+  .sp-section--gap-xl {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-layout-section-gap-xl);
+  }
+
+  .sp-section--gap-2xl {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-layout-section-gap-2xl);
+  }
+
+  .sp-section--gap-3xl {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-layout-section-gap-3xl);
+  }
+
+  .sp-section--gap-4xl {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-layout-section-gap-4xl);
   }
 }
 
@@ -184,6 +320,26 @@
   .sp-container--padding-lg {
     padding-left: var(--sp-layout-container-padding-inline-lg);
     padding-right: var(--sp-layout-container-padding-inline-lg);
+  }
+
+  .sp-container--padding-xl {
+    padding-left: var(--sp-layout-container-padding-inline-xl);
+    padding-right: var(--sp-layout-container-padding-inline-xl);
+  }
+
+  .sp-container--padding-2xl {
+    padding-left: var(--sp-layout-container-padding-inline-2xl);
+    padding-right: var(--sp-layout-container-padding-inline-2xl);
+  }
+
+  .sp-container--padding-3xl {
+    padding-left: var(--sp-layout-container-padding-inline-3xl);
+    padding-right: var(--sp-layout-container-padding-inline-3xl);
+  }
+
+  .sp-container--padding-4xl {
+    padding-left: var(--sp-layout-container-padding-inline-4xl);
+    padding-right: var(--sp-layout-container-padding-inline-4xl);
   }
 
   .sp-container--max-width-prose {
@@ -249,7 +405,7 @@
   }
 
   .sp-prose :not(pre) > code {
-    padding: var(--sp-space-2) var(--sp-space-4);
+    padding: var(--sp-space-4);
     border-radius: var(--sp-radius-sm);
     background-color: var(--sp-prose-code-bg);
     color: var(--sp-prose-code-text);
@@ -276,10 +432,23 @@
   }
 
   .sp-prose mark {
-    padding-inline: var(--sp-space-2);
+    padding-inline: var(--sp-space-4);
     border-radius: var(--sp-radius-sm);
     background-color: var(--sp-prose-mark-bg);
     color: var(--sp-prose-mark-text);
+  }
+
+  /* Keycap colors from component.prose.kbd (spectre-tokens 4.12.0); the
+     thicker bottom edge reads as a raised key. */
+  .sp-prose kbd {
+    padding: var(--sp-space-4);
+    border: var(--sp-border-width-base) solid var(--sp-prose-kbd-border);
+    border-bottom-width: var(--sp-border-width-thick);
+    border-radius: var(--sp-radius-sm);
+    background-color: var(--sp-prose-kbd-bg);
+    color: var(--sp-prose-kbd-text);
+    font-family: var(--sp-font-family-mono);
+    font-size: var(--sp-font-sm-size);
   }
 
   .sp-prose hr {
@@ -341,6 +510,74 @@
     .sp-grid-cols-12 {
       grid-template-columns: repeat(12, minmax(0, 1fr));
     }
+  }
+
+  /* Explicit per-breakpoint column counts: sp-{md|lg}-grid-cols-{n} sets n
+     equal columns from that breakpoint up, overriding the sp-grid-cols-*
+     step-down preset above (later source order, same specificity). Same
+     md/lg-only convention as the other grid utilities; min-width values match
+     --sp-breakpoint-md / --sp-breakpoint-lg. */
+  @media (min-width: 768px) {
+    .sp-md-grid-cols-1 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .sp-md-grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sp-md-grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .sp-md-grid-cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .sp-md-grid-cols-6 {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .sp-md-grid-cols-12 {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .sp-lg-grid-cols-1 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .sp-lg-grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sp-lg-grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .sp-lg-grid-cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .sp-lg-grid-cols-6 {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .sp-lg-grid-cols-12 {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+  }
+
+  /* Typography helpers: balanced wrapping keeps a short headline from ending
+     on an orphan word; tabular numerals keep a figure that repaints in place
+     (a countdown, a live price) from jittering between updates. */
+  .sp-text-balance {
+    text-wrap: balance;
+  }
+
+  .sp-tabular-nums {
+    font-variant-numeric: tabular-nums;
   }
 
   .sp-col-span-1 {

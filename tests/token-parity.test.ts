@@ -37,7 +37,36 @@ const INTENTIONALLY_UNREFERENCED: Record<string, string> = {
   // responsive blocks consume these by value (checked below).
   '--sp-breakpoint-sm': 'consumed by value in @media',
   '--sp-breakpoint-xl': 'consumed by value in @media',
-  '--sp-breakpoint-2xl': 'consumed by value in @media'
+  '--sp-breakpoint-2xl': 'consumed by value in @media',
+  // spectre-tokens' own @media (min-width: lg) block re-points the base
+  // xl–4xl layout steps at these; recipes consume the base steps.
+  '--sp-layout-responsive-lg-section-padding-xl': 'consumed through the token lg remap',
+  '--sp-layout-responsive-lg-section-padding-2xl': 'consumed through the token lg remap',
+  '--sp-layout-responsive-lg-section-padding-3xl': 'consumed through the token lg remap',
+  '--sp-layout-responsive-lg-section-padding-4xl': 'consumed through the token lg remap',
+  '--sp-layout-responsive-lg-section-gap-xl': 'consumed through the token lg remap',
+  '--sp-layout-responsive-lg-section-gap-2xl': 'consumed through the token lg remap',
+  '--sp-layout-responsive-lg-section-gap-3xl': 'consumed through the token lg remap',
+  '--sp-layout-responsive-lg-section-gap-4xl': 'consumed through the token lg remap',
+  '--sp-layout-responsive-lg-stack-gap-xl': 'consumed through the token lg remap',
+  '--sp-layout-responsive-lg-stack-gap-2xl': 'consumed through the token lg remap',
+  '--sp-layout-responsive-lg-stack-gap-3xl': 'consumed through the token lg remap',
+  '--sp-layout-responsive-lg-stack-gap-4xl': 'consumed through the token lg remap',
+  '--sp-layout-responsive-lg-container-padding-inline-xl': 'consumed through the token lg remap',
+  '--sp-layout-responsive-lg-container-padding-inline-2xl': 'consumed through the token lg remap',
+  '--sp-layout-responsive-lg-container-padding-inline-3xl': 'consumed through the token lg remap',
+  '--sp-layout-responsive-lg-container-padding-inline-4xl': 'consumed through the token lg remap',
+  // spectre-tokens' [data-spectre-density="compact"] block re-points the
+  // default control steps at these; recipes consume the default steps.
+  '--sp-control-compact-sm-height': 'consumed through the token density remap',
+  '--sp-control-compact-sm-padding-inline': 'consumed through the token density remap',
+  '--sp-control-compact-sm-icon-size': 'consumed through the token density remap',
+  '--sp-control-compact-md-height': 'consumed through the token density remap',
+  '--sp-control-compact-md-padding-inline': 'consumed through the token density remap',
+  '--sp-control-compact-md-icon-size': 'consumed through the token density remap',
+  '--sp-control-compact-lg-height': 'consumed through the token density remap',
+  '--sp-control-compact-lg-padding-inline': 'consumed through the token density remap',
+  '--sp-control-compact-lg-icon-size': 'consumed through the token density remap'
 }
 
 describe('spectre-tokens parity', () => {

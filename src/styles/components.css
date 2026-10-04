@@ -1,7 +1,11 @@
 @layer base, components, utilities;
 
 @layer components {
-  :where(:root) {
+  /* Declared on every element carrying its own color mode as well as the
+     root: a custom property resolves its var() references where it is
+     declared, so a root-only mapping would hand a scoped section the root's
+     mode instead of its own. */
+  :where(:root, [data-spectre-theme]) {
     /* structural border width */
     --sp-component-border-width: var(--sp-border-width-base);
 
@@ -207,8 +211,8 @@
     --sp-component-badge-inverse-bg-hover: var(--sp-badge-inverse-bg-hover);
 
     --sp-component-badge-padding-x-sm: var(--sp-space-8);
-    --sp-component-badge-padding-x-md: var(--sp-space-12);
-    --sp-component-badge-padding-x-lg: var(--sp-space-16);
+    --sp-component-badge-padding-x-md: var(--sp-space-16);
+    --sp-component-badge-padding-x-lg: var(--sp-space-24);
     --sp-component-badge-padding-y-sm: var(--sp-space-4);
     --sp-component-badge-padding-y-md: var(--sp-space-4);
     --sp-component-badge-padding-y-lg: var(--sp-space-4);
@@ -289,8 +293,8 @@
     --sp-component-alert-radius: var(--sp-radius-lg);
     --sp-component-alert-padding-x: var(--sp-space-16);
     --sp-component-alert-padding-y-sm: var(--sp-space-8);
-    --sp-component-alert-padding-y-md: var(--sp-space-12);
-    --sp-component-alert-padding-y-lg: var(--sp-space-16);
+    --sp-component-alert-padding-y-md: var(--sp-space-16);
+    --sp-component-alert-padding-y-lg: var(--sp-space-24);
     /* mode-aware via the component.alert token contract (spectre-tokens 4.10.0) */
     --sp-component-alert-info-bg: var(--sp-alert-info-bg);
     --sp-component-alert-info-text: var(--sp-alert-info-text);
@@ -335,8 +339,8 @@
     --sp-component-tag-font: var(--sp-font-family-sans);
     --sp-component-tag-weight: var(--sp-font-sm-weight);
     --sp-component-tag-padding-x-sm: var(--sp-space-8);
-    --sp-component-tag-padding-x-md: var(--sp-space-12);
-    --sp-component-tag-padding-x-lg: var(--sp-space-16);
+    --sp-component-tag-padding-x-md: var(--sp-space-16);
+    --sp-component-tag-padding-x-lg: var(--sp-space-24);
     --sp-component-tag-default-bg: var(--sp-badge-neutral-bg);
     --sp-component-tag-default-text: var(--sp-badge-neutral-text);
     --sp-component-tag-primary-bg: var(--sp-button-primary-bg);
@@ -428,12 +432,19 @@
     --sp-component-footer-border: var(--sp-footer-border);
     --sp-component-footer-divider: var(--sp-footer-divider);
     --sp-component-footer-chip-bg: var(--sp-footer-chip-bg);
+    --sp-component-footer-accent-neutral: var(--sp-footer-accent-neutral);
+    --sp-component-footer-accent-brand: var(--sp-footer-accent-brand);
+    --sp-component-footer-accent-info: var(--sp-footer-accent-info);
+    --sp-component-footer-accent-success: var(--sp-footer-accent-success);
+    --sp-component-footer-accent-warning: var(--sp-footer-accent-warning);
+    --sp-component-footer-accent-danger: var(--sp-footer-accent-danger);
+    --sp-component-footer-accent-cta: var(--sp-footer-accent-cta);
 
     /* toast roles */
     --sp-component-toast-radius: var(--sp-radius-lg);
     --sp-component-toast-padding-x: var(--sp-space-16);
-    --sp-component-toast-padding-y: var(--sp-space-12);
-    --sp-component-toast-gap: var(--sp-space-12);
+    --sp-component-toast-padding-y: var(--sp-space-16);
+    --sp-component-toast-gap: var(--sp-space-8);
     --sp-component-toast-z-index: var(--sp-z-index-toast);
     --sp-component-toast-info-bg: var(--sp-toast-info-bg);
     --sp-component-toast-info-text: var(--sp-toast-info-text);
@@ -479,7 +490,7 @@
     --sp-component-dropdown-shadow: var(--sp-shadow-md);
     --sp-component-dropdown-padding: var(--sp-space-4);
     --sp-component-dropdown-offset: var(--sp-space-4);
-    --sp-component-dropdown-item-padding-x: var(--sp-space-12);
+    --sp-component-dropdown-item-padding-x: var(--sp-space-16);
     --sp-component-dropdown-item-padding-y: var(--sp-space-8);
     --sp-component-dropdown-item-gap: var(--sp-space-8);
     --sp-component-dropdown-z-index: var(--sp-z-index-dropdown);
@@ -495,8 +506,9 @@
     --sp-component-modal-z-index: var(--sp-z-index-modal);
   }
 
-  /* dark mode overrides mapped from Spectre token mode definitions */
-  :where(:root[data-spectre-theme="dark"]) {
+  /* dark mode overrides mapped from Spectre token mode definitions; the
+     system block mirrors spectre-tokens' prefers-color-scheme block */
+  :where([data-spectre-theme="dark"]) {
     /* icon box status tints have no component.iconBox token; their icon
        colors (iconSuccess/iconWarning/iconDanger) are already mode-aware */
     --sp-component-iconbox-success-bg: var(--sp-color-neutral-800);
@@ -513,13 +525,34 @@
     --sp-component-spinner-cta-arc: var(--sp-color-brand-400);
   }
 
+  @media (prefers-color-scheme: dark) {
+    :where([data-spectre-theme="system"]) {
+      /* icon box status tints have no component.iconBox token; their icon
+         colors (iconSuccess/iconWarning/iconDanger) are already mode-aware */
+      --sp-component-iconbox-success-bg: var(--sp-color-neutral-800);
+      --sp-component-iconbox-success-text: var(--sp-icon-box-icon-success);
+      --sp-component-iconbox-warning-bg: var(--sp-color-neutral-800);
+      --sp-component-iconbox-warning-text: var(--sp-icon-box-icon-warning);
+      --sp-component-iconbox-danger-bg: var(--sp-color-neutral-800);
+      --sp-component-iconbox-danger-text: var(--sp-icon-box-icon-danger);
+      --sp-component-iconbox-info-bg: var(--sp-color-neutral-800);
+      --sp-component-iconbox-info-text: var(--sp-color-info-400);
+
+      --sp-component-spinner-track-color: var(--sp-color-neutral-700);
+      --sp-component-spinner-accent-arc: var(--sp-color-brand-400);
+      --sp-component-spinner-cta-arc: var(--sp-color-brand-400);
+    }
+  }
+
   /* BUTTONS -------------------------------------------------------------- */
   .sp-btn {
+    --sp-component-control-height: var(--sp-control-md-height);
+    --sp-component-control-icon-size: var(--sp-control-md-icon-size);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--sp-space-4);
-    padding: var(--sp-space-4) var(--sp-space-16);
+    padding: var(--sp-space-4) var(--sp-control-md-padding-inline);
     border-radius: var(--sp-radius-md);
     border: var(--sp-component-border-width) solid var(--sp-component-button-border-base);
     color: var(--sp-button-text-default);
@@ -535,7 +568,15 @@
       box-shadow var(--sp-duration-fast) var(--sp-easing-out),
       border-color var(--sp-duration-fast) var(--sp-easing-out);
     cursor: pointer;
-    min-height: var(--sp-min-touch-target);
+    /* control.* sizing (spectre-tokens 4.12.0); size modifiers re-point the
+       height, and [data-spectre-density="compact"] re-points the steps */
+    min-height: var(--sp-component-control-height);
+  }
+
+  .sp-btn > svg {
+    flex-shrink: 0;
+    width: var(--sp-component-control-icon-size);
+    height: var(--sp-component-control-icon-size);
   }
 
   .sp-btn:disabled,
@@ -568,7 +609,7 @@
   }
 
   .sp-btn--icon {
-    padding-inline: var(--sp-space-12);
+    padding-inline: var(--sp-space-8);
     padding-block: var(--sp-space-4);
   }
 
@@ -588,19 +629,25 @@
 
   /* sizes */
   .sp-btn--sm {
-    padding: var(--sp-space-4) var(--sp-space-12);
+    --sp-component-control-height: var(--sp-control-sm-height);
+    --sp-component-control-icon-size: var(--sp-control-sm-icon-size);
+    padding: var(--sp-space-4) var(--sp-control-sm-padding-inline);
     font-size: var(--sp-font-sm-size);
     line-height: var(--sp-font-sm-line-height);
   }
 
   .sp-btn--md {
-    padding: var(--sp-space-4) var(--sp-space-16);
+    --sp-component-control-height: var(--sp-control-md-height);
+    --sp-component-control-icon-size: var(--sp-control-md-icon-size);
+    padding: var(--sp-space-4) var(--sp-control-md-padding-inline);
     font-size: var(--sp-font-md-size);
     line-height: var(--sp-font-md-line-height);
   }
 
   .sp-btn--lg {
-    padding: var(--sp-space-8) var(--sp-space-24);
+    --sp-component-control-height: var(--sp-control-lg-height);
+    --sp-component-control-icon-size: var(--sp-control-lg-icon-size);
+    padding: var(--sp-space-8) var(--sp-control-lg-padding-inline);
     font-size: var(--sp-font-lg-size);
     line-height: var(--sp-font-lg-line-height);
   }
@@ -1070,10 +1117,13 @@
   }
 
   .sp-input {
+    --sp-component-control-height: var(--sp-control-md-height);
+    --sp-component-control-icon-size: var(--sp-control-md-icon-size);
     width: 100%;
     display: block;
     appearance: none;
-    padding: var(--sp-space-4) var(--sp-space-16);
+    min-height: var(--sp-component-control-height);
+    padding: var(--sp-space-4) var(--sp-control-md-padding-inline);
     border-radius: var(--sp-radius-md);
     border: var(--sp-component-border-width) solid var(--sp-component-input-role-border);
     background-color: var(--sp-component-input-role-bg);
@@ -1092,19 +1142,25 @@
   }
 
   .sp-input--sm {
-    padding: var(--sp-space-4) var(--sp-space-12);
+    --sp-component-control-height: var(--sp-control-sm-height);
+    --sp-component-control-icon-size: var(--sp-control-sm-icon-size);
+    padding: var(--sp-space-4) var(--sp-control-sm-padding-inline);
     font-size: var(--sp-font-sm-size);
     line-height: var(--sp-font-sm-line-height);
   }
 
   .sp-input--md {
-    padding: var(--sp-space-4) var(--sp-space-16);
+    --sp-component-control-height: var(--sp-control-md-height);
+    --sp-component-control-icon-size: var(--sp-control-md-icon-size);
+    padding: var(--sp-space-4) var(--sp-control-md-padding-inline);
     font-size: var(--sp-font-md-size);
     line-height: var(--sp-font-md-line-height);
   }
 
   .sp-input--lg {
-    padding: var(--sp-space-8) var(--sp-space-24);
+    --sp-component-control-height: var(--sp-control-lg-height);
+    --sp-component-control-icon-size: var(--sp-control-lg-icon-size);
+    padding: var(--sp-space-8) var(--sp-control-lg-padding-inline);
     font-size: var(--sp-font-lg-size);
     line-height: var(--sp-font-lg-line-height);
   }
@@ -2151,7 +2207,7 @@
     right: var(--sp-space-16);
     background-color: var(--sp-component-pricing-card-featured-badge-bg);
     color: var(--sp-component-pricing-card-featured-badge-text);
-    padding: var(--sp-space-4) var(--sp-space-12);
+    padding: var(--sp-space-4) var(--sp-space-16);
     border-radius: var(--sp-radius-pill);
     font-size: var(--sp-font-xs-size);
     font-weight: var(--sp-font-md-weight);
@@ -2336,7 +2392,7 @@
   .sp-alert {
     display: flex;
     align-items: flex-start;
-    gap: var(--sp-space-12);
+    gap: var(--sp-space-8);
     border-radius: var(--sp-component-alert-radius);
     border: var(--sp-component-border-width) solid transparent;
     padding: var(--sp-component-alert-padding-y-md) var(--sp-component-alert-padding-x);
@@ -2876,7 +2932,7 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--sp-space-16);
-    padding: var(--sp-space-12) var(--sp-space-16);
+    padding: var(--sp-space-8) var(--sp-space-16);
     background-color: var(--sp-component-nav-bg);
     color: var(--sp-component-nav-text);
     font-family: var(--sp-font-family-sans);
@@ -3205,15 +3261,15 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--sp-space-16);
-    padding: var(--sp-space-12) var(--sp-space-16);
-    background-color: var(--sp-component-footer-bg);
+    padding: var(--sp-space-16);
+    background: var(--sp-component-footer-bg);
     color: var(--sp-component-footer-text);
     font-family: var(--sp-font-family-sans);
     transition:
       background-color var(--sp-duration-fast) var(--sp-easing-out),
       color var(--sp-duration-fast) var(--sp-easing-out),
       border-color var(--sp-duration-fast) var(--sp-easing-out);
-    --sp-component-footer-accent-color: var(--sp-footer-accent-brand);
+    --sp-component-footer-accent-color: var(--sp-component-footer-accent-brand);
   }
 
   .sp-footer--bordered {
@@ -3316,36 +3372,105 @@
     opacity: var(--sp-opacity-disabled);
   }
 
+  /* sp-footer--light / --system switch every footer part (text, links,
+     divider, chip, accent rail) to the component.footer.light palette
+     (spectre-tokens 4.12.0). `dark` is the default palette and adds no
+     class. `system` follows the visitor's OS preference. */
+  .sp-footer--light {
+    --sp-component-footer-bg: var(--sp-footer-light-bg);
+    --sp-component-footer-text: var(--sp-footer-light-text);
+    --sp-component-footer-heading: var(--sp-footer-light-heading);
+    --sp-component-footer-muted: var(--sp-footer-light-muted);
+    --sp-component-footer-link: var(--sp-footer-light-link);
+    --sp-component-footer-link-hover: var(--sp-footer-light-link-hover);
+    --sp-component-footer-border: var(--sp-footer-light-border);
+    --sp-component-footer-divider: var(--sp-footer-light-divider);
+    --sp-component-footer-chip-bg: var(--sp-footer-light-chip-bg);
+    --sp-component-footer-accent-neutral: var(--sp-footer-light-accent-neutral);
+    --sp-component-footer-accent-brand: var(--sp-footer-light-accent-brand);
+    --sp-component-footer-accent-info: var(--sp-footer-light-accent-info);
+    --sp-component-footer-accent-success: var(--sp-footer-light-accent-success);
+    --sp-component-footer-accent-warning: var(--sp-footer-light-accent-warning);
+    --sp-component-footer-accent-danger: var(--sp-footer-light-accent-danger);
+    --sp-component-footer-accent-cta: var(--sp-footer-light-accent-cta);
+  }
+
+  @media (prefers-color-scheme: light) {
+    .sp-footer--system {
+      --sp-component-footer-bg: var(--sp-footer-light-bg);
+      --sp-component-footer-text: var(--sp-footer-light-text);
+      --sp-component-footer-heading: var(--sp-footer-light-heading);
+      --sp-component-footer-muted: var(--sp-footer-light-muted);
+      --sp-component-footer-link: var(--sp-footer-light-link);
+      --sp-component-footer-link-hover: var(--sp-footer-light-link-hover);
+      --sp-component-footer-border: var(--sp-footer-light-border);
+      --sp-component-footer-divider: var(--sp-footer-light-divider);
+      --sp-component-footer-chip-bg: var(--sp-footer-light-chip-bg);
+      --sp-component-footer-accent-neutral: var(--sp-footer-light-accent-neutral);
+      --sp-component-footer-accent-brand: var(--sp-footer-light-accent-brand);
+      --sp-component-footer-accent-info: var(--sp-footer-light-accent-info);
+      --sp-component-footer-accent-success: var(--sp-footer-light-accent-success);
+      --sp-component-footer-accent-warning: var(--sp-footer-light-accent-warning);
+      --sp-component-footer-accent-danger: var(--sp-footer-light-accent-danger);
+      --sp-component-footer-accent-cta: var(--sp-footer-light-accent-cta);
+    }
+  }
+
+  /* sp-footer--surface-* puts the footer on a published surface role. It only
+     re-points the background; the text palette stays with `appearance`
+     (light for page/card/subtle, the dark default for inverse/hero).
+     Declared after the appearance blocks so the surface wins. `background`
+     (not background-color) because surface.hero is a gradient. */
+  .sp-footer--surface-page {
+    --sp-component-footer-bg: var(--sp-surface-page);
+  }
+
+  .sp-footer--surface-card {
+    --sp-component-footer-bg: var(--sp-surface-card);
+  }
+
+  .sp-footer--surface-subtle {
+    --sp-component-footer-bg: var(--sp-surface-subtle);
+  }
+
+  .sp-footer--surface-inverse {
+    --sp-component-footer-bg: var(--sp-surface-inverse);
+  }
+
+  .sp-footer--surface-hero {
+    --sp-component-footer-bg: var(--sp-surface-hero);
+  }
+
   /* sp-footer--accent-* renders an optional thicker decorative rail on one
      edge, entirely from the published component.footer.accent token group
      (spectre-tokens 4.9.0), matching the sp-card--accent-* precedent. Edge
      and color are independent modifier classes. */
   .sp-footer--accent-neutral {
-    --sp-component-footer-accent-color: var(--sp-footer-accent-neutral);
+    --sp-component-footer-accent-color: var(--sp-component-footer-accent-neutral);
   }
 
   .sp-footer--accent-brand {
-    --sp-component-footer-accent-color: var(--sp-footer-accent-brand);
+    --sp-component-footer-accent-color: var(--sp-component-footer-accent-brand);
   }
 
   .sp-footer--accent-info {
-    --sp-component-footer-accent-color: var(--sp-footer-accent-info);
+    --sp-component-footer-accent-color: var(--sp-component-footer-accent-info);
   }
 
   .sp-footer--accent-success {
-    --sp-component-footer-accent-color: var(--sp-footer-accent-success);
+    --sp-component-footer-accent-color: var(--sp-component-footer-accent-success);
   }
 
   .sp-footer--accent-warning {
-    --sp-component-footer-accent-color: var(--sp-footer-accent-warning);
+    --sp-component-footer-accent-color: var(--sp-component-footer-accent-warning);
   }
 
   .sp-footer--accent-danger {
-    --sp-component-footer-accent-color: var(--sp-footer-accent-danger);
+    --sp-component-footer-accent-color: var(--sp-component-footer-accent-danger);
   }
 
   .sp-footer--accent-cta {
-    --sp-component-footer-accent-color: var(--sp-footer-accent-cta);
+    --sp-component-footer-accent-color: var(--sp-component-footer-accent-cta);
   }
 
   .sp-footer--accent-top {
@@ -3988,9 +4113,12 @@
   }
 
   .sp-select {
+    --sp-component-control-height: var(--sp-control-md-height);
+    --sp-component-control-icon-size: var(--sp-control-md-icon-size);
     width: 100%;
     display: block;
     appearance: none;
+    min-height: var(--sp-component-control-height);
     border-radius: var(--sp-radius-md);
     border: var(--sp-component-border-width) solid var(--sp-select-border);
     background-color: var(--sp-select-bg);
@@ -4006,19 +4134,25 @@
   }
 
   .sp-select--sm {
-    padding: var(--sp-space-4) var(--sp-space-12);
+    --sp-component-control-height: var(--sp-control-sm-height);
+    --sp-component-control-icon-size: var(--sp-control-sm-icon-size);
+    padding: var(--sp-space-4) var(--sp-control-sm-padding-inline);
     font-size: var(--sp-font-sm-size);
     line-height: var(--sp-font-sm-line-height);
   }
 
   .sp-select--md {
-    padding: var(--sp-space-4) var(--sp-space-16);
+    --sp-component-control-height: var(--sp-control-md-height);
+    --sp-component-control-icon-size: var(--sp-control-md-icon-size);
+    padding: var(--sp-space-4) var(--sp-control-md-padding-inline);
     font-size: var(--sp-font-md-size);
     line-height: var(--sp-font-md-line-height);
   }
 
   .sp-select--lg {
-    padding: var(--sp-space-8) var(--sp-space-24);
+    --sp-component-control-height: var(--sp-control-lg-height);
+    --sp-component-control-icon-size: var(--sp-control-lg-icon-size);
+    padding: var(--sp-space-8) var(--sp-control-lg-padding-inline);
     font-size: var(--sp-font-lg-size);
     line-height: var(--sp-font-lg-line-height);
   }
@@ -4079,19 +4213,19 @@
   }
 
   .sp-textarea--sm {
-    padding: var(--sp-space-4) var(--sp-space-12);
+    padding: var(--sp-space-4) var(--sp-control-sm-padding-inline);
     font-size: var(--sp-font-sm-size);
     line-height: var(--sp-font-sm-line-height);
   }
 
   .sp-textarea--md {
-    padding: var(--sp-space-4) var(--sp-space-16);
+    padding: var(--sp-space-4) var(--sp-control-md-padding-inline);
     font-size: var(--sp-font-md-size);
     line-height: var(--sp-font-md-line-height);
   }
 
   .sp-textarea--lg {
-    padding: var(--sp-space-8) var(--sp-space-24);
+    padding: var(--sp-space-8) var(--sp-control-lg-padding-inline);
     font-size: var(--sp-font-lg-size);
     line-height: var(--sp-font-lg-line-height);
   }
@@ -4475,7 +4609,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--sp-space-12);
+    gap: var(--sp-space-8);
     width: 100%;
     min-height: var(--sp-min-touch-target);
     padding: var(--sp-space-16);
@@ -4647,7 +4781,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--sp-space-4);
-    padding: var(--sp-space-12) var(--sp-space-16);
+    padding: var(--sp-space-8) var(--sp-space-16);
     color: inherit;
     font-size: var(--sp-font-sm-size);
     line-height: var(--sp-font-sm-line-height);
@@ -4850,7 +4984,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--sp-space-12);
+    gap: var(--sp-space-16);
     padding: var(--sp-space-16) var(--sp-space-24);
     border-bottom: var(--sp-component-border-width) solid var(--sp-offcanvas-border);
     font-size: var(--sp-font-lg-size);
@@ -5019,7 +5153,7 @@
     right: var(--sp-space-16);
     bottom: var(--sp-space-40);
     left: var(--sp-space-16);
-    padding: var(--sp-space-12) var(--sp-space-16);
+    padding: var(--sp-space-8) var(--sp-space-16);
     border-radius: var(--sp-radius-md);
     background-color: var(--sp-carousel-caption-bg);
     color: var(--sp-carousel-caption-text);
@@ -5045,17 +5179,17 @@
     font-size: var(--sp-font-sm-size);
     line-height: var(--sp-font-sm-line-height);
     text-align: start;
-    --sp-component-table-cell-padding-y: var(--sp-space-12);
+    --sp-component-table-cell-padding-y: var(--sp-space-8);
     --sp-component-table-cell-padding-x: var(--sp-space-16);
   }
 
   .sp-table--sm {
-    --sp-component-table-cell-padding-y: var(--sp-space-6);
+    --sp-component-table-cell-padding-y: var(--sp-space-4);
     --sp-component-table-cell-padding-x: var(--sp-space-8);
   }
 
   .sp-table--md {
-    --sp-component-table-cell-padding-y: var(--sp-space-12);
+    --sp-component-table-cell-padding-y: var(--sp-space-8);
     --sp-component-table-cell-padding-x: var(--sp-space-16);
   }
 
@@ -5144,7 +5278,7 @@
     list-style: none;
     font-family: var(--sp-font-family-sans);
     --sp-component-pagination-item-size: var(--sp-min-touch-target);
-    --sp-component-pagination-item-padding-x: var(--sp-space-12);
+    --sp-component-pagination-item-padding-x: var(--sp-space-16);
     --sp-component-pagination-font-size: var(--sp-font-sm-size);
     --sp-component-pagination-line-height: var(--sp-font-sm-line-height);
   }
@@ -5158,14 +5292,14 @@
 
   .sp-pagination--md {
     --sp-component-pagination-item-size: var(--sp-min-touch-target);
-    --sp-component-pagination-item-padding-x: var(--sp-space-12);
+    --sp-component-pagination-item-padding-x: var(--sp-space-16);
     --sp-component-pagination-font-size: var(--sp-font-sm-size);
     --sp-component-pagination-line-height: var(--sp-font-sm-line-height);
   }
 
   .sp-pagination--lg {
     --sp-component-pagination-item-size: var(--sp-space-56);
-    --sp-component-pagination-item-padding-x: var(--sp-space-16);
+    --sp-component-pagination-item-padding-x: var(--sp-space-24);
     --sp-component-pagination-font-size: var(--sp-font-md-size);
     --sp-component-pagination-line-height: var(--sp-font-md-line-height);
   }
@@ -5410,7 +5544,7 @@
   }
 
   .sp-popover__body {
-    padding: var(--sp-space-12) var(--sp-space-16);
+    padding: var(--sp-space-8) var(--sp-space-16);
     color: var(--sp-popover-muted);
   }
 
@@ -5538,6 +5672,130 @@
     .sp-progress__bar--indeterminate {
       animation: none;
       width: 100%;
+    }
+  }
+
+  /* LOGO CLOUD ------------------------------------------------------------- */
+  /* A row of partner marks, each in a fixed square tile so marks drawn at
+     different scales read as one row. */
+  .sp-logo-cloud {
+    --sp-component-logo-cloud-tile-size: var(--sp-space-96);
+    --sp-component-logo-cloud-tile-bg: var(--sp-surface-subtle);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-layout-stack-gap-md);
+  }
+
+  .sp-logo-cloud--sm {
+    --sp-component-logo-cloud-tile-size: var(--sp-space-64);
+  }
+
+  .sp-logo-cloud--md {
+    --sp-component-logo-cloud-tile-size: var(--sp-space-96);
+  }
+
+  .sp-logo-cloud--lg {
+    --sp-component-logo-cloud-tile-size: var(--sp-space-128);
+  }
+
+  .sp-logo-cloud--fill-subtle {
+    --sp-component-logo-cloud-tile-bg: var(--sp-surface-subtle);
+  }
+
+  .sp-logo-cloud--fill-card {
+    --sp-component-logo-cloud-tile-bg: var(--sp-surface-card);
+  }
+
+  .sp-logo-cloud--fill-none {
+    --sp-component-logo-cloud-tile-bg: transparent;
+  }
+
+  .sp-logo-cloud__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--sp-component-logo-cloud-tile-size);
+    height: var(--sp-component-logo-cloud-tile-size);
+    padding: var(--sp-space-16);
+    border-radius: var(--sp-radius-md);
+    background-color: var(--sp-component-logo-cloud-tile-bg);
+  }
+
+  .sp-logo-cloud__item > :where(img, svg) {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: filter var(--sp-duration-fast) var(--sp-easing-out);
+  }
+
+  /* Full desaturation at rest; full color on hover or keyboard focus. */
+  .sp-logo-cloud--muted .sp-logo-cloud__item > :where(img, svg) {
+    filter: grayscale(1);
+  }
+
+  .sp-logo-cloud--muted .sp-logo-cloud__item:hover > :where(img, svg),
+  .sp-logo-cloud--muted .sp-logo-cloud__item:focus-within > :where(img, svg) {
+    filter: none;
+  }
+
+  @media (prefers-contrast: more), (forced-colors: active) {
+    .sp-logo-cloud--muted .sp-logo-cloud__item > :where(img, svg) {
+      filter: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sp-logo-cloud__item > :where(img, svg) {
+      transition: none;
+    }
+  }
+
+  /* SKELETON --------------------------------------------------------------- */
+  /* Loading placeholder colors come from component.skeleton (spectre-tokens
+     4.12.0), per color mode. */
+  .sp-skeleton {
+    display: block;
+    border-radius: var(--sp-radius-md);
+    background-color: var(--sp-skeleton-base);
+  }
+
+  .sp-skeleton--text {
+    height: var(--sp-font-md-size);
+    border-radius: var(--sp-radius-sm);
+  }
+
+  .sp-skeleton--circle {
+    aspect-ratio: var(--sp-aspect-ratio-square);
+    border-radius: var(--sp-radius-pill);
+  }
+
+  .sp-skeleton--animated {
+    background-image: linear-gradient(
+      90deg,
+      var(--sp-skeleton-base) 0%,
+      var(--sp-skeleton-shimmer) 50%,
+      var(--sp-skeleton-base) 100%
+    );
+    background-size: 200% 100%;
+    animation: sp-skeleton-shimmer var(--sp-duration-slowest) var(--sp-easing-inout) infinite;
+  }
+
+  @keyframes sp-skeleton-shimmer {
+    from {
+      background-position: 100% 0;
+    }
+
+    to {
+      background-position: -100% 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sp-skeleton--animated {
+      animation: none;
+      background-image: none;
     }
   }
 
@@ -5766,7 +6024,7 @@
     font-size: var(--sp-font-sm-size);
     line-height: var(--sp-font-sm-line-height);
     --sp-component-file-input-padding-y: var(--sp-space-4);
-    --sp-component-file-input-padding-x: var(--sp-space-12);
+    --sp-component-file-input-padding-x: var(--sp-space-8);
   }
 
   .sp-file-input--md {
@@ -5781,7 +6039,7 @@
     padding: var(--sp-component-file-input-padding-y) var(--sp-component-file-input-padding-x);
     font-size: var(--sp-font-lg-size);
     line-height: var(--sp-font-lg-line-height);
-    --sp-component-file-input-padding-y: var(--sp-space-12);
+    --sp-component-file-input-padding-y: var(--sp-space-16);
     --sp-component-file-input-padding-x: var(--sp-space-24);
   }
 
@@ -5870,7 +6128,7 @@
   .sp-input-group__addon {
     display: flex;
     align-items: center;
-    padding: var(--sp-space-8) var(--sp-space-12);
+    padding: var(--sp-space-8) var(--sp-space-16);
     border: var(--sp-component-border-width) solid var(--sp-input-group-addon-border);
     background-color: var(--sp-input-group-addon-bg);
     color: var(--sp-input-group-addon-text);
@@ -5898,7 +6156,7 @@
     display: inline-flex;
     flex-direction: column;
     gap: var(--sp-space-8);
-    padding: var(--sp-space-12);
+    padding: var(--sp-space-8);
     border: var(--sp-component-border-width) solid var(--sp-datepicker-panel-border);
     border-radius: var(--sp-radius-lg);
     background-color: var(--sp-datepicker-panel-bg);
@@ -5920,7 +6178,7 @@
   .sp-datepicker__grid {
     display: grid;
     grid-template-columns: repeat(7, var(--sp-space-40));
-    gap: var(--sp-space-2);
+    gap: var(--sp-space-4);
   }
 
   .sp-datepicker__weekday {
@@ -6001,7 +6259,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--sp-space-12);
+    gap: var(--sp-space-8);
     min-height: var(--sp-min-touch-target);
     padding: var(--sp-space-8) var(--sp-space-16);
     border: var(--sp-component-border-width) solid var(--sp-external-auth-button-border);
@@ -6072,7 +6330,7 @@
   .sp-choice-card {
     display: flex;
     align-items: flex-start;
-    gap: var(--sp-space-12);
+    gap: var(--sp-space-16);
     padding: var(--sp-space-16);
     border: var(--sp-component-border-width) solid var(--sp-choice-card-border);
     border-radius: var(--sp-radius-lg);

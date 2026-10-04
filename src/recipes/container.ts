@@ -11,6 +11,10 @@ const CONTAINER_PADDINGS = {
   sm: true,
   md: true,
   lg: true,
+  xl: true,
+  '2xl': true,
+  '3xl': true,
+  '4xl': true,
 } as const
 
 export type ContainerMaxWidth = Exclude<keyof typeof CONTAINER_MAX_WIDTHS, 'none'>

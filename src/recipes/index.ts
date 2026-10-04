@@ -147,7 +147,9 @@ export {
   type FooterLinkRecipeOptions,
   type FooterChipRecipeOptions,
   type FooterAccentEdge,
-  type FooterAccentColor
+  type FooterAccentColor,
+  type FooterAppearance,
+  type FooterSurface
 } from './footer'
 
 export {
@@ -435,5 +437,20 @@ export {
   type TextSize,
   type TextVariant,
   type TextFamily,
-  type TextTransform
+  type TextTransform,
+  type TextWeight
 } from './text'
+
+export {
+  getSkeletonClasses,
+  type SkeletonRecipeOptions,
+  type SkeletonShape
+} from './skeleton'
+
+export {
+  getLogoCloudClasses,
+  getLogoCloudItemClasses,
+  type LogoCloudRecipeOptions,
+  type LogoCloudSize,
+  type LogoCloudFill
+} from './logo-cloud'

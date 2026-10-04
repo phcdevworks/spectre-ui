@@ -18,6 +18,22 @@ const FOOTER_ACCENT_COLORS = {
   cta: true
 } as const
 
+const FOOTER_APPEARANCES = {
+  dark: true,
+  light: true,
+  system: true
+} as const
+
+const FOOTER_SURFACES = {
+  page: true,
+  card: true,
+  subtle: true,
+  inverse: true,
+  hero: true
+} as const
+
+export type FooterAppearance = keyof typeof FOOTER_APPEARANCES
+export type FooterSurface = keyof typeof FOOTER_SURFACES
 export type FooterAccentEdge = keyof typeof FOOTER_ACCENT_EDGES
 export type FooterAccentColor = keyof typeof FOOTER_ACCENT_COLORS
 
@@ -32,6 +48,20 @@ export interface FooterRecipeOptions {
    */
   accent?: FooterAccentEdge
   accentColor?: FooterAccentColor
+  /**
+   * Color palette. `dark` (default) is the `component.footer` palette,
+   * `light` the `component.footer.light` palette (`spectre-tokens` 4.12.0),
+   * and `system` picks light or dark from `prefers-color-scheme`.
+   */
+  appearance?: FooterAppearance
+  /**
+   * Paints the footer on a published `surface.*` role instead of the footer
+   * background. Only the background changes; pair it with the `appearance`
+   * whose text palette suits it (`light` for `page`/`card`/`subtle`, the
+   * `dark` default for `inverse`/`hero`). Omission keeps the footer
+   * background.
+   */
+  surface?: FooterSurface
 }
 
 export function getFooterClasses(opts: FooterRecipeOptions = {}): string {
@@ -40,7 +70,26 @@ export function getFooterClasses(opts: FooterRecipeOptions = {}): string {
     fullWidth = false,
     accent: accentInput,
     accentColor: accentColorInput,
+    appearance: appearanceInput,
+    surface: surfaceInput,
   } = opts
+
+  const surface =
+    surfaceInput === undefined
+      ? undefined
+      : resolveOption({
+          name: 'footer surface',
+          value: surfaceInput,
+          allowed: FOOTER_SURFACES,
+          fallback: 'page'
+        })
+
+  const appearance = resolveOption({
+    name: 'footer appearance',
+    value: appearanceInput,
+    allowed: FOOTER_APPEARANCES,
+    fallback: 'dark'
+  })
 
   let accentEdgeClass: string | false = false
   let accentColorClass: string | false = false
@@ -66,6 +115,8 @@ export function getFooterClasses(opts: FooterRecipeOptions = {}): string {
     'sp-footer',
     bordered && 'sp-footer--bordered',
     fullWidth && 'sp-footer--full',
+    appearance !== 'dark' && `sp-footer--${appearance}`,
+    surface && `sp-footer--surface-${surface}`,
     accentEdgeClass,
     accentColorClass
   )

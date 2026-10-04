@@ -80,8 +80,20 @@
   }
 
   ::selection {
-    background-color: var(--sp-color-brand-100);
-    color: inherit;
+    background-color: var(--sp-selection-bg);
+    color: var(--sp-selection-text);
+  }
+
+  /* caret-color and scrollbar-color inherit with the value computed where
+     they are declared, so they are re-declared on every element carrying
+     its own color mode to pick up that mode's tokens. */
+  :where(html, [data-spectre-theme]) {
+    caret-color: var(--sp-caret-color);
+    scrollbar-color: var(--sp-scrollbar-thumb) var(--sp-scrollbar-track);
+  }
+
+  :where(body *):hover {
+    scrollbar-color: var(--sp-scrollbar-thumb-hover) var(--sp-scrollbar-track);
   }
 
   /* @phcdevworks/spectre-components registers every custom element without

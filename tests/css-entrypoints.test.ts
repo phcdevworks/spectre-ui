@@ -12,9 +12,19 @@ const readDistCss = (fileName: string): string =>
   fs.readFileSync(path.join(distDir, fileName), 'utf8')
 
 const CUSTOM_PROPERTY_DECLARATION_PATTERN = /(^|[{\s;])(--[A-Za-z0-9_-]+)\s*:/gm
+// Token CSS blocks every bundle inlines from spectre-tokens: the root, each
+// color mode on the root and on a scoped element (4.12.0), and density.
 const ALLOWED_SHARED_SELECTORS = new Set([
   ':root',
-  ':root[data-spectre-theme="dark"]'
+  ':root[data-spectre-theme="dark"]',
+  ':root [data-spectre-theme="dark"]',
+  ':root[data-spectre-theme="high-contrast"]',
+  ':root [data-spectre-theme="high-contrast"]',
+  ':root[data-spectre-theme="light"]',
+  ':root [data-spectre-theme="light"]',
+  ':root[data-spectre-theme="system"]',
+  ':root [data-spectre-theme="system"]',
+  '[data-spectre-density="compact"]'
 ])
 
 const ENTRYPOINT_CONTRACTS = [
@@ -69,7 +79,13 @@ const ENTRYPOINT_CONTRACTS = [
     // spectre-tokens range was bumped to ^4.11.0 (display/lead CSS variables
     // and mode-aware form.default), plus raw form-control text/placeholder
     // colors from form.default. Not a regression.
-    maxBytes: 74900
+    // Raised again 2026-10-03 (base.css grew to 163828 bytes) for the
+    // spectre-tokens ^4.12.0 bump: every color-mode block now declares the
+    // full mode-varying set on the root and on scoped elements, plus the
+    // system, high-contrast, density, and lg layout blocks (~85 KB of the
+    // standalone token block), and the selection/caret/scrollbar base rules.
+    // A deliberate, scoped increase, not a regression.
+    maxBytes: 164300
   },
   {
     fileName: 'components.css',
@@ -141,7 +157,14 @@ const ENTRYPOINT_CONTRACTS = [
     // Raised again 2026-09-26 (components.css grew to 274975 bytes):
     // the spectre-tokens ^4.11.0 bump plus getDisplayClasses/getLeadClasses.
     // A deliberate, scoped increase, not a regression.
-    maxBytes: 275300
+    // Raised again 2026-10-03 (components.css grew to 371836 bytes): the
+    // spectre-tokens ^4.12.0 token block (~85 KB), component variables
+    // re-declared on scoped and system color modes, footer light/system
+    // palettes, control sizing, and the skeleton recipe. A deliberate,
+    // scoped increase, not a regression. Raised again 2026-10-03
+    // (components.css grew to 374860 bytes) for the logo cloud recipe and
+    // the footer surface option.
+    maxBytes: 375300
   },
   {
     fileName: 'utilities.css',
@@ -235,7 +258,15 @@ const ENTRYPOINT_CONTRACTS = [
     // Raised again 2026-09-26 (utilities.css grew to 434006 bytes)
     // when the spectre-tokens range was bumped to ^4.11.0 — token growth in
     // the standalone token block, not a regression here.
-    maxBytes: 434400
+    // Raised again 2026-10-03 (utilities.css grew to 560063 bytes): the
+    // spectre-tokens ^4.12.0 token block (~85 KB), the space-128/160/192
+    // steps across every spacing axis and breakpoint, chart color and
+    // elevation utilities, layout xl–4xl and hero recipes, and prose kbd.
+    // A deliberate, scoped increase, not a regression. Raised again
+    // 2026-10-03 (utilities.css grew to 563947 bytes) for the utility gaps:
+    // per-breakpoint grid columns, surface backgrounds, thick borders,
+    // balanced wrap, tabular numerals, and the section attached option.
+    maxBytes: 564400
   }
 ] as const
 

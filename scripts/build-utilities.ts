@@ -28,6 +28,20 @@ const collectVarSteps = (prefix: string): string[] => {
   return steps;
 };
 
+// Mode-aware families are re-declared in every color-mode block, so their
+// role names are deduped (first-seen order).
+const collectModeRoles = (prefix: string): string[] => {
+  const regex = new RegExp(`--sp-${prefix}-([a-z0-9-]+):`, 'g');
+  const roles = new Set<string>();
+  for (const match of tokensCss.matchAll(regex)) {
+    roles.add(match[1]);
+  }
+  return [...roles];
+};
+
+const collectElevationLevels = (): string[] =>
+  [...new Set(collectModeRoles('elevation').map((role) => role.split('-')[0]))];
+
 const collectBreakpoints = (): Record<string, string> => {
   const regex = /--sp-breakpoint-([a-z0-9]+):\s*([0-9]+px)/g;
   const breakpoints: Record<string, string> = {};
@@ -100,6 +114,9 @@ const semanticColorSteps = new Map(
 const paletteHues = collectPaletteHues();
 const breakpoints = collectBreakpoints();
 const fontWeights = collectFontWeights();
+const chartRoles = collectModeRoles('chart');
+const surfaceRoles = collectModeRoles('surface');
+const elevationLevels = collectElevationLevels();
 
 // Full published breakpoint scale. Extended from md/lg-only (Phase 7 P0) once
 // a downstream consumer's flex/spacing layouts needed sm/xl/2xl step-downs
@@ -261,10 +278,65 @@ const buildZIndexRules = (): string[] =>
 const buildFontWeightRules = (): string[] =>
   fontWeights.map((weight) => rule(`.sp-font-${weight}`, [`font-weight: ${weight};`]));
 
+// Thick borders on --sp-border-width-thick. They default to the divider
+// color and take any sp-border-{color} utility, which is emitted later in
+// this file and so wins on source order. No responsive variants, which would
+// land after the color utilities and override the chosen color.
+const BORDER_THICK_SIDES = [
+  { suffix: '', prefix: 'border' },
+  { suffix: '-t', prefix: 'border-top' },
+  { suffix: '-r', prefix: 'border-right' },
+  { suffix: '-b', prefix: 'border-bottom' },
+  { suffix: '-l', prefix: 'border-left' },
+] as const;
+
+const buildBorderThickRules = (): string[] =>
+  BORDER_THICK_SIDES.map(({ suffix, prefix }) =>
+    rule(`.sp-border-thick${suffix}`, [
+      `${prefix}-width: var(--sp-border-width-thick);`,
+      `${prefix}-style: solid;`,
+      `${prefix}-color: var(--sp-surface-divider);`,
+    ]),
+  );
+
+// Background utilities bound to the surface roles, so a band can sit on
+// surface.subtle (or any role) without the palette scale. surface.hero is a
+// gradient, so it goes on background-image.
+const buildSurfaceBackgroundRules = (): string[] =>
+  surfaceRoles.map((role) =>
+    rule(`.sp-bg-surface-${role}`, [
+      role === 'hero'
+        ? `background-image: var(--sp-surface-${role});`
+        : `background-color: var(--sp-surface-${role});`,
+    ]),
+  );
+
+// component.chart (spectre-tokens 4.12.0): text/bg/border plus SVG fill and
+// stroke, so a chart drawn in SVG or canvas-backed HTML takes token colors.
+const buildChartColorRules = (): string[] =>
+  chartRoles.flatMap((role) => [
+    ...colorAxisRules(`chart-${role}`, `--sp-chart-${role}`),
+    rule(`.sp-fill-chart-${role}`, [`fill: var(--sp-chart-${role});`]),
+    rule(`.sp-stroke-chart-${role}`, [`stroke: var(--sp-chart-${role});`]),
+  ]);
+
+// Semantic elevation levels (spectre-tokens 4.12.0) pair shadow, surface,
+// and stacking order, so one class picks a level instead of three.
+const buildElevationRules = (): string[] =>
+  elevationLevels.map((level) =>
+    rule(`.sp-elevation-${level}`, [
+      `background-color: var(--sp-elevation-${level}-surface);`,
+      `box-shadow: var(--sp-elevation-${level}-shadow);`,
+      `z-index: var(--sp-elevation-${level}-z-index);`,
+    ]),
+  );
+
 const sections: string[] = [];
 
 sections.push(LAYOUT_UTILITIES.map((utility) => utilityRule(utility)).join('\n\n'));
 sections.push(AUTO_MARGIN_UTILITIES.map((utility) => utilityRule(utility)).join('\n\n'));
+sections.push(buildBorderThickRules().join('\n\n'));
+sections.push(buildSurfaceBackgroundRules().join('\n\n'));
 sections.push(buildBaseSpacingRules().join('\n\n'));
 sections.push(buildAspectRatioRules().join('\n\n'));
 sections.push(buildTrackingRules().join('\n\n'));
@@ -281,6 +353,8 @@ sections.push(buildEasingRules().join('\n\n'));
 sections.push(buildBorderStyleRules().join('\n\n'));
 sections.push(buildBorderWidthRules().join('\n\n'));
 sections.push(buildIconSizeRules().join('\n\n'));
+sections.push(buildChartColorRules().join('\n\n'));
+sections.push(buildElevationRules().join('\n\n'));
 
 for (const breakpoint of RESPONSIVE_BREAKPOINT_ORDER) {
   sections.push(buildResponsiveSpacingBlock(breakpoint));
@@ -307,6 +381,8 @@ console.log(
     `${fontWeights.length} font weights, ${durationSteps.length} durations, ` +
     `${easingSteps.length} easings, ${borderStyleSteps.length} border styles, ` +
     `${borderWidthSteps.length} border widths, ${iconSteps.length} icon sizes, ` +
+    `${surfaceRoles.length} surface backgrounds, ${BORDER_THICK_SIDES.length} thick borders, ` +
+    `${chartRoles.length} chart color roles, ${elevationLevels.length} elevation levels, ` +
     `${LAYOUT_UTILITIES.length + AUTO_MARGIN_UTILITIES.length} layout utilities, ` +
     `${RESPONSIVE_BREAKPOINT_ORDER.length} responsive breakpoints.`,
 );

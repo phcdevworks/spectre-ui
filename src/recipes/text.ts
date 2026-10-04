@@ -52,16 +52,34 @@ const TEXT_TRANSFORMS = {
   capitalize: true,
 } as const
 
+// The distinct weights spectre-tokens publishes across the font and heading
+// presets, the same set the generated sp-font-{weight} utilities expand.
+const TEXT_WEIGHTS = {
+  '400': true,
+  '500': true,
+  '600': true,
+  '700': true,
+  '800': true,
+  '900': true,
+} as const
+
 export type TextSize = keyof typeof TEXT_SIZES
 export type TextVariant = keyof typeof TEXT_VARIANTS
 export type TextFamily = keyof typeof TEXT_FAMILIES
 export type TextTransform = keyof typeof TEXT_TRANSFORMS
+export type TextWeight = 400 | 500 | 600 | 700 | 800 | 900
 
 export interface TextRecipeOptions {
   size?: TextSize
   variant?: TextVariant
   family?: TextFamily
   transform?: TextTransform
+  /**
+   * Overrides the weight the `size` preset carries, e.g. a label that reads
+   * bolder than the muted line beneath it. Emits the token-derived
+   * `sp-font-{weight}` utility, which wins over the preset by layer order.
+   */
+  weight?: TextWeight
 }
 
 export function getTextClasses(opts: TextRecipeOptions = {}): string {
@@ -70,6 +88,7 @@ export function getTextClasses(opts: TextRecipeOptions = {}): string {
     variant: variantInput,
     family: familyInput,
     transform: transformInput,
+    weight: weightInput,
   } = opts
 
   const size = resolveOption({
@@ -121,11 +140,22 @@ export function getTextClasses(opts: TextRecipeOptions = {}): string {
         })
       : undefined
 
+  const weight =
+    weightInput === undefined
+      ? undefined
+      : resolveOption({
+          name: 'text weight',
+          value: String(weightInput),
+          allowed: TEXT_WEIGHTS,
+          fallback: '400',
+        })
+
   return cx(
     'sp-text',
     `sp-text--${size}`,
     variantClass,
     family && `sp-text--${family}`,
-    transform && `sp-text--${transform}`
+    transform && `sp-text--${transform}`,
+    weight && `sp-font-${weight}`
   )
 }

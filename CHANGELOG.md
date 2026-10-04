@@ -6,6 +6,122 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [5.4.0] - 2026-10-04
+
+**Release Title:** Token Parity and Layout Contracts
+
+Contract change type: semantic change
+
+### Added
+
+- Full `spectre-tokens` 4.12.0 parity. The dependency range is now `^4.12.0`,
+  and every new `--sp-*` family has a consumer:
+  - Footer `appearance` option (`dark` | `light` | `system`) on
+    `getFooterClasses`, requested by `spectre-base` (2026-09-27). `dark` is
+    the default and its output is unchanged. `light` (`.sp-footer--light`)
+    switches every footer part, the accent rail included, to the
+    `component.footer.light` palette. `system` (`.sp-footer--system`) uses the
+    light palette under `prefers-color-scheme: light` and the dark one
+    otherwise. Accent colors now go through
+    `--sp-component-footer-accent-{color}` variables, so the palette switch
+    reaches the rail.
+  - Element-scoped color modes, requested by `spectre-base` (2026-09-27).
+    Component variables are now declared on every `[data-spectre-theme]`
+    element as well as the root, and the dark overrides also apply to
+    `[data-spectre-theme="system"]` under `prefers-color-scheme: dark`. A
+    header, footer, or hero section that carries its own mode now switches
+    every component inside it.
+  - Layout `xl`, `2xl`, `3xl`, and `4xl` steps on `getSectionClasses`
+    (`spacing`, `gap`), `getStackClasses` (`gap`), `getGridClasses` (`gap`,
+    `columnGap`, `rowGap`), and `getContainerClasses` (`padding`). They sit in
+    the same layers as the existing steps, so `sp-py-*`/`sp-gap-*` still win.
+    The steps widen at the `lg` breakpoint through the token package's own
+    responsive remap.
+  - `getSectionClasses({ hero: 'sm' | 'md' | 'lg' })` (`.sp-section--hero-*`)
+    uses the asymmetric `layout.hero.padding` top/bottom pairs. It replaces
+    `spacing` when both are set. Ordinary section spacing stays symmetric.
+  - `getSkeletonClasses({ shape, animated })`: a loading placeholder in
+    `text`, `rect`, or `circle` shape, with colors from `component.skeleton`.
+    The optional shimmer stops under `prefers-reduced-motion`.
+  - Generated `.sp-{text|bg|border|fill|stroke}-chart-{role}` utilities for
+    the `component.chart` palette, and `.sp-elevation-{flat|raised|overlay|modal}`,
+    which set shadow, surface, and z-index together.
+  - `.sp-prose kbd` keycaps from `component.prose.kbd`.
+  - `.sp-*-128`/`-160`/`-192` spacing utilities for the new `--sp-space-*`
+    steps.
+- Child-theme contract gaps requested by `spectre-base` (2026-09-24 and
+  2026-10-01):
+  - `getFooterClasses({ surface })` (`page` | `card` | `subtle` | `inverse` |
+    `hero`) puts the footer on a published surface role. It re-points only
+    `--sp-component-footer-bg`, the same variable `appearance` uses, so the
+    two options don't compete. `appearance` keeps the text palette. The
+    footer now paints with `background`, so the `surface.hero` gradient
+    works.
+  - `getTextClasses({ weight })` (`400`–`900`) emits the token-derived
+    `sp-font-{weight}` utility, which overrides the size preset's weight.
+  - `getSectionClasses({ attached: true })` (`.sp-section--attached`) drops
+    the top padding of a band that belongs to the section above, so the gap
+    between them is no longer the sum of both paddings. An automatic
+    adjacent-sibling rule was declined: back-to-back sections on different
+    surfaces each need their own padding.
+  - `getLogoCloudClasses({ size, fill, muted })` and
+    `getLogoCloudItemClasses()`: partner marks in square tiles (`sm` 64px,
+    `md` 96px, `lg` 128px) on `surface.subtle`, `surface.card`, or no fill.
+    With `muted`, marks are grayscale at rest and full color on hover or
+    focus. They stay in full color under `prefers-contrast: more` and forced
+    colors, and the change is instant under reduced motion.
+  - Utilities: `.sp-text-balance`, `.sp-tabular-nums`,
+    `.sp-{md|lg}-grid-cols-{1|2|3|4|6|12}` (explicit column counts from that
+    breakpoint up), generated `.sp-bg-surface-{role}` for every surface role,
+    and generated `.sp-border-thick` plus `-t`/`-r`/`-b`/`-l` on
+    `--sp-border-width-thick`. Thick borders default to the divider color and
+    take any `.sp-border-{color}` utility.
+- `tests/spacing-grid.test.ts` fails when recipe padding, margins, or gaps in
+  `components.css` or `utilities.css` use a `--sp-space-*` step other than 0,
+  4, or a multiple of 8.
+
+### Changed
+
+- Buttons, inputs, and selects now take height, inline padding, and icon size
+  from `control.{sm,md,lg}`. `[data-spectre-density="compact"]` on any
+  ancestor switches them to the compact steps. Visible changes: `lg` inline
+  padding drops from 24px to 20px; the default button height changes from the
+  44px touch-target floor to the 40px `md` control height; inputs and selects
+  gain an explicit minimum height; and `svg` icons inside a button are sized
+  to the control's icon step. `.sp-btn--compact` still drops the minimum
+  height and keeps its 44px invisible hit area.
+- Base text selection uses `component.selection` (it used `brand.100` and
+  inherited the text color). The caret and scrollbar colors come from
+  `component.caret`/`component.scrollbar` per color mode.
+- Recipe spacing moved onto the 8px grid (owner-confirmed 2026-10-03), with
+  4px kept for spacing inside a component. Visible changes:
+  - Badge and tag `md`/`lg` inline padding: 12/16px → 16/24px. Alert `md`/`lg`
+    block padding: 12/16px → 16/24px. Pagination item inline padding (base and
+    `md`/`lg`): 12/12/16px → 16/16/24px.
+  - Toast block padding: 12px → 16px. Dropdown item inline padding: 12px →
+    16px. Pricing-card badge inline padding: 12px → 16px. Input-group addon
+    inline padding: 12px → 16px.
+  - Row padding 12px → 8px block: nav (with 16px inline), list-group items,
+    carousel captions, popover bodies, table cells (default and `md`; `sm`
+    6px → 4px), and the datepicker frame (all sides). Footer padding:
+    12px/16px → 16px.
+  - Icon-to-text gaps 12px → 8px: alert, toast, accordion header, and
+    external-auth button. Block gaps 12px → 16px: offcanvas header and choice
+    card. Datepicker grid gap: 2px → 4px.
+  - Icon-only button inline padding: 12px → 8px. File input `sm` inline
+    padding: 12px → 8px; `lg` block padding: 12px → 16px.
+  - Textarea sizes take inline padding from `control.*`, matching inputs
+    (`sm`/`md`/`lg`: 12/16/20px; `lg` was 24px).
+  - Prose inline code and keycaps: block padding 2px → 4px. `mark` inline
+    padding: 2px → 4px.
+- Stack and grid `md`/`lg` gaps follow the 4.12.0 token values (16px/24px,
+  previously 12px/16px). The recipes are unchanged.
+- `tests/token-parity.test.ts` exempts `--sp-layout-responsive-lg-*` and
+  `--sp-control-compact-*` because the token package's own remap blocks
+  consume them. `tests/css-entrypoints.test.ts` allows the new mode and
+  density token selectors to repeat across bundles. Bundle size budgets are
+  raised for the larger 4.12.0 token block.
+
 ## [5.3.0] - 2026-09-26
 
 **Release Title:** Bootstrap-Scale Component Inventory

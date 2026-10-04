@@ -20,6 +20,10 @@ const STACK_GAPS = {
   sm: true,
   md: true,
   lg: true,
+  xl: true,
+  '2xl': true,
+  '3xl': true,
+  '4xl': true,
 } as const
 
 export type StackDirection = keyof typeof STACK_DIRECTIONS

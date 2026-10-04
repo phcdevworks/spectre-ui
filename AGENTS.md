@@ -273,6 +273,44 @@ Roadmap Self-Expansion." Applied to this repo:
   Potts in the same change it was made, and reflect cross-repo-relevant changes
   in the project-team's own ROADMAP.md/TODO.md.
 
+## Catching Up With spectre-tokens
+
+`spectre-tokens/DOWNSTREAM_PARITY.md` is the catch-up checklist for
+everything `spectre-tokens` publishes. It groups every `--sp-*` CSS variable
+in `@phcdevworks/spectre-tokens/index.css` into the family a recipe,
+stylesheet, or component consumes, and marks which ones vary by color mode.
+It is regenerated on every tokens build, so it always matches the published
+CSS. It is a derived artifact: `spectre-tokens/tokens/` and
+`contract.manifest.json` stay the source of truth for what a token means.
+
+To see what this repo still has to consume, run from `spectre-tokens` (read-only;
+it never modifies the scanned repo):
+
+```bash
+npm run audit:parity -- spectre-ui
+```
+
+It prints each family as a checklist (`[x]` fully referenced, `[ ]` with the
+missing variables listed, "no consumer" if nothing uses it yet), scanning
+`spectre-ui/src`.
+
+This repo is the first consumer, and the parity is enforced:
+`tests/token-parity.test.ts` fails when any published `--sp-*` variable is
+not referenced in `src/styles/*.css` (unless listed in
+`INTENTIONALLY_UNREFERENCED` with a reason). So a `spectre-tokens` upgrade
+that adds variables fails `npm run check` here until each new family has a
+recipe or stylesheet consumer. When bumping `@phcdevworks/spectre-tokens`:
+
+1. Read its `CHANGELOG.md` for the version range and `DOWNSTREAM_PARITY.md`
+   for the new or changed families.
+2. Run `npm run audit:parity -- spectre-ui` from `spectre-tokens` to list
+   exactly which variables are still unreferenced.
+3. Build the consuming recipes (token-backed, no local values), or record a
+   reason in `INTENTIONALLY_UNREFERENCED`. Families marked "varies by mode"
+   must keep working when a section carries its own `data-spectre-theme`.
+4. Check the selector allow-list in `tests/css-entrypoints.test.ts` against
+   any new token CSS blocks (mode, density, `@media`).
+
 ## File Classification
 
 | Classification                    | Files                                                                                                 | Rule                                                                                 |

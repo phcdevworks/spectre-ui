@@ -183,6 +183,7 @@
       "getSidebarHeaderClasses",
       "getSidebarLinkClasses",
       "getSidebarToggleClasses",
+      "getSkeletonClasses",
       "getSpinnerClasses",
       "getStackClasses",
       "getTagClasses",
@@ -232,6 +233,8 @@
       "getListGroupItemClasses",
       "getListGroupItemHeadingClasses",
       "getListGroupItemTextClasses",
+      "getLogoCloudClasses",
+      "getLogoCloudItemClasses",
       "getOffcanvasBackdropClasses",
       "getOffcanvasBodyClasses",
       "getOffcanvasClasses",
@@ -407,7 +410,7 @@
     },
     "stack": {
       "fn": "getStackClasses",
-      "gaps": ["sm", "md", "lg"]
+      "gaps": ["sm", "md", "lg", "xl", "2xl", "3xl", "4xl"]
     },
     "section": {
       "fn": "getSectionClasses"
@@ -418,9 +421,9 @@
     "grid": {
       "fn": "getGridClasses",
       "columns": [1, 2, 3, 4, 6, 12, "auto"],
-      "gaps": ["sm", "md", "lg"],
-      "columnGaps": ["sm", "md", "lg"],
-      "rowGaps": ["sm", "md", "lg"],
+      "gaps": ["sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      "columnGaps": ["sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      "rowGaps": ["sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
       "spans": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "full"],
       "spanBreakpoints": ["base", "md", "lg"],
       "offsets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
@@ -517,7 +520,8 @@
         "6xl"
       ],
       "families": ["sans", "serif", "mono"],
-      "transforms": ["none", "uppercase", "lowercase", "capitalize"]
+      "transforms": ["none", "uppercase", "lowercase", "capitalize"],
+      "weights": [400, 500, 600, 700, 800, 900]
     },
     "tabs": {
       "fn": "getTabsClasses",
@@ -590,6 +594,15 @@
     },
     "lead": {
       "fn": "getLeadClasses"
+    },
+    "skeleton": {
+      "fn": "getSkeletonClasses",
+      "shapes": ["text", "rect", "circle"]
+    },
+    "logoCloud": {
+      "fn": "getLogoCloudClasses",
+      "sizes": ["sm", "md", "lg"],
+      "fills": ["subtle", "card", "none"]
     }
   }
 }
