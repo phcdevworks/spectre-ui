@@ -71,6 +71,16 @@
     --sp-component-button-accent-text-disabled: var(--sp-button-accent-textdisabled);
     --sp-component-button-accent-focus-visible: var(--sp-button-accent-focusvisible);
     --sp-component-button-accent-focus-ring: var(--sp-button-accent-focusring);
+    --sp-component-button-accent-outline-bg: var(--sp-button-accentoutline-bg);
+    --sp-component-button-accent-outline-bg-hover: var(--sp-button-accentoutline-bghover);
+    --sp-component-button-accent-outline-bg-active: var(--sp-button-accentoutline-bgactive);
+    --sp-component-button-accent-outline-bg-disabled: var(--sp-button-accentoutline-bgdisabled);
+    --sp-component-button-accent-outline-text: var(--sp-button-accentoutline-text);
+    --sp-component-button-accent-outline-text-disabled: var(--sp-button-accentoutline-textdisabled);
+    --sp-component-button-accent-outline-border: var(--sp-button-accentoutline-border);
+    --sp-component-button-accent-outline-border-disabled: var(--sp-button-accentoutline-borderdisabled);
+    --sp-component-button-accent-outline-focus-visible: var(--sp-button-accentoutline-focusvisible);
+    --sp-component-button-accent-outline-focus-ring: var(--sp-button-accentoutline-focusring);
     /* on-dark/inverse content islands not owned by the page's own light/dark
        mode — see TODO.md "Requested by Downstream" / "On-dark/inverse
        surface role" */
@@ -159,7 +169,7 @@
 
     /* badge roles */
     --sp-component-badge-font: var(--sp-font-family-sans);
-    --sp-component-badge-weight: var(--sp-font-sm-weight);
+    --sp-component-badge-weight: var(--sp-font-weight-normal);
     --sp-component-badge-gap: var(--sp-space-4);
     --sp-component-badge-radius: var(--sp-radius-pill);
     --sp-component-badge-primary-bg: var(--sp-button-primary-bg);
@@ -332,12 +342,12 @@
     --sp-component-avatar-radius-circle: var(--sp-radius-pill);
     --sp-component-avatar-radius-square: var(--sp-radius-lg);
     --sp-component-avatar-font: var(--sp-font-family-sans);
-    --sp-component-avatar-weight: var(--sp-font-md-weight);
+    --sp-component-avatar-weight: var(--sp-font-weight-medium);
 
     /* tag roles */
     --sp-component-tag-radius: var(--sp-radius-pill);
     --sp-component-tag-font: var(--sp-font-family-sans);
-    --sp-component-tag-weight: var(--sp-font-sm-weight);
+    --sp-component-tag-weight: var(--sp-font-weight-normal);
     --sp-component-tag-padding-x-sm: var(--sp-space-8);
     --sp-component-tag-padding-x-md: var(--sp-space-16);
     --sp-component-tag-padding-x-lg: var(--sp-space-24);
@@ -439,6 +449,7 @@
     --sp-component-footer-accent-warning: var(--sp-footer-accent-warning);
     --sp-component-footer-accent-danger: var(--sp-footer-accent-danger);
     --sp-component-footer-accent-cta: var(--sp-footer-accent-cta);
+    --sp-component-footer-accent-accent: var(--sp-footer-accent-accent);
 
     /* toast roles */
     --sp-component-toast-radius: var(--sp-radius-lg);
@@ -559,7 +570,7 @@
     font-family: var(--sp-font-family-sans);
     font-size: var(--sp-font-md-size);
     line-height: var(--sp-font-md-line-height);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
     text-decoration: none;
     appearance: none;
     transition:
@@ -866,7 +877,9 @@
     box-shadow: none;
   }
 
-  /* accent */
+  /* accent. A child theme re-points the published buttons.accent and
+     buttons.accentOutline roles to restyle both variants; the component
+     aliases above follow them. */
   .sp-btn--accent {
     background-color: var(--sp-component-button-accent-bg);
     color: var(--sp-component-button-accent-text);
@@ -899,6 +912,43 @@
   .sp-btn--accent:disabled {
     background-color: var(--sp-component-button-accent-bg-disabled);
     color: var(--sp-component-button-accent-text-disabled);
+  }
+
+  /* accent outline (spectre-tokens 4.13.0 buttons.accentOutline) */
+  .sp-btn--accent-outline {
+    background-color: var(--sp-component-button-accent-outline-bg);
+    color: var(--sp-component-button-accent-outline-text);
+    border-color: var(--sp-component-button-accent-outline-border);
+  }
+
+  .sp-btn--accent-outline:focus-visible {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-accent-outline-focus-visible);
+  }
+
+  /* recipe-forced focus state (focused: true) uses the focusRing role */
+  .sp-btn--accent-outline.sp-btn--focus,
+  .sp-btn--accent-outline.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-component-button-accent-outline-focus-ring);
+  }
+
+  .sp-btn--accent-outline.sp-btn--hover,
+  .sp-btn--accent-outline.is-hover,
+  .sp-btn--accent-outline:hover {
+    background-color: var(--sp-component-button-accent-outline-bg-hover);
+  }
+
+  .sp-btn--accent-outline.sp-btn--active,
+  .sp-btn--accent-outline.is-active,
+  .sp-btn--accent-outline:active {
+    background-color: var(--sp-component-button-accent-outline-bg-active);
+  }
+
+  .sp-btn--accent-outline.sp-btn--disabled,
+  .sp-btn--accent-outline[aria-disabled="true"],
+  .sp-btn--accent-outline:disabled {
+    background-color: var(--sp-component-button-accent-outline-bg-disabled);
+    color: var(--sp-component-button-accent-outline-text-disabled);
+    border-color: var(--sp-component-button-accent-outline-border-disabled);
   }
 
   /* inverse — see TODO.md "Requested by Downstream" / "On-dark/inverse
@@ -1047,7 +1097,7 @@
     background-color: var(--sp-component-button-link-bg);
     color: var(--sp-component-button-link-text);
     text-decoration: underline;
-    text-underline-offset: var(--sp-space-2);
+    text-underline-offset: var(--sp-text-decoration-offset-sm);
   }
 
   .sp-btn--link.sp-btn--hover,
@@ -1092,7 +1142,7 @@
   .sp-label {
     color: var(--sp-component-input-role-text);
     font-size: var(--sp-font-sm-size);
-    font-weight: var(--sp-font-sm-weight);
+    font-weight: var(--sp-font-weight-normal);
     line-height: var(--sp-font-sm-line-height);
   }
 
@@ -1445,6 +1495,10 @@
     --sp-component-card-accent-color: var(--sp-component-card-accent-cta);
   }
 
+  .sp-card--accent-accent {
+    --sp-component-card-accent-color: var(--sp-component-card-accent-accent);
+  }
+
   .sp-card--accent-top {
     border-top-width: var(--sp-component-card-accent-thickness);
     border-top-color: var(--sp-component-card-accent-color);
@@ -1717,6 +1771,10 @@
     --sp-component-badge-accent-rail-color: var(--sp-badge-accent-cta);
   }
 
+  .sp-badge--accent-rail-accent {
+    --sp-component-badge-accent-rail-color: var(--sp-badge-accent-accent);
+  }
+
   .sp-badge--accent-rail-top {
     border-top-width: var(--sp-badge-accent-thickness);
     border-top-color: var(--sp-component-badge-accent-rail-color);
@@ -1760,7 +1818,7 @@
     background-color: var(--sp-component-iconbox-primary-bg);
     border: var(--sp-component-border-width) solid var(--sp-component-iconbox-border-color);
     font-family: var(--sp-font-family-sans);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
     transition:
       background-color var(--sp-duration-fast) var(--sp-easing-out),
       color var(--sp-duration-fast) var(--sp-easing-out),
@@ -2053,7 +2111,7 @@
 
   .sp-testimonial-author-name {
     color: var(--sp-component-testimonial-author-name);
-    font-weight: var(--sp-font-xl-weight);
+    font-weight: var(--sp-font-weight-semibold);
     font-size: var(--sp-font-md-size);
   }
 
@@ -2094,6 +2152,10 @@
     --sp-component-testimonial-accent-color: var(--sp-testimonial-accent-cta);
   }
 
+  .sp-testimonial--accent-accent {
+    --sp-component-testimonial-accent-color: var(--sp-testimonial-accent-accent);
+  }
+
   .sp-testimonial--accent-top {
     border-top-width: var(--sp-testimonial-accent-thickness);
     border-top-color: var(--sp-component-testimonial-accent-color);
@@ -2112,6 +2174,266 @@
   .sp-testimonial--accent-left {
     border-left-width: var(--sp-testimonial-accent-thickness);
     border-left-color: var(--sp-component-testimonial-accent-color);
+  }
+
+  /* QUOTES ---------------------------------------------------------------- */
+
+  /* Blockquotes and pull quotes from the component.quote contract
+     (spectre-tokens 4.13.0). Rail and mark colours go through local
+     custom properties so a surface and a tone can each re-point them;
+     tone modifiers are declared after the surface modifiers so an
+     explicit tone wins. */
+  .sp-quote {
+    --sp-component-quote-text: var(--sp-quote-text);
+    --sp-component-quote-name: var(--sp-quote-attribution-name);
+    --sp-component-quote-role: var(--sp-quote-attribution-role);
+    --sp-component-quote-mark-color: var(--sp-quote-mark);
+    --sp-component-quote-accent-tone: var(--sp-quote-accent-accent);
+    --sp-component-quote-accent-color: var(--sp-component-quote-accent-tone);
+    margin: 0;
+    padding-inline-start: var(--sp-space-24);
+    border-inline-start: var(--sp-border-width-thick) solid var(--sp-quote-border);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-space-16);
+    color: var(--sp-component-quote-text);
+  }
+
+  .sp-quote__text {
+    margin: 0;
+    color: var(--sp-component-quote-text);
+    font-size: var(--sp-font-lg-size);
+    line-height: var(--sp-font-lg-line-height);
+  }
+
+  .sp-quote--sm .sp-quote__text {
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
+  }
+
+  .sp-quote--lg .sp-quote__text {
+    font-size: var(--sp-font-2xl-size);
+    line-height: var(--sp-leading-snug);
+  }
+
+  .sp-quote--xl {
+    gap: var(--sp-space-24);
+  }
+
+  .sp-quote--xl .sp-quote__text {
+    font-size: var(--sp-font-4xl-size);
+    font-weight: var(--sp-font-weight-semibold);
+    line-height: var(--sp-leading-tight);
+  }
+
+  .sp-quote--surface-subtle {
+    padding: var(--sp-space-32);
+    border-radius: var(--sp-radius-lg);
+    background-color: var(--sp-surface-subtle);
+  }
+
+  .sp-quote--surface-inverse {
+    padding: var(--sp-space-32);
+    border-radius: var(--sp-radius-lg);
+    --sp-component-quote-text: var(--sp-text-on-inverse-default);
+    --sp-component-quote-name: var(--sp-text-on-inverse-default);
+    --sp-component-quote-role: var(--sp-text-on-inverse-muted);
+    --sp-component-quote-mark-color: var(--sp-text-on-inverse-accent);
+    --sp-component-quote-accent-tone: var(--sp-text-on-inverse-accent);
+    background-color: var(--sp-surface-inverse);
+  }
+
+  .sp-quote--accent-edge {
+    border-inline-start-width: var(--sp-quote-accent-thickness);
+    border-inline-start-color: var(--sp-component-quote-accent-color);
+  }
+
+  /* the mark replaces the rule; it is decorative, so screen readers skip it */
+  .sp-quote--accent-mark {
+    position: relative;
+    border-inline-start: 0;
+    padding-block-start: var(--sp-space-40);
+  }
+
+  .sp-quote--accent-mark::before {
+    content: "\201C";
+    content: "\201C" / "";
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: var(--sp-space-24);
+    color: var(--sp-component-quote-mark-color);
+    font-family: var(--sp-font-family-serif);
+    font-size: var(--sp-font-6xl-size);
+    line-height: var(--sp-leading-none);
+  }
+
+  .sp-quote--surface-subtle.sp-quote--accent-mark,
+  .sp-quote--surface-inverse.sp-quote--accent-mark {
+    padding-block-start: var(--sp-space-64);
+  }
+
+  .sp-quote--surface-subtle.sp-quote--accent-mark::before,
+  .sp-quote--surface-inverse.sp-quote--accent-mark::before {
+    inset-block-start: var(--sp-space-16);
+    inset-inline-start: var(--sp-space-32);
+  }
+
+  .sp-quote--center {
+    text-align: center;
+    align-items: center;
+  }
+
+  .sp-quote--center.sp-quote--accent-mark::before {
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+  }
+
+  .sp-quote--accent-neutral {
+    --sp-component-quote-accent-color: var(--sp-quote-accent-neutral);
+    --sp-component-quote-mark-color: var(--sp-quote-accent-neutral);
+  }
+
+  .sp-quote--accent-brand {
+    --sp-component-quote-accent-color: var(--sp-quote-accent-brand);
+    --sp-component-quote-mark-color: var(--sp-quote-accent-brand);
+  }
+
+  .sp-quote--accent-info {
+    --sp-component-quote-accent-color: var(--sp-quote-accent-info);
+    --sp-component-quote-mark-color: var(--sp-quote-accent-info);
+  }
+
+  .sp-quote--accent-success {
+    --sp-component-quote-accent-color: var(--sp-quote-accent-success);
+    --sp-component-quote-mark-color: var(--sp-quote-accent-success);
+  }
+
+  .sp-quote--accent-warning {
+    --sp-component-quote-accent-color: var(--sp-quote-accent-warning);
+    --sp-component-quote-mark-color: var(--sp-quote-accent-warning);
+  }
+
+  .sp-quote--accent-danger {
+    --sp-component-quote-accent-color: var(--sp-quote-accent-danger);
+    --sp-component-quote-mark-color: var(--sp-quote-accent-danger);
+  }
+
+  .sp-quote--accent-cta {
+    --sp-component-quote-accent-color: var(--sp-quote-accent-cta);
+    --sp-component-quote-mark-color: var(--sp-quote-accent-cta);
+  }
+
+  /* the default tone; its mark keeps the component.quote.mark role */
+  .sp-quote--accent-accent {
+    --sp-component-quote-accent-color: var(--sp-component-quote-accent-tone);
+  }
+
+  .sp-quote__attribution {
+    display: grid;
+    justify-content: start;
+    align-items: center;
+    column-gap: var(--sp-space-16);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-quote--center .sp-quote__attribution {
+    justify-content: center;
+  }
+
+  .sp-quote__attribution--avatar {
+    grid-template-columns: auto auto;
+    text-align: start;
+  }
+
+  .sp-quote__attribution--avatar > :first-child {
+    grid-row: span 2;
+  }
+
+  .sp-quote__name {
+    color: var(--sp-component-quote-name);
+    font-weight: var(--sp-font-weight-semibold);
+    font-style: normal;
+  }
+
+  .sp-quote__role {
+    color: var(--sp-component-quote-role);
+  }
+
+  /* STATS ----------------------------------------------------------------- */
+
+  /* A metric: figure, accent-coloured unit, and label. The surface modifier
+     picks the text.onPage / onSurface / onInverse roles (spectre-tokens
+     4.13.0 adds the accent role to each). */
+  .sp-stat {
+    --sp-component-stat-figure: var(--sp-text-on-page-default);
+    --sp-component-stat-unit: var(--sp-text-on-page-accent);
+    --sp-component-stat-label: var(--sp-text-on-page-muted);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-space-4);
+    margin: 0;
+  }
+
+  .sp-stat--on-surface {
+    --sp-component-stat-figure: var(--sp-text-on-surface-default);
+    --sp-component-stat-unit: var(--sp-text-on-surface-accent);
+    --sp-component-stat-label: var(--sp-text-on-surface-muted);
+  }
+
+  .sp-stat--on-inverse {
+    --sp-component-stat-figure: var(--sp-text-on-inverse-default);
+    --sp-component-stat-unit: var(--sp-text-on-inverse-accent);
+    --sp-component-stat-label: var(--sp-text-on-inverse-muted);
+  }
+
+  .sp-stat--align-center {
+    align-items: center;
+    text-align: center;
+  }
+
+  .sp-stat--align-end {
+    align-items: flex-end;
+    text-align: end;
+  }
+
+  .sp-stat__figure {
+    margin: 0;
+    color: var(--sp-component-stat-figure);
+    font-size: var(--sp-font-4xl-size);
+    font-weight: var(--sp-font-weight-bold);
+    line-height: var(--sp-leading-none);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .sp-stat--sm .sp-stat__figure {
+    font-size: var(--sp-font-2xl-size);
+  }
+
+  .sp-stat--lg .sp-stat__figure {
+    font-size: var(--sp-font-5xl-size);
+  }
+
+  .sp-stat--xl .sp-stat__figure {
+    font-size: var(--sp-font-6xl-size);
+    font-weight: var(--sp-font-weight-extrabold);
+  }
+
+  .sp-stat__unit {
+    color: var(--sp-component-stat-unit);
+  }
+
+  .sp-stat__label {
+    margin: 0;
+    color: var(--sp-component-stat-label);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-stat--lg .sp-stat__label,
+  .sp-stat--xl .sp-stat__label {
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
   }
 
   /* PRICING CARDS -------------------------------------------------------- */
@@ -2210,7 +2532,7 @@
     padding: var(--sp-space-4) var(--sp-space-16);
     border-radius: var(--sp-radius-pill);
     font-size: var(--sp-font-xs-size);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
   }
 
   .sp-pricing-card-price-container {
@@ -2221,7 +2543,7 @@
 
   .sp-pricing-card-price {
     font-size: var(--sp-font-2xl-size);
-    font-weight: var(--sp-font-2xl-weight);
+    font-weight: var(--sp-font-weight-bold);
     color: var(--sp-component-pricing-card-price);
   }
 
@@ -2269,6 +2591,10 @@
 
   .sp-pricing-card--accent-cta {
     --sp-component-pricing-card-accent-color: var(--sp-pricing-card-accent-cta);
+  }
+
+  .sp-pricing-card--accent-accent {
+    --sp-component-pricing-card-accent-color: var(--sp-pricing-card-accent-accent);
   }
 
   .sp-pricing-card--accent-top {
@@ -2980,7 +3306,7 @@
     color: var(--sp-component-nav-link);
     font-size: var(--sp-font-sm-size);
     line-height: var(--sp-font-sm-line-height);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
     text-decoration: none;
     transition: color var(--sp-duration-fast) var(--sp-easing-out);
   }
@@ -3033,6 +3359,10 @@
 
   .sp-nav--accent-cta {
     --sp-component-nav-accent-color: var(--sp-nav-accent-cta);
+  }
+
+  .sp-nav--accent-accent {
+    --sp-component-nav-accent-color: var(--sp-nav-accent-accent);
   }
 
   .sp-nav--accent-top {
@@ -3092,7 +3422,7 @@
     color: var(--sp-component-sidebar-link);
     font-size: var(--sp-font-sm-size);
     line-height: var(--sp-font-sm-line-height);
-    font-weight: var(--sp-font-sm-weight);
+    font-weight: var(--sp-font-weight-normal);
     text-decoration: none;
     transition: color var(--sp-duration-fast) var(--sp-easing-out);
   }
@@ -3128,7 +3458,7 @@
   .sp-sidebar__header {
     font-size: var(--sp-font-xs-size);
     line-height: var(--sp-font-xs-line-height);
-    font-weight: var(--sp-font-xs-weight);
+    font-weight: var(--sp-font-weight-normal);
     letter-spacing: var(--sp-font-xs-letter-spacing);
     color: var(--sp-text-on-surface-muted);
     text-transform: uppercase;
@@ -3150,7 +3480,7 @@
     padding: var(--sp-space-8) 0;
     font-size: var(--sp-font-xs-size);
     line-height: var(--sp-font-xs-line-height);
-    font-weight: var(--sp-font-xs-weight);
+    font-weight: var(--sp-font-weight-normal);
     letter-spacing: var(--sp-font-xs-letter-spacing);
     color: var(--sp-text-on-surface-muted);
     text-transform: uppercase;
@@ -3283,7 +3613,7 @@
   .sp-footer__heading {
     color: var(--sp-component-footer-heading);
     font-size: var(--sp-font-sm-size);
-    font-weight: var(--sp-font-xl-weight);
+    font-weight: var(--sp-font-weight-semibold);
   }
 
   .sp-footer__text {
@@ -3393,6 +3723,7 @@
     --sp-component-footer-accent-warning: var(--sp-footer-light-accent-warning);
     --sp-component-footer-accent-danger: var(--sp-footer-light-accent-danger);
     --sp-component-footer-accent-cta: var(--sp-footer-light-accent-cta);
+    --sp-component-footer-accent-accent: var(--sp-footer-light-accent-accent);
   }
 
   @media (prefers-color-scheme: light) {
@@ -3413,6 +3744,7 @@
       --sp-component-footer-accent-warning: var(--sp-footer-light-accent-warning);
       --sp-component-footer-accent-danger: var(--sp-footer-light-accent-danger);
       --sp-component-footer-accent-cta: var(--sp-footer-light-accent-cta);
+      --sp-component-footer-accent-accent: var(--sp-footer-light-accent-accent);
     }
   }
 
@@ -3471,6 +3803,10 @@
 
   .sp-footer--accent-cta {
     --sp-component-footer-accent-color: var(--sp-component-footer-accent-cta);
+  }
+
+  .sp-footer--accent-accent {
+    --sp-component-footer-accent-color: var(--sp-component-footer-accent-accent);
   }
 
   .sp-footer--accent-top {
@@ -3608,6 +3944,10 @@
     --sp-component-toast-accent-color: var(--sp-toast-accent-cta);
   }
 
+  .sp-toast--accent-accent {
+    --sp-component-toast-accent-color: var(--sp-toast-accent-accent);
+  }
+
   .sp-toast--accent-top {
     border-top-width: var(--sp-toast-accent-thickness);
     border-top-color: var(--sp-component-toast-accent-color);
@@ -3712,6 +4052,10 @@
 
   .sp-tooltip--accent-cta {
     --sp-component-tooltip-accent-color: var(--sp-tooltip-accent-cta);
+  }
+
+  .sp-tooltip--accent-accent {
+    --sp-component-tooltip-accent-color: var(--sp-tooltip-accent-accent);
   }
 
   .sp-tooltip--accent-top {
@@ -3853,6 +4197,10 @@
     --sp-component-dropdown-accent-color: var(--sp-dropdown-accent-cta);
   }
 
+  .sp-dropdown__menu--accent-accent {
+    --sp-component-dropdown-accent-color: var(--sp-dropdown-accent-accent);
+  }
+
   .sp-dropdown__menu--accent-top {
     border-top-width: var(--sp-dropdown-accent-thickness);
     border-top-color: var(--sp-component-dropdown-accent-color);
@@ -3929,7 +4277,7 @@
     padding: var(--sp-component-dropdown-item-padding-y) var(--sp-component-dropdown-item-padding-x);
     color: var(--sp-dropdown-header);
     font-size: var(--sp-font-xs-size);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
     line-height: var(--sp-font-xs-line-height);
     letter-spacing: var(--sp-tracking-wide);
     text-transform: uppercase;
@@ -4017,6 +4365,10 @@
 
   .sp-modal--accent-cta {
     --sp-component-modal-accent-color: var(--sp-modal-accent-cta);
+  }
+
+  .sp-modal--accent-accent {
+    --sp-component-modal-accent-color: var(--sp-modal-accent-accent);
   }
 
   .sp-modal--accent-top {
@@ -4131,6 +4483,32 @@
 
   .sp-select::placeholder {
     color: var(--sp-select-placeholder-text);
+  }
+
+  /* Option and group roles (spectre-tokens 4.13.0). Engines that render a
+     native picker ignore most of these; a customizable select
+     (`appearance: base-select`) and custom listboxes apply them. */
+  .sp-select option:hover {
+    background-color: var(--sp-select-option-hover-bg);
+  }
+
+  .sp-select option:checked {
+    background-color: var(--sp-select-option-selected-bg);
+    color: var(--sp-select-option-selected-text);
+  }
+
+  .sp-select option:disabled {
+    color: var(--sp-select-option-disabled-text);
+  }
+
+  .sp-select optgroup {
+    color: var(--sp-select-optgroup-label-text);
+    font-weight: var(--sp-font-weight-semibold);
+  }
+
+  .sp-select optgroup option {
+    color: var(--sp-select-text);
+    font-weight: var(--sp-font-weight-normal);
   }
 
   .sp-select--sm {
@@ -4341,6 +4719,32 @@
     letter-spacing: var(--sp-font-6xl-letter-spacing);
   }
 
+  /* Named leading scale (spectre-tokens 4.13.0). Declared after the size
+     presets so it wins over their line-height at equal specificity. */
+  .sp-text--leading-none {
+    line-height: var(--sp-leading-none);
+  }
+
+  .sp-text--leading-tight {
+    line-height: var(--sp-leading-tight);
+  }
+
+  .sp-text--leading-snug {
+    line-height: var(--sp-leading-snug);
+  }
+
+  .sp-text--leading-normal {
+    line-height: var(--sp-leading-normal);
+  }
+
+  .sp-text--leading-relaxed {
+    line-height: var(--sp-leading-relaxed);
+  }
+
+  .sp-text--leading-loose {
+    line-height: var(--sp-leading-loose);
+  }
+
   .sp-text--default {
     color: var(--sp-text-on-page-default);
   }
@@ -4361,6 +4765,10 @@
     color: var(--sp-text-on-page-brand);
   }
 
+  .sp-text--accent {
+    color: var(--sp-text-on-page-accent);
+  }
+
   /* on-dark/inverse content islands — see TODO.md "Requested by
      Downstream" / "On-dark/inverse surface role" */
   .sp-text--on-inverse {
@@ -4369,6 +4777,14 @@
 
   .sp-text--on-inverse-muted {
     color: var(--sp-text-on-inverse-muted);
+  }
+
+  .sp-text--on-inverse-brand {
+    color: var(--sp-text-on-inverse-brand);
+  }
+
+  .sp-text--on-inverse-accent {
+    color: var(--sp-text-on-inverse-accent);
   }
 
   /* text inside a surface.card container */
@@ -4390,6 +4806,10 @@
 
   .sp-text--on-surface-brand {
     color: var(--sp-text-on-surface-brand);
+  }
+
+  .sp-text--on-surface-accent {
+    color: var(--sp-text-on-surface-accent);
   }
 
   .sp-text--sans {
@@ -4425,14 +4845,14 @@
   .sp-fieldset__legend {
     color: var(--sp-fieldset-legend-text);
     font-size: var(--sp-font-sm-size);
-    font-weight: var(--sp-font-sm-weight);
+    font-weight: var(--sp-font-weight-normal);
     line-height: var(--sp-font-sm-line-height);
   }
 
   .sp-form-label {
     color: var(--sp-label-text);
     font-size: var(--sp-font-sm-size);
-    font-weight: var(--sp-font-sm-weight);
+    font-weight: var(--sp-font-weight-normal);
     line-height: var(--sp-font-sm-line-height);
   }
 
@@ -4501,7 +4921,7 @@
     color: var(--sp-tabs-item-text);
     font-family: inherit;
     font-size: var(--sp-font-sm-size);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
     line-height: var(--sp-font-sm-line-height);
     text-decoration: none;
     appearance: none;
@@ -4618,7 +5038,7 @@
     color: inherit;
     font-family: inherit;
     font-size: var(--sp-font-md-size);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
     line-height: var(--sp-font-md-line-height);
     text-align: start;
     list-style: none;
@@ -4740,7 +5160,7 @@
   .sp-breadcrumb__item--current,
   .sp-breadcrumb__item[aria-current="page"] {
     color: var(--sp-breadcrumb-item-active-text);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
   }
 
   .sp-breadcrumb__separator {
@@ -4847,7 +5267,7 @@
   .sp-list-group__heading {
     color: var(--sp-list-group-heading);
     font-size: var(--sp-font-md-size);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
     line-height: var(--sp-font-md-line-height);
   }
 
@@ -4886,6 +5306,10 @@
 
   .sp-list-group--accent-cta {
     --sp-component-list-group-accent-color: var(--sp-list-group-accent-cta);
+  }
+
+  .sp-list-group--accent-accent {
+    --sp-component-list-group-accent-color: var(--sp-list-group-accent-accent);
   }
 
   .sp-list-group--accent-top {
@@ -4988,7 +5412,7 @@
     padding: var(--sp-space-16) var(--sp-space-24);
     border-bottom: var(--sp-component-border-width) solid var(--sp-offcanvas-border);
     font-size: var(--sp-font-lg-size);
-    font-weight: var(--sp-font-lg-weight);
+    font-weight: var(--sp-font-weight-semibold);
     line-height: var(--sp-font-lg-line-height);
   }
 
@@ -5204,8 +5628,23 @@
   .sp-table thead th {
     background-color: var(--sp-table-header-bg);
     color: var(--sp-table-header-text);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
     vertical-align: bottom;
+  }
+
+  /* caption and footer roles (spectre-tokens 4.13.0) */
+  .sp-table caption {
+    padding-block: var(--sp-space-8);
+    color: var(--sp-table-caption-text);
+    font-size: var(--sp-font-sm-size);
+    text-align: start;
+  }
+
+  .sp-table tfoot :where(th, td) {
+    background-color: var(--sp-table-footer-bg);
+    color: var(--sp-table-footer-text);
+    font-weight: var(--sp-font-weight-semibold);
+    border-bottom: 0;
   }
 
   .sp-table--bordered th,
@@ -5329,7 +5768,7 @@
     border-radius: var(--sp-radius-md);
     background-color: transparent;
     font-family: inherit;
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
     text-decoration: none;
     appearance: none;
     cursor: pointer;
@@ -5446,6 +5885,30 @@
     --sp-component-stepper-step-text: var(--sp-stepper-step-done-text);
   }
 
+  /* tone re-points the active and done colours at
+     component.stepper.tone.* (spectre-tokens 4.13.0) */
+  .sp-stepper__step--tone-brand.sp-stepper__step--active,
+  .sp-stepper__step--tone-brand[aria-current="step"] {
+    --sp-component-stepper-step-bg: var(--sp-stepper-tone-brand-active-bg);
+    --sp-component-stepper-step-text: var(--sp-stepper-tone-brand-active-text);
+  }
+
+  .sp-stepper__step--tone-brand.sp-stepper__step--done {
+    --sp-component-stepper-step-bg: var(--sp-stepper-tone-brand-done-bg);
+    --sp-component-stepper-step-text: var(--sp-stepper-tone-brand-done-text);
+  }
+
+  .sp-stepper__step--tone-accent.sp-stepper__step--active,
+  .sp-stepper__step--tone-accent[aria-current="step"] {
+    --sp-component-stepper-step-bg: var(--sp-stepper-tone-accent-active-bg);
+    --sp-component-stepper-step-text: var(--sp-stepper-tone-accent-active-text);
+  }
+
+  .sp-stepper__step--tone-accent.sp-stepper__step--done {
+    --sp-component-stepper-step-bg: var(--sp-stepper-tone-accent-done-bg);
+    --sp-component-stepper-step-text: var(--sp-stepper-tone-accent-done-text);
+  }
+
   .sp-stepper__indicator {
     display: inline-flex;
     flex-shrink: 0;
@@ -5457,7 +5920,7 @@
     background-color: var(--sp-component-stepper-step-bg);
     color: var(--sp-component-stepper-step-text);
     font-size: var(--sp-font-sm-size);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
     line-height: var(--sp-font-sm-line-height);
     transition:
       background-color var(--sp-duration-fast) var(--sp-easing-out),
@@ -5471,7 +5934,7 @@
   }
 
   .sp-stepper__step--active .sp-stepper__label {
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
   }
 
   .sp-stepper--vertical .sp-stepper__label {
@@ -5539,7 +6002,7 @@
     padding: var(--sp-space-8) var(--sp-space-16);
     border-bottom: var(--sp-component-border-width) solid var(--sp-popover-border);
     font-size: var(--sp-font-md-size);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
     line-height: var(--sp-font-md-line-height);
   }
 
@@ -6171,7 +6634,7 @@
     gap: var(--sp-space-8);
     color: var(--sp-datepicker-header-text);
     font-size: var(--sp-font-sm-size);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
     line-height: var(--sp-font-sm-line-height);
   }
 
@@ -6188,7 +6651,7 @@
     height: var(--sp-space-32);
     color: var(--sp-datepicker-weekday-text);
     font-size: var(--sp-font-xs-size);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
     line-height: var(--sp-font-xs-line-height);
   }
 
@@ -6223,7 +6686,7 @@
   .sp-day--today,
   .sp-day[aria-current="date"] {
     box-shadow: inset 0 0 0 var(--sp-component-border-width) var(--sp-day-today-ring-color);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
   }
 
   .sp-day--outside-month {
@@ -6268,7 +6731,7 @@
     color: var(--sp-external-auth-button-text);
     font-family: var(--sp-font-family-sans);
     font-size: var(--sp-font-md-size);
-    font-weight: var(--sp-font-md-weight);
+    font-weight: var(--sp-font-weight-medium);
     line-height: var(--sp-font-md-line-height);
     text-decoration: none;
     appearance: none;

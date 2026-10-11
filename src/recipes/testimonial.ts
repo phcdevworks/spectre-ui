@@ -23,6 +23,7 @@ const TESTIMONIAL_ACCENT_COLORS = {
   warning: true,
   danger: true,
   cta: true,
+  accent: true,
 } as const;
 
 export type TestimonialVariant = keyof typeof TESTIMONIAL_VARIANTS;

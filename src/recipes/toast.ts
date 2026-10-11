@@ -24,6 +24,7 @@ const TOAST_ACCENT_COLORS = {
   warning: true,
   danger: true,
   cta: true,
+  accent: true,
 } as const
 
 export type ToastVariant = keyof typeof TOAST_VARIANTS

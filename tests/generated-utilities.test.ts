@@ -132,6 +132,14 @@ describe('generated utility-class engine (Phase 7)', () => {
     }
   });
 
+  it('resolves every sp-font-{weight} utility through the named --sp-font-weight-* scale', () => {
+    for (const [, name, value] of tokensCss.matchAll(/--sp-font-weight-([a-z]+):\s*([0-9]+);/g)) {
+      expect(generatedCss).toContain(
+        `.sp-font-${value} {\n    font-weight: var(--sp-font-weight-${name});`,
+      );
+    }
+  });
+
   it('generates md/lg responsive spacing variants using the sp-{breakpoint}-{property}-{step} separator', () => {
     expect(generatedCss).toMatch(/\.sp-md-p-4\s*\{/);
     expect(generatedCss).toMatch(/\.sp-lg-p-4\s*\{/);

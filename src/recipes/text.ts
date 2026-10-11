@@ -21,6 +21,12 @@ const TEXT_VARIANTS = {
   meta: true,
   brand: true,
   /**
+   * The accent role (`text.onPage.accent`, `spectre-tokens` 4.13.0) for
+   * eyebrows, stat units, and quote marks. A child theme re-points the one
+   * role instead of redeclaring palette steps.
+   */
+  accent: true,
+  /**
    * For text placed on a `surface.inverse`-backed background (a photo card,
    * a brand-dark card body, a utility bar) that isn't owned by the page's
    * own light/dark mode. See TODO.md "Requested by Downstream" /
@@ -28,6 +34,8 @@ const TEXT_VARIANTS = {
    */
   onInverse: true,
   onInverseMuted: true,
+  onInverseBrand: true,
+  onInverseAccent: true,
   /**
    * For text inside a card-like `surface.card` container rather than directly
    * on the page background (`text.onSurface.*`).
@@ -37,6 +45,7 @@ const TEXT_VARIANTS = {
   onSurfaceSubtle: true,
   onSurfaceMeta: true,
   onSurfaceBrand: true,
+  onSurfaceAccent: true,
 } as const
 
 const TEXT_FAMILIES = {
@@ -50,6 +59,16 @@ const TEXT_TRANSFORMS = {
   uppercase: true,
   lowercase: true,
   capitalize: true,
+} as const
+
+// The named leading scale spectre-tokens publishes as --sp-leading-*.
+const TEXT_LEADINGS = {
+  none: true,
+  tight: true,
+  snug: true,
+  normal: true,
+  relaxed: true,
+  loose: true,
 } as const
 
 // The distinct weights spectre-tokens publishes across the font and heading
@@ -67,6 +86,7 @@ export type TextSize = keyof typeof TEXT_SIZES
 export type TextVariant = keyof typeof TEXT_VARIANTS
 export type TextFamily = keyof typeof TEXT_FAMILIES
 export type TextTransform = keyof typeof TEXT_TRANSFORMS
+export type TextLeading = keyof typeof TEXT_LEADINGS
 export type TextWeight = 400 | 500 | 600 | 700 | 800 | 900
 
 export interface TextRecipeOptions {
@@ -80,6 +100,11 @@ export interface TextRecipeOptions {
    * `sp-font-{weight}` utility, which wins over the preset by layer order.
    */
   weight?: TextWeight
+  /**
+   * Overrides the line height the `size` preset carries with a step from the
+   * named `--sp-leading-*` scale, e.g. `tight` for a large statement line.
+   */
+  leading?: TextLeading
 }
 
 export function getTextClasses(opts: TextRecipeOptions = {}): string {
@@ -89,6 +114,7 @@ export function getTextClasses(opts: TextRecipeOptions = {}): string {
     family: familyInput,
     transform: transformInput,
     weight: weightInput,
+    leading: leadingInput,
   } = opts
 
   const size = resolveOption({
@@ -111,13 +137,17 @@ export function getTextClasses(opts: TextRecipeOptions = {}): string {
     subtle: 'sp-text--subtle',
     meta: 'sp-text--meta',
     brand: 'sp-text--brand',
+    accent: 'sp-text--accent',
     onInverse: 'sp-text--on-inverse',
     onInverseMuted: 'sp-text--on-inverse-muted',
+    onInverseBrand: 'sp-text--on-inverse-brand',
+    onInverseAccent: 'sp-text--on-inverse-accent',
     onSurface: 'sp-text--on-surface',
     onSurfaceMuted: 'sp-text--on-surface-muted',
     onSurfaceSubtle: 'sp-text--on-surface-subtle',
     onSurfaceMeta: 'sp-text--on-surface-meta',
     onSurfaceBrand: 'sp-text--on-surface-brand',
+    onSurfaceAccent: 'sp-text--on-surface-accent',
   }
   const variantClass = variantMap[variant]
 
@@ -150,12 +180,23 @@ export function getTextClasses(opts: TextRecipeOptions = {}): string {
           fallback: '400',
         })
 
+  const leading =
+    leadingInput === undefined
+      ? undefined
+      : resolveOption({
+          name: 'text leading',
+          value: leadingInput,
+          allowed: TEXT_LEADINGS,
+          fallback: 'normal',
+        })
+
   return cx(
     'sp-text',
     `sp-text--${size}`,
     variantClass,
     family && `sp-text--${family}`,
     transform && `sp-text--${transform}`,
-    weight && `sp-font-${weight}`
+    weight && `sp-font-${weight}`,
+    leading && `sp-text--leading-${leading}`
   )
 }

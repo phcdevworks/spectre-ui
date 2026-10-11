@@ -85,7 +85,12 @@ const ENTRYPOINT_CONTRACTS = [
     // system, high-contrast, density, and lg layout blocks (~85 KB of the
     // standalone token block), and the selection/caret/scrollbar base rules.
     // A deliberate, scoped increase, not a regression.
-    maxBytes: 164300
+    // Raised again 2026-10-11 (base.css grew to 185636 bytes) for the
+    // spectre-tokens ^4.13.0 bump (~17 KB of Phase 17 and accent roles in
+    // the standalone token block) and the Phase 17 base element rules:
+    // weights, link/abbr/u decoration, proofing marks, <meter>, and syntax
+    // highlighting. A deliberate, scoped increase, not a regression.
+    maxBytes: 186100
   },
   {
     fileName: 'components.css',
@@ -163,8 +168,12 @@ const ENTRYPOINT_CONTRACTS = [
     // palettes, control sizing, and the skeleton recipe. A deliberate,
     // scoped increase, not a regression. Raised again 2026-10-03
     // (components.css grew to 374860 bytes) for the logo cloud recipe and
-    // the footer surface option.
-    maxBytes: 375300
+    // the footer surface option. Raised again 2026-10-11 (components.css
+    // grew to 407883 bytes): the spectre-tokens ^4.13.0 token block
+    // (~17 KB), the quote and stat recipes, the accent outline button, the
+    // accent rail tone on every rail, stepper tones, text leading and
+    // accent roles, and table caption/footer and select option rules.
+    maxBytes: 408400
   },
   {
     fileName: 'utilities.css',
@@ -266,7 +275,11 @@ const ENTRYPOINT_CONTRACTS = [
     // 2026-10-03 (utilities.css grew to 563947 bytes) for the utility gaps:
     // per-breakpoint grid columns, surface backgrounds, thick borders,
     // balanced wrap, tabular numerals, and the section attached option.
-    maxBytes: 564400
+    // Raised again 2026-10-11 (utilities.css grew to 586692 bytes): the
+    // spectre-tokens ^4.13.0 token block (~17 KB), the Phase 17 prose
+    // rules (flow rhythm, markers, dl, figcaption, del/ins), the section
+    // head recipe, and text-decoration utilities.
+    maxBytes: 587200
   }
 ] as const
 

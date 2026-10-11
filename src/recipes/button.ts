@@ -9,6 +9,11 @@ const BUTTON_VARIANTS = {
   success: true,
   cta: true,
   accent: true,
+  /**
+   * Outline counterpart to `accent`: a page-coloured fill with accent text
+   * and border (`buttons.accentOutline`, `spectre-tokens` 4.13.0).
+   */
+  accentOutline: true,
   inverse: true,
   warning: true,
   link: true,
@@ -81,6 +86,7 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     success: "sp-btn--success",
     cta: "sp-btn--cta",
     accent: "sp-btn--accent",
+    accentOutline: "sp-btn--accent-outline",
     inverse: "sp-btn--inverse",
     warning: "sp-btn--warning",
     link: "sp-btn--link",

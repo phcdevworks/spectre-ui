@@ -15,7 +15,8 @@ const PRICING_CARD_ACCENT_COLORS = {
   success: true,
   warning: true,
   danger: true,
-  cta: true
+  cta: true,
+  accent: true
 } as const
 
 export type PricingCardAccentEdge = keyof typeof PRICING_CARD_ACCENT_EDGES

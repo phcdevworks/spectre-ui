@@ -253,11 +253,17 @@ describe('getProseClasses', () => {
     const css = fs.readFileSync(cssPath, 'utf8')
     const root = postcss.parse(css, { from: cssPath })
 
+    // Headings may take layout.prose.flow margins (vertical rhythm), but
+    // never type or colour declarations.
     let hasHeadingRule = false
     let hasLinkRule = false
     root.walkRules((rule) => {
       if (!rule.selector.startsWith('.sp-prose')) return
-      if (/\bh[1-6]\b/.test(rule.selector)) hasHeadingRule = true
+      if (/\bh[1-6]\b/.test(rule.selector)) {
+        rule.walkDecls((decl) => {
+          if (decl.prop !== 'margin-top') hasHeadingRule = true
+        })
+      }
       if (/\ba\b/.test(rule.selector)) hasLinkRule = true
     })
 

@@ -17,7 +17,8 @@ const NAV_ACCENT_COLORS = {
   success: true,
   warning: true,
   danger: true,
-  cta: true
+  cta: true,
+  accent: true
 } as const
 
 export type NavAlign = keyof typeof ALIGN_MAP

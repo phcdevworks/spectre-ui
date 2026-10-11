@@ -15,7 +15,8 @@ const LIST_GROUP_ACCENT_COLORS = {
   success: true,
   warning: true,
   danger: true,
-  cta: true
+  cta: true,
+  accent: true
 } as const
 
 export type ListGroupAccentEdge = keyof typeof LIST_GROUP_ACCENT_EDGES

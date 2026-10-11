@@ -6,6 +6,86 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [5.5.0] - 2026-10-11
+
+**Release Title:** Expanded Theming and Content Recipes
+
+Contract change type: semantic change
+
+### Added
+
+- Full `spectre-tokens` 4.13.0 parity. The dependency range is now `^4.13.0`,
+  and every new `--sp-*` family has a consumer. `npm run audit:parity` in
+  `spectre-tokens` reports no unconsumed Phase 17 family.
+- Child-theme contract gaps requested by `spectre-base` (2026-10-11), so a
+  child theme no longer restyles `[data-sp-text-native]` or `.sp-btn`
+  internals:
+  - `getTextClasses({ leading })` (`none` | `tight` | `snug` | `normal` |
+    `relaxed` | `loose`, `.sp-text--leading-*`) overrides the size preset's
+    line height from the named `--sp-leading-*` scale. New text variants:
+    `accent`, `onSurfaceAccent`, `onInverseBrand`, and `onInverseAccent`.
+  - `getButtonClasses({ variant: 'accentOutline' })` (`.sp-btn--accent-outline`)
+    from `buttons.accentOutline`, with hover, active, focus, and disabled
+    states. The published `--sp-button-accent-*` and
+    `--sp-button-accentoutline-*` roles are the documented child-theme
+    override point for both accent buttons.
+  - `getStepperStepClasses({ tone })` (`brand` | `accent`,
+    `.sp-stepper__step--tone-*`) colours the active and done states from
+    `component.stepper.tone`. Without `tone` the output is unchanged.
+  - `accentColor: 'accent'` on every edge rail (card, badge `accentRailColor`,
+    testimonial, pricing card, nav, footer in every appearance, modal, toast,
+    tooltip, dropdown menu, list group).
+  - `getQuoteClasses({ size, surface, accent, accentColor, align })` with
+    `getQuoteTextClasses`, `getQuoteAttributionClasses({ avatar })`,
+    `getQuoteAttributionNameClasses`, and `getQuoteAttributionRoleClasses`,
+    on `component.quote`. Sizes run `sm` to an `xl` statement; surfaces are
+    `plain`, `subtle`, and `inverse` (which switches to `text.onInverse.*`);
+    the accent is a leading `edge` rail (default), a decorative quote `mark`,
+    or `none` (the neutral `component.quote.border` rule).
+  - `getStatClasses({ size, align, surface })` with `getStatFigureClasses`,
+    `getStatUnitClasses`, and `getStatLabelClasses`, for stat rails, metric
+    cards, and case-study figures. The unit takes the `accent` text role of
+    the stat's surface.
+  - `getSectionHeadClasses({ layout, align })` with
+    `getSectionHeadTitleClasses` and `getSectionHeadLeadClasses`. `split`
+    puts the title block left and the lead right on a twelve-column grid from
+    the `lg` breakpoint and stacks below it; `stacked` takes
+    `align: 'center'`.
+- Phase 17 element coverage (`spectre-tokens/element-coverage.json`):
+  - Base layer: `<b>`/`<strong>` at `--sp-font-weight-bold`; `<abbr title>`
+    and `<u>` underlines from `textDecoration`; link hover underline colour
+    from `link.underlineHover`; `::spelling-error` / `::grammar-error` from
+    `component.proofing`; `<meter>` track and optimum, suboptimum, and
+    critical fills from `component.meter`; Prism and highlight.js syntax
+    colours inside `<pre>` from `component.code.syntax`, at zero specificity.
+  - Prose: `<del>`, `<ins>`, `<s>`, list markers
+    (`getProseClasses({ accentMarkers: true })` for `markerAccent`),
+    `<dl>`/`<dt>`/`<dd>`, `<figcaption>`, and `<caption>`.
+  - `.sp-table caption` and `tfoot` cells from `component.table.caption` /
+    `.footer`; `.sp-select` option hover, selected, and disabled states and
+    option-group labels from `component.select.option` / `.optgroup`.
+  - `.sp-decoration-{thin|base|thick}` and `.sp-underline-offset-{sm|md|lg}`
+    utilities.
+
+### Changed
+
+- `.sp-prose` spaces its blocks with `layout.prose.flow` instead of
+  `--sp-layout-stack-gap-md`: paragraphs, lists, blockquotes, figures, rules,
+  list items, and the space before and after headings each have their own
+  step. Headings get margins only, never type. Nested lists, figures, and
+  definition lists no longer inherit browser margins.
+- `.sp-link` underlines in `link.underline` (40% brand) at the thin
+  thickness and `md` offset, and switches to `link.underlineHover` on hover.
+- Bold weights come from the named `--sp-font-weight-*` scale instead of the
+  size presets (`--sp-font-md-weight` and others) everywhere outside the text
+  size presets themselves, and the generated `sp-font-{weight}` utilities
+  resolve through it. The rendered weights are unchanged.
+- `.sp-btn--link` takes its underline offset from
+  `--sp-text-decoration-offset-sm` instead of `--sp-space-2`.
+- Raised the `base.css`, `components.css`, and `utilities.css` size budgets
+  in `tests/css-entrypoints.test.ts` for the 4.13.0 token block (about 17 KB
+  per bundle) and the rules above.
+
 ## [5.4.0] - 2026-10-04
 
 **Release Title:** Token Parity and Layout Contracts

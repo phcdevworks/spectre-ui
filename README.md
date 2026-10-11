@@ -16,7 +16,7 @@ to consume Spectre's visual language.
 | Project team           | `project-design`                   |
 | Repository role        | Spectre L2 CSS and recipe contract |
 | Package/artifact       | `@phcdevworks/spectre-ui`          |
-| Current version/status | 5.4.0                              |
+| Current version/status | 5.5.0                              |
 
 ## Standard Workflow
 
@@ -243,42 +243,45 @@ recipe axes may retain documented visual fallbacks.
 
 | Recipe               | Function                       | Variants                                                                                                                                                                                     | Sizes                                | Common boolean flags                                                                                                                                                                                         |
 | -------------------- | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Button               | `getButtonClasses`             | `primary` `secondary` `ghost` `danger` `success` `cta` `accent` `inverse` `warning` `link` `light` `dark`                                                                                    | `sm` `md` `lg`                       | `disabled` `loading` `fullWidth` `pill` `iconOnly` `compact`                                                                                                                                                 |
-| Badge                | `getBadgeClasses`              | `primary` `secondary` `success` `warning` `danger` `neutral` `info` `ghost` `outline` `accent` `cta` `inverse` `brand`                                                                       | `sm` `md` `lg`                       | `interactive` `dot` `disabled` `loading` `fullWidth`, `accentRail`: `top`\|`right`\|`bottom`\|`left`, `accentRailColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                   |
-| Card                 | `getCardClasses`               | `elevated` `flat` `outline` `ghost`                                                                                                                                                          | `padded`: `sm` `md` `lg`             | `interactive` `padded` (also accepts a size) `fullHeight` `disabled` `loading`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta` |
+| Button               | `getButtonClasses`             | `primary` `secondary` `ghost` `danger` `success` `cta` `accent` `accentOutline` `inverse` `warning` `link` `light` `dark`                                                                                    | `sm` `md` `lg`                       | `disabled` `loading` `fullWidth` `pill` `iconOnly` `compact`                                                                                                                                                 |
+| Badge                | `getBadgeClasses`              | `primary` `secondary` `success` `warning` `danger` `neutral` `info` `ghost` `outline` `accent` `cta` `inverse` `brand`                                                                       | `sm` `md` `lg`                       | `interactive` `dot` `disabled` `loading` `fullWidth`, `accentRail`: `top`\|`right`\|`bottom`\|`left`, `accentRailColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent`                   |
+| Card                 | `getCardClasses`               | `elevated` `flat` `outline` `ghost`                                                                                                                                                          | `padded`: `sm` `md` `lg`             | `interactive` `padded` (also accepts a size) `fullHeight` `disabled` `loading`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent` |
 | Card bleed           | `getCardBleedClasses`          | —                                                                                                                                                                                            | `padded`: `sm` `md` `lg`             | `edges`: single edge, an array, or `'all'`                                                                                                                                                                   |
 | Input                | `getInputClasses`              | —                                                                                                                                                                                            | `sm` `md` `lg`                       | `disabled` `loading` `fullWidth` `pill`                                                                                                                                                                      |
 | Input state          | `getInputClasses`              | `state`: `default` `error` `success` `disabled` `loading`                                                                                                                                    | —                                    | —                                                                                                                                                                                                            |
 | IconBox              | `getIconBoxClasses`            | `primary` `secondary` `success` `warning` `danger` `info` `neutral` `ghost` `accent` `cta` `outline`                                                                                         | `xs` `sm` `md` `lg`                  | `interactive` `disabled` `loading` `pill` `fullWidth`                                                                                                                                                        |
-| PricingCard          | `getPricingCardClasses`        | —                                                                                                                                                                                            | —                                    | `featured` `interactive` `disabled` `loading` `fullHeight`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                     |
+| PricingCard          | `getPricingCardClasses`        | —                                                                                                                                                                                            | —                                    | `featured` `interactive` `disabled` `loading` `fullHeight`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent`                     |
 | Rating               | `getRatingClasses`             | —                                                                                                                                                                                            | `sm` `md` `lg`                       | `interactive` `disabled` `loading` `pill` `fullWidth`                                                                                                                                                        |
-| Testimonial          | `getTestimonialClasses`        | `elevated` `flat` `outline` `ghost`                                                                                                                                                          | —                                    | `interactive` `disabled` `loading` `fullHeight`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                                |
+| Testimonial          | `getTestimonialClasses`        | `elevated` `flat` `outline` `ghost`                                                                                                                                                          | —                                    | `interactive` `disabled` `loading` `fullHeight`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent`                                |
+| Quote                | `getQuoteClasses`              | surface: `plain` `subtle` `inverse`, accent: `edge` (default) `mark` `none`, accentColor: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent` (default), align: `start` `center` | `sm` `md` `lg` `xl` | attribution: `avatar` |
+| Stat                 | `getStatClasses`               | align: `start` `center` `end`, surface: `page` `surface` `inverse`                                                                                                                         | `sm` `md` `lg` `xl` | — |
 | Alert                | `getAlertClasses`              | `info` `success` `warning` `danger` `neutral` `brand`                                                                                                                                        | `sm` `md` `lg`                       | `dismissed` `dismissible`                                                                                                                                                                                    |
 | Avatar               | `getAvatarClasses`             | —                                                                                                                                                                                            | `xs` `sm` `md` `lg` `xl`             | shape: `circle` `square`                                                                                                                                                                                     |
 | Tag                  | `getTagClasses`                | `default` `primary` `secondary` `success` `warning` `danger` `info` `neutral` `accent` `cta` `outline` `ghost`                                                                               | `sm` `md` `lg`                       | `dismissible` `selected` `disabled` `loading` `interactive` `fullWidth`                                                                                                                                      |
 | Spinner              | `getSpinnerClasses`            | `primary` `secondary` `success` `warning` `danger` `info` `neutral` `accent` `cta` `inverse`                                                                                                 | `sm` `md` `lg`                       | `disabled` `loading`                                                                                                                                                                                         |
 | Skeleton             | `getSkeletonClasses`           | shape: `text` `rect` `circle`                                                                                                                                                                | —                                    | `animated`                                                                                                                                                                                                   |
 | Logo cloud           | `getLogoCloudClasses`          | size: `sm` `md` `lg`, fill: `subtle` `card` `none`                                                                                                                                           | —                                    | `muted`; item: `getLogoCloudItemClasses`                                                                                                                                                                     |
-| Nav                  | `getNavClasses`                | —                                                                                                                                                                                            | —                                    | `bordered` `sticky` `fullWidth` `align: start\|center\|end`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                    |
-| Toast                | `getToastClasses`              | `info` `success` `warning` `danger` `neutral`                                                                                                                                                | —                                    | `dismissed` `fullWidth`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                                                        |
-| Tooltip              | `getTooltipClasses`            | placement: `top` `bottom` `left` `right`                                                                                                                                                     | —                                    | `visible`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                                                                      |
-| Dropdown             | `getDropdownClasses`           | menu placement: `bottom-start` `bottom-end` `top-start` `top-end`                                                                                                                            | —                                    | `fullWidth` `mega` `viewport`, item: `active` `selected` `disabled`, menu `accent`: `top`\|`right`\|`bottom`\|`left`, menu `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`  |
-| Modal                | `getModalClasses`              | —                                                                                                                                                                                            | —                                    | `open` `fullWidth`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                                                             |
+| Nav                  | `getNavClasses`                | —                                                                                                                                                                                            | —                                    | `bordered` `sticky` `fullWidth` `align: start\|center\|end`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent`                    |
+| Toast                | `getToastClasses`              | `info` `success` `warning` `danger` `neutral`                                                                                                                                                | —                                    | `dismissed` `fullWidth`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent`                                                        |
+| Tooltip              | `getTooltipClasses`            | placement: `top` `bottom` `left` `right`                                                                                                                                                     | —                                    | `visible`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent`                                                                      |
+| Dropdown             | `getDropdownClasses`           | menu placement: `bottom-start` `bottom-end` `top-start` `top-end`                                                                                                                            | —                                    | `fullWidth` `mega` `viewport`, item: `active` `selected` `disabled`, menu `accent`: `top`\|`right`\|`bottom`\|`left`, menu `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent`  |
+| Modal                | `getModalClasses`              | —                                                                                                                                                                                            | —                                    | `open` `fullWidth`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent`                                                             |
 | Container            | `getContainerClasses`          | maxWidth: `prose` `wide`, padding: `sm` `md` `lg` `xl` `2xl` `3xl` `4xl`                                                                                                                     | —                                    | —                                                                                                                                                                                                            |
 | Stack                | `getStackClasses`              | direction: `vertical` `horizontal`, basis: `sidebar`, align: `center` `stretch`, gap: `sm` `md` `lg` `xl` `2xl` `3xl` `4xl`                                                                  | —                                    | —                                                                                                                                                                                                            |
 | Section              | `getSectionClasses`            | spacing: `sm` `md` `lg` `xl` `2xl` `3xl` `4xl`, gap: `sm` `md` `lg` `xl` `2xl` `3xl` `4xl`, hero: `sm` `md` `lg` (replaces `spacing`)                                                        | —                                    | `attached` (drops top padding for a band that belongs to the section above)                                                                                                                                  |
-| Prose                | `getProseClasses`              | —                                                                                                                                                                                            | —                                    | —                                                                                                                                                                                                            |
+| Section head         | `getSectionHeadClasses`        | layout: `stacked` `split`, align (stacked): `start` `center`                                                                                                                                 | —                                    | — |
+| Prose                | `getProseClasses`              | —                                                                                                                                                                                            | —                                    | `accentMarkers`                                                                                                                                                                                                            |
 | Grid                 | `getGridClasses`               | columns: `1` `2` `3` `4` `6` `12` `auto`                                                                                                                                                     | gap/columnGap/rowGap: `sm` `md` `lg` `xl` `2xl` `3xl` `4xl` | `span`/`offset`/`rowSpan`/`rowOffset`/`order`: `1`–`12`/`0`–`11`/`first`\|`last`\|`none`\|`1`–`12`, per-breakpoint `{ base, md, lg }`                                                                       |
 | Sidebar              | `getSidebarClasses`            | —                                                                                                                                                                                            | —                                    | `bordered`                                                                                                                                                                                                   |
-| Footer               | `getFooterClasses`             | appearance: `dark` (default) `light` `system`, surface: `page` `card` `subtle` `inverse` `hero`                                                                                              | —                                    | `bordered` `fullWidth`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`                                                        |
+| Footer               | `getFooterClasses`             | appearance: `dark` (default) `light` `system`, surface: `page` `card` `subtle` `inverse` `hero`                                                                                              | —                                    | `bordered` `fullWidth`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent`                                                        |
 | Checkbox             | `getCheckboxClasses`           | —                                                                                                                                                                                            | —                                    | `checked` `disabled`                                                                                                                                                                                         |
 | Radio                | `getRadioClasses`              | —                                                                                                                                                                                            | —                                    | `checked` `disabled`                                                                                                                                                                                         |
 | Select               | `getSelectClasses`             | size: `sm` `md` `lg`, state: `default` `invalid` `success`                                                                                                                                   | —                                    | `fullWidth` `pill` `disabled` `focused` `loading`                                                                                                                                                            |
 | Textarea             | `getTextareaClasses`           | size: `sm` `md` `lg`, state: `default` `invalid` `success`                                                                                                                                   | —                                    | `fullWidth` `pill` `disabled` `focused` `loading`                                                                                                                                                            |
 | Fieldset             | `getFieldsetClasses`           | —                                                                                                                                                                                            | —                                    | `disabled`                                                                                                                                                                                                   |
 | Label                | `getLabelClasses`              | —                                                                                                                                                                                            | —                                    | `disabled` `required`                                                                                                                                                                                        |
-| Text                 | `getTextClasses`               | color: `default` `muted` `subtle` `meta` `brand` `onInverse` `onInverseMuted` `onSurface` `onSurfaceMuted` `onSurfaceSubtle` `onSurfaceMeta` `onSurfaceBrand`, family: `sans` `serif` `mono` | `xs`–`6xl`                           | —                                                                                                                                                                                                            |
-| Text state           | `getTextClasses`               | `transform`: `none` `uppercase` `lowercase` `capitalize`, `weight`: `400`–`900` (emits `sp-font-{weight}`)                                                                                   | —                                    | —                                                                                                                                                                                                            |
+| Text                 | `getTextClasses`               | color: `default` `muted` `subtle` `meta` `brand` `accent` `onInverse` `onInverseMuted` `onInverseBrand` `onInverseAccent` `onSurface` `onSurfaceMuted` `onSurfaceSubtle` `onSurfaceMeta` `onSurfaceBrand` `onSurfaceAccent`, family: `sans` `serif` `mono` | `xs`–`6xl`                           | —                                                                                                                                                                                                            |
+| Text state           | `getTextClasses`               | `transform`: `none` `uppercase` `lowercase` `capitalize`, `weight`: `400`–`900` (emits `sp-font-{weight}`), `leading`: `none` `tight` `snug` `normal` `relaxed` `loose`                                                                                   | —                                    | —                                                                                                                                                                                                            |
 | Heading              | `getHeadingClasses`            | level: `h1`–`h6` (the full `typography.heading` preset)                                                                                                                                      | —                                    | —                                                                                                                                                                                                            |
 | Display              | `getDisplayClasses`            | level: `1`–`6` (the full `typography.display` preset)                                                                                                                                        | —                                    | —                                                                                                                                                                                                            |
 | Lead                 | `getLeadClasses`               | — (the `typography.lead` preset)                                                                                                                                                             | —                                    | —                                                                                                                                                                                                            |
@@ -290,7 +293,7 @@ recipe axes may retain documented visual fallbacks.
 | Carousel             | `getCarouselClasses`           | control direction: `prev` `next`                                                                                                                                                             | —                                    | `fade`, slide/indicator: `active`                                                                                                                                                                            |
 | Table                | `getTableClasses`              | row variant: `neutral` `info` `success` `warning` `danger`                                                                                                                                   | `sm` `md`                            | `striped` `hoverable` `bordered`, row: `selected`                                                                                                                                                            |
 | Pagination           | `getPaginationClasses`         | —                                                                                                                                                                                            | `sm` `md` `lg`                       | item: `active` `disabled`                                                                                                                                                                                    |
-| Stepper              | `getStepperClasses`            | orientation: `horizontal` `vertical`, step state: `pending` `active` `done`                                                                                                                  | —                                    | —                                                                                                                                                                                                            |
+| Stepper              | `getStepperClasses`            | orientation: `horizontal` `vertical`, step state: `pending` `active` `done`, step tone: `brand` `accent`                                                                                                                  | —                                    | —                                                                                                                                                                                                            |
 | Popover              | `getPopoverClasses`            | placement: `top` `bottom` `left` `right`                                                                                                                                                     | —                                    | `open`                                                                                                                                                                                                       |
 | Progress             | `getProgressClasses`           | bar variant: `brand` `neutral` `info` `success` `warning` `danger`                                                                                                                           | `sm` `md` `lg`                       | bar: `indeterminate`                                                                                                                                                                                         |
 | Switch               | `getSwitchClasses`             | —                                                                                                                                                                                            | `sm` `md` `lg`                       | `checked` `disabled` `focused` (native `:checked`/`:disabled` also apply)                                                                                                                                    |
@@ -307,7 +310,8 @@ Each recipe family also exports sub-element helpers for its structural parts
 `getCardClasses` also accepts an optional `accent` edge (`'top'`, `'right'`,
 `'bottom'`, or `'left'`) to render a thicker decorative rail, sized from
 `component.card.accent.thickness`. `accentColor` selects the semantic color
-scale (`neutral`, `brand`, `info`, `success`, `warning`, `danger`, `cta`) and
+scale (`neutral`, `brand`, `info`, `success`, `warning`, `danger`, `cta`,
+`accent`) and
 defaults to `'brand'` when `accent` is set without it. Omitting `accent` renders
 no rail — border width, color, and radius on every edge stay unchanged.
 
@@ -438,6 +442,46 @@ drive the switch, a wrapped `:checked` input selects a choice card, and
 `getListGroupClasses` also takes the `accent`/`accentColor` edge-rail options
 described above, sourced from `component.listGroup.accent`.
 
+### Accent, quote, stat, and section head
+
+The `spectre-tokens` 4.13.0 accent roles reach every layer that a child theme
+used to restyle by hand. `getTextClasses` takes `accent` (and the
+`onSurfaceAccent`, `onInverseBrand`, and `onInverseAccent` variants) for
+eyebrows and units, plus a `leading` step from the named `--sp-leading-*`
+scale. `getButtonClasses({ variant: 'accentOutline' })` is the outline partner
+of `accent`. To restyle both accent buttons, a child theme re-points the
+published `--sp-button-accent-*` and `--sp-button-accentoutline-*` roles; do
+not override `.sp-btn` internals. `getStepperStepClasses({ tone })` colours the
+active and done states from `component.stepper.tone.{brand,accent}`, and every
+edge rail accepts `accentColor: 'accent'`.
+
+```ts
+getQuoteClasses({ size: 'xl', surface: 'inverse', accent: 'mark' })
+getQuoteTextClasses() // the quoted text
+getQuoteAttributionClasses({ avatar: true }) // avatar, then name and role
+getQuoteAttributionNameClasses()
+getQuoteAttributionRoleClasses() // role and organization
+
+getStatClasses({ size: 'lg', align: 'center', surface: 'surface' })
+getStatFigureClasses() // wrap the unit in getStatUnitClasses()
+getStatLabelClasses()
+
+getSectionHeadClasses({ layout: 'split' })
+getSectionHeadTitleClasses() // eyebrow and heading
+getSectionHeadLeadClasses() // lead and actions
+```
+
+The quote reads `component.quote`: `edge` draws a leading rail at
+`component.quote.accent.thickness`, `mark` draws a decorative opening quote
+mark (hidden from screen readers), and `none` keeps the neutral
+`component.quote.border` rule. The `accent` tone, the default, keeps the
+`component.quote.mark` role for the mark; on the `inverse` surface the text,
+rail, and mark switch to `text.onInverse.*`. A stat's unit takes the `accent`
+role of its surface (`text.onPage`, `text.onSurface`, or `text.onInverse`).
+The split section head puts the title block in columns 1–6 and the lead in
+columns 7–12 of a twelve-column grid from the `lg` breakpoint, and stacks them
+below it; the stacked head takes `align: 'center'`.
+
 `getDisplayClasses({ level })` (`1`–`6`) applies the `typography.display`
 presets, for hero and marketing headings one scale step larger than the matching
 heading level. `getLeadClasses()` applies `typography.lead` to an introductory
@@ -466,7 +510,7 @@ type-safety benefit. Apply the class name directly.
 
 | Class                   | Tokens                                                                       | Usage                                                                                                                                            |
 | ----------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `.sp-link`              | `--sp-link-default` `--sp-link-hover` `--sp-link-active` `--sp-link-visited` | Inline text links (`<a>`).                                                                                                                       |
+| `.sp-link`              | `--sp-link-default` `--sp-link-hover` `--sp-link-active` `--sp-link-visited` `--sp-link-underline` `--sp-link-underline-hover` | Inline text links (`<a>`).                                                                                                                       |
 | `.sp-link--on-inverse`  | `--sp-link-on-inverse` `--sp-link-on-inverse-hover`                          | Inline text links on a `surface.inverse`-backed background.                                                                                      |
 | `.sp-surface--hover`    | `--sp-surface-hover`                                                         | Clickable list items, menu items, table rows on hover.                                                                                           |
 | `.sp-surface--selected` | `--sp-surface-selected`                                                      | Selected list items, menu items, table rows.                                                                                                     |
@@ -477,6 +521,8 @@ type-safety benefit. Apply the class name directly.
 | `.sp-divider`           | `--sp-surface-divider`                                                       | `<hr>`, section separators, table borders.                                                                                                       |
 | `.sp-text-balance`      | —                                                                            | Balanced line wrapping (`text-wrap: balance`) so a short headline does not end on an orphan word.                                                |
 | `.sp-tabular-nums`      | —                                                                            | Tabular numerals for figures that repaint in place (countdowns, live prices).                                                                    |
+| `.sp-decoration-{thin\|base\|thick}` | `--sp-text-decoration-thickness-*` | Underline thickness for links and annotated text. |
+| `.sp-underline-offset-{sm\|md\|lg}` | `--sp-text-decoration-offset-*` | Gap between text and its underline. |
 | `.sp-{md\|lg}-grid-cols-{n}` | `--sp-breakpoint-md`/`-lg` (by value)                                        | `n` equal grid columns (`1` `2` `3` `4` `6` `12`) from that breakpoint up, overriding the `sp-grid-cols-*` step-down preset.                     |
 
 ### Generated utility classes
@@ -541,6 +587,22 @@ scrollbar colors from the mode tokens. Buttons, inputs, and selects are sized by
 `--sp-control-*`. Put `data-spectre-density="compact"` on any element to use the
 compact steps inside it. Use `.sp-prose kbd` to style keycaps.
 
+Base and prose styles cover the `spectre-tokens` 4.13.0 element map
+(`spectre-tokens/element-coverage.json`). The base layer sets `<b>`/`<strong>`
+to `--sp-font-weight-bold`, underlines `<abbr title>` and `<u>` with the
+`textDecoration` steps, draws `::spelling-error` and `::grammar-error` in the
+`component.proofing` colours, styles `<meter>` from `component.meter`, and
+colours Prism (`.token.*`) and highlight.js (`.hljs-*`) code inside `<pre>`
+from `component.code.syntax` at zero specificity, so a highlighter theme still
+wins. `.sp-prose` spaces its blocks with `layout.prose.flow` (paragraphs,
+lists, list items, blockquotes, figures, rules, and the space before and after
+headings, which get no type styling) and styles `<del>`, `<ins>`, `<s>`, list
+markers (`getProseClasses({ accentMarkers: true })` for the accent colour),
+`<dl>`/`<dt>`/`<dd>`, `<figcaption>`, and `<caption>`. `.sp-table` styles
+`<caption>` and `<tfoot>`, and `.sp-select` styles options and option groups
+where the engine allows it (`appearance: base-select`). The `sp-font-{weight}`
+utilities resolve through `--sp-font-weight-*`.
+
 ### Root package
 
 The root package exports CSS path constants plus the recipe functions
@@ -592,15 +654,18 @@ Root recipe functions:
 - `getPricingCardClasses`
 - `getProgressClasses`
 - `getProseClasses`
+- `getQuoteClasses`
 - `getRadioClasses`
 - `getRangeClasses`
 - `getRatingClasses`
 - `getSectionClasses`
+- `getSectionHeadClasses`
 - `getSelectClasses`
 - `getSidebarClasses`
 - `getSkeletonClasses`
 - `getSpinnerClasses`
 - `getStackClasses`
+- `getStatClasses`
 - `getStepperClasses`
 - `getSwitchClasses`
 - `getTableClasses`
@@ -673,6 +738,10 @@ Root recipe helper functions:
 - `getPricingCardPriceContainerClasses`
 - `getProgressBarClasses`
 - `getProgressLabelClasses`
+- `getQuoteAttributionClasses`
+- `getQuoteAttributionNameClasses`
+- `getQuoteAttributionRoleClasses`
+- `getQuoteTextClasses`
 - `getRatingStarClasses`
 - `getRatingStarsClasses`
 - `getRatingTextClasses`
@@ -682,6 +751,11 @@ Root recipe helper functions:
 - `getSidebarHeaderClasses`
 - `getSidebarLinkClasses`
 - `getSidebarToggleClasses`
+- `getSectionHeadLeadClasses`
+- `getSectionHeadTitleClasses`
+- `getStatFigureClasses`
+- `getStatLabelClasses`
+- `getStatUnitClasses`
 - `getStepperIndicatorClasses`
 - `getStepperLabelClasses`
 - `getStepperStepClasses`

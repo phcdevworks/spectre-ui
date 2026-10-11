@@ -28,7 +28,8 @@ const CARD_ACCENT_COLORS = {
   success: true,
   warning: true,
   danger: true,
-  cta: true
+  cta: true,
+  accent: true
 } as const
 
 export type CardVariant = keyof typeof CARD_VARIANTS

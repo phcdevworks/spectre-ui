@@ -250,6 +250,51 @@
      adjacent-sibling rule: back-to-back sections on different surfaces each
      need their own padding. Same layer as the spacing steps, so sp-pt-*
      still wins. */
+  /* Section head: an eyebrow and title block plus a lead block. `split`
+     places them side by side on a twelve-column grid from the lg
+     breakpoint (spectre-tokens breakpoint.lg) and stacks them below it. */
+  .sp-section-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-layout-stack-gap-md);
+  }
+
+  .sp-section-head__title,
+  .sp-section-head__lead {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-layout-stack-gap-sm);
+    min-width: 0;
+  }
+
+  .sp-section-head--center {
+    align-items: center;
+    max-width: var(--sp-layout-container-max-width-prose);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .sp-section-head--center > * {
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .sp-section-head--split {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--sp-layout-stack-gap-xl);
+      align-items: end;
+    }
+
+    .sp-section-head--split > .sp-section-head__title {
+      grid-column: 1 / span 6;
+    }
+
+    .sp-section-head--split > .sp-section-head__lead {
+      grid-column: 7 / span 6;
+    }
+  }
+
   .sp-section--attached {
     padding-top: 0;
   }
@@ -374,13 +419,47 @@
      this package. This layer beats the base-layer list reset regardless of
      selector specificity, since @layer order (not specificity) decides
      that conflict. See TODO.md "Prose — Editor Content Recipe". */
-  .sp-prose > * + * {
-    margin-top: var(--sp-layout-stack-gap-md);
-  }
-
   .sp-prose :where(ul, ol) {
     margin: 0;
     padding-inline-start: var(--sp-space-24);
+  }
+
+  .sp-prose :where(figure, dl, dd) {
+    margin: 0;
+  }
+
+  /* Vertical rhythm from layout.prose.flow (spectre-tokens 4.13.0). The
+     flow rules share one specificity and come after the margin resets
+     above, so source order decides: the gap after a heading wins over the
+     gap before the next block. Headings only get margins here; their type
+     stays with the consuming theme. */
+  .sp-prose > * + * {
+    margin-top: var(--sp-layout-prose-flow-paragraph);
+  }
+
+  .sp-prose > * + :where(ul, ol, dl) {
+    margin-top: var(--sp-layout-prose-flow-list);
+  }
+
+  .sp-prose > * + blockquote {
+    margin-top: var(--sp-layout-prose-flow-blockquote);
+  }
+
+  .sp-prose > * + :where(figure, pre, table) {
+    margin-top: var(--sp-layout-prose-flow-figure);
+  }
+
+  .sp-prose > * + hr,
+  .sp-prose > hr + * {
+    margin-top: var(--sp-layout-prose-flow-hr);
+  }
+
+  .sp-prose > * + :where(h1, h2, h3, h4, h5, h6) {
+    margin-top: var(--sp-layout-prose-flow-heading);
+  }
+
+  .sp-prose > :where(h1, h2, h3, h4, h5, h6) + * {
+    margin-top: var(--sp-layout-prose-flow-heading-after);
   }
 
   .sp-prose ul {
@@ -392,7 +471,69 @@
   }
 
   .sp-prose li + li {
-    margin-top: var(--sp-space-4);
+    margin-top: var(--sp-layout-prose-flow-list-item);
+  }
+
+  .sp-prose li::marker {
+    color: var(--sp-prose-marker);
+  }
+
+  .sp-prose--accent-markers li::marker {
+    color: var(--sp-prose-marker-accent);
+  }
+
+  .sp-prose dt {
+    color: var(--sp-prose-dt-text);
+    font-weight: var(--sp-font-weight-semibold);
+  }
+
+  .sp-prose dd {
+    padding-inline-start: var(--sp-space-24);
+    color: var(--sp-prose-dd-text);
+  }
+
+  .sp-prose dt + dd {
+    margin-top: var(--sp-layout-prose-flow-list-item);
+  }
+
+  .sp-prose dd + dt {
+    margin-top: var(--sp-layout-prose-flow-list);
+  }
+
+  .sp-prose figcaption {
+    margin-top: var(--sp-space-8);
+    color: var(--sp-prose-figcaption-text);
+    font-size: var(--sp-font-sm-size);
+    line-height: var(--sp-font-sm-line-height);
+  }
+
+  .sp-prose caption {
+    color: var(--sp-table-caption-text);
+    font-size: var(--sp-font-sm-size);
+  }
+
+  /* Edit marks from component.prose.del / .ins; <s> (no longer accurate)
+     takes the deletion colour without the fill. */
+  .sp-prose del {
+    padding-inline: var(--sp-space-4);
+    border-radius: var(--sp-radius-sm);
+    background-color: var(--sp-prose-del-bg);
+    color: var(--sp-prose-del-text);
+    text-decoration-thickness: var(--sp-text-decoration-thickness-thin);
+  }
+
+  .sp-prose ins {
+    padding-inline: var(--sp-space-4);
+    border-radius: var(--sp-radius-sm);
+    background-color: var(--sp-prose-ins-bg);
+    color: var(--sp-prose-ins-text);
+    text-decoration-line: underline;
+    text-decoration-thickness: var(--sp-text-decoration-thickness-thin);
+    text-underline-offset: var(--sp-text-decoration-offset-sm);
+  }
+
+  .sp-prose s {
+    color: var(--sp-prose-del-text);
   }
 
   /* Blockquote, code, highlight, and rule colors come from the
@@ -2062,11 +2203,17 @@
   .sp-link {
     color: var(--sp-link-default);
     text-decoration-line: underline;
-    transition: color var(--sp-duration-fast) var(--sp-easing-out);
+    text-decoration-color: var(--sp-link-underline);
+    text-decoration-thickness: var(--sp-text-decoration-thickness-thin);
+    text-underline-offset: var(--sp-text-decoration-offset-md);
+    transition:
+      color var(--sp-duration-fast) var(--sp-easing-out),
+      text-decoration-color var(--sp-duration-fast) var(--sp-easing-out);
   }
 
   .sp-link:hover {
     color: var(--sp-link-hover);
+    text-decoration-color: var(--sp-link-underline-hover);
   }
 
   .sp-link:active {
@@ -2088,6 +2235,32 @@
 
   .sp-link--on-inverse:hover {
     color: var(--sp-link-on-inverse-hover);
+  }
+
+  /* Text decoration thickness and underline offset from
+     textDecoration.{thickness,offset} (spectre-tokens 4.13.0). */
+  .sp-decoration-thin {
+    text-decoration-thickness: var(--sp-text-decoration-thickness-thin);
+  }
+
+  .sp-decoration-base {
+    text-decoration-thickness: var(--sp-text-decoration-thickness-base);
+  }
+
+  .sp-decoration-thick {
+    text-decoration-thickness: var(--sp-text-decoration-thickness-thick);
+  }
+
+  .sp-underline-offset-sm {
+    text-underline-offset: var(--sp-text-decoration-offset-sm);
+  }
+
+  .sp-underline-offset-md {
+    text-underline-offset: var(--sp-text-decoration-offset-md);
+  }
+
+  .sp-underline-offset-lg {
+    text-underline-offset: var(--sp-text-decoration-offset-lg);
   }
 
   .sp-surface--hover:hover,

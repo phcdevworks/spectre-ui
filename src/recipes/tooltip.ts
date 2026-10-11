@@ -23,6 +23,7 @@ const TOOLTIP_ACCENT_COLORS = {
   warning: true,
   danger: true,
   cta: true,
+  accent: true,
 } as const
 
 export type TooltipPlacement = keyof typeof TOOLTIP_PLACEMENTS

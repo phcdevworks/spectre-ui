@@ -38,6 +38,7 @@ const BADGE_ACCENT_RAIL_COLORS = {
   warning: true,
   danger: true,
   cta: true,
+  accent: true,
 } as const;
 
 export type BadgeVariant = keyof typeof BADGE_VARIANTS;

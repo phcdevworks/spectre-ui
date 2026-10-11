@@ -7918,27 +7918,27 @@
   }
 
   .sp-font-400 {
-    font-weight: 400;
+    font-weight: var(--sp-font-weight-normal);
   }
 
   .sp-font-500 {
-    font-weight: 500;
+    font-weight: var(--sp-font-weight-medium);
   }
 
   .sp-font-600 {
-    font-weight: 600;
+    font-weight: var(--sp-font-weight-semibold);
   }
 
   .sp-font-700 {
-    font-weight: 700;
+    font-weight: var(--sp-font-weight-bold);
   }
 
   .sp-font-800 {
-    font-weight: 800;
+    font-weight: var(--sp-font-weight-extrabold);
   }
 
   .sp-font-900 {
-    font-weight: 900;
+    font-weight: var(--sp-font-weight-black);
   }
 
   .sp-duration-reduced {

@@ -15,7 +15,8 @@ const MODAL_ACCENT_COLORS = {
   success: true,
   warning: true,
   danger: true,
-  cta: true
+  cta: true,
+  accent: true
 } as const
 
 export type ModalAccentEdge = keyof typeof MODAL_ACCENT_EDGES

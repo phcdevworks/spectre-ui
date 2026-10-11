@@ -65,17 +65,17 @@ const collectPaletteHues = (): Map<string, string[]> => {
 };
 
 // Standalone font-weight utilities, independent of the getTextClasses `size`
-// preset. There is no dedicated --sp-font-weight-* scale published yet, so
-// this derives the distinct weight values already published across the
-// per-size (--sp-font-{step}-weight) and per-heading (--sp-heading-h{n}-weight)
-// token groups, rather than inventing new weight values locally.
-const collectFontWeights = (): string[] => {
-  const regex = /--sp-(?:font-[a-z0-9]+|heading-h[1-6])-weight:\s*([0-9]+);/g;
-  const weights = new Set<string>();
+// preset. Each is named by its numeric value (`sp-font-700`) and resolves
+// through the named `--sp-font-weight-*` scale (spectre-tokens 4.13.0).
+const collectFontWeights = (): Array<{ name: string; value: string }> => {
+  const regex = /--sp-font-weight-([a-z]+):\s*([0-9]+);/g;
+  const weights = new Map<string, string>();
   for (const match of tokensCss.matchAll(regex)) {
-    weights.add(match[1]);
+    weights.set(match[2], match[1]);
   }
-  return [...weights].sort((a, b) => Number(a) - Number(b));
+  return [...weights]
+    .map(([value, name]) => ({ name, value }))
+    .sort((a, b) => Number(a.value) - Number(b.value));
 };
 
 // Raw semantic color scales as opt-in fixed-color utilities (TOKEN_CONTRACT
@@ -276,7 +276,9 @@ const buildZIndexRules = (): string[] =>
   zIndexSteps.map((step) => rule(`.sp-z-${step}`, [`z-index: var(--sp-z-index-${step});`]));
 
 const buildFontWeightRules = (): string[] =>
-  fontWeights.map((weight) => rule(`.sp-font-${weight}`, [`font-weight: ${weight};`]));
+  fontWeights.map(({ name, value }) =>
+    rule(`.sp-font-${value}`, [`font-weight: var(--sp-font-weight-${name});`]),
+  );
 
 // Thick borders on --sp-border-width-thick. They default to the divider
 // color and take any sp-border-{color} utility, which is emitted later in

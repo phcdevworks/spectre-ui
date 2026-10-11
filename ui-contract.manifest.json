@@ -265,7 +265,19 @@
       "getTabsPanelClasses",
       "getHeadingClasses",
       "getDisplayClasses",
-      "getLeadClasses"
+      "getLeadClasses",
+      "getQuoteClasses",
+      "getQuoteTextClasses",
+      "getQuoteAttributionClasses",
+      "getQuoteAttributionNameClasses",
+      "getQuoteAttributionRoleClasses",
+      "getStatClasses",
+      "getStatFigureClasses",
+      "getStatUnitClasses",
+      "getStatLabelClasses",
+      "getSectionHeadClasses",
+      "getSectionHeadTitleClasses",
+      "getSectionHeadLeadClasses"
     ]
   },
   "recipeFamilies": {
@@ -279,6 +291,7 @@
         "success",
         "cta",
         "accent",
+        "accentOutline",
         "inverse",
         "warning",
         "link",
@@ -341,6 +354,28 @@
     "testimonial": {
       "fn": "getTestimonialClasses",
       "variants": ["elevated", "flat", "outline", "ghost"]
+    },
+    "quote": {
+      "fn": "getQuoteClasses",
+      "sizes": ["sm", "md", "lg", "xl"],
+      "surfaces": ["plain", "subtle", "inverse"],
+      "accents": ["none", "edge", "mark"],
+      "accentColors": [
+        "neutral",
+        "brand",
+        "info",
+        "success",
+        "warning",
+        "danger",
+        "cta",
+        "accent"
+      ]
+    },
+    "stat": {
+      "fn": "getStatClasses",
+      "sizes": ["sm", "md", "lg", "xl"],
+      "aligns": ["start", "center", "end"],
+      "surfaces": ["page", "surface", "inverse"]
     },
     "rating": {
       "fn": "getRatingClasses",
@@ -414,6 +449,11 @@
     },
     "section": {
       "fn": "getSectionClasses"
+    },
+    "sectionHead": {
+      "fn": "getSectionHeadClasses",
+      "layouts": ["stacked", "split"],
+      "aligns": ["start", "center"]
     },
     "prose": {
       "fn": "getProseClasses"
@@ -499,13 +539,17 @@
         "subtle",
         "meta",
         "brand",
+        "accent",
         "onInverse",
         "onInverseMuted",
+        "onInverseBrand",
+        "onInverseAccent",
         "onSurface",
         "onSurfaceMuted",
         "onSurfaceSubtle",
         "onSurfaceMeta",
-        "onSurfaceBrand"
+        "onSurfaceBrand",
+        "onSurfaceAccent"
       ],
       "sizes": [
         "xs",
@@ -521,7 +565,8 @@
       ],
       "families": ["sans", "serif", "mono"],
       "transforms": ["none", "uppercase", "lowercase", "capitalize"],
-      "weights": [400, 500, 600, 700, 800, 900]
+      "weights": [400, 500, 600, 700, 800, 900],
+      "leadings": ["none", "tight", "snug", "normal", "relaxed", "loose"]
     },
     "tabs": {
       "fn": "getTabsClasses",

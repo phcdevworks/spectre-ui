@@ -72,6 +72,131 @@
   a:hover,
   a:focus-visible {
     text-decoration: underline;
+    text-decoration-color: var(--sp-link-underline-hover);
+    text-decoration-thickness: var(--sp-text-decoration-thickness-thin);
+    text-underline-offset: var(--sp-text-decoration-offset-md);
+  }
+
+  /* Phase 17 element coverage (spectre-tokens 4.13.0); the map of which
+     roles style each element is spectre-tokens/element-coverage.json. */
+  b,
+  strong {
+    font-weight: var(--sp-font-weight-bold);
+  }
+
+  abbr[title] {
+    cursor: help;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-thickness: var(--sp-text-decoration-thickness-thin);
+    text-underline-offset: var(--sp-text-decoration-offset-sm);
+  }
+
+  u {
+    text-decoration-thickness: var(--sp-text-decoration-thickness-thin);
+    text-underline-offset: var(--sp-text-decoration-offset-sm);
+  }
+
+  ::spelling-error {
+    text-decoration: underline wavy var(--sp-proofing-spelling);
+    text-decoration-thickness: var(--sp-text-decoration-thickness-thin);
+  }
+
+  ::grammar-error {
+    text-decoration: underline wavy var(--sp-proofing-grammar);
+    text-decoration-thickness: var(--sp-text-decoration-thickness-thin);
+  }
+
+  /* <meter>: each engine exposes its own pseudo-elements, and an unknown
+     one invalidates a whole selector list, so every engine gets its own
+     rule. The optimum / suboptimum / critical fills follow the element's
+     low/high/optimum attributes. */
+  meter {
+    appearance: none;
+    block-size: var(--sp-space-8);
+    border: 0;
+    border-radius: var(--sp-radius-pill);
+    background: var(--sp-meter-track);
+    overflow: hidden;
+  }
+
+  meter::-webkit-meter-bar {
+    block-size: 100%;
+    border: 0;
+    border-radius: inherit;
+    background: var(--sp-meter-track);
+  }
+
+  meter::-webkit-meter-optimum-value {
+    background: var(--sp-meter-fill-optimum);
+  }
+
+  meter::-webkit-meter-suboptimum-value {
+    background: var(--sp-meter-fill-suboptimum);
+  }
+
+  meter::-webkit-meter-even-less-good-value {
+    background: var(--sp-meter-fill-critical);
+  }
+
+  meter::-moz-meter-bar {
+    background: var(--sp-meter-fill-optimum);
+  }
+
+  meter:-moz-meter-sub-optimum::-moz-meter-bar {
+    background: var(--sp-meter-fill-suboptimum);
+  }
+
+  meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+    background: var(--sp-meter-fill-critical);
+  }
+
+  /* Syntax highlighting from component.code.syntax for the two common
+     highlighter class vocabularies (Prism `.token.*`, highlight.js
+     `.hljs-*`). Zero specificity, so a highlighter theme still wins. */
+  :where(pre) :where(.token.keyword, .token.atrule, .token.important, .hljs-keyword, .hljs-meta) {
+    color: var(--sp-code-syntax-keyword);
+  }
+
+  :where(pre) :where(.token.string, .token.char, .token.regex, .token.url, .token.attr-value, .hljs-string, .hljs-regexp, .hljs-link) {
+    color: var(--sp-code-syntax-string);
+  }
+
+  :where(pre) :where(.token.number, .token.boolean, .token.constant, .hljs-number, .hljs-literal) {
+    color: var(--sp-code-syntax-number);
+  }
+
+  :where(pre) :where(.token.comment, .token.prolog, .token.doctype, .token.cdata, .hljs-comment, .hljs-quote) {
+    color: var(--sp-code-syntax-comment);
+    font-style: italic;
+  }
+
+  :where(pre) :where(.token.function, .hljs-title) {
+    color: var(--sp-code-syntax-function);
+  }
+
+  :where(pre) :where(.token.variable, .token.property, .hljs-variable, .hljs-template-variable, .hljs-property) {
+    color: var(--sp-code-syntax-variable);
+  }
+
+  :where(pre) :where(.token.class-name, .token.builtin, .hljs-type, .hljs-built_in, .hljs-title.class_) {
+    color: var(--sp-code-syntax-type);
+  }
+
+  :where(pre) :where(.token.operator, .token.entity, .hljs-operator) {
+    color: var(--sp-code-syntax-operator);
+  }
+
+  :where(pre) :where(.token.punctuation, .hljs-punctuation) {
+    color: var(--sp-code-syntax-punctuation);
+  }
+
+  :where(pre) :where(.token.tag, .token.selector, .hljs-tag, .hljs-name, .hljs-selector-tag) {
+    color: var(--sp-code-syntax-tag);
+  }
+
+  :where(pre) :where(.token.attr-name, .hljs-attr, .hljs-attribute) {
+    color: var(--sp-code-syntax-attribute);
   }
 
   :focus-visible {

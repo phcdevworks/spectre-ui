@@ -12,8 +12,14 @@ const STEPPER_STEP_STATES = {
   done: true
 } as const
 
+const STEPPER_STEP_TONES = {
+  brand: true,
+  accent: true
+} as const
+
 export type StepperOrientation = keyof typeof STEPPER_ORIENTATIONS
 export type StepperStepState = keyof typeof STEPPER_STEP_STATES
+export type StepperStepTone = keyof typeof STEPPER_STEP_TONES
 
 export interface StepperRecipeOptions {
   orientation?: StepperOrientation
@@ -32,6 +38,13 @@ export function getStepperClasses(opts: StepperRecipeOptions = {}): string {
 
 export interface StepperStepRecipeOptions {
   state?: StepperStepState
+  /**
+   * Colours the active and done states from
+   * `component.stepper.tone.{brand,accent}` (`spectre-tokens` 4.13.0).
+   * Omission keeps the default `component.stepper.step.*` colours, which
+   * `brand` matches; pending steps are unaffected.
+   */
+  tone?: StepperStepTone
 }
 
 /**
@@ -48,7 +61,21 @@ export function getStepperStepClasses(
     fallback: 'pending'
   })
 
-  return cx('sp-stepper__step', `sp-stepper__step--${state}`)
+  const tone =
+    opts.tone === undefined
+      ? undefined
+      : resolveOption({
+          name: 'stepper step tone',
+          value: opts.tone,
+          allowed: STEPPER_STEP_TONES,
+          fallback: 'brand'
+        })
+
+  return cx(
+    'sp-stepper__step',
+    `sp-stepper__step--${state}`,
+    tone && `sp-stepper__step--tone-${tone}`
+  )
 }
 
 /** The numbered or iconic marker; colored by the parent step's state. */

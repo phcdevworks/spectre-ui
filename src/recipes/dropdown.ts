@@ -23,6 +23,7 @@ const DROPDOWN_ACCENT_COLORS = {
   warning: true,
   danger: true,
   cta: true,
+  accent: true,
 } as const
 
 export type DropdownPlacement = keyof typeof DROPDOWN_PLACEMENTS

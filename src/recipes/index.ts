@@ -61,6 +61,32 @@ export {
 } from './testimonial'
 
 export {
+  getQuoteClasses,
+  getQuoteTextClasses,
+  getQuoteAttributionClasses,
+  getQuoteAttributionNameClasses,
+  getQuoteAttributionRoleClasses,
+  type QuoteRecipeOptions,
+  type QuoteAttributionRecipeOptions,
+  type QuoteSize,
+  type QuoteSurface,
+  type QuoteAccent,
+  type QuoteAccentColor,
+  type QuoteAlign
+} from './quote'
+
+export {
+  getStatClasses,
+  getStatFigureClasses,
+  getStatUnitClasses,
+  getStatLabelClasses,
+  type StatRecipeOptions,
+  type StatSize,
+  type StatAlign,
+  type StatSurface
+} from './stat'
+
+export {
   getPricingCardClasses,
   getPricingCardBadgeClasses,
   getPricingCardDescriptionClasses,
@@ -216,6 +242,15 @@ export {
   type SectionGap
 } from './section'
 
+export {
+  getSectionHeadClasses,
+  getSectionHeadTitleClasses,
+  getSectionHeadLeadClasses,
+  type SectionHeadRecipeOptions,
+  type SectionHeadLayout,
+  type SectionHeadAlign
+} from './section-head'
+
 export { getProseClasses, type ProseRecipeOptions } from './prose'
 
 export {
@@ -345,7 +380,8 @@ export {
   type StepperRecipeOptions,
   type StepperStepRecipeOptions,
   type StepperOrientation,
-  type StepperStepState
+  type StepperStepState,
+  type StepperStepTone
 } from './stepper'
 
 export {
@@ -438,7 +474,8 @@ export {
   type TextVariant,
   type TextFamily,
   type TextTransform,
-  type TextWeight
+  type TextWeight,
+  type TextLeading
 } from './text'
 
 export {
