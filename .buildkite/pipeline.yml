@@ -2,8 +2,14 @@ steps:
   - label: ':node: spectre-ui verify'
     key: 'verify'
     command:
+      - 'node --version'
       - 'npm ci'
       - 'npm run ci:verify'
+    plugins:
+      # The agent's own Node may be below the build tooling's floor
+      # (tsup 9 needs ^22.18.0 || ^24.11.0), so run in a pinned Node image.
+      - docker#v5.12.0:
+          image: 'node:24'
     agents:
       queue: 'default'
     artifact_paths:

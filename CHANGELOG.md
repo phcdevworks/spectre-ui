@@ -73,6 +73,14 @@ Contract change type: semantic change
   `.sp-md-grid-cols-*` and `.sp-lg-grid-cols-*` overrides, which had no
   recipe path.
 
+### Fixed
+
+- CI failed at `npm ci` on the Node 22.13.0 matrix entry, because tsup 9
+  needs Node `^22.18.0 || ^24.11.0 || >=26.0.0`. The GitHub Actions minimum
+  moves to 22.18.0, Buildkite runs in a pinned `node:24` container, and
+  `validate:runtime` checks the same floor. The published package's
+  `engines` range is unchanged, since consumers do not run tsup.
+
 ### Changed
 
 - `getGridClasses({ order: 'none' })` now emits `sp-order-none` (and

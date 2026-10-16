@@ -987,8 +987,10 @@ npm install
 npm run ci:verify
 ```
 
-This project requires Node.js `^22.13.0 || >=24.0.0` and npm `>=10.0.0`. The
-checked-in package manager is `npm@11.17.0`.
+Developing this project requires Node.js `^22.18.0 || ^24.11.0 || >=26.0.0`
+(the build tooling's floor, tsup 9) and npm `>=10.0.0`. The published package
+itself still supports `^22.13.0 || >=24.0.0` (`engines`). The checked-in
+package manager is `npm@11.17.0`.
 
 ### Common commands
 

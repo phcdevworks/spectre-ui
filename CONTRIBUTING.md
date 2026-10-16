@@ -35,9 +35,11 @@ structure, adapters define delivery.
 
 ### Node.js version
 
-This repository requires Node.js `^22.13.0` or `>=24.0.0` as declared in
-`package.json`. `validate:runtime` will fail immediately on anything outside
-that range. Use the version pinned in `.nvmrc` locally — `nvm use` picks it up
+Developing this repository requires Node.js `^22.18.0`, `^24.11.0`, or
+`>=26.0.0`, the floor of the build tooling (tsup 9). `validate:runtime` will
+fail immediately on anything outside that range. This is narrower than the
+`engines` range in `package.json`, which applies to consumers of the published
+package and does not run tsup. Use the version pinned in `.nvmrc` locally — `nvm use` picks it up
 automatically.
 
 ### Build before test
