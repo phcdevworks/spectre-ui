@@ -7941,6 +7941,58 @@
     font-weight: var(--sp-font-weight-black);
   }
 
+  .sp-font-size-12 {
+    font-size: var(--sp-font-size-12);
+  }
+
+  .sp-font-size-14 {
+    font-size: var(--sp-font-size-14);
+  }
+
+  .sp-font-size-16 {
+    font-size: var(--sp-font-size-16);
+  }
+
+  .sp-font-size-18 {
+    font-size: var(--sp-font-size-18);
+  }
+
+  .sp-font-size-20 {
+    font-size: var(--sp-font-size-20);
+  }
+
+  .sp-font-size-24 {
+    font-size: var(--sp-font-size-24);
+  }
+
+  .sp-font-size-30 {
+    font-size: var(--sp-font-size-30);
+  }
+
+  .sp-font-size-36 {
+    font-size: var(--sp-font-size-36);
+  }
+
+  .sp-font-size-48 {
+    font-size: var(--sp-font-size-48);
+  }
+
+  .sp-font-size-60 {
+    font-size: var(--sp-font-size-60);
+  }
+
+  .sp-font-size-72 {
+    font-size: var(--sp-font-size-72);
+  }
+
+  .sp-font-size-96 {
+    font-size: var(--sp-font-size-96);
+  }
+
+  .sp-font-size-128 {
+    font-size: var(--sp-font-size-128);
+  }
+
   .sp-duration-reduced {
     transition-duration: var(--sp-duration-reduced);
   }

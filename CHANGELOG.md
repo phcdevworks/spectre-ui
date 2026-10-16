@@ -6,6 +6,44 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [5.6.0] - 2026-10-16
+
+**Release Title:** Typography Scale and Utility Alignment
+
+Contract change type: semantic change
+
+### Changed
+
+- `spectre-tokens` range is now `^4.14.0`. That release made the font scale
+  match Tailwind, so `--sp-font-lg-*` through `--sp-font-6xl-*` each got one
+  step smaller. Every component that used one of these directly now uses the
+  next step up, so it renders at the same size as before. This covers large
+  buttons, inputs, selects, textareas, and file inputs, the icon box,
+  testimonial and quote text, stat figures, the pricing card price, the xl
+  avatar, the sidebar toggle, the offcanvas header, and the large rating.
+- The `.sp-text--lg` through `.sp-text--6xl` presets (`getTextClasses({ size
+  })`) still follow their step's name, so they now use the new sizes. For
+  example, `lg` is 18px instead of 20px. To keep an old size, use the next
+  size up.
+
+### Added
+
+- `getTextClasses({ size })` accepts `7xl`, `8xl`, and `9xl` (72, 96, and
+  128px), backed by new `.sp-text--7xl`–`9xl` presets.
+- `.sp-font-size-{12|14|16|18|20|24|30|36|48|60|72|96|128}` utilities set
+  only the font size, from `--sp-font-size-*`.
+
+### Fixed
+
+- Mega and viewport dropdown menus (`sp-dropdown__menu--mega`,
+  `sp-dropdown__menu--viewport`) can now be up to 90% of the viewport height
+  instead of 70%, so tall mega menus scroll less. Reported as a major
+  problem by downstream users.
+- A blockquote in `.sp-prose` now has space above it. The rule that set its
+  margins to zero came after the spacing rule and overrode it. The reset now
+  comes first. Reported by `spectre-base` (2026-10-11), which can now remove
+  its own workaround.
+
 ## [5.5.0] - 2026-10-11
 
 **Release Title:** Expanded Theming and Content Recipes

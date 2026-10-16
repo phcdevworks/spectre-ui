@@ -90,7 +90,10 @@ const ENTRYPOINT_CONTRACTS = [
     // the standalone token block) and the Phase 17 base element rules:
     // weights, link/abbr/u decoration, proofing marks, <meter>, and syntax
     // highlighting. A deliberate, scoped increase, not a regression.
-    maxBytes: 186100
+    // Raised again 2026-10-15 (base.css grew to 186477 bytes) for the
+    // spectre-tokens ^4.14.0 bump: font 7xl–9xl presets and the numeric
+    // --sp-font-size-* scale in the standalone token block.
+    maxBytes: 187000
   },
   {
     fileName: 'components.css',
@@ -173,7 +176,9 @@ const ENTRYPOINT_CONTRACTS = [
     // (~17 KB), the quote and stat recipes, the accent outline button, the
     // accent rail tone on every rail, stepper tones, text leading and
     // accent roles, and table caption/footer and select option rules.
-    maxBytes: 408400
+    // Raised again 2026-10-15 (components.css grew to 409357 bytes): the
+    // spectre-tokens ^4.14.0 token block and the sp-text--7xl–9xl presets.
+    maxBytes: 409900
   },
   {
     fileName: 'utilities.css',
@@ -279,7 +284,9 @@ const ENTRYPOINT_CONTRACTS = [
     // spectre-tokens ^4.13.0 token block (~17 KB), the Phase 17 prose
     // rules (flow rhythm, markers, dl, figcaption, del/ins), the section
     // head recipe, and text-decoration utilities.
-    maxBytes: 587200
+    // Raised again 2026-10-15 (utilities.css grew to 588377 bytes): the
+    // spectre-tokens ^4.14.0 token block and the sp-font-size-* utilities.
+    maxBytes: 588900
   }
 ] as const
 

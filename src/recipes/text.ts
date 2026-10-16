@@ -12,6 +12,9 @@ const TEXT_SIZES = {
   '4xl': true,
   '5xl': true,
   '6xl': true,
+  '7xl': true,
+  '8xl': true,
+  '9xl': true,
 } as const
 
 const TEXT_VARIANTS = {

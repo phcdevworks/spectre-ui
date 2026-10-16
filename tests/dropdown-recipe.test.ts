@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest'
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import {
   getDropdownClasses,
   getDropdownItemClasses,
@@ -84,5 +86,25 @@ describe('getDropdownItemClasses', () => {
   it('creates trimmed, space-delimited class strings for combined options', () => {
     const result = getDropdownItemClasses({ active: true, focused: true })
     expectTokenizedClassString(result)
+  })
+})
+
+describe('dropdown menu height cap', () => {
+  const componentsCss = readFileSync(
+    fileURLToPath(new URL('../src/styles/components.css', import.meta.url)),
+    'utf8'
+  )
+
+  it('lets mega and viewport menus use 90% of the viewport height', () => {
+    for (const selector of [
+      '.sp-dropdown__menu--mega',
+      '.sp-dropdown__menu--viewport'
+    ]) {
+      const body = componentsCss.match(
+        new RegExp(`${selector.replace(/[.-]/g, '\\$&')} \\{([^}]*)\\}`)
+      )?.[1]
+      expect(body, selector).toContain('max-height: 90vh;')
+      expect(body, selector).toContain('overflow-y: auto;')
+    }
   })
 })

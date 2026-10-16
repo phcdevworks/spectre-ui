@@ -14,14 +14,4 @@ intent in the changelog. Every published `spectre-tokens` family is this
 package's backlog as soon as it ships. See
 [spectre-tokens/DOWNSTREAM_PARITY.md](../spectre-tokens/DOWNSTREAM_PARITY.md)
 and run `npm run audit:parity` from `spectre-tokens` for what has no recipe yet.
-
-## Explicitly Out of Scope
-
-- Do not author new design tokens or semantic visual meaning here.
-- Do not add framework components, templates, hooks, slots, or runtime behavior
-  here.
-- Do not move adapter-package responsibilities into this package.
-- Do not combine token synchronization with recipe expansion or unrelated
-  documentation cleanup.
-- Do not hand-edit generated files or build outputs.
-- Do not invent local visual fallback values for missing tokens.
+Scope limits live in [ROADMAP.md](ROADMAP.md#explicitly-out-of-scope).

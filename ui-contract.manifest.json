@@ -561,7 +561,10 @@
         "3xl",
         "4xl",
         "5xl",
-        "6xl"
+        "6xl",
+        "7xl",
+        "8xl",
+        "9xl"
       ],
       "families": ["sans", "serif", "mono"],
       "transforms": ["none", "uppercase", "lowercase", "capitalize"],

@@ -424,7 +424,7 @@
     padding-inline-start: var(--sp-space-24);
   }
 
-  .sp-prose :where(figure, dl, dd) {
+  .sp-prose :where(figure, dl, dd, blockquote) {
     margin: 0;
   }
 
@@ -539,7 +539,6 @@
   /* Blockquote, code, highlight, and rule colors come from the
      component.prose token contract (spectre-tokens 4.10.0). */
   .sp-prose blockquote {
-    margin: 0;
     padding-inline-start: var(--sp-space-16);
     border-inline-start: var(--sp-border-width-thick) solid var(--sp-prose-blockquote-border);
     color: var(--sp-prose-blockquote-text);

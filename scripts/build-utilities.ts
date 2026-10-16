@@ -108,6 +108,7 @@ const easingSteps = collectVarSteps('easing');
 const borderStyleSteps = collectVarSteps('border-style');
 const borderWidthSteps = collectVarSteps('border-width');
 const iconSteps = collectVarSteps('icon');
+const fontSizeSteps = collectVarSteps('font-size');
 const semanticColorSteps = new Map(
   SEMANTIC_COLOR_SCALES.map((scale) => [scale, collectVarSteps(`color-${scale}`)]),
 );
@@ -280,6 +281,13 @@ const buildFontWeightRules = (): string[] =>
     rule(`.sp-font-${value}`, [`font-weight: var(--sp-font-weight-${name});`]),
   );
 
+// Plain font sizes (spectre-tokens 4.14.0), named by their px value after the
+// token. They set only font-size, unlike the getTextClasses `size` presets.
+const buildFontSizeRules = (): string[] =>
+  fontSizeSteps.map((step) =>
+    rule(`.sp-font-size-${step}`, [`font-size: var(--sp-font-size-${step});`]),
+  );
+
 // Thick borders on --sp-border-width-thick. They default to the divider
 // color and take any sp-border-{color} utility, which is emitted later in
 // this file and so wins on source order. No responsive variants, which would
@@ -350,6 +358,7 @@ sections.push(buildShadowInsetRules().join('\n\n'));
 sections.push(buildOpacityRules().join('\n\n'));
 sections.push(buildZIndexRules().join('\n\n'));
 sections.push(buildFontWeightRules().join('\n\n'));
+sections.push(buildFontSizeRules().join('\n\n'));
 sections.push(buildDurationRules().join('\n\n'));
 sections.push(buildEasingRules().join('\n\n'));
 sections.push(buildBorderStyleRules().join('\n\n'));
@@ -380,7 +389,8 @@ console.log(
     `${radiusSteps.length} radius steps, ${shadowSteps.length} shadow steps, ` +
     `${shadowInsetSteps.length} inset shadow steps, ` +
     `${opacitySteps.length} opacity roles, ${zIndexSteps.length} z-index roles, ` +
-    `${fontWeights.length} font weights, ${durationSteps.length} durations, ` +
+    `${fontWeights.length} font weights, ${fontSizeSteps.length} font sizes, ` +
+    `${durationSteps.length} durations, ` +
     `${easingSteps.length} easings, ${borderStyleSteps.length} border styles, ` +
     `${borderWidthSteps.length} border widths, ${iconSteps.length} icon sizes, ` +
     `${surfaceRoles.length} surface backgrounds, ${BORDER_THICK_SIDES.length} thick borders, ` +

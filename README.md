@@ -16,7 +16,7 @@ to consume Spectre's visual language.
 | Project team           | `project-design`                   |
 | Repository role        | Spectre L2 CSS and recipe contract |
 | Package/artifact       | `@phcdevworks/spectre-ui`          |
-| Current version/status | 5.5.0                              |
+| Current version/status | 5.6.0                              |
 
 ## Standard Workflow
 
@@ -280,7 +280,7 @@ recipe axes may retain documented visual fallbacks.
 | Textarea             | `getTextareaClasses`           | size: `sm` `md` `lg`, state: `default` `invalid` `success`                                                                                                                                   | —                                    | `fullWidth` `pill` `disabled` `focused` `loading`                                                                                                                                                            |
 | Fieldset             | `getFieldsetClasses`           | —                                                                                                                                                                                            | —                                    | `disabled`                                                                                                                                                                                                   |
 | Label                | `getLabelClasses`              | —                                                                                                                                                                                            | —                                    | `disabled` `required`                                                                                                                                                                                        |
-| Text                 | `getTextClasses`               | color: `default` `muted` `subtle` `meta` `brand` `accent` `onInverse` `onInverseMuted` `onInverseBrand` `onInverseAccent` `onSurface` `onSurfaceMuted` `onSurfaceSubtle` `onSurfaceMeta` `onSurfaceBrand` `onSurfaceAccent`, family: `sans` `serif` `mono` | `xs`–`6xl`                           | —                                                                                                                                                                                                            |
+| Text                 | `getTextClasses`               | color: `default` `muted` `subtle` `meta` `brand` `accent` `onInverse` `onInverseMuted` `onInverseBrand` `onInverseAccent` `onSurface` `onSurfaceMuted` `onSurfaceSubtle` `onSurfaceMeta` `onSurfaceBrand` `onSurfaceAccent`, family: `sans` `serif` `mono` | `xs`–`9xl`                           | —                                                                                                                                                                                                            |
 | Text state           | `getTextClasses`               | `transform`: `none` `uppercase` `lowercase` `capitalize`, `weight`: `400`–`900` (emits `sp-font-{weight}`), `leading`: `none` `tight` `snug` `normal` `relaxed` `loose`                                                                                   | —                                    | —                                                                                                                                                                                                            |
 | Heading              | `getHeadingClasses`            | level: `h1`–`h6` (the full `typography.heading` preset)                                                                                                                                      | —                                    | —                                                                                                                                                                                                            |
 | Display              | `getDisplayClasses`            | level: `1`–`6` (the full `typography.display` preset)                                                                                                                                        | —                                    | —                                                                                                                                                                                                            |
@@ -390,7 +390,7 @@ positioned ancestor — typically `sp-nav`, which is a positioning context by
 default — so the menu (`sp-dropdown__menu--mega`) spans that ancestor's full
 width instead of tracking trigger width. Combine with a `getGridClasses` panel
 inside the menu for a multi-column layout. Menu height is capped and scrollable
-(`max-height: 70vh; overflow-y: auto`) so tall panels never overflow the
+(`max-height: 90vh; overflow-y: auto`) so tall panels never overflow the
 viewport.
 
 A third `viewport` flag (`getDropdownClasses({ viewport: true })` paired with
@@ -559,6 +559,7 @@ step needs a token proposal to `spectre-tokens`, not a raw value in markup.
 | Chart color    | `.sp-{text\|bg\|border\|fill\|stroke}-chart-{role}`                                                                  | `--sp-chart-*` (`bg`, `grid`, `axis`, `label`, `series-1`–`8`, `sequential-1`–`7`, `diverging-1`–`7`)                       |
 | Elevation      | `.sp-elevation-{flat\|raised\|overlay\|modal}`                                                                         | `--sp-elevation-*` (shadow, surface, and z-index together)                                                                  |
 | Font weight    | `.sp-font-{weight}`                                                                                                     | distinct values already published across `--sp-font-{step}-weight` / `--sp-heading-h{n}-weight`                             |
+| Font size      | `.sp-font-size-{12\|14\|16\|18\|20\|24\|30\|36\|48\|60\|72\|96\|128}`                                                   | `--sp-font-size-*` (font-size only; no line height or weight)                                                               |
 
 Responsive variants use the `sp-{breakpoint}-{utility}` prefix form (for
 example, `sp-md-p-4`, `sp-lg-gap-8`, `sp-md-flex`, and `sp-lg-justify-between`)

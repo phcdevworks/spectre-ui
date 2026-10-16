@@ -48,7 +48,7 @@ describe('text leading and accent roles', () => {
 
   it('declares leading after the size presets so it wins on source order', () => {
     expect(componentsCss.indexOf('.sp-text--leading-none')).toBeGreaterThan(
-      componentsCss.indexOf('.sp-text--6xl {')
+      componentsCss.indexOf('.sp-text--9xl {')
     )
   })
 
@@ -276,7 +276,8 @@ describe('Phase 17 element coverage', () => {
     )
     // Only the text size presets themselves still read a preset weight.
     const presetWeightUses = componentsCss.match(/var\(--sp-font-[a-z0-9]+-weight\)/g) ?? []
-    expect(presetWeightUses).toHaveLength(10)
+    // 13 since spectre-tokens 4.14.0 added the 7xl–9xl presets.
+    expect(presetWeightUses).toHaveLength(13)
   })
 
   it('resolves the generated weight utilities through the named scale', () => {
@@ -351,6 +352,26 @@ describe('Phase 17 element coverage', () => {
       'hr'
     ]) {
       expect(utilitiesCss).toContain(`var(--sp-layout-prose-flow-${step})`)
+    }
+  })
+
+  it('keeps the flow gap above a blockquote that follows another block', () => {
+    const blockquoteRules = [
+      ...utilitiesCss
+        .replace(/\/\*[\s\S]*?\*\//g, '')
+        .matchAll(/([^{}]*\bblockquote\b[^{}]*)\{([^}]*)\}/g)
+    ].map(([, selector, body]) => ({ selector: selector.trim(), body }))
+    const flowIndex = blockquoteRules.findIndex(
+      ({ selector }) => selector === '.sp-prose > * + blockquote'
+    )
+
+    expect(flowIndex).toBeGreaterThanOrEqual(0)
+    expect(blockquoteRules[flowIndex].body).toContain(
+      'margin-top: var(--sp-layout-prose-flow-blockquote);'
+    )
+    for (const { selector, body } of blockquoteRules.slice(flowIndex + 1)) {
+      if (!selector.startsWith('.sp-prose')) continue
+      expect(body, selector).not.toMatch(/(^|[\s;])margin(-top|-block)?\s*:/)
     }
   })
 
