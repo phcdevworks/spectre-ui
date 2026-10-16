@@ -6,6 +6,80 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [5.7.0] - 2026-10-16
+
+**Release Title:** Complete Recipe and Utility Coverage
+
+Contract change type: semantic change
+
+### Added
+
+- `getTextClasses({ fontSize })` accepts the numeric font-size scale
+  (`12`, `14`, `16`, `18`, `20`, `24`, `30`, `36`, `48`, `60`, `72`, `96`,
+  `128`) and emits the matching `.sp-font-size-{px}` utility. It sets only
+  the font size, so the `size` preset keeps its line height and weight. 5.6.0
+  shipped these sizes only as utility classes, which left framework adapters
+  such as `spectre-ui-astro` nothing to wrap. New exported type:
+  `TextFontSize`.
+- Every token-backed class family can now be reached through a recipe, so
+  framework adapters can expose all of it. Before this, these classes
+  existed only as CSS, which adapters cannot wrap. No CSS changed; each
+  recipe emits the classes that already shipped.
+  - `getTextClasses` gains `tracking` (`--sp-tracking-*`, `tightest`–
+    `widest`), `decoration` (`thin` | `base` | `thick`), `underlineOffset`
+    (`sm` | `md` | `lg`), `tabularNums`, and `balance`.
+  - `getLinkClasses({ tone, decoration, underlineOffset })` for `.sp-link`
+    and `.sp-link--on-inverse`.
+  - `getSurfaceClasses({ surface, hover, selected, active })` for every
+    `--sp-surface-*` role (`page`, `card`, `subtle`, `overlay`, `input`,
+    `inverse`, `hero`) and the hover, selected, and active states.
+  - `getDividerClasses()` for `.sp-divider`.
+  - `getElevationClasses({ level })` for the `flat`, `raised`, `overlay`,
+    and `modal` elevation roles.
+  - `getChartColorClasses({ fill, stroke, bg, text, border })` for every
+    `--sp-chart-*` role.
+  - `getMotionClasses({ animation, transition, duration, easing })` for the
+    animation, transition, `--sp-duration-*`, and `--sp-easing-*` classes.
+  - `tests/recipe-reachability.test.ts` checks that each of these recipes
+    reaches every published step and that every class it emits exists in
+    the CSS.
+- Recipes for the whole generated utility layer, so every utility class
+  (all 4,965 in `utilities.generated.css`, plus `utilities.css`) can be
+  reached without writing class names by hand:
+  - `getSpacingClasses` for padding, margin (including `auto`), gap, and
+    flex-basis on the `--sp-space-*` scale, with `sm`–`2xl` overrides.
+  - `getLayoutClasses` for display, flex, alignment, position, sizing,
+    overflow, white-space, text alignment, object fit and position, borders,
+    and lists, with `sm`–`2xl` overrides.
+  - `getColorClasses` (raw semantic scales, `black`, `white`) and
+    `getPaletteClasses` (palette hues) for text, background, and border.
+  - `getBorderClasses` (thick sides, style, width, radius),
+    `getShadowClasses`, `getOpacityClasses`, `getZIndexClasses`,
+    `getIconSizeClasses`, and `getAspectRatioClasses`.
+  - `npm run build:utilities` now also writes
+    `src/internal/utility-scales.generated.ts`. The recipes validate against
+    it, so a new token step reaches them without a code change.
+    `npm run validate:utilities` checks it for staleness alongside the CSS.
+  - `tests/utility-recipe-parity.test.ts` calls every recipe with every value
+    and fails if any class in `utilities.generated.css` or `utilities.css`
+    cannot be reached.
+- `spectreThemeModes` and `spectreDensityModes` root constants, typed as
+  `SpectreThemeMode` and `SpectreDensityMode`. They list every
+  `data-spectre-theme` (`light`, `dark`, `high-contrast`, `system`) and
+  `data-spectre-density` (`compact`) value spectre-tokens publishes, and
+  are generated from the installed tokens. Adapters can type a theme or
+  density prop without hardcoding the strings.
+- `getGridClasses({ columns })` accepts `{ base, md, lg }`, emitting the
+  `.sp-md-grid-cols-*` and `.sp-lg-grid-cols-*` overrides, which had no
+  recipe path.
+
+### Changed
+
+- `getGridClasses({ order: 'none' })` now emits `sp-order-none` (and
+  `sp-md-order-none` / `sp-lg-order-none` per breakpoint) instead of
+  nothing. Before, `{ base: 1, md: 'none' }` could not reset the order at
+  `md`. Rendering is the same where no other order applies.
+
 ## [5.6.0] - 2026-10-16
 
 **Release Title:** Typography Scale and Utility Alignment

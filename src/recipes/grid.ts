@@ -11,6 +11,16 @@ const GRID_COLUMNS = {
   auto: true,
 } as const
 
+// The md/lg column overrides in utilities.css have no `auto` step.
+const GRID_RESPONSIVE_COLUMNS = {
+  '1': true,
+  '2': true,
+  '3': true,
+  '4': true,
+  '6': true,
+  '12': true,
+} as const
+
 const GRID_GAPS = {
   sm: true,
   md: true,
@@ -228,8 +238,20 @@ export interface GridExplicitTemplateOptions {
   count?: GridFixedTrackCount | GridFixedTrackCountOptions
 }
 
+export type GridResponsiveColumns = Exclude<GridColumns, 'auto'>
+
+/**
+ * Per-breakpoint column counts. `md`/`lg` emit the
+ * `sp-{md|lg}-grid-cols-{n}` overrides of the base step-down preset.
+ */
+export interface GridColumnsOptions {
+  base?: GridColumns
+  md?: GridResponsiveColumns
+  lg?: GridResponsiveColumns
+}
+
 export interface GridRecipeOptions {
-  columns?: GridColumns
+  columns?: GridColumns | GridColumnsOptions
   gap?: GridGap
   columnGap?: GridGap
   rowGap?: GridGap
@@ -362,12 +384,38 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
     explicitTemplate,
   } = opts
 
+  const isColumnsOptions =
+    typeof columnsInput === 'object' && columnsInput !== null
+  const baseColumnsInput = isColumnsOptions ? columnsInput.base : columnsInput
+
   const columns = resolveOption({
     name: 'grid columns',
-    value: columnsInput === undefined ? undefined : String(columnsInput),
+    value: baseColumnsInput === undefined ? undefined : String(baseColumnsInput),
     allowed: GRID_COLUMNS,
     fallback: '1',
   })
+
+  const resolveResponsiveColumns = (
+    value: GridResponsiveColumns | undefined,
+    name: string
+  ): string | undefined =>
+    value === undefined
+      ? undefined
+      : resolveOption({
+          name,
+          value: String(value),
+          allowed: GRID_RESPONSIVE_COLUMNS,
+          fallback: '1',
+        })
+
+  const mdColumns = resolveResponsiveColumns(
+    isColumnsOptions ? columnsInput.md : undefined,
+    'grid columns (md)'
+  )
+  const lgColumns = resolveResponsiveColumns(
+    isColumnsOptions ? columnsInput.lg : undefined,
+    'grid columns (lg)'
+  )
 
   const gap = resolveOption({
     name: 'grid gap',
@@ -578,6 +626,8 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
     rowGap && `sp-grid--row-gap-${rowGap}`,
     align && `sp-grid--align-${align}`,
     !fixedTrackCount && !templateClass && `sp-grid-cols-${columns}`,
+    !fixedTrackCount && !templateClass && mdColumns && `sp-md-grid-cols-${mdColumns}`,
+    !fixedTrackCount && !templateClass && lgColumns && `sp-lg-grid-cols-${lgColumns}`,
     !templateClass && fixedTrackCount && `sp-grid-fixed-tracks-${fixedTrackCount}`,
     baseTemplateClass,
     mdTemplateClass,
@@ -600,8 +650,10 @@ export function getGridClasses(opts: GridRecipeOptions = {}): string {
     baseRowOffset && baseRowOffset !== '0' && `sp-row-offset-${baseRowOffset}`,
     mdRowOffset && mdRowOffset !== '0' && `sp-md-row-offset-${mdRowOffset}`,
     lgRowOffset && lgRowOffset !== '0' && `sp-lg-row-offset-${lgRowOffset}`,
-    baseOrder && baseOrder !== 'none' && `sp-order-${baseOrder}`,
-    mdOrder && mdOrder !== 'none' && `sp-md-order-${mdOrder}`,
-    lgOrder && lgOrder !== 'none' && `sp-lg-order-${lgOrder}`
+    // `none` emits the order-0 reset, so a base order can be undone from a
+    // breakpoint up and an explicit `none` overrides any other order class.
+    baseOrder && `sp-order-${baseOrder}`,
+    mdOrder && `sp-md-order-${mdOrder}`,
+    lgOrder && `sp-lg-order-${lgOrder}`
   )
 }

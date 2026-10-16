@@ -1,5 +1,6 @@
 import { cx } from '../internal/cx'
 import { resolveOption } from '../internal/resolve-option'
+import { TRACKING_STEPS } from '../internal/utility-scales.generated'
 
 const TEXT_SIZES = {
   xs: true,
@@ -85,12 +86,63 @@ const TEXT_WEIGHTS = {
   '900': true,
 } as const
 
+// The numeric font-size scale spectre-tokens publishes as --sp-font-size-<px>,
+// the same set the generated sp-font-size-{px} utilities expand.
+const TEXT_FONT_SIZES = {
+  '12': true,
+  '14': true,
+  '16': true,
+  '18': true,
+  '20': true,
+  '24': true,
+  '30': true,
+  '36': true,
+  '48': true,
+  '60': true,
+  '72': true,
+  '96': true,
+  '128': true,
+} as const
+
+// The letter-spacing scale spectre-tokens publishes as --sp-tracking-*.
+const TEXT_TRACKINGS = TRACKING_STEPS
+
+// textDecoration.thickness and textDecoration.offset (--sp-text-decoration-*).
+const TEXT_DECORATIONS = {
+  thin: true,
+  base: true,
+  thick: true,
+} as const
+
+const TEXT_UNDERLINE_OFFSETS = {
+  sm: true,
+  md: true,
+  lg: true,
+} as const
+
 export type TextSize = keyof typeof TEXT_SIZES
 export type TextVariant = keyof typeof TEXT_VARIANTS
 export type TextFamily = keyof typeof TEXT_FAMILIES
 export type TextTransform = keyof typeof TEXT_TRANSFORMS
 export type TextLeading = keyof typeof TEXT_LEADINGS
 export type TextWeight = 400 | 500 | 600 | 700 | 800 | 900
+export type TextTracking = (typeof TRACKING_STEPS)[number]
+export type TextDecoration = keyof typeof TEXT_DECORATIONS
+export type TextUnderlineOffset = keyof typeof TEXT_UNDERLINE_OFFSETS
+export type TextFontSize =
+  | 12
+  | 14
+  | 16
+  | 18
+  | 20
+  | 24
+  | 30
+  | 36
+  | 48
+  | 60
+  | 72
+  | 96
+  | 128
 
 export interface TextRecipeOptions {
   size?: TextSize
@@ -108,6 +160,26 @@ export interface TextRecipeOptions {
    * named `--sp-leading-*` scale, e.g. `tight` for a large statement line.
    */
   leading?: TextLeading
+  /**
+   * Overrides only the font size the `size` preset carries with an exact step
+   * from the numeric `--sp-font-size-<px>` scale; line height and weight stay
+   * with the preset (pair with `leading` / `weight`). Emits the token-derived
+   * `sp-font-size-{px}` utility, which wins over the preset by layer order.
+   */
+  fontSize?: TextFontSize
+  /**
+   * Overrides the letter spacing the `size` preset carries with a step from
+   * the `--sp-tracking-*` scale. Emits `sp-tracking-{step}`.
+   */
+  tracking?: TextTracking
+  /** Underline thickness from `--sp-text-decoration-thickness-*`. */
+  decoration?: TextDecoration
+  /** Gap between text and its underline from `--sp-text-decoration-offset-*`. */
+  underlineOffset?: TextUnderlineOffset
+  /** Tabular numerals for figures that repaint in place. */
+  tabularNums?: boolean
+  /** Balanced line wrapping so a short headline does not end on an orphan. */
+  balance?: boolean
 }
 
 export function getTextClasses(opts: TextRecipeOptions = {}): string {
@@ -118,6 +190,12 @@ export function getTextClasses(opts: TextRecipeOptions = {}): string {
     transform: transformInput,
     weight: weightInput,
     leading: leadingInput,
+    fontSize: fontSizeInput,
+    tracking: trackingInput,
+    decoration: decorationInput,
+    underlineOffset: underlineOffsetInput,
+    tabularNums = false,
+    balance = false,
   } = opts
 
   const size = resolveOption({
@@ -193,6 +271,46 @@ export function getTextClasses(opts: TextRecipeOptions = {}): string {
           fallback: 'normal',
         })
 
+  const fontSize =
+    fontSizeInput === undefined
+      ? undefined
+      : resolveOption({
+          name: 'text font size',
+          value: String(fontSizeInput),
+          allowed: TEXT_FONT_SIZES,
+          fallback: '16',
+        })
+
+  const tracking =
+    trackingInput === undefined
+      ? undefined
+      : resolveOption({
+          name: 'text tracking',
+          value: trackingInput,
+          allowed: TEXT_TRACKINGS,
+          fallback: 'normal',
+        })
+
+  const decoration =
+    decorationInput === undefined
+      ? undefined
+      : resolveOption({
+          name: 'text decoration',
+          value: decorationInput,
+          allowed: TEXT_DECORATIONS,
+          fallback: 'base',
+        })
+
+  const underlineOffset =
+    underlineOffsetInput === undefined
+      ? undefined
+      : resolveOption({
+          name: 'text underline offset',
+          value: underlineOffsetInput,
+          allowed: TEXT_UNDERLINE_OFFSETS,
+          fallback: 'md',
+        })
+
   return cx(
     'sp-text',
     `sp-text--${size}`,
@@ -200,6 +318,12 @@ export function getTextClasses(opts: TextRecipeOptions = {}): string {
     family && `sp-text--${family}`,
     transform && `sp-text--${transform}`,
     weight && `sp-font-${weight}`,
-    leading && `sp-text--leading-${leading}`
+    leading && `sp-text--leading-${leading}`,
+    fontSize && `sp-font-size-${fontSize}`,
+    tracking && `sp-tracking-${tracking}`,
+    decoration && `sp-decoration-${decoration}`,
+    underlineOffset && `sp-underline-offset-${underlineOffset}`,
+    tabularNums && 'sp-tabular-nums',
+    balance && 'sp-text-balance'
   )
 }

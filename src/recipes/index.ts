@@ -257,6 +257,8 @@ export {
   getGridClasses,
   type GridRecipeOptions,
   type GridColumns,
+  type GridColumnsOptions,
+  type GridResponsiveColumns,
   type GridGap,
   type GridSpan,
   type GridSpanOptions,
@@ -475,8 +477,104 @@ export {
   type TextFamily,
   type TextTransform,
   type TextWeight,
-  type TextLeading
+  type TextLeading,
+  type TextFontSize,
+  type TextTracking,
+  type TextDecoration,
+  type TextUnderlineOffset
 } from './text'
+
+export {
+  getLinkClasses,
+  type LinkRecipeOptions,
+  type LinkTone
+} from './link'
+
+export {
+  getSurfaceClasses,
+  type SurfaceRecipeOptions,
+  type SurfaceBackground
+} from './surface'
+
+export { getDividerClasses } from './divider'
+
+export {
+  getElevationClasses,
+  type ElevationRecipeOptions,
+  type ElevationLevel
+} from './elevation'
+
+export {
+  getChartColorClasses,
+  type ChartColorRecipeOptions,
+  type ChartColor
+} from './chart'
+
+export {
+  getSpacingClasses,
+  type SpacingRecipeOptions,
+  type SpacingValues,
+  type SpacingBreakpoint,
+  type SpaceStep
+} from './spacing'
+
+export {
+  getLayoutClasses,
+  type LayoutRecipeOptions,
+  type LayoutValues,
+  type LayoutBreakpoint,
+  type LayoutDisplay,
+  type LayoutJustify,
+  type LayoutAlign,
+  type LayoutPosition,
+  type LayoutOverflow
+} from './layout'
+
+export {
+  getColorClasses,
+  getPaletteClasses,
+  type ColorRecipeOptions,
+  type PaletteRecipeOptions,
+  type SemanticColor,
+  type PaletteColor
+} from './color'
+
+export {
+  getBorderClasses,
+  type BorderRecipeOptions,
+  type BorderThickSide,
+  type BorderStyle,
+  type BorderWidth,
+  type RadiusStep
+} from './border'
+
+export {
+  getShadowClasses,
+  getOpacityClasses,
+  getZIndexClasses,
+  getIconSizeClasses,
+  getAspectRatioClasses,
+  type ShadowRecipeOptions,
+  type OpacityRecipeOptions,
+  type ZIndexRecipeOptions,
+  type IconSizeRecipeOptions,
+  type AspectRatioRecipeOptions,
+  type ShadowStep,
+  type ShadowInsetStep,
+  type OpacityRole,
+  type ZIndexRole,
+  type IconSize,
+  type AspectRatio
+} from './effects'
+
+export {
+  getMotionClasses,
+  type MotionRecipeOptions,
+  type MotionAnimation,
+  type MotionTransition,
+  type MotionDuration,
+  type MotionEasing
+} from './motion'
 
 export {
   getSkeletonClasses,

@@ -18,6 +18,9 @@ const readStyles = (fileName: string): string =>
 const componentsCss = readStyles('components.css')
 const utilitiesCss = readStyles('utilities.css')
 const generatedCss = readStyles('utilities.generated.css')
+const manifest = JSON.parse(
+  fs.readFileSync(path.join(__dirname, '..', 'ui-contract.manifest.json'), 'utf8')
+) as { recipeFamilies: { text: { fontSizes: number[] } } }
 
 describe('footer surface option', () => {
   it('emits a surface modifier alongside the appearance', () => {
@@ -51,6 +54,25 @@ describe('text weight option', () => {
   it('only offers weights the generated utilities provide', () => {
     for (const weight of [400, 500, 600, 700, 800, 900]) {
       expect(generatedCss).toContain(`.sp-font-${weight} {`)
+    }
+  })
+})
+
+describe('text fontSize option', () => {
+  it('emits the token-derived sp-font-size-{px} utility', () => {
+    expect(getTextClasses({ size: 'xl', fontSize: 18 })).toBe(
+      'sp-text sp-text--xl sp-text--default sp-font-size-18'
+    )
+    expect(getTextClasses()).not.toContain('sp-font-size-')
+  })
+
+  it('only offers sizes the generated utilities and contract provide', () => {
+    const sizes = [12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72, 96, 128]
+    expect(manifest.recipeFamilies.text.fontSizes).toEqual(sizes)
+    for (const px of sizes) {
+      expect(generatedCss).toContain(
+        `.sp-font-size-${px} {\n    font-size: var(--sp-font-size-${px});`
+      )
     }
   })
 })

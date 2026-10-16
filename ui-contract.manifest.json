@@ -126,7 +126,9 @@
       "spectreBaseStylesPath",
       "spectreComponentsStylesPath",
       "spectreIndexStylesPath",
-      "spectreUtilitiesStylesPath"
+      "spectreUtilitiesStylesPath",
+      "spectreThemeModes",
+      "spectreDensityModes"
     ],
     "functions": [
       "getAlertClasses",
@@ -184,6 +186,22 @@
       "getSidebarLinkClasses",
       "getSidebarToggleClasses",
       "getSkeletonClasses",
+      "getLinkClasses",
+      "getSurfaceClasses",
+      "getDividerClasses",
+      "getElevationClasses",
+      "getChartColorClasses",
+      "getMotionClasses",
+      "getSpacingClasses",
+      "getLayoutClasses",
+      "getColorClasses",
+      "getPaletteClasses",
+      "getBorderClasses",
+      "getShadowClasses",
+      "getOpacityClasses",
+      "getZIndexClasses",
+      "getIconSizeClasses",
+      "getAspectRatioClasses",
       "getSpinnerClasses",
       "getStackClasses",
       "getTagClasses",
@@ -569,7 +587,78 @@
       "families": ["sans", "serif", "mono"],
       "transforms": ["none", "uppercase", "lowercase", "capitalize"],
       "weights": [400, 500, 600, 700, 800, 900],
-      "leadings": ["none", "tight", "snug", "normal", "relaxed", "loose"]
+      "leadings": ["none", "tight", "snug", "normal", "relaxed", "loose"],
+      "fontSizes": [12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72, 96, 128],
+      "trackings": ["tightest", "tighter", "tight", "normal", "wide", "wider", "widest"],
+      "decorations": ["thin", "base", "thick"],
+      "underlineOffsets": ["sm", "md", "lg"]
+    },
+    "link": {
+      "fn": "getLinkClasses",
+      "tones": ["default", "onInverse"],
+      "decorations": ["thin", "base", "thick"],
+      "underlineOffsets": ["sm", "md", "lg"]
+    },
+    "surface": {
+      "fn": "getSurfaceClasses",
+      "surfaces": ["page", "card", "subtle", "overlay", "input", "inverse", "hero"]
+    },
+    "divider": {
+      "fn": "getDividerClasses"
+    },
+    "elevation": {
+      "fn": "getElevationClasses",
+      "levels": ["flat", "raised", "overlay", "modal"]
+    },
+    "chartColor": {
+      "fn": "getChartColorClasses",
+      "properties": ["fill", "stroke", "bg", "text", "border"]
+    },
+    "motion": {
+      "fn": "getMotionClasses",
+      "animations": ["fadeIn", "fadeOut", "slideUp", "slideDown", "scaleIn", "bounce", "pulse", "shake"],
+      "transitions": ["all", "colors", "opacity", "transform", "none"]
+    },
+    "spacing": {
+      "fn": "getSpacingClasses",
+      "tokenGroup": "--sp-space-*",
+      "responsiveBreakpoints": ["sm", "md", "lg", "xl", "2xl"]
+    },
+    "layout": {
+      "fn": "getLayoutClasses",
+      "responsiveBreakpoints": ["sm", "md", "lg", "xl", "2xl"]
+    },
+    "color": {
+      "fn": "getColorClasses",
+      "tokenGroup": "--sp-color-{brand,accent,neutral,success,warning,error,info,indigo,violet}-*, --sp-color-{black,white}"
+    },
+    "palette": {
+      "fn": "getPaletteClasses",
+      "tokenGroup": "--sp-color-palette-*"
+    },
+    "border": {
+      "fn": "getBorderClasses",
+      "tokenGroup": "--sp-border-style-*, --sp-border-width-*, --sp-radius-*"
+    },
+    "shadow": {
+      "fn": "getShadowClasses",
+      "tokenGroup": "--sp-shadow-*, --sp-shadow-inset-*"
+    },
+    "opacity": {
+      "fn": "getOpacityClasses",
+      "tokenGroup": "--sp-opacity-*"
+    },
+    "zIndex": {
+      "fn": "getZIndexClasses",
+      "tokenGroup": "--sp-z-index-*"
+    },
+    "iconSize": {
+      "fn": "getIconSizeClasses",
+      "tokenGroup": "--sp-icon-*"
+    },
+    "aspectRatio": {
+      "fn": "getAspectRatioClasses",
+      "tokenGroup": "--sp-aspect-ratio-*"
     },
     "tabs": {
       "fn": "getTabsClasses",

@@ -736,9 +736,21 @@ describe('getGridClasses', () => {
     )
   })
 
-  it('omits the order class when order is none', () => {
+  it('emits the order-0 reset when order is none', () => {
     expect(getGridClasses({ order: 'none' })).toBe(
-      'sp-grid sp-grid--gap-md sp-grid-cols-1'
+      'sp-grid sp-grid--gap-md sp-grid-cols-1 sp-order-none'
+    )
+    expect(getGridClasses({ order: { base: 1, md: 'none' } })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1 sp-order-1 sp-md-order-none'
+    )
+  })
+
+  it('returns per-breakpoint column overrides', () => {
+    expect(getGridClasses({ columns: { base: 1, md: 2, lg: 4 } })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-1 sp-md-grid-cols-2 sp-lg-grid-cols-4'
+    )
+    expect(getGridClasses({ columns: 3 })).toBe(
+      'sp-grid sp-grid--gap-md sp-grid-cols-3'
     )
   })
 

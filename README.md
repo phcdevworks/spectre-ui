@@ -16,7 +16,7 @@ to consume Spectre's visual language.
 | Project team           | `project-design`                   |
 | Repository role        | Spectre L2 CSS and recipe contract |
 | Package/artifact       | `@phcdevworks/spectre-ui`          |
-| Current version/status | 5.6.0                              |
+| Current version/status | 5.7.0                              |
 
 ## Standard Workflow
 
@@ -281,7 +281,23 @@ recipe axes may retain documented visual fallbacks.
 | Fieldset             | `getFieldsetClasses`           | —                                                                                                                                                                                            | —                                    | `disabled`                                                                                                                                                                                                   |
 | Label                | `getLabelClasses`              | —                                                                                                                                                                                            | —                                    | `disabled` `required`                                                                                                                                                                                        |
 | Text                 | `getTextClasses`               | color: `default` `muted` `subtle` `meta` `brand` `accent` `onInverse` `onInverseMuted` `onInverseBrand` `onInverseAccent` `onSurface` `onSurfaceMuted` `onSurfaceSubtle` `onSurfaceMeta` `onSurfaceBrand` `onSurfaceAccent`, family: `sans` `serif` `mono` | `xs`–`9xl`                           | —                                                                                                                                                                                                            |
-| Text state           | `getTextClasses`               | `transform`: `none` `uppercase` `lowercase` `capitalize`, `weight`: `400`–`900` (emits `sp-font-{weight}`), `leading`: `none` `tight` `snug` `normal` `relaxed` `loose`                                                                                   | —                                    | —                                                                                                                                                                                                            |
+| Text state           | `getTextClasses`               | `transform`: `none` `uppercase` `lowercase` `capitalize`, `weight`: `400`–`900` (emits `sp-font-{weight}`), `leading`: `none` `tight` `snug` `normal` `relaxed` `loose`, `fontSize`: `12`–`128` (emits `sp-font-size-{px}`), `tracking`: `tightest`–`widest`, `decoration`: `thin` `base` `thick`, `underlineOffset`: `sm` `md` `lg` | — | `tabularNums` `balance` |
+| Link                 | `getLinkClasses`               | tone: `default` `onInverse`, `decoration`: `thin` `base` `thick`, `underlineOffset`: `sm` `md` `lg` | — | — |
+| Surface              | `getSurfaceClasses`            | surface: `page` `card` `subtle` `overlay` `input` `inverse` `hero` | — | `hover` `selected` `active` |
+| Divider              | `getDividerClasses`            | — | — | — |
+| Elevation            | `getElevationClasses`          | level: `flat` `raised` `overlay` `modal` (surface, shadow, and z-index together) | — | — |
+| Chart color          | `getChartColorClasses`         | `fill` `stroke` `bg` `text` `border`, each taking a chart role: `series-1`–`8`, `sequential-1`–`7`, `diverging-1`–`7`, `axis` `grid` `label` `bg` | — | — |
+| Motion               | `getMotionClasses`             | `animation`: `fadeIn` `fadeOut` `slideUp` `slideDown` `scaleIn` `bounce` `pulse` `shake`, `transition`: `all` `colors` `opacity` `transform` `none`, `duration`: `--sp-duration-*` step, `easing`: `--sp-easing-*` step | — | — |
+| Spacing              | `getSpacingClasses`            | `p` `px` `py` `pt` `pr` `pb` `pl` `m` `mx` `my` `mt` `mr` `mb` `ml` (margins also `auto`) `gap` `gapX` `gapY` `basis`, each a `--sp-space-*` step; `sm` `md` `lg` `xl` `2xl` take the same axes from that breakpoint up | — | — |
+| Layout               | `getLayoutClasses`             | `display` `direction` `wrap` `flex` `grow` `shrink` `justify` `items` `content` `self` `position` `inset` `top` `right` `bottom` `left` `width` `minWidth` `maxWidth` `height` `minHeight` `maxHeight` `overflow` `overflowX` `overflowY` `whitespace` `textAlign` `objectFit` `objectPosition` `aspect` `border` `listStyle` `listPosition`; `sm`–`2xl` per breakpoint | — | — |
+| Color                | `getColorClasses`              | `text` `bg` `border`, each a raw semantic step (`brand-500`, `error-700`, …) or `black` `white` | — | — |
+| Palette              | `getPaletteClasses`            | `text` `bg` `border`, each a palette hue step (`blue-500`, `phcdevworks-paper-100`, …) | — | — |
+| Border               | `getBorderClasses`             | `thick`: `all` `t` `r` `b` `l`, `style`: `--sp-border-style-*`, `width`: `--sp-border-width-*`, `radius`: `--sp-radius-*` | — | — |
+| Shadow               | `getShadowClasses`             | `shadow`: `--sp-shadow-*` or `soft` `strong`, `inset`: `--sp-shadow-inset-*` | — | — |
+| Opacity              | `getOpacityClasses`            | `role`: `--sp-opacity-*` | — | — |
+| Z-index              | `getZIndexClasses`             | `layer`: `--sp-z-index-*` | — | — |
+| Icon size            | `getIconSizeClasses`           | `size`: `--sp-icon-*` | — | — |
+| Aspect ratio         | `getAspectRatioClasses`        | `ratio`: `--sp-aspect-ratio-*` or `auto` | — | — |
 | Heading              | `getHeadingClasses`            | level: `h1`–`h6` (the full `typography.heading` preset)                                                                                                                                      | —                                    | —                                                                                                                                                                                                            |
 | Display              | `getDisplayClasses`            | level: `1`–`6` (the full `typography.display` preset)                                                                                                                                        | —                                    | —                                                                                                                                                                                                            |
 | Lead                 | `getLeadClasses`               | — (the `typography.lead` preset)                                                                                                                                                             | —                                    | —                                                                                                                                                                                                            |
@@ -501,12 +517,14 @@ remap blocks rather than by name: `--sp-layout-responsive-lg-*` (re-points the
 Motion utilities (`.sp-animate-*`) switch to their published
 `animations.reducedMotion` counterparts under `prefers-reduced-motion`.
 
-### Semantic utility classes (no recipe wrapper)
+### Semantic utility classes
 
-These primitives are intentionally plain CSS classes in
-`src/styles/utilities.css` with no recipe function — there is no variant or size
-axis to validate, so a recipe wrapper would add indirection without a
-type-safety benefit. Apply the class name directly.
+These primitives are plain CSS classes in `src/styles/utilities.css`. Each one
+is also reachable through a recipe (`getLinkClasses`, `getSurfaceClasses`,
+`getDividerClasses`, and the `getTextClasses` `decoration`, `underlineOffset`,
+`tabularNums`, and `balance` options), because framework adapters such as
+`spectre-ui-astro` can only wrap recipes. `tests/recipe-reachability.test.ts`
+guards this. In plain HTML, apply the class name directly.
 
 | Class                   | Tokens                                                                       | Usage                                                                                                                                            |
 | ----------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -534,6 +552,15 @@ hand-edited; regenerate it after a `@phcdevworks/spectre-tokens` bump and commit
 the result (`npm run validate:utilities` fails CI if it drifts). No arbitrary
 visual values are supported — a design need that doesn't fit an existing token
 step needs a token proposal to `spectre-tokens`, not a raw value in markup.
+
+The same build writes `src/internal/utility-scales.generated.ts`, the option
+maps the utility recipes validate against (`getSpacingClasses`,
+`getLayoutClasses`, `getColorClasses`, `getPaletteClasses`,
+`getBorderClasses`, `getShadowClasses`, `getOpacityClasses`,
+`getZIndexClasses`, `getIconSizeClasses`, `getAspectRatioClasses`, and the
+token axes of the other recipes). Every class in this table is reachable
+through a recipe; `tests/utility-recipe-parity.test.ts` fails if a generated
+or `utilities.css` class has no recipe path.
 
 | Family         | Class pattern                                                                                                           | Token/value source                                                                                                          |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
@@ -616,6 +643,14 @@ Root constants:
 - `spectreComponentsStylesPath`
 - `spectreIndexStylesPath`
 - `spectreUtilitiesStylesPath`
+- `spectreThemeModes` — every `data-spectre-theme` value spectre-tokens
+  publishes (`light` `dark` `high-contrast` `system`), typed as
+  `SpectreThemeMode`
+- `spectreDensityModes` — every `data-spectre-density` value (`compact`),
+  typed as `SpectreDensityMode`
+
+Both mode lists are generated from the installed tokens, so an adapter can
+type a theme or density prop without hardcoding the strings.
 
 Root recipe functions:
 
@@ -664,6 +699,22 @@ Root recipe functions:
 - `getSelectClasses`
 - `getSidebarClasses`
 - `getSkeletonClasses`
+- `getLinkClasses`
+- `getSurfaceClasses`
+- `getDividerClasses`
+- `getElevationClasses`
+- `getChartColorClasses`
+- `getMotionClasses`
+- `getSpacingClasses`
+- `getLayoutClasses`
+- `getColorClasses`
+- `getPaletteClasses`
+- `getBorderClasses`
+- `getShadowClasses`
+- `getOpacityClasses`
+- `getZIndexClasses`
+- `getIconSizeClasses`
+- `getAspectRatioClasses`
 - `getSpinnerClasses`
 - `getStackClasses`
 - `getStatClasses`
