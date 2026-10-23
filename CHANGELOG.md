@@ -6,6 +6,10 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [5.8.0] - 2026-10-23
+
+**Release Title:** Icon Libraries and Action Contract
+
 Contract change type: semantic change
 
 ### Changed
@@ -2057,7 +2061,18 @@ Contract change type: additive
 - **Features**: Includes TypeScript build pipeline, Tailwind preset, recipe
   helpers, and precompiled CSS modules.
 
-[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/4.2.0...HEAD
+[unreleased]: https://github.com/phcdevworks/spectre-ui/compare/5.8.0...HEAD
+[5.8.0]: https://github.com/phcdevworks/spectre-ui/compare/5.7.0...5.8.0
+[5.7.0]: https://github.com/phcdevworks/spectre-ui/compare/5.6.0...5.7.0
+[5.6.0]: https://github.com/phcdevworks/spectre-ui/compare/5.5.0...5.6.0
+[5.5.0]: https://github.com/phcdevworks/spectre-ui/compare/5.4.0...5.5.0
+[5.4.0]: https://github.com/phcdevworks/spectre-ui/compare/5.3.0...5.4.0
+[5.3.0]: https://github.com/phcdevworks/spectre-ui/compare/5.2.0...5.3.0
+[5.2.0]: https://github.com/phcdevworks/spectre-ui/compare/5.1.0...5.2.0
+[5.1.0]: https://github.com/phcdevworks/spectre-ui/compare/5.0.1...5.1.0
+[5.0.1]: https://github.com/phcdevworks/spectre-ui/compare/5.0.0...5.0.1
+[5.0.0]: https://github.com/phcdevworks/spectre-ui/compare/4.3.0...5.0.0
+[4.3.0]: https://github.com/phcdevworks/spectre-ui/compare/4.2.0...4.3.0
 [4.2.0]: https://github.com/phcdevworks/spectre-ui/compare/4.1.1...4.2.0
 [4.1.1]: https://github.com/phcdevworks/spectre-ui/compare/4.1.0...4.1.1
 [4.1.0]: https://github.com/phcdevworks/spectre-ui/compare/4.0.0...4.1.0
