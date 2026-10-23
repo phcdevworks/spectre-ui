@@ -29,6 +29,8 @@
       "description": "Layer 2 styling contract between @phcdevworks/spectre-tokens and downstream adapters or apps. Provides CSS bundles and class-recipe functions.",
       "exports": [
         ".",
+        "./icons",
+        "./icons/*",
         "./index.css",
         "./base.css",
         "./components.css",
@@ -43,7 +45,7 @@
       ],
       "notes": [
         "Layer 2 of the Spectre system. May depend only on spectre-tokens and external libraries.",
-        "CSS bundles and class-recipe functions are the primary public surface.",
+        "CSS bundles, class-recipe functions, and framework-agnostic icon data are the primary public surface.",
         "Known consumers: spectre-components, spectre-shell, spectre-ui-astro (declared in the central spectre-manifest registry)."
       ]
     },
@@ -95,6 +97,7 @@
     "generationRules": [
       "Import CSS bundles from @phcdevworks/spectre-ui (index.css, base.css, components.css, utilities.css).",
       "Use class-recipe functions (e.g. getButtonClasses, getCardClasses) rather than writing raw Tailwind class strings.",
+      "Import icon data from @phcdevworks/spectre-ui/icons or one of its icon-set subpaths without adding a framework runtime.",
       "Run npm run check before staging any commit — all checks must pass."
     ],
     "usageGuidance": [

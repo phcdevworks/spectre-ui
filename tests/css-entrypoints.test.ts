@@ -27,6 +27,24 @@ const ALLOWED_SHARED_SELECTORS = new Set([
   '[data-spectre-density="compact"]'
 ])
 
+// spectre-tokens 4.15.0 emits one action-ramp root block per selectable
+// family; every bundle carries the token layer, so these repeat too.
+const tokensCss = fs.readFileSync(
+  path.join(
+    __dirname,
+    '..',
+    'node_modules',
+    '@phcdevworks',
+    'spectre-tokens',
+    'dist',
+    'index.css'
+  ),
+  'utf8'
+)
+for (const match of tokensCss.matchAll(/:root\[data-spectre-action="[a-z0-9-]+"\]/g)) {
+  ALLOWED_SHARED_SELECTORS.add(match[0])
+}
+
 const ENTRYPOINT_CONTRACTS = [
   {
     fileName: 'base.css',
@@ -93,7 +111,7 @@ const ENTRYPOINT_CONTRACTS = [
     // Raised again 2026-10-15 (base.css grew to 186477 bytes) for the
     // spectre-tokens ^4.14.0 bump: font 7xl–9xl presets and the numeric
     // --sp-font-size-* scale in the standalone token block.
-    maxBytes: 187000
+    maxBytes: 203000
   },
   {
     fileName: 'components.css',
@@ -178,7 +196,7 @@ const ENTRYPOINT_CONTRACTS = [
     // accent roles, and table caption/footer and select option rules.
     // Raised again 2026-10-15 (components.css grew to 409357 bytes): the
     // spectre-tokens ^4.14.0 token block and the sp-text--7xl–9xl presets.
-    maxBytes: 409900
+    maxBytes: 430000
   },
   {
     fileName: 'utilities.css',
@@ -286,7 +304,7 @@ const ENTRYPOINT_CONTRACTS = [
     // head recipe, and text-decoration utilities.
     // Raised again 2026-10-15 (utilities.css grew to 588377 bytes): the
     // spectre-tokens ^4.14.0 token block and the sp-font-size-* utilities.
-    maxBytes: 588900
+    maxBytes: 605500
   }
 ] as const
 

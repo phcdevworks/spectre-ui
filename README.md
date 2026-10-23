@@ -243,18 +243,18 @@ recipe axes may retain documented visual fallbacks.
 
 | Recipe               | Function                       | Variants                                                                                                                                                                                     | Sizes                                | Common boolean flags                                                                                                                                                                                         |
 | -------------------- | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Button               | `getButtonClasses`             | `primary` `secondary` `ghost` `danger` `success` `cta` `accent` `accentOutline` `inverse` `warning` `link` `light` `dark`                                                                                    | `sm` `md` `lg`                       | `disabled` `loading` `fullWidth` `pill` `iconOnly` `compact`                                                                                                                                                 |
+| Button               | `getButtonClasses`             | `primary` `secondary` `ghost` `danger` `success` `cta` `action` `accent` `accentOutline` `inverse` `warning` `link` `light` `dark`                                                                           | `sm` `md` `lg`                       | `disabled` `loading` `fullWidth` `pill` `iconOnly` `compact`                                                                                                                                                 |
 | Badge                | `getBadgeClasses`              | `primary` `secondary` `success` `warning` `danger` `neutral` `info` `ghost` `outline` `accent` `cta` `inverse` `brand`                                                                       | `sm` `md` `lg`                       | `interactive` `dot` `disabled` `loading` `fullWidth`, `accentRail`: `top`\|`right`\|`bottom`\|`left`, `accentRailColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent`                   |
 | Card                 | `getCardClasses`               | `elevated` `flat` `outline` `ghost`                                                                                                                                                          | `padded`: `sm` `md` `lg`             | `interactive` `padded` (also accepts a size) `fullHeight` `disabled` `loading`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent` |
 | Card bleed           | `getCardBleedClasses`          | —                                                                                                                                                                                            | `padded`: `sm` `md` `lg`             | `edges`: single edge, an array, or `'all'`                                                                                                                                                                   |
 | Input                | `getInputClasses`              | —                                                                                                                                                                                            | `sm` `md` `lg`                       | `disabled` `loading` `fullWidth` `pill`                                                                                                                                                                      |
 | Input state          | `getInputClasses`              | `state`: `default` `error` `success` `disabled` `loading`                                                                                                                                    | —                                    | —                                                                                                                                                                                                            |
-| IconBox              | `getIconBoxClasses`            | `primary` `secondary` `success` `warning` `danger` `info` `neutral` `ghost` `accent` `cta` `outline`                                                                                         | `xs` `sm` `md` `lg`                  | `interactive` `disabled` `loading` `pill` `fullWidth`                                                                                                                                                        |
+| IconBox              | `getIconBoxClasses`            | `primary` `secondary` `success` `warning` `danger` `info` `neutral` `ghost` `accent` `cta` `outline`                                                                                         | `xs` `sm` `md` `lg`                  | `interactive` `disabled` `loading` `pill` `fullWidth`, `iconSize`: `xs`\|`sm`\|`md`\|`lg`\|`xl`\|`2xl`\|`3xl`                                                                                                                                                        |
 | PricingCard          | `getPricingCardClasses`        | —                                                                                                                                                                                            | —                                    | `featured` `interactive` `disabled` `loading` `fullHeight`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent`                     |
 | Rating               | `getRatingClasses`             | —                                                                                                                                                                                            | `sm` `md` `lg`                       | `interactive` `disabled` `loading` `pill` `fullWidth`                                                                                                                                                        |
 | Testimonial          | `getTestimonialClasses`        | `elevated` `flat` `outline` `ghost`                                                                                                                                                          | —                                    | `interactive` `disabled` `loading` `fullHeight`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent`                                |
-| Quote                | `getQuoteClasses`              | surface: `plain` `subtle` `inverse`, accent: `edge` (default) `mark` `none`, accentColor: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent` (default), align: `start` `center` | `sm` `md` `lg` `xl` | attribution: `avatar` |
-| Stat                 | `getStatClasses`               | align: `start` `center` `end`, surface: `page` `surface` `inverse`                                                                                                                         | `sm` `md` `lg` `xl` | — |
+| Quote                | `getQuoteClasses`              | surface: `plain` `subtle` `inverse`, accent: `edge` (default) `mark` `none`, accentColor: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent` (default)\|`action`, align: `start` `center` | `sm` `md` `lg` `xl` | attribution: `avatar` |
+| Stat                 | `getStatClasses`               | align: `start` `center` `end`, surface: `page` `surface` `inverse`, unitTone: `accent` (default) `action`                                                                                   | `sm` `md` `lg` `xl` | — |
 | Alert                | `getAlertClasses`              | `info` `success` `warning` `danger` `neutral` `brand`                                                                                                                                        | `sm` `md` `lg`                       | `dismissed` `dismissible`                                                                                                                                                                                    |
 | Avatar               | `getAvatarClasses`             | —                                                                                                                                                                                            | `xs` `sm` `md` `lg` `xl`             | shape: `circle` `square`                                                                                                                                                                                     |
 | Tag                  | `getTagClasses`                | `default` `primary` `secondary` `success` `warning` `danger` `info` `neutral` `accent` `cta` `outline` `ghost`                                                                               | `sm` `md` `lg`                       | `dismissible` `selected` `disabled` `loading` `interactive` `fullWidth`                                                                                                                                      |
@@ -270,10 +270,10 @@ recipe axes may retain documented visual fallbacks.
 | Stack                | `getStackClasses`              | direction: `vertical` `horizontal`, basis: `sidebar`, align: `center` `stretch`, gap: `sm` `md` `lg` `xl` `2xl` `3xl` `4xl`                                                                  | —                                    | —                                                                                                                                                                                                            |
 | Section              | `getSectionClasses`            | spacing: `sm` `md` `lg` `xl` `2xl` `3xl` `4xl`, gap: `sm` `md` `lg` `xl` `2xl` `3xl` `4xl`, hero: `sm` `md` `lg` (replaces `spacing`)                                                        | —                                    | `attached` (drops top padding for a band that belongs to the section above)                                                                                                                                  |
 | Section head         | `getSectionHeadClasses`        | layout: `stacked` `split`, align (stacked): `start` `center`                                                                                                                                 | —                                    | — |
-| Prose                | `getProseClasses`              | —                                                                                                                                                                                            | —                                    | `accentMarkers`                                                                                                                                                                                                            |
+| Prose                | `getProseClasses`              | —                                                                                                                                                                                            | `md` `lg` `xl`                       | `accentMarkers`                                                                                                                                                                                                            |
 | Grid                 | `getGridClasses`               | columns: `1` `2` `3` `4` `6` `12` `auto`                                                                                                                                                     | gap/columnGap/rowGap: `sm` `md` `lg` `xl` `2xl` `3xl` `4xl` | `span`/`offset`/`rowSpan`/`rowOffset`/`order`: `1`–`12`/`0`–`11`/`first`\|`last`\|`none`\|`1`–`12`, per-breakpoint `{ base, md, lg }`                                                                       |
 | Sidebar              | `getSidebarClasses`            | —                                                                                                                                                                                            | —                                    | `bordered`                                                                                                                                                                                                   |
-| Footer               | `getFooterClasses`             | appearance: `dark` (default) `light` `system`, surface: `page` `card` `subtle` `inverse` `hero`                                                                                              | —                                    | `bordered` `fullWidth`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent`                                                        |
+| Footer               | `getFooterClasses`             | appearance: `dark` (default) `light` `system`, surface: `page` `card` `subtle` `inverse` `hero` `action`                                                                                     | —                                    | `bordered` `fullWidth`, `accent`: `top`\|`right`\|`bottom`\|`left`, `accentColor`: `neutral`\|`brand`\|`info`\|`success`\|`warning`\|`danger`\|`cta`\|`accent`                                                        |
 | Checkbox             | `getCheckboxClasses`           | —                                                                                                                                                                                            | —                                    | `checked` `disabled`                                                                                                                                                                                         |
 | Radio                | `getRadioClasses`              | —                                                                                                                                                                                            | —                                    | `checked` `disabled`                                                                                                                                                                                         |
 | Select               | `getSelectClasses`             | size: `sm` `md` `lg`, state: `default` `invalid` `success`                                                                                                                                   | —                                    | `fullWidth` `pill` `disabled` `focused` `loading`                                                                                                                                                            |
@@ -498,9 +498,32 @@ The split section head puts the title block in columns 1–6 and the lead in
 columns 7–12 of a twelve-column grid from the `lg` breakpoint, and stacks them
 below it; the stacked head takes `align: 'center'`.
 
+#### Action colour
+
+`spectre-tokens` 4.15.0 adds `action.*`, the theme's own action colour. A theme
+picks the colour family with one attribute on the root element, and the hover
+and active shades follow:
+
+```html
+<html data-spectre-action="emerald">
+```
+
+```ts
+getButtonClasses({ variant: 'action' }) // fill, hover, active, focus ring
+getStatClasses({ unitTone: 'action' }) // unit in action.onPage / onSurface
+getQuoteClasses({ accentColor: 'action' }) // rail and mark in action.rail
+```
+
+`getFooterClasses({ surface: 'action' })` paints the footer in the action
+colour with `action.text` for every text role, and links underline on hover.
+An inverse stat keeps its `onInverse` accent unit, because `action` has no
+inverse role. The action button has no disabled colour; the shared disabled
+opacity applies.
+
 `getDisplayClasses({ level })` (`1`–`6`) applies the `typography.display`
 presets, for hero and marketing headings one scale step larger than the matching
-heading level. `getLeadClasses()` applies `typography.lead` to an introductory
+heading level. Headings and display text are mobile first (`spectre-tokens`
+4.15.0): below 768px they use smaller sizes, and from `md` up the full ones. `getLeadClasses()` applies `typography.lead` to an introductory
 paragraph.
 
 ### Token parity
@@ -513,6 +536,9 @@ those values instead. Two more groups are consumed through spectre-tokens' own
 remap blocks rather than by name: `--sp-layout-responsive-lg-*` (re-points the
 `xl`–`4xl` layout steps at the `lg` breakpoint) and `--sp-control-compact-*`
 (re-points the `--sp-control-*` steps under `[data-spectre-density="compact"]`).
+`--sp-typography-responsive-md-*` re-points the heading and display roles at
+the `md` breakpoint, and the `--sp-action-{50..900}` ramp sits behind the
+`action.*` roles.
 
 Motion utilities (`.sp-animate-*`) switch to their published
 `animations.reducedMotion` counterparts under `prefers-reduced-motion`.
@@ -626,6 +652,7 @@ wins. `.sp-prose` spaces its blocks with `layout.prose.flow` (paragraphs,
 lists, list items, blockquotes, figures, rules, and the space before and after
 headings, which get no type styling) and styles `<del>`, `<ins>`, `<s>`, list
 markers (`getProseClasses({ accentMarkers: true })` for the accent colour),
+the body text size (`getProseClasses({ size: 'lg' })`; `md`, `lg`, or `xl`),
 `<dl>`/`<dt>`/`<dd>`, `<figcaption>`, and `<caption>`. `.sp-table` styles
 `<caption>` and `<tfoot>`, and `.sp-select` styles options and option groups
 where the engine allows it (`appearance: base-select`). The `sp-font-{weight}`
@@ -799,6 +826,8 @@ Root recipe helper functions:
 - `getRatingTextClasses`
 - `getSidebarBackdropClasses`
 - `getSidebarGroupClasses`
+- `getSidebarGroupContentClasses`
+- `getSidebarGroupIconClasses`
 - `getSidebarGroupSummaryClasses`
 - `getSidebarHeaderClasses`
 - `getSidebarLinkClasses`
@@ -833,6 +862,136 @@ state TypeScript types defined by those recipes.
 - `@phcdevworks/spectre-ui/components.css`
 - `@phcdevworks/spectre-ui/utilities.css`
 
+### Icons (`@phcdevworks/spectre-ui/icons`)
+
+The `./icons` subpath ships the [Lucide](https://lucide.dev) icon set as plain
+SVG data. It comes with the package (`lucide` is a pinned dependency), so there
+is nothing extra to install, and it needs no React, Astro, Lit, or DOM runtime.
+The root `@phcdevworks/spectre-ui` entry does not include it.
+
+```ts
+import {
+  House,
+  Search,
+  Settings,
+  iconAttributes,
+  type IconNode
+} from '@phcdevworks/spectre-ui/icons'
+```
+
+Every Lucide icon is a named export in PascalCase (`house` is `House`,
+`circle-alert` is `CircleAlert`). Each one is an `IconNode`: the children of an
+`<svg>`, as `[tag, attributes]` pairs.
+
+```ts
+House
+// [
+//   ['path', { d: 'M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8' }],
+//   ['path', { d: 'M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z' }]
+// ]
+```
+
+Draw them inside an `<svg>` with `iconAttributes`, Lucide's root attributes
+(`viewBox="0 0 24 24"`, `fill="none"`, `stroke="currentColor"`,
+`stroke-width="2"`, round caps and joins). Size the icon with a `.sp-icon-*`
+class (`getIconSizeClasses`) or inside `getIconBoxClasses`; CSS width and
+height override the 24px attributes, and `currentColor` takes the text colour.
+
+```ts
+// Vanilla DOM
+const ns = 'http://www.w3.org/2000/svg'
+const svg = document.createElementNS(ns, 'svg')
+for (const [key, value] of Object.entries(iconAttributes)) {
+  svg.setAttribute(key, String(value))
+}
+svg.setAttribute('class', 'sp-icon-md')
+for (const [tag, attrs] of House) {
+  const child = document.createElementNS(ns, tag)
+  for (const [key, value] of Object.entries(attrs)) {
+    child.setAttribute(key, String(value))
+  }
+  svg.append(child)
+}
+```
+
+```astro
+---
+// Astro (spectre-ui-astro)
+import { House, iconAttributes } from '@phcdevworks/spectre-ui/icons'
+---
+<svg {...iconAttributes} class="sp-icon-md" aria-hidden="true">
+  {House.map(([Tag, attrs]) => <Tag {...attrs} />)}
+</svg>
+```
+
+Lit (`spectre-components`) can serialise the nodes into an `svg` template the
+same way, for example with `unsafeSVG`. This package renders nothing itself:
+framework components belong in the adapters.
+
+Import only the icons you use. The subpath is free of side effects, so a
+production bundle keeps just those icons (one icon is well under 2 KB);
+`import * as icons` pulls in the whole set.
+
+Also exported:
+
+- `iconAttributes`: Lucide's root `<svg>` attributes.
+- `iconAliases`: older and alternate names, each mapped to its current name.
+  Each alias is the same data as its target.
+- `lucideVersion`: the pinned Lucide release.
+- `iconSet`: the package, version, licence, and icon count.
+- Types `IconNode` and `IconAttributes`.
+
+**Names stay stable.** `lucide` is pinned to an exact version. When Lucide
+renames an icon it keeps the old name as an alias, so the name keeps working.
+`scripts/icon-snapshots/lucide.json` records every exported name, and
+`npm run validate:icons` fails if an update removes one. Removing a name only
+happens deliberately, in a major release.
+
+**License.** Lucide is ISC-licensed (copyright Lucide Icons and Contributors),
+and parts are MIT-licensed from Feather (copyright Cole Bemis); its license
+installs with the `lucide` package. Keep that notice when you redistribute
+the icons.
+
+#### More icon sets
+
+Five more sets ship the same way: each subpath re-exports a pinned npm
+package's own icon values by name, so a bundle keeps only the icons you
+import, and no framework runtime comes with them. Each one also exports
+`iconSet` (package, version, licence, count).
+
+| Subpath | Package | Icons | Each value |
+| --- | --- | --- | --- |
+| `@phcdevworks/spectre-ui/icons` | `lucide` (ISC) | 2,167 | `IconNode` (see above) |
+| `@phcdevworks/spectre-ui/icons/mdi` | `@mdi/js`, Material Design Icons (Apache-2.0) | 7,447 | SVG path string for a `0 0 24 24` viewBox |
+| `@phcdevworks/spectre-ui/icons/brands` | `simple-icons`, brand logos (CC0) | 3,362 | `{ title, slug, path, hex, source, guidelines }`, `0 0 24 24` |
+| `@phcdevworks/spectre-ui/icons/fa-solid` | Font Awesome Free solid (CC-BY-4.0 icons) | 2,001 | `{ prefix, iconName, icon: [width, height, aliases, unicode, path] }` |
+| `@phcdevworks/spectre-ui/icons/fa-regular` | Font Awesome Free regular | 273 | same |
+| `@phcdevworks/spectre-ui/icons/fa-brands` | Font Awesome Free brands | 609 | same |
+
+```ts
+import { mdiHome } from '@phcdevworks/spectre-ui/icons/mdi'
+import { siGithub } from '@phcdevworks/spectre-ui/icons/brands'
+import { faHouse } from '@phcdevworks/spectre-ui/icons/fa-solid'
+
+// <svg viewBox="0 0 24 24" fill="currentColor"><path d={mdiHome} /></svg>
+// <svg viewBox="0 0 24 24" fill="currentColor"><path d={siGithub.path} /></svg>
+const [width, height, , , path] = faHouse.icon
+// <svg viewBox={`0 0 ${width} ${height}`} fill="currentColor"><path d={path} /></svg>
+```
+
+Names follow each package: `mdi*`, `si*`, `fa*`. Size with `.sp-icon-*` and
+colour with `currentColor`, as with Lucide. Do not style with `siX.hex`: it is
+the brand's own colour, not a Spectre token. Each set has its own name snapshot
+in `scripts/icon-snapshots/`, checked by `npm run validate:icons`.
+
+Licences: Material Design Icons is Apache-2.0. Font Awesome Free icons are
+CC-BY-4.0 and need attribution to Font Awesome (fontawesome.com) where you use
+them. Simple Icons is CC0, but brand logos are trademarks; follow each brand's
+guidelines (`siX.guidelines`). Logos that Simple Icons lists under a
+copyleft, share-alike, non-commercial, no-derivatives, or custom licence are
+left out (104 in 16.35.0); CC-BY logos are kept and need attribution to their
+owner. Each licence installs with its package.
+
 ## Public Contract Guarantees
 
 `ui-contract.manifest.json` defines the public styling contract for this
@@ -841,6 +1000,7 @@ package.
 It covers:
 
 - CSS entry points
+- the `./icons` subpath and its icon-name snapshot
 - root package constants and recipe function exports
 - recipe families, variants, sizes, and public states
 
@@ -891,9 +1051,11 @@ inline in a `Stack` row (see `align: 'stretch'` on `getStackClasses`).
 For collapsible navigation sections, apply `getSidebarGroupClasses()` to a
 native `details` element and `getSidebarGroupSummaryClasses()` to its `summary`.
 The CSS removes the browser marker, styles the summary as an interactive section
-label, and rotates a consumer-provided `.sp-sidebar__group-icon` when the group
-is open. Wrap the nested links in `.sp-sidebar__group-content` for the standard
-bottom spacing. Open/closed behavior remains native to `details`; this package
+label, and rotates a consumer-provided icon (`getSidebarGroupIconClasses()`)
+when the group is open. Wrap the nested links in
+`getSidebarGroupContentClasses()` for the standard bottom spacing. The summary
+and `getSidebarToggleClasses` accept `hovered` and `focused` to force those
+states. Open/closed behavior remains native to `details`; this package
 returns class strings and does not render markup.
 
 ## Downstream Boundaries

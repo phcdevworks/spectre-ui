@@ -49,26 +49,27 @@ describe('getContainerClasses', () => {
     )
   })
 
-  // Regression for TODO.md "Shell — Nav And Footer Container Seam": sp-nav
-  // and sp-footer are flex containers with their own inline padding, so a
-  // nested sp-container needs an explicit width to fill that flex item and
-  // must not stack a second inline inset on top of the nav/footer padding.
-  it('fills the flex item and drops inline padding when nested inside sp-nav/sp-footer', () => {
+  // sp-nav and sp-footer are flex containers, so a nested container (or the
+  // <sp-container> host spectre-components renders) needs an explicit width
+  // to fill that flex item. The nav/footer, not the container, drops its
+  // inline padding; see tests/child-theme-text-and-layout.test.ts.
+  it('fills the flex item when nested inside sp-nav/sp-footer', () => {
     const cssPath = path.join(__dirname, '..', 'dist', 'utilities.css')
     const css = fs.readFileSync(cssPath, 'utf8')
     const root = postcss.parse(css, { from: cssPath })
 
     let matchedRule: import('postcss').Rule | undefined
     root.walkRules((rule) => {
-      if (rule.selector.includes('.sp-nav') && rule.selector.includes('> .sp-container')) {
+      if (rule.selector.includes('.sp-nav') && rule.selector.includes('sp-container)')) {
         matchedRule = rule
       }
     })
 
     expect(matchedRule).toBeDefined()
     expect(matchedRule?.selector).toContain('.sp-footer')
+    expect(matchedRule?.selector).toContain(':where(.sp-container, sp-container)')
     expect(matchedRule?.toString()).toContain('width: 100%')
-    expect(matchedRule?.toString()).toContain('padding-inline: 0')
+    expect(matchedRule?.toString()).not.toContain('padding-inline')
   })
 })
 

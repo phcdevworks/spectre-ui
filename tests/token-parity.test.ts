@@ -66,7 +66,37 @@ const INTENTIONALLY_UNREFERENCED: Record<string, string> = {
   '--sp-control-compact-md-icon-size': 'consumed through the token density remap',
   '--sp-control-compact-lg-height': 'consumed through the token density remap',
   '--sp-control-compact-lg-padding-inline': 'consumed through the token density remap',
-  '--sp-control-compact-lg-icon-size': 'consumed through the token density remap'
+  '--sp-control-compact-lg-icon-size': 'consumed through the token density remap',
+  // spectre-tokens' @media (min-width: md) block re-points the heading and
+  // display roles at these; recipes consume the roles.
+  '--sp-typography-responsive-md-heading-h1-size': 'consumed through the token md remap',
+  '--sp-typography-responsive-md-heading-h1-line-height': 'consumed through the token md remap',
+  '--sp-typography-responsive-md-heading-h2-size': 'consumed through the token md remap',
+  '--sp-typography-responsive-md-heading-h2-line-height': 'consumed through the token md remap',
+  '--sp-typography-responsive-md-heading-h3-size': 'consumed through the token md remap',
+  '--sp-typography-responsive-md-heading-h3-line-height': 'consumed through the token md remap',
+  '--sp-typography-responsive-md-heading-h4-size': 'consumed through the token md remap',
+  '--sp-typography-responsive-md-heading-h4-line-height': 'consumed through the token md remap',
+  '--sp-typography-responsive-md-heading-h5-size': 'consumed through the token md remap',
+  '--sp-typography-responsive-md-heading-h5-line-height': 'consumed through the token md remap',
+  '--sp-typography-responsive-md-display-1-size': 'consumed through the token md remap',
+  '--sp-typography-responsive-md-display-1-line-height': 'consumed through the token md remap',
+  '--sp-typography-responsive-md-display-2-size': 'consumed through the token md remap',
+  '--sp-typography-responsive-md-display-2-line-height': 'consumed through the token md remap',
+  '--sp-typography-responsive-md-display-3-size': 'consumed through the token md remap',
+  '--sp-typography-responsive-md-display-3-line-height': 'consumed through the token md remap',
+  // spectre-tokens' [data-spectre-action] blocks swap this ramp behind the
+  // action.* roles; recipes consume the roles.
+  '--sp-action-50': 'consumed through the token action roles',
+  '--sp-action-100': 'consumed through the token action roles',
+  '--sp-action-200': 'consumed through the token action roles',
+  '--sp-action-300': 'consumed through the token action roles',
+  '--sp-action-400': 'consumed through the token action roles',
+  '--sp-action-500': 'consumed through the token action roles',
+  '--sp-action-600': 'consumed through the token action roles',
+  '--sp-action-700': 'consumed through the token action roles',
+  '--sp-action-800': 'consumed through the token action roles',
+  '--sp-action-900': 'consumed through the token action roles'
 }
 
 describe('spectre-tokens parity', () => {

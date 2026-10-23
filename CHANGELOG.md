@@ -6,6 +6,98 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+Contract change type: semantic change
+
+### Changed
+
+- `@phcdevworks/spectre-tokens` range moves to `^4.15.0`. Every bundle
+  inlines the new token block (the `action` role, one ramp per selectable
+  `data-spectre-action` family, and the mobile-first heading and display
+  sizes), so the `base.css`, `components.css`, and `utilities.css` size
+  budgets in `tests/css-entrypoints.test.ts` rise by about 16 KB each.
+  `.sp-heading--h*` and `.sp-display--*` already read `--sp-heading-*` and
+  `--sp-display-*`, so they shrink below 768px with no change here; no
+  preset pins its own size over them.
+- Component text no longer drops below `--sp-min-text-size` (16px). These
+  roles move from the `sm` (14px) or `xs` (12px) preset to `md` (16px, with
+  its line height): the footer heading, text, muted, and link roles,
+  `sp-tabs__item`, `sp-form-label`, `sp-label`, `sp-fieldset__legend`,
+  `sp-helper-text`, `sp-error-message`, `sp-table` cells and `<caption>`,
+  `sp-accordion__panel`, `sp-breadcrumb`, and `.sp-prose` `<figcaption>`
+  and `<caption>`. The accordion header was already 16px. `sp-table`'s
+  `size` still sets only cell padding. Downstream impact: these roles render
+  larger; a theme that lifted them to `md` locally can drop that rule.
+  Requested by `spectre-base`.
+- A nav or footer that holds a container now drops its own inline padding
+  (`:has()`), and the container keeps its padding, so the content lines up
+  with an `sp-container` band beside it. The 4.2.0 seam rule only matched a
+  `.sp-container` child, but `spectre-components` renders
+  `<sp-container>` as the child, so the container shrink-wrapped and sat
+  16px in from the edge. The rule now matches both, and it no longer zeroes
+  the container's padding. Requested by `spectre-base`.
+
+### Added
+
+- `@phcdevworks/spectre-ui/icons`: the [Lucide](https://lucide.dev) icon set
+  (1.61.0, ISC) as plain SVG data, a deliberate addition to this package's
+  scope. All 2,167 names (264 of them aliases for renamed icons) are named
+  PascalCase exports such as `House`, `Search`, and `Settings`. Each is an
+  `IconNode`, a list of `[tag, attributes]` children for an `<svg>` drawn
+  with the exported `iconAttributes`. Also exported: `iconAliases`,
+  `lucideVersion`, and the `IconNode` and `IconAttributes` types. It works
+  from ESM and CommonJS, with no DOM or framework runtime. Lucide's
+  `createIcons`/`createElement` DOM helpers are not re-exported, and the root
+  entry does not include the icons. A bundle that imports one icon keeps only
+  that icon. New dependency: `lucide`, pinned exactly. Names come from
+  `scripts/build-icons.ts` (`npm run build:icons`). `npm run validate:icons`,
+  now part of `ci:verify`, fails if a Lucide update removes a name recorded in
+  `scripts/icon-snapshots/lucide.json`.
+- Five more icon sets, each re-exporting a pinned npm package the same way
+  (named exports only, tree-shakeable, ESM and CommonJS, no framework):
+  `@phcdevworks/spectre-ui/icons/mdi` (`@mdi/js` 7.4.47, 7,447 Material
+  Design Icons), `/icons/brands` (`simple-icons` 16.35.0, 3,362 brand logos),
+  and `/icons/fa-solid`, `/icons/fa-regular`, `/icons/fa-brands` (Font
+  Awesome Free 7.3.1, 2,001 / 273 / 609 icons). Every icon entry, Lucide
+  included, also exports `iconSet` (package, version, licence, count).
+  Simple Icons logos under a copyleft, share-alike, non-commercial,
+  no-derivatives, or custom licence (104) are left out. New dependencies,
+  pinned exactly: `@mdi/js`, `simple-icons`, and the three
+  `@fortawesome/free-*-svg-icons` packages.
+- The theme's action colour (`spectre-tokens` 4.15.0 `action.*`), so a
+  child theme sets `data-spectre-action` on `<html>` instead of repainting
+  components. Requested by `spectre-base`.
+  - `getButtonClasses({ variant: 'action' })` (`.sp-btn--action`): fill,
+    hover, active, text, and focus ring from `--sp-action-*`. There is no
+    action disabled role, so the shared disabled opacity applies.
+  - `getStatClasses({ unitTone: 'action' })` (`.sp-stat--unit-action`)
+    colours the unit with `action.onPage`, or `action.onSurface` on a
+    surface stat. An inverse stat keeps its `onInverse` accent, since
+    `action` has no inverse role. New exported type: `StatUnitTone`.
+  - `getQuoteClasses({ accentColor: 'action' })` (`.sp-quote--accent-action`)
+    draws the rail and mark in `action.rail`.
+  - `getFooterClasses({ surface: 'action' })` (`.sp-footer--surface-action`)
+    paints the footer in `action.bg`, so a child theme no longer sets a
+    local footer background. Unlike the other surfaces it also sets every
+    text role to `action.text`, the colour checked for contrast on
+    `action.bg`. Rules and chips use the hover and active shades, and links
+    underline on hover because the text has one colour.
+- Sidebar classes that had CSS but no recipe, so adapters could not reach
+  them: `getSidebarGroupIconClasses()` (`.sp-sidebar__group-icon`),
+  `getSidebarGroupContentClasses()` (`.sp-sidebar__group-content`), and
+  `hovered`/`focused` on `getSidebarGroupSummaryClasses` and
+  `getSidebarToggleClasses` (`is-hover`/`is-focus`). New exported type:
+  `SidebarInteractiveRecipeOptions`.
+- `getProseClasses({ size })` (`md` | `lg` | `xl`) sets `.sp-prose` body
+  text from the `--sp-font-*` preset (`.sp-prose--{size}`). Omission
+  inherits the surrounding size, as before. New exported type: `ProseSize`.
+  Requested by `spectre-base`.
+- `getIconBoxClasses({ iconSize })` (`xs`–`3xl`) sizes the projected glyph
+  from `--sp-icon-*` (12px–48px) through `.sp-iconbox--icon-{size}`.
+  Omission keeps the glyph at 1em of the box's font size. The glyph's own
+  `width`/`height` attributes are still overridden, so every icon in a box
+  renders at one size. New exported type: `IconBoxIconSize`. Requested by
+  `spectre-base`.
+
 ## [5.7.0] - 2026-10-16
 
 **Release Title:** Complete Recipe and Utility Coverage

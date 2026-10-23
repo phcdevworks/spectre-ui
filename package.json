@@ -36,7 +36,7 @@
     "npm": ">=10.0.0"
   },
   "type": "module",
-  "packageManager": "npm@12.2.0",
+  "packageManager": "npm@12.2.1",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -45,6 +45,16 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
+    },
+    "./icons": {
+      "types": "./dist/icons.d.ts",
+      "import": "./dist/icons.js",
+      "require": "./dist/icons.cjs"
+    },
+    "./icons/*": {
+      "types": "./dist/icons/*.d.ts",
+      "import": "./dist/icons/*.js",
+      "require": "./dist/icons/*.cjs"
     },
     "./index.css": "./dist/index.css",
     "./base.css": "./dist/base.css",
@@ -64,11 +74,12 @@
     "./dist/utilities.css"
   ],
   "scripts": {
-    "build": "tsup --config tsup.config.ts && npm run build:utilities && npm run build:css",
+    "build": "npm run build:icons && tsup --config tsup.config.ts && npm run build:utilities && npm run build:css",
+    "build:icons": "node --experimental-strip-types ./scripts/build-icons.ts",
     "build:css": "node --experimental-strip-types ./scripts/build-css.ts",
     "build:utilities": "node --experimental-strip-types ./scripts/build-utilities.ts",
     "check": "npm run ci:verify && npm run check:ecosystem",
-    "ci:verify": "npm run validate:runtime && npm run lint && npm run validate:changelog && npm run validate:exports && npm run validate:readme && npm run validate:tokens && npm run validate:token-usage && npm run build && npm run validate:css-contract && npm run validate:utilities && npm test",
+    "ci:verify": "npm run validate:runtime && npm run lint && npm run validate:changelog && npm run validate:exports && npm run validate:readme && npm run validate:tokens && npm run validate:token-usage && npm run validate:icons && npm run build && npm run validate:css-contract && npm run validate:utilities && npm test",
     "dev": "tsup --config tsup.config.ts --watch",
     "clean": "rm -rf dist",
     "release:propose": "node --experimental-strip-types ./scripts/propose-version.ts",
@@ -76,6 +87,7 @@
     "pretest": "npm run build",
     "format": "prettier --write .",
     "test": "vitest run",
+    "validate:icons": "node --experimental-strip-types ./scripts/build-icons.ts --check",
     "validate:css-contract": "node --experimental-strip-types ./scripts/validate-css-contract.ts",
     "validate:utilities": "node --experimental-strip-types ./scripts/validate-utilities.ts",
     "validate:exports": "node --experimental-strip-types ./scripts/validate-exports.ts",
@@ -95,25 +107,31 @@
     "typescript": "^5.0 || ^6.0 || ^7.0"
   },
   "dependencies": {
-    "@phcdevworks/spectre-tokens": "^4.14.0"
+    "@fortawesome/free-brands-svg-icons": "7.3.1",
+    "@fortawesome/free-regular-svg-icons": "7.3.1",
+    "@fortawesome/free-solid-svg-icons": "7.3.1",
+    "@mdi/js": "7.4.47",
+    "@phcdevworks/spectre-tokens": "^4.15.0",
+    "lucide": "1.61.0",
+    "simple-icons": "16.35.0"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^2.0.0",
     "@types/node": "^26.6.5",
-    "@typescript-eslint/eslint-plugin": "^8.71.2",
-    "@typescript-eslint/parser": "^8.71.2",
+    "@typescript-eslint/eslint-plugin": "^8.72.0",
+    "@typescript-eslint/parser": "^8.72.0",
     "@typescript/native": "npm:typescript@^7.0.2",
     "autoprefixer": "^10.6.1",
-    "eslint": "^10.12.0",
+    "eslint": "^10.13.0",
     "jiti": "^2.7.0",
-    "postcss": "^8.5.30",
+    "postcss": "^8.5.31",
     "postcss-cli": "^12.0.0",
     "postcss-import": "^17.0.1",
     "prettier": "^3.9.10",
     "tsup": "^9.0.0",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.71.2",
-    "vite": "^8.3.4",
+    "typescript-eslint": "^8.72.0",
+    "vite": "^8.3.5",
     "vitest": "^5.0.5"
   },
   "cSpell.words": [

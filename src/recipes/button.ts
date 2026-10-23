@@ -8,6 +8,11 @@ const BUTTON_VARIANTS = {
   danger: true,
   success: true,
   cta: true,
+  /**
+   * The theme's action colour (`action.*`, `spectre-tokens` 4.15.0), set
+   * with `data-spectre-action` on `<html>`. Defaults to `brand`.
+   */
+  action: true,
   accent: true,
   /**
    * Outline counterpart to `accent`: a page-coloured fill with accent text
@@ -85,6 +90,7 @@ export function getButtonClasses(opts: ButtonRecipeOptions = {}): string {
     danger: "sp-btn--danger",
     success: "sp-btn--success",
     cta: "sp-btn--cta",
+    action: "sp-btn--action",
     accent: "sp-btn--accent",
     accentOutline: "sp-btn--accent-outline",
     inverse: "sp-btn--inverse",

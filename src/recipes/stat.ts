@@ -20,9 +20,15 @@ const STAT_SURFACES = {
   inverse: true
 } as const
 
+const STAT_UNIT_TONES = {
+  accent: true,
+  action: true
+} as const
+
 export type StatSize = keyof typeof STAT_SIZES
 export type StatAlign = keyof typeof STAT_ALIGNS
 export type StatSurface = keyof typeof STAT_SURFACES
+export type StatUnitTone = keyof typeof STAT_UNIT_TONES
 
 export interface StatRecipeOptions {
   /** Type scale of the figure. */
@@ -34,6 +40,13 @@ export interface StatRecipeOptions {
    * `inverse` (`text.onInverse.*`). The unit takes that role's `accent`.
    */
   surface?: StatSurface
+  /**
+   * Colour of the unit. `accent` (default) is the surface's text accent;
+   * `action` is the theme's action colour (`action.onPage` /
+   * `action.onSurface`, `spectre-tokens` 4.15.0). `inverse` has no action
+   * role, so it keeps its accent.
+   */
+  unitTone?: StatUnitTone
 }
 
 /**
@@ -62,11 +75,19 @@ export function getStatClasses(opts: StatRecipeOptions = {}): string {
     fallback: 'page'
   })
 
+  const unitTone = resolveOption({
+    name: 'stat unit tone',
+    value: opts.unitTone,
+    allowed: STAT_UNIT_TONES,
+    fallback: 'accent'
+  })
+
   return cx(
     'sp-stat',
     `sp-stat--${size}`,
     align !== 'start' && `sp-stat--align-${align}`,
-    surface !== 'page' && `sp-stat--on-${surface}`
+    surface !== 'page' && `sp-stat--on-${surface}`,
+    unitTone !== 'accent' && `sp-stat--unit-${unitTone}`
   )
 }
 

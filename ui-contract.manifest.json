@@ -6,6 +6,53 @@
     "@phcdevworks/spectre-ui/components.css",
     "@phcdevworks/spectre-ui/utilities.css"
   ],
+  "iconEntrypoint": {
+    "subpath": "@phcdevworks/spectre-ui/icons",
+    "provider": "lucide",
+    "license": "ISC",
+    "source": "scripts/build-icons.ts",
+    "output": "src/icons/icons.generated.ts",
+    "nameSnapshot": "scripts/icon-snapshots/lucide.json",
+    "exports": ["iconAliases", "iconAttributes", "iconSet", "lucideVersion"],
+    "types": ["IconAttributes", "IconNode"]
+  },
+  "iconSets": [
+    {
+      "subpath": "@phcdevworks/spectre-ui/icons/mdi",
+      "provider": "@mdi/js",
+      "license": "Apache-2.0",
+      "output": "src/icons/mdi.generated.ts",
+      "nameSnapshot": "scripts/icon-snapshots/mdi.json"
+    },
+    {
+      "subpath": "@phcdevworks/spectre-ui/icons/brands",
+      "provider": "simple-icons",
+      "license": "CC0-1.0",
+      "output": "src/icons/brands.generated.ts",
+      "nameSnapshot": "scripts/icon-snapshots/brands.json"
+    },
+    {
+      "subpath": "@phcdevworks/spectre-ui/icons/fa-solid",
+      "provider": "@fortawesome/free-solid-svg-icons",
+      "license": "(CC-BY-4.0 AND MIT)",
+      "output": "src/icons/fa-solid.generated.ts",
+      "nameSnapshot": "scripts/icon-snapshots/fa-solid.json"
+    },
+    {
+      "subpath": "@phcdevworks/spectre-ui/icons/fa-regular",
+      "provider": "@fortawesome/free-regular-svg-icons",
+      "license": "(CC-BY-4.0 AND MIT)",
+      "output": "src/icons/fa-regular.generated.ts",
+      "nameSnapshot": "scripts/icon-snapshots/fa-regular.json"
+    },
+    {
+      "subpath": "@phcdevworks/spectre-ui/icons/fa-brands",
+      "provider": "@fortawesome/free-brands-svg-icons",
+      "license": "(CC-BY-4.0 AND MIT)",
+      "output": "src/icons/fa-brands.generated.ts",
+      "nameSnapshot": "scripts/icon-snapshots/fa-brands.json"
+    }
+  ],
   "generatedUtilityClasses": {
     "source": "scripts/build-utilities.ts",
     "output": "src/styles/utilities.generated.css",
@@ -181,6 +228,8 @@
       "getSidebarBackdropClasses",
       "getSidebarClasses",
       "getSidebarGroupClasses",
+      "getSidebarGroupContentClasses",
+      "getSidebarGroupIconClasses",
       "getSidebarGroupSummaryClasses",
       "getSidebarHeaderClasses",
       "getSidebarLinkClasses",
@@ -308,6 +357,7 @@
         "danger",
         "success",
         "cta",
+        "action",
         "accent",
         "accentOutline",
         "inverse",
@@ -364,7 +414,8 @@
         "cta",
         "outline"
       ],
-      "sizes": ["xs", "sm", "md", "lg"]
+      "sizes": ["xs", "sm", "md", "lg"],
+      "iconSizes": ["xs", "sm", "md", "lg", "xl", "2xl", "3xl"]
     },
     "pricingCard": {
       "fn": "getPricingCardClasses"
@@ -386,14 +437,16 @@
         "warning",
         "danger",
         "cta",
-        "accent"
+        "accent",
+        "action"
       ]
     },
     "stat": {
       "fn": "getStatClasses",
       "sizes": ["sm", "md", "lg", "xl"],
       "aligns": ["start", "center", "end"],
-      "surfaces": ["page", "surface", "inverse"]
+      "surfaces": ["page", "surface", "inverse"],
+      "unitTones": ["accent", "action"]
     },
     "rating": {
       "fn": "getRatingClasses",
@@ -474,7 +527,8 @@
       "aligns": ["start", "center"]
     },
     "prose": {
-      "fn": "getProseClasses"
+      "fn": "getProseClasses",
+      "sizes": ["md", "lg", "xl"]
     },
     "grid": {
       "fn": "getGridClasses",
@@ -589,7 +643,15 @@
       "weights": [400, 500, 600, 700, 800, 900],
       "leadings": ["none", "tight", "snug", "normal", "relaxed", "loose"],
       "fontSizes": [12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72, 96, 128],
-      "trackings": ["tightest", "tighter", "tight", "normal", "wide", "wider", "widest"],
+      "trackings": [
+        "tightest",
+        "tighter",
+        "tight",
+        "normal",
+        "wide",
+        "wider",
+        "widest"
+      ],
       "decorations": ["thin", "base", "thick"],
       "underlineOffsets": ["sm", "md", "lg"]
     },
@@ -601,7 +663,15 @@
     },
     "surface": {
       "fn": "getSurfaceClasses",
-      "surfaces": ["page", "card", "subtle", "overlay", "input", "inverse", "hero"]
+      "surfaces": [
+        "page",
+        "card",
+        "subtle",
+        "overlay",
+        "input",
+        "inverse",
+        "hero"
+      ]
     },
     "divider": {
       "fn": "getDividerClasses"
@@ -616,7 +686,16 @@
     },
     "motion": {
       "fn": "getMotionClasses",
-      "animations": ["fadeIn", "fadeOut", "slideUp", "slideDown", "scaleIn", "bounce", "pulse", "shake"],
+      "animations": [
+        "fadeIn",
+        "fadeOut",
+        "slideUp",
+        "slideDown",
+        "scaleIn",
+        "bounce",
+        "pulse",
+        "shake"
+      ],
       "transitions": ["all", "colors", "opacity", "transform", "none"]
     },
     "spacing": {

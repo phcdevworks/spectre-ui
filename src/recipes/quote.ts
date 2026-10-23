@@ -28,7 +28,8 @@ const QUOTE_ACCENT_COLORS = {
   warning: true,
   danger: true,
   cta: true,
-  accent: true
+  accent: true,
+  action: true
 } as const
 
 const QUOTE_ALIGNS = {
@@ -59,7 +60,8 @@ export interface QuoteRecipeOptions {
   accent?: QuoteAccent
   /**
    * Rail and mark tone from `component.quote.accent`. Defaults to `accent`,
-   * whose mark follows the `component.quote.mark` role.
+   * whose mark follows the `component.quote.mark` role. `action` uses the
+   * theme's action colour (`action.rail`, `spectre-tokens` 4.15.0).
    */
   accentColor?: QuoteAccentColor
   align?: QuoteAlign

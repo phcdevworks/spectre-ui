@@ -399,15 +399,15 @@
     max-width: var(--sp-layout-container-max-width-wide);
   }
 
-  /* sp-nav and sp-footer are flex containers with their own inline padding.
-     A nested sp-container is a flex item, so it needs an explicit width to
-     reliably fill it, and its own inline padding would otherwise stack on
-     top of the nav/footer's padding — an inset a sibling plain-block band
-     wrapped in the same sp-container does not have, so they cannot share a
-     left edge. See TODO.md "Shell — Nav And Footer Container Seam". */
-  :where(.sp-nav, .sp-footer) > .sp-container {
+  /* sp-nav and sp-footer are flex containers, so a nested container is a
+     flex item that shrink-wraps unless it is given a width. The flex item is
+     either the .sp-container itself or, from spectre-components, the
+     <sp-container> host that wraps it. The nav/footer drops its own inline
+     padding when it holds a container (components.css), so the container
+     keeps its padding and lines up with a plain sp-container band beside
+     it. */
+  :where(.sp-nav, .sp-footer) > :where(.sp-container, sp-container) {
     width: 100%;
-    padding-inline: 0;
   }
 
   /* Restores structure the build's CSS reset and this package's own
@@ -478,6 +478,22 @@
     color: var(--sp-prose-marker);
   }
 
+  /* Body text size for editor content, from the font size presets. */
+  .sp-prose--md {
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
+  }
+
+  .sp-prose--lg {
+    font-size: var(--sp-font-lg-size);
+    line-height: var(--sp-font-lg-line-height);
+  }
+
+  .sp-prose--xl {
+    font-size: var(--sp-font-xl-size);
+    line-height: var(--sp-font-xl-line-height);
+  }
+
   .sp-prose--accent-markers li::marker {
     color: var(--sp-prose-marker-accent);
   }
@@ -503,13 +519,14 @@
   .sp-prose figcaption {
     margin-top: var(--sp-space-8);
     color: var(--sp-prose-figcaption-text);
-    font-size: var(--sp-font-sm-size);
-    line-height: var(--sp-font-sm-line-height);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
   }
 
   .sp-prose caption {
     color: var(--sp-table-caption-text);
-    font-size: var(--sp-font-sm-size);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
   }
 
   /* Edit marks from component.prose.del / .ins; <s> (no longer accurate)

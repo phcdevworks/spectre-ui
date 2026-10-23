@@ -43,6 +43,7 @@ export {
 
 export {
   getIconBoxClasses,
+  type IconBoxIconSize,
   type IconBoxRecipeOptions,
   type IconBoxSize,
   type IconBoxVariant
@@ -83,7 +84,8 @@ export {
   type StatRecipeOptions,
   type StatSize,
   type StatAlign,
-  type StatSurface
+  type StatSurface,
+  type StatUnitTone
 } from './stat'
 
 export {
@@ -153,10 +155,13 @@ export {
   getSidebarHeaderClasses,
   getSidebarGroupClasses,
   getSidebarGroupSummaryClasses,
+  getSidebarGroupIconClasses,
+  getSidebarGroupContentClasses,
   getSidebarBackdropClasses,
   getSidebarToggleClasses,
   type SidebarRecipeOptions,
   type SidebarLinkRecipeOptions,
+  type SidebarInteractiveRecipeOptions,
   type SidebarLinkLevel
 } from './sidebar'
 
@@ -251,7 +256,11 @@ export {
   type SectionHeadAlign
 } from './section-head'
 
-export { getProseClasses, type ProseRecipeOptions } from './prose'
+export {
+  getProseClasses,
+  type ProseRecipeOptions,
+  type ProseSize
+} from './prose'
 
 export {
   getGridClasses,

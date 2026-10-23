@@ -22,12 +22,28 @@ const ICONBOX_SIZES = {
   lg: true,
 } as const;
 
+const ICONBOX_ICON_SIZES = {
+  xs: true,
+  sm: true,
+  md: true,
+  lg: true,
+  xl: true,
+  "2xl": true,
+  "3xl": true,
+} as const;
+
 export type IconBoxVariant = keyof typeof ICONBOX_VARIANTS;
 export type IconBoxSize = keyof typeof ICONBOX_SIZES;
+export type IconBoxIconSize = keyof typeof ICONBOX_ICON_SIZES;
 
 export interface IconBoxRecipeOptions {
   variant?: IconBoxVariant;
   size?: IconBoxSize;
+  /**
+   * Sizes the projected glyph from the `--sp-icon-*` scale (`xs` 12px to
+   * `3xl` 48px). Omission keeps the glyph at 1em of the box's font size.
+   */
+  iconSize?: IconBoxIconSize;
   disabled?: boolean;
   loading?: boolean;
   interactive?: boolean;
@@ -42,6 +58,7 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
   const {
     variant: variantInput,
     size: sizeInput,
+    iconSize: iconSizeInput,
     disabled = false,
     loading = false,
     interactive = false,
@@ -64,6 +81,16 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
     allowed: ICONBOX_SIZES,
     fallback: "md",
   });
+
+  const iconSize =
+    iconSizeInput === undefined
+      ? undefined
+      : resolveOption({
+          name: "icon box icon size",
+          value: iconSizeInput,
+          allowed: ICONBOX_ICON_SIZES,
+          fallback: "md",
+        });
 
   const variantMap: Record<IconBoxVariant, string> = {
     primary: "sp-iconbox--primary",
@@ -92,6 +119,7 @@ export function getIconBoxClasses(opts: IconBoxRecipeOptions = {}): string {
     "sp-iconbox",
     variantClass,
     sizeClass,
+    iconSize && `sp-iconbox--icon-${iconSize}`,
     disabled && "sp-iconbox--disabled",
     loading && "sp-iconbox--loading",
     interactive && "sp-iconbox--interactive",

@@ -877,6 +877,33 @@
     box-shadow: none;
   }
 
+  /* action. The theme's own action colour (spectre-tokens 4.15.0): a theme
+     picks the family with data-spectre-action on <html>, so the hover and
+     active shades follow and nothing here needs repainting. No disabled
+     role is published; the base disabled opacity applies. */
+  .sp-btn--action {
+    background-color: var(--sp-action-bg);
+    color: var(--sp-action-text);
+  }
+
+  .sp-btn--action:focus-visible,
+  .sp-btn--action.sp-btn--focus,
+  .sp-btn--action.is-focus {
+    box-shadow: 0 0 0 calc(var(--sp-focus-ring-width) + var(--sp-component-border-width)) var(--sp-action-focus-ring);
+  }
+
+  .sp-btn--action.sp-btn--hover,
+  .sp-btn--action.is-hover,
+  .sp-btn--action:hover {
+    background-color: var(--sp-action-bg-hover);
+  }
+
+  .sp-btn--action.sp-btn--active,
+  .sp-btn--action.is-active,
+  .sp-btn--action:active {
+    background-color: var(--sp-action-bg-active);
+  }
+
   /* accent. A child theme re-points the published buttons.accent and
      buttons.accentOutline roles to restyle both variants; the component
      aliases above follow them. */
@@ -1141,9 +1168,9 @@
 
   .sp-label {
     color: var(--sp-component-input-role-text);
-    font-size: var(--sp-font-sm-size);
+    font-size: var(--sp-font-md-size);
     font-weight: var(--sp-font-weight-normal);
-    line-height: var(--sp-font-sm-line-height);
+    line-height: var(--sp-font-md-line-height);
   }
 
   .sp-label--disabled {
@@ -1152,8 +1179,8 @@
 
   .sp-helper-text {
     color: var(--sp-text-on-surface-meta);
-    font-size: var(--sp-font-xs-size);
-    line-height: var(--sp-font-xs-line-height);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
   }
 
   .sp-helper-text--disabled {
@@ -1162,8 +1189,8 @@
 
   .sp-error-message {
     color: var(--sp-component-input-role-text-error);
-    font-size: var(--sp-font-xs-size);
-    line-height: var(--sp-font-xs-line-height);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
   }
 
   .sp-input {
@@ -1825,6 +1852,7 @@
       box-shadow var(--sp-duration-fast) var(--sp-easing-out),
       border-color var(--sp-duration-fast) var(--sp-easing-out),
       opacity var(--sp-duration-fast) var(--sp-easing-out);
+    --sp-component-iconbox-icon-size: 1em;
   }
 
   /* Harden icon rendering:
@@ -1836,17 +1864,47 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1em;
-    height: 1em;
+    width: var(--sp-component-iconbox-icon-size);
+    height: var(--sp-component-iconbox-icon-size);
     flex-shrink: 0;
     vertical-align: middle;
   }
 
   .sp-iconbox svg {
     display: block;
-    width: 1em;
-    height: 1em;
+    width: var(--sp-component-iconbox-icon-size);
+    height: var(--sp-component-iconbox-icon-size);
     flex-shrink: 0;
+  }
+
+  /* sp-iconbox--icon-{size} sizes the glyph from the icon size scale
+     instead of 1em of the box's font size, the default. */
+  .sp-iconbox--icon-xs {
+    --sp-component-iconbox-icon-size: var(--sp-icon-xs);
+  }
+
+  .sp-iconbox--icon-sm {
+    --sp-component-iconbox-icon-size: var(--sp-icon-sm);
+  }
+
+  .sp-iconbox--icon-md {
+    --sp-component-iconbox-icon-size: var(--sp-icon-md);
+  }
+
+  .sp-iconbox--icon-lg {
+    --sp-component-iconbox-icon-size: var(--sp-icon-lg);
+  }
+
+  .sp-iconbox--icon-xl {
+    --sp-component-iconbox-icon-size: var(--sp-icon-xl);
+  }
+
+  .sp-iconbox--icon-2xl {
+    --sp-component-iconbox-icon-size: var(--sp-icon-2xl);
+  }
+
+  .sp-iconbox--icon-3xl {
+    --sp-component-iconbox-icon-size: var(--sp-icon-3xl);
   }
 
   /* default to inheriting via currentColor */
@@ -2328,6 +2386,12 @@
     --sp-component-quote-accent-color: var(--sp-component-quote-accent-tone);
   }
 
+  /* the theme's action colour (spectre-tokens 4.15.0) */
+  .sp-quote--accent-action {
+    --sp-component-quote-accent-color: var(--sp-action-rail);
+    --sp-component-quote-mark-color: var(--sp-action-rail);
+  }
+
   .sp-quote__attribution {
     display: grid;
     justify-content: start;
@@ -2385,6 +2449,20 @@
     --sp-component-stat-figure: var(--sp-text-on-inverse-default);
     --sp-component-stat-unit: var(--sp-text-on-inverse-accent);
     --sp-component-stat-label: var(--sp-text-on-inverse-muted);
+  }
+
+  /* unit in the theme's action colour (spectre-tokens 4.15.0). action has
+     no inverse role, so an inverse stat keeps its onInverse accent. */
+  .sp-stat--unit-action {
+    --sp-component-stat-unit: var(--sp-action-on-page);
+  }
+
+  .sp-stat--on-surface.sp-stat--unit-action {
+    --sp-component-stat-unit: var(--sp-action-on-surface);
+  }
+
+  .sp-stat--on-inverse.sp-stat--unit-action {
+    --sp-component-stat-unit: var(--sp-text-on-inverse-accent);
   }
 
   .sp-stat--align-center {
@@ -3610,20 +3688,31 @@
     width: 100%;
   }
 
+  /* A nav or footer that wraps its content in a container leaves the inline
+     inset to the container, so it shares a left edge with the bands around
+     it. The container is filled to 100% in utilities.css. */
+  .sp-nav:has(> :where(.sp-container, sp-container)),
+  .sp-footer:has(> :where(.sp-container, sp-container)) {
+    padding-inline: 0;
+  }
+
   .sp-footer__heading {
     color: var(--sp-component-footer-heading);
-    font-size: var(--sp-font-sm-size);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
     font-weight: var(--sp-font-weight-semibold);
   }
 
   .sp-footer__text {
     color: var(--sp-component-footer-text);
-    font-size: var(--sp-font-sm-size);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
   }
 
   .sp-footer__muted {
     color: var(--sp-component-footer-muted);
-    font-size: var(--sp-font-sm-size);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
   }
 
   .sp-footer__links {
@@ -3634,7 +3723,8 @@
 
   .sp-footer__link {
     color: var(--sp-component-footer-link);
-    font-size: var(--sp-font-sm-size);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
     text-decoration: none;
     transition: color var(--sp-duration-fast) var(--sp-easing-out);
   }
@@ -3771,6 +3861,29 @@
 
   .sp-footer--surface-hero {
     --sp-component-footer-bg: var(--sp-surface-hero);
+  }
+
+  /* The theme's action colour (spectre-tokens 4.15.0). Unlike the other
+     surfaces it also sets the text palette, because action.text is the only
+     role checked for contrast on action.bg in every selectable family. The
+     hover and active shades draw the rules and chips. With one text colour,
+     links underline on hover instead of changing colour. */
+  .sp-footer--surface-action {
+    --sp-component-footer-bg: var(--sp-action-bg);
+    --sp-component-footer-text: var(--sp-action-text);
+    --sp-component-footer-heading: var(--sp-action-text);
+    --sp-component-footer-muted: var(--sp-action-text);
+    --sp-component-footer-link: var(--sp-action-text);
+    --sp-component-footer-link-hover: var(--sp-action-text);
+    --sp-component-footer-border: var(--sp-action-bg-active);
+    --sp-component-footer-divider: var(--sp-action-bg-active);
+    --sp-component-footer-chip-bg: var(--sp-action-bg-hover);
+  }
+
+  .sp-footer--surface-action .sp-footer__link:hover,
+  .sp-footer--surface-action .sp-footer__link--hover,
+  .sp-footer--surface-action .sp-footer__link.is-hover {
+    text-decoration: underline;
   }
 
   /* sp-footer--accent-* renders an optional thicker decorative rail on one
@@ -4865,16 +4978,16 @@
 
   .sp-fieldset__legend {
     color: var(--sp-fieldset-legend-text);
-    font-size: var(--sp-font-sm-size);
+    font-size: var(--sp-font-md-size);
     font-weight: var(--sp-font-weight-normal);
-    line-height: var(--sp-font-sm-line-height);
+    line-height: var(--sp-font-md-line-height);
   }
 
   .sp-form-label {
     color: var(--sp-label-text);
-    font-size: var(--sp-font-sm-size);
+    font-size: var(--sp-font-md-size);
     font-weight: var(--sp-font-weight-normal);
-    line-height: var(--sp-font-sm-line-height);
+    line-height: var(--sp-font-md-line-height);
   }
 
   .sp-form-label--disabled {
@@ -4941,9 +5054,9 @@
     background-color: transparent;
     color: var(--sp-tabs-item-text);
     font-family: inherit;
-    font-size: var(--sp-font-sm-size);
+    font-size: var(--sp-font-md-size);
     font-weight: var(--sp-font-weight-medium);
-    line-height: var(--sp-font-sm-line-height);
+    line-height: var(--sp-font-md-line-height);
     text-decoration: none;
     appearance: none;
     cursor: pointer;
@@ -5119,8 +5232,8 @@
   .sp-accordion__panel {
     display: none;
     padding: 0 var(--sp-space-16) var(--sp-space-16);
-    font-size: var(--sp-font-sm-size);
-    line-height: var(--sp-font-sm-line-height);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
   }
 
   .sp-accordion__panel--expanded,
@@ -5141,8 +5254,8 @@
     padding: 0;
     list-style: none;
     font-family: var(--sp-font-family-sans);
-    font-size: var(--sp-font-sm-size);
-    line-height: var(--sp-font-sm-line-height);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
   }
 
   .sp-breadcrumb__item {
@@ -5621,8 +5734,8 @@
     border-collapse: collapse;
     color: var(--sp-table-text);
     font-family: var(--sp-font-family-sans);
-    font-size: var(--sp-font-sm-size);
-    line-height: var(--sp-font-sm-line-height);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
     text-align: start;
     --sp-component-table-cell-padding-y: var(--sp-space-8);
     --sp-component-table-cell-padding-x: var(--sp-space-16);
@@ -5657,7 +5770,8 @@
   .sp-table caption {
     padding-block: var(--sp-space-8);
     color: var(--sp-table-caption-text);
-    font-size: var(--sp-font-sm-size);
+    font-size: var(--sp-font-md-size);
+    line-height: var(--sp-font-md-line-height);
     text-align: start;
   }
 

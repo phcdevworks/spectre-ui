@@ -30,7 +30,8 @@ const FOOTER_SURFACES = {
   card: true,
   subtle: true,
   inverse: true,
-  hero: true
+  hero: true,
+  action: true
 } as const
 
 export type FooterAppearance = keyof typeof FOOTER_APPEARANCES
@@ -59,7 +60,9 @@ export interface FooterRecipeOptions {
    * Paints the footer on a published `surface.*` role instead of the footer
    * background. Only the background changes; pair it with the `appearance`
    * whose text palette suits it (`light` for `page`/`card`/`subtle`, the
-   * `dark` default for `inverse`/`hero`). Omission keeps the footer
+   * `dark` default for `inverse`/`hero`). `action` paints the theme's action
+   * colour (`action.bg`, `spectre-tokens` 4.15.0) and also sets the text to
+   * `action.text`, so it needs no `appearance`. Omission keeps the footer
    * background.
    */
   surface?: FooterSurface

@@ -60,14 +60,41 @@ export function getSidebarGroupClasses(): string {
   return cx('sp-sidebar__group')
 }
 
-export function getSidebarGroupSummaryClasses(): string {
-  return cx('sp-sidebar__group-summary')
+export interface SidebarInteractiveRecipeOptions {
+  hovered?: boolean
+  focused?: boolean
+}
+
+export function getSidebarGroupSummaryClasses(
+  opts: SidebarInteractiveRecipeOptions = {}
+): string {
+  const { hovered = false, focused = false } = opts
+
+  return cx(
+    'sp-sidebar__group-summary',
+    hovered && 'is-hover',
+    focused && 'is-focus'
+  )
+}
+
+/** The disclosure chevron inside a group summary; turns when the group opens. */
+export function getSidebarGroupIconClasses(): string {
+  return cx('sp-sidebar__group-icon')
+}
+
+/** The links under a group summary. */
+export function getSidebarGroupContentClasses(): string {
+  return cx('sp-sidebar__group-content')
 }
 
 export function getSidebarBackdropClasses(): string {
   return cx('sp-sidebar-backdrop')
 }
 
-export function getSidebarToggleClasses(): string {
-  return cx('sp-sidebar-toggle')
+export function getSidebarToggleClasses(
+  opts: SidebarInteractiveRecipeOptions = {}
+): string {
+  const { hovered = false, focused = false } = opts
+
+  return cx('sp-sidebar-toggle', hovered && 'is-hover', focused && 'is-focus')
 }
