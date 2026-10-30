@@ -112,8 +112,8 @@
     "@fortawesome/free-solid-svg-icons": "7.3.1",
     "@mdi/js": "7.4.47",
     "@phcdevworks/spectre-tokens": "^4.15.0",
-    "lucide": "1.61.0",
-    "simple-icons": "16.35.0"
+    "lucide": "1.62.0",
+    "simple-icons": "16.36.0"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^2.0.0",
