@@ -6,6 +6,28 @@ reflects package releases published to npm.
 
 ## [Unreleased]
 
+## [5.9.0] - 2026-11-16
+
+**Release Title:** Icon Library Refresh
+
+Contract change type: additive
+
+### Added
+
+- The `@phcdevworks/spectre-ui/icons` entry now includes the 188 names added
+  by `lucide` 1.73.0, bringing the generated Lucide set to 2,355 icons and
+  aliases without removing any previously exported name.
+- The `@phcdevworks/spectre-ui/icons/brands` entry now includes the five
+  eligible names added by `simple-icons` 16.38.0, bringing the filtered
+  generated brand set to 3,367 icons without removing any previously
+  exported name.
+
+### Changed
+
+- Development dependencies and the declared npm package-manager version are
+  refreshed to their current compatible releases. This does not change the
+  runtime CSS or recipe contract.
+
 ## [5.8.0] - 2026-10-23
 
 **Release Title:** Icon Libraries and Action Contract

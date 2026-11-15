@@ -1,6 +1,6 @@
 {
   "name": "@phcdevworks/spectre-ui",
-  "version": "5.8.0",
+  "version": "5.9.0",
   "description": "@phcdevworks/spectre-ui is the styling layer of the Spectre system. It transforms Spectre tokens into reusable CSS, utilities, and class recipes for consistent application interfaces.",
   "keywords": [
     "phcdevworks",
@@ -36,7 +36,7 @@
     "npm": ">=10.0.0"
   },
   "type": "module",
-  "packageManager": "npm@12.2.1",
+  "packageManager": "npm@12.2.2",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -112,27 +112,27 @@
     "@fortawesome/free-solid-svg-icons": "7.3.1",
     "@mdi/js": "7.4.47",
     "@phcdevworks/spectre-tokens": "^4.15.0",
-    "lucide": "1.61.0",
-    "simple-icons": "16.35.0"
+    "lucide": "1.73.0",
+    "simple-icons": "16.38.0"
   },
   "devDependencies": {
     "@phcdevworks/spectre-manifest": "^2.0.0",
-    "@types/node": "^26.6.5",
-    "@typescript-eslint/eslint-plugin": "^8.72.0",
-    "@typescript-eslint/parser": "^8.72.0",
+    "@types/node": "^26.6.6",
+    "@typescript-eslint/eslint-plugin": "^8.72.2",
+    "@typescript-eslint/parser": "^8.72.2",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "autoprefixer": "^10.6.1",
-    "eslint": "^10.13.0",
+    "autoprefixer": "^10.6.2",
+    "eslint": "^10.15.0",
     "jiti": "^2.7.0",
-    "postcss": "^8.5.31",
+    "postcss": "^8.5.33",
     "postcss-cli": "^12.0.0",
     "postcss-import": "^17.0.1",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "tsup": "^9.0.0",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.72.0",
-    "vite": "^8.3.5",
-    "vitest": "^5.0.5"
+    "typescript-eslint": "^8.72.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
   },
   "cSpell.words": [
     "phcdevworks"
