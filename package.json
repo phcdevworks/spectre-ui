@@ -112,7 +112,7 @@
     "@fortawesome/free-solid-svg-icons": "7.3.1",
     "@mdi/js": "7.4.47",
     "@phcdevworks/spectre-tokens": "^4.15.0",
-    "lucide": "1.73.0",
+    "lucide": "1.74.0",
     "simple-icons": "16.38.0"
   },
   "devDependencies": {
